@@ -104,5 +104,5 @@ header h1 { margin: 0; font-size: 22px; font-weight: 800; }
 /* 팝업 섹션이 탭바에 안 가려지도록 여유 공간 추가 */
 .popup-section{
     padding:16px;
-    padding-bottom: calc(16px + var(--tabh) + 24px); /* ← 추가 */
+    padding-bottom: calc(16px + var(--tabh) + 24px); /* ← 추가 **/
 }
