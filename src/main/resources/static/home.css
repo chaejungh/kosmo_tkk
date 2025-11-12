@@ -1,0 +1,16 @@
+section#join {}
+
+.join-wrap{
+    width: 768px;
+    margin: auto;
+}
+
+.join-wrap label{
+    min-width: 200px;
+}
+.join-wrap .input{
+    width: calc(100% - 200px);
+    padding: 20px 40px;
+    border: none;
+    border-bottom: 1px solid #aaa;
+}
