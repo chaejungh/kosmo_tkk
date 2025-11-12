@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>더쿠쿠</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<header>
+    <h1><a class="logo" href="/">더쿠쿠</a></h1>
+    <div class="search-box">
+        <input id="q" type="search" placeholder="주술회전, 귀멸의 칼날..." />
+        <button id="btnSearch">검색</button>
+    </div>
+</header>
+
+<section class="map-wrap" id="map-area">
+    <div id="map">지도 준비 중</div>
+
+    <button class="fab gps" id="btnMyLoc">내 위치</button>
+    <button class="fab list" id="btnList">목록</button>
+</section>
+
+<a class="fab contact" id="btnContact" href="#contact">문의</a>
+
+<section class="ranking">
+    <div class="col">
+        <h2>실시간 매장 검색 랭킹</h2>
+        <ol id="store-rank"></ol>
+    </div>
+    <div class="col">
+        <h2>상품 랭킹</h2>
+        <ol id="product-rank"></ol>
+    </div>
+</section>
+
+<section class="popup-section">
+    <h2>11월 팝업스토어</h2>
+    <div class="popup-container">
+        <article class="popup-card">
+            <img src="/images/popup01.jpg" alt="주술회전 팝업스토어" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;></div>'" />
+            <div class="info">
+                <div class="title">주술회전 팝업스토어</div>
+                <div class="date">홍대 ○○몰 · 11.20~12.05</div>
+            </div>
+        </article>
+        <article class="popup-card">
+            <img src="/images/popup02.jpg" alt="귀멸의 칼날 팝업스토어" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;></div>'" />
+            <div class="info">
+                <div class="title">귀멸의 칼날 팝업스토어</div>
+                <div class="date">코엑스 B홀 · 11.25~12.10</div>
+            </div>
+        </article>
+        <article class="popup-card">
+            <div class="img-fallback"></div>
+            <div class="info">
+                <div class="title">에반게리온 팝업스토어</div>
+                <div class="date">잠실 ○○ · 11.28~12.15</div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<nav class="tabbar">
+    <a class="tab active" href="/">홈</a>
+    <a class="tab" href="/board">덕질게시판</a>
+    <a class="tab" href="/trade">굿즈거래</a>
+    <a class="tab" href="/me">마이페이지</a>
+</nav>
+
+<script src="/js/naver.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
