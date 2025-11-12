@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>더쿠쿠</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&callback=initMap"></script>
+
+
+
 </head>
 <body>
 
 <header>
-    <h1><a class="logo" href="/">더쿠쿠</a></h1>
+    <h1><a class="logo" href="/static">더쿠쿠</a></h1>
     <div class="search-box">
         <input id="q" type="search" placeholder="주술회전, 귀멸의 칼날..." />
         <button id="btnSearch">검색</button>
@@ -17,8 +21,17 @@
 </header>
 
 <section class="map-wrap" id="map-area">
-    <div id="map">지도 준비 중</div>
+    <div id="map" style="width:100%;height:400px;"></div>
 
+    <script>
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 10
+        };
+
+        var map = new naver.maps.Map('map', mapOptions);
+
+    </script>
     <button class="fab gps" id="btnMyLoc">내 위치</button>
     <button class="fab list" id="btnList">목록</button>
 </section>
@@ -64,13 +77,13 @@
 </section>
 
 <nav class="tabbar">
-    <a class="tab active" href="/">홈</a>
+    <a class="tab active" href="/static">홈</a>
     <a class="tab" href="/board">덕질게시판</a>
     <a class="tab" href="/trade">굿즈거래</a>
     <a class="tab" href="/me">마이페이지</a>
 </nav>
 
-<script src="/js/naver.js"></script>
-<script src="/js/app.js"></script>
+<!--<script src="/js/naver.js"></script>-->
+<!--<script src="/js/app.js"></script>-->
 </body>
 </html>
