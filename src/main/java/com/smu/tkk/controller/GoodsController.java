@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GoodsController {
     @GetMapping("/")
     public String home(){
-        return "goods/index";
+        return "goods/shop_map";
+    }
+    @GetMapping("/shop_map.do")
+    public String shop_map(){
+        return "goods/shop_map";
     }
 }
