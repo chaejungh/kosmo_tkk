@@ -17,9 +17,7 @@
                            placeholder="아이디를 입력해주세요">
                     <button type="button" id="check-username-btn" class="btn btn-secondary">중복확인</button>
                 </div>
-
                 <p id="username-message" class="color-accent"></p>
-
                 <script>
                     document.getElementById('check-username-btn').addEventListener('click', async function() {
                         const username = document.getElementById('username').value.trim();
@@ -39,7 +37,7 @@
                                 message.textContent = '이미 사용 중인 아이디입니다.';
                                 message.style.color = 'red';
                             } else {
-                                message.textContent = '사용 가능한 아이디입니다';
+                                message.textContent = '사용 가능한 아이디입니다!';
                                 message.style.color = 'green';
                             }
                         } catch (error) {
@@ -119,6 +117,7 @@
                     <button class="btn btn-primary btn-lg">회원가입</button>
             </div>
         </div>
+    </div>
     </div>
 </section>
 </body>

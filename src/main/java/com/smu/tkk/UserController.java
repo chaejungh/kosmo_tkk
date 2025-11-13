@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/user")
-@RestController
 @RequiredArgsConstructor
 public class UserController {
     @GetMapping("/join.do")
