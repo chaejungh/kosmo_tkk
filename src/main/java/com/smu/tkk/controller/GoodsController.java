@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
-    @GetMapping("/")
-    public String home(){
-        return "goods/shop_map";
-    }
-    @GetMapping("/map")
-    public String shop_map(){
-        return "goods/shop_map";
+
+    // /goods, /goods/, /goods/map, /goods/shop_map 전부 동일 템플릿 반환
+    @GetMapping({"", "/", "map", "shop_map"})
+    public String showMap() {
+        return "goods/shop_map"; // src/main/resources/templates/goods/shop_map.html
     }
 }
