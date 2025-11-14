@@ -11,7 +11,7 @@ public class GoodsController {
     public String home(){
         return "goods/shop_map";
     }
-    @GetMapping("/shop_map.do")
+    @GetMapping("/map")
     public String shop_map(){
         return "goods/shop_map";
     }

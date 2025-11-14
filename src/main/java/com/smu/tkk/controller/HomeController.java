@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping(path = {"/","/index.html"})
-    public String index(){
+    @GetMapping({"/", "/index.html"})
+    public String index() {
+        // templates/goods/index.html 렌더링
         return "index";
     }
+
 }
