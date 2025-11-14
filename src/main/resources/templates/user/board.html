@@ -2,72 +2,117 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>덕질게시판 - 더쿠쿠</title>
+    <title>더쿠쿠 - 덕질게시판</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 <div class="page">
 
-    <!-- 헤더 -->
     <header class="header">
         <div class="header-top">
             <a th:href="@{/}" class="logo">더쿠쿠</a>
+            <div class="logo-badge subtle">
+                <span>📂</span>
+                <span>덕질게시판</span>
+            </div>
         </div>
-        <h2 class="sub-title">덕질게시판</h2>
     </header>
 
     <main class="content">
 
-        <!-- 카테고리 -->
-        <section class="card">
-            <div class="tab-row">
-                <button class="chip">내 새끼 자랑</button>
-                <button class="chip">코스프레</button>
-                <button class="chip">자유</button>
+        <!-- 카테고리 탭 -->
+        <section class="card board-header-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>덕질게시판</span>
+                    <span class="pill pill-purple">COMMUNITY</span>
+                </div>
             </div>
-
-            <div class="tab-row sort-row">
-                <button class="chip">최신순</button>
-                <button class="chip">좋아요순</button>
-                <button class="chip">조회수순</button>
-                <button class="chip">댓글순</button>
+            <div class="segmented-control">
+                <button type="button" class="seg-btn active">내 새끼 자랑</button>
+                <button type="button" class="seg-btn">코스프레</button>
+                <button type="button" class="seg-btn">자유</button>
+            </div>
+            <div class="board-toolbar">
+                <div class="chip-group">
+                    <button type="button" class="chip chip-light active">최신순</button>
+                    <button type="button" class="chip chip-light">좋아요순</button>
+                    <button type="button" class="chip chip-light">조회수순</button>
+                    <button type="button" class="chip chip-light">댓글많은순</button>
+                </div>
+                <button type="button" class="btn-primary btn-sm">+ 글쓰기</button>
             </div>
         </section>
 
-        <!-- 게시글 목록 -->
+        <!-- 게시글 리스트 -->
         <section class="card">
-            <ul class="feed-list">
+            <ul class="post-list">
 
-                <li class="feed">
-                    <div class="feed-title">오늘 영업한 내 최애 포카 자랑</div>
-                    <div class="feed-meta">
-                        닉네임 · 좋아요 12 · 댓글 3 · 조회 120
+                <li class="post-card">
+                    <div class="post-thumb badge-purple">PHOTO</div>
+                    <div class="post-main">
+                        <div class="post-title-row">
+                            <h3 class="post-title">오늘 영업한 내 최애 포카 자랑 💜</h3>
+                            <span class="post-tag">#주술회전 #고죠사토루</span>
+                        </div>
+                        <p class="post-meta">
+                            닉네임 · 좋아요 12 · 댓글 3 · 조회 120 · 3분 전
+                        </p>
                     </div>
-                    <div class="feed-tag">#주술회전 #고죠사토루</div>
                 </li>
 
-                <li class="feed">
-                    <div class="feed-title">코스프레 첫 도전 후기</div>
-                    <div class="feed-meta">
-                        코스붕이 · 좋아요 34 · 댓글 10 · 조회 340
+                <li class="post-card">
+                    <div class="post-thumb badge-pink">COS</div>
+                    <div class="post-main">
+                        <div class="post-title-row">
+                            <h3 class="post-title">코스프레 첫 도전 후기.. 긴장 MAX</h3>
+                            <span class="post-tag">#귀멸의칼날 #네즈코</span>
+                        </div>
+                        <p class="post-meta">
+                            코스봉이 · 좋아요 34 · 댓글 10 · 조회 340 · 1시간 전
+                        </p>
                     </div>
-                    <div class="feed-tag">#귀멸의칼날 #네즈코</div>
+                </li>
+
+                <li class="post-card">
+                    <div class="post-thumb badge-blue">FREE</div>
+                    <div class="post-main">
+                        <div class="post-title-row">
+                            <h3 class="post-title">오프 굿즈 교환할 사람 구해요</h3>
+                            <span class="post-tag">#블루록 #굿즈교환</span>
+                        </div>
+                        <p class="post-meta">
+                            축구덕후 · 좋아요 7 · 댓글 5 · 조회 80 · 어제
+                        </p>
+                    </div>
                 </li>
 
             </ul>
+        </section>
 
-            <button class="write-btn">+ 글쓰기</button>
+        <!-- 인기글 섹션 -->
+        <section class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>이번 주 인기글 TOP 5</span>
+                    <span class="pill pill-orange">HOT</span>
+                </div>
+            </div>
+            <ol class="top-list">
+                <li>🔥 주술회전 올스타 포카 풀세트 인증</li>
+                <li>✨ 코엑스 팝업 동선 꿀팁 총정리</li>
+                <li>📸 블루록 전시 포토스팟 모음</li>
+                <li>🎭 코스프레 메이크업 추천템</li>
+                <li>🛍 굿즈 정리하는 꿀정리법 공유</li>
+            </ol>
         </section>
 
     </main>
-
 </div>
 
-<!-- bottom nav -->
 <nav class="bottom-nav">
-    <a th:href="@{/
-}" class="nav-item">
+    <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span>
         <span>홈</span>
     </a>
@@ -84,6 +129,5 @@
         <span>내정보</span>
     </a>
 </nav>
-
 </body>
 </html>
