@@ -2,66 +2,88 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 덕질게시판</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <title>덕질게시판 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 <div class="page">
 
+    <!-- 헤더 -->
     <header class="header">
-        <div class="logo" onclick="location.href='/'">더쿠쿠</div>
+        <div class="header-top">
+            <a th:href="@{/}" class="logo">더쿠쿠</a>
+        </div>
+        <h2 class="sub-title">덕질게시판</h2>
     </header>
 
-    <div class="sub-header">덕질게시판</div>
+    <main class="content">
 
-    <!-- 카테고리 탭 -->
-    <div class="tab-nav">
-        <button class="tab active">내 새끼 자랑</button>
-        <button class="tab">코스프레</button>
-        <button class="tab">자유</button>
-    </div>
+        <!-- 카테고리 -->
+        <section class="card">
+            <div class="tab-row">
+                <button class="chip">내 새끼 자랑</button>
+                <button class="chip">코스프레</button>
+                <button class="chip">자유</button>
+            </div>
 
-    <!-- 정렬 영역 -->
-    <div class="list-toolbar">
-        <span>정렬:</span>
-        <button class="chip active">최신순</button>
-        <button class="chip">좋아요순</button>
-        <button class="chip">조회수순</button>
-    </div>
+            <div class="tab-row sort-row">
+                <button class="chip">최신순</button>
+                <button class="chip">좋아요순</button>
+                <button class="chip">조회수순</button>
+                <button class="chip">댓글순</button>
+            </div>
+        </section>
 
-    <!-- 게시글 목록 (샘플) -->
-    <section class="list">
-        <article class="list-item">
-            <div class="list-title">오늘 영업한 내 최애 포카 자랑</div>
-            <div class="list-meta">닉네임 · 좋아요 12 · 댓글 3 · 조회 120</div>
-            <div class="list-tags">#주술회전 #고죠사토루</div>
-        </article>
+        <!-- 게시글 목록 -->
+        <section class="card">
+            <ul class="feed-list">
 
-        <article class="list-item">
-            <div class="list-title">코스프레 첫 도전 후기</div>
-            <div class="list-meta">코스붕이 · 좋아요 34 · 댓글 10 · 조회 340</div>
-            <div class="list-tags">#귀멸의칼날 #네즈코</div>
-        </article>
-    </section>
+                <li class="feed">
+                    <div class="feed-title">오늘 영업한 내 최애 포카 자랑</div>
+                    <div class="feed-meta">
+                        닉네임 · 좋아요 12 · 댓글 3 · 조회 120
+                    </div>
+                    <div class="feed-tag">#주술회전 #고죠사토루</div>
+                </li>
 
-    <!-- 글쓰기 플로팅 버튼 -->
-    <button class="fab-write">＋ 글쓰기</button>
+                <li class="feed">
+                    <div class="feed-title">코스프레 첫 도전 후기</div>
+                    <div class="feed-meta">
+                        코스붕이 · 좋아요 34 · 댓글 10 · 조회 340
+                    </div>
+                    <div class="feed-tag">#귀멸의칼날 #네즈코</div>
+                </li>
+
+            </ul>
+
+            <button class="write-btn">+ 글쓰기</button>
+        </section>
+
+    </main>
 
 </div>
 
+<!-- bottom nav -->
 <nav class="bottom-nav">
-    <a href="/">
-        <span class="icon">🏠</span><span>홈</span>
+    <a th:href="@{/
+}" class="nav-item">
+        <span class="icon">🏠</span>
+        <span>홈</span>
     </a>
-    <a href="/board" class="active">
-        <span class="icon">📁</span><span>덕질게시판</span>
+    <a th:href="@{/board}" class="nav-item active">
+        <span class="icon">📁</span>
+        <span>덕질게시판</span>
     </a>
-    <a href="/trade">
-        <span class="icon">💸</span><span>굿즈거래</span>
+    <a th:href="@{/trade}" class="nav-item">
+        <span class="icon">💸</span>
+        <span>굿즈거래</span>
     </a>
-    <a href="/mypage">
-        <span class="icon">👤</span><span>내정보</span>
+    <a th:href="@{/mypage}" class="nav-item">
+        <span class="icon">👤</span>
+        <span>내정보</span>
     </a>
 </nav>
+
 </body>
 </html>
