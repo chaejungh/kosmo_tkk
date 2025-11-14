@@ -44,7 +44,7 @@
 --                        longitude       NUMBER(11, 8),                                       -- 경도
 --                        avg_rating      NUMBER(3, 2)   DEFAULT 0,                            -- 평균 평점
 --                        bookmark_count  NUMBER         DEFAULT 0,                            -- 즐겨찾기 수
---                        review_count    NUMBER         DEFAULT 0,                            -- 리뷰 수 (합산 값)
+--
 --                        phone           VARCHAR2(30),                                        -- 연락처
 --                        created_at      DATE           DEFAULT SYSDATE                       -- 등록일
 -- );
