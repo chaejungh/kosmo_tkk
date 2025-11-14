@@ -2,64 +2,77 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 내정보</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <title>내정보 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 <div class="page">
 
+    <!-- 헤더 -->
     <header class="header">
-        <div class="logo" onclick="location.href='/'">더쿠쿠</div>
+        <div class="header-top">
+            <a th:href="@{/}" class="logo">더쿠쿠</a>
+        </div>
+        <h2 class="sub-title">내 정보</h2>
     </header>
 
-    <div class="sub-header">내 정보</div>
+    <main class="content">
 
-    <!-- 프로필 카드 -->
-    <section class="section">
-        <div class="profile-card">
-            <div class="profile-avatar">👤</div>
-            <div class="profile-info">
-                <div class="profile-name">닉네임</div>
-                <div class="profile-sub">한 줄 소개가 들어갑니다.</div>
-                <div class="profile-level">레벨 3 · 열심히 덕질 중</div>
+        <!-- 프로필 카드 -->
+        <section class="card profile-card">
+            <div class="profile-icon">👤</div>
+            <h3 class="profile-name">닉네임</h3>
+            <p class="profile-bio">한 줄 소개가 들어갑니다.</p>
+            <p class="profile-level">레벨 3 · 열심히 덕질 중</p>
+
+            <button class="write-btn">프로필 수정</button>
+        </section>
+
+        <!-- 활동 내역 -->
+        <section class="card">
+            <div class="tab-row">
+                <button class="chip">내 게시물</button>
+                <button class="chip">좋아요한 글</button>
+                <button class="chip">찜한 매장</button>
             </div>
-            <button class="profile-edit">프로필 수정</button>
-        </div>
-    </section>
 
-    <!-- 활동 탭 -->
-    <div class="tab-nav">
-        <button class="tab active">내 게시물</button>
-        <button class="tab">좋아요한 글</button>
-        <button class="tab">찜한 매장</button>
-    </div>
+            <div class="activity-list">
+                <p class="activity-item">
+                    내가 쓴 게시글 제목 예시
+                    <span class="activity-date">덕질게시판 · 2025-11-14</span>
+                </p>
 
-    <section class="list">
-        <article class="list-item">
-            <div class="list-title">내가 쓴 게시글 제목 예시</div>
-            <div class="list-meta">덕질게시판 · 2025-11-14</div>
-        </article>
-        <article class="list-item">
-            <div class="list-title">찜한 매장: 홍대 ○○ 팝업스토어</div>
-            <div class="list-meta">지도에서 보기 (추후 구현)</div>
-        </article>
-    </section>
+                <p class="activity-item">
+                    찜한 매장: 홍대 ○○ 팝업스토어
+                    <span class="activity-date">지도에서 보기 (추후 구현)</span>
+                </p>
+            </div>
+        </section>
+
+    </main>
 
 </div>
 
+<!-- bottom nav -->
 <nav class="bottom-nav">
-    <a href="/">
-        <span class="icon">🏠</span><span>홈</span>
+    <a th:href="@{/}" class="nav-item">
+        <span class="icon">🏠</span>
+        <span>홈</span>
     </a>
-    <a href="/board">
-        <span class="icon">📁</span><span>덕질게시판</span>
+    <a th:href="@{/board}" class="nav-item">
+        <span class="icon">📁</span>
+        <span>덕질게시판</span>
     </a>
-    <a href="/trade">
-        <span class="icon">💸</span><span>굿즈거래</span>
+    <a th:href="@{/trade}" class="nav-item">
+        <span class="icon">💸</span>
+        <span>굿즈거래</span>
     </a>
-    <a href="/mypage" class="active">
-        <span class="icon">👤</span><span>내정보</span>
+    <a th:href="@{/mypage}" class="nav-item active">
+        <span class="icon">👤</span>
+        <span>내정보</span>
     </a>
 </nav>
+
 </body>
 </html>
