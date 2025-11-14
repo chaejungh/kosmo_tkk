@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 내 문의 내역</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-top">
+            <a th:href="@{/mypage}" class="logo">〈</a>
+            <span class="logo-badge subtle">내 문의 내역</span>
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="card fake-chat">
+            <p class="profile-bio">AI 상담 / 고객센터에 남긴 문의를 모아보는 화면 (더미 데이터).</p>
+
+            <ul class="simple-list">
+                <li>
+                    [답변 완료] 거래 사기 의심 신고
+                    <div class="post-meta">2025-11-12 · 담당자 답변 완료</div>
+                </li>
+                <li>
+                    [처리 중] 매장 정보 수정 요청
+                    <div class="post-meta">2025-11-10 · 검토 중</div>
+                </li>
+                <li>
+                    [답변 완료] 탈퇴 후 데이터 복구 문의
+                    <div class="post-meta">2025-11-05 · 처리 완료</div>
+                </li>
+            </ul>
+
+            <div style="margin-top:10px; text-align:right;">
+                <a th:href="@{/help}" class="btn-primary btn-sm">새 문의하기</a>
+            </div>
+        </section>
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <a th:href="@{/}" class="nav-item"><span class="icon">🏠</span><span>홈</span></a>
+    <a th:href="@{/board}" class="nav-item"><span class="icon">📁</span><span>덕질게시판</span></a>
+    <a th:href="@{/trade}" class="nav-item"><span class="icon">💸</span><span>굿즈거래</span></a>
+    <a th:href="@{/mypage}" class="nav-item active"><span class="icon">👤</span><span>내정보</span></a>
+</nav>
+</body>
+</html>

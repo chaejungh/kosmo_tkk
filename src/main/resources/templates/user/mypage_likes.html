@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 좋아요 한 게시글</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-top">
+            <a th:href="@{/mypage}" class="logo">〈</a>
+            <span class="logo-badge subtle">좋아요 한 게시글</span>
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="card board-header-card">
+            <p class="profile-bio">하트 눌렀던 게시글들을 모아서 보여주는 화면 (더미 데이터).</p>
+
+            <ul class="post-list" style="margin-top:8px;">
+                <li class="post-card">
+                    <div class="post-thumb badge-blue">덕질</div>
+                    <div class="post-main">
+                        <div class="post-title-row">
+                            <p class="post-title">도쿄 애니 굿즈 투어 후기</p>
+                            <span class="post-tag">#굿즈로드 #성지순례</span>
+                        </div>
+                        <p class="post-meta">굿즈부자 · 좋아요 340 · 2025-11-09</p>
+                    </div>
+                </li>
+                <li class="post-card">
+                    <div class="post-thumb badge-pink">코스</div>
+                    <div class="post-main">
+                        <div class="post-title-row">
+                            <p class="post-title">주술회전 고죠 코스 재질 미쳤다</p>
+                            <span class="post-tag">#코스프레</span>
+                        </div>
+                        <p class="post-meta">코스러버 · 좋아요 120 · 2025-11-07</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <a th:href="@{/}" class="nav-item"><span class="icon">🏠</span><span>홈</span></a>
+    <a th:href="@{/board}" class="nav-item"><span class="icon">📁</span><span>덕질게시판</span></a>
+    <a th:href="@{/trade}" class="nav-item"><span class="icon">💸</span><span>굿즈거래</span></a>
+    <a th:href="@{/mypage}" class="nav-item active"><span class="icon">👤</span><span>내정보</span></a>
+</nav>
+</body>
+</html>

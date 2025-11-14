@@ -9,78 +9,181 @@
 <body>
 <div class="page">
 
+    <!-- 상단 헤더 -->
     <header class="header">
         <div class="header-top">
             <a th:href="@{/}" class="logo">더쿠쿠</a>
-            <div class="logo-badge subtle">
-                <span>👤</span>
-                <span>내 정보</span>
+
+            <!-- 오른쪽: MY PAGE 뱃지 + 설정 톱니바퀴 아이콘 -->
+            <div style="display:flex; align-items:center; gap:8px;">
+                <div class="logo-badge subtle">
+                    <span>👤</span>
+                    <span>MY PAGE</span>
+                </div>
+                <!-- 설정 페이지 -->
+                <a th:href="@{/mypage/settings}"
+                   aria-label="설정"
+                   style="
+                        width:32px;
+                        height:32px;
+                        border-radius:999px;
+                        background:#eef2ff;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        text-decoration:none;
+                        font-size:16px;
+                        color:#4b5563;
+                   ">
+                    ⚙️
+                </a>
             </div>
+        </div>
+
+        <div class="search-area">
+            <p class="search-meta">내 프로필 · 활동 내역 · 공지 · 문의 내역을 한 곳에서 관리해요.</p>
         </div>
     </header>
 
     <main class="content">
 
-        <!-- 프로필 카드 -->
+        <!-- 4-1. 프로필 관리 -->
         <section class="card profile-card">
-            <div class="profile-main">
-                <div class="avatar">JD</div>
-                <div class="profile-text">
-                    <div class="profile-row">
-                        <h2 class="profile-name">닉네임</h2>
-                        <span class="pill pill-purple small">레벨 3 · 열심히 덕질 중</span>
-                    </div>
-                    <p class="profile-bio">한 줄 소개가 들어갑니다. (추후 DB 연동)</p>
+            <div class="card-header">
+                <div class="card-title">
+                    <span>프로필</span>
+                    <span class="pill pill-purple small">LV. 3 덕쿠</span>
                 </div>
             </div>
+
+            <div class="profile-main">
+                <div class="avatar">
+                    <span>DH</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-row">
+                        <h2 class="profile-name">정다희</h2>
+                        <span class="pill pill-blue small">주술회전 러버</span>
+                    </div>
+                    <p class="profile-bio">홍대 팝업 투어 중 · 굿즈 수집가</p>
+                </div>
+            </div>
+
             <div class="profile-actions">
-                <button type="button" class="btn-outline btn-sm">프로필 수정</button>
-                <button type="button" class="btn-outline btn-sm">알림 설정</button>
+                <a th:href="@{/mypage/profile}" class="btn-outline btn-sm">닉네임 변경</a>
+                <a th:href="@{/mypage/profile}" class="btn-outline btn-sm">비밀번호 변경</a>
+                <a th:href="@{/mypage/profile}" class="btn-primary btn-sm">프로필 편집</a>
             </div>
         </section>
 
-        <!-- 활동 내역 탭 -->
-        <section class="card">
-            <div class="segmented-control">
-                <button type="button" class="seg-btn active">내 게시물</button>
-                <button type="button" class="seg-btn">좋아요한 글</button>
-                <button type="button" class="seg-btn">찜한 매장</button>
+        <!-- 4-2. 나의 활동 내역 -->
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>나의 활동</span>
+                    <span class="pill pill-blue small">ACTIVITY</span>
+                </div>
             </div>
 
-            <div class="mypage-section">
-                <h3 class="mypage-title">내가 쓴 게시글</h3>
-                <ul class="simple-list">
-                    <li>
-                        덕질게시판 · 2025-11-14 · 주술회전 팝업 후기 모음
-                    </li>
-                    <li>
-                        굿즈거래 · 2025-11-10 · 블루록 포카 양도합니다
-                    </li>
-                </ul>
-
-                <h3 class="mypage-title">찜한 매장</h3>
-                <ul class="simple-list">
-                    <li>홍대 ○○ 팝업스토어 · 지도에서 보기 (추후 구현)</li>
-                    <li>코엑스 △△△ 굿즈샵 · 지도에서 보기 (추후 구현)</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- 계정 / 고객센터 -->
-        <section class="card">
-            <h3 class="mypage-title">계정 & 고객센터</h3>
+            <h3 class="mypage-title">게시물</h3>
             <ul class="simple-list link-list">
-                <li>공지사항</li>
-                <li>내 문의 내역</li>
-                <li>이메일 / 비밀번호 변경</li>
-                <li>로그아웃</li>
-                <li>회원 탈퇴</li>
+                <li>
+                    <a th:href="@{/mypage/posts/board}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        내가 작성한 덕질게시판 글 보기
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/posts/trade}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        내가 작성한 굿즈거래 글 보기
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/likes}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        좋아요 한 게시글 모아보기
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/favorites}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        찜한 굿즈 / 관심 거래글 보기
+                    </a>
+                </li>
+            </ul>
+
+            <h3 class="mypage-title">매장 & 북마크</h3>
+            <ul class="simple-list link-list">
+                <li>
+                    <a th:href="@{/mypage/bookmarks}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        즐겨찾기한 매장 리스트
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 4-4. 공지사항 · 고객문의 내역 -->
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>공지 & 고객센터</span>
+                    <span class="pill pill-orange small">SERVICE</span>
+                </div>
+                <a th:href="@{/help}" class="btn-outline btn-sm">문의하기</a>
+            </div>
+
+            <h3 class="mypage-title">공지사항</h3>
+            <ul class="simple-list link-list">
+                <li>
+                    <a th:href="@{/mypage/notices}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        [점검] 11/20 더쿠쿠 서비스 점검 안내
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/notices}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        [이벤트] 주술회전 팝업스토어 연동 기념 이벤트
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/notices}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        [업데이트] 굿즈거래 찜 기능이 추가되었습니다.
+                    </a>
+                </li>
+            </ul>
+
+            <h3 class="mypage-title">내 문의 내역</h3>
+            <ul class="simple-list link-list">
+                <li>
+                    <a th:href="@{/mypage/inquiries}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        11/12 · 거래 사기 의심 신고 · 답변 완료
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/inquiries}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        11/10 · 매장 정보 수정 요청 · 처리 중
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mypage/inquiries}"
+                       style="text-decoration:none;color:inherit;display:block;">
+                        11/05 · 탈퇴 후 데이터 복구 문의 · 답변 완료
+                    </a>
+                </li>
             </ul>
         </section>
 
     </main>
+
 </div>
 
+<!-- 하단 탭 네비게이션 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span>
@@ -99,5 +202,6 @@
         <span>내정보</span>
     </a>
 </nav>
+
 </body>
 </html>

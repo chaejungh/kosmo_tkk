@@ -30,6 +30,11 @@ public class HomeController {
         return "user/mypage";
     }
 
+    @GetMapping("/mypage/settings")
+    public String settings() {
+        return "mypage_settings";
+    }
+
     // 문의/도움말
     @GetMapping("/help")
     public String help() {
