@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 내정보</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="logo" onclick="location.href='/'">더쿠쿠</div>
+    </header>
+
+    <div class="sub-header">내 정보</div>
+
+    <!-- 프로필 카드 -->
+    <section class="section">
+        <div class="profile-card">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-info">
+                <div class="profile-name">닉네임</div>
+                <div class="profile-sub">한 줄 소개가 들어갑니다.</div>
+                <div class="profile-level">레벨 3 · 열심히 덕질 중</div>
+            </div>
+            <button class="profile-edit">프로필 수정</button>
+        </div>
+    </section>
+
+    <!-- 활동 탭 -->
+    <div class="tab-nav">
+        <button class="tab active">내 게시물</button>
+        <button class="tab">좋아요한 글</button>
+        <button class="tab">찜한 매장</button>
+    </div>
+
+    <section class="list">
+        <article class="list-item">
+            <div class="list-title">내가 쓴 게시글 제목 예시</div>
+            <div class="list-meta">덕질게시판 · 2025-11-14</div>
+        </article>
+        <article class="list-item">
+            <div class="list-title">찜한 매장: 홍대 ○○ 팝업스토어</div>
+            <div class="list-meta">지도에서 보기 (추후 구현)</div>
+        </article>
+    </section>
+
+</div>
+
+<nav class="bottom-nav">
+    <a href="/">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a href="/board">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a href="/trade">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a href="/mypage" class="active">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+</body>
+</html>

@@ -1,89 +1,128 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>더쿠쿠</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&callback=initMap"></script>
-    
-
-
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 홈</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
 <body>
+<div class="page">
 
-<header>
-    <h1><a class="logo" href="/static">더쿠쿠</a></h1>
-    <div class="search-box">
-        <input id="q" type="search" placeholder="주술회전, 귀멸의 칼날..." />
-        <button id="btnSearch">검색</button>
-    </div>
-</header>
+    <!-- ① 헤더 -->
+    <header class="header">
+        <div class="logo" onclick="location.href='/'">더쿠쿠</div>
+    </header>
 
-<section class="map-wrap" id="map-area">
-    <div id="map" style="width:100%;height:400px;"></div>
+    <!-- ② 검색 영역 -->
+    <section class="search-area">
+        <div class="search-box">
+            <input type="text" placeholder="주술회전, 홍대, 포카, 굿즈명 검색">
+            <button type="button">검색</button>
+        </div>
+        <div class="search-meta">
+            최근 검색어 · 인기 검색어 영역 (추후 구현)
+        </div>
+    </section>
 
-    <script>
-        var mapOptions = {
-            center: new naver.maps.LatLng(37.3595704, 127.105399),
-            zoom: 10
-        };
+    <!-- ③ 지도 자리 (지금은 단순 박스만) -->
+    <section class="map-section">
+        <div class="map-toolbar">
+            <button type="button">내 위치</button>
+            <button type="button">필터</button>
+        </div>
+        <div id="map" class="map-placeholder">
+            MAP 영역 (네이버 지도)
+        </div>
+    </section>
 
-        var map = new naver.maps.Map('map', mapOptions);
+    <!-- ④ 실시간 매장 검색 랭킹 -->
+    <section class="section">
+        <div class="section-title">실시간 매장 검색 랭킹</div>
+        <ul class="ranking-list">
+            <li class="ranking-item">
+                <div>
+                    <span class="ranking-badge">1</span>
+                    홍대 ○○○ 팝업스토어
+                </div>
+                <div class="ranking-meta">검색 120회</div>
+            </li>
+            <li class="ranking-item">
+                <div>
+                    <span class="ranking-badge">2</span>
+                    코엑스 △△△ 팝업스토어
+                </div>
+                <div class="ranking-meta">검색 95회</div>
+            </li>
+            <li class="ranking-item">
+                <div>
+                    <span class="ranking-badge">3</span>
+                    잠실 ○○ 굿즈샵
+                </div>
+                <div class="ranking-meta">검색 80회</div>
+            </li>
+        </ul>
+    </section>
 
-    </script>
-    <button class="fab gps" id="btnMyLoc">내 위치</button>
-    <button class="fab list" id="btnList">목록</button>
-</section>
-
-<a class="fab contact" id="btnContact" href="#contact">문의</a>
-
-<section class="ranking">
-    <div class="col">
-        <h2>실시간 매장 검색 랭킹</h2>
-        <ol id="store-rank"></ol>
-    </div>
-    <div class="col">
-        <h2>상품 랭킹</h2>
-        <ol id="product-rank"></ol>
-    </div>
-</section>
-
-<section class="popup-section">
-    <h2>11월 팝업스토어</h2>
-    <div class="popup-container">
-        <article class="popup-card">
-            <img src="/images/popup01.jpg" alt="주술회전 팝업스토어" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;></div>'" />
-            <div class="info">
-                <div class="title">주술회전 팝업스토어</div>
-                <div class="date">홍대 ○○몰 · 11.20~12.05</div>
+    <!-- ⑤ 굿즈 추천 -->
+    <section class="section">
+        <div class="section-title">굿즈 추천</div>
+        <div class="card-row">
+            <div class="card">
+                <div class="card-title">주술회전 포카 세트</div>
+                <div class="card-meta">홍대 ○○ 팝업 · 재고 넉넉</div>
             </div>
-        </article>
-        <article class="popup-card">
-            <img src="/images/popup02.jpg" alt="귀멸의 칼날 팝업스토어" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;></div>'" />
-            <div class="info">
-                <div class="title">귀멸의 칼날 팝업스토어</div>
-                <div class="date">코엑스 B홀 · 11.25~12.10</div>
+            <div class="card">
+                <div class="card-title">귀멸의 칼날 피규어</div>
+                <div class="card-meta">코엑스 △△ 부스</div>
             </div>
-        </article>
-        <article class="popup-card">
-            <div class="img-fallback"></div>
-            <div class="info">
-                <div class="title">에반게리온 팝업스토어</div>
-                <div class="date">잠실 ○○ · 11.28~12.15</div>
-            </div>
-        </article>
-    </div>
-</section>
+        </div>
+    </section>
 
-<nav class="tabbar">
-    <a class="tab active" href="/static">홈</a>
-    <a class="tab" href="/board">덕질게시판</a>
-    <a class="tab" href="/trade">굿즈거래</a>
-    <a class="tab" href="/me">마이페이지</a>
+    <!-- ⑥ 이달의 팝업스토어 -->
+    <section class="section">
+        <div class="section-title">11월 팝업스토어</div>
+        <div class="popup-list">
+            <div class="popup-card">
+                <div class="popup-title">주술회전 팝업스토어</div>
+                <div class="popup-meta">홍대 ○○몰 · 11.20~12.05</div>
+            </div>
+            <div class="popup-card">
+                <div class="popup-title">귀멸의 칼날 팝업스토어</div>
+                <div class="popup-meta">코엑스 B홀 · 11.25~12.10</div>
+            </div>
+            <div class="popup-card">
+                <div class="popup-title">에반게리온 팝업스토어</div>
+                <div class="popup-meta">잠실 ○○ · 11.28~12.15</div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- 문의 플로팅 버튼 -->
+<div class="fab">
+    <a href="/help">문의</a>
+</div>
+
+<!-- 하단 네비게이션 -->
+<nav class="bottom-nav">
+    <a href="/" class="active">
+        <span class="icon">🏠</span>
+        <span>홈</span>
+    </a>
+    <a href="/board">
+        <span class="icon">📁</span>
+        <span>덕질게시판</span>
+    </a>
+    <a href="/trade">
+        <span class="icon">💸</span>
+        <span>굿즈거래</span>
+    </a>
+    <a href="/mypage">
+        <span class="icon">👤</span>
+        <span>내정보</span>
+    </a>
 </nav>
 
-<!--<script src="/js/naver.js"></script>-->
-<!--<script src="/js/app.js"></script>-->
 </body>
 </html>

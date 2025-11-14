@@ -1,17 +1,19 @@
-// 네이버맵 임시 어댑터 (실제 API 붙이기 전)
-window.NaverMapAdapter = class {
-    constructor(el) {
-        this.el = el;
-        if (!el) return;
-        this.el.style.display = "flex";
-        this.el.style.alignItems = "center";
-        this.el.style.justifyContent = "center";
-        this.el.innerText = "지도 준비 중";
-    }
-    centerOnMyLocation() {
-        alert("내 위치 기능은 지도 SDK 연결 후 동작합니다.");
-    }
-    toggleList() {
-        alert("목록 패널은 지도 SDK 연결 후 표시됩니다.");
-    }
-};
+// static/js/naver.js
+
+window.addEventListener('DOMContentLoaded', function () {
+    // index.html 안의 <div id="map">을 찾아서 지도 표시
+    var mapDiv = document.getElementById('map');
+    if (!mapDiv) return;   // 다른 페이지에서 에러 안 나게
+
+    var map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(37.5665, 126.9780), // 초기 위치(서울 시청 근처)
+        zoom: 12
+    });
+
+    // 테스트용 마커 하나 찍기
+    new naver.maps.Marker({
+        position: new naver.maps.LatLng(37.5665, 126.9780),
+        map: map,
+        title: '테스트 마커'
+    });
+});

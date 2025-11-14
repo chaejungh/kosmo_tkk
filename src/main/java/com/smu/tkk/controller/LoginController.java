@@ -1,4 +1,4 @@
-package com.smu.tkk;
+package com.smu.tkk.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

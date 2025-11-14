@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 굿즈거래</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="logo" onclick="location.href='/'">더쿠쿠</div>
+    </header>
+
+    <div class="sub-header">굿즈거래</div>
+
+    <!-- 검색/필터 -->
+    <div class="trade-filter">
+        <input type="text" placeholder="작품명, 캐릭터, 굿즈명 검색">
+        <button>검색</button>
+    </div>
+    <div class="trade-filter chips">
+        <button class="chip active">전체</button>
+        <button class="chip">포카</button>
+        <button class="chip">피규어</button>
+        <button class="chip">앨범</button>
+    </div>
+
+    <!-- 거래글 목록 -->
+    <section class="list">
+        <article class="card trade-card">
+            <div class="trade-title">[판매] 주술회전 고죠 포카</div>
+            <div class="trade-meta">서울 · 직거래 · 10,000원</div>
+            <div class="trade-status status-sale">판매중</div>
+        </article>
+
+        <article class="card trade-card">
+            <div class="trade-title">[교환] 귀멸 탄지로 아크릴 키링</div>
+            <div class="trade-meta">부산 · 택배 · 교환 희망</div>
+            <div class="trade-status status-reserved">예약중</div>
+        </article>
+    </section>
+
+    <!-- 글쓰기 버튼 -->
+    <button class="fab-write">＋ 거래 글쓰기</button>
+
+</div>
+
+<nav class="bottom-nav">
+    <a href="/static">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a href="/board">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a href="/trade" class="active">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a href="/mypage">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+</body>
+</html>

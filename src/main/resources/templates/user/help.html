@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 문의</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="logo" onclick="location.href='/'">더쿠쿠</div>
+    </header>
+
+    <div class="sub-header">문의 / AI 상담</div>
+
+    <section class="section">
+        <div class="help-box">
+            <p class="help-title">AI 상담원입니다. 무엇을 도와드릴까요?</p>
+            <div class="help-buttons">
+                <button class="chip">매장</button>
+                <button class="chip">거래/결제</button>
+                <button class="chip">계정</button>
+                <button class="chip">기타</button>
+            </div>
+            <textarea class="help-textarea" placeholder="궁금한 내용을 적어주세요."></textarea>
+            <button class="primary-btn">문의 보내기 (임시)</button>
+        </div>
+    </section>
+
+</div>
+
+<nav class="bottom-nav">
+    <a href="/static">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a href="/board">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a href="/trade">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a href="/mypage">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+</body>
+</html>
