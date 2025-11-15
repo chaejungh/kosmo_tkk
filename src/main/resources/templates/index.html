@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>더쿠쿠 - 홈</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 홈 전용 스타일 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
@@ -44,7 +45,7 @@
             </div>
 
             <div class="map-frame">
-                <!-- 팀원이 만들어둔 /goods/map 을 iframe으로 삽입 -->
+                <!-- 팀원이 만들어둔 /goods/map (shop_map.html) 를 iframe으로 삽입 -->
                 <iframe
                         th:src="@{/goods/map}"
                         title="매장 지도"
@@ -144,5 +145,6 @@
         <span>내정보</span>
     </a>
 </nav>
+
 </body>
 </html>

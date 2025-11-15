@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/goods")
 public class GoodsController {
 
-    // /goods, /goods/, /goods/map, /goods/shop_map 전부 동일 템플릿 반환
-    @GetMapping({"", "/", "map", "shop_map"})
-    public String showMap() {
-        return "goods/shop_map"; // src/main/resources/templates/goods/shop_map.html
+    /**
+     * 굿즈 매장 지도 페이지
+     * URL  : /goods/map
+     * View : templates/goods/shop_map.html
+     */
+    @GetMapping("/map")
+    public String shopMap() {
+        return "goods/shop_map";
     }
+
+    // 필요하면 나중에 /goods/detail, /goods/list 등 추가하면 돼.
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 내가 쓴 굿즈거래 글</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-top">
+            <a th:href="@{/mypage}" class="logo">← 내정보</a>
+            <div class="logo-badge subtle">
+                <span>💸</span>
+                <span>굿즈거래 글</span>
+            </div>
+        </div>
+        <div class="search-area">
+            <p class="search-meta">내가 올린 판매/교환/양도 글을 확인해요.</p>
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>내 거래 글</span>
+                    <span class="pill pill-green small">TRADE</span>
+                </div>
+            </div>
+
+            <ul class="simple-list link-list">
+                <li>[판매] 주술회전 포카 세트 · 20,000원 · 거래중</li>
+                <li>[교환] 블루록 굿즈 교환 구해요 · 예약중</li>
+                <li>[완료] 귀멸의 칼날 아크릴 키링 · 거래완료</li>
+            </ul>
+        </section>
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <a th:href="@{/}" class="nav-item">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a th:href="@{/board}" class="nav-item">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a th:href="@{/trade}" class="nav-item active">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a th:href="@{/mypage}" class="nav-item">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 설정</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <a th:href="@{/}" class="logo">더쿠쿠</a>
+            <div class="logo-badge subtle">
+                <span>⚙️</span>
+                <span>설정</span>
+            </div>
+        </div>
+        <div class="search-area">
+            <p class="search-meta">계정 정보, 알림, 앱 환경 설정을 관리해요.</p>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>계정</span>
+                </div>
+            </div>
+            <ul class="simple-list">
+                <li>로그인 이메일 : example@email.com</li>
+                <li>가입일 : 2025-11-01</li>
+            </ul>
+        </section>
+
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>알림 설정</span>
+                </div>
+            </div>
+            <ul class="simple-list">
+                <li>거래 메시지 알림 켜기</li>
+                <li>관심 매장 신규 팝업 알림 켜기</li>
+                <li>공지/이벤트 알림 켜기</li>
+            </ul>
+        </section>
+
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>기타</span>
+                </div>
+            </div>
+            <ul class="simple-list link-list">
+                <li>약관 보기</li>
+                <li>개인정보 처리방침</li>
+                <li>회원 탈퇴</li>
+            </ul>
+        </section>
+
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <a th:href="@{/}" class="nav-item">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a th:href="@{/board}" class="nav-item">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a th:href="@{/trade}" class="nav-item">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a th:href="@{/mypage}" class="nav-item active">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+</body>
+</html>

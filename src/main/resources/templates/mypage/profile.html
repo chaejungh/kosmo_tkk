@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 - 프로필 편집</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <a th:href="@{/}" class="logo">더쿠쿠</a>
+            <div class="logo-badge subtle">
+                <span>👤</span>
+                <span>프로필 편집</span>
+            </div>
+        </div>
+        <div class="search-area">
+            <p class="search-meta">닉네임, 소개글, 프로필 이미지를 수정할 수 있어요.</p>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <section class="card profile-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>기본 정보</span>
+                    <span class="pill pill-purple small">PROFILE</span>
+                </div>
+            </div>
+
+            <div class="profile-main">
+                <div class="avatar editable">
+                    <span>DH</span>
+                    <button type="button" class="btn-outline btn-xs" style="margin-top:8px;">이미지 변경</button>
+                </div>
+                <div class="profile-text">
+                    <div class="form-row">
+                        <label>닉네임</label>
+                        <input type="text" value="정다희" />
+                    </div>
+                    <div class="form-row">
+                        <label>한 줄 소개</label>
+                        <input type="text" value="홍대 팝업 투어 중 · 굿즈 수집가" />
+                    </div>
+                    <div class="form-row">
+                        <label>관심 작품</label>
+                        <input type="text" value="주술회전, 귀멸의 칼날" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions" style="margin-top:16px;">
+                <button type="button" class="btn-outline btn-sm"
+                        th:onclick="|location.href='@{/mypage}'|">취소</button>
+                <button type="button" class="btn-primary btn-sm">변경 내용 저장</button>
+            </div>
+        </section>
+
+        <section class="card mypage-section">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>보안</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <label>비밀번호 변경</label>
+                <button type="button" class="btn-outline btn-sm">비밀번호 변경하기</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<nav class="bottom-nav">
+    <a th:href="@{/}" class="nav-item">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a th:href="@{/board}" class="nav-item">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a th:href="@{/trade}" class="nav-item">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a th:href="@{/mypage}" class="nav-item active">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+</body>
+</html>

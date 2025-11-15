@@ -769,4 +769,279 @@ body {
     .popup-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    /* ---------------------------------
+   마이페이지 전용 공통 레이아웃
+   --------------------------------- */
+
+    /* 카드 느낌 더 살리기 */
+    .mypage-section,
+    .profile-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px 16px 14px;
+        margin-bottom: 14px;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        border: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    /* 카드 헤더, 타이틀 정리 */
+    .mypage-section .card-header,
+    .profile-card .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .mypage-section .card-title,
+    .profile-card .card-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    /* 작은 pill들 */
+    .pill.small {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    /* 설명 텍스트 */
+    .mypage-section .section-desc {
+        font-size: 12px;
+        color: #64748b;
+        margin-bottom: 8px;
+    }
+    /* 프로필 카드 레이아웃 */
+    .profile-main {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin-top: 8px;
+    }
+
+    .avatar.editable {
+        width: 64px;
+        height: 64px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #f97316, #fb7185);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f9fafb;
+        font-weight: 700;
+        font-size: 20px;
+        box-shadow: 0 8px 18px rgba(248, 113, 113, 0.5);
+        flex-shrink: 0;
+    }
+
+    .avatar.editable button {
+        margin-top: 6px;
+    }
+
+    /* 프로필 정보 텍스트 영역 */
+    .profile-text {
+        flex: 1;
+    }
+
+    /* 폼 공통 */
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 10px;
+    }
+
+    .form-row label {
+        font-size: 12px;
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        padding: 8px 10px;
+        font-size: 13px;
+        outline: none;
+        background: #f8fafc;
+        transition: all 0.15s ease;
+    }
+
+    .form-row textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+        border-color: #fb7185;
+        box-shadow: 0 0 0 1px rgba(251, 113, 133, 0.3);
+        background: #ffffff;
+    }
+
+    .profile-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    /* 버튼들 살짝 다듬기 */
+    .btn-primary {
+        background: linear-gradient(135deg, #fb7185, #f97316);
+        border: none;
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 8px 16px rgba(248, 113, 113, 0.5);
+        cursor: pointer;
+    }
+
+    .btn-outline {
+        background: #ffffff;
+        color: #0f172a;
+        border-radius: 999px;
+        border: 1px solid #e2e8f0;
+        padding: 7px 13px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .btn-sm { font-size: 12px; padding: 6px 10px; }
+    .btn-xs { font-size: 11px; padding: 4px 8px; }
+
+    .btn-primary:hover {
+        filter: brightness(1.03);
+    }
+
+    .btn-outline:hover {
+        border-color: #cbd5f5;
+        background: #f8fafc;
+    }
+    /* 심플 리스트 공통 */
+    .simple-list {
+        list-style: none;
+        padding: 0;
+        margin: 4px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .simple-list li {
+        font-size: 13px;
+        color: #0f172a;
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: #f8fafc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* 링크 느낌 나는 리스트 */
+    .link-list li {
+        position: relative;
+        padding-right: 22px;
+        cursor: pointer;
+    }
+
+    .link-list li::after {
+        content: "›";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 13px;
+        color: #cbd5e1;
+    }
+
+    /* 상태 표시용 뱃지 (문의 상태 같은 거) */
+    .status-pill {
+        font-size: 11px;
+        padding: 2px 7px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        color: #475569;
+        background: #f8fafc;
+    }
+
+    .status-done {
+        border-color: rgba(22, 163, 74, 0.3);
+        background: rgba(22, 163, 74, 0.07);
+        color: #166534;
+    }
+
+    .status-progress {
+        border-color: rgba(59, 130, 246, 0.3);
+        background: rgba(59, 130, 246, 0.06);
+        color: #1d4ed8;
+    }
+    /* 설정 화면용 토글 리스트 느낌 */
+    .settings-list {
+        list-style: none;
+        padding: 0;
+        margin: 4px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .settings-list li {
+        font-size: 13px;
+        color: #0f172a;
+        padding: 9px 10px;
+        border-radius: 10px;
+        background: #f9fafb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* 하단 네비 더 또렷하게 */
+    .bottom-nav {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 100%;
+        max-width: 480px;
+        background: rgba(15, 23, 42, 0.88);
+        backdrop-filter: blur(16px);
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 10px 10px;
+        box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.4);
+        z-index: 40;
+    }
+
+    .bottom-nav .nav-item {
+        flex: 1;
+        text-align: center;
+        color: #cbd5f5;
+        font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        opacity: 0.7;
+    }
+
+    .bottom-nav .nav-item .icon {
+        font-size: 18px;
+    }
+
+    .bottom-nav .nav-item.active {
+        color: #f97316;
+        opacity: 1;
+        font-weight: 600;
+    }
 }
