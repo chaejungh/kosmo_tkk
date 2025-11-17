@@ -254,15 +254,15 @@ body {
 }
 
 .map-frame {
-    margin-top: 8px;
-    border-radius: 14px;
+    width: 100%;
+    height: 330px;
+    border-radius: 12px;
     overflow: hidden;
-    background: #e5e7eb;
 }
 
 .map-frame iframe {
     width: 100%;
-    height: 240px;
+    height: 100%;
     border: none;
 }
 
