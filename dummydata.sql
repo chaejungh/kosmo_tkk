@@ -5836,7 +5836,7 @@
 --
 -- INSERT INTO popup_goods(popup_goods_id,popup_id,name,description,category,price,thumbnail_url) VALUES(99,15,'굿즈099','더미굿즈099','앨범',16000,'g099.jpg');
 -- INSERT INTO popup_goods(popup_goods_id,popup_id,name,description,category,price,thumbnail_url) VALUES(100,15,'굿즈100','더미굿즈100','기타',17000,'g100.jpg');
--- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(1,1,1,2,SYSDATE-10,SYSDATE-9);
+-- INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(1, 1, 1, 'SELLER',SYSDATE-10,SYSDATE-9);
 -- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(2,2,1,3,SYSDATE-9,SYSDATE-8);
 -- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(3,3,1,4,SYSDATE-8,SYSDATE-7);
 -- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(4,4,1,5,SYSDATE-7,SYSDATE-6);
