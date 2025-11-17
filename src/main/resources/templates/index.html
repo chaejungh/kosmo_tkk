@@ -4,42 +4,86 @@
     <meta charset="UTF-8">
     <title>더쿠쿠 - 홈</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 홈 전용 스타일 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
+
+    <!-- 지도 검색창 관련 스타일 -->
+    <style>
+        .map-search-inline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto; /* 🔥 오른쪽 끝으로 이동 */
+            flex: none;
+            max-width: 360px;
+        }
+
+        .map-search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .map-search-input:focus {
+            border-color: #6366f1;
+        }
+
+        .map-search-button {
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: none;
+            background: #ff6b81;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .map-section .card-header {
+                flex-direction: column;
+                align-items: flex-start;   /* 제목을 항상 왼쪽에 고정 */
+                gap: 6px;
+                width: 100%;               /* 🔥 검색창이 들여쓰기 되는 현상 해결 */
+            }
+
+            .map-search-inline {
+                width: 100%;
+                max-width: 100%;
+                margin-left: 0;
+            }
+
+            .map-search-input {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 <div class="page">
 
-    <!-- 상단 헤더 -->
+    <!-- 헤더 그대로 유지 -->
     <header class="header">
         <div class="header-top">
-            <!-- 왼쪽 로고: 그대로 유지 -->
             <a th:href="@{/}" class="logo">더쿠쿠</a>
 
-            <!-- 오른쪽: 로그인 / 회원가입 + 애니 굿즈 맵 배지 -->
             <div style="margin-left:auto; display:flex; align-items:center; gap:12px;">
-                <!-- 로그인 / 회원가입 (애니 굿즈 맵 글씨 왼쪽에) -->
                 <div style="font-size:13px; color:#4b5563;">
                     <a th:href="@{/login}" style="text-decoration:none; color:#4b5563;">로그인</a>
                     <span style="margin:0 4px;">|</span>
                     <a th:href="@{/join}" style="text-decoration:none; color:#4b5563;">회원가입</a>
                 </div>
 
-                <!-- 🔥 기존 애니 굿즈 맵 배지: 클래스/스타일/텍스트 그대로 -->
                 <div class="logo-badge">
                     <span>📱</span>
                     <span>애니 굿즈 맵</span>
                 </div>
             </div>
-        </div>
-
-        <!-- 🔹 여기부터는 원래 있던 검색영역 그대로 -->
-        <div class="search-area">
-            <div class="search-box">
-                <input type="text" placeholder="주술회전, 홍대, 포카, 굿즈명 검색">
-                <button type="button">검색</button>
-            </div>
-            <p class="search-meta">최근 검색어 · 인기 검색어 영역 (추후 구현)</p>
         </div>
     </header>
 
@@ -47,27 +91,30 @@
 
         <!-- 지도 섹션 -->
         <section class="card map-section">
-            <div class="card-header">
-                <div class="card-title">
+            <div class="card-header" style="display:flex; align-items:center; gap:16px;">
+
+                <!-- 왼쪽 제목 -->
+                <div class="card-title" style="display:flex; align-items:center; gap:8px;">
                     <span>지도에서 굿즈 매장 찾기</span>
                     <span class="pill pill-blue">BETA</span>
                 </div>
-                <div class="card-actions">
-                    <button type="button" class="chip">내 위치</button>
-                    <button type="button" class="chip">필터</button>
+
+                <!-- 🔥 검색창 오른쪽 정렬됨 -->
+                <div class="map-search-inline">
+                    <input type="text" class="map-search-input" placeholder="매장명, 지역, 작품명 검색">
+                    <button type="button" class="map-search-button">검색</button>
                 </div>
+
+                <!-- 🔥 내 위치 / 필터 삭제됨 -->
             </div>
 
+            <!-- 지도 iframe -->
             <div class="map-frame">
-                <iframe
-                        th:src="@{/goods/map}"
-                        title="매장 지도"
-                        loading="lazy">
-                </iframe>
+                <iframe th:src="@{/goods/map}" title="매장 지도" loading="lazy"></iframe>
             </div>
         </section>
 
-        <!-- 실시간 매장 검색 랭킹 -->
+        <!-- 실시간 검색 랭킹 (변경 없음) -->
         <section class="card">
             <div class="card-header">
                 <div class="card-title">
@@ -84,6 +131,7 @@
                     </div>
                     <span class="rank-meta">검색 120회</span>
                 </li>
+
                 <li class="rank-item">
                     <div class="rank-left">
                         <span class="rank-badge rank-2">2</span>
@@ -91,6 +139,7 @@
                     </div>
                     <span class="rank-meta">검색 95회</span>
                 </li>
+
                 <li class="rank-item">
                     <div class="rank-left">
                         <span class="rank-badge rank-3">3</span>
@@ -101,7 +150,7 @@
             </ul>
         </section>
 
-        <!-- 11월 팝업스토어 -->
+        <!-- 11월 팝업스토어 (그대로) -->
         <section class="card">
             <div class="card-header">
                 <div class="card-title">
@@ -116,11 +165,13 @@
                     <h3 class="popup-title">주술회전 팝업스토어</h3>
                     <p class="popup-meta">홍대 ○○몰 · 11.20 ~ 12.05</p>
                 </article>
+
                 <article class="popup-card">
                     <div class="popup-tag">POP-UP</div>
                     <h3 class="popup-title">귀멸의 칼날 팝업스토어</h3>
                     <p class="popup-meta">코엑스 B홀 · 11.25 ~ 12.10</p>
                 </article>
+
                 <article class="popup-card">
                     <div class="popup-tag">POP-UP</div>
                     <h3 class="popup-title">에반게리온 팝업스토어</h3>
@@ -131,15 +182,14 @@
 
     </main>
 
-    <!-- 문의 플로팅 버튼 -->
+    <!-- floating 버튼 -->
     <a th:href="@{/help}" class="fab">
         <span class="fab-icon">💬</span>
         <span class="fab-text">문의 · AI 상담</span>
     </a>
-
 </div>
 
-<!-- 하단 탭 네비게이션 -->
+<!-- 하단 네비게이션 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item active">
         <span class="icon">🏠</span>
