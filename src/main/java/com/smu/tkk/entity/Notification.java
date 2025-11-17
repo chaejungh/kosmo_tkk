@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
@@ -17,8 +19,10 @@ public class Notification {
     @Column(name = "NOTIFICATION_ID", nullable = false)
     private Long id;
 
-    @Column(name = "MEMBER_ID", nullable = false)
-    private Long memberId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    private Member member;
 
     @Column(name = "NOTIF_TYPE", length = 30)
     private String notifType;

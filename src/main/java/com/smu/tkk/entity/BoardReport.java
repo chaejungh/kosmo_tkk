@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
@@ -17,14 +19,20 @@ public class BoardReport {
     @Column(name = "REPORT_ID", nullable = false)
     private Long id;
 
-    @Column(name = "POST_ID")
-    private Long postId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "POST_ID")
+    private BoardPost post;
 
-    @Column(name = "COMMENT_ID")
-    private Long commentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "COMMENT_ID")
+    private BoardComment comment;
 
-    @Column(name = "REPORTER_ID", nullable = false)
-    private Long reporterId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "REPORTER_ID", nullable = false)
+    private Member reporter;
 
     @Column(name = "REASON")
     private String reason;

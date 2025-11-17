@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -19,11 +21,15 @@ public class BoardPost {
     @Column(name = "POST_ID", nullable = false)
     private Long id;
 
-    @Column(name = "CATEGORY_ID", nullable = false)
-    private Long categoryId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "CATEGORY_ID", nullable = false)
+    private BoardCategory category;
 
-    @Column(name = "MEMBER_ID", nullable = false)
-    private Long memberId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    private Member member;
 
     @Column(name = "TITLE", nullable = false, length = 200)
     private String title;
@@ -58,28 +64,22 @@ public class BoardPost {
     @Column(name = "DELETED_YN")
     private Boolean deletedYn;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "post")
     private Set<BoardBookmark> boardBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "post")
     private Set<BoardComment> boardComments = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "post")
     private Set<BoardLike> boardLikes = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "post")
     private Set<BoardPostImage> boardPostImages = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "post")
     private Set<BoardPostTag> boardPostTags = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "post")
     private Set<BoardReport> boardReports = new LinkedHashSet<>();
 
 }

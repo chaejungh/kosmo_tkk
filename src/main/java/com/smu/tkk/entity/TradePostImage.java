@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -15,8 +17,10 @@ public class TradePostImage {
     @Column(name = "IMAGE_ID", nullable = false)
     private Long id;
 
-    @Column(name = "TRADE_ID", nullable = false)
-    private Long tradeId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "TRADE_ID", nullable = false)
+    private TradePost trade;
 
     @Column(name = "IMAGE_URL", nullable = false)
     private String imageUrl;

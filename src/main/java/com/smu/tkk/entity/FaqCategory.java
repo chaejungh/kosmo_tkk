@@ -20,8 +20,7 @@ public class FaqCategory {
     @Column(name = "NAME", nullable = false, length = 50)
     private String name;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "faqCategory")
     private Set<Faq> faqs = new LinkedHashSet<>();
 
 }

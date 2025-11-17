@@ -1,18 +1,29 @@
 package com.smu.tkk.entity;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "BOARD_POST_TAG")
 public class BoardPostTag {
-    @EmbeddedId
-    private BoardPostTagId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BOARD_POST_TAG_ID", nullable = false)
+    private Long id;
 
-    //TODO [리버스 엔지니어링] DB에서 열 생성
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "POST_ID", nullable = false)
+    private BoardPost post;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "TAG_ID", nullable = false)
+    private BoardTag tag;
+
 }

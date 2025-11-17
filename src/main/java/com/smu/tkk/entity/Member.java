@@ -52,64 +52,49 @@ public class Member {
     @Column(name = "DELETED_YN")
     private Boolean deletedYn;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<BoardBookmark> boardBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<BoardComment> boardComments = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<BoardLike> boardLikes = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<BoardPost> boardPosts = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "reporter")
     private Set<BoardReport> boardReports = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<Inquiry> inquiries = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
-    private Set<MemberNotificationSetting> memberNotificationSettings = new LinkedHashSet<>();
+    @OneToOne(mappedBy = "member")
+    private MemberNotificationSetting memberNotificationSetting;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<Notification> notifications = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<PopupBookmark> popupBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<SearchLog> searchLogs = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<StoreBookmark> storeBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<TradeBookmark> tradeBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "sender")
     private Set<TradeChatMessage> tradeChatMessages = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "member")
     private Set<TradeChatRoom> tradeChatRooms = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "seller")
     private Set<TradePost> tradePosts = new LinkedHashSet<>();
 
 }

@@ -55,12 +55,10 @@ public class PopupStore {
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "popup")
     private Set<PopupBookmark> popupBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "popup")
     private Set<PopupGood> popupGoods = new LinkedHashSet<>();
 
 }

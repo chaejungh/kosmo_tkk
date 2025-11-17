@@ -23,8 +23,7 @@ public class BoardCategory {
     @Column(name = "NAME", nullable = false, length = 50)
     private String name;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "category")
     private Set<BoardPost> boardPosts = new LinkedHashSet<>();
 
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
@@ -17,8 +19,10 @@ public class StoreGood {
     @Column(name = "GOODS_ID", nullable = false)
     private Long id;
 
-    @Column(name = "STORE_ID", nullable = false)
-    private Long storeId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "STORE_ID", nullable = false)
+    private Store store;
 
     @Column(name = "NAME", nullable = false, length = 150)
     private String name;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -19,8 +21,10 @@ public class TradePost {
     @Column(name = "TRADE_ID", nullable = false)
     private Long id;
 
-    @Column(name = "SELLER_ID", nullable = false)
-    private Long sellerId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "SELLER_ID", nullable = false)
+    private Member seller;
 
     @Column(name = "TITLE", nullable = false, length = 200)
     private String title;
@@ -76,16 +80,13 @@ public class TradePost {
     @Column(name = "DELETED_YN")
     private Boolean deletedYn;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "trade")
     private Set<TradeBookmark> tradeBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "trade")
     private Set<TradeChatRoom> tradeChatRooms = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "trade")
     private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
 
 }

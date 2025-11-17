@@ -53,12 +53,10 @@ public class Store {
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "store")
     private Set<StoreBookmark> storeBookmarks = new LinkedHashSet<>();
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "store")
     private Set<StoreGood> storeGoods = new LinkedHashSet<>();
 
 }

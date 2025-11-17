@@ -20,8 +20,7 @@ public class BoardTag {
     @Column(name = "TAG_NAME", nullable = false, length = 50)
     private String tagName;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "tag")
     private Set<BoardPostTag> boardPostTags = new LinkedHashSet<>();
 
 }

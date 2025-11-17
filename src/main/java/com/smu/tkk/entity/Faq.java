@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -15,8 +17,10 @@ public class Faq {
     @Column(name = "FAQ_ID", nullable = false)
     private Long id;
 
-    @Column(name = "FAQ_CATEGORY_ID", nullable = false)
-    private Long faqCategoryId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "FAQ_CATEGORY_ID", nullable = false)
+    private FaqCategory faqCategory;
 
     @Column(name = "QUESTION", nullable = false)
     private String question;
