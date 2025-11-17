@@ -13,13 +13,27 @@
     <!-- 상단 헤더 -->
     <header class="header">
         <div class="header-top">
+            <!-- 왼쪽 로고: 그대로 유지 -->
             <a th:href="@{/}" class="logo">더쿠쿠</a>
-            <div class="logo-badge">
-                <span>📱</span>
-                <span>애니 굿즈 맵</span>
+
+            <!-- 오른쪽: 로그인 / 회원가입 + 애니 굿즈 맵 배지 -->
+            <div style="margin-left:auto; display:flex; align-items:center; gap:12px;">
+                <!-- 로그인 / 회원가입 (애니 굿즈 맵 글씨 왼쪽에) -->
+                <div style="font-size:13px; color:#4b5563;">
+                    <a th:href="@{/login}" style="text-decoration:none; color:#4b5563;">로그인</a>
+                    <span style="margin:0 4px;">|</span>
+                    <a th:href="@{/join}" style="text-decoration:none; color:#4b5563;">회원가입</a>
+                </div>
+
+                <!-- 🔥 기존 애니 굿즈 맵 배지: 클래스/스타일/텍스트 그대로 -->
+                <div class="logo-badge">
+                    <span>📱</span>
+                    <span>애니 굿즈 맵</span>
+                </div>
             </div>
         </div>
 
+        <!-- 🔹 여기부터는 원래 있던 검색영역 그대로 -->
         <div class="search-area">
             <div class="search-box">
                 <input type="text" placeholder="주술회전, 홍대, 포카, 굿즈명 검색">

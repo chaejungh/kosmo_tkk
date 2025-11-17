@@ -59,6 +59,16 @@ public class MypageController {
     }
 
     /**
+     * 거래 중인 글 보기
+     * URL  : /mypage/posts/trade_progress
+     * View : templates/mypage/posts/trade_progress.html
+     */
+    @GetMapping("/posts/trade_progress")
+    public String tradeProgress() {
+        return "mypage/posts/trade_progress";
+    }
+
+    /**
      * 즐겨찾기한 굿즈/매장
      * URL  : /mypage/favorites
      * View : templates/mypage/favorites/favorites.html
@@ -76,6 +86,16 @@ public class MypageController {
     @GetMapping("/favorites/likes")
     public String likes() {
         return "mypage/favorites/likes";
+    }
+
+    /**
+     * 찜한 굿즈(위시리스트)
+     * URL  : /mypage/favorites/wishlist
+     * View : templates/mypage/favorites/wishlist.html
+     */
+    @GetMapping("/favorites/wishlist")
+    public String wishlist() {
+        return "mypage/favorites/wishlist";
     }
 
     /**

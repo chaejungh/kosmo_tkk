@@ -2,40 +2,51 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 좋아요 한 게시글</title>
+    <title>더쿠쿠 - 거래중인 글</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 내 거래 글 / 내가 쓴 게시글이랑 같은 공통 스타일 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 <div class="page">
+
+    <!-- 상단 헤더 : trade.html 과 같은 구조 -->
     <header class="header">
         <div class="header-top">
+            <!-- 뒤로가기 → 내정보 -->
             <a th:href="@{/mypage}" class="logo">← 내정보</a>
             <div class="logo-badge subtle">
-                <span>💗</span>
-                <span>좋아요한 글</span>
+                <span>💸</span>
+                <span>거래중인 글</span>
             </div>
         </div>
+
         <div class="search-area">
-            <p class="search-meta">좋아요 누른 덕질게시판/거래글을 모아봤어요.</p>
+            <p class="search-meta">현재 진행 중인 거래 상태를 한 번에 확인해요.</p>
         </div>
     </header>
 
+    <!-- 가운데 카드 : 내 거래 글(card mypage-section) 과 동일한 레이아웃 -->
     <main class="content">
         <section class="card mypage-section">
             <div class="card-header">
                 <div class="card-title">
-                    <span>좋아요 목록</span>
+                    <span>거래중인 글</span>
+                    <span class="pill pill-green small">TRADE</span>
                 </div>
             </div>
+
+            <!-- 리스트 : simple-list / link-list 사용 (크기, 간격 동일) -->
             <ul class="simple-list link-list">
-                <li>[후기] 블루록 팝업스토어 다녀옴</li>
-                <li>[정보] 포카 보관 방법 공유</li>
+                <li>[판매] 주술회전 고죠 사토루 아크릴 키링 · 입금 대기 중</li>
+                <li>[교환] 블루록 나기 랜더 뱃지 · 거래 상대와 일정 조율 중</li>
+                <li>[판매] 귀칼 탄지로 스티커 세트 · 직거래 장소 확정 완료</li>
             </ul>
         </section>
     </main>
 </div>
 
+<!-- 하단바 : trade.html 과 완전히 동일 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span><span>홈</span>
@@ -43,12 +54,13 @@
     <a th:href="@{/board}" class="nav-item">
         <span class="icon">📁</span><span>덕질게시판</span>
     </a>
-    <a th:href="@{/trade}" class="nav-item">
+    <a th:href="@{/trade}" class="nav-item active">
         <span class="icon">💸</span><span>굿즈거래</span>
     </a>
-    <a th:href="@{/mypage}" class="nav-item active">
+    <a th:href="@{/mypage}" class="nav-item">
         <span class="icon">👤</span><span>내정보</span>
     </a>
 </nav>
+
 </body>
 </html>

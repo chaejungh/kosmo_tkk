@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>내가 쓴 게시글</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <style>
+        .page { padding: 20px; }
+        .title { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+        .post-list { display: flex; flex-direction: column; gap: 15px; }
+        .post-item {
+            background: white;
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .post-title { font-size: 16px; font-weight: 600; }
+        .post-category { font-size: 14px; color: #7a7a7a; margin-top: 5px; }
+    </style>
+</head>
+
+<body>
+<div class="page">
+
+    <div class="title">내가 쓴 게시글</div>
+
+    <div class="post-list">
+
+        <div class="post-item">
+            <div class="post-title">주술회전 팝업 다녀왔어요! 굿즈 후기 공유합니다</div>
+            <div class="post-category">후기 게시판 · 2025.11.10</div>
+        </div>
+
+        <div class="post-item">
+            <div class="post-title">블루록 코스프레 사진 공유합니다 📸</div>
+            <div class="post-category">자랑 게시판 · 2025.11.05</div>
+        </div>
+
+        <div class="post-item">
+            <div class="post-title">도쿄 팝업 일정 정리해봄 (체인소맨 / 귀칼)</div>
+            <div class="post-category">정보 게시판 · 2025.10.28</div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

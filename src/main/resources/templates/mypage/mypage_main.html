@@ -83,16 +83,6 @@
             font-weight: 600;
         }
 
-        /* 프로필 관리 버튼 */
-        .profile-btn {
-            background: white;
-            border: 1px solid #d4caff;
-            padding: 4px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
         /* 소개 문구 */
         .bio-text {
             font-size: 13px;
@@ -204,19 +194,18 @@
             <div class="profile-main">
 
                 <label class="avatar">
-                    <img id="profilePreview" src="/images/default_profile.png">
+                    <!-- 이 경로의 이미지가 실제로 존재해야 404가 안 떠! -->
+                    <img id="profilePreview" src="/images/default_profile.png" alt="프로필 이미지">
                     <input type="file" id="profileInput" accept="image/*" style="display:none;">
                 </label>
 
                 <div class="profile-text">
-                    <!-- 닉네임 + LV3 + 프로필 관리 -->
+                    <!-- 닉네임 + LV3 -->
                     <div class="profile-top-row">
-
                         <div class="nickname-level-wrap">
-                            <span id="nickname" class="editable-text">정다희</span>
+                            <span id="nickname" class="nickname editable-text">정다희</span>
                             <span class="level-badge">LV.3 덕쿠</span>
                         </div>
-
                     </div>
 
                     <!-- 한줄소개 -->
@@ -227,23 +216,29 @@
 
         <script>
             /* 프로필 이미지 클릭 */
-            document.getElementById("profilePreview").addEventListener("click", () => {
-                document.getElementById("profileInput").click();
-            });
+            const profilePreview = document.getElementById("profilePreview");
+            const profileInput = document.getElementById("profileInput");
 
-            document.getElementById("profileInput").addEventListener("change", function () {
-                const file = this.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = () => {
-                    document.getElementById("profilePreview").src = reader.result;
-                };
-                reader.readAsDataURL(file);
-            });
+            if (profilePreview && profileInput) {
+                profilePreview.addEventListener("click", () => {
+                    profileInput.click();
+                });
 
-            /* inline edit */
+                profileInput.addEventListener("change", function () {
+                    const file = this.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        profilePreview.src = reader.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            /* 닉네임 / 한줄소개 인라인 수정 */
             function enableInlineEdit(id) {
                 const el = document.getElementById(id);
+                if (!el) return;
 
                 el.addEventListener("click", () => {
                     if (el.querySelector("input")) return;
@@ -269,7 +264,6 @@
 
             enableInlineEdit("nickname");
             enableInlineEdit("bio");
-
         </script>
 
         <!-- 나의 거래 -->
@@ -288,7 +282,8 @@
                 <div class="mypage-right">›</div>
             </a>
 
-            <a th:href="@{/trade}" class="mypage-item">
+            <!-- 거래중인 글 보기 -->
+            <a th:href="@{/mypage/posts/trade_progress}" class="mypage-item">
                 <div class="mypage-left">
                     <div class="mypage-icon-circle">🧾</div>
                     <div>
@@ -333,7 +328,8 @@
             <div class="mypage-section-title">나의 관심</div>
             <div class="mypage-section-sub">찜한 굿즈와 북마크한 매장을 한 번에 관리해요.</div>
 
-            <a th:href="@{/mypage/favorites/favorites}" class="mypage-item">
+            <!-- 찜한 굿즈 -->
+            <a th:href="@{/mypage/favorites/wishlist}" class="mypage-item">
                 <div class="mypage-left">
                     <div class="mypage-icon-circle">⭐</div>
                     <div>

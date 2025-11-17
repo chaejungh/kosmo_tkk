@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>거래 상세</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #f6f3ff;
+            font-family: "Pretendard", sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 🔥 페이지 너비 확장 + 중앙 정렬 */
+        .page {
+            width: 100%;
+            max-width: 820px; /* ← 홈/덕질게시판과 같은 폭 */
+            padding: 24px;
+            margin-bottom: 80px; /* 하단바와 간격 */
+        }
+
+        .header {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 22px;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #b38bff, #ff8bbd);
+            border-radius: 18px;
+            margin-bottom: 22px;
+        }
+
+        .detail-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .detail-sub {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 24px;
+        }
+
+        .detail-desc {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: #6f52ff;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
 </head>
+
 <body>
+
+<div class="page">
+    <div class="header">거래 상세</div>
+
+    <div class="detail-card">
+
+        <div class="detail-img"></div>
+
+        <div class="detail-title">주술회전 굿즈 팝니다</div>
+
+        <div class="detail-sub">
+            서울 · 직거래 · 10,000원 · 판매중
+        </div>
+
+        <div class="detail-desc">
+            상태 매우 좋습니다!
+            직거래 환영하고 택배도 가능해요.
+            문의 주세요 😊
+        </div>
+
+        <div class="btn">판매자에게 문의하기</div>
+
+    </div>
+</div>
 
 </body>
 </html>
