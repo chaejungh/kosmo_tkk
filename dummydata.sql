@@ -298,7 +298,7 @@
 -- INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
 -- VALUES ('user100', 'pw100', '닉네임100', NULL, '안녕하세요, 유저100입니다.', 2, 'user100@example.com', 'Y');
 -- commit ;
---
+
 
 
 INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
