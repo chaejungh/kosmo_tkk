@@ -604,606 +604,608 @@
 -- VALUES ('굿즈샵100', '부산 인기 애니메이션 굿즈샵 100호점', '부산 부산 어딘가 100번지', '부산', 35.159000, 129.060000, 4.90, 500, '010-1100-2100');
 -- commit;*/
 --
--- /*
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (1, 1, '굿즈상품001', '작품001', '캐릭터001', '포토카드', 5000, 5, 'https://example.com/goods/goods001.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (1, '굿즈상품001', '작품001', '캐릭터001', '포토카드', 5000, 5, 'https://example.com/goods/goods001.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (2, 2, '굿즈상품002', '작품002', '캐릭터002', '피규어', 6000, 8, 'https://example.com/goods/goods002.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (2, '굿즈상품002', '작품002', '캐릭터002', '피규어', 6000, 8, 'https://example.com/goods/goods002.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (3, 3, '굿즈상품003', '작품003', '캐릭터003', '키링', 7000, 11, 'https://example.com/goods/goods003.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (3, '굿즈상품003', '작품003', '캐릭터003', '키링', 7000, 11, 'https://example.com/goods/goods003.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (4, 4, '굿즈상품004', '작품004', '캐릭터004', '티셔츠', 8000, 14, 'https://example.com/goods/goods004.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (4, '굿즈상품004', '작품004', '캐릭터004', '티셔츠', 8000, 14, 'https://example.com/goods/goods004.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (5, 5, '굿즈상품005', '작품005', '캐릭터005', '앨범', 9000, 17, 'https://example.com/goods/goods005.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (5, '굿즈상품005', '작품005', '캐릭터005', '앨범', 9000, 17, 'https://example.com/goods/goods005.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (6, 6, '굿즈상품006', '작품006', '캐릭터006', '스티커', 10000, 20, 'https://example.com/goods/goods006.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (6, '굿즈상품006', '작품006', '캐릭터006', '스티커', 10000, 20, 'https://example.com/goods/goods006.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (7, 7, '굿즈상품007', '작품007', '캐릭터007', '쿠션', 11000, 23, 'https://example.com/goods/goods007.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (7, '굿즈상품007', '작품007', '캐릭터007', '쿠션', 11000, 23, 'https://example.com/goods/goods007.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (8, 8, '굿즈상품008', '작품008', '캐릭터008', '머그컵', 12000, 26, 'https://example.com/goods/goods008.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (8, '굿즈상품008', '작품008', '캐릭터008', '머그컵', 12000, 26, 'https://example.com/goods/goods008.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (9, 9, '굿즈상품009', '작품009', '캐릭터009', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods009.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (9, '굿즈상품009', '작품009', '캐릭터009', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods009.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (10, 10, '굿즈상품010', '작품010', '캐릭터010', '뱃지', 14000, 32, 'https://example.com/goods/goods010.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (10, '굿즈상품010', '작품010', '캐릭터010', '뱃지', 14000, 32, 'https://example.com/goods/goods010.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (11, 11, '굿즈상품011', '작품011', '캐릭터011', '포토카드', 5000, 5, 'https://example.com/goods/goods011.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (11, '굿즈상품011', '작품011', '캐릭터011', '포토카드', 5000, 5, 'https://example.com/goods/goods011.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (12, 12, '굿즈상품012', '작품012', '캐릭터012', '피규어', 6000, 8, 'https://example.com/goods/goods012.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (12, '굿즈상품012', '작품012', '캐릭터012', '피규어', 6000, 8, 'https://example.com/goods/goods012.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (13, 13, '굿즈상품013', '작품013', '캐릭터013', '키링', 7000, 11, 'https://example.com/goods/goods013.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (13, '굿즈상품013', '작품013', '캐릭터013', '키링', 7000, 11, 'https://example.com/goods/goods013.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (14, 14, '굿즈상품014', '작품014', '캐릭터014', '티셔츠', 8000, 14, 'https://example.com/goods/goods014.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (14, '굿즈상품014', '작품014', '캐릭터014', '티셔츠', 8000, 14, 'https://example.com/goods/goods014.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (15, 15, '굿즈상품015', '작품015', '캐릭터015', '앨범', 9000, 17, 'https://example.com/goods/goods015.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (15, '굿즈상품015', '작품015', '캐릭터015', '앨범', 9000, 17, 'https://example.com/goods/goods015.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (16, 16, '굿즈상품016', '작품016', '캐릭터016', '스티커', 10000, 20, 'https://example.com/goods/goods016.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (16, '굿즈상품016', '작품016', '캐릭터016', '스티커', 10000, 20, 'https://example.com/goods/goods016.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (17, 17, '굿즈상품017', '작품017', '캐릭터017', '쿠션', 11000, 23, 'https://example.com/goods/goods017.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (17, '굿즈상품017', '작품017', '캐릭터017', '쿠션', 11000, 23, 'https://example.com/goods/goods017.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (18, 18, '굿즈상품018', '작품018', '캐릭터018', '머그컵', 12000, 26, 'https://example.com/goods/goods018.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (18, '굿즈상품018', '작품018', '캐릭터018', '머그컵', 12000, 26, 'https://example.com/goods/goods018.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (19, 19, '굿즈상품019', '작품019', '캐릭터019', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods019.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (19, '굿즈상품019', '작품019', '캐릭터019', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods019.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (20, 20, '굿즈상품020', '작품020', '캐릭터020', '뱃지', 14000, 32, 'https://example.com/goods/goods020.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (20, '굿즈상품020', '작품020', '캐릭터020', '뱃지', 14000, 32, 'https://example.com/goods/goods020.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (21, 21, '굿즈상품021', '작품021', '캐릭터021', '포토카드', 5000, 5, 'https://example.com/goods/goods021.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (21, '굿즈상품021', '작품021', '캐릭터021', '포토카드', 5000, 5, 'https://example.com/goods/goods021.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (22, 22, '굿즈상품022', '작품022', '캐릭터022', '피규어', 6000, 8, 'https://example.com/goods/goods022.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (22, '굿즈상품022', '작품022', '캐릭터022', '피규어', 6000, 8, 'https://example.com/goods/goods022.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (23, 23, '굿즈상품023', '작품023', '캐릭터023', '키링', 7000, 11, 'https://example.com/goods/goods023.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (23, '굿즈상품023', '작품023', '캐릭터023', '키링', 7000, 11, 'https://example.com/goods/goods023.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (24, 24, '굿즈상품024', '작품024', '캐릭터024', '티셔츠', 8000, 14, 'https://example.com/goods/goods024.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (24, '굿즈상품024', '작품024', '캐릭터024', '티셔츠', 8000, 14, 'https://example.com/goods/goods024.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (25, 25, '굿즈상품025', '작품025', '캐릭터025', '앨범', 9000, 17, 'https://example.com/goods/goods025.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (25, '굿즈상품025', '작품025', '캐릭터025', '앨범', 9000, 17, 'https://example.com/goods/goods025.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (26, 26, '굿즈상품026', '작품026', '캐릭터026', '스티커', 10000, 20, 'https://example.com/goods/goods026.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (26, '굿즈상품026', '작품026', '캐릭터026', '스티커', 10000, 20, 'https://example.com/goods/goods026.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (27, 27, '굿즈상품027', '작품027', '캐릭터027', '쿠션', 11000, 23, 'https://example.com/goods/goods027.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (27, '굿즈상품027', '작품027', '캐릭터027', '쿠션', 11000, 23, 'https://example.com/goods/goods027.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (28, 28, '굿즈상품028', '작품028', '캐릭터028', '머그컵', 12000, 26, 'https://example.com/goods/goods028.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (28, '굿즈상품028', '작품028', '캐릭터028', '머그컵', 12000, 26, 'https://example.com/goods/goods028.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (29, 29, '굿즈상품029', '작품029', '캐릭터029', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods029.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (29, '굿즈상품029', '작품029', '캐릭터029', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods029.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (30, 30, '굿즈상품030', '작품030', '캐릭터030', '뱃지', 14000, 32, 'https://example.com/goods/goods030.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (30, '굿즈상품030', '작품030', '캐릭터030', '뱃지', 14000, 32, 'https://example.com/goods/goods030.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (31, 31, '굿즈상품031', '작품031', '캐릭터031', '포토카드', 5000, 5, 'https://example.com/goods/goods031.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (31, '굿즈상품031', '작품031', '캐릭터031', '포토카드', 5000, 5, 'https://example.com/goods/goods031.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (32, 32, '굿즈상품032', '작품032', '캐릭터032', '피규어', 6000, 8, 'https://example.com/goods/goods032.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (32, '굿즈상품032', '작품032', '캐릭터032', '피규어', 6000, 8, 'https://example.com/goods/goods032.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (33, 33, '굿즈상품033', '작품033', '캐릭터033', '키링', 7000, 11, 'https://example.com/goods/goods033.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (33, '굿즈상품033', '작품033', '캐릭터033', '키링', 7000, 11, 'https://example.com/goods/goods033.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (34, 34, '굿즈상품034', '작품034', '캐릭터034', '티셔츠', 8000, 14, 'https://example.com/goods/goods034.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (34, '굿즈상품034', '작품034', '캐릭터034', '티셔츠', 8000, 14, 'https://example.com/goods/goods034.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (35, 35, '굿즈상품035', '작품035', '캐릭터035', '앨범', 9000, 17, 'https://example.com/goods/goods035.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (35, '굿즈상품035', '작품035', '캐릭터035', '앨범', 9000, 17, 'https://example.com/goods/goods035.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (36, 36, '굿즈상품036', '작품036', '캐릭터036', '스티커', 10000, 20, 'https://example.com/goods/goods036.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (36, '굿즈상품036', '작품036', '캐릭터036', '스티커', 10000, 20, 'https://example.com/goods/goods036.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (37, 37, '굿즈상품037', '작품037', '캐릭터037', '쿠션', 11000, 23, 'https://example.com/goods/goods037.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (37, '굿즈상품037', '작품037', '캐릭터037', '쿠션', 11000, 23, 'https://example.com/goods/goods037.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (38, 38, '굿즈상품038', '작품038', '캐릭터038', '머그컵', 12000, 26, 'https://example.com/goods/goods038.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (38, '굿즈상품038', '작품038', '캐릭터038', '머그컵', 12000, 26, 'https://example.com/goods/goods038.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (39, 39, '굿즈상품039', '작품039', '캐릭터039', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods039.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (39, '굿즈상품039', '작품039', '캐릭터039', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods039.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (40, 40, '굿즈상품040', '작품040', '캐릭터040', '뱃지', 14000, 32, 'https://example.com/goods/goods040.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (40, '굿즈상품040', '작품040', '캐릭터040', '뱃지', 14000, 32, 'https://example.com/goods/goods040.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (41, 41, '굿즈상품041', '작품041', '캐릭터041', '포토카드', 5000, 5, 'https://example.com/goods/goods041.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (41, '굿즈상품041', '작품041', '캐릭터041', '포토카드', 5000, 5, 'https://example.com/goods/goods041.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (42, 42, '굿즈상품042', '작품042', '캐릭터042', '피규어', 6000, 8, 'https://example.com/goods/goods042.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (42, '굿즈상품042', '작품042', '캐릭터042', '피규어', 6000, 8, 'https://example.com/goods/goods042.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (43, 43, '굿즈상품043', '작품043', '캐릭터043', '키링', 7000, 11, 'https://example.com/goods/goods043.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (43, '굿즈상품043', '작품043', '캐릭터043', '키링', 7000, 11, 'https://example.com/goods/goods043.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (44, 44, '굿즈상품044', '작품044', '캐릭터044', '티셔츠', 8000, 14, 'https://example.com/goods/goods044.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (44, '굿즈상품044', '작품044', '캐릭터044', '티셔츠', 8000, 14, 'https://example.com/goods/goods044.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (45, 45, '굿즈상품045', '작품045', '캐릭터045', '앨범', 9000, 17, 'https://example.com/goods/goods045.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (45, '굿즈상품045', '작품045', '캐릭터045', '앨범', 9000, 17, 'https://example.com/goods/goods045.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (46, 46, '굿즈상품046', '작품046', '캐릭터046', '스티커', 10000, 20, 'https://example.com/goods/goods046.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (46, '굿즈상품046', '작품046', '캐릭터046', '스티커', 10000, 20, 'https://example.com/goods/goods046.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (47, 47, '굿즈상품047', '작품047', '캐릭터047', '쿠션', 11000, 23, 'https://example.com/goods/goods047.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (47, '굿즈상품047', '작품047', '캐릭터047', '쿠션', 11000, 23, 'https://example.com/goods/goods047.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (48, 48, '굿즈상품048', '작품048', '캐릭터048', '머그컵', 12000, 26, 'https://example.com/goods/goods048.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (48, '굿즈상품048', '작품048', '캐릭터048', '머그컵', 12000, 26, 'https://example.com/goods/goods048.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (49, 49, '굿즈상품049', '작품049', '캐릭터049', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods049.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (49, '굿즈상품049', '작품049', '캐릭터049', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods049.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (50, 50, '굿즈상품050', '작품050', '캐릭터050', '뱃지', 14000, 32, 'https://example.com/goods/goods050.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (50, '굿즈상품050', '작품050', '캐릭터050', '뱃지', 14000, 32, 'https://example.com/goods/goods050.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (51, 51, '굿즈상품051', '작품001', '캐릭터051', '포토카드', 5000, 5, 'https://example.com/goods/goods051.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (51, '굿즈상품051', '작품001', '캐릭터051', '포토카드', 5000, 5, 'https://example.com/goods/goods051.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (52, 52, '굿즈상품052', '작품002', '캐릭터052', '피규어', 6000, 8, 'https://example.com/goods/goods052.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (52, '굿즈상품052', '작품002', '캐릭터052', '피규어', 6000, 8, 'https://example.com/goods/goods052.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (53, 53, '굿즈상품053', '작품003', '캐릭터053', '키링', 7000, 11, 'https://example.com/goods/goods053.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (53, '굿즈상품053', '작품003', '캐릭터053', '키링', 7000, 11, 'https://example.com/goods/goods053.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (54, 54, '굿즈상품054', '작품004', '캐릭터054', '티셔츠', 8000, 14, 'https://example.com/goods/goods054.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (54, '굿즈상품054', '작품004', '캐릭터054', '티셔츠', 8000, 14, 'https://example.com/goods/goods054.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (55, 55, '굿즈상품055', '작품005', '캐릭터055', '앨범', 9000, 17, 'https://example.com/goods/goods055.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (55, '굿즈상품055', '작품005', '캐릭터055', '앨범', 9000, 17, 'https://example.com/goods/goods055.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (56, 56, '굿즈상품056', '작품006', '캐릭터056', '스티커', 10000, 20, 'https://example.com/goods/goods056.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (56, '굿즈상품056', '작품006', '캐릭터056', '스티커', 10000, 20, 'https://example.com/goods/goods056.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (57, 57, '굿즈상품057', '작품007', '캐릭터057', '쿠션', 11000, 23, 'https://example.com/goods/goods057.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (57, '굿즈상품057', '작품007', '캐릭터057', '쿠션', 11000, 23, 'https://example.com/goods/goods057.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (58, 58, '굿즈상품058', '작품008', '캐릭터058', '머그컵', 12000, 26, 'https://example.com/goods/goods058.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (58, '굿즈상품058', '작품008', '캐릭터058', '머그컵', 12000, 26, 'https://example.com/goods/goods058.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (59, 59, '굿즈상품059', '작품009', '캐릭터059', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods059.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (59, '굿즈상품059', '작품009', '캐릭터059', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods059.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (60, 60, '굿즈상품060', '작품010', '캐릭터060', '뱃지', 14000, 32, 'https://example.com/goods/goods060.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (60, '굿즈상품060', '작품010', '캐릭터060', '뱃지', 14000, 32, 'https://example.com/goods/goods060.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (61, 61, '굿즈상품061', '작품011', '캐릭터061', '포토카드', 5000, 5, 'https://example.com/goods/goods061.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (61, '굿즈상품061', '작품011', '캐릭터061', '포토카드', 5000, 5, 'https://example.com/goods/goods061.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (62, 62, '굿즈상품062', '작품012', '캐릭터062', '피규어', 6000, 8, 'https://example.com/goods/goods062.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (62, '굿즈상품062', '작품012', '캐릭터062', '피규어', 6000, 8, 'https://example.com/goods/goods062.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (63, 63, '굿즈상품063', '작품013', '캐릭터063', '키링', 7000, 11, 'https://example.com/goods/goods063.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (63, '굿즈상품063', '작품013', '캐릭터063', '키링', 7000, 11, 'https://example.com/goods/goods063.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (64, 64, '굿즈상품064', '작품014', '캐릭터064', '티셔츠', 8000, 14, 'https://example.com/goods/goods064.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (64, '굿즈상품064', '작품014', '캐릭터064', '티셔츠', 8000, 14, 'https://example.com/goods/goods064.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (65, 65, '굿즈상품065', '작품015', '캐릭터065', '앨범', 9000, 17, 'https://example.com/goods/goods065.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (65, '굿즈상품065', '작품015', '캐릭터065', '앨범', 9000, 17, 'https://example.com/goods/goods065.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (66, 66, '굿즈상품066', '작품016', '캐릭터066', '스티커', 10000, 20, 'https://example.com/goods/goods066.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (66, '굿즈상품066', '작품016', '캐릭터066', '스티커', 10000, 20, 'https://example.com/goods/goods066.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (67, 67, '굿즈상품067', '작품017', '캐릭터067', '쿠션', 11000, 23, 'https://example.com/goods/goods067.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (67, '굿즈상품067', '작품017', '캐릭터067', '쿠션', 11000, 23, 'https://example.com/goods/goods067.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (68, 68, '굿즈상품068', '작품018', '캐릭터068', '머그컵', 12000, 26, 'https://example.com/goods/goods068.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (68, '굿즈상품068', '작품018', '캐릭터068', '머그컵', 12000, 26, 'https://example.com/goods/goods068.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (69, 69, '굿즈상품069', '작품019', '캐릭터069', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods069.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (69, '굿즈상품069', '작품019', '캐릭터069', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods069.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (70, 70, '굿즈상품070', '작품020', '캐릭터070', '뱃지', 14000, 32, 'https://example.com/goods/goods070.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (70, '굿즈상품070', '작품020', '캐릭터070', '뱃지', 14000, 32, 'https://example.com/goods/goods070.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (71, 71, '굿즈상품071', '작품021', '캐릭터071', '포토카드', 5000, 5, 'https://example.com/goods/goods071.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (71, '굿즈상품071', '작품021', '캐릭터071', '포토카드', 5000, 5, 'https://example.com/goods/goods071.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (72, 72, '굿즈상품072', '작품022', '캐릭터072', '피규어', 6000, 8, 'https://example.com/goods/goods072.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (72, '굿즈상품072', '작품022', '캐릭터072', '피규어', 6000, 8, 'https://example.com/goods/goods072.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (73, 73, '굿즈상품073', '작품023', '캐릭터073', '키링', 7000, 11, 'https://example.com/goods/goods073.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (73, '굿즈상품073', '작품023', '캐릭터073', '키링', 7000, 11, 'https://example.com/goods/goods073.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (74, 74, '굿즈상품074', '작품024', '캐릭터074', '티셔츠', 8000, 14, 'https://example.com/goods/goods074.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (74, '굿즈상품074', '작품024', '캐릭터074', '티셔츠', 8000, 14, 'https://example.com/goods/goods074.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (75, 75, '굿즈상품075', '작품025', '캐릭터075', '앨범', 9000, 17, 'https://example.com/goods/goods075.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (75, '굿즈상품075', '작품025', '캐릭터075', '앨범', 9000, 17, 'https://example.com/goods/goods075.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (76, 76, '굿즈상품076', '작품026', '캐릭터076', '스티커', 10000, 20, 'https://example.com/goods/goods076.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (76, '굿즈상품076', '작품026', '캐릭터076', '스티커', 10000, 20, 'https://example.com/goods/goods076.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (77, 77, '굿즈상품077', '작품027', '캐릭터077', '쿠션', 11000, 23, 'https://example.com/goods/goods077.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (77, '굿즈상품077', '작품027', '캐릭터077', '쿠션', 11000, 23, 'https://example.com/goods/goods077.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (78, 78, '굿즈상품078', '작품028', '캐릭터078', '머그컵', 12000, 26, 'https://example.com/goods/goods078.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (78, '굿즈상품078', '작품028', '캐릭터078', '머그컵', 12000, 26, 'https://example.com/goods/goods078.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (79, 79, '굿즈상품079', '작품029', '캐릭터079', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods079.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (79, '굿즈상품079', '작품029', '캐릭터079', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods079.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (80, 80, '굿즈상품080', '작품030', '캐릭터080', '뱃지', 14000, 32, 'https://example.com/goods/goods080.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (80, '굿즈상품080', '작품030', '캐릭터080', '뱃지', 14000, 32, 'https://example.com/goods/goods080.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (81, 81, '굿즈상품081', '작품031', '캐릭터081', '포토카드', 5000, 5, 'https://example.com/goods/goods081.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (81, '굿즈상품081', '작품031', '캐릭터081', '포토카드', 5000, 5, 'https://example.com/goods/goods081.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (82, 82, '굿즈상품082', '작품032', '캐릭터082', '피규어', 6000, 8, 'https://example.com/goods/goods082.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (82, '굿즈상품082', '작품032', '캐릭터082', '피규어', 6000, 8, 'https://example.com/goods/goods082.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (83, 83, '굿즈상품083', '작품033', '캐릭터083', '키링', 7000, 11, 'https://example.com/goods/goods083.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (83, '굿즈상품083', '작품033', '캐릭터083', '키링', 7000, 11, 'https://example.com/goods/goods083.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (84, 84, '굿즈상품084', '작품034', '캐릭터084', '티셔츠', 8000, 14, 'https://example.com/goods/goods084.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (84, '굿즈상품084', '작품034', '캐릭터084', '티셔츠', 8000, 14, 'https://example.com/goods/goods084.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (85, 85, '굿즈상품085', '작품035', '캐릭터085', '앨범', 9000, 17, 'https://example.com/goods/goods085.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (85, '굿즈상품085', '작품035', '캐릭터085', '앨범', 9000, 17, 'https://example.com/goods/goods085.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (86, 86, '굿즈상품086', '작품036', '캐릭터086', '스티커', 10000, 20, 'https://example.com/goods/goods086.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (86, '굿즈상품086', '작품036', '캐릭터086', '스티커', 10000, 20, 'https://example.com/goods/goods086.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (87, 87, '굿즈상품087', '작품037', '캐릭터087', '쿠션', 11000, 23, 'https://example.com/goods/goods087.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (87, '굿즈상품087', '작품037', '캐릭터087', '쿠션', 11000, 23, 'https://example.com/goods/goods087.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (88, 88, '굿즈상품088', '작품038', '캐릭터088', '머그컵', 12000, 26, 'https://example.com/goods/goods088.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (88, '굿즈상품088', '작품038', '캐릭터088', '머그컵', 12000, 26, 'https://example.com/goods/goods088.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (89, 89, '굿즈상품089', '작품039', '캐릭터089', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods089.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (89, '굿즈상품089', '작품039', '캐릭터089', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods089.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (90, 90, '굿즈상품090', '작품040', '캐릭터090', '뱃지', 14000, 32, 'https://example.com/goods/goods090.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (90, '굿즈상품090', '작품040', '캐릭터090', '뱃지', 14000, 32, 'https://example.com/goods/goods090.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (91, 91, '굿즈상품091', '작품041', '캐릭터091', '포토카드', 5000, 5, 'https://example.com/goods/goods091.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (91, '굿즈상품091', '작품041', '캐릭터091', '포토카드', 5000, 5, 'https://example.com/goods/goods091.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (92, 92, '굿즈상품092', '작품042', '캐릭터092', '피규어', 6000, 8, 'https://example.com/goods/goods092.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (92, '굿즈상품092', '작품042', '캐릭터092', '피규어', 6000, 8, 'https://example.com/goods/goods092.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (93, 93, '굿즈상품093', '작품043', '캐릭터093', '키링', 7000, 11, 'https://example.com/goods/goods093.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (93, '굿즈상품093', '작품043', '캐릭터093', '키링', 7000, 11, 'https://example.com/goods/goods093.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (94, 94, '굿즈상품094', '작품044', '캐릭터094', '티셔츠', 8000, 14, 'https://example.com/goods/goods094.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (94, '굿즈상품094', '작품044', '캐릭터094', '티셔츠', 8000, 14, 'https://example.com/goods/goods094.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (95, 95, '굿즈상품095', '작품045', '캐릭터095', '앨범', 9000, 17, 'https://example.com/goods/goods095.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (95, '굿즈상품095', '작품045', '캐릭터095', '앨범', 9000, 17, 'https://example.com/goods/goods095.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (96, 96, '굿즈상품096', '작품046', '캐릭터096', '스티커', 10000, 20, 'https://example.com/goods/goods096.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (96, '굿즈상품096', '작품046', '캐릭터096', '스티커', 10000, 20, 'https://example.com/goods/goods096.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (97, 97, '굿즈상품097', '작품047', '캐릭터097', '쿠션', 11000, 23, 'https://example.com/goods/goods097.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (97, '굿즈상품097', '작품047', '캐릭터097', '쿠션', 11000, 23, 'https://example.com/goods/goods097.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (98, 98, '굿즈상품098', '작품048', '캐릭터098', '머그컵', 12000, 26, 'https://example.com/goods/goods098.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (98, '굿즈상품098', '작품048', '캐릭터098', '머그컵', 12000, 26, 'https://example.com/goods/goods098.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (99, 99, '굿즈상품099', '작품049', '캐릭터099', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods099.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (99, '굿즈상품099', '작품049', '캐릭터099', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods099.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (100, 100, '굿즈상품100', '작품050', '캐릭터100', '뱃지', 14000, 32, 'https://example.com/goods/goods100.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (100, '굿즈상품100', '작품050', '캐릭터100', '뱃지', 14000, 32, 'https://example.com/goods/goods100.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (101, 1, '굿즈상품101', '작품001', '캐릭터101', '앨범', 9000, 5, 'https://example.com/goods/goods101.jpg');
+-- -- 101 ~ 200 (store_id는 1~100 반복)
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (102, 2, '굿즈상품102', '작품002', '캐릭터102', '스티커', 10000, 8, 'https://example.com/goods/goods102.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (1, '굿즈상품101', '작품001', '캐릭터101', '포토카드', 5000, 5, 'https://example.com/goods/goods101.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (103, 3, '굿즈상품103', '작품003', '캐릭터103', '쿠션', 11000, 11, 'https://example.com/goods/goods103.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (2, '굿즈상품102', '작품002', '캐릭터102', '피규어', 6000, 8, 'https://example.com/goods/goods102.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (104, 4, '굿즈상품104', '작품004', '캐릭터104', '머그컵', 12000, 14, 'https://example.com/goods/goods104.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (3, '굿즈상품103', '작품003', '캐릭터103', '키링', 7000, 11, 'https://example.com/goods/goods103.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (105, 5, '굿즈상품105', '작품005', '캐릭터105', '포토카드', 5000, 17, 'https://example.com/goods/goods105.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (4, '굿즈상품104', '작품004', '캐릭터104', '티셔츠', 8000, 14, 'https://example.com/goods/goods104.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (106, 6, '굿즈상품106', '작품006', '캐릭터106', '피규어', 6000, 20, 'https://example.com/goods/goods106.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (5, '굿즈상품105', '작품005', '캐릭터105', '앨범', 9000, 17, 'https://example.com/goods/goods105.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (107, 7, '굿즈상품107', '작품007', '캐릭터107', '키링', 7000, 23, 'https://example.com/goods/goods107.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (6, '굿즈상품106', '작품006', '캐릭터106', '스티커', 10000, 20, 'https://example.com/goods/goods106.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (108, 8, '굿즈상품108', '작품008', '캐릭터108', '티셔츠', 8000, 26, 'https://example.com/goods/goods108.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (7, '굿즈상품107', '작품007', '캐릭터107', '쿠션', 11000, 23, 'https://example.com/goods/goods107.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (109, 9, '굿즈상품109', '작품009', '캐릭터109', '앨범', 9000, 29, 'https://example.com/goods/goods109.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (8, '굿즈상품108', '작품008', '캐릭터108', '머그컵', 12000, 26, 'https://example.com/goods/goods108.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (110, 10, '굿즈상품110', '작품010', '캐릭터110', '스티커', 10000, 32, 'https://example.com/goods/goods110.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (9, '굿즈상품109', '작품009', '캐릭터109', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods109.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (111, 11, '굿즈상품111', '작품011', '캐릭터111', '쿠션', 11000, 5, 'https://example.com/goods/goods111.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (10, '굿즈상품110', '작품010', '캐릭터110', '뱃지', 14000, 32, 'https://example.com/goods/goods110.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (112, 12, '굿즈상품112', '작품012', '캐릭터112', '머그컵', 12000, 8, 'https://example.com/goods/goods112.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (11, '굿즈상품111', '작품011', '캐릭터111', '포토카드', 5000, 5, 'https://example.com/goods/goods111.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (113, 13, '굿즈상품113', '작품013', '캐릭터113', '포토카드', 5000, 11, 'https://example.com/goods/goods113.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (12, '굿즈상품112', '작품012', '캐릭터112', '피규어', 6000, 8, 'https://example.com/goods/goods112.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (114, 14, '굿즈상품114', '작품014', '캐릭터114', '피규어', 6000, 14, 'https://example.com/goods/goods114.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (13, '굿즈상품113', '작품013', '캐릭터113', '키링', 7000, 11, 'https://example.com/goods/goods113.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (115, 15, '굿즈상품115', '작품015', '캐릭터115', '키링', 7000, 17, 'https://example.com/goods/goods115.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (14, '굿즈상품114', '작품014', '캐릭터114', '티셔츠', 8000, 14, 'https://example.com/goods/goods114.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (116, 16, '굿즈상품116', '작품016', '캐릭터116', '티셔츠', 8000, 20, 'https://example.com/goods/goods116.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (15, '굿즈상품115', '작품015', '캐릭터115', '앨범', 9000, 17, 'https://example.com/goods/goods115.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (117, 17, '굿즈상품117', '작품017', '캐릭터117', '앨범', 9000, 23, 'https://example.com/goods/goods117.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (16, '굿즈상품116', '작품016', '캐릭터116', '스티커', 10000, 20, 'https://example.com/goods/goods116.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (118, 18, '굿즈상품118', '작품018', '캐릭터118', '스티커', 10000, 26, 'https://example.com/goods/goods118.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (17, '굿즈상품117', '작품017', '캐릭터117', '쿠션', 11000, 23, 'https://example.com/goods/goods117.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (119, 19, '굿즈상품119', '작품019', '캐릭터119', '쿠션', 11000, 29, 'https://example.com/goods/goods119.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (18, '굿즈상품118', '작품018', '캐릭터118', '머그컵', 12000, 26, 'https://example.com/goods/goods118.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (120, 20, '굿즈상품120', '작품020', '캐릭터120', '머그컵', 12000, 32, 'https://example.com/goods/goods120.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (19, '굿즈상품119', '작품019', '캐릭터119', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods119.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (121, 21, '굿즈상품121', '작품021', '캐릭터121', '포토카드', 5000, 5, 'https://example.com/goods/goods121.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (20, '굿즈상품120', '작품020', '캐릭터120', '뱃지', 14000, 32, 'https://example.com/goods/goods120.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (122, 22, '굿즈상품122', '작품022', '캐릭터122', '피규어', 6000, 8, 'https://example.com/goods/goods122.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (21, '굿즈상품121', '작품021', '캐릭터121', '포토카드', 5000, 5, 'https://example.com/goods/goods121.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (123, 23, '굿즈상품123', '작품023', '캐릭터123', '키링', 7000, 11, 'https://example.com/goods/goods123.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (22, '굿즈상품122', '작품022', '캐릭터122', '피규어', 6000, 8, 'https://example.com/goods/goods122.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (124, 24, '굿즈상품124', '작품024', '캐릭터124', '티셔츠', 8000, 14, 'https://example.com/goods/goods124.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (23, '굿즈상품123', '작품023', '캐릭터123', '키링', 7000, 11, 'https://example.com/goods/goods123.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (125, 25, '굿즈상품125', '작품025', '캐릭터125', '앨범', 9000, 17, 'https://example.com/goods/goods125.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (24, '굿즈상품124', '작품024', '캐릭터124', '티셔츠', 8000, 14, 'https://example.com/goods/goods124.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (126, 26, '굿즈상품126', '작품026', '캐릭터126', '스티커', 10000, 20, 'https://example.com/goods/goods126.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (25, '굿즈상품125', '작품025', '캐릭터125', '앨범', 9000, 17, 'https://example.com/goods/goods125.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (127, 27, '굿즈상품127', '작품027', '캐릭터127', '쿠션', 11000, 23, 'https://example.com/goods/goods127.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (26, '굿즈상품126', '작품026', '캐릭터126', '스티커', 10000, 20, 'https://example.com/goods/goods126.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (128, 28, '굿즈상품128', '작품028', '캐릭터128', '머그컵', 12000, 26, 'https://example.com/goods/goods128.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (27, '굿즈상품127', '작품027', '캐릭터127', '쿠션', 11000, 23, 'https://example.com/goods/goods127.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (129, 29, '굿즈상품129', '작품029', '캐릭터129', '포토카드', 5000, 29, 'https://example.com/goods/goods129.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (28, '굿즈상품128', '작품028', '캐릭터128', '머그컵', 12000, 26, 'https://example.com/goods/goods128.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (130, 30, '굿즈상품130', '작품030', '캐릭터130', '피규어', 6000, 32, 'https://example.com/goods/goods130.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (29, '굿즈상품129', '작품029', '캐릭터129', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods129.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (131, 31, '굿즈상품131', '작품031', '캐릭터131', '키링', 7000, 5, 'https://example.com/goods/goods131.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (30, '굿즈상품130', '작품030', '캐릭터130', '뱃지', 14000, 32, 'https://example.com/goods/goods130.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (132, 32, '굿즈상품132', '작품032', '캐릭터132', '티셔츠', 8000, 8, 'https://example.com/goods/goods132.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (31, '굿즈상품131', '작품031', '캐릭터131', '포토카드', 5000, 5, 'https://example.com/goods/goods131.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (133, 33, '굿즈상품133', '작품033', '캐릭터133', '앨범', 9000, 11, 'https://example.com/goods/goods133.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (32, '굿즈상품132', '작품032', '캐릭터132', '피규어', 6000, 8, 'https://example.com/goods/goods132.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (134, 34, '굿즈상품134', '작품034', '캐릭터134', '스티커', 10000, 14, 'https://example.com/goods/goods134.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (33, '굿즈상품133', '작품033', '캐릭터133', '키링', 7000, 11, 'https://example.com/goods/goods133.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (135, 35, '굿즈상품135', '작품035', '캐릭터135', '쿠션', 11000, 17, 'https://example.com/goods/goods135.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (34, '굿즈상품134', '작품034', '캐릭터134', '티셔츠', 8000, 14, 'https://example.com/goods/goods134.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (136, 36, '굿즈상품136', '작품036', '캐릭터136', '머그컵', 12000, 20, 'https://example.com/goods/goods136.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (35, '굿즈상품135', '작품035', '캐릭터135', '앨범', 9000, 17, 'https://example.com/goods/goods135.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (137, 37, '굿즈상품137', '작품037', '캐릭터137', '포토카드', 5000, 23, 'https://example.com/goods/goods137.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (36, '굿즈상품136', '작품036', '캐릭터136', '스티커', 10000, 20, 'https://example.com/goods/goods136.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (138, 38, '굿즈상품138', '작품038', '캐릭터138', '피규어', 6000, 26, 'https://example.com/goods/goods138.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (37, '굿즈상품137', '작품037', '캐릭터137', '쿠션', 11000, 23, 'https://example.com/goods/goods137.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (139, 39, '굿즈상품139', '작품039', '캐릭터139', '키링', 7000, 29, 'https://example.com/goods/goods139.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (38, '굿즈상품138', '작품038', '캐릭터138', '머그컵', 12000, 26, 'https://example.com/goods/goods138.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (140, 40, '굿즈상품140', '작품040', '캐릭터140', '티셔츠', 8000, 32, 'https://example.com/goods/goods140.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (39, '굿즈상품139', '작품039', '캐릭터139', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods139.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (141, 41, '굿즈상품141', '작품041', '캐릭터141', '앨범', 9000, 5, 'https://example.com/goods/goods141.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (40, '굿즈상품140', '작품040', '캐릭터140', '뱃지', 14000, 32, 'https://example.com/goods/goods140.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (142, 42, '굿즈상품142', '작품042', '캐릭터142', '스티커', 10000, 8, 'https://example.com/goods/goods142.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (41, '굿즈상품141', '작품041', '캐릭터141', '포토카드', 5000, 5, 'https://example.com/goods/goods141.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (143, 43, '굿즈상품143', '작품043', '캐릭터143', '쿠션', 11000, 11, 'https://example.com/goods/goods143.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (42, '굿즈상품142', '작품042', '캐릭터142', '피규어', 6000, 8, 'https://example.com/goods/goods142.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (144, 44, '굿즈상품144', '작품044', '캐릭터144', '머그컵', 12000, 14, 'https://example.com/goods/goods144.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (43, '굿즈상품143', '작품043', '캐릭터143', '키링', 7000, 11, 'https://example.com/goods/goods143.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (145, 45, '굿즈상품145', '작품045', '캐릭터145', '포토카드', 5000, 17, 'https://example.com/goods/goods145.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (44, '굿즈상품144', '작품044', '캐릭터144', '티셔츠', 8000, 14, 'https://example.com/goods/goods144.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (146, 46, '굿즈상품146', '작품046', '캐릭터146', '피규어', 6000, 20, 'https://example.com/goods/goods146.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (45, '굿즈상품145', '작품045', '캐릭터145', '앨범', 9000, 17, 'https://example.com/goods/goods145.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (147, 47, '굿즈상품147', '작품047', '캐릭터147', '키링', 7000, 23, 'https://example.com/goods/goods147.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (46, '굿즈상품146', '작품046', '캐릭터146', '스티커', 10000, 20, 'https://example.com/goods/goods146.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (148, 48, '굿즈상품148', '작품048', '캐릭터148', '티셔츠', 8000, 26, 'https://example.com/goods/goods148.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (47, '굿즈상품147', '작품047', '캐릭터147', '쿠션', 11000, 23, 'https://example.com/goods/goods147.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (149, 49, '굿즈상품149', '작품049', '캐릭터149', '앨범', 9000, 29, 'https://example.com/goods/goods149.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (48, '굿즈상품148', '작품048', '캐릭터148', '머그컵', 12000, 26, 'https://example.com/goods/goods148.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (150, 50, '굿즈상품150', '작품050', '캐릭터150', '스티커', 10000, 32, 'https://example.com/goods/goods150.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (49, '굿즈상품149', '작품049', '캐릭터149', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods149.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (151, 51, '굿즈상품151', '작품001', '캐릭터151', '쿠션', 11000, 5, 'https://example.com/goods/goods151.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (50, '굿즈상품150', '작품050', '캐릭터150', '뱃지', 14000, 32, 'https://example.com/goods/goods150.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (152, 52, '굿즈상품152', '작품002', '캐릭터152', '머그컵', 12000, 8, 'https://example.com/goods/goods152.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (51, '굿즈상품151', '작품001', '캐릭터151', '포토카드', 5000, 5, 'https://example.com/goods/goods151.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (153, 53, '굿즈상품153', '작품003', '캐릭터153', '포토카드', 5000, 11, 'https://example.com/goods/goods153.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (52, '굿즈상품152', '작품002', '캐릭터152', '피규어', 6000, 8, 'https://example.com/goods/goods152.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (154, 54, '굿즈상품154', '작품004', '캐릭터154', '피규어', 6000, 14, 'https://example.com/goods/goods154.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (53, '굿즈상품153', '작품003', '캐릭터153', '키링', 7000, 11, 'https://example.com/goods/goods153.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (155, 55, '굿즈상품155', '작품005', '캐릭터155', '키링', 7000, 17, 'https://example.com/goods/goods155.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (54, '굿즈상품154', '작품004', '캐릭터154', '티셔츠', 8000, 14, 'https://example.com/goods/goods154.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (156, 56, '굿즈상품156', '작품006', '캐릭터156', '티셔츠', 8000, 20, 'https://example.com/goods/goods156.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (55, '굿즈상품155', '작품005', '캐릭터155', '앨범', 9000, 17, 'https://example.com/goods/goods155.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (157, 57, '굿즈상품157', '작품007', '캐릭터157', '앨범', 9000, 23, 'https://example.com/goods/goods157.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (56, '굿즈상품156', '작품006', '캐릭터156', '스티커', 10000, 20, 'https://example.com/goods/goods156.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (158, 58, '굿즈상품158', '작품008', '캐릭터158', '스티커', 10000, 26, 'https://example.com/goods/goods158.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (57, '굿즈상품157', '작품007', '캐릭터157', '쿠션', 11000, 23, 'https://example.com/goods/goods157.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (159, 59, '굿즈상품159', '작품009', '캐릭터159', '쿠션', 11000, 29, 'https://example.com/goods/goods159.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (58, '굿즈상품158', '작품008', '캐릭터158', '머그컵', 12000, 26, 'https://example.com/goods/goods158.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (160, 60, '굿즈상품160', '작품010', '캐릭터160', '머그컵', 12000, 32, 'https://example.com/goods/goods160.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (59, '굿즈상품159', '작품009', '캐릭터159', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods159.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (161, 61, '굿즈상품161', '작품011', '캐릭터161', '포토카드', 5000, 5, 'https://example.com/goods/goods161.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (60, '굿즈상품160', '작품010', '캐릭터160', '뱃지', 14000, 32, 'https://example.com/goods/goods160.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (162, 62, '굿즈상품162', '작품012', '캐릭터162', '피규어', 6000, 8, 'https://example.com/goods/goods162.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (61, '굿즈상품161', '작품011', '캐릭터161', '포토카드', 5000, 5, 'https://example.com/goods/goods161.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (163, 63, '굿즈상품163', '작품013', '캐릭터163', '키링', 7000, 11, 'https://example.com/goods/goods163.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (62, '굿즈상품162', '작품012', '캐릭터162', '피규어', 6000, 8, 'https://example.com/goods/goods162.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (164, 64, '굿즈상품164', '작품014', '캐릭터164', '티셔츠', 8000, 14, 'https://example.com/goods/goods164.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (63, '굿즈상품163', '작품013', '캐릭터163', '키링', 7000, 11, 'https://example.com/goods/goods163.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (165, 65, '굿즈상품165', '작품015', '캐릭터165', '앨범', 9000, 17, 'https://example.com/goods/goods165.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (64, '굿즈상품164', '작품014', '캐릭터164', '티셔츠', 8000, 14, 'https://example.com/goods/goods164.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (166, 66, '굿즈상품166', '작품016', '캐릭터166', '스티커', 10000, 20, 'https://example.com/goods/goods166.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (65, '굿즈상품165', '작품015', '캐릭터165', '앨범', 9000, 17, 'https://example.com/goods/goods165.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (167, 67, '굿즈상품167', '작품017', '캐릭터167', '쿠션', 11000, 23, 'https://example.com/goods/goods167.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (66, '굿즈상품166', '작품016', '캐릭터166', '스티커', 10000, 20, 'https://example.com/goods/goods166.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (168, 68, '굿즈상품168', '작품018', '캐릭터168', '머그컵', 12000, 26, 'https://example.com/goods/goods168.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (67, '굿즈상품167', '작품017', '캐릭터167', '쿠션', 11000, 23, 'https://example.com/goods/goods167.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (169, 69, '굿즈상품169', '작품019', '캐릭터169', '포토카드', 5000, 29, 'https://example.com/goods/goods169.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (68, '굿즈상품168', '작품018', '캐릭터168', '머그컵', 12000, 26, 'https://example.com/goods/goods168.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (170, 70, '굿즈상품170', '작품020', '캐릭터170', '피규어', 6000, 32, 'https://example.com/goods/goods170.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (69, '굿즈상품169', '작품019', '캐릭터169', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods169.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (171, 71, '굿즈상품171', '작품021', '캐릭터171', '키링', 7000, 5, 'https://example.com/goods/goods171.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (70, '굿즈상품170', '작품020', '캐릭터170', '뱃지', 14000, 32, 'https://example.com/goods/goods170.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (172, 72, '굿즈상품172', '작품022', '캐릭터172', '티셔츠', 8000, 8, 'https://example.com/goods/goods172.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (71, '굿즈상품171', '작품021', '캐릭터171', '포토카드', 5000, 5, 'https://example.com/goods/goods171.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (173, 73, '굿즈상품173', '작품023', '캐릭터173', '앨범', 9000, 11, 'https://example.com/goods/goods173.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (72, '굿즈상품172', '작품022', '캐릭터172', '피규어', 6000, 8, 'https://example.com/goods/goods172.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (174, 74, '굿즈상품174', '작품024', '캐릭터174', '스티커', 10000, 14, 'https://example.com/goods/goods174.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (73, '굿즈상품173', '작품023', '캐릭터173', '키링', 7000, 11, 'https://example.com/goods/goods173.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (175, 75, '굿즈상품175', '작품025', '캐릭터175', '쿠션', 11000, 17, 'https://example.com/goods/goods175.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (74, '굿즈상품174', '작품024', '캐릭터174', '티셔츠', 8000, 14, 'https://example.com/goods/goods174.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (176, 76, '굿즈상품176', '작품026', '캐릭터176', '머그컵', 12000, 20, 'https://example.com/goods/goods176.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (75, '굿즈상품175', '작품025', '캐릭터175', '앨범', 9000, 17, 'https://example.com/goods/goods175.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (177, 77, '굿즈상품177', '작품027', '캐릭터177', '포토카드', 5000, 23, 'https://example.com/goods/goods177.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (76, '굿즈상품176', '작품026', '캐릭터176', '스티커', 10000, 20, 'https://example.com/goods/goods176.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (178, 78, '굿즈상품178', '작품028', '캐릭터178', '피규어', 6000, 26, 'https://example.com/goods/goods178.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (77, '굿즈상품177', '작품027', '캐릭터177', '쿠션', 11000, 23, 'https://example.com/goods/goods177.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (179, 79, '굿즈상품179', '작품029', '캐릭터179', '키링', 7000, 29, 'https://example.com/goods/goods179.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (78, '굿즈상품178', '작품028', '캐릭터178', '머그컵', 12000, 26, 'https://example.com/goods/goods178.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (180, 80, '굿즈상품180', '작품030', '캐릭터180', '티셔츠', 8000, 32, 'https://example.com/goods/goods180.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (79, '굿즈상품179', '작품029', '캐릭터179', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods179.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (181, 81, '굿즈상품181', '작품031', '캐릭터181', '앨범', 9000, 5, 'https://example.com/goods/goods181.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (80, '굿즈상품180', '작품030', '캐릭터180', '뱃지', 14000, 32, 'https://example.com/goods/goods180.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (182, 82, '굿즈상품182', '작품032', '캐릭터182', '스티커', 10000, 8, 'https://example.com/goods/goods182.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (81, '굿즈상품181', '작품031', '캐릭터181', '포토카드', 5000, 5, 'https://example.com/goods/goods181.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (183, 83, '굿즈상품183', '작품033', '캐릭터183', '쿠션', 11000, 11, 'https://example.com/goods/goods183.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (82, '굿즈상품182', '작품032', '캐릭터182', '피규어', 6000, 8, 'https://example.com/goods/goods182.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (184, 84, '굿즈상품184', '작품034', '캐릭터184', '머그컵', 12000, 14, 'https://example.com/goods/goods184.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (83, '굿즈상품183', '작품033', '캐릭터183', '키링', 7000, 11, 'https://example.com/goods/goods183.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (185, 85, '굿즈상품185', '작품035', '캐릭터185', '포토카드', 5000, 17, 'https://example.com/goods/goods185.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (84, '굿즈상품184', '작품034', '캐릭터184', '티셔츠', 8000, 14, 'https://example.com/goods/goods184.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (186, 86, '굿즈상품186', '작품036', '캐릭터186', '피규어', 6000, 20, 'https://example.com/goods/goods186.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (85, '굿즈상품185', '작품035', '캐릭터185', '앨범', 9000, 17, 'https://example.com/goods/goods185.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (187, 87, '굿즈상품187', '작품037', '캐릭터187', '키링', 7000, 23, 'https://example.com/goods/goods187.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (86, '굿즈상품186', '작품036', '캐릭터186', '스티커', 10000, 20, 'https://example.com/goods/goods186.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (188, 88, '굿즈상품188', '작품038', '캐릭터188', '티셔츠', 8000, 26, 'https://example.com/goods/goods188.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (87, '굿즈상품187', '작품037', '캐릭터187', '쿠션', 11000, 23, 'https://example.com/goods/goods187.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (189, 89, '굿즈상품189', '작품039', '캐릭터189', '앨범', 9000, 29, 'https://example.com/goods/goods189.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (88, '굿즈상품188', '작품038', '캐릭터188', '머그컵', 12000, 26, 'https://example.com/goods/goods188.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (190, 90, '굿즈상품190', '작품040', '캐릭터190', '스티커', 10000, 32, 'https://example.com/goods/goods190.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (89, '굿즈상품189', '작품039', '캐릭터189', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods189.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (191, 91, '굿즈상품191', '작품041', '캐릭터191', '쿠션', 11000, 5, 'https://example.com/goods/goods191.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (90, '굿즈상품190', '작품040', '캐릭터190', '뱃지', 14000, 32, 'https://example.com/goods/goods190.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (192, 92, '굿즈상품192', '작품042', '캐릭터192', '머그컵', 12000, 8, 'https://example.com/goods/goods192.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (91, '굿즈상품191', '작품041', '캐릭터191', '포토카드', 5000, 5, 'https://example.com/goods/goods191.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (193, 93, '굿즈상품193', '작품043', '캐릭터193', '포토카드', 5000, 11, 'https://example.com/goods/goods193.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (92, '굿즈상품192', '작품042', '캐릭터192', '피규어', 6000, 8, 'https://example.com/goods/goods192.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (194, 94, '굿즈상품194', '작품044', '캐릭터194', '피규어', 6000, 14, 'https://example.com/goods/goods194.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (93, '굿즈상품193', '작품043', '캐릭터193', '키링', 7000, 11, 'https://example.com/goods/goods193.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (195, 95, '굿즈상품195', '작품045', '캐릭터195', '키링', 7000, 17, 'https://example.com/goods/goods195.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (94, '굿즈상품194', '작품044', '캐릭터194', '티셔츠', 8000, 14, 'https://example.com/goods/goods194.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (196, 96, '굿즈상품196', '작품046', '캐릭터196', '티셔츠', 8000, 20, 'https://example.com/goods/goods196.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (95, '굿즈상품195', '작품045', '캐릭터195', '앨범', 9000, 17, 'https://example.com/goods/goods195.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (197, 97, '굿즈상품197', '작품047', '캐릭터197', '앨범', 9000, 23, 'https://example.com/goods/goods197.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (96, '굿즈상품196', '작품046', '캐릭터196', '스티커', 10000, 20, 'https://example.com/goods/goods196.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (198, 98, '굿즈상품198', '작품048', '캐릭터198', '스티커', 10000, 26, 'https://example.com/goods/goods198.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (97, '굿즈상품197', '작품047', '캐릭터197', '쿠션', 11000, 23, 'https://example.com/goods/goods197.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (199, 99, '굿즈상품199', '작품049', '캐릭터199', '쿠션', 11000, 29, 'https://example.com/goods/goods199.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (98, '굿즈상품198', '작품048', '캐릭터198', '머그컵', 12000, 26, 'https://example.com/goods/goods198.jpg');
 --
--- INSERT INTO store_goods (goods_id, store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
--- VALUES (200, 100, '굿즈상품200', '작품050', '캐릭터200', '머그컵', 12000, 32, 'https://example.com/goods200.jpg');
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (99, '굿즈상품199', '작품049', '캐릭터199', '아크릴스탠드', 13000, 29, 'https://example.com/goods/goods199.jpg');
+--
+-- INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+-- VALUES (100, '굿즈상품200', '작품050', '캐릭터200', '뱃지', 14000, 32, 'https://example.com/goods/goods200.jpg');
+
 -- commit;
 --
 -- */
@@ -5374,131 +5376,327 @@
 --
 -- INSERT INTO popup_bookmark (member_id, popup_id, created_at)
 -- -- VALUES (5, 5, SYSDATE - 1);
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(1,'홍대 팝업스토어','STORE',1,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(2,'강남 아이돌 굿즈','STORE',2,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(3,'포토카드 랜덤팩','GOODS',3,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(4,'피규어 한정판','GOODS',4,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(5,'팝업 굿즈 교환','GOODS',5,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(6,'카페 콜라보','STORE',6,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(7,'애니메이션 굿즈','GOODS',7,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(8,'게임 한정 굿즈','GOODS',8,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(9,'응원봉','GOODS',9,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(10,'랜덤박스','GOODS',10,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(11,'팝업 일정','STORE',11,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(12,'굿즈로드 신규 매장','STORE',12,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(13,'중고 굿즈 거래','GOODS',13,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(14,'특전 포카','GOODS',14,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(15,'아이돌 팬사인회 굿즈','GOODS',15,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(16,'서울 팝업 지도','STORE',16,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(17,'브랜드 콜라보 팝업','STORE',17,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(18,'코스프레 소품','GOODS',18,'Y');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(19,'지난 시즌 굿즈','GOODS',19,'N');
--- INSERT INTO recommended_search(rec_id,keyword,target_type,sort_order,active_yn) VALUES(20,'품절 임박 굿즈','GOODS',20,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('홍대 팝업스토어','STORE',1,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('강남 아이돌 굿즈','STORE',2,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('포토카드 랜덤팩','GOODS',3,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('피규어 한정판','GOODS',4,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('팝업 굿즈 교환','GOODS',5,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('카페 콜라보','STORE',6,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('애니메이션 굿즈','GOODS',7,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('게임 한정 굿즈','GOODS',8,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('응원봉','GOODS',9,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('랜덤박스','GOODS',10,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('팝업 일정','STORE',11,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('굿즈로드 신규 매장','STORE',12,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('중고 굿즈 거래','GOODS',13,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('특전 포카','GOODS',14,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('아이돌 팬사인회 굿즈','GOODS',15,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('서울 팝업 지도','STORE',16,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('브랜드 콜라보 팝업','STORE',17,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('코스프레 소품','GOODS',18,'Y');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('지난 시즌 굿즈','GOODS',19,'N');
+-- INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('품절 임박 굿즈','GOODS',20,'Y');
 -- --
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(1,1,'홍대 팝업스토어','STORE',1,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(2,2,'강남 아이돌 굿즈','STORE',2,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(3,3,'포토카드 랜덤팩','GOODS',10,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(4,4,'피규어 한정판','GOODS',11,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(5,5,'팝업 굿즈 교환','GOODS',12,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(6,1,'카페 콜라보','STORE',3,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(7,2,'애니메이션 굿즈','GOODS',13,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(8,3,'게임 한정 굿즈','GOODS',14,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(9,4,'응원봉','GOODS',15,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(10,5,'랜덤박스','GOODS',16,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(11,1,'팝업 일정','STORE',4,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(12,2,'굿즈로드 신규 매장','STORE',5,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(13,3,'중고 굿즈 거래','GOODS',17,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(14,4,'특전 포카','GOODS',18,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(15,5,'아이돌 팬사인회 굿즈','GOODS',19,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(16,NULL,'서울 팝업 지도','STORE',6,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(17,NULL,'브랜드 콜라보 팝업','STORE',7,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(18,3,'코스프레 소품','GOODS',20,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(19,4,'지난 시즌 굿즈','GOODS',21,SYSDATE-1);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(20,5,'품절 임박 굿즈','GOODS',22,SYSDATE-1);
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-10);
 --
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(21,1,'홍대 팝업스토어','STORE',1,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(22,2,'강남 아이돌 굿즈','STORE',2,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(23,3,'포토카드 랜덤팩','GOODS',10,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(24,4,'피규어 한정판','GOODS',11,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(25,5,'팝업 굿즈 교환','GOODS',12,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(26,1,'카페 콜라보','STORE',3,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(27,2,'애니메이션 굿즈','GOODS',13,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(28,3,'게임 한정 굿즈','GOODS',14,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(29,4,'응원봉','GOODS',15,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(30,5,'랜덤박스','GOODS',16,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(31,1,'팝업 일정','STORE',4,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(32,2,'굿즈로드 신규 매장','STORE',5,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(33,3,'중고 굿즈 거래','GOODS',17,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(34,4,'특전 포카','GOODS',18,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(35,5,'아이돌 팬사인회 굿즈','GOODS',19,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(36,NULL,'서울 팝업 지도','STORE',6,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(37,NULL,'브랜드 콜라보 팝업','STORE',7,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(38,3,'코스프레 소품','GOODS',20,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(39,4,'지난 시즌 굿즈','GOODS',21,SYSDATE-1);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(40,5,'품절 임박 굿즈','GOODS',22,SYSDATE-1);
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-10);
 --
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(41,1,'홍대 팝업스토어','STORE',1,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(42,2,'강남 아이돌 굿즈','STORE',2,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(43,3,'포토카드 랜덤팩','GOODS',10,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(44,4,'피규어 한정판','GOODS',11,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(45,5,'팝업 굿즈 교환','GOODS',12,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(46,1,'카페 콜라보','STORE',3,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(47,2,'애니메이션 굿즈','GOODS',13,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(48,3,'게임 한정 굿즈','GOODS',14,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(49,4,'응원봉','GOODS',15,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(50,5,'랜덤박스','GOODS',16,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(51,1,'팝업 일정','STORE',4,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(52,2,'굿즈로드 신규 매장','STORE',5,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(53,3,'중고 굿즈 거래','GOODS',17,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(54,4,'특전 포카','GOODS',18,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(55,5,'아이돌 팬사인회 굿즈','GOODS',19,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(56,NULL,'서울 팝업 지도','STORE',6,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(57,NULL,'브랜드 콜라보 팝업','STORE',7,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(58,3,'코스프레 소품','GOODS',20,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(59,4,'지난 시즌 굿즈','GOODS',21,SYSDATE-1);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(60,5,'품절 임박 굿즈','GOODS',22,SYSDATE-1);
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-10);
 --
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(61,1,'홍대 팝업스토어','STORE',1,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(62,2,'강남 아이돌 굿즈','STORE',2,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(63,3,'포토카드 랜덤팩','GOODS',10,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(64,4,'피규어 한정판','GOODS',11,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(65,5,'팝업 굿즈 교환','GOODS',12,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(66,1,'카페 콜라보','STORE',3,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(67,2,'애니메이션 굿즈','GOODS',13,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(68,3,'게임 한정 굿즈','GOODS',14,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(69,4,'응원봉','GOODS',15,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(70,5,'랜덤박스','GOODS',16,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(71,1,'팝업 일정','STORE',4,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(72,2,'굿즈로드 신규 매장','STORE',5,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(73,3,'중고 굿즈 거래','GOODS',17,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(74,4,'특전 포카','GOODS',18,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(75,5,'아이돌 팬사인회 굿즈','GOODS',19,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(76,NULL,'서울 팝업 지도','STORE',6,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(77,NULL,'브랜드 콜라보 팝업','STORE',7,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(78,3,'코스프레 소품','GOODS',20,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(79,4,'지난 시즌 굿즈','GOODS',21,SYSDATE-1);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(80,5,'품절 임박 굿즈','GOODS',22,SYSDATE-1);
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-10);
 --
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(81,1,'홍대 팝업스토어','STORE',1,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(82,2,'강남 아이돌 굿즈','STORE',2,SYSDATE-10);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(83,3,'포토카드 랜덤팩','GOODS',10,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(84,4,'피규어 한정판','GOODS',11,SYSDATE-9);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(85,5,'팝업 굿즈 교환','GOODS',12,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(86,1,'카페 콜라보','STORE',3,SYSDATE-8);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(87,2,'애니메이션 굿즈','GOODS',13,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(88,3,'게임 한정 굿즈','GOODS',14,SYSDATE-7);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(89,4,'응원봉','GOODS',15,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(90,5,'랜덤박스','GOODS',16,SYSDATE-6);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(91,1,'팝업 일정','STORE',4,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(92,2,'굿즈로드 신규 매장','STORE',5,SYSDATE-5);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(93,3,'중고 굿즈 거래','GOODS',17,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(94,4,'특전 포카','GOODS',18,SYSDATE-4);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(95,5,'아이돌 팬사인회 굿즈','GOODS',19,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(96,NULL,'서울 팝업 지도','STORE',6,SYSDATE-3);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(97,NULL,'브랜드 콜라보 팝업','STORE',7,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(98,3,'코스프레 소품','GOODS',20,SYSDATE-2);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(99,4,'지난 시즌 굿즈','GOODS',21,SYSDATE-1);
--- INSERT INTO search_log(search_id,member_id,keyword,target_type,target_id,created_at) VALUES(100,5,'품절 임박 굿즈','GOODS',22,SYSDATE-1);
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-10);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-10);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-10);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-10);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-10);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-10);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-9);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-8);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-7);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-6);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-5);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-4);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-3);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-2);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (1, '홍대 팝업스토어', 'STORE', 1, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (2, '강남 팝업스토어', 'GOODS', 2, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (3, '성수 팝업스토어', 'STORE', 3, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (4, '이태원 팝업스토어', 'GOODS', 4, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (5, '부산 팝업스토어', 'STORE', 5, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (6, '홍대 굿즈샵', 'GOODS', 6, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (7, '강남 굿즈샵', 'STORE', 7, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (8, '아이돌 굿즈', 'GOODS', 8, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (9, '캐릭터 굿즈', 'STORE', 9, SYSDATE-1);
+--
+-- INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+-- VALUES (10, '포토카드 굿즈', 'GOODS', 10, SYSDATE-1);
+
 -- INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
 -- VALUES(1,'굿즈로드 서비스 오픈 안내',
 --        '굿즈로드 서비스를 이용해 주셔서 감사합니다. 정식 오픈과 함께 다양한 팝업스토어 및 굿즈 정보를 제공해 드립니다.',
@@ -5836,7 +6034,7 @@
 --
 -- INSERT INTO popup_goods(popup_goods_id,popup_id,name,description,category,price,thumbnail_url) VALUES(99,15,'굿즈099','더미굿즈099','앨범',16000,'g099.jpg');
 -- INSERT INTO popup_goods(popup_goods_id,popup_id,name,description,category,price,thumbnail_url) VALUES(100,15,'굿즈100','더미굿즈100','기타',17000,'g100.jpg');
--- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(1,1,1,2,SYSDATE-10,SYSDATE-9);
+-- INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(1, 1, 1, 'SELLER',SYSDATE-10,SYSDATE-9);
 -- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(2,2,1,3,SYSDATE-9,SYSDATE-8);
 -- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(3,3,1,4,SYSDATE-8,SYSDATE-7);
 -- INSERT INTO trade_chat_room(room_id,trade_id,seller_id,buyer_id,created_at,last_message_at) VALUES(4,4,1,5,SYSDATE-7,SYSDATE-6);

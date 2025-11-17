@@ -1,0 +1,92 @@
+package com.smu.tkk.entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "TRADE_POST")
+public class TradePost {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TRADE_ID", nullable = false)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "SELLER_ID", nullable = false)
+    private Member seller;
+
+    @Column(name = "TITLE", nullable = false, length = 200)
+    private String title;
+
+    @Lob
+    @Column(name = "CONTENT", nullable = false)
+    private String content;
+
+    @Column(name = "GOODS_NAME", nullable = false, length = 150)
+    private String goodsName;
+
+    @Column(name = "WORK_NAME", length = 100)
+    private String workName;
+
+    @Column(name = "CHARACTER_NAME", length = 100)
+    private String characterName;
+
+    @Column(name = "CATEGORY", length = 30)
+    private String category;
+
+    @Column(name = "PRICE")
+    private Long price;
+
+    @Column(name = "TRADE_TYPE", nullable = false, length = 20)
+    private String tradeType;
+
+    @Column(name = "TRADE_METHOD", nullable = false, length = 20)
+    private String tradeMethod;
+
+    @Column(name = "REGION", length = 100)
+    private String region;
+
+    @ColumnDefault("'ON_SALE'")
+    @Column(name = "STATUS", length = 20)
+    private String status;
+
+    @ColumnDefault("0")
+    @Column(name = "VIEW_COUNT")
+    private Long viewCount;
+
+    @ColumnDefault("0")
+    @Column(name = "LIKE_COUNT")
+    private Long likeCount;
+
+    @ColumnDefault("SYSDATE")
+    @Column(name = "CREATED_AT")
+    private LocalDate createdAt;
+
+    @Column(name = "UPDATED_AT")
+    private LocalDate updatedAt;
+
+    @ColumnDefault("'N'")
+    @Column(name = "DELETED_YN")
+    private Boolean deletedYn;
+
+    @OneToMany(mappedBy = "trade")
+    private Set<TradeBookmark> tradeBookmarks = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "trade")
+    private Set<TradeChatRoom> tradeChatRooms = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "trade")
+    private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
+
+}

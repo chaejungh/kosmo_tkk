@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: tkk
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+    username: tkk
+    password: kosmo1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+server:
+  port: 8080
+
+naver:
+  key-id: 8ehod4l0bq
+  key: L4blvkhN5kpREqVEXDsD8U6EmdT35IY5B7FPmw59
