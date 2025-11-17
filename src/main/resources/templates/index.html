@@ -159,6 +159,162 @@
         <span>내정보</span>
     </a>
 </nav>
+<style>
+    /* 지도 위 오버레이 버튼들 */
+    .kk-controls{
+        position:absolute; right:10px; top:10px; z-index:5;
+        display:flex; flex-direction:column; gap:8px;
+    }
+    .kk-controls button{
+        border:0; padding:8px 10px; border-radius:10px; background:#fff;
+        box-shadow:0 2px 8px rgba(0,0,0,.15); cursor:pointer; font-size:13px;
+    }
+</style>
+
+<script>
+    (function(){
+        if(!window.naver || !document.getElementById('map')) return;
+
+        // 이미 만들어진 지도 인스턴스를 재사용(없으면 경고만)
+        const m = window.map || (console.warn('map 인스턴스를 찾지 못했습니다.'), null);
+        if(!m) return;
+
+        const S = naver.maps.Service;
+        let startMarker, endMarker, userMarker, routeLine;
+        let waypointMarkers = [], waypointMode = false;
+        const infoWin = new naver.maps.InfoWindow({ anchorSize:new naver.maps.Size(8,8) });
+
+        const $ = (sel, root=document) => root.querySelector(sel);
+        const llToParam = ll => `${ll.lng()},${ll.lat()}`;
+
+        function setStart(ll, label='출발'){
+            if(!startMarker) startMarker = new naver.maps.Marker({ map:m, position:ll, title:label });
+            else startMarker.setPosition(ll);
+        }
+        function setEnd(ll, label='도착'){
+            if(!endMarker) endMarker = new naver.maps.Marker({ map:m, position:ll, title:label });
+            else endMarker.setPosition(ll);
+            infoWin.setContent(`<div style="padding:6px 8px;font-size:12px">${label}</div>`);
+            infoWin.open(m, endMarker);
+        }
+        function geocode(text){
+            return new Promise(res=>{
+                if(!text) return res(null);
+                S.geocode({ query:text }, (st, r)=>{
+                    if(st!==S.Status.OK || !r?.v2?.addresses?.length) return res(null);
+                    const a = r.v2.addresses[0];
+                    res({ ll:new naver.maps.LatLng(+a.y, +a.x), label:a.roadAddress || a.jibunAddress || text });
+                });
+            });
+        }
+        function reverseLabel(ll){
+            return new Promise(res=>{
+                S.reverseGeocode({ coords:ll, orders:[S.OrderType.ROAD_ADDR,S.OrderType.ADDR].join(',') },
+                    (st, r)=>{
+                        if(st===S.Status.OK && r?.v2?.results?.length){
+                            const x = r.v2.results[0];
+                            return res(x.roadaddress?.address || x.land?.name || '목적지');
+                        }
+                        res('목적지');
+                    });
+            });
+        }
+
+        // 지도 클릭: 경유지 모드면 경유 추가, 아니면 도착지 설정(라벨 자동)
+        naver.maps.Event.addListener(m, 'click', async e => {
+            if(waypointMode) return addWaypoint(e.coord);
+            const label = await reverseLabel(e.coord);
+            setEnd(e.coord, label);
+        });
+
+        function addWaypoint(ll){
+            const idx = waypointMarkers.length + 1;
+            const mk = new naver.maps.Marker({
+                map:m, position: ll, title:`경유지 ${idx}`,
+                icon:{ content:`<div style="width:20px;height:20px;border-radius:50%;
+                       background:#fff;border:2px solid #704538;display:flex;
+                       align-items:center;justify-content:center;font:12px/1 sans-serif;">${idx}</div>` }
+            });
+            waypointMarkers.push(mk);
+        }
+        function clearWaypoints(){
+            waypointMarkers.forEach(mk=>mk.setMap(null));
+            waypointMarkers = [];
+        }
+
+        // === 지도 위 컨트롤 DOM 추가 (HTML 안 건드림) ===
+        const box = document.createElement('div');
+        box.className = 'kk-controls';
+        box.innerHTML = `
+    <button id="kk-my">내 위치</button>
+    <button id="kk-wp">경유지 모드 Off</button>
+    <button id="kk-clear">경유지 초기화</button>
+    <button id="kk-route">자동차 길찾기</button>
+    <button id="kk-save">이미지 저장</button>
+  `;
+        m.getElement().appendChild(box);
+
+        // 현재 위치
+        $('#kk-my').onclick = () => {
+            if(!navigator.geolocation) return alert('이 브라우저는 위치를 지원하지 않습니다.');
+            navigator.geolocation.getCurrentPosition(pos=>{
+                const ll = new naver.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                if(!userMarker) userMarker = new naver.maps.Marker({ map:m, position:ll, title:'내 위치' });
+                else userMarker.setPosition(ll);
+                setStart(ll, '현재 위치');
+                m.setCenter(ll);
+            }, ()=>alert('위치 권한이 필요합니다.'), { enableHighAccuracy:true, timeout:15000 });
+        };
+
+        // 경유지 모드 토글 / 초기화
+        $('#kk-wp').onclick = function(){
+            waypointMode = !waypointMode;
+            this.textContent = `경유지 모드 ${waypointMode ? 'On' : 'Off'}`;
+        };
+        $('#kk-clear').onclick = clearWaypoints;
+
+        // 자동차 길찾기 (백엔드 프록시 사용)
+        $('#kk-route').onclick = async () => {
+            let sLL = startMarker?.getPosition() || userMarker?.getPosition() || m.getCenter();
+            if(!endMarker) return alert('도착지를 먼저 지정하세요. (검색 또는 지도 클릭)');
+
+            const start = encodeURIComponent(llToParam(sLL));
+            const goal  = encodeURIComponent(llToParam(endMarker.getPosition()));
+            const wp    = waypointMarkers.length
+                ? waypointMarkers.map(mk=>llToParam(mk.getPosition())).join('|')
+                : '';
+
+            const res = await fetch(`/api/directions?start=${start}&goal=${goal}` + (wp?`&waypoints=${encodeURIComponent(wp)}`:'') + `&option=traoptimal`);
+            if(!res.ok) return alert('경로 요청 실패');
+            const data = await res.json();
+            const route = data?.route?.traoptimal?.[0];
+            if(!route?.path?.length) return alert('경로가 없습니다.');
+
+            const path = route.path.map(([x,y]) => new naver.maps.LatLng(y,x));
+            routeLine?.setMap(null);
+            routeLine = new naver.maps.Polyline({ map:m, path, strokeWeight:6, strokeOpacity:.9, strokeColor:'#F79287' });
+
+            const b = new naver.maps.LatLngBounds(path[0], path[0]); path.forEach(p=>b.extend(p)); m.fitBounds(b);
+        };
+
+        // 정적 지도 PNG 저장
+        $('#kk-save').onclick = async () => {
+            const center = llToParam(m.getCenter());
+            const level  = Math.max(5, Math.min(17, m.getZoom()));
+            const qp = new URLSearchParams({ center, level:String(level), w:'800', h:'500' });
+            if(startMarker){ const p=startMarker.getPosition(); qp.append('markers', `type:d|size:mid|pos:${p.lng()} ${p.lat()}`); }
+            if(endMarker){   const p=endMarker.getPosition();   qp.append('markers', `type:d|size:mid|color:red|pos:${p.lng()} ${p.lat()}`); }
+            waypointMarkers.slice(0,5).forEach(mk=>{
+                const p = mk.getPosition(); qp.append('markers', `type:d|size:small|color:green|pos:${p.lng()} ${p.lat()}`);
+            });
+
+            const res = await fetch(`/api/staticmap?${qp.toString()}`);
+            if(!res.ok) return alert('정적 지도 생성 실패');
+            const blob = await res.blob(); const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'map.png'; a.click(); URL.revokeObjectURL(url);
+        };
+    })();
+</script>
 
 </body>
 </html>
