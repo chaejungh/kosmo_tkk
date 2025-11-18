@@ -3,33 +3,50 @@ package com.smu.tkk.service;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.MemberNotificationSetting;
 
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * 회원 관련 서비스
+ *
+ * - 회원가입 register
+ * - 로그인 login
+ * - 아이디 / 닉네임 중복확인
+ * - 회원정보 수정
+ * - 마이페이지 정보 조회
+ * - 알림 설정 조회 / 수정
+ *
+ * ※ 구현부에서는 IllegalArgumentException 으로 유효성 검사 처리
+ */
 public interface MemberService {
 
-    // 1. 회원가입
-    Member register(Member member);
+    // 1. 회원 가입
+    //    - 필수값 누락, 형식 오류 등은 IllegalArgumentException
+    boolean register(Member member) throws SQLException, IllegalArgumentException;
 
     // 2. 로그인
-    Member login(String loginId, String loginPw);
+    //    - 아이디/비밀번호 틀리면 null 리턴 or IllegalArgumentException 중 택1 (구현 때 팀이 정하기)
+    Member login(String loginId, String loginPw) throws SQLException, IllegalArgumentException;
 
-    // 3. 아이디 중복확인
-    boolean existsByLoginId(String loginId);
+    // 3. 아이디 중복 확인
+    boolean existsByLoginId(String loginId) throws SQLException;
 
-    // 4. 닉네임 중복확인
-    boolean existsByNickname(String nickname);
+    // 4. 닉네임 중복 확인
+    boolean existsByNickname(String nickname) throws SQLException;
 
-    // 5. 회원정보 수정
-    Member updateMember(Long memberId, Member updateData);
+    // 5. 회원 정보 수정 (이름, 닉네임, 이메일 등)
+    boolean modify(Member member) throws SQLException, IllegalArgumentException;
 
-    // 6. 마이페이지(회원 정보) 조회
-    Member getMemberInfo(Long memberId);
+    // 6. 단일 회원 조회 (마이페이지용)
+    Member readOne(Long memberId) throws SQLException;
 
-    // 7. 회원 알림 설정 조회
-    MemberNotificationSetting getNotificationSetting(Long memberId);
+    // 7. 전체 회원 조회 (관리자/테스트용, 필요 없으면 나중에 삭제)
+    List<Member> readAll() throws SQLException;
 
-    // 8. 회원 알림 설정 수정
-    void updateNotificationSetting(Long memberId,
-                                   Boolean commentYn,
-                                   Boolean likeYn,
-                                   Boolean tradeYn,
-                                   Boolean eventYn);
+    // 8. 회원 알림 설정 조회
+    MemberNotificationSetting readNotificationSetting(Long memberId) throws SQLException;
+
+    // 9. 회원 알림 설정 수정
+    boolean updateNotificationSetting(MemberNotificationSetting setting)
+            throws SQLException, IllegalArgumentException;
 }
