@@ -2,7 +2,7 @@
 -- ------------------------------------------------------------
 -- -- 0. 회원 (마이페이지 / 활동 주체)
 -- ------------------------------------------------------------
-DROP USER TKK CASCADE ;
+-- DROP USER TKK CASCADE ;
 CREATE USER TKK
     IDENTIFIED BY kosmo1234
     DEFAULT TABLESPACE USERS
