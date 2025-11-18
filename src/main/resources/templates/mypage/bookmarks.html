@@ -1,0 +1,42 @@
+<!-- src/main/resources/templates/mypage/bookmarks.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>나의 더쿠쿠 - 북마크 모음</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/mypage.css">
+</head>
+<body>
+
+<div class="mypage-page">
+    <h2 class="title">나의 더쿠쿠</h2>
+
+    <!-- 연결 서비스: BoardBookmarkService, TradeBookmarkService, StoreService, PopupService -->
+    <div class="section-box">
+        <div class="section-title">📌 북마크 모음</div>
+        <p>다시 보고 싶은 글·매장·팝업 북마크를 한 곳에 모아두는 화면이야.</p>
+
+        <div class="list-box">
+            <p>※ 게시글 북마크, 거래글 찜, 매장 북마크, 팝업 북마크를 섹션으로 나눠서 보여주면 좋아.</p>
+        </div>
+    </div>
+</div>
+
+<nav class="bottom-nav">
+    <a href="/" class="nav-item">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a href="/board" class="nav-item">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a href="/trade" class="nav-item">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a href="/mypage" class="nav-item active">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
+
+</body>
+</html>
