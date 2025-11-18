@@ -1,422 +1,152 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 내정보</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <style>
-        body {
-            background: #f6f3ff;
-        }
-
-        /* 상단 */
-        .mypage-header {
-            padding: 18px 20px 4px;
-        }
-        .mypage-title {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        /* 프로필 카드 */
-        .profile-card {
-            margin: 16px;
-            padding: 18px;
-            background: linear-gradient(135deg, #efeaff, #f8f2ff);
-            border-radius: 20px;
-            box-shadow: 0 6px 20px rgba(160, 130, 255, 0.18);
-        }
-
-        .profile-main {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        /* 프로필 이미지 */
-        .avatar {
-            width: 62px;
-            height: 62px;
-            border-radius: 50%;
-            overflow: hidden;
-            cursor: pointer;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* 닉네임 줄 */
-        .profile-text {
-            flex-grow: 1;
-        }
-        .profile-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nickname-level-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nickname {
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .level-badge {
-            padding: 4px 10px;
-            background: white;
-            border-radius: 12px;
-            color: #6b46ff;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        /* 소개 문구 */
-        .bio-text {
-            font-size: 13px;
-            margin-top: 6px;
-            color: #6b7280;
-            cursor: pointer;
-        }
-
-        .editable-text:hover {
-            background: #eef2ff;
-            border-radius: 4px;
-        }
-
-        .inline-input {
-            padding: 4px 6px;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        /* 공통 섹션 */
-        .mypage-section-card {
-            margin: 0 16px 12px;
-            padding: 12px 16px;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-        }
-
-        .mypage-section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #6b7280;
-            margin-bottom: 6px;
-        }
-        .mypage-section-sub {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-bottom: 8px;
-        }
-
-        /* 메뉴 아이템 */
-        .mypage-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            text-decoration: none;
-            color: inherit;
-            border-top: 1px solid #f3f4f6;
-        }
-        .mypage-item:first-of-type {
-            border-top: none;
-        }
-
-        .mypage-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .mypage-icon-circle {
-            width: 32px;
-            height: 32px;
-            border-radius: 999px;
-            background: #f3f4ff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 17px;
-        }
-        .item-main {
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .item-sub {
-            font-size: 11px;
-            color: #9ca3af;
-            margin-top: 2px;
-        }
-
-        .mypage-right {
-            font-size: 18px;
-            color: #d1d5db;
-        }
-
-        /* 안내 문구 */
-        .mypage-footer-note {
-            margin: 16px;
-            font-size: 11px;
-            color: #9ca3af;
-            line-height: 1.5;
-            padding-bottom: 80px;
-        }
-    </style>
+    <title>나의 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 마이페이지 전용 CSS -->
+    <link rel="stylesheet" href="/css/mypage.css">
 </head>
 
 <body>
-<div class="page">
+<div class="mypage-page">
 
-    <!-- 상단 -->
-    <header class="mypage-header">
-        <div class="mypage-title">내 덕쿠</div>
-    </header>
+    <!-- 제목 -->
+    <h2 class="title">나의 더쿠쿠</h2>
 
-    <main class="content">
+    <!-- 프로필 카드 -->
+    <div class="profile-card">
+        <label for="profileImageInput" class="profile-img-wrapper">
+            <!-- 프로필 이미지 -->
+            <img id="profileImage" class="profile-img"
+                 src="/images/default_profile.png" alt="프로필">
+        </label>
+        <input id="profileImageInput" type="file" accept="image/*" style="display:none;">
 
-        <!-- 프로필 카드 -->
-        <section class="profile-card">
-            <div class="profile-main">
+        <div class="profile-info">
+            <div class="level-badge">LV3</div>
 
-                <label class="avatar">
-                    <!-- 이 경로의 이미지가 실제로 존재해야 404가 안 떠! -->
-                    <img id="profilePreview" src="/images/default_profile.png" alt="프로필 이미지">
-                    <input type="file" id="profileInput" accept="image/*" style="display:none;">
-                </label>
+            <!-- 닉네임 (클릭해서 수정) -->
+            <div id="nickname" class="nickname editable">닉네임</div>
 
-                <div class="profile-text">
-                    <!-- 닉네임 + LV3 -->
-                    <div class="profile-top-row">
-                        <div class="nickname-level-wrap">
-                            <span id="nickname" class="nickname editable-text">정다희</span>
-                            <span class="level-badge">LV.3 덕쿠</span>
-                        </div>
-                    </div>
+            <!-- 한 줄 소개 -->
+            <div id="bio" class="bio editable">한 줄 소개를 입력해 주세요.</div>
 
-                    <!-- 한줄소개 -->
-                    <p id="bio" class="editable-text bio-text">주술회전 · 포카 · 팝업스토어 탐험가</p>
-                </div>
-            </div>
-        </section>
+        </div>
+    </div>
 
-        <script>
-            /* 프로필 이미지 클릭 */
-            const profilePreview = document.getElementById("profilePreview");
-            const profileInput = document.getElementById("profileInput");
+    <!-- 섹션 1 : 나의 활동 -->
+    <div class="section-box">
+        <div class="section-title">나의 활동</div>
 
-            if (profilePreview && profileInput) {
-                profilePreview.addEventListener("click", () => {
-                    profileInput.click();
-                });
+        <a class="item" href="/mypage/posts">
+            <span class="main">📝 내가 쓴 글</span>
+            <span class="sub">굿즈로드에서 내가 작성한 글 전체 보기</span>
+        </a>
 
-                profileInput.addEventListener("change", function () {
-                    const file = this.files[0];
-                    if (!file) return;
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        profilePreview.src = reader.result;
-                    };
-                    reader.readAsDataURL(file);
-                });
-            }
 
-            /* 닉네임 / 한줄소개 인라인 수정 */
-            function enableInlineEdit(id) {
-                const el = document.getElementById(id);
-                if (!el) return;
+        <a class="item" href="/mypage/likes">
+            <span class="main">❤️ 좋아요 한 글</span>
+            <span class="sub">좋아요한 게시글/거래글 모아보기</span>
+        </a>
 
-                el.addEventListener("click", () => {
-                    if (el.querySelector("input")) return;
+        <a class="item" href="/mypage/bookmarks">
+            <span class="main">📌 북마크 모음</span>
+            <span class="sub">다시 보고 싶은 글·매장 북마크 모아보기</span>
+        </a>
+    </div>
 
-                    const current = el.innerText;
-                    const input = document.createElement("input");
-                    input.value = current;
-                    input.className = "inline-input";
-                    el.innerHTML = "";
-                    el.appendChild(input);
-                    input.focus();
+    <!-- 섹션 2 : 굿즈 거래 -->
+    <div class="section-box">
+        <div class="section-title">굿즈 거래</div>
 
-                    const save = () => {
-                        el.innerText = input.value.trim() || current;
-                    };
+        <a class="item" href="/mypage/trade/mine">
+            <span class="main">📦 내가 올린 거래 글</span>
+            <span class="sub">내가 등록한 거래글 전체 보기</span>
+        </a>
 
-                    input.addEventListener("blur", save);
-                    input.addEventListener("keypress", e => {
-                        if (e.key === "Enter") input.blur();
-                    });
-                });
-            }
 
-            enableInlineEdit("nickname");
-            enableInlineEdit("bio");
-        </script>
 
-        <!-- 나의 거래 -->
-        <section class="mypage-section-card">
-            <div class="mypage-section-title">나의 거래</div>
-            <div class="mypage-section-sub">굿즈거래에서 내가 올린 글을 모아볼 수 있어요.</div>
+        <a class="item" href="/mypage/trade/wishlist">
+            <span class="main">💗 찜한 거래글</span>
+            <span class="sub">관심 있는 거래글 찜 목록</span>
+        </a>
 
-            <a th:href="@{/mypage/posts/trade}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">💸</div>
-                    <div>
-                        <div class="item-main">내 굿즈거래 글</div>
-                        <div class="item-sub">판매 · 교환 · 양도 글 관리</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
 
-            <!-- 거래중인 글 보기 -->
-            <a th:href="@{/mypage/posts/trade_progress}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">🧾</div>
-                    <div>
-                        <div class="item-main">거래중인 글 보기</div>
-                        <div class="item-sub">진행 중 거래 상태</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
-        </section>
+    </div>
 
-        <!-- 나의 활동 -->
-        <section class="mypage-section-card">
-            <div class="mypage-section-title">나의 활동</div>
-            <div class="mypage-section-sub">덕질게시판에서 내가 남긴 기록.</div>
+    <!-- 섹션 3 : 매장 & 팝업 -->
+    <div class="section-box">
+        <div class="section-title">매장 & 팝업</div>
 
-            <a th:href="@{/mypage/posts/board}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">📝</div>
-                    <div>
-                        <div class="item-main">내가 쓴 게시글</div>
-                        <div class="item-sub">후기 · 정보 · 자랑 글</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
+        <a class="item" href="/mypage/stores">
+            <span class="main">🏪 찜한 매장</span>
+            <span class="sub">자주 가는 굿즈 매장 즐겨찾기</span>
+        </a>
 
-            <a th:href="@{/mypage/favorites/likes}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">💗</div>
-                    <div>
-                        <div class="item-main">좋아요 한 글</div>
-                        <div class="item-sub">다시 보고 싶은 게시글</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
-        </section>
+        <a class="item" href="/mypage/popups">
+            <span class="main">🎪 찜한 팝업스토어</span>
+            <span class="sub">놓치기 싫은 팝업스토어 저장 목록</span>
+        </a>
+    </div>
 
-        <!-- 나의 관심 -->
-        <section class="mypage-section-card">
-            <div class="mypage-section-title">나의 관심</div>
-            <div class="mypage-section-sub">찜한 굿즈와 북마크한 매장을 한 번에 관리해요.</div>
+    <!-- 섹션 4 : 알림 (최근검색어는 빼기) -->
+    <div class="section-box">
+        <div class="section-title">알림</div>
 
-            <!-- 찜한 굿즈 -->
-            <a th:href="@{/mypage/favorites/wishlist}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">⭐</div>
-                    <div>
-                        <div class="item-main">찜한 굿즈</div>
-                        <div class="item-sub">나중에 사고 싶은 굿즈</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
+        <a class="item" href="/mypage/notifications">
+            <span class="main">🔔 알림함</span>
+            <span class="sub">댓글, 좋아요, 거래 관련 알림 확인</span>
+        </a>
+    </div>
 
-            <a th:href="@{/mypage/bookmarks}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">📍</div>
-                    <div>
-                        <div class="item-main">북마크한 매장</div>
-                        <div class="item-sub">즐겨찾는 굿즈샵</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
-        </section>
+    <!-- 섹션 5 : 설정 · 고객센터 -->
+    <div class="section-box">
+        <div class="section-title">설정 · 고객센터</div>
 
-        <!-- 고객지원 & 설정 -->
-        <section class="mypage-section-card">
-            <div class="mypage-section-title">고객 지원</div>
+        <a class="item" href="/mypage/settings">
+            <span class="main">⚙ 계정 · 알림 설정</span>
+            <span class="sub">로그인/보안, 알림 수신 설정</span>
+        </a>
 
-            <a th:href="@{/mypage/notices}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">📢</div>
-                    <div>
-                        <div class="item-main">공지사항</div>
-                        <div class="item-sub">업데이트 소식</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
+        <a class="item" href="/notice">
+            <span class="main">📢 공지사항</span>
+            <span class="sub">서비스 공지 및 이벤트 안내</span>
+        </a>
 
-            <a th:href="@{/mypage/inquiries}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">💬</div>
-                    <div>
-                        <div class="item-main">문의 · 신고</div>
-                        <div class="item-sub">버그 · 신고 · 문의</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
+        <a class="item" href="/faq">
+            <span class="main">❓ 자주 묻는 질문</span>
+            <span class="sub">많이 물어보는 질문 모아보기</span>
+        </a>
 
-            <div style="height:8px;"></div>
+        <a class="item" href="/inquiry">
+            <span class="main">💬 1:1 문의</span>
+            <span class="sub">궁금한 점을 직접 문의하기</span>
+        </a>
 
-            <div class="mypage-section-title">설정</div>
+        <a class="item danger" href="/logout">
+            <span class="main">🚪 로그아웃 / 회원탈퇴</span>
+        </a>
+    </div>
 
-            <a th:href="@{/mypage/settings}" class="mypage-item">
-                <div class="mypage-left">
-                    <div class="mypage-icon-circle">⚙️</div>
-                    <div>
-                        <div class="item-main">앱 · 계정 설정</div>
-                        <div class="item-sub">알림 / 보안 / 탈퇴</div>
-                    </div>
-                </div>
-                <div class="mypage-right">›</div>
-            </a>
-        </section>
-
-        <p class="mypage-footer-note">
-            더쿠쿠는 굿즈 거래를 돕는 플랫폼이며 실제 거래 당사자가 아니에요.<br>
-            거래 시 사기·분쟁에 주의해주세요.
-        </p>
-
-    </main>
 </div>
 
-<!-- 하단바 -->
+<!-- 하단바 (절대 건들지 말자 버전과 동일) -->
 <nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
+    <a href="/" class="nav-item">
         <span class="icon">🏠</span><span>홈</span>
     </a>
-    <a th:href="@{/board}" class="nav-item">
+    <a href="/board" class="nav-item">
         <span class="icon">📁</span><span>덕질게시판</span>
     </a>
-    <a th:href="@{/trade}" class="nav-item">
+    <a href="/trade" class="nav-item">
         <span class="icon">💸</span><span>굿즈거래</span>
     </a>
-    <a th:href="@{/mypage}" class="nav-item active">
+    <a href="/mypage" class="nav-item active">
         <span class="icon">👤</span><span>내정보</span>
     </a>
 </nav>
 
+<script src="/js/mypage.js"></script>
 </body>
 </html>
