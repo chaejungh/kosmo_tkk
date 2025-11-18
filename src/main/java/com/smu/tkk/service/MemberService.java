@@ -49,4 +49,5 @@ public interface MemberService {
     // 9. 회원 알림 설정 수정
     boolean updateNotificationSetting(MemberNotificationSetting setting)
             throws SQLException, IllegalArgumentException;
+    //Member 이미지 추가
 }

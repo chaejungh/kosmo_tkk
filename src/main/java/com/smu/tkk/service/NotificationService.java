@@ -4,7 +4,7 @@ import com.smu.tkk.entity.Notification;
 
 import java.sql.SQLException;
 import java.util.List;
-
+//알림
 public interface NotificationService {
     // ===== 기존 =====
     boolean registerOne(Notification noId) throws SQLException;
