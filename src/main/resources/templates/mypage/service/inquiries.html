@@ -1,150 +1,29 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 문의 내역</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-
-    <style>
-        /* 문의 작성 폼 감성 스타일 */
-        .inquiry-form-box {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 18px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
-            margin-bottom: 22px;
-            border: 1px solid #f0f0f0;
-        }
-
-        .inquiry-label {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 6px;
-            display: block;
-            color: #333;
-        }
-
-        .inquiry-select,
-        .inquiry-input,
-        .inquiry-textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid #d9d9d9;
-            background: #fafafa;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-        .inquiry-select:focus,
-        .inquiry-input:focus,
-        .inquiry-textarea:focus {
-            background: #fff;
-            outline: none;
-            border-color: #8c7bff;
-            box-shadow: 0 0 0 2px rgba(140,123,255,0.15);
-        }
-
-        .inquiry-textarea {
-            resize: none;
-            height: 120px;
-        }
-
-        .inquiry-btn {
-            padding: 10px 18px;
-            background: linear-gradient(90deg,#8d72ff,#7b5bff);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            margin-top: 12px;
-            cursor: pointer;
-            float: right;
-        }
-
-        .inquiry-btn:hover {
-            background: linear-gradient(90deg,#7b5bff,#6b46ff);
-        }
-
-        /* 내 문의 내역 */
-        .history-list li{
-            padding: 10px 6px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-    </style>
-
+    <title>1:1 문의 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/mypage.css">
 </head>
+
 <body>
-<div class="page">
-    <header class="header">
-        <div class="header-top">
-            <a th:href="@{/mypage}" class="logo">← 내정보</a>
-            <div class="logo-badge subtle">
-                <span>💬</span>
-                <span>문의 내역</span>
-            </div>
-        </div>
-        <div class="search-area">
-            <p class="search-meta">보낸 문의와 답변 상태를 확인할 수 있어요.</p>
-        </div>
-    </header>
+<div class="container mypage-wrapper">
 
-    <main class="content">
+    <h2 class="title">💬 1:1 문의</h2>
 
-        <!-- 문의 작성 -->
-        <section class="inquiry-form-box">
+    <div class="section-box">
+        <a class="item" href="#">
+            <span>📩 문의하기</span>
+            <span class="sub">새로운 1:1 문의를 작성합니다.</span>
+        </a>
 
-            <h3 style="margin-bottom:16px; font-size:16px;">문의 작성</h3>
+        <a class="item" href="#">
+            <span>📚 내가 보낸 문의</span>
+            <span class="sub">답변 진행 중 / 완료된 문의 확인</span>
+        </a>
+    </div>
 
-            <label class="inquiry-label">문의 유형</label>
-            <select class="inquiry-select">
-                <option>거래 신고</option>
-                <option>매장 정보 수정</option>
-                <option>서비스 이용 문의</option>
-            </select>
-
-            <label class="inquiry-label" style="margin-top:14px;">제목</label>
-            <input type="text" class="inquiry-input" placeholder="문의 제목을 입력해 주세요.">
-
-            <label class="inquiry-label" style="margin-top:14px;">내용</label>
-            <textarea class="inquiry-textarea" placeholder="자세한 내용을 적어주세요."></textarea>
-
-            <button type="button" class="inquiry-btn">문의 보내기</button>
-            <div style="clear:both;"></div>
-
-        </section>
-
-        <!-- 내 문의 내역 -->
-        <section class="card mypage-section">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>내 문의 내역</span>
-                </div>
-            </div>
-
-            <ul class="simple-list history-list">
-                <li>11/12 · 거래 사기 의심 신고 · <strong>답변 완료</strong></li>
-                <li>11/10 · 매장 정보 수정 요청 · <strong>처리 중</strong></li>
-                <li>11/05 · 탈퇴 후 데이터 복구 문의 · <strong>답변 완료</strong></li>
-            </ul>
-        </section>
-    </main>
 </div>
-
-<nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span><span>홈</span>
-    </a>
-    <a th:href="@{/board}" class="nav-item">
-        <span class="icon">📁</span><span>덕질게시판</span>
-    </a>
-    <a th:href="@{/trade}" class="nav-item">
-        <span class="icon">💸</span><span>굿즈거래</span>
-    </a>
-    <a th:href="@{/mypage}" class="nav-item active">
-        <span class="icon">👤</span><span>내정보</span>
-    </a>
-</nav>
 </body>
 </html>
