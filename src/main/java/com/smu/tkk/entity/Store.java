@@ -49,7 +49,7 @@ public class Store {
     @Column(name = "PHONE", length = 30)
     private String phone;
 
-    @ColumnDefault("SYSDATE                       -- 등록일")
+    @ColumnDefault("SYSDATE -- 등록일")
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
 
