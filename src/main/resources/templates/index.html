@@ -4,15 +4,49 @@
     <meta charset="UTF-8">
     <title>더쿠쿠 - 홈</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 기존 CSS 그대로 사용 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
 
-    <!-- 지도 검색창 관련 스타일 -->
     <style>
+        /* ===== 상단 로그인/회원가입 ===== */
+        .auth-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-auth {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #4b5563;
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .btn-auth-primary {
+            border-color: #6366f1;
+            background: #6366f1;
+            color: #ffffff;
+        }
+
+        .btn-auth:hover {
+            background: #f3f4ff;
+        }
+
+        .btn-auth-primary:hover {
+            background: #4f46e5;
+        }
+
+        /* ===== 지도 검색창 (기존 유지, 반응형만 살짝) ===== */
         .map-search-inline {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-left: auto; /* 🔥 오른쪽 끝으로 이동 */
+            margin-left: auto;
             flex: none;
             max-width: 360px;
         }
@@ -41,13 +75,12 @@
             white-space: nowrap;
         }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
             .map-section .card-header {
                 flex-direction: column;
-                align-items: flex-start;   /* 제목을 항상 왼쪽에 고정 */
+                align-items: flex-start;
                 gap: 6px;
-                width: 100%;               /* 🔥 검색창이 들여쓰기 되는 현상 해결 */
+                width: 100%;
             }
 
             .map-search-inline {
@@ -61,130 +94,409 @@
                 font-size: 14px;
             }
         }
+
+        /* ===== 11월 팝업스토어 슬라이드 (텍스트를 하단으로) ===== */
+        .popup-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding: 4px 0 6px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .popup-slider::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .popup-slider::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .popup-slider::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 999px;
+        }
+
+        .popup-banner {
+            scroll-snap-align: start;
+            min-width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #f9fafb;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 위쪽 이미지 영역 – 실제 이미지는 나중에 <img>로 교체 가능 */
+        .popup-image-area {
+            height: 150px;
+            background: linear-gradient(135deg, #a5b4fc, #f9a8d4);
+            /* 예시용 – 나중에 background-image 또는 <img>로 교체 */
+        }
+
+        .popup-text-area {
+            padding: 12px 16px 14px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .popup-title-main {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .popup-title-sub {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .popup-date {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* 팝업스토어 영역 크기 줄인 버전 */
+
+        /* 카드 전체 크기 조절 */
+        .popup-banner {
+            scroll-snap-align: start;
+            min-width: 88%;          /* 예전 100% → 88%로 줄여서 좀 더 귀엽게 */
+            border-radius: 18px;
+            overflow: hidden;
+            background: #f9fafb;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 이미지 영역 높이 줄임 (기존 150px → 110px) */
+        .popup-image-area {
+            height: 110px;
+            background: linear-gradient(135deg, #a5b4fc, #f9a8d4);
+        }
+
+        /* 텍스트 영역 패딩 살짝 축소 */
+        .popup-text-area {
+            padding: 10px 14px 12px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .popup-title-main {
+            font-size: 14px;   /* 15 → 14 */
+            font-weight: 700;
+        }
+
+        .popup-title-sub {
+            font-size: 12px;   /* 13 → 12 */
+            color: #4b5563;
+        }
+
+        .popup-date {
+            font-size: 11px;   /* 12 → 11 */
+        }
+
+        /* 하단 인디케이터 여백 축소 */
+        .popup-banner-footer {
+            margin-top: 4px;
+            font-size: 10px;
+        }
+
+        /* ===== 이벤트 & 출석체크 영역 ===== */
+        .event-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .event-tabs {
+            display: inline-flex;
+            align-items: center;
+            background: #f3f4ff;
+            padding: 3px;
+            border-radius: 999px;
+        }
+
+        .event-tab {
+            border: none;
+            background: transparent;
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .event-tab.active {
+            background: #ffffff;
+            color: #4f46e5;
+            box-shadow: 0 1px 4px rgba(79, 70, 229, 0.25);
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .event-card {
+            border-radius: 16px;
+            background: #ffffff;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #eef2ff;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
+        }
+
+        .event-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .event-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .event-desc {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .event-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #f3e8ff;
+            color: #7c3aed;
+            margin-right: 6px;
+        }
+
+        .event-right {
+            font-size: 12px;
+            background: #111827;
+            color: #ffffff;
+            padding: 8px 10px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .event-right span.icon-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                flex-direction: row;
+            }
+        }
     </style>
 </head>
 
 <body>
 <div class="page">
 
-    <!-- 헤더 그대로 유지 -->
+    <!-- 헤더 -->
     <header class="header">
         <div class="header-top">
+            <!-- 로고: 클릭 시 홈 -->
             <a th:href="@{/}" class="logo">더쿠쿠</a>
 
-            <div style="margin-left:auto; display:flex; align-items:center; gap:12px;">
-                <div style="font-size:13px; color:#4b5563;">
-                    <a th:href="@{/login}" style="text-decoration:none; color:#4b5563;">로그인</a>
-                    <span style="margin:0 4px;">|</span>
-                    <a th:href="@{/join}" style="text-decoration:none; color:#4b5563;">회원가입</a>
-                </div>
+            <!-- 로그인 / 회원가입 -->
+            <div class="auth-actions">
+                <a th:href="@{/login}" class="btn-auth">로그인</a>
+                <a th:href="@{/join}" class="btn-auth btn-auth-primary">회원가입</a>
             </div>
         </div>
     </header>
 
     <main class="content">
 
-        <!-- 지도 섹션 -->
+        <!-- ===== 지도 섹션 (기존 그대로 유지) ===== -->
         <section class="card map-section">
             <div class="card-header" style="display:flex; align-items:center; gap:16px;">
-
-                <!-- 왼쪽 제목 -->
                 <div class="card-title" style="display:flex; align-items:center; gap:8px;">
                     <span>지도에서 굿즈 매장 찾기</span>
                     <span class="pill pill-blue">BETA</span>
                 </div>
 
-                <!-- 🔥 검색창 오른쪽 정렬됨 -->
                 <div class="map-search-inline">
                     <input type="text" class="map-search-input" placeholder="매장명, 지역, 작품명 검색">
                     <button type="button" class="map-search-button">검색</button>
                 </div>
-
-                <!-- 🔥 내 위치 / 필터 삭제됨 -->
             </div>
 
-            <!-- 지도 iframe -->
-            <div class="map-frame">
-                <iframe th:src="@{/goods/map}" title="매장 지도" loading="lazy"></iframe>
+            <div class="map-frame" style="height: 450px;">
+                <!-- 지도 iframe: 절대 수정하지 말자! -->
+                <iframe th:src="@{/goods/map}" title="매장 지도" loading="lazy" style="width: 100%; height: 100%; border: none;"></iframe>
             </div>
         </section>
 
-        <!-- 실시간 검색 랭킹 (변경 없음) -->
-        <section class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>실시간 매장 검색 랭킹</span>
-                    <span class="pill pill-purple">NOW</span>
-                </div>
-            </div>
-
-            <ul class="rank-list">
-                <li class="rank-item">
-                    <div class="rank-left">
-                        <span class="rank-badge rank-1">1</span>
-                        <span class="rank-name">홍대 ○○○ 팝업스토어</span>
-                    </div>
-                    <span class="rank-meta">검색 120회</span>
-                </li>
-
-                <li class="rank-item">
-                    <div class="rank-left">
-                        <span class="rank-badge rank-2">2</span>
-                        <span class="rank-name">강남 ○○샵</span>
-                    </div>
-                    <span class="rank-meta">검색 95회</span>
-                </li>
-
-                <li class="rank-item">
-                    <div class="rank-left">
-                        <span class="rank-badge rank-3">3</span>
-                        <span class="rank-name">코엑스 ○○ 부스</span>
-                    </div>
-                    <span class="rank-meta">검색 80회</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- 11월 팝업스토어 (그대로) -->
+        <!-- ===== 11월 팝업스토어 ===== -->
         <section class="card">
             <div class="card-header">
                 <div class="card-title">
                     <span>11월 팝업스토어</span>
-                    <span class="pill pill-green">EVENT</span>
+                    <span class="pill pill-purple">POP-UP</span>
                 </div>
             </div>
 
-            <div class="popup-grid">
-                <article class="popup-card">
-                    <div class="popup-tag">POP-UP</div>
-                    <h3 class="popup-title">주술회전 팝업스토어</h3>
-                    <p class="popup-meta">홍대 ○○몰 · 11.20 ~ 12.05</p>
+            <div class="popup-slider">
+                <!-- 1 -->
+                <article class="popup-banner">
+                    <div class="popup-image-area">
+                        <!-- 나중에 실제 이미지 들어갈 자리 -->
+                    </div>
+                    <div class="popup-text-area">
+                        <p class="popup-title-main">주술회전 공식 팝업스토어</p>
+                        <p class="popup-title-sub">홍대 ○○몰</p>
+                        <p class="popup-date">11.05 ~ 11.30</p>
+
+                        <div class="popup-banner-footer">
+                            <span>오늘 120명 검색 중</span>
+                            <div class="popup-indicator-dots">
+                                <span class="popup-indicator-dot active"></span>
+                                <span class="popup-indicator-dot"></span>
+                                <span class="popup-indicator-dot"></span>
+                            </div>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="popup-card">
-                    <div class="popup-tag">POP-UP</div>
-                    <h3 class="popup-title">귀멸의 칼날 팝업스토어</h3>
-                    <p class="popup-meta">코엑스 B홀 · 11.25 ~ 12.10</p>
+                <!-- 2 -->
+                <article class="popup-banner">
+                    <div class="popup-image-area">
+                        <!-- 이미지 자리 -->
+                    </div>
+                    <div class="popup-text-area">
+                        <p class="popup-title-main">귀멸의 칼날 콜라보 팝업</p>
+                        <p class="popup-title-sub">코엑스 B홀</p>
+                        <p class="popup-date">11.25 ~ 12.10</p>
+
+                        <div class="popup-banner-footer">
+                            <span>찜 340 · 리뷰 58</span>
+                            <div class="popup-indicator-dots">
+                                <span class="popup-indicator-dot"></span>
+                                <span class="popup-indicator-dot active"></span>
+                                <span class="popup-indicator-dot"></span>
+                            </div>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="popup-card">
-                    <div class="popup-tag">POP-UP</div>
-                    <h3 class="popup-title">에반게리온 팝업스토어</h3>
-                    <p class="popup-meta">잠실 ○○ · 11.28 ~ 12.15</p>
+                <!-- 3 -->
+                <article class="popup-banner">
+                    <div class="popup-image-area">
+                        <!-- 이미지 자리 -->
+                    </div>
+                    <div class="popup-text-area">
+                        <p class="popup-title-main">에반게리온 콜렉션 부스</p>
+                        <p class="popup-title-sub">잠실 ○○</p>
+                        <p class="popup-date">11.28 ~ 12.15</p>
+
+                        <div class="popup-banner-footer">
+                            <span>근처 인기 매장 3곳 연결</span>
+                            <div class="popup-indicator-dots">
+                                <span class="popup-indicator-dot"></span>
+                                <span class="popup-indicator-dot"></span>
+                                <span class="popup-indicator-dot active"></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== 이벤트 & 출석체크 ===== -->
+        <section class="card">
+            <div class="card-header event-header">
+                <div class="card-title">
+                    <span>이벤트 & 출석체크</span>
+                    <span class="pill pill-purple">EVENT</span>
+                </div>
+
+                <div class="event-tabs">
+                    <button class="event-tab active">이벤트</button>
+                    <button class="event-tab">출석체크</button>
+                </div>
+            </div>
+
+            <div class="event-list">
+                <!-- 출석 이벤트 -->
+                <article class="event-card">
+                    <div class="event-left">
+                        <div>
+                            <span class="event-tag">출석체크</span>
+                            <span class="event-title">11월 출석 이벤트</span>
+                        </div>
+                        <p class="event-desc">30일 연속 출석하면 더쿠쿠 굿즈 쿠폰 지급!</p>
+                    </div>
+                    <div class="event-right">
+                        <span class="icon-dot"></span>
+                        <span>D-10 남음</span>
+                    </div>
+                </article>
+
+                <!-- 신규 가입 이벤트 -->
+                <article class="event-card">
+                    <div class="event-left">
+                        <div>
+                            <span class="event-tag">WELCOME</span>
+                            <span class="event-title">신규 회원 웰컴 패스</span>
+                        </div>
+                        <p class="event-desc">첫 로그인 시 근처 인기 팝업 추천 & 보너스 포인트.</p>
+                    </div>
+                    <div class="event-right">
+                        <span class="icon-dot"></span>
+                        <span>상시 진행</span>
+                    </div>
+                </article>
+
+                <!-- 광고/운영자 영역 -->
+                <article class="event-card">
+                    <div class="event-left">
+                        <div>
+                            <span class="event-tag">광고</span>
+                            <span class="event-title">굿즈샵 · 팝업 운영자 이벤트 존</span>
+                        </div>
+                        <p class="event-desc">운영자 전용 배너/이벤트/광고 영역으로 사용 예정.</p>
+                    </div>
+                    <div class="event-right">
+                        <span class="icon-dot"></span>
+                        <span>준비 중</span>
+                    </div>
                 </article>
             </div>
         </section>
 
     </main>
 
-    <!-- floating 버튼 -->
+    <!-- 문의 floating 버튼 -->
     <a th:href="@{/help}" class="fab">
         <span class="fab-icon">💬</span>
         <span class="fab-text">문의 · AI 상담</span>
     </a>
 </div>
 
-<!-- 하단 네비게이션 -->
+<!-- 하단 네비게이션 (기존 유지) -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item active">
         <span class="icon">🏠</span>
