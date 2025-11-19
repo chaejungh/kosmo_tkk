@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -14,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "BOARD_POST")
 public class BoardPost {
     @Id
@@ -24,11 +27,15 @@ public class BoardPost {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private BoardCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Member member;
 
     @Column(name = "TITLE", nullable = false, length = 200)
@@ -62,24 +69,37 @@ public class BoardPost {
 
     @ColumnDefault("'N'")
     @Column(name = "DELETED_YN")
-    private Boolean deletedYn;
+    private String deletedYn;
+
 
     @OneToMany(mappedBy = "post")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardBookmark> boardBookmarks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "post")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardComment> boardComments = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "post")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardLike> boardLikes = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "post")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardPostImage> boardPostImages = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "post")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardPostTag> boardPostTags = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "post")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardReport> boardReports = new LinkedHashSet<>();
 
 }
