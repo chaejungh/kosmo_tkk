@@ -9,7 +9,7 @@ import java.util.List;
 public interface SearchService {
     // ===== 기존 =====
     SearchLog registerOne(int memberId, String content); // 검색기록저장
-    List<SearchLog> readByDesc();
+    List<SearchLog> readByDesc();//최근 기록 조회
 
     // ===== 추가 =====
 
