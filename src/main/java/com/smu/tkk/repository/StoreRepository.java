@@ -4,4 +4,7 @@ import com.smu.tkk.entity.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StoreRepository extends JpaRepository<Store,Integer> {
+    //리스트 page
+    //상세조회
+
 }
