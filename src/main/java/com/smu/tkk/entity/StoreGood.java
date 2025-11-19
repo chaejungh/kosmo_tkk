@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,15 +15,21 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "STORE_GOODS")
+@ToString
 public class StoreGood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GOODS_ID", nullable = false)
     private Long id;
 
+    @Column(name = "STORE_ID", insertable = false, updatable = false)
+    private Long storeId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "STORE_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Store store;
 
     @Column(name = "NAME", nullable = false, length = 150)
