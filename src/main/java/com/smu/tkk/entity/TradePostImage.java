@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -10,6 +12,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "TRADE_POST_IMAGE")
 public class TradePostImage {
     @Id
@@ -20,6 +23,8 @@ public class TradePostImage {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "TRADE_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private TradePost trade;
 
     @Column(name = "IMAGE_URL", nullable = false)

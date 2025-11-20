@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "INQUIRY")
 public class Inquiry {
     @Id
@@ -22,6 +25,8 @@ public class Inquiry {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "MEMBER_ID")
+    @ToString.Exclude
+    @JsonIgnore
     private Member member;
 
     @Column(name = "CATEGORY", length = 30)

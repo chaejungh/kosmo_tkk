@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
@@ -12,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "MEMBER")
 public class Member {
     @Id
@@ -53,48 +56,78 @@ public class Member {
     private Boolean deletedYn;
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardBookmark> boardBookmarks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardComment> boardComments = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardLike> boardLikes = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardPost> boardPosts = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "reporter")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<BoardReport> boardReports = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<Inquiry> inquiries = new LinkedHashSet<>();
 
     @OneToOne(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private MemberNotificationSetting memberNotificationSetting;
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<Notification> notifications = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<PopupBookmark> popupBookmarks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<SearchLog> searchLogs = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<StoreBookmark> storeBookmarks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<TradeBookmark> tradeBookmarks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "sender")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<TradeChatMessage> tradeChatMessages = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<TradeChatRoom> tradeChatRooms = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "seller")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<TradePost> tradePosts = new LinkedHashSet<>();
 
 }

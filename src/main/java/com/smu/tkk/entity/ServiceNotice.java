@@ -3,6 +3,7 @@ package com.smu.tkk.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "SERVICE_NOTICE")
 public class ServiceNotice {
     @Id
