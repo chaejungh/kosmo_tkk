@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -14,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "TRADE_CHAT_ROOM")
 public class TradeChatRoom {
     @Id
@@ -24,6 +27,8 @@ public class TradeChatRoom {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "TRADE_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private TradePost trade;
 
     @Column(name = "\"TYPE\"", length = 20)
@@ -32,6 +37,8 @@ public class TradeChatRoom {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Member member;
 
     @ColumnDefault("SYSDATE")
@@ -42,6 +49,8 @@ public class TradeChatRoom {
     private LocalDate lastMessageAt;
 
     @OneToMany(mappedBy = "room")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<TradeChatMessage> tradeChatMessages = new LinkedHashSet<>();
 
 }

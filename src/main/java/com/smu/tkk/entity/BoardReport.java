@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "BOARD_REPORT")
 public class BoardReport {
     @Id
@@ -22,16 +25,22 @@ public class BoardReport {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "POST_ID")
+    @ToString.Exclude
+    @JsonIgnore
     private BoardPost post;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "COMMENT_ID")
+    @ToString.Exclude
+    @JsonIgnore
     private BoardComment comment;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "REPORTER_ID", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Member reporter;
 
     @Column(name = "REASON")

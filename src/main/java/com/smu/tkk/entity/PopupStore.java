@@ -1,8 +1,10 @@
 package com.smu.tkk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "POPUP_STORE")
 public class PopupStore {
     @Id
@@ -56,9 +59,13 @@ public class PopupStore {
     private LocalDate createdAt;
 
     @OneToMany(mappedBy = "popup")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<PopupBookmark> popupBookmarks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "popup")
+    @ToString.Exclude
+    @JsonIgnore
     private Set<PopupGood> popupGoods = new LinkedHashSet<>();
 
 }
