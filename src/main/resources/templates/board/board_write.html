@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 새끼 자랑 - 글쓰기</title>
+
+    <!-- 기본 CSS -->
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- 게시판 전용 CSS -->
+    <link rel="stylesheet" href="/css/board.css">
 </head>
+
 <body>
+
+<div class="page">
+
+    <!-- 🔥 상단 뒤로가기 바 -->
+    <header class="write-header">
+        <button class="write-back-btn" onclick="history.back()">←</button>
+        <span class="write-header-title">내 새끼 자랑</span>
+        <div class="write-header-empty"></div>
+    </header>
+
+    <!-- 🔥 글쓰기 카드 -->
+    <section class="card write-card">
+
+        <!-- 사진 업로드 -->
+        <div>
+            <div class="write-top-title">내 새끼 사진 업로드</div>
+            <div class="photo-upload-box">
+                <div class="upload-icon">📷</div>
+                <div class="upload-count">0 / 10</div>
+            </div>
+        </div>
+
+        <!-- 제목 입력 -->
+        <input type="text" class="write-title" placeholder="글 제목을 입력해주세요">
+
+        <!-- 내용 입력 -->
+        <textarea class="write-textarea" placeholder="게시글 내용을 작성해주세요 😊"></textarea>
+
+        <!-- 🔥 하단 고정 버튼처럼 보이게 -->
+        <button class="write-submit-btn">피드 게시</button>
+
+    </section>
+</div>
 
 </body>
 </html>
