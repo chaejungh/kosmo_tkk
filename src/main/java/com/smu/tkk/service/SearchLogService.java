@@ -1,12 +1,11 @@
 package com.smu.tkk.service;
 
 import com.smu.tkk.entity.SearchLog;
-import com.smu.tkk.entity.RecommendedSearch;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface SearchService {
+public interface SearchLogService {
     // 1. 검색 기록 저장
     SearchLog registerOne(Long memberId, String content); // 검색기록저장
 

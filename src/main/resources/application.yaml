@@ -15,7 +15,6 @@ spring:
         dialect: org.hibernate.dialect.OracleDialect
 server:
   port: 8080
-
 naver:
   key-id: ${naver.key-id}
   key: ${naver.key}
