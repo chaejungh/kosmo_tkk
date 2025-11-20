@@ -5,10 +5,258 @@
     <title>더쿠쿠 - 덕질게시판</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+
+    <style>
+        /* ============================
+           검색줄 + 아이콘 세트
+        ============================ */
+        .board-search-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            position: relative;
+        }
+
+        .board-search-box {
+            flex: 1.5; /* 검색창 넓게 */
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+        .board-search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            background: transparent;
+        }
+        .board-search-icon {
+            font-size: 16px;
+        }
+
+        .search-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        /* 아이콘 버튼 (글/이미지/정렬) */
+        .icon-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        .icon-btn.active {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        /* ============================
+           정렬 메뉴 (아이콘 클릭 시만)
+        ============================ */
+        .sort-menu {
+            position: absolute;
+            right: 0;
+            top: 48px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 6px;
+            min-width: 130px;
+            z-index: 50;
+        }
+        .sort-menu.hidden { display: none; }
+        .sort-option {
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .sort-option:hover { background: #f3f4f6; }
+        .sort-option.active {
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        /* ============================
+           게시글 카드
+        ============================ */
+        .post-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            /* ★ 하단바 / 플로팅 버튼에 안 가리도록 여유 */
+            padding-bottom: 120px;
+        }
+        .post-card {
+            display: flex;
+            align-items: flex-start;   /* ★ 이미지가 세로로 늘어나지 않도록 */
+            gap: 12px;
+            padding: 12px;
+            border-radius: 14px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            min-height: 110px;
+        }
+        .post-excerpt {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .post-thumb-box {
+            flex: 0 0 80px;            /* ★ 폭/높이 고정 */
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #6b7280;
+            overflow: hidden;
+        }
+        .post-thumb-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .post-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .post-excerpt {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .post-tag {
+            margin-top: 2px;
+            font-size: 11px;
+            color: #4b5563;
+        }
+        .post-meta-top {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .post-meta-bottom {
+            margin-top: 6px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .post-stats { display: flex; gap: 8px; }
+
+        /* 사진 보기 모드 */
+        .post-list.photo-view {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            padding-bottom: 120px;
+        }
+        .post-card:last-child {
+            margin-bottom: 20px;   /* ★ 마지막 글이 붙어서 가려지던 문제 해결 */
+        }
+        .post-list.photo-view .post-card {
+            flex-direction: column;
+        }
+        .post-list.photo-view .post-thumb-box {
+            flex: 0 0 150px;
+            width: 100%;
+            height: 150px;
+        }
+        .post-list.photo-view .post-title {
+            white-space: normal;
+        }
+
+        /* ============================
+           플로팅 글쓰기 버튼 (모바일)
+        ============================ */
+        .write-fab {
+            position: fixed;
+            right: 16px;
+            bottom: calc(env(safe-area-inset-bottom) + 70px);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            cursor: pointer;
+            z-index: 60;
+            transition: 0.15s;
+        }
+        .write-fab:active { transform: scale(0.92); }
+
+        /* 데스크탑용 상단 글쓰기 버튼 */
+        .desktop-write-btn { display: none; }
+
+        @media (min-width: 1024px) {
+            .write-fab { display: none; }
+            .desktop-write-btn {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 12px;
+            }
+        }
+
+        /* 리스트 카드가 하단바에 안 가려지게 여유 */
+        .card:last-of-type {
+            margin-bottom: 80px;
+
+        }
+    </style>
 </head>
+
 <body>
 <div class="page">
 
+    <!-- 상단 로고 -->
     <header class="header">
         <div class="header-top">
             <a th:href="@{/}" class="logo">더쿠쿠</a>
@@ -17,7 +265,7 @@
 
     <main class="content">
 
-        <!-- 카테고리 탭 -->
+        <!-- ===== 덕질게시판 헤더 카드 ===== -->
         <section class="card board-header-card">
             <div class="card-header">
                 <div class="card-title">
@@ -25,88 +273,177 @@
                     <span class="pill pill-purple">COMMUNITY</span>
                 </div>
             </div>
+
+            <!-- 카테고리 탭 -->
             <div class="segmented-control">
-                <button type="button" class="seg-btn active">내 새끼 자랑</button>
-                <button type="button" class="seg-btn">코스프레</button>
-                <button type="button" class="seg-btn">자유</button>
+                <button class="seg-btn active">내 새끼 자랑</button>
+                <button class="seg-btn">코스프레</button>
+                <button class="seg-btn">자유게시판</button>
             </div>
-            <div class="board-toolbar">
-                <div class="chip-group">
-                    <button type="button" class="chip chip-light active">최신순</button>
-                    <button type="button" class="chip chip-light">좋아요순</button>
-                    <button type="button" class="chip chip-light">조회수순</button>
-                    <button type="button" class="chip chip-light">댓글많은순</button>
+
+            <!-- 검색 + 아이콘 세트 -->
+            <div class="board-search-row">
+
+                <div class="board-search-box">
+                    <input type="text" placeholder="통합 검색 (제목, 닉네임, 태그)">
+                    <span class="board-search-icon">🔍</span>
                 </div>
-                <button type="button" class="btn-primary btn-sm">+ 글쓰기</button>
+
+                <div class="search-actions">
+                    <!-- 제목 보기 -->
+                    <button id="viewListBtn"
+                            class="icon-btn active"
+                            title="제목 보기">☰</button>
+                    <!-- 사진 보기 -->
+                    <button id="viewPhotoBtn"
+                            class="icon-btn"
+                            title="사진 보기">⬚</button>
+                    <!-- 정렬 -->
+                    <button id="sortBtn"
+                            class="icon-btn"
+                            title="정렬 (인기순 / 최신순)">⇅</button>
+                </div>
+
+                <!-- 정렬 메뉴 -->
+                <div id="sortMenu" class="sort-menu hidden">
+                    <div class="sort-option active" data-sort="popular">
+                        <span>🔥 인기순</span>
+                    </div>
+                    <div class="sort-option" data-sort="latest">
+                        <span>🕒 최신순</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 데스크탑에서만 보이는 +글쓰기 버튼 -->
+            <div class="desktop-write-btn">
+                <button class="btn-primary btn-sm"
+                        th:onclick="|location.href='@{/board/write}'|">
+                    + 글쓰기
+                </button>
             </div>
         </section>
 
-        <!-- 게시글 리스트 -->
+        <!-- ===== 게시글 리스트 카드 ===== -->
         <section class="card">
-            <ul class="post-list">
+            <ul class="post-list" id="postList">
 
+                <!-- 1번 -->
                 <li class="post-card">
-                    <div class="post-thumb badge-purple">PHOTO</div>
+                    <div class="post-thumb-box">IMAGE</div>
                     <div class="post-main">
-                        <div class="post-title-row">
-                            <h3 class="post-title">오늘 영업한 내 최애 포카 자랑 💜</h3>
-                            <span class="post-tag">#주술회전 #고죠사토루</span>
+                        <div>
+                            <h3 class="post-title">오늘 영업당한 내 최애 포카 자랑합니다 🥹</h3>
+                            <p class="post-excerpt">오늘 영업당한 내 최애 포카 자랑 글이에요...</p>
+                            <p class="post-tag">#주술회전 #고죠사토루 #포카</p>
+                            <p class="post-meta-top">닉네임 · 3분 전</p>
                         </div>
-                        <p class="post-meta">
-                            닉네임 · 좋아요 12 · 댓글 3 · 조회 120 · 3분 전
-                        </p>
+                        <div class="post-meta-bottom">
+                            <div class="post-stats">❤️108 · 💬23 · 👀1,024</div>
+                            <div>내 새끼 자랑</div>
+                        </div>
                     </div>
                 </li>
 
+                <!-- 2번 -->
                 <li class="post-card">
-                    <div class="post-thumb badge-pink">COS</div>
+                    <div class="post-thumb-box">IMAGE</div>
                     <div class="post-main">
-                        <div class="post-title-row">
-                            <h3 class="post-title">코스프레 첫 도전 후기.. 긴장 MAX</h3>
-                            <span class="post-tag">#귀멸의칼날 #네즈코</span>
+                        <div>
+                            <h3 class="post-title">첫 굿즈 교환 성공기… 우리애 실물 미쳤다</h3>
+                            <p class="post-excerpt">굿즈 교환 후기 남겨요! 실물샷도 같이 올립니다.</p>
+                            <p class="post-tag">#굿즈교환 #블루록 #실물</p>
+                            <p class="post-meta-top">덕쿠쿠짱 · 10분 전</p>
                         </div>
-                        <p class="post-meta">
-                            코스봉이 · 좋아요 34 · 댓글 10 · 조회 340 · 1시간 전
-                        </p>
+                        <div class="post-meta-bottom">
+                            <div class="post-stats">❤️52 · 💬4 · 👀312</div>
+                            <div>내 새끼 자랑</div>
+                        </div>
                     </div>
                 </li>
 
+                <!-- 3번 -->
                 <li class="post-card">
-                    <div class="post-thumb badge-blue">FREE</div>
+                    <div class="post-thumb-box">IMAGE</div>
                     <div class="post-main">
-                        <div class="post-title-row">
-                            <h3 class="post-title">오프 굿즈 교환할 사람 구해요</h3>
-                            <span class="post-tag">#블루록 #굿즈교환</span>
+                        <div>
+                            <h3 class="post-title">오늘 영업당한 내 최애 포카 자랑합니다 🥹</h3>
+                            <p class="post-excerpt">오늘 영업당한 내 최애 포카 자랑 글이에요...</p>
+                            <p class="post-tag">#주술회전 #고죠사토루 #포카</p>
+                            <p class="post-meta-top">닉네임 · 8분 전</p>
                         </div>
-                        <p class="post-meta">
-                            축구덕후 · 좋아요 7 · 댓글 5 · 조회 80 · 어제
-                        </p>
+                        <div class="post-meta-bottom">
+                            <div class="post-stats">❤️95 · 💬12 · 👀842</div>
+                            <div>내 새끼 자랑</div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 4번 -->
+                <li class="post-card">
+                    <div class="post-thumb-box">IMAGE</div>
+                    <div class="post-main">
+                        <div>
+                            <h3 class="post-title">굿즈 정리하다가 발견한 레전드 포카 😳</h3>
+                            <p class="post-excerpt">정리하다가 발견했는데 너무 예뻐서 올려요…</p>
+                            <p class="post-tag">#귀멸의칼날 #렌고쿠 #레어포카</p>
+                            <p class="post-meta-top">포카러버 · 20분 전</p>
+                        </div>
+                        <div class="post-meta-bottom">
+                            <div class="post-stats">❤️67 · 💬3 · 👀501</div>
+                            <div>내 새끼 자랑</div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 5번 -->
+                <li class="post-card">
+                    <div class="post-thumb-box">IMAGE</div>
+                    <div class="post-main">
+                        <div>
+                            <h3 class="post-title">최애 굿즈 도착해서 난리났다 😭💜</h3>
+                            <p class="post-excerpt">오늘 배송 왔는데 실물이 훨씬 예뻐요…</p>
+                            <p class="post-tag">#하이큐 #히나타 #굿즈개봉기</p>
+                            <p class="post-meta-top">히나타최애 · 35분 전</p>
+                        </div>
+                        <div class="post-meta-bottom">
+                            <div class="post-stats">❤️82 · 💬7 · 👀712</div>
+                            <div>내 새끼 자랑</div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 6번 -->
+                <li class="post-card">
+                    <div class="post-thumb-box">IMAGE</div>
+                    <div class="post-main">
+                        <div>
+                            <h3 class="post-title">드디어 구했다… 이 포카 구하기 너무 힘들었다 😭</h3>
+                            <p class="post-excerpt">너무 갖고 싶었던 포카라서 진짜 감격…</p>
+                            <p class="post-tag">#블루록 #이사기요 #레어포카</p>
+                            <p class="post-meta-top">피스키퍼 · 1시간 전</p>
+                        </div>
+                        <div class="post-meta-bottom">
+                            <div class="post-stats">❤️143 · 💬18 · 👀1,450</div>
+                            <div>내 새끼 자랑</div>
+                        </div>
                     </div>
                 </li>
 
             </ul>
         </section>
 
-        <!-- 인기글 섹션 -->
-        <section class="card">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>이번 주 인기글 TOP 5</span>
-                    <span class="pill pill-orange">HOT</span>
-                </div>
-            </div>
-            <ol class="top-list">
-                <li>🔥 주술회전 올스타 포카 풀세트 인증</li>
-                <li>✨ 코엑스 팝업 동선 꿀팁 총정리</li>
-                <li>📸 블루록 전시 포토스팟 모음</li>
-                <li>🎭 코스프레 메이크업 추천템</li>
-                <li>🛍 굿즈 정리하는 꿀정리법 공유</li>
-            </ol>
-        </section>
-
     </main>
 </div>
 
+<!-- 모바일 플로팅 글쓰기 버튼 -->
+<button class="write-fab"
+        type="button"
+        th:onclick="|location.href='@{/board/write}'|">
+    +
+</button>
+
+<!-- 하단바 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span>
@@ -125,5 +462,47 @@
         <span>내정보</span>
     </a>
 </nav>
+
+<script>
+    // 제목 / 사진 보기 토글
+    const postList = document.getElementById("postList");
+    const viewListBtn = document.getElementById("viewListBtn");
+    const viewPhotoBtn = document.getElementById("viewPhotoBtn");
+
+    viewListBtn.onclick = () => {
+        postList.classList.remove("photo-view");
+        viewListBtn.classList.add("active");
+        viewPhotoBtn.classList.remove("active");
+    };
+    viewPhotoBtn.onclick = () => {
+        postList.classList.add("photo-view");
+        viewListBtn.classList.remove("active");
+        viewPhotoBtn.classList.add("active");
+    };
+
+    // 정렬 메뉴 토글
+    const sortBtn = document.getElementById("sortBtn");
+    const sortMenu = document.getElementById("sortMenu");
+    const sortOptions = document.querySelectorAll(".sort-option");
+
+    sortBtn.onclick = (e) => {
+        e.stopPropagation();
+        sortMenu.classList.toggle("hidden");
+    };
+
+    sortOptions.forEach(option => {
+        option.onclick = () => {
+            sortOptions.forEach(o => o.classList.remove("active"));
+            option.classList.add("active");
+            sortMenu.classList.add("hidden");
+            const sort = option.dataset.sort;
+            console.log("정렬 기준:", sort);
+        };
+    });
+
+    document.onclick = () => sortMenu.classList.add("hidden");
+    sortMenu.onclick = (e) => e.stopPropagation();
+</script>
+
 </body>
 </html>
