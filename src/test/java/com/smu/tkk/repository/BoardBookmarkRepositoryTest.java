@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,10 +31,17 @@ class BoardBookmarkRepositoryTest {
     private Member member2;
     private BoardPost post1;
     private BoardPost post2;
+    @Test
+    void insert(){
+        BoardBookmark boardBookmark=new BoardBookmark();
+        boardBookmark.setCreatedAt(LocalDate.now());
+        boardBookmark.setPostId(11L);
+        boardBookmark.setMemberId(11L);
+        boardBookmarkRepository.save(boardBookmark);
+    }
 
 
     @Transactional(readOnly = true)
-
     @Test
     void findAllByMember() {
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
@@ -80,6 +88,14 @@ class BoardBookmarkRepositoryTest {
     void findByPostId() {
         List<BoardBookmark> bookmarks=boardBookmarkRepository.findByPostId(1L);
         System.out.println(bookmarks);
+    }
+    @Transactional
+    @Test
+    void saveAllByPostIdAndMemberId() {
+        if(!boardBookmarkRepository.existsByPostIdAndMemberId((long) 11, (long) 11)) {
+           //System.out.println(boardBookmarkRepository.saveAllByPostIdAndMemberId((long) 11, (long) 11));
+
+        }
     }
 
 //    void findAll(){

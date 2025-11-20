@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface BoardBookmarkRepository extends JpaRepository<BoardBookmark,Long> {
 
-/*    // 특정 회원이 특정 게시글을 북마크 했는지 여부
+    /*    // 특정 회원이 특정 게시글을 북마크 했는지 여부
     boolean existsByMemberAndPost(Member member, BoardPost post);
 
     // 특정 회원 + 게시글 조합의 북마크 한 건 조회
