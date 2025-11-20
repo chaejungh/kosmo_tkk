@@ -94,6 +94,34 @@
             background: #111827;
         }
 
+        /* 닉네임 + 중복확인 한 줄 */
+        .nickname-line {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nickname-line input {
+            flex: 1;
+        }
+
+        #check-nickname-btn {
+            white-space: nowrap;
+            padding: 0 18px;
+            height: 48px;
+            border-radius: 10px;
+            border: none;
+            background: #374151;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #check-nickname-btn:hover {
+            background: #111827;
+        }
+
         /* 회원가입 버튼 */
         .btn-primary {
             width: 100%;
@@ -147,10 +175,18 @@
             <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
         </div>
 
+        <!-- 생년월일 -->
+        <div class="input-group">
+            <label for="birth">생년월일</label>
+            <input type="text" id="birth" name="birth" placeholder="생년월일을 입력해주세요">
+        </div>
+
         <!-- 닉네임 -->
         <div class="input-group">
             <label for="nickname">닉네임</label>
+            <div class="nickname-line">
             <input type="text" id="nickname" name="nickName" placeholder="닉네임을 입력해주세요">
+            <button type="button" id="check-nickname-btn">중복확인</button>
         </div>
 
         <!-- 전화번호 -->
@@ -185,11 +221,6 @@
             </div>
         </div>
 
-        <!-- 생년월일 -->
-        <div class="input-group">
-            <label for="birth">생년월일</label>
-            <input type="text" id="birth" name="birth" placeholder="생년월일을 입력해주세요">
-        </div>
 
         <!-- 전체 동의 -->
         <div class="input-group">
