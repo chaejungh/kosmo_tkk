@@ -16,4 +16,15 @@ class MemberRepositoryTest {
         System.out.println(memberRepository.findAll());
     }
 
+    @Test
+    void existsByLoginId() {
+    }
+
+    @Test
+    void existsByNickname() {
+    }
+
+    @Test
+    void findByLoginIdAndLoginPw() {
+    }
 }
