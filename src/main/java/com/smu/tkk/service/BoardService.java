@@ -1,9 +1,7 @@
 package com.smu.tkk.service;
 
-import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.BoardPostImage;
-import com.smu.tkk.entity.BoardTag;
-import com.smu.tkk.entity.BoardCategory;
+import com.smu.tkk.entity.*;
+import org.springframework.data.domain.Pageable;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -31,7 +29,7 @@ public interface BoardService {
     BoardPost readOne(Long postId) throws SQLException;
 
     // 5. 게시글 전체 목록 조회
-    List<BoardPost> readAll() throws SQLException;
+    List<BoardPost> readAll(Pageable pageable) throws SQLException;
 
     // 6. 게시글 검색 (제목·내용·태그 등은 구현할 때 team rule)
     List<BoardPost> readByKeyword(String keyword) throws SQLException;
@@ -60,4 +58,14 @@ public interface BoardService {
 
     // 14. 게시글에서 태그 제거
     boolean removeTagFromPost(Long postId, Long tagId) throws SQLException;
+
+    // 15. 특정 아이디가 좋아요 한 글 전체 조회
+    List<BoardLike> readByLike(Long memberId, Pageable pageable) throws SQLException;
+
+    // 16. 신고목록에 추가
+    boolean register(BoardReport report) throws SQLException, IllegalArgumentException;
+    
+    // 17. 신고목록 삭제
+    boolean remove(BoardReport report) throws SQLException, IllegalArgumentException;
+    
 }

@@ -12,18 +12,18 @@ import org.springframework.data.domain.Pageable;
  */
 public interface TradeChatService {
 
-    /** 채팅방 생성(존재 시 재사용) — buyerId = room.member.id */
-    TradeChatRoom createRoom(Long tradeId, Long buyerId);
+    // 1. 채팅방 생성(존재 시 재사용) — buyerId = room.member.id */
+    TradeChatRoom register(Long tradeId, Long buyerId);
 
-    /** 메시지 전송 */
+    // 2. 메시지 전송 */
     TradeChatMessage send(Long roomId, Long senderId, String message);
 
-    /** 읽음 처리(내가 아닌 상대가 보낸 메시지를 읽음으로) → 변경된 개수 반환 */
-    int markAsRead(Long roomId, Long viewerId);
+    // 3. 읽음 처리(내가 아닌 상대가 보낸 메시지를 읽음으로) → 변경된 개수 반환 */
+    boolean markAsRead(Long roomId, Long viewerId);
 
-    /** 내가 속한 채팅방 목록(구매자=room.member or 판매자=room.trade.seller) */
-    Page<TradeChatRoom> myRooms(Long memberId, Pageable pageable);
+    // 4. 내가 속한 채팅방 목록(구매자=room.member or 판매자=room.trade.seller) */
+    Page<TradeChatRoom> myRooms(Long memberId);
 
-    /** 채팅 메시지 리스트(오름차순 권장) */
-    Page<TradeChatMessage> messages(Long roomId, Pageable pageable);
+    // 5. 채팅 메시지 리스트(오름차순 권장) */
+    Page<TradeChatMessage> messages(Long roomId);
 }

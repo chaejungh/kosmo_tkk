@@ -7,18 +7,19 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface SearchService {
-    // ===== 기존 =====
-    SearchLog registerOne(int memberId, String content); // 검색기록저장
+    // 1. 검색 기록 저장
+    SearchLog registerOne(Long memberId, String content); // 검색기록저장
+
+    // 2. 검색 최근 기록 조회
     List<SearchLog> readByDesc();//최근 기록 조회
 
-    // ===== 추가 =====
-
+    // 3. 인기 검색어 랭킹 순
     /** 기간 내 인기 키워드 Top-N (많이 검색된 순) */
     List<String> topKeywords(LocalDate from, LocalDate to, int limit);
 
-    /** 활성화된 추천 검색어 (정렬 우선순위 순) */ //추후 ai검색으로 대체
+    // 4.* 활성화된 추천 검색어 (정렬 우선순위 순) */ //추후 ai검색으로 대체
     //List<RecommendedSearch> activeRecommendations(int limit);
 
-    /** 회원의 검색 기록 전체 삭제 */
-    boolean clearHistory(int memberId);
+    // 5.* 회원의 검색 기록 전체 삭제 */
+    boolean clearHistory(Long memberId);
 }

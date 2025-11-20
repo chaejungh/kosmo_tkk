@@ -2,15 +2,23 @@ package com.smu.tkk.service;
 
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface TradeService {
     TradePost registerTradePost(TradePost tradePost); //거래글 작성
     TradePost modifyTradePost(TradePost tradePost); //거래글 수정
-    TradePost removeTradePost(TradePost tradePost); //거래글 삭제
+    TradePost removeTradePost(TradePost tradePostId); //거래글 삭제
     TradePost readOneTradePost(TradePost tradePost); //거래글 상세 조회
-    List<TradePost> readlist(TradePost tradePost); //거래글 목록 조회
-    TradePostImage saveTradeimage(TradePostImage tradePostImage); //거래글 이미지 저장
-    TradePost modifytradepost(TradePost tradePost); //거래 상태 변경
+    Page<TradePost> readAll(Pageable pageable); //거래글 목록 조회
+    TradePost modifyTradepost(TradePost tradePostId, TradePost tradePostStatus); //거래 상태 변경
+
+    // 4. 이미지 추가 */
+    TradePostImage register(Long tradeId, String imageUrl);
+    /// Long sortOrder 기능 필요하면 추가
+
+    // 5. 이미지 삭제 */
+    boolean remove(Long imageId);
 }

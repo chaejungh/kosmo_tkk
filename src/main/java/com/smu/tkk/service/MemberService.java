@@ -1,7 +1,9 @@
 package com.smu.tkk.service;
 
+import com.smu.tkk.entity.BoardPostImage;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.MemberNotificationSetting;
+import org.springframework.data.domain.Pageable;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -41,13 +43,17 @@ public interface MemberService {
     Member readOne(Long memberId) throws SQLException;
 
     // 7. 전체 회원 조회 (관리자/테스트용, 필요 없으면 나중에 삭제)
-    List<Member> readAll() throws SQLException;
+    List<Member> readAll(Pageable pageable) throws SQLException;
 
     // 8. 회원 알림 설정 조회
     MemberNotificationSetting readNotificationSetting(Long memberId) throws SQLException;
 
     // 9. 회원 알림 설정 수정
-    boolean updateNotificationSetting(MemberNotificationSetting setting)
-            throws SQLException, IllegalArgumentException;
-    //Member 이미지 추가
+    boolean updateNotificationSetting(MemberNotificationSetting setting) throws SQLException, IllegalArgumentException;
+    
+    // 10. Member 이미지 추가
+    boolean addImage(Long memberId, Member profileImage) throws SQLException, IllegalArgumentException;
+    
+    // 11. member 이미지 수정
+    boolean modifyImage(Long memberId,Member profileImage) throws SQLException, IllegalArgumentException;
 }

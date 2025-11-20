@@ -10,15 +10,15 @@ import org.springframework.data.domain.Pageable;
  */
 public interface TradeBookmarkService {
 
-    /** 찜 추가 (이미 있으면 기존 엔터티 반환 권장) */
-    TradeBookmark add(Long memberId, Long tradeId);
+    // 1. 찜 추가 (이미 있으면 기존 엔터티 반환 권장) */
+    TradeBookmark register(Long memberId, Long tradeId);
 
-    /** 찜 삭제 (없어도 예외 없이 처리 권장) */
-    void remove(Long memberId, Long tradeId);
+    // 2. 찜 삭제 (없어도 예외 없이 처리 권장) */
+    boolean remove(Long memberId, Long tradeId);
 
-    /** 특정 글 찜 여부 */
+    // 3. 특정 글 찜 여부 */
     boolean isBookmarked(Long memberId, Long tradeId);
 
-    /** 내 찜 목록 */
-    Page<TradeBookmark> list(Long memberId, Pageable pageable);
+    // 4. 내 찜 목록 */
+    Page<TradeBookmark> readById(Long memberId, Pageable pageable);
 }

@@ -13,7 +13,7 @@ public interface MemberNotificationSettingService {
     /** 조회 (없으면 empty) */
     Optional<MemberNotificationSetting> get(Long memberId);
 
-    /** 저장/수정(부분 업데이트 허용) */
+    /** 저장/수정(설정 요소별 부분 업데이트 허용) */
     MemberNotificationSetting upsert(Long memberId,
                                      Boolean commentYn,
                                      Boolean likeYn,

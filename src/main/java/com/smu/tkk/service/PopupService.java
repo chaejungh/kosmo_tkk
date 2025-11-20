@@ -13,26 +13,28 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PopupService {
-    // ===== 기존 =====
-    List<PopupStore> readAll() throws SQLException;
-    PopupStore readOne(int popup_id) throws SQLException;
+    // 1. 팝업 스토어 전체 조회
+    List<PopupStore> readAll(Pageable pageable) throws SQLException;
 
-    // ===== 추가 =====
+    // 2. 팝업 상세 조회 (단일)
+    PopupStore readOne(Long popupId) throws SQLException;
+
+    // 3. 진행 중인 팝업
     /** today가 시작~종료일 사이인 진행 중 팝업 */
     List<PopupStore> active(LocalDate today) throws SQLException;
 
-    /** 팝업의 굿즈 목록 */
-    List<PopupGood> goods(int popup_id) throws SQLException;
+    // 4. 팝업의 굿즈 목록 */
+    List<PopupGood> goods(Long popupId, Pageable pageable) throws SQLException;
 
-    /** 좌표 기준 반경 km 이내 팝업 (간단 근처찾기) */
+    // 5. 좌표 기준 반경 km 이내 팝업 (좌표 기준 근처찾기) */
     List<PopupStore> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
 
-    /** 북마크 토글: true=북마크됨, false=해제됨 */
+    // 6. 북마크 토글: true=북마크됨, false=해제됨 */
     boolean toggleBookmark(Long memberId, Long popupId);
 
-    /** 북마크 여부 */
+    // 7. 북마크 여부 */
     boolean isBookmarked(Long memberId, Long popupId);
 
-    /** 내 매장 북마크 목록 */
+    // 8. 내 매장 북마크 목록 */
     Page<PopupBookmark> myBookmarks(Long memberId, Pageable pageable);
 }
