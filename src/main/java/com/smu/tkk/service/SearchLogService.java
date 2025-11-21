@@ -6,10 +6,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface SearchLogService {
-    // 1. 검색 기록 저장
+    // 1. 검색 기록 저장(레파지토리 완료)
     SearchLog registerOne(Long memberId, String content); // 검색기록저장
 
-    // 2. 검색 최근 기록 조회
+    // 2. 검색 최근 기록 조회(레파지토리 완료)
     List<SearchLog> readByDesc();//최근 기록 조회
 
     // 3. 인기 검색어 랭킹 순

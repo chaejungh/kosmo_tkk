@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public interface MemberNotificationSettingService {
 
-    /** 조회 (없으면 empty) */
+    /** 조회 (없으면 empty) (레파지토리 완료)*/
     Optional<MemberNotificationSetting> get(Long memberId);
 
     /** 저장/수정(설정 요소별 부분 업데이트 허용) */
