@@ -21,17 +21,21 @@ public class BoardLike {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOARD_LIKE_ID", nullable = false)
     private Long id;
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @JoinColumn(name = "MEMBER_ID",insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
+    @Column(name = "POST_ID", nullable = false)
+    private Long postId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "POST_ID", nullable = false)
+    @JoinColumn(name = "POST_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private BoardPost post;

@@ -32,10 +32,10 @@ public interface BoardBookmarkRepository extends JpaRepository<BoardBookmark,Lon
     List<BoardBookmark> findByMemberId(Long memberId,Pageable pageable);
 
     // 해당 게시글을 북마크한 사람들 목록 (필요하면 사용)
-    List<BoardBookmark> findByPostId(Long postId);
+    //List<BoardBookmark> findByPostId(Long postId);
 
     // 게시글이 받은 북마크 개수 (인기글 정렬 등에 사용)
     //long countByPost(BoardPost post);
-    long countByPostId(Long postId);
+    //long countByPostId(Long postId);
 
 }

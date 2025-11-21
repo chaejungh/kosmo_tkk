@@ -16,7 +16,8 @@ import java.util.Optional;
 class BoardPostRepositoryTest {
     @Autowired
     private BoardPostRepository boardPostRepository;
-
+    @Autowired
+    private BoardLikeRepository boardLikeRepository;
     Sort sort= Sort.by("id").ascending();
     Pageable pageable =PageRequest.of(0,5,sort);
 
@@ -52,9 +53,6 @@ class BoardPostRepositoryTest {
 
     @Test
     void findAllByTitleContainingIgnoreCaseAndDeletedYn() {
-
         System.out.println(boardPostRepository.findAllByTitleContainingIgnoreCaseAndDeletedYn("게시글 00","N",pageable));
-
-
     }
 }

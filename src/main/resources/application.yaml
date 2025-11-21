@@ -8,7 +8,7 @@ spring:
     import: optional:application-api.yaml   # 🔹 api 파일 불러오기 (확장자 .yaml 주의)
 
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+    url: jdbc:oracle:thin:@//localhost:3000/XEPDB1
     username: tkk
     password: kosmo1234
     driver-class-name: oracle.jdbc.OracleDriver

@@ -31,14 +31,7 @@ class BoardBookmarkRepositoryTest {
     private Member member2;
     private BoardPost post1;
     private BoardPost post2;
-    @Test
-    void insert(){
-        BoardBookmark boardBookmark=new BoardBookmark();
-        boardBookmark.setCreatedAt(LocalDate.now());
-        boardBookmark.setPostId(11L);
-        boardBookmark.setMemberId(11L);
-        boardBookmarkRepository.save(boardBookmark);
-    }
+
 
 
     @Transactional(readOnly = true)
@@ -60,15 +53,15 @@ class BoardBookmarkRepositoryTest {
     }
 
 
-    @Test
-    void countByPost() {
-        long countPost1 = boardBookmarkRepository.countByPostId(1L);
-
-        long countPost2 = boardBookmarkRepository.countByPostId(2L);
-        System.out.println(countPost1);
-        System.out.println(countPost2);
-
-    }
+//    @Test
+//    void countByPost() {
+//        long countPost1 = boardBookmarkRepository.countByPostId(1L);
+//
+//        long countPost2 = boardBookmarkRepository.countByPostId(2L);
+//        System.out.println(countPost1);
+//        System.out.println(countPost2);
+//
+//    }
 
     @Test
     void existsByPostIdAndMemberId() {
@@ -85,18 +78,21 @@ class BoardBookmarkRepositoryTest {
     }
 
     @Test
-    void findByPostId() {
-        List<BoardBookmark> bookmarks=boardBookmarkRepository.findByPostId(1L);
-        System.out.println(bookmarks);
+    void register() {//save ORM(레파지토리의 메서드 개념) 사용
+        BoardBookmark boardBookmark=new BoardBookmark();
+        boardBookmark.setCreatedAt(LocalDate.now());
+        boardBookmark.setPostId(13L);
+        boardBookmark.setMemberId(13L);
+        boardBookmarkRepository.save(boardBookmark);
     }
-    @Transactional
-    @Test
-    void saveAllByPostIdAndMemberId() {
-        if(!boardBookmarkRepository.existsByPostIdAndMemberId((long) 11, (long) 11)) {
-           //System.out.println(boardBookmarkRepository.saveAllByPostIdAndMemberId((long) 11, (long) 11));
 
-        }
-    }
+
+    //@Test
+    //*void findByPostId() {
+//        List<BoardBookmark> bookmarks=boardBookmarkRepository.findByPostId(1L);
+//        System.out.println(bookmarks)
+//    }
+
 
 //    void findAll(){
 //        System.out.println(boardBookmarkRepository.findAll());
