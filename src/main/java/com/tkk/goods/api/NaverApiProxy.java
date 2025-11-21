@@ -12,7 +12,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class NaverApiProxy {
 
     @Value("${naver.key-id}") private String keyId;     // 예: 8ehod4l0bq
-    @Value("${naver.key}")    private String keySecret; // Client Secret
+    @Value("${naver.key}")    private String keySecret;
+    @Value("${naver.search.client-id}")    private String searchClientId;
+    @Value("${naver.search.client-secret}")    private String clientSecret;
 
     private final RestTemplate rest = new RestTemplate();
 
