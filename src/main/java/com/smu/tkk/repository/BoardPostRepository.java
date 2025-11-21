@@ -30,6 +30,7 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
 //
 //    // 단일 조회(삭제되지 않은 게시글만)
 //    Optional<BoardPost> findByIdAndDeletedYn(Long id);
+
     //좋아요개수 업데이트
     @Modifying
     @Query(value = "UPDATE BoardPost b set b.likeCount=b.likeCount+1 WHERE b.id=:postId")
