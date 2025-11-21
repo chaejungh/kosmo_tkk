@@ -178,7 +178,19 @@
         <!-- 생년월일 -->
         <div class="input-group">
             <label for="birth">생년월일</label>
-            <input type="date" id="birth" name="birth" placeholder="생년월일을 입력해주세요">
+            <div style="display: flex; gap: 10px;">
+                <select id="birth-year" name="birthYear" style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
+                    <option value="">년도</option>
+                </select>
+
+                <select id="birth-month" name="birthMonth" style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
+                    <option value="">월</option>
+                </select>
+
+                <select id="birth-day" name="birthDay" style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
+                    <option value="">일</option>
+                </select>
+            </div>
         </div>
 
         <!-- 닉네임 -->
@@ -199,7 +211,22 @@
         <!-- 이메일 -->
         <div class="input-group">
             <label for="email">이메일</label>
-            <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요">
+            <div style="display:flex; gap:10px;">
+            <input type="text" id="email-id" name="email" placeholder="이메일을 입력해주세요" style="flex:1">
+            <span style="font-size:16px; display:flex; align-items:center;">@</span>
+                <select id="email-domain" name="emailDomain"
+                        style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
+                    <option value="">선택</option>
+                    <option value="custom">직접입력</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="daum.net">daum.net</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="kakao.com">kakao.com</option>
+                </select>
+                    <input type="text" id="email-custom" placeholder="도메인 입력"
+                           style="flex:1; display:none; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
+            </div>
         </div>
 
         <!-- 성별 -->
@@ -251,5 +278,62 @@
     </div>
 </section>
 
+<script>
+    const yearSelect = document.getElementById("birth-year");
+    const monthSelect = document.getElementById("birth-month");
+    const daySelect = document.getElementById("birth-day");
+
+    // 년도 채우기 (현재 기준 50년만 표시)
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear; y >= currentYear - 50; y--) {
+        const option = document.createElement("option");
+        option.value = y;
+        option.textContent = y;
+        yearSelect.appendChild(option);
+    }
+
+    // --- 월 채우기 ---
+    for (let m = 1; m <= 12; m++) {
+        const option = document.createElement("option");
+        option.value = m.toString().padStart(2, '0');
+        option.textContent = m;
+        monthSelect.appendChild(option);
+    }
+
+    // --- 일 채우기 (해당 년/월에 따라 자동 계산) ---
+    function updateDays() {
+        const year = yearSelect.value;
+        const month = monthSelect.value;
+
+        if (!year || !month) return;
+
+        const lastDay = new Date(year, month, 0).getDate();
+
+        daySelect.innerHTML = '<option value="">일</option>';
+
+        for (let d = 1; d <= lastDay; d++) {
+            const option = document.createElement("option");
+            option.value = d.toString().padStart(2, '0');
+            option.textContent = d;
+            daySelect.appendChild(option);
+        }
+    }
+
+    yearSelect.addEventListener("change", updateDays);
+    monthSelect.addEventListener("change", updateDays);
+
+    const emailDomain = document.getElementById("email-domain");
+    const emailCustom = document.getElementById("email-custom");
+
+    emailDomain.addEventListener("change", () => {
+        if (emailDomain.value === "custom") {
+            // '직접 입력' 선택 시 직접 수기 입력
+            emailDomain.style.display = "none";
+            emailCustom.style.display = "block";
+            emailCustom.focus();
+        }
+    });
+
+</script>
 </body>
 </html>
