@@ -5,6 +5,8 @@ import com.smu.tkk.entity.BoardCategory;
 import com.smu.tkk.entity.Member;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,4 +30,8 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
 //
 //    // 단일 조회(삭제되지 않은 게시글만)
 //    Optional<BoardPost> findByIdAndDeletedYn(Long id);
+    //좋아요개수 업데이트
+    @Modifying
+    @Query(value = "UPDATE BoardPost b set b.likeCount=b.likeCount+1 WHERE b.id=:postId")
+    void updateAddLikeCnt(long postId);
 }

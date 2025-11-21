@@ -8,10 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-
+@Rollback(value = false)
 @SpringBootTest
 class BoardPostRepositoryTest {
     @Autowired
@@ -20,6 +21,10 @@ class BoardPostRepositoryTest {
     private BoardLikeRepository boardLikeRepository;
     Sort sort= Sort.by("id").ascending();
     Pageable pageable =PageRequest.of(0,5,sort);
+    @Autowired
+    BoardCategoryRepository boardCategoryRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Transactional(readOnly = true)
     @Test
@@ -29,8 +34,6 @@ class BoardPostRepositoryTest {
 
     }
 
-    @Autowired
-    BoardCategoryRepository boardCategoryRepository;
     @Test
     void findAllByCategoryAndDeletedYn() {
 
@@ -41,8 +44,6 @@ class BoardPostRepositoryTest {
         }
     }
 
-    @Autowired
-    MemberRepository memberRepository;
     @Test
     void findAllByMemberAndDeletedYn() {
         Optional<Member> member = memberRepository.findById((long)1);
@@ -54,5 +55,13 @@ class BoardPostRepositoryTest {
     @Test
     void findAllByTitleContainingIgnoreCaseAndDeletedYn() {
         System.out.println(boardPostRepository.findAllByTitleContainingIgnoreCaseAndDeletedYn("게시글 00","N",pageable));
+    }
+    @Test
+    @Transactional(readOnly = false)
+    void updateAddLikeCnt() {
+       // System.out.println(boardPostRepository.findById(1L));
+        boardPostRepository.updateAddLikeCnt(1L);
+        //System.out.println(boardPostRepository.findById(1L));
+
     }
 }
