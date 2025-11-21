@@ -31,19 +31,19 @@ public class MemberNotificationSetting {
 
     @ColumnDefault("'Y'")
     @Column(name = "COMMENT_YN")
-    private Boolean commentYn;
+    private String commentYn;
 
     @ColumnDefault("'Y'")
     @Column(name = "LIKE_YN")
-    private Boolean likeYn;
+    private String likeYn;
 
     @ColumnDefault("'Y'")
     @Column(name = "TRADE_YN")
-    private Boolean tradeYn;
+    private String tradeYn;
 
     @ColumnDefault("'Y'")
     @Column(name = "EVENT_YN")
-    private Boolean eventYn;
+    private String eventYn;
 
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT")

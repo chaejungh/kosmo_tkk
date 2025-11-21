@@ -18,7 +18,7 @@ public interface TradePostImageService {
     // 2. 대표(커버) 이미지(예: sortOrder 최소) */
     Optional<TradePostImage> readOneImage(Long tradeId);
 
-    // 3. 이미지 단건 조회 */
+    // 3. 이미지 단건 조회 */(레파지토리 완료)
     Optional<TradePostImage> readOne(Long imageId);
 
 }

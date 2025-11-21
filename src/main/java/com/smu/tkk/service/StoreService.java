@@ -14,16 +14,16 @@ import java.util.List;
  */
 public interface StoreService {
 
-    // 1. 매장 전체 조회
+    // 1. 매장 전체 조회(레파지토리 완료)
     Page<Store> readAll(Pageable pageable) throws SQLException;
 
-    // 2. 매장 상세 */
+    // 2. 매장 상세 */(레파지토리 완료)
     Store readOne(Long storeId) throws SQLException;
 
     // 3. 통합 검색(이름/주소/지역 중 구현 시 선택/병합) */
     List<Store> readByKeyword(String keyword,Pageable pageable) throws SQLException;
 
-    // 4. 매장 굿즈 목록 */
+    // 4. 매장 굿즈 목록 */(레파지토리 완료)
     List<StoreGood> goods(Long storeId, Pageable pageable);
 
     // 5. 북마크 토글: true=북마크됨, false=해제됨 */

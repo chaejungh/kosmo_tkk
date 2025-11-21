@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface InquiryRepository extends JpaRepository<Inquiry,Integer> {
     //1. 문의 등록 save
-    //2. 문의 삭제
+    //2. 문의 삭제 delete
 //    //3. 문의 내가 쓴글 조회
 //    List<Inquiry> readById(Long memberId, Pageable pageable);
     List<Inquiry> findByMemberId(Long memberId, Pageable pageable);
+
 }
