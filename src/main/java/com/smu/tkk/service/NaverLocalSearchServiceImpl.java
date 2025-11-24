@@ -1,9 +1,11 @@
-package com.smu.tkk.service.impl;
+package com.smu.tkk.service;
 
 import com.smu.tkk.dto.PlaceDto;
+import com.smu.tkk.entity.Store;
 import com.smu.tkk.naver.NaverLocalItem;
 import com.smu.tkk.naver.NaverLocalSearchResponse;
-import com.smu.tkk.service.NaverLocalSearchService;
+import com.smu.tkk.repository.StoreRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -13,10 +15,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
 
@@ -26,53 +28,68 @@ public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
     @Value("${naver.search.client-secret}")
     private String clientSecret;
 
+    private final StoreRepository storeRepository;
+
+    // 간단히 new 로 사용
     private final RestTemplate restTemplate = new RestTemplate();
 
-    /**
-     * 1차 : 사용자가 입력한 검색어 그대로 호출
-     * 2차 : 결과가 없고, 굿즈 관련 키워드가 없으면 "굿즈샵" 붙여서 한 번 더 호출
-     */
     @Override
     public List<PlaceDto> searchPlaces(String query, int limit) {
         if (query == null || query.isBlank()) {
             return Collections.emptyList();
         }
 
-        String q = query.trim();
-        int display = Math.min(Math.max(limit, 1), 5); // 1~5
+        String keyword = query.trim();
+        int size = Math.max(1, Math.min(limit, 5));  // 네이버 지역검색 최대 5
 
-        // 1차 : 그대로
-        List<PlaceDto> result = callLocalSearch(q, display);
+        // 1) 우리 DB 검색
+        List<PlaceDto> dbPlaces = searchFromDb(keyword);
 
-        // 1차가 0개이고, 굿즈 관련 단어가 없으면 "굿즈샵" 붙여서 재검색
-        if (result.isEmpty() && !containsGoodsKeyword(q)) {
-            String q2 = q + " 굿즈샵";
-            log.info("local search fallback: '{}' -> '{}'", q, q2);
-            result = callLocalSearch(q2, display);
+        // 2) 네이버 지역검색 API
+        List<PlaceDto> apiPlaces = searchFromNaver(keyword, size);
+
+        // 3) 이름+주소 기준으로 중복 제거하면서 합치기
+        Map<String, PlaceDto> merged = new LinkedHashMap<>();
+
+        for (PlaceDto p : dbPlaces) {
+            merged.put(keyOf(p), p);
+        }
+        for (PlaceDto p : apiPlaces) {
+            merged.putIfAbsent(keyOf(p), p);
         }
 
-        return result;
+        return new ArrayList<>(merged.values());
     }
 
-    // "굿즈", "샵", goods, store 등 이미 들어있으면 굳이 굿즈샵 안 붙임
-    private boolean containsGoodsKeyword(String q) {
-        String lower = q.toLowerCase();
-        return lower.contains("굿즈")
-                || lower.contains("샵")
-                || lower.contains("goods")
-                || lower.contains("store")
-                || lower.contains("shop");
+    private String keyOf(PlaceDto p) {
+        String n = p.getName() == null ? "" : p.getName();
+        String addr = p.getRoadAddress() != null ? p.getRoadAddress()
+                : (p.getAddress() != null ? p.getAddress() : "");
+        return n + "|" + addr;
     }
 
-    // 실제 네이버 지역 검색 호출
-    private List<PlaceDto> callLocalSearch(String realQuery, int display) {
+    private List<PlaceDto> searchFromDb(String keyword) {
+        List<Store> stores = storeRepository
+                .findTop20ByNameContainingIgnoreCaseOrRegionNameContainingIgnoreCase(keyword, keyword);
+
+        return stores.stream()
+                .map(this::toDtoFromStore)
+                .toList();
+    }
+
+    private List<PlaceDto> searchFromNaver(String keyword, int limit) {
+        // "홍대" -> "홍대 애니 굿즈샵" 같은 식으로 자동 보정
+        String realQuery = keyword.contains("굿즈")
+                ? keyword
+                : keyword + " 애니 굿즈샵";
+
         URI uri = UriComponentsBuilder
                 .fromUriString("https://openapi.naver.com")
                 .path("/v1/search/local.json")
                 .queryParam("query", realQuery)
-                .queryParam("display", display)
+                .queryParam("display", limit)
                 .queryParam("start", 1)
-                .queryParam("sort", "random") // random / comment
+                .queryParam("sort", "random")        // random / comment
                 .encode(StandardCharsets.UTF_8)
                 .build()
                 .toUri();
@@ -91,24 +108,42 @@ public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
             return Collections.emptyList();
         }
 
-        log.info("local search '{}' -> total: {}", realQuery, body.getTotal());
-
         return body.getItems().stream()
-                .map(this::toPlaceDto)
+                .map(this::toDtoFromNaver)
                 .toList();
     }
 
-    // NaverLocalItem -> PlaceDto 변환 (TM128 좌표 그대로)
-    private PlaceDto toPlaceDto(NaverLocalItem item) {
-        double x = 0;
-        double y = 0;
+    // --- 매핑 도우미 ---
+
+    private PlaceDto toDtoFromStore(Store s) {
+        Double lat = null;
+        Double lng = null;
+
+        if (s.getLatitude() != null) {
+            lat = s.getLatitude().doubleValue();      // ★ BigDecimal → Double
+        }
+        if (s.getLongitude() != null) {
+            lng = s.getLongitude().doubleValue();     // ★ BigDecimal → Double
+        }
+
+        return PlaceDto.builder()
+                .name(s.getName())
+                .category("더쿠쿠 매장")
+                .address(s.getAddress())
+                .roadAddress(s.getAddress())
+                .tel(s.getPhone())
+                .lat(lat)
+                .lng(lng)
+                .source("DB")
+                .build();
+    }
+
+    private PlaceDto toDtoFromNaver(NaverLocalItem item) {
+        Double mapx = null;
+        Double mapy = null;
         try {
-            if (item.getMapx() != null) {
-                x = Double.parseDouble(item.getMapx());
-            }
-            if (item.getMapy() != null) {
-                y = Double.parseDouble(item.getMapy());
-            }
+            if (item.getMapx() != null) mapx = Double.valueOf(item.getMapx());
+            if (item.getMapy() != null) mapy = Double.valueOf(item.getMapy());
         } catch (NumberFormatException ignore) { }
 
         return PlaceDto.builder()
@@ -117,8 +152,9 @@ public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
                 .address(item.getAddress())
                 .roadAddress(item.getRoadAddress())
                 .tel(item.getTelephone())
-                .mapx(x)   // TM128 X
-                .mapy(y)   // TM128 Y
+                .mapx(mapx)
+                .mapy(mapy)
+                .source("NAVER")
                 .build();
     }
 
