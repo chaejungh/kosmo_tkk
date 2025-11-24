@@ -23,7 +23,7 @@ public interface PopupStoreRepository extends JpaRepository<PopupStore,Long> {
                 "WHERE p.startDate <= :today AND p.endDate >= :today")
         List<PopupStore> findActive(@Param("today") LocalDate today);
 
-        /** 반경 km 이내 팝업 (Haversine) */
+        /** 반경 km 이내 팝업 */
         @Query(value = """
     SELECT * FROM popup_store p
     WHERE (
@@ -41,5 +41,4 @@ public interface PopupStoreRepository extends JpaRepository<PopupStore,Long> {
                  double lng,
                  double km
         );
-
 }
