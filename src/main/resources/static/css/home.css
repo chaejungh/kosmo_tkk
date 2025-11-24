@@ -183,10 +183,10 @@ body {
 
 .page {
     width: 100%;
-    max-width: 1040px;      /* ⬅ 480px → 1040px 로 확장 */
+    max-width: 1040px;   /* ← 여기!! 화면 전체폭 키우는 핵심 한 줄 */
     min-height: 100vh;
-    margin: 0 auto;         /* 브라우저 가운데 정렬 */
-    padding-bottom: 80px;   /* 하단 탭바 공간 */
+    margin: 0 auto;
+    padding-bottom: 80px;
     background: linear-gradient(180deg, #f5f3ff 0%, #f9fafb 40%, #ffffff 100%);
 }
 

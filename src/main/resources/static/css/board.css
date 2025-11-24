@@ -1,97 +1,123 @@
-/* ============================
-   덕질게시판 리스트 화면
-============================ */
-
-
-/* ============================
-   layout.css .page 오버라이드 (가장 중요)
-============================ */
-.page.board-page {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 auto !important;
-    box-sizing: border-box;
-}
-/* 헤더 카드 */
-.board-header-card {
-    padding: 16px;
+/* =========================================
+   기본 카드 공통
+========================================= */
+.card {
     background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    margin-bottom: 12px;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e7eb;
 }
 
-/* 검색줄 + 아이콘 세트 */
+/* =========================================
+   헤더 카드
+========================================= */
+.board-header-card .card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pill-purple {
+    background: #ede9fe;
+    color: #6b21a8;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+}
+
+/* =========================================
+   카테고리 세그먼트
+========================================= */
+.segmented-control {
+    display: flex;
+    background: #f3f4f6;
+    padding: 6px;
+    border-radius: 12px;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.seg-btn {
+    flex: 1;
+    padding: 8px 0;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.seg-btn.active {
+    background: white;
+    font-weight: bold;
+    border: 1px solid #d1d5db;
+}
+
+/* =========================================
+   검색창 + 정렬 버튼
+========================================= */
 .board-search-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 12px;
-    position: relative;
+    margin-top: 14px;
 }
 
 .board-search-box {
-    flex: 1.5;
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
     border-radius: 999px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    font-size: 14px;
+    padding: 8px 12px;
 }
 
 .board-search-box input {
+    flex: 1;
+    font-size: 14px;
     border: none;
     outline: none;
-    flex: 1;
-    background: transparent;
 }
 
-.board-search-icon {
-    font-size: 16px;
-}
-
-/* 검색 옆 아이콘들 */
 .search-actions {
     display: flex;
     gap: 6px;
-    flex-shrink: 0;
 }
 
 .icon-btn {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    background: white;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
-    border: 1px solid #e5e7eb;
-    background: #fff;
-    font-size: 13px;
     cursor: pointer;
-    color: #6b7280;
 }
 
 .icon-btn.active {
-    border-color: #2563eb;
-    color: #2563eb;
+    background: #eef2ff;
+    border-color: #6366f1;
+    color: #4f46e5;
 }
 
-/* 정렬 메뉴 */
+/* =========================================
+   정렬 메뉴
+========================================= */
 .sort-menu {
     position: absolute;
     right: 0;
-    top: 48px;
-    background: #ffffff;
-    border-radius: 12px;
+    top: 50px;
+    width: 140px;
+    background: white;
     border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    padding: 6px;
-    min-width: 130px;
-    z-index: 50;
+    border-radius: 12px;
+    padding: 6px 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
 .sort-menu.hidden {
@@ -99,11 +125,7 @@
 }
 
 .sort-option {
-    padding: 6px 10px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding: 8px 14px;
     cursor: pointer;
     font-size: 14px;
 }
@@ -113,35 +135,34 @@
 }
 
 .sort-option.active {
-    background: #eff6ff;
-    color: #2563eb;
+    background: #eef2ff;
+    color: #4f46e5;
     font-weight: 600;
 }
 
-/* 게시글 리스트 */
+/* =========================================
+   게시글 리스트
+========================================= */
 .post-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-bottom: 120px; /* 하단바/플로팅버튼 안 가리게 */
+    gap: 14px;
+    padding: 0;
+    margin: 0;
 }
 
+/* 카드 하나 */
 .post-card {
     display: flex;
-    align-items: flex-start;
     gap: 12px;
     padding: 12px;
-    border-radius: 14px;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #e5e7eb;
-    min-height: 110px;
+    border-radius: 14px;
 }
 
+/* 썸네일 */
 .post-thumb-box {
-    flex: 0 0 80px;
     width: 80px;
     height: 80px;
     border-radius: 10px;
@@ -149,9 +170,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     font-size: 11px;
     color: #6b7280;
-    overflow: hidden;
 }
 
 .post-thumb-box img {
@@ -160,6 +181,7 @@
     object-fit: cover;
 }
 
+/* 오른쪽 내용 */
 .post-main {
     flex: 1;
     display: flex;
@@ -167,42 +189,35 @@
     justify-content: space-between;
 }
 
+/* 텍스트들 */
 .post-title {
-    font-size: 15px;
-    font-weight: 700;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.2;
 }
 
 .post-excerpt {
-    margin: 4px 0 0;
-    font-size: 13px;
+    font-size: 12px;
     color: #6b7280;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 4px;
 }
 
 .post-tag {
-    margin-top: 2px;
-    font-size: 11px;
+    font-size: 12px;
     color: #4b5563;
 }
 
 .post-meta-top {
-    margin-top: 4px;
-    font-size: 12px;
+    font-size: 11px;
     color: #9ca3af;
 }
 
 .post-meta-bottom {
-    margin-top: 6px;
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    color: #9ca3af;
+    font-size: 11px;
+    margin-top: 6px;
 }
 
 .post-stats {
@@ -210,12 +225,13 @@
     gap: 8px;
 }
 
-/* 사진 보기 모드 */
+/* =========================================
+   사진 모드
+========================================= */
 .post-list.photo-view {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    padding-bottom: 120px;
 }
 
 .post-list.photo-view .post-card {
@@ -223,67 +239,81 @@
 }
 
 .post-list.photo-view .post-thumb-box {
-    flex: 0 0 150px;
     width: 100%;
     height: 150px;
 }
 
 .post-list.photo-view .post-title {
-    white-space: normal;
+    font-size: 13px;
+    margin-top: 6px;
 }
 
-/* 마지막 카드가 하단바에 달라붙지 않게 */
-.card:last-of-type {
-    margin-bottom: 80px;
-}
-
-/* 모바일 플로팅 글쓰기 버튼 */
+/* =========================================
+   플로팅 버튼
+========================================= */
 .write-fab {
     position: fixed;
     right: 16px;
-    bottom: calc(env(safe-area-inset-bottom) + 70px);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #2563eb;
-    color: #fff;
+    bottom: 90px;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    background: #4f46e5;
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 6px 20px rgba(79,70,229,0.4);
     cursor: pointer;
-    z-index: 60;
-    transition: 0.15s;
+    z-index: 50;
 }
 
 .write-fab:active {
     transform: scale(0.92);
 }
-
-/* 데스크탑 전용 글쓰기 버튼 영역 */
-.desktop-write-btn {
-    display: none;
+/* ========== PC 기본 글쓰기 버튼 오른쪽 정렬 ========== */
+.write-btn {
+    float: right;
+    margin-right: 10px;
 }
 
-@media (min-width: 1024px) {
-    .write-fab {
-        display: none;
+
+
+/* ================= 모바일 전용 플로팅 + 버튼 ================= */
+.floating-write-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #6f4cff;
+    color: #ffffff;
+    font-size: 35px;
+    border: none;
+    display: none; /* 기본은 숨김(웹에서는 안 보임) */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+}
+
+
+
+/* ======= 모바일 전용(아이폰/안드로이드 스마트폰 화면 폭) ======= */
+@media screen and (max-width: 600px) {
+
+    /* 웹 글쓰기 버튼 숨김 */
+    .write-btn {
+        display: none !important;
     }
 
-    .desktop-write-btn {
+    /* 플로팅 버튼 표시 */
+    .floating-write-btn {
         display: flex;
-        justify-content: flex-end;
-        margin-top: 12px;
     }
-}
-
-/* ============================
-   ★ 보드 페이지 전체 화면으로 확장
-============================ */
-.board-page .app-shell {
-    max-width: 100% !important;
-    width: 100% !important;
 }

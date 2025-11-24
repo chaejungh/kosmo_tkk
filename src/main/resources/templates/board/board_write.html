@@ -1,48 +1,261 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>내 새끼 자랑 - 글쓰기</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/board.css}">
-    <link rel="stylesheet" th:href="@{/css/app-layout.css}">
-</head>
+    <title>내 새끼 자랑 글쓰기</title>
 
+    <!-- 기본 폰트/배경 느낌만 살짝 잡아줄게 (다른 페이지 안 건드림) -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            background: #f5f2ff;
+        }
+
+        /* 전체 페이지 래퍼 : 홈이랑 비슷하게 가운데 정렬 + 모바일 풀 높이 */
+        .page-container {
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #fdfdff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 상단 바 */
+        .write-header-bar {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px 8px;
+        }
+
+        .back-btn {
+            border: none;
+            background: transparent;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 4px 8px 4px 0;
+        }
+
+        .logo-text {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: #6C4CF7;
+            margin-right: 30px; /* 뒤로가기와 균형 맞추려고 살짝 여유 */
+        }
+
+        /* 안쪽 카드 */
+        .write-card {
+            margin: 0 16px 18px;
+            padding: 18px 16px 20px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .write-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        /* 사진 업로드 영역 */
+        .photo-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .photo-upload-box {
+            width: 96px;
+            height: 96px;
+            border-radius: 14px;
+            border: 2px dashed #d4c9ff;
+            background: #f8f6ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-upload-box:hover {
+            background: #f1ecff;
+        }
+
+        .photo-upload-box .camera-icon {
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .photo-upload-box .photo-count {
+            font-size: 11px;
+            color: #7d73b8;
+        }
+
+        .photo-help-text {
+            flex: 1;
+            font-size: 13px;
+            color: #444;
+        }
+
+        .photo-help-text .main {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .photo-help-text .sub {
+            font-size: 12px;
+            color: #9b96c6;
+        }
+
+        /* 폼 요소 */
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 6px 0 4px;
+        }
+
+        .input-title,
+        .textarea-content {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #e1ddff;
+            padding: 10px 12px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-title:focus,
+        .textarea-content:focus {
+            border-color: #6C4CF7;
+            box-shadow: 0 0 0 2px rgba(108,76,247,0.12);
+        }
+
+        .textarea-content {
+            resize: none;
+            min-height: 180px;
+        }
+
+        /* 하단 여백 */
+        .bottom-space {
+            height: 10px;
+        }
+
+        /* 큰 보라색 등록 버튼 (스케치 오른쪽 긴 버튼 느낌) */
+        .submit-wrap {
+            margin-top: auto;
+            padding-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .submit-btn {
+            border: none;
+            border-radius: 999px;
+            background: #6C4CF7;
+            color: #ffffff;
+            padding: 10px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(108,76,247,0.35);
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 12px rgba(108,76,247,0.35);
+        }
+
+        /* 모바일에서도 꽉 차게 보이도록 */
+        @media (max-width: 480px) {
+            .write-card {
+                margin: 0 10px 16px;
+                padding: 16px 14px 18px;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<div class="page">
+<div class="page-container">
 
-    <!-- 🔥 상단 뒤로가기 바 -->
-    <header class="write-header">
-        <button class="write-back-btn" onclick="history.back()">←</button>
-        <span class="write-header-title">내 새끼 자랑</span>
-        <div class="write-header-empty"></div>
-    </header>
+    <!-- 상단바: 뒤로가기 + 로고 -->
+    <div class="write-header-bar">
+        <button class="back-btn" type="button" onclick="history.back()">←</button>
+        <div class="logo-text">더쿠쿠</div>
+    </div>
 
-    <!-- 🔥 글쓰기 카드 -->
-    <section class="card write-card">
+    <!-- 글쓰기 카드 -->
+    <div class="write-card">
+        <h2 class="write-title">내 새끼 자랑 글쓰기</h2>
 
-        <!-- 사진 업로드 -->
-        <div>
-            <div class="write-top-title">내 새끼 사진 업로드</div>
-            <div class="photo-upload-box">
-                <div class="upload-icon">📷</div>
-                <div class="upload-count">0 / 10</div>
+        <!-- 사진 업로드 구역 -->
+        <div class="photo-row">
+            <label class="photo-upload-box">
+                <span class="camera-icon">📷</span>
+                <span class="photo-count"><span id="photoCount">0</span>/10</span>
+                <input id="photoInput" type="file" multiple accept="image/*" style="display:none">
+            </label>
+
+            <div class="photo-help-text">
+                <div class="main">내 새끼 사진 업로드</div>
+                <div class="sub">최대 10장까지 올릴 수 있어요. 제일 자랑하고 싶은 사진부터!</div>
             </div>
         </div>
 
-        <!-- 제목 입력 -->
-        <input type="text" class="write-title" placeholder="글 제목을 입력해주세요">
+        <!-- 제목 -->
+        <label class="form-label" for="title">제목</label>
+        <input id="title" name="title" type="text"
+               class="input-title"
+               placeholder="제목을 입력하세요">
 
-        <!-- 내용 입력 -->
-        <textarea class="write-textarea" placeholder="게시글 내용을 작성해주세요 😊"></textarea>
+        <!-- 내용 -->
+        <label class="form-label" for="content">게시글 내용</label>
+        <textarea id="content" name="content"
+                  class="textarea-content"
+                  placeholder="게시글 내용을 작성해주세요 😊"></textarea>
 
-        <!-- 🔥 하단 고정 버튼처럼 보이게 -->
-        <button class="write-submit-btn">피드 게시</button>
+        <div class="bottom-space"></div>
 
-    </section>
+        <!-- 오른쪽 아래 긴 버튼 -->
+        <div class="submit-wrap">
+            <button class="submit-btn" type="button">
+                글 등록
+            </button>
+        </div>
+    </div>
 </div>
+
+<script>
+    // 사진 선택 시 0/10 숫자 업데이트
+    const photoInput = document.getElementById("photoInput");
+    const photoCount = document.getElementById("photoCount");
+
+    photoInput.addEventListener("change", () => {
+        const count = photoInput.files ? photoInput.files.length : 0;
+        photoCount.textContent = count;
+    });
+
+    // 박스를 누르면 파일 선택 열기
+    document.querySelector(".photo-upload-box").addEventListener("click", () => {
+        photoInput.click();
+    });
+</script>
 
 </body>
 </html>
