@@ -26,15 +26,17 @@ public interface StoreService {
     // 4. 매장 굿즈 목록 */(레파지토리 완료)
     List<StoreGood> goods(Long storeId, Pageable pageable);
 
-    // 5. 북마크 토글: true=북마크됨, false=해제됨 */
+    // 5. 북마크 토글: true=북마크됨, false=해제됨 */ (레파지토리 완료)
     boolean toggleBookmark(Long memberId, Long storeId);
 
-    // 6. 북마크 여부 */
+    // 6. 북마크 여부 */ (레파지토리 완료)
     boolean isBookmarked(Long memberId, Long storeId);
 
     // 7. 내 매장 북마크 목록 */
     Page<StoreBookmark> myBookmarks(Long memberId, Pageable pageable);
 
-    // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */
+    // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */ (레파지토리 완료
     List<Store> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
+
+    // 9. 오픈한 매장>>> 테이블 없음
 }
