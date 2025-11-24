@@ -43,7 +43,7 @@ public class Notification {
 
     @ColumnDefault("'N'")
     @Column(name = "READ_YN")
-    private Boolean readYn;
+    private String readYn;
 
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT")
