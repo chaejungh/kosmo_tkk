@@ -62,10 +62,10 @@ public interface BoardService {
     // 15. 특정 아이디가 좋아요 한 글 전체 조회 (레파지토리 완료)
     List<BoardLike> readByLike(Long memberId, Pageable pageable) throws SQLException;
 
-    // 16. 신고목록에 추가
+    // 16. 신고목록에 추가(레파지토리 완료)
     boolean register(BoardReport report) throws SQLException, IllegalArgumentException;
     
-    // 17. 신고목록 삭제
+    // 17. 신고목록 삭제(레파지토리 완료)
     boolean remove(BoardReport report) throws SQLException, IllegalArgumentException;
     
 }

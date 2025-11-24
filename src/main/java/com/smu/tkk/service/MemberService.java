@@ -22,27 +22,27 @@ import java.util.List;
  */
 public interface MemberService {
 
-    // 1. 회원 가입
+    // 1. 회원 가입(레파지토리 완료)
     //    - 필수값 누락, 형식 오류 등은 IllegalArgumentException
     boolean register(Member member) throws SQLException, IllegalArgumentException;
 
-    // 2. 로그인
+    // 2. 로그인(레파지토리 완료)
     //    - 아이디/비밀번호 틀리면 null 리턴 or IllegalArgumentException 중 택1 (구현 때 팀이 정하기)
     Member login(String loginId, String loginPw) throws SQLException, IllegalArgumentException;
 
-    // 3. 아이디 중복 확인
+    // 3. 아이디 중복 확인(레파지토리 완료)
     boolean existsByLoginId(String loginId) throws SQLException;
 
-    // 4. 닉네임 중복 확인
+    // 4. 닉네임 중복 확인(레파지토리 완료)
     boolean existsByNickname(String nickname) throws SQLException;
 
-    // 5. 회원 정보 수정 (이름, 닉네임, 이메일 등)
+    // 5. 회원 정보 수정 (이름, 닉네임, 이메일 등)(레파지토리 완료)
     boolean modify(Member member) throws SQLException, IllegalArgumentException;
 
-    // 6. 단일 회원 조회 (마이페이지용)
+    // 6. 단일 회원 조회 (마이페이지용)(레파지토리 완료)
     Member readOne(Long memberId) throws SQLException;
 
-    // 7. 전체 회원 조회 (관리자/테스트용, 필요 없으면 나중에 삭제)
+    // 7. 전체 회원 조회 (관리자/테스트용, 필요 없으면 나중에 삭제)(레파지토리 완료)
     List<Member> readAll(Pageable pageable) throws SQLException;
 
     // 8. 회원 알림 설정 조회

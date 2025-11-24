@@ -3,8 +3,11 @@ package com.smu.tkk.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
+@Rollback(value = false)
 @SpringBootTest
 
 class MemberRepositoryTest {
@@ -18,6 +21,9 @@ class MemberRepositoryTest {
 
     @Test
     void existsByLoginId() {
+        System.out.println(
+                memberRepository.existsByLoginId("user001")
+        );
     }
 
     @Test
@@ -25,6 +31,18 @@ class MemberRepositoryTest {
     }
 
     @Test
-    void findByLoginIdAndLoginPw() {
+    void existsByLoginIdAndLoginPw() {
+        System.out.println(memberRepository.existsByLoginIdAndLoginPw("user001","pw001"));
+    }
+    @Test
+    void insertImage(){
+
+//        memberRepository.save();
+    }
+
+    @Test
+    @Transactional
+    void update() {
+        System.out.println(memberRepository.update("user0001","pw0001","닉네임0001",null,"안녕하세요 유저 1입니다.","chaejungh@gmai.com",1L));
     }
 }
