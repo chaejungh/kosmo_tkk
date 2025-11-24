@@ -40,32 +40,32 @@ public interface BoardService {
     // 8. 게시판 카테고리 전체 조회(레파지토리 완료)
     List<BoardCategory> readAllCategories() throws SQLException;
 
-    // 9. 특정 게시글 이미지 전체 조회
+    // 9. 특정 게시글 이미지 전체 조회(레파지토리 완료)
     List<BoardPostImage> readImages(Long postId) throws SQLException;
 
-    // 10. 게시글에 이미지 추가
+    // 10. 게시글에 이미지 추가(레파지토리 완료)
     boolean addImage(Long postId, BoardPostImage image)
             throws SQLException, IllegalArgumentException;
 
-    // 11. 이미지 삭제
+    // 11. 이미지 삭제(레파지토리 완료)
     boolean removeImage(Long imageId) throws SQLException;
 
-    // 12. 게시글의 태그 목록 조회
+    // 12. 게시글의 태그 목록 조회(레파지토리 완료)
     List<BoardTag> readTagsByPost(Long postId) throws SQLException;
 
-    // 13. 게시글에 태그 추가
+    // 13. 게시글에 태그 추가(레파지토리 완료)
     boolean addTagToPost(Long postId, Long tagId) throws SQLException;
 
-    // 14. 게시글에서 태그 제거
+    // 14. 게시글에서 태그 제거(레파지토리 완료)
     boolean removeTagFromPost(Long postId, Long tagId) throws SQLException;
 
     // 15. 특정 아이디가 좋아요 한 글 전체 조회 (레파지토리 완료)
     List<BoardLike> readByLike(Long memberId, Pageable pageable) throws SQLException;
 
-    // 16. 신고목록에 추가
+    // 16. 신고목록에 추가(레파지토리 완료)
     boolean register(BoardReport report) throws SQLException, IllegalArgumentException;
     
-    // 17. 신고목록 삭제
+    // 17. 신고목록 삭제(레파지토리 완료)
     boolean remove(BoardReport report) throws SQLException, IllegalArgumentException;
     
 }

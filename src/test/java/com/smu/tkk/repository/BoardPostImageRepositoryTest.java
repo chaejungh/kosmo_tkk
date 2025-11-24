@@ -3,23 +3,17 @@ package com.smu.tkk.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class StoreRepositoryTest {
+class BoardPostImageRepositoryTest {
     @Autowired
-    private StoreRepository storeRepository;
+    BoardPostImageRepository boardPostImageRepository;
     @Test
-    @Transactional
-    void findAll(){
-
-        Pageable pageable = Pageable.ofSize(10);
-        System.out.println(storeRepository.findAll(pageable).getContent());
-    };
-
-    @Test
-    void myBookmarks() {
+    void findAllByPostId() throws SQLException {
+        System.out.println(boardPostImageRepository.findAllByPostId(1L));
     }
 }
