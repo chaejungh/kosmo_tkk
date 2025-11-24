@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/map")
 public class MapApiController {
 
-    private final NaverLocalSearchService naverLocalSearchService;
+    private final NaverLocalSearchService naverLocalSearchService; // 인터페이스
 
     // 예: /api/map/places?query=홍대&limit=10
     @GetMapping("/places")
