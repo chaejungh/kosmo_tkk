@@ -1,5 +1,11 @@
 /* layout.css - 모든 화면 공통 레이아웃 */
-
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 * {
     box-sizing: border-box;
 }
@@ -13,14 +19,11 @@ body {
     /*justify-content: center;*/
 }
 
-/* 📱 실제 앱 화면 프레임 */
 .app-shell {
     width: 100%;
-    max-width: 430px;           /* 아이폰 14 Pro 기준 정도 */
+    max-width: none;
     min-height: 100vh;
-    background: #f6f3ff;        /* 우리가 쓰는 연보라 배경 */
-    display: flex;
-    flex-direction: column;
+    background: #f6f3ff;
 }
 
 /* 상단/본문/하단 구조 */

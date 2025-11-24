@@ -2,12 +2,13 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 덕질게시판</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덕질 게시판</title>
+
+    <!-- ✅ 다른 페이지랑 똑같이: home.css만 사용 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
-    <link rel="stylesheet" th:href="@{/css/board.css}">
 
     <style>
+
         /* ============================
            검색줄 + 아이콘 세트
         ============================ */
@@ -248,13 +249,14 @@
         /* 리스트 카드가 하단바에 안 가려지게 여유 */
         .card:last-of-type {
             margin-bottom: 80px;
-
         }
     </style>
 </head>
 
 <body>
-<div class="page">
+
+<div class="app-shell">
+
 
     <!-- 상단 로고 -->
     <header class="header">
