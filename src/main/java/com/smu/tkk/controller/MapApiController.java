@@ -1,4 +1,3 @@
-// src/main/java/com/smu/tkk/controller/MapApiController.java
 package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.PlaceDto;
@@ -13,9 +12,9 @@ import java.util.List;
 @RequestMapping("/api/map")
 public class MapApiController {
 
-    private final NaverLocalSearchService naverLocalSearchService; // 인터페이스
+    private final NaverLocalSearchService naverLocalSearchService;
 
-    // /api/map/places?query=홍대&limit=5
+    // 예: /api/map/places?query=홍대&limit=10
     @GetMapping("/places")
     public List<PlaceDto> searchPlaces(
             @RequestParam String query,
