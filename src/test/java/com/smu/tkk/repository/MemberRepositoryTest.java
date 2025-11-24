@@ -45,4 +45,8 @@ class MemberRepositoryTest {
     void update() {
         System.out.println(memberRepository.update("user0001","pw0001","닉네임0001",null,"안녕하세요 유저 1입니다.","chaejungh@gmai.com",1L));
     }
+
+    @Test
+    void updateImg() {
+    }
 }

@@ -20,4 +20,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Modifying
     @Query(value = "UPDATE Member m SET m.loginId=:loginId,m.loginPw=:loginPw,m.nickname=:nickname,m.profileImageUrl=:imgUrl,m.intro=:intro,m.email=:email where m.id=:id")
     int update(String loginId, String loginPw,String nickname, String imgUrl, String intro, String email,Long id);
+
+    //이미지 수정(기존 이미지를 부여한다는가정하에 추가도 가능)
+    @Modifying
+    @Query(value = "update Member m set m.profileImageUrl=:imgUrl")
+    int updateImg(String imgUrl);
 }
