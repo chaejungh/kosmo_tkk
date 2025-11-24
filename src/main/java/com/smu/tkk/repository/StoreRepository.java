@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    /*// 이름 또는 지역명에 키워드가 포함된 매장 20개까지
+    // 이름 또는 지역명에 키워드가 포함된 매장 20개까지
     List<Store> findTop20ByNameContainingIgnoreCaseOrRegionNameContainingIgnoreCase(
             String nameKeyword,
             String regionKeyword
-    );*/
+    );
 
     // 반경 km 이내의 스토어 //
     @Query(value = """
