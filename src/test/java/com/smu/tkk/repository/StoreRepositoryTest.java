@@ -18,4 +18,8 @@ class StoreRepositoryTest {
         Pageable pageable = Pageable.ofSize(10);
         System.out.println(storeRepository.findAll(pageable).getContent());
     };
+
+    @Test
+    void myBookmarks() {
+    }
 }
