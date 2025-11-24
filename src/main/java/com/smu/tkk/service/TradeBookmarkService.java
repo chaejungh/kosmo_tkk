@@ -16,9 +16,9 @@ public interface TradeBookmarkService {
     // 2. 찜 삭제 (없어도 예외 없이 처리 권장) */
     boolean remove(Long memberId, Long tradeId);
 
-    // 3. 특정 글 찜 여부 */
+    // 3. 특정 글 찜 여부 */ (레파지토리 완료)
     boolean isBookmarked(Long memberId, Long tradeId);
 
-    // 4. 내 찜 목록 */
+    // 4. 내 찜 목록 */ (레파지토리 완료)
     Page<TradeBookmark> readById(Long memberId, Pageable pageable);
 }

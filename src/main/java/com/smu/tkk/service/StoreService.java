@@ -32,7 +32,7 @@ public interface StoreService {
     // 6. 북마크 여부 */ (레파지토리 완료)
     boolean isBookmarked(Long memberId, Long storeId);
 
-    // 7. 내 매장 북마크 목록 */
+    // 7. 내 매장 북마크 목록 */ (레파지토리 완료)
     Page<StoreBookmark> myBookmarks(Long memberId, Pageable pageable);
 
     // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */ (레파지토리 완료)

@@ -32,11 +32,13 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
     ) < :km
     """, nativeQuery = true)
     List<Store> findNear(
-            double lat,
-            double lng,
-            double km
+            double lat, double lng, double km
     );
-    //@Query()
-    // 내 매장 북마크 목록 */
-    //Page<StoreBookmark> myBookmarks(Long memberId, Pageable pageable);
+
+    List<Store> findAllByNameAndRegionNameContainingIgnoreCase (
+            String nameKeyword,
+            String regionKeyword
+            ,Pageable pageable
+    );
+
 }

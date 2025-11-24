@@ -7,6 +7,9 @@ import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,5 +49,12 @@ private EntityManager em;
     void existsByMemberIdAndStoreId() {
         System.out.println(storeBookmarkRepository.existsByMemberIdAndStoreId(1L,1L));
         System.out.println(storeBookmarkRepository.existsByMemberIdAndStoreId(1L,4L));
+    }
+
+    @Test
+    void findByMemberId() {
+        Sort sort= Sort.by("id").ascending();
+        Pageable pageable = PageRequest.of(0,5,sort);
+        System.out.println(storeBookmarkRepository.findByMemberId(1L,pageable));
     }
 }
