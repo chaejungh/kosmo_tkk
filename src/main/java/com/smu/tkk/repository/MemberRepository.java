@@ -23,6 +23,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     //이미지 수정(기존 이미지를 부여한다는가정하에 추가도 가능)
     @Modifying
-    @Query(value = "update Member m set m.profileImageUrl=:imgUrl")
-    int updateImg(String imgUrl);
+    @Query(value = "update Member m set m.profileImageUrl=:imgUrl where m.id=:id")
+    int updateImg(String imgUrl,Long id);
 }

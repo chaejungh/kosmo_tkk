@@ -51,9 +51,9 @@ public interface MemberService {
     // 9. 회원 알림 설정 수정(레파지토리 완료)
     boolean updateNotificationSetting(MemberNotificationSetting setting) throws SQLException, IllegalArgumentException;
     
-    // 10. Member 이미지 추가
+    // 10. Member 이미지 추가(레파지토리 완료)
     boolean addImage(Long memberId, Member profileImage) throws SQLException, IllegalArgumentException;
     
-    // 11. member 이미지 수정
+    // 11. member 이미지 수정(레파지토리 완료)
     boolean modifyImage(Long memberId,Member profileImage) throws SQLException, IllegalArgumentException;
 }

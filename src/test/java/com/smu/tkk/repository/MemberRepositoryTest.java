@@ -47,6 +47,8 @@ class MemberRepositoryTest {
     }
 
     @Test
+    @Transactional
     void updateImg() {
+        System.out.println(memberRepository.updateImg("https://example.com/profile/user001.png",1L));
     }
 }
