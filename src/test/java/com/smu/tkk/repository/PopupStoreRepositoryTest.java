@@ -17,7 +17,7 @@ class PopupStoreRepositoryTest {
     @Test
     void findNear() {
 
-        System.out.println(popupStoreRepository.findNear(37.5665,126.9780,5.0));//홍대 위치 기준
+        System.out.println(popupStoreRepository.findNear(37.5665,126.9780,5.0));
     }
 
 
