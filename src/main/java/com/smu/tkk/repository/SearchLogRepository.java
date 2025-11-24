@@ -12,5 +12,6 @@ import java.util.List;
 
 public interface SearchLogRepository extends JpaRepository<SearchLog,Integer> {
     List<SearchLog> readTopByCreatedAtBefore(LocalDate createdAtBefore, Limit limit);
-    List<SearchLog> findAllByremoveMemberId(String MemberId, Pageable pageable);
+    List<SearchLog> findByMember_Id(Long MemberId, Pageable pageable);
+    int deleteByMember_Id(Long MemberId);
 }

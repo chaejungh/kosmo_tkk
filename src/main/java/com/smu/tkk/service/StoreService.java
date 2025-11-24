@@ -35,8 +35,8 @@ public interface StoreService {
     // 7. 내 매장 북마크 목록 */
     Page<StoreBookmark> myBookmarks(Long memberId, Pageable pageable);
 
-    // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */ (레파지토리 완료
+    // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */ (레파지토리 완료)
     List<Store> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
 
-    // 9. 오픈한 매장>>> 테이블 없음
+    // 9. 오픈한 매장 >>> 테이블 없음
 }

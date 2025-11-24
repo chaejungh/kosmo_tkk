@@ -33,7 +33,7 @@ private PopupBookmarkRepository bookmarkRepository;
 
         @Test
         @Transactional
-    void toggle(){
+        void toggle(){
         //boolean exist= bookmarkRepository.existsByMemberIdAndPopupId(1L,1L);
         Optional<PopupBookmark> bookmarkOpt= bookmarkRepository.findByMemberIdAndPopupId(1L,1L);
         //System.out.println(exist);
