@@ -38,7 +38,7 @@ public class BoardReport {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "REPORTER_ID", nullable = false)
+    @JoinColumn(name = "REPORTER_ID", referencedColumnName = "MEMBER_ID", nullable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member reporter;

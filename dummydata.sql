@@ -6015,129 +6015,131 @@ INSERT INTO trade_post_image(image_id,trade_id,image_url,sort_order) VALUES(38,1
 INSERT INTO trade_post_image(image_id,trade_id,image_url,sort_order) VALUES(39,10,'trade10_img3.jpg',3);
 INSERT INTO trade_post_image(image_id,trade_id,image_url,sort_order) VALUES(40,10,'trade10_img4.jpg',4);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(1,1,NULL,5,'스팸/홍보성 게시글입니다.','WAIT',SYSDATE-10);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(1,NULL,5,'스팸/홍보성 게시글입니다.','WAIT',SYSDATE-10);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(2,2,NULL,8,'주제와 맞지 않는 내용입니다.','WAIT',SYSDATE-9);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(2,NULL,8,'주제와 맞지 않는 내용입니다.','WAIT',SYSDATE-9);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(3,3,NULL,12,'욕설 및 비방이 포함되어 있습니다.','WAIT',SYSDATE-9);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(3,NULL,12,'욕설 및 비방이 포함되어 있습니다.','WAIT',SYSDATE-9);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(4,4,NULL,7,'중복 게시글로 보입니다.','DONE',SYSDATE-8);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(4,NULL,7,'중복 게시글로 보입니다.','DONE',SYSDATE-8);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(5,5,NULL,10,'허위 정보가 포함된 것 같습니다.','WAIT',SYSDATE-8);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(5,NULL,10,'허위 정보가 포함된 것 같습니다.','WAIT',SYSDATE-8);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(6,6,NULL,3,'선정적인 내용이 포함되어 있습니다.','WAIT',SYSDATE-7);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(6,NULL,3,'선정적인 내용이 포함되어 있습니다.','WAIT',SYSDATE-7);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(7,7,NULL,4,'저작권을 침해하는 이미지가 포함된 것 같습니다.','DONE',SYSDATE-7);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(7,NULL,4,'저작권을 침해하는 이미지가 포함된 것 같습니다.','DONE',SYSDATE-7);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(8,8,NULL,9,'타인 사칭이 의심되는 게시글입니다.','WAIT',SYSDATE-6);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(8,NULL,9,'타인 사칭이 의심되는 게시글입니다.','WAIT',SYSDATE-6);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(9,9,NULL,2,'광고/홍보 목적의 글로 보입니다.','WAIT',SYSDATE-6);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(9,NULL,2,'광고/홍보 목적의 글로 보입니다.','WAIT',SYSDATE-6);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(10,10,NULL,11,'비속어 사용이 심한 게시글입니다.','DONE',SYSDATE-5);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(10,NULL,11,'비속어 사용이 심한 게시글입니다.','DONE',SYSDATE-5);
 
 -- 댓글 신고 (comment_id 기준)
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(11,NULL,1,5,'댓글에 욕설이 포함되어 있습니다.','WAIT',SYSDATE-5);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,1,5,'댓글에 욕설이 포함되어 있습니다.','WAIT',SYSDATE-5);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(12,NULL,2,6,'도배성 댓글로 보입니다.','WAIT',SYSDATE-5);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,2,6,'도배성 댓글로 보입니다.','WAIT',SYSDATE-5);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(13,NULL,3,7,'타인을 비방하는 내용입니다.','DONE',SYSDATE-4);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,3,7,'타인을 비방하는 내용입니다.','DONE',SYSDATE-4);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(14,NULL,4,8,'정치/사회 분쟁을 유도하는 댓글입니다.','WAIT',SYSDATE-4);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,4,8,'정치/사회 분쟁을 유도하는 댓글입니다.','WAIT',SYSDATE-4);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(15,NULL,5,9,'개인정보 노출이 우려됩니다.','WAIT',SYSDATE-4);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,5,9,'개인정보 노출이 우려됩니다.','WAIT',SYSDATE-4);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(16,NULL,6,10,'성적인 표현이 포함되어 있습니다.','DONE',SYSDATE-3);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,6,10,'성적인 표현이 포함되어 있습니다.','DONE',SYSDATE-3);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(17,NULL,7,11,'상대방을 괴롭히는 내용입니다.','WAIT',SYSDATE-3);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,7,11,'상대방을 괴롭히는 내용입니다.','WAIT',SYSDATE-3);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(18,NULL,8,12,'지나친 비하 표현이 있습니다.','WAIT',SYSDATE-3);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,8,12,'지나친 비하 표현이 있습니다.','WAIT',SYSDATE-3);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(19,NULL,9,13,'광고 링크가 포함된 댓글입니다.','DONE',SYSDATE-2);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,9,13,'광고 링크가 포함된 댓글입니다.','DONE',SYSDATE-2);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(20,NULL,10,14,'도배성 이모티콘 댓글입니다.','WAIT',SYSDATE-2);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,10,14,'도배성 이모티콘 댓글입니다.','WAIT',SYSDATE-2);
 
 -- 게시글 신고 추가
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(21,11,NULL,15,'규칙 위반으로 보이는 게시글입니다.','WAIT',SYSDATE-2);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(11,NULL,15,'규칙 위반으로 보이는 게시글입니다.','WAIT',SYSDATE-2);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(22,12,NULL,16,'불쾌감을 주는 표현이 있습니다.','DONE',SYSDATE-2);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(12,NULL,16,'불쾌감을 주는 표현이 있습니다.','DONE',SYSDATE-2);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(23,13,NULL,17,'특정 대상을 괴롭히는 내용입니다.','WAIT',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(13,NULL,17,'특정 대상을 괴롭히는 내용입니다.','WAIT',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(24,14,NULL,18,'거래 사기를 유도하는 것 같습니다.','WAIT',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(14,NULL,18,'거래 사기를 유도하는 것 같습니다.','WAIT',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(25,15,NULL,19,'허위 사실을 유포하는 내용 같습니다.','DONE',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(15,NULL,19,'허위 사실을 유포하는 내용 같습니다.','DONE',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(26,16,NULL,20,'게시판 규칙에 맞지 않는 홍보글입니다.','WAIT',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(16,NULL,20,'게시판 규칙에 맞지 않는 홍보글입니다.','WAIT',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(27,17,NULL,21,'타인의 명예를 훼손하는 내용입니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(17,NULL,21,'타인의 명예를 훼손하는 내용입니다.','WAIT',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(28,18,NULL,22,'부적절한 이미지가 포함되어 있습니다.','DONE',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(18,NULL,22,'부적절한 이미지가 포함되어 있습니다.','DONE',SYSDATE);
 
 -- 댓글 신고 추가
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(29,NULL,11,5,'게시글과 관련 없는 내용의 댓글입니다.','WAIT',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,11,5,'게시글과 관련 없는 내용의 댓글입니다.','WAIT',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(30,NULL,12,6,'타인을 조롱하는 내용입니다.','WAIT',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,12,6,'타인을 조롱하는 내용입니다.','WAIT',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(31,NULL,13,7,'허위 정보를 퍼뜨리는 댓글 같습니다.','DONE',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,13,7,'허위 정보를 퍼뜨리는 댓글 같습니다.','DONE',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(32,NULL,14,8,'도배성 댓글 신고합니다.','WAIT',SYSDATE-1);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,14,8,'도배성 댓글 신고합니다.','WAIT',SYSDATE-1);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(33,NULL,15,9,'욕설이 반복적으로 사용되었습니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,15,9,'욕설이 반복적으로 사용되었습니다.','WAIT',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(34,NULL,16,10,'개인을 공격하는 표현이 있습니다.','DONE',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,16,10,'개인을 공격하는 표현이 있습니다.','DONE',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(35,NULL,17,11,'정치적 분쟁을 유도하는 댓글입니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,17,11,'정치적 분쟁을 유도하는 댓글입니다.','WAIT',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(36,NULL,18,12,'상업적 광고로 보입니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,18,12,'상업적 광고로 보입니다.','WAIT',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(37,NULL,19,13,'불법 거래를 암시하는 내용입니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,19,13,'불법 거래를 암시하는 내용입니다.','WAIT',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(38,NULL,20,14,'타 커뮤니티로 유도하는 스팸 댓글입니다.','DONE',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(NULL,20,14,'타 커뮤니티로 유도하는 스팸 댓글입니다.','DONE',SYSDATE);
 
 -- 게시글/댓글 혼합
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(39,19,NULL,15,'게시판 성격과 맞지 않는 홍보성 글입니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(19,NULL,15,'게시판 성격과 맞지 않는 홍보성 글입니다.','WAIT',SYSDATE);
 
-INSERT INTO board_report(report_id,post_id,comment_id,reporter_id,reason,status,created_at)
-VALUES(40,20,NULL,16,'과도한 비방 표현이 포함된 게시글입니다.','WAIT',SYSDATE);
+INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
+VALUES(20,NULL,16,'과도한 비방 표현이 포함된 게시글입니다.','WAIT',SYSDATE);
 
 commit ;
+
+
 

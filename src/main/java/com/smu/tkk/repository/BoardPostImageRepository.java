@@ -9,7 +9,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface BoardPostImageRepository extends JpaRepository<BoardPostImage, Long> {
-    //    // 9. 특정 게시글 이미지 전체 조회
-//    List<BoardPostImage> readImages(Long postId) throws SQLException;
+    // 9. 특정 게시글 이미지 전체 조회
     List<BoardPostImage> findAllByPostId(Long postId ) throws SQLException;
+//    // 10. 게시글에 이미지 추가
+//    boolean addImage(Long postId, BoardPostImage image)
+//            throws SQLException, IllegalArgumentException;
+
 }
