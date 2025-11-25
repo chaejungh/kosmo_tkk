@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TradeBookmarkRepository extends JpaRepository<TradeBookmark,Integer> {
+public interface TradeBookmarkRepository extends JpaRepository<TradeBookmark,Long> {
 
     // 특정 글 찜 여부 */
     boolean existsByMemberIdAndTradeId(Long memberId, Long tradeId);

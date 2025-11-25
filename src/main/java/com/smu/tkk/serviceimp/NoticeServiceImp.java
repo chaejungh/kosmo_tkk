@@ -30,7 +30,7 @@ import java.util.List;
          */
         @Override
         public ServiceNotice readById(Long noticeId) {
-            return ServiceNoticeRepository.findById(Math.toIntExact(noticeId))
+            return ServiceNoticeRepository.findById(noticeId)
                     .orElseThrow(() -> new IllegalArgumentException("해당 공지가 존재하지 않습니다. noticeId=" + noticeId));
         }
     }
