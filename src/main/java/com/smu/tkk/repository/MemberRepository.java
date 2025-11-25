@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
-
+    //아이디 중복 확인
     boolean existsByLoginId(String loginId);
-
+    //닉네임중복확인
     boolean existsByNickname(String nickname);
 
     //로그인
