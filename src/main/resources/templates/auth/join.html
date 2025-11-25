@@ -160,13 +160,15 @@
         <!-- 비밀번호 -->
         <div class="input-group">
             <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요 (영문 대소문자, 숫자 조합으로 8자리 이상)">
         </div>
 
         <!-- 비밀번호 확인 -->
         <div class="input-group">
             <label for="password-check">비밀번호 확인</label>
             <input type="password" id="password-check" name="passwordCheck" placeholder="비밀번호 확인을 입력해주세요">
+            <p id="pw-message" style="font-size:14px; margin-top:5px; height:18px;"></p>
+
         </div>
 
         <!-- 이름 -->
@@ -279,61 +281,99 @@
 </section>
 
 <script>
+    // --- 생년월일 요소 ---
     const yearSelect = document.getElementById("birth-year");
     const monthSelect = document.getElementById("birth-month");
     const daySelect = document.getElementById("birth-day");
 
-    // 년도 채우기 (현재 기준 50년만 표시)
+    // --- 비밀번호 요소 ---
+    const pw = document.getElementById("password");
+    const pwCheck = document.getElementById("password-check");
+    const pwMessage = document.getElementById("pw-message");
+    const joinBtn = document.querySelector(".btn-primary");
+
+    // --- 이메일 요소 ---
+    const emailDomain = document.getElementById("email-domain");
+    const emailCustom = document.getElementById("email-custom");
+
+    // --- 년도 채우기 ---
     const currentYear = new Date().getFullYear();
     for (let y = currentYear; y >= currentYear - 50; y--) {
-        const option = document.createElement("option");
-        option.value = y;
-        option.textContent = y;
-        yearSelect.appendChild(option);
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = y;
+        yearSelect.appendChild(opt);
     }
 
     // --- 월 채우기 ---
     for (let m = 1; m <= 12; m++) {
-        const option = document.createElement("option");
-        option.value = m.toString().padStart(2, '0');
-        option.textContent = m;
-        monthSelect.appendChild(option);
+        const opt = document.createElement("option");
+        opt.value = m.toString().padStart(2, "0");
+        opt.textContent = m;
+        monthSelect.appendChild(opt);
     }
 
-    // --- 일 채우기 (해당 년/월에 따라 자동 계산) ---
+    // --- 일 자동 채우기 ---
     function updateDays() {
         const year = yearSelect.value;
         const month = monthSelect.value;
 
-        if (!year || !month) return;
+        if (!year || !month) {
+            daySelect.innerHTML = '<option value="">일</option>';
+            return;
+        }
 
         const lastDay = new Date(year, month, 0).getDate();
-
         daySelect.innerHTML = '<option value="">일</option>';
 
         for (let d = 1; d <= lastDay; d++) {
-            const option = document.createElement("option");
-            option.value = d.toString().padStart(2, '0');
-            option.textContent = d;
-            daySelect.appendChild(option);
+            const opt = document.createElement("option");
+            opt.value = d.toString().padStart(2, "0");
+            opt.textContent = d;
+            daySelect.appendChild(opt);
         }
     }
 
     yearSelect.addEventListener("change", updateDays);
     monthSelect.addEventListener("change", updateDays);
 
-    const emailDomain = document.getElementById("email-domain");
-    const emailCustom = document.getElementById("email-custom");
-
+    // --- 이메일 도메인 직접입력 ---
     emailDomain.addEventListener("change", () => {
         if (emailDomain.value === "custom") {
-            // '직접 입력' 선택 시 직접 수기 입력
             emailDomain.style.display = "none";
             emailCustom.style.display = "block";
             emailCustom.focus();
         }
     });
 
+    // --- 비밀번호 확인 기능 ---
+    function checkPassword() {
+        if (!pw.value && !pwCheck.value) {
+            pwMessage.textContent = "";
+            joinBtn.disabled = false;
+            joinBtn.style.opacity = 1;
+            return;
+        }
+
+        if (pw.value !== pwCheck.value) {
+            pwMessage.textContent = "비밀번호가 일치하지 않습니다.";
+            pwMessage.style.color = "#ef4444";
+            joinBtn.disabled = true;
+            joinBtn.style.opacity = 0.6;
+        } else {
+            pwMessage.textContent = "비밀번호가 일치합니다.";
+            pwMessage.style.color = "#16a34a";
+            joinBtn.disabled = false;
+            joinBtn.style.opacity = 1;
+        }
+    }
+
+    pw.addEventListener("input", checkPassword);
+    pwCheck.addEventListener("input", checkPassword);
+
+    // 페이지 로드 시 초기 검사
+    checkPassword();
 </script>
+
 </body>
 </html>

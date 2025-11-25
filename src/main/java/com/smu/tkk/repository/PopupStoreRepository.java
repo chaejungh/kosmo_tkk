@@ -1,19 +1,12 @@
 package com.smu.tkk.repository;
 
-import com.smu.tkk.entity.PopupBookmark;
 import com.smu.tkk.entity.PopupStore;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import com.smu.tkk.entity.PopupStore;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.time.LocalDate;
-import java.util.List;
-import java.math.BigDecimal;
-import java.util.Optional;
 
 public interface PopupStoreRepository extends JpaRepository<PopupStore,Long> {
     //List<PopupStore> active(LocalDate today) throws SQLException; 쿼리로 작성

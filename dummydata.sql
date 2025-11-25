@@ -6210,30 +6210,30 @@ VALUES (10, '굿즈099', '더미굿즈099', '아크릴스탠드', 11000, 'g099.j
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
 VALUES (10, '굿즈100', '더미굿즈100', '기타', 12000, 'g100.jpg');
 
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(1, 1, 1, 'SELLER',SYSDATE-10,SYSDATE-9);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(2,2,1,'SELLER',SYSDATE-9,SYSDATE-8);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(3,3,1,'SELLER',SYSDATE-8,SYSDATE-7);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(4,4,1,'SELLER',SYSDATE-7,SYSDATE-6);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(5,5,1,'SELLER',SYSDATE-6,SYSDATE-5);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(1, 1, 'SELLER',SYSDATE-10,SYSDATE-9);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(2,1,'SELLER',SYSDATE-9,SYSDATE-8);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(3,1,'SELLER',SYSDATE-8,SYSDATE-7);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(4,1,'SELLER',SYSDATE-7,SYSDATE-6);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(5,1,'SELLER',SYSDATE-6,SYSDATE-5);
 
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(6,6,1,'SELLER',SYSDATE-5,SYSDATE-4);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(7,7,1,'SELLER',SYSDATE-4,SYSDATE-3);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(8,8,1,'SELLER',SYSDATE-3,SYSDATE-2);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(9,9,1,'SELLER',SYSDATE-2,SYSDATE-1);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(10,10,1,'SELLER',SYSDATE-1,SYSDATE);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(6,1,'SELLER',SYSDATE-5,SYSDATE-4);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(7,1,'SELLER',SYSDATE-4,SYSDATE-3);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(8,1,'SELLER',SYSDATE-3,SYSDATE-2);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(9,1,'SELLER',SYSDATE-2,SYSDATE-1);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(10,1,'SELLER',SYSDATE-1,SYSDATE);
 
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(11,11,1,'SELLER',SYSDATE-9,SYSDATE-8);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(12,12,1,'SELLER',SYSDATE-8,SYSDATE-7);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(13,13,1,'SELLER',SYSDATE-7,SYSDATE-6);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(14,14,1,'SELLER',SYSDATE-6,SYSDATE-5);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(15,15,1,'SELLER',SYSDATE-5,SYSDATE-4);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(11,1,'SELLER',SYSDATE-9,SYSDATE-8);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(12,1,'SELLER',SYSDATE-8,SYSDATE-7);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(13,1,'SELLER',SYSDATE-7,SYSDATE-6);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(14,1,'SELLER',SYSDATE-6,SYSDATE-5);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(15,1,'SELLER',SYSDATE-5,SYSDATE-4);
 
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(16,16,1,'SELLER',SYSDATE-4,SYSDATE-3);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(17,17,1,'SELLER',SYSDATE-3,SYSDATE-2);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(18,18,1,'SELLER',SYSDATE-2,SYSDATE-1);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(19,19,1,'SELLER',SYSDATE-1,SYSDATE);
-INSERT INTO trade_chat_room(room_id,trade_id,member_id,type,created_at,last_message_at) VALUES(20,20,1,'SELLER',SYSDATE-1,SYSDATE);
-
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(16,1,'SELLER',SYSDATE-4,SYSDATE-3);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(17,1,'SELLER',SYSDATE-3,SYSDATE-2);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(18,1,'SELLER',SYSDATE-2,SYSDATE-1);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(19,1,'SELLER',SYSDATE-1,SYSDATE);
+INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(20,1,'SELLER',SYSDATE-1,SYSDATE);
+commit ;
 INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
 VALUES (1, 2, '테스트 채팅 메시지 1번',  SYSDATE - 10, 'N'); -- 01
 

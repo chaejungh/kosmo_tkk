@@ -12,19 +12,20 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.*;
 @Rollback(value = false)
 @SpringBootTest
-class NotificationRepositoryTest {
+class TradeChatMessageRepositoryTest {
+
     @Autowired
-    NotificationRepository notificationRepository;
+    TradeChatMessageRepository tradeChatMessageRepository;
     @Test
-    void findByMemberIdAndReadYn() {
+    void findByRoomId() {
         Sort sort= Sort.by("id").ascending();
         Pageable pageable = PageRequest.of(0,5,sort);
-        System.out.println(notificationRepository.findByMemberIdAndReadYn(1L,"N", pageable));
+        System.out.println(tradeChatMessageRepository.findByRoomId(1L, pageable));
     }
 
     @Test
     @Transactional
     void modifyRead() {
-        System.out.println(notificationRepository.modifyRead("Y",1L));
+        System.out.println(tradeChatMessageRepository.modifyRead("Y",1L,2L));
     }
 }

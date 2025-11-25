@@ -15,5 +15,9 @@ public interface TradePostImageRepository extends JpaRepository<TradePostImage,I
     @Query(value = "update TradePostImage t set t.imageUrl=:img where t.id=:imgId")
     int modifyImg(String img,Long imgId);
 
+    //특정거래글의 이미지목록
     List<TradePostImage> findAllByTradeId(Long tradeId, Pageable pageable);
+
+    //대표이미지
+    TradePostImage findFirstByTradeIdOrderByIdAsc(Long tradeId);
 }

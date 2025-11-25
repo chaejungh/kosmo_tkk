@@ -21,10 +21,12 @@ public class SearchLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SEARCH_ID", nullable = false)
     private Long id;
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID",insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;

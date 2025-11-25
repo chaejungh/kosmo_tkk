@@ -43,4 +43,9 @@ TradePostImageRepository tradePostImageRepository;
         Pageable pageable = PageRequest.of(0,5,sort);
         System.out.println(tradePostImageRepository.findAllByTradeId(1L,pageable));
     }
+
+    @Test
+    void findFirstByTradeIdOrderByIdAsc() {
+        System.out.println(tradePostImageRepository.findFirstByTradeIdOrderByIdAsc(1L));
+    }
 }

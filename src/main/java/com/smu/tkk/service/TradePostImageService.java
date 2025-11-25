@@ -15,7 +15,7 @@ public interface TradePostImageService {
     // 1. 특정 거래글의 이미지 목록 (정렬: sortOrder ASC, id ASC 권장) */(레파지토리 완료)
     Page<TradePostImage> readAllByTradeId(Long tradeId);
 
-    // 2. 대표(커버) 이미지(예: sortOrder 최소) */ (다같이 논의)
+    // 2. 대표(커버) 이미지(예: sortOrder 최소) */ (레파지토리 완료)
     Optional<TradePostImage> readOneImage(Long tradeId);
 
     // 3. 이미지 단건 조회 */(레파지토리 완료)

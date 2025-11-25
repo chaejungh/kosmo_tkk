@@ -22,16 +22,22 @@ public class TradeChatMessage {
     @Column(name = "MESSAGE_ID", nullable = false)
     private Long id;
 
+    @Column(name = "ROOM_ID", nullable = false)
+    private Long roomId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "ROOM_ID", nullable = false)
+    @JoinColumn(name = "ROOM_ID", insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private TradeChatRoom room;
 
+    @Column(name = "SENDER_ID", nullable = false)
+    private Long senderId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "SENDER_ID", nullable = false)
+    @JoinColumn(name = "SENDER_ID", insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member sender;
@@ -45,6 +51,6 @@ public class TradeChatMessage {
 
     @ColumnDefault("'N'")
     @Column(name = "READ_YN")
-    private Boolean readYn;
+    private String readYn;
 
 }
