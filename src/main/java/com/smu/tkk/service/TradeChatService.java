@@ -21,7 +21,7 @@ public interface TradeChatService {
     // 3. 읽음 처리(내가 아닌 상대가 보낸 메시지를 읽음으로) → 변경된 개수 반환 */ modify
     boolean markAsRead(Long roomId, Long viewerId);
 
-    // 4. 내가 속한 채팅방 목록(구매자=room.member or 판매자=room.trade.seller) */
+    // 4. 내가 속한 채팅방 목록(구매자=room.member or 판매자=room.trade.seller) */ (레파지토리 완료)
     Page<TradeChatRoom> myRooms(Long memberId);
 
     // 5. 채팅 메시지 리스트(오름차순 권장) */ (레파지토리 완료)
