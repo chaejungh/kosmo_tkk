@@ -1,10 +1,292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>내 새끼 자랑 상세</title>
+
+    <!-- 공통 스타일 (이미 쓰고 있는 파일) -->
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+
+    <style>
+        /* ====== 이 파일(상세화면)에서만 쓰는 추가 스타일 ====== */
+
+        /* 상단 영역 */
+        .detail-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 16px 18px 8px;
+        }
+
+        .detail-back-btn {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .detail-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6C4CF7;
+        }
+
+        /* 상세 카드 전체 */
+        .post-detail-card {
+            margin-top: 8px;
+        }
+
+        /* 프로필 영역 */
+        .post-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .detail-profile-photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .detail-profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .detail-nickname {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .detail-sub-meta {
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* 대표 이미지 박스 */
+        .detail-main-image {
+            margin: 10px 0 14px;
+            border-radius: 14px;
+            background: #f5f5f5;
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .detail-image-count {
+            margin-top: 4px;
+            font-size: 11px;
+        }
+
+        /* 좋아요/댓글/저장/조회수 + 공유 */
+        .detail-stats-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .detail-stats-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .detail-stat-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .detail-share-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* 글 내용 */
+        .detail-content-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .detail-content-body {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .detail-content-tags {
+            font-size: 12px;
+            color: #6C4CF7;
+            margin-bottom: 4px;
+        }
+
+        /* 댓글 입력 영역 */
+        .comment-write-card {
+            margin-top: 14px;
+        }
+
+        .comment-write-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .comment-input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .comment-input-row input {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+        }
+
+        .comment-input-row button {
+            padding: 0 16px;
+            border-radius: 999px;
+            border: none;
+            background: #6C4CF7;
+            color: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* 모바일 기준 카드 안 여백 조금 줄이기 */
+        .post-detail-card .card-inner,
+        .comment-write-card .card-inner {
+            padding: 16px 18px;
+        }
+
+        /* card-inner가 없을 수도 있으니 안전하게 */
+        .post-detail-card,
+        .comment-write-card {
+            padding: 16px 18px;
+        }
+
+        @media (min-width: 769px) {
+            .post-detail-card,
+            .comment-write-card {
+                padding: 22px 26px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+
+<div class="page board-page">
+    <div class="page-inner">
+
+        <!-- 상단 로고 + 뒤로가기 -->
+        <header class="header">
+            <div class="detail-header-bar">
+                <button type="button"
+                        class="detail-back-btn"
+                        onclick="history.back()">
+                    ←
+                </button>
+                <div class="detail-logo">더쿠쿠</div>
+            </div>
+        </header>
+
+        <!-- ============ 상세 카드 ============ -->
+        <section class="card post-detail-card">
+            <div class="post-detail-header">
+                <div class="detail-profile-photo">
+                    프로필
+                </div>
+                <div class="detail-profile-meta">
+                    <div class="detail-nickname">히롱이</div>
+                    <div class="detail-sub-meta">3분 전 · 내 새끼 자랑</div>
+                </div>
+            </div>
+
+            <!-- 대표 사진 -->
+            <div class="detail-main-image">
+                <div>대표 사진 영역</div>
+                <div class="detail-image-count">1 / 10</div>
+            </div>
+
+            <!-- 좋아요 / 댓글 / 저장 / 조회수 + 공유 -->
+            <div class="detail-stats-row">
+                <div class="detail-stats-left">
+                    <div class="detail-stat-item">❤️ <span>108</span></div>
+                    <div class="detail-stat-item">💬 <span>23</span></div>
+                    <div class="detail-stat-item">📌 <span>저장</span></div>
+                    <div class="detail-stat-item">👀 <span>1,024</span></div>
+                </div>
+                <button type="button" class="detail-share-btn">📤</button>
+            </div>
+
+            <!-- 글 내용 -->
+            <div class="detail-content-title">
+                오늘 영업당한 내 최애 포카 자랑합니다 🥹
+            </div>
+            <div class="detail-content-body">
+                오늘 영업당한 내 최애 포카 자랑 글이에요.
+                실물이 훨씬 예쁘고, 사진으로는 다 안 담기는 느낌…
+                같은 덕후 분들과 같이 공유하고 싶어서 올려요!
+            </div>
+            <div class="detail-content-tags">
+                #주술회전 #고죠사토루 #포카
+            </div>
+        </section>
+
+        <!-- ============ 댓글 입력 ============ -->
+        <section class="card comment-write-card">
+            <div class="comment-write-title">댓글</div>
+            <div class="comment-input-row">
+                <input type="text" placeholder="댓글을 입력해 주세요 :)">
+                <button type="button">댓글 달기</button>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- 하단 네비 (기존이랑 동일하게) -->
+<nav class="bottom-nav">
+    <a th:href="@{/}" class="nav-item">
+        <span class="icon">🏠</span><span>홈</span>
+    </a>
+    <a th:href="@{/board}" class="nav-item active">
+        <span class="icon">📁</span><span>덕질게시판</span>
+    </a>
+    <a th:href="@{/trade}" class="nav-item">
+        <span class="icon">💸</span><span>굿즈거래</span>
+    </a>
+    <a th:href="@{/mypage}" class="nav-item">
+        <span class="icon">👤</span><span>내정보</span>
+    </a>
+</nav>
 
 </body>
 </html>
