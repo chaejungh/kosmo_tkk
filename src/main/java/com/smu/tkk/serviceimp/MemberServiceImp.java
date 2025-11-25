@@ -165,7 +165,7 @@ public class MemberServiceImp implements MemberService {
         // Repository의 JPQL update 메서드 호출
         // 순서: memberId, commentYn, likeYn, tradeYn, eventYn
         int updateCount = memberNotificationSettingRepository.update(
-                Long.valueOf(setting.getId()), // ID 타입 매칭
+                setting.getId(), // ID 타입 매칭
                 setting.getCommentYn(),
                 setting.getLikeYn(),
                 setting.getTradeYn(),

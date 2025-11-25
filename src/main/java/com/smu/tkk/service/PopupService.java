@@ -3,7 +3,6 @@ package com.smu.tkk.service;
 import com.smu.tkk.entity.PopupBookmark;
 import com.smu.tkk.entity.PopupGood;
 import com.smu.tkk.entity.PopupStore;
-import com.smu.tkk.entity.StoreBookmark;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -26,8 +25,8 @@ public interface PopupService {
     // 4. 팝업의 굿즈 목록 */(레파지토리 완료)
     List<PopupGood> goods(Long popupId, Pageable pageable) throws SQLException;
 
-    // 5. 좌표 기준 반경 km 이내 팝업 (좌표 기준 근처찾기) */ (레파지토리 완료)
-    List<PopupStore> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
+    // 5. 좌표 기준 반경 km 이내 팝업 (좌표 기준 근처찾기) */ feature/Jihyeong구현
+    //List<PopupStore> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
 
     // 6. 북마크 토글: true=북마크됨, false=해제됨 */(레파지토리 완료)
     boolean togglePopupBookmark(Long memberId, Long popupId);

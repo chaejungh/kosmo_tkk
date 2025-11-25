@@ -22,16 +22,22 @@ public class PopupBookmark {
     @Column(name = "POPUP_BOOKMARK_ID", nullable = false)
     private Long id;
 
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @JoinColumn(name = "MEMBER_ID",insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
 
+    @Column(name = "POPUP_ID", nullable = false)
+    private Long popupId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "POPUP_ID", nullable = false)
+    @JoinColumn(name = "POPUP_ID", insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private PopupStore popup;
