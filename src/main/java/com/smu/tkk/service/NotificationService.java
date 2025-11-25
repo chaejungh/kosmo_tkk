@@ -9,18 +9,18 @@ import java.util.List;
 public interface NotificationService {
     // ===== 기존 =====
 
-    // 1. 알림 등록
+    // 1. 알림 등록 (레파지토리 완료)
     boolean registerOne(Member memberId) throws SQLException;
 
     // 2. 알림 읽음 행동여부
     boolean modify(boolean read);
 
-    // 3. 알림 전체 조회
+    // 3. 알림 전체 조회 (레파지토리 완료)
     List<Notification> readAll();
 
-    // 4. 어플 내 미읽음 개수 */
+    // 4. 어플 내 미읽음 개수 */ (레파지토리 완료)
     Long unreadCount(Long memberId) throws SQLException;
 
-    // 5. 알림 전체 삭제
+    // 5. 알림 전체 삭제 (레파지토리 완료)
     boolean removeAll(Member memberId) throws SQLException;
 }

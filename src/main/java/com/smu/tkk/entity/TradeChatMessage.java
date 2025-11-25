@@ -45,6 +45,6 @@ public class TradeChatMessage {
 
     @ColumnDefault("'N'")
     @Column(name = "READ_YN")
-    private Boolean readYn;
+    private String readYn;
 
 }
