@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardReportRepository extends JpaRepository<BoardReport,Integer> {
 
+    boolean existsById(Long id);
+
+    void deleteById(Long id);
 }
