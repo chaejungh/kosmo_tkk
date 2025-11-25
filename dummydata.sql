@@ -6233,7 +6233,7 @@ INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) 
 INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(18,1,'SELLER',SYSDATE-2,SYSDATE-1);
 INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(19,1,'SELLER',SYSDATE-1,SYSDATE);
 INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(20,1,'SELLER',SYSDATE-1,SYSDATE);
-
+commit ;
 INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
 VALUES (1, 2, '테스트 채팅 메시지 1번',  SYSDATE - 10, 'N'); -- 01
 
