@@ -1,4 +1,3 @@
-
 # ✅ STORE (상점)
 
 * `/search/{query}?c={lat,lng}`
