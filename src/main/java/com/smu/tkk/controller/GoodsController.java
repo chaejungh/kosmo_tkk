@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/goods")
-public class GoodsController {
+public class
+GoodsController {
 
     /**
      * 굿즈 매장 지도 페이지

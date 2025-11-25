@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>팝업스토어 목록 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+
+    <style>
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .popup-list-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .popup-list-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .popup-list-sub {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .popup-filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .popup-chip {
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 12px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .popup-chip.active {
+            border-color: #6366f1;
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .popup-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .popup-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 3px 8px rgba(15, 23, 42, 0.03);
+        }
+
+        .popup-thumb {
+            width: 90px;
+            height: 90px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #a5b4fc, #f9a8d4);
+            flex-shrink: 0;
+        }
+
+        .popup-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .popup-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .popup-location {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .popup-date {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .popup-meta {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .popup-meta span + span::before {
+            content: "·";
+            margin: 0 4px;
+        }
+
+        .popup-badge-row {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .popup-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .popup-item a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            gap: 12px;
+        }
+
+        .back-link {
+            font-size: 12px;
+            color: #6b7280;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 상단: 뒤로가기 + 제목 -->
+    <a th:href="@{/}" class="back-link">
+        ← 홈으로
+    </a>
+
+    <div class="popup-list-header">
+        <div>
+            <div class="popup-list-title">전체 팝업스토어</div>
+            <div class="popup-list-sub">지금 진행 중인 팝업/전시를 한 번에 모아봤어요.</div>
+        </div>
+        <!-- 나중에 정렬 선택 셀렉트박스 등 넣어도 됨 -->
+    </div>
+
+    <!-- 필터 바 (예시) -->
+    <div class="popup-filter-bar">
+        <button class="popup-chip active">전체</button>
+        <button class="popup-chip">진행 중</button>
+        <button class="popup-chip">곧 시작</button>
+        <button class="popup-chip">마감 임박</button>
+    </div>
+
+    <!-- 팝업 리스트 (지금은 더미 데이터, 나중에 타임리프 th:each로 교체) -->
+    <div class="popup-list">
+
+        <!-- 1 -->
+        <div class="popup-item">
+            <a href="/popupstore/1/detail.do">
+                <div class="popup-thumb"></div>
+                <div class="popup-info">
+                    <div>
+                        <div class="popup-name">주술회전 공식 팝업스토어</div>
+                        <div class="popup-location">홍대 ○○몰 · 3층 이벤트홀</div>
+                    </div>
+                    <div>
+                        <div class="popup-date">2025.11.05 ~ 2025.11.30</div>
+                        <div class="popup-meta">
+                            <span>오늘 120명 검색</span>
+                            <span>찜 340</span>
+                        </div>
+                        <div class="popup-badge-row">
+                            <span class="popup-badge">주술회전</span>
+                            <span class="popup-badge">공식 굿즈</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- 2 -->
+        <div class="popup-item">
+            <a href="/popupstore/2/detail.do">
+                <div class="popup-thumb"></div>
+                <div class="popup-info">
+                    <div>
+                        <div class="popup-name">귀멸의 칼날 콜라보 팝업</div>
+                        <div class="popup-location">코엑스 B홀</div>
+                    </div>
+                    <div>
+                        <div class="popup-date">2025.11.25 ~ 2025.12.10</div>
+                        <div class="popup-meta">
+                            <span>찜 500+</span>
+                            <span>리뷰 58</span>
+                        </div>
+                        <div class="popup-badge-row">
+                            <span class="popup-badge">귀멸의 칼날</span>
+                            <span class="popup-badge">체험존</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- 3 -->
+        <div class="popup-item">
+            <a href="/popupstore/3/detail.do">
+                <div class="popup-thumb"></div>
+                <div class="popup-info">
+                    <div>
+                        <div class="popup-name">에반게리온 콜렉션 부스</div>
+                        <div class="popup-location">잠실 ○○</div>
+                    </div>
+                    <div>
+                        <div class="popup-date">2025.11.28 ~ 2025.12.15</div>
+                        <div class="popup-meta">
+                            <span>근처 인기 매장 3곳 연결</span>
+                        </div>
+                        <div class="popup-badge-row">
+                            <span class="popup-badge">에반게리온</span>
+                            <span class="popup-badge">피규어/콜렉션</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
