@@ -44,4 +44,9 @@ public class BoardLike {
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
 
+    @Transient
+    private int likeCount;// getter/setter
+
+
+
 }

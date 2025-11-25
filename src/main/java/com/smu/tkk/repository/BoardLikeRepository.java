@@ -23,6 +23,9 @@ public interface BoardLikeRepository extends JpaRepository<BoardLike, Long> {
     //좋아요 한 게시글 조회
     Page<BoardLike> findByMemberId(Long userId, Pageable pageable);
 
+    // 멤버가 누른 좋아요가 있는지 찾기
+    Optional<BoardLike> findByPostIdAndMemberId(Long postId, Long userId);
+
     boolean existsByPostIdAndMemberId(Long postId, Long userId);
 
     int countByPostId(Long postId);

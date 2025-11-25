@@ -1,8 +1,6 @@
 package com.smu.tkk.repository;
 
 import com.smu.tkk.entity.BoardBookmark;
-import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.Member;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
