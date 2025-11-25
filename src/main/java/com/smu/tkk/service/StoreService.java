@@ -20,8 +20,8 @@ public interface StoreService {
     // 2. 매장 상세 */(레파지토리 완료)
     Store readOne(Long storeId) throws SQLException;
 
-    // 3. 통합 검색(이름/주소/지역 중 구현 시 선택/병합) */
-    List<Store> readByKeyword(String keyword,Pageable pageable) throws SQLException;
+    // 3. 통합 검색(이름/주소/지역 중 구현 시 선택/병합) */ 지형 구현중
+    //List<Store> readByKeyword(String keyword,Pageable pageable) throws SQLException;
 
     // 4. 매장 굿즈 목록 */(레파지토리 완료)
     List<StoreGood> goods(Long storeId, Pageable pageable);
@@ -35,8 +35,8 @@ public interface StoreService {
     // 7. 내 매장 북마크 목록 */ (레파지토리 완료)
     Page<StoreBookmark> myBookmarks(Long memberId, Pageable pageable);
 
-    // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */ (레파지토리 완료)
-    List<Store> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
+    // 8. 좌표 기준 반경 km 이내 매장 (좌표 기준 근처찾기) */ (레파지토리 완료) 지형 구현중
+    //List<Store> near(BigDecimal lat, BigDecimal lng, double km) throws SQLException;
 
     // 9. 오픈한 매장 >>> 테이블 없음
 }
