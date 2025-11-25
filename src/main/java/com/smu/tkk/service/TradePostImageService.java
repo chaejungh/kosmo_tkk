@@ -21,4 +21,11 @@ public interface TradePostImageService {
     // 3. 이미지 단건 조회 */(레파지토리 완료)
     Optional<TradePostImage> readOne(Long imageId);
 
+    // 4. 이미지 추가 */(레파지토리 완료)
+    TradePostImage register(Long tradeId, String imageUrl);
+    /// Long sortOrder 기능 필요하면 추가
+
+    // 5. 이미지 삭제 */(레파지토리 완료)
+    boolean remove(Long imageId);
+
 }

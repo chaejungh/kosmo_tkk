@@ -24,9 +24,12 @@ public class TradePost {
     @Column(name = "TRADE_ID", nullable = false)
     private Long id;
 
+    @Column(name = "SELLER_ID", nullable = false)
+    private Long sellerId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "SELLER_ID", nullable = false)
+    @JoinColumn(name = "SELLER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member seller;
