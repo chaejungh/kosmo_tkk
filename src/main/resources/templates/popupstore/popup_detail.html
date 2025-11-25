@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>팝업스토어 상세 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+
+    <style>
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .back-link {
+            font-size: 12px;
+            color: #6b7280;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .popup-detail-card {
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+            overflow: hidden;
+        }
+
+        .popup-detail-image {
+            height: 200px;
+            background: linear-gradient(135deg, #a5b4fc, #f9a8d4);
+        }
+
+        .popup-detail-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .popup-detail-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .popup-detail-sub {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .popup-detail-date {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .popup-detail-meta {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .popup-detail-meta span + span::before {
+            content: "·";
+            margin: 0 4px;
+        }
+
+        .popup-badge-row {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .popup-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .popup-detail-section {
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px dashed #e5e7eb;
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .popup-detail-section h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .popup-detail-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-main {
+            flex: 1;
+            border-radius: 999px;
+            border: none;
+            padding: 10px 12px;
+            background: #111827;
+            color: #ffffff;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-sub {
+            flex: 1;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            padding: 10px 12px;
+            background: #ffffff;
+            color: #4b5563;
+            font-size: 13px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 뒤로가기 -->
+    <a th:href="@{/popupstore/list.do(page=1, pageLimit=20, sort='createAt')}" class="back-link">
+        ← 팝업스토어 목록으로
+    </a>
+
+    <!-- 상세 카드 -->
+    <article class="popup-detail-card">
+        <div class="popup-detail-image">
+            <!-- 나중에 실제 이미지나 지도 스크린샷 들어갈 자리 -->
+        </div>
+        <div class="popup-detail-body">
+            <div>
+                <!-- 나중에 타임리프로 실제 데이터 바인딩 가능 -->
+                <h1 class="popup-detail-title">주술회전 공식 팝업스토어</h1>
+                <p class="popup-detail-sub">홍대 ○○몰 · 3층 이벤트홀</p>
+                <p class="popup-detail-date">2025.11.05 ~ 2025.11.30</p>
+            </div>
+
+            <div class="popup-detail-meta">
+                <span>오늘 120명 검색</span>
+                <span>찜 340</span>
+                <span>리뷰 58</span>
+            </div>
+
+            <div class="popup-badge-row">
+                <span class="popup-badge">주술회전</span>
+                <span class="popup-badge">공식 굿즈</span>
+                <span class="popup-badge">포토존</span>
+            </div>
+
+            <div class="popup-detail-section">
+                <h3>운영 시간</h3>
+                <p>평일 11:00 ~ 21:00 · 주말/공휴일 10:00 ~ 22:00</p>
+            </div>
+
+            <div class="popup-detail-section">
+                <h3>안내사항</h3>
+                <p>· 일부 인기 굿즈는 1인 1개 구매 제한<br>
+                    · 굿즈 수량 소진 시 조기 종료될 수 있습니다.<br>
+                    · 사진/영상 촬영은 지정 포토존에서만 가능해요.
+                </p>
+            </div>
+
+            <div class="popup-detail-actions">
+                <button class="btn-sub">찜하기</button>
+                <button class="btn-main">근처 굿즈 매장 보기</button>
+            </div>
+        </div>
+    </article>
+
+</div>
+</body>
+</html>

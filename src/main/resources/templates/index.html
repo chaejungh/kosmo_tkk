@@ -7,6 +7,9 @@
     <!-- 기존 CSS 그대로 사용 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <style>
         /* ===== 상단 로그인/회원가입 ===== */
         .auth-actions {
@@ -95,119 +98,82 @@
             }
         }
 
-        /* ===== 11월 팝업스토어 슬라이드 (텍스트를 하단으로) ===== */
-        .popup-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 12px;
-            padding: 4px 0 6px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
+        /* ===== 11월 팝업스토어 슬라이드 영역 ===== */
+        /* 전체 카드 높이 조절 */
+        .popupSwiper,
+        .popupSwiper .swiper-wrapper,
+        .popupSwiper .swiper-slide {
+            height: auto !important;
         }
 
-        .popup-slider::-webkit-scrollbar {
-            height: 4px;
+        /* 카드 영역 */
+        .popup-card {
+            width: 100% !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            background: #fff !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
         }
 
-        .popup-slider::-webkit-scrollbar-track {
-            background: transparent;
+        /* 이미지 — 글씨 짤리지 않게 최적화된 높이 */
+        .popup-img {
+            width: 100% !important;
+            height: 145px !important;   /* ← 핵심: 전체 카드 높이를 줄여줌 */
+            background: linear-gradient(135deg,#a5b4fc,#f9a8d4);
+            border-radius: 14px !important;
         }
 
-        .popup-slider::-webkit-scrollbar-thumb {
-            background: #e5e7eb;
-            border-radius: 999px;
+        /* 텍스트 영역 — 흰색영역 최소화 */
+        .popup-info {
+            padding: 6px 12px 4px !important;   /* 위 / 좌우 / 아래 */
+            margin: 0 !important;
         }
 
-        .popup-banner {
-            scroll-snap-align: start;
-            min-width: 100%;
-            border-radius: 18px;
-            overflow: hidden;
-            background: #f9fafb;
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-            display: flex;
-            flex-direction: column;
+        /* 제목 */
+        .popup-title {
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            margin: 0 0 3px 0 !important;
+            color: #111;
         }
 
-        /* 위쪽 이미지 영역 – 실제 이미지는 나중에 <img>로 교체 가능 */
-        .popup-image-area {
-            height: 150px;
-            background: linear-gradient(135deg, #a5b4fc, #f9a8d4);
-            /* 예시용 – 나중에 background-image 또는 <img>로 교체 */
+        /* 장소 */
+        .popup-place {
+            font-size: 12px !important;
+            margin: 0 0 3px 0 !important;
+            color: #555;
         }
 
-        .popup-text-area {
-            padding: 12px 16px 14px;
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .popup-title-main {
-            font-size: 15px;
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .popup-title-sub {
-            font-size: 13px;
-            color: #4b5563;
-        }
-
+        /* 날짜 */
         .popup-date {
-            font-size: 12px;
-            color: #6b7280;
+            font-size: 12px !important;
+            margin: 0 0 2px 0 !important;
+            color: #555;
         }
 
-        /* 팝업스토어 영역 크기 줄인 버전 */
-
-        /* 카드 전체 크기 조절 */
-        .popup-banner {
-            scroll-snap-align: start;
-            min-width: 88%;          /* 예전 100% → 88%로 줄여서 좀 더 귀엽게 */
-            border-radius: 18px;
-            overflow: hidden;
-            background: #f9fafb;
-            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.05);
-            display: flex;
-            flex-direction: column;
+        /* 부가 텍스트 */
+        .popup-sub {
+            font-size: 11px !important;
+            margin: 0 !important;
+            color: #666;
         }
 
-        /* 이미지 영역 높이 줄임 (기존 150px → 110px) */
-        .popup-image-area {
-            height: 110px;
-            background: linear-gradient(135deg, #a5b4fc, #f9a8d4);
+        /* 팝업 전체 카드 크기 5% 축소 */
+        .popup-card {
+            transform: scale(0.95);
+            transform-origin: top center;
         }
 
-        /* 텍스트 영역 패딩 살짝 축소 */
-        .popup-text-area {
-            padding: 10px 14px 12px;
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        /* 이미지 영역: 기존보다 8px만 줄임 */
+        .popup-img {
+            height: 162px !important;  /* 170 → 162 아주 소폭 감소 */
         }
 
-        .popup-title-main {
-            font-size: 14px;   /* 15 → 14 */
-            font-weight: 700;
+        /* 글씨 영역도 살짝 줄여서 전체 높이 절감 */
+        .popup-info {
+            padding: 5px 12px 8px !important;
         }
 
-        .popup-title-sub {
-            font-size: 12px;   /* 13 → 12 */
-            color: #4b5563;
-        }
-
-        .popup-date {
-            font-size: 11px;   /* 12 → 11 */
-        }
-
-        /* 하단 인디케이터 여백 축소 */
-        .popup-banner-footer {
-            margin-top: 4px;
-            font-size: 10px;
-        }
 
         /* ===== 이벤트 & 출석체크 영역 ===== */
         .event-header {
@@ -303,9 +269,30 @@
             background: #22c55e;
         }
 
-        @media (max-width: 768px) {
-            .event-header {
-                flex-direction: row;
+        @media (max-width: 480px) {
+
+            /* 이미지 높이 더 줄이기 */
+            .popup-img {
+                height: 150px !important;   /* 170 → 150 정도로 줄여서 전체 카드 낮추기 */
+            }
+
+            /* 텍스트 영역 여백 최소 */
+            .popup-info {
+                padding: 6px 10px 8px 10px !important;
+            }
+
+            .popup-title {
+                font-size: 14px !important;
+                margin-bottom: 3px !important;
+                line-height: 1.2 !important;
+            }
+
+            .popup-place,
+            .popup-date,
+            .popup-sub {
+                font-size: 11px !important;
+                margin-bottom: 2px !important;
+                line-height: 1.2 !important;
             }
         }
     </style>
@@ -326,6 +313,7 @@
                 <a th:href="@{/join}" class="btn-auth btn-auth-primary">회원가입</a>
             </div>
         </div>
+
     </header>
 
     <main class="content">
@@ -346,6 +334,7 @@
             </div>
         </section>
 
+
         <!-- ===== 11월 팝업스토어 ===== -->
         <section class="card">
             <div class="card-header">
@@ -353,87 +342,132 @@
                     <span>11월 팝업스토어</span>
                     <span class="pill pill-purple">POP-UP</span>
                 </div>
+
+                <!-- 전체보기 버튼 -->
+                <a href="/popupstore/list.do?page=1&pageLimit=20&sort=createAt"
+                   style="font-size: 12px; color: #4f46e5; text-decoration: none;">
+                    전체 보기 →
+                </a>
             </div>
 
-            <div class="popup-slider">
-                <!-- 1 -->
-                <article class="popup-banner">
-                    <div class="popup-image-area">
-                        <!-- 나중에 실제 이미지 들어갈 자리 -->
-                    </div>
-                    <div class="popup-text-area">
-                        <p class="popup-title-main">주술회전 공식 팝업스토어</p>
-                        <p class="popup-title-sub">홍대 ○○몰</p>
-                        <p class="popup-date">11.05 ~ 11.30</p>
+                <!-- Swiper 컨테이너 -->
+                <div class="swiper popupSwiper">
+                    <div class="swiper-wrapper">
 
-                        <div class="popup-banner-footer">
-                            <span>오늘 120명 검색 중</span>
-                            <div class="popup-indicator-dots">
-                                <span class="popup-indicator-dot active"></span>
-                                <span class="popup-indicator-dot"></span>
-                                <span class="popup-indicator-dot"></span>
+                        <!-- ===== 예시 10개 슬라이드 ===== -->
+                        <!-- 1 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/1/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">주술회전 공식 팝업스토어</p>
+                                <p class="popup-place">홍대 ○○몰</p>
+                                <p class="popup-date">11.05 ~ 11.30</p>
+                                <p class="popup-sub">오늘 120명 검색 중</p>
                             </div>
                         </div>
-                    </div>
-                </article>
 
-                <!-- 2 -->
-                <article class="popup-banner">
-                    <div class="popup-image-area">
-                        <!-- 이미지 자리 -->
-                    </div>
-                    <div class="popup-text-area">
-                        <p class="popup-title-main">귀멸의 칼날 콜라보 팝업</p>
-                        <p class="popup-title-sub">코엑스 B홀</p>
-                        <p class="popup-date">11.25 ~ 12.10</p>
-
-                        <div class="popup-banner-footer">
-                            <span>찜 340 · 리뷰 58</span>
-                            <div class="popup-indicator-dots">
-                                <span class="popup-indicator-dot"></span>
-                                <span class="popup-indicator-dot active"></span>
-                                <span class="popup-indicator-dot"></span>
+                        <!-- 2 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/2/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">귀멸의 칼날 콜라보 팝업</p>
+                                <p class="popup-place">코엑스 B홀</p>
+                                <p class="popup-date">11.25 ~ 12.10</p>
+                                <p class="popup-sub">찜 340 · 리뷰 58</p>
                             </div>
                         </div>
-                    </div>
-                </article>
 
-                <!-- 3 -->
-                <article class="popup-banner">
-                    <div class="popup-image-area">
-                        <!-- 이미지 자리 -->
-                    </div>
-                    <div class="popup-text-area">
-                        <p class="popup-title-main">에반게리온 콜렉션 부스</p>
-                        <p class="popup-title-sub">잠실 ○○</p>
-                        <p class="popup-date">11.28 ~ 12.15</p>
-
-                        <div class="popup-banner-footer">
-                            <span>근처 인기 매장 3곳 연결</span>
-                            <div class="popup-indicator-dots">
-                                <span class="popup-indicator-dot"></span>
-                                <span class="popup-indicator-dot"></span>
-                                <span class="popup-indicator-dot active"></span>
+                        <!-- 3 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/3/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">에반게리온 콜렉션 부스</p>
+                                <p class="popup-place">잠실 ○○</p>
+                                <p class="popup-date">11.28 ~ 12.15</p>
+                                <p class="popup-sub">근처 인기 매장 3곳 연결</p>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </div>
-        </section>
 
-        <!-- ===== 이벤트 & 출석체크 ===== -->
-        <section class="card">
-            <div class="card-header event-header">
-                <div class="card-title">
-                    <span>이벤트 & 출석체크</span>
-                    <span class="pill pill-purple">EVENT</span>
+                        <!-- 4 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/4/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">블루록 한정 유니폼 팝업</p>
+                                <p class="popup-place">강남 ○○플라자</p>
+                                <p class="popup-date">11.10 ~ 11.24</p>
+                                <p class="popup-sub">오늘 80명 검색 중</p>
+                            </div>
+                        </div>
+
+                        <!-- 5 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/5/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">체인소맨 굿즈 팝업존</p>
+                                <p class="popup-place">건대 ○○스트릿</p>
+                                <p class="popup-date">11.12 ~ 12.01</p>
+                                <p class="popup-sub">굿즈 120종 출시</p>
+                            </div>
+                        </div>
+
+                        <!-- 6 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/6/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">스파이패밀리 비밀작전 팝업</p>
+                                <p class="popup-place">합정 ○○몰</p>
+                                <p class="popup-date">11.01 ~ 11.30</p>
+                                <p class="popup-sub">포토존/특전 제공</p>
+                            </div>
+                        </div>
+
+                        <!-- 7 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/7/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">프리큐어 콜라보 카페 팝업</p>
+                                <p class="popup-place">연남동 ○○카페</p>
+                                <p class="popup-date">11.03 ~ 11.30</p>
+                                <p class="popup-sub">콜라보 메뉴 인기</p>
+                            </div>
+                        </div>
+
+                        <!-- 8 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/8/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">러브라이브! 뮤즈 페스티벌 부스</p>
+                                <p class="popup-place">잠실 ○○홀</p>
+                                <p class="popup-date">11.18 ~ 12.05</p>
+                                <p class="popup-sub">공연 연계 한정 굿즈</p>
+                            </div>
+                        </div>
+
+                        <!-- 9 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/9/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">도쿄 리벤저스 콜렉션 팝업</p>
+                                <p class="popup-place">명동 ○○거리</p>
+                                <p class="popup-date">11.07 ~ 11.25</p>
+                                <p class="popup-sub">피규어/의상 전시</p>
+                            </div>
+                        </div>
+
+                        <!-- 10 -->
+                        <div class="swiper-slide popup-card" onclick="location.href='/popupstore/10/detail.do'">
+                            <div class="popup-img"></div>
+                            <div class="popup-info">
+                                <p class="popup-title">원피스 기어5 한정 팝업</p>
+                                <p class="popup-place">부산 해운대 ○○몰</p>
+                                <p class="popup-date">11.20 ~ 12.20</p>
+                                <p class="popup-sub">해외 직수입 굿즈</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-                <div class="event-tabs">
-                    <button class="event-tab active">이벤트</button>
-                    <button class="event-tab">출석체크</button>
-                </div>
-            </div>
+            </section>
 
             <div class="event-list">
                 <!-- 출석 이벤트 -->
@@ -492,25 +526,37 @@
     </a>
 </div>
 
-<!-- 하단 네비게이션 (기존 유지) -->
+<!-- 하단 네비게이션 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item active">
         <span class="icon">🏠</span>
         <span>홈</span>
     </a>
-    <a th:href="@{/board}" class="nav-item">
+    <a href="/free/1/list.do" class="nav-item">
         <span class="icon">📁</span>
         <span>덕질게시판</span>
     </a>
-    <a th:href="@{/trade}" class="nav-item">
+    <a href="/trade/list.do?page=1&pageLimit=20&sort=createAt" class="nav-item">
         <span class="icon">💸</span>
         <span>굿즈거래</span>
     </a>
-    <a th:href="@{/mypage}" class="nav-item">
+    <a href="/mypage/1/" class="nav-item">
         <span class="icon">👤</span>
         <span>내정보</span>
     </a>
 </nav>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+    const popupSwiper = new Swiper(".popupSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 12,
+        loop: true,
+        autoHeight: true,   // ← 절대 필요! 카드 높이 자동조절
+        centeredSlides: true,
+    });
+</script>
 </body>
 </html>
