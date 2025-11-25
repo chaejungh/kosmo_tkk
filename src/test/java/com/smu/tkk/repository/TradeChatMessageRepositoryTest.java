@@ -14,9 +14,9 @@ class TradeChatMessageRepositoryTest {
     @Autowired
     TradeChatMessageRepository tradeChatMessageRepository;
     @Test
-    void findByMemberIdAndReadYn() {
+    void findByRoomId() {
         Sort sort= Sort.by("id").ascending();
         Pageable pageable = PageRequest.of(0,5,sort);
-        System.out.println(tradeChatMessageRepository.findByMemberIdAndReadYn(1L,"N", pageable));
+        System.out.println(tradeChatMessageRepository.findByRoomId(1L, pageable));
     }
 }

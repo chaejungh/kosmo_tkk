@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TradeChatMessageRepository extends JpaRepository<TradeChatMessage,Integer> {
-    List<TradeChatMessage> findByMemberIdAndReadYn(Long memberId,String readYn ,Pageable pageable);
+    List<TradeChatMessage> findByRoomId(Long RoomId ,Pageable pageable);
 
 }
