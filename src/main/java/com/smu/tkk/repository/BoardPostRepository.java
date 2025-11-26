@@ -3,6 +3,7 @@ package com.smu.tkk.repository;
 import com.smu.tkk.entity.BoardPost;
 import com.smu.tkk.entity.BoardCategory;
 import com.smu.tkk.entity.Member;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,6 +25,7 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
 
     // 작성자별 게시글 목록 (삭제되지 않은 것만, 최신순)
     List<BoardPost> findAllByMemberAndDeletedYn(Member member,String deleteYn,Pageable pageable);
+    Page<BoardPost> findAllByMemberIdAndDeletedYn(Long memberId, String deleteYn, Pageable pageable);
 //
 //    // 제목 검색 (키워드 포함, 삭제되지 않은 것만, 최신순)
     List<BoardPost> findAllByTitleContainingIgnoreCaseAndDeletedYn(String keyword,String deleteYn,Pageable pageable);

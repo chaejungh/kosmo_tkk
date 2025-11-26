@@ -11,6 +11,6 @@ class PopupGoodRepositoryTest {
 PopupGoodRepository popupGoodRepository;
     @Test
     void findAllByPopupId() {
-        System.out.println(popupGoodRepository.findAllByPopupId(1L));
+       // System.out.println(popupGoodRepository.findAllByPopupId(1L));
     }
 }

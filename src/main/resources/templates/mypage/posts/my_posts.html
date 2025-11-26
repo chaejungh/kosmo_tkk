@@ -27,20 +27,24 @@
 
     <div class="post-list">
 
-        <div class="post-item">
-            <div class="post-title">주술회전 팝업 다녀왔어요! 굿즈 후기 공유합니다</div>
-            <div class="post-category">후기 게시판 · 2025.11.10</div>
+        <div class="post-item" th:each="post : ${boardsPage.content}">
+            <div class="post-title" th:text="${post.title}">주술회전 팝업 다녀왔어요! 굿즈 후기 공유합니다</div>
+            <div class="post-category">
+                <span th:text="${post.category.name}"></span>
+                ·
+                <span th:text="${post.createdAt}"></span>
+            </div>
         </div>
 
-        <div class="post-item">
-            <div class="post-title">블루록 코스프레 사진 공유합니다 📸</div>
-            <div class="post-category">자랑 게시판 · 2025.11.05</div>
-        </div>
+<!--        <div class="post-item">-->
+<!--            <div class="post-title">블루록 코스프레 사진 공유합니다 📸</div>-->
+<!--            <div class="post-category">자랑 게시판 · 2025.11.05</div>-->
+<!--        </div>-->
 
-        <div class="post-item">
-            <div class="post-title">도쿄 팝업 일정 정리해봄 (체인소맨 / 귀칼)</div>
-            <div class="post-category">정보 게시판 · 2025.10.28</div>
-        </div>
+<!--        <div class="post-item">-->
+<!--            <div class="post-title">도쿄 팝업 일정 정리해봄 (체인소맨 / 귀칼)</div>-->
+<!--            <div class="post-category">정보 게시판 · 2025.10.28</div>-->
+<!--        </div>-->
 
     </div>
 </div>

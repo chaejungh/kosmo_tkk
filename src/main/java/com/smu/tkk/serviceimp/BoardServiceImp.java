@@ -23,6 +23,7 @@ import com.smu.tkk.repository.BoardReportRepository;
 import com.smu.tkk.repository.BoardTagRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -183,6 +184,11 @@ import java.util.Optional;
             if (!boardReportRepository.existsById(report.getId())) return false;
             boardReportRepository.deleteById(report.getId());
             return true;
+        }
+
+        @Override
+        public Page<BoardPost> readByUser(Long memberId, String yN, Pageable pageable) throws SQLException {
+            return boardPostRepository.findAllByMemberIdAndDeletedYn(memberId,yN,pageable);
         }
     }
 

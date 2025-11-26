@@ -31,9 +31,12 @@ public class BoardPost {
     @JsonIgnore
     private BoardCategory category;
 
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
