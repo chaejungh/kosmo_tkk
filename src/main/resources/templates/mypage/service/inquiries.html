@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>1:1 문의 - 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/css/mypage.css">
+    <title>문의 목록 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .page { max-width: 960px; margin: 0 auto; padding: 16px; }
+        .item { padding: 14px 0; border-bottom: 1px solid #eee; cursor:pointer; }
+        .title { font-size:15px; font-weight:700; }
+        .category { font-size:12px; color:#6b7280; }
+        .date { font-size:12px; color:#9ca3af; }
+    </style>
 </head>
 
 <body>
-<div class="container mypage-wrapper">
+<div class="page">
 
-    <h2 class="title">💬 1:1 문의</h2>
+    <h2 style="margin-bottom:16px;">문의 내역</h2>
 
-    <div class="section-box">
-        <a class="item" href="#">
-            <span>📩 문의하기</span>
-            <span class="sub">새로운 1:1 문의를 작성합니다.</span>
-        </a>
+    <div th:each="q : ${inquiryList}">
+        <div class="item"
+             th:onclick="'location.href=\'/help/' + ${q.id} + '/detail.do\''">
+            <div class="title" th:text="${q.title}">제목</div>
+            <div class="category" th:text="${q.category}">CATEGORY</div>
+            <div class="date" th:text="${q.createdAt}">날짜</div>
+        </div>
+    </div>
 
-        <a class="item" href="#">
-            <span>📚 내가 보낸 문의</span>
-            <span class="sub">답변 진행 중 / 완료된 문의 확인</span>
-        </a>
+    <div th:if="${#lists.isEmpty(inquiryList)}" style="text-align:center; padding:20px; color:#777;">
+        문의 내역이 없습니다.
     </div>
 
 </div>
