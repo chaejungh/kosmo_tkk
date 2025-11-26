@@ -185,6 +185,11 @@ import java.util.Optional;
             boardReportRepository.deleteById(report.getId());
             return true;
         }
+
+        @Override
+        public Page<BoardPost> readByUser(Long memberId, String yN, Pageable pageable) throws SQLException {
+            return boardPostRepository.findAllByMemberIdAndDeletedYn(memberId,yN,pageable);
+        }
     }
 
 

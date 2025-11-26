@@ -64,4 +64,10 @@ class BoardPostRepositoryTest {
         //System.out.println(boardPostRepository.findById(1L));
 
     }
+
+    @Test
+    void findAllByMemberIdAndDeletedYn() {
+        Pageable pageable = PageRequest.of(0,5,sort);
+        System.out.println(boardPostRepository.findAllByMemberIdAndDeletedYn(1L,"N",pageable).getContent());
+    }
 }

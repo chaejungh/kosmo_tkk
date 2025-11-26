@@ -68,5 +68,8 @@ public interface BoardService {
     
     // 17. 신고목록 삭제(레파지토리 완료)
     boolean remove(BoardReport report) throws SQLException, IllegalArgumentException;
-    
+
+    //18. 유저로 삭제 유무 게시글 조회
+    Page<BoardPost> readByUser(Long memberId,String yN, Pageable pageable) throws SQLException;
+
 }

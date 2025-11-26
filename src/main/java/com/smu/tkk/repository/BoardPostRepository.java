@@ -24,7 +24,8 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
 //    List<BoardPost> findAllByCategoryAndDeletedYn(BoardCategory category,String deleteYn, Pageable pageable);
 
     // 작성자별 게시글 목록 (삭제되지 않은 것만, 최신순)
-    Page<BoardPost> findAllByMemberAndDeletedYn(Member member,String deleteYn,Pageable pageable);
+
+    Page<BoardPost> findAllByMemberIdAndDeletedYn(Long memberId, String deleteYn, Pageable pageable);
 //
 //    // 제목 검색 (키워드 포함, 삭제되지 않은 것만, 최신순)
     Page<BoardPost> findAllByTitleContainingIgnoreCaseAndDeletedYn(String keyword,String deleteYn,Pageable pageable);
