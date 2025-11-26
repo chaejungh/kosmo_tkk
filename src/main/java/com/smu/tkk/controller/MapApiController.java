@@ -1,4 +1,3 @@
-// src/main/java/com/smu/tkk/controller/MapApiController.java
 package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.PlaceDto;
@@ -6,26 +5,23 @@ import com.smu.tkk.entity.Store;
 import com.smu.tkk.repository.StoreRepository;
 import com.smu.tkk.service.NaverLocalSearchService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/map")   // ★ 프론트의 /api/map/places 와 반드시 맞아야 함
+@RequestMapping("/api/map")   // 프론트에서 /api/map/places 로 호출
 public class MapApiController {
 
-    private final NaverLocalSearchService naverLocalSearchService; // Impl 말고 인터페이스
+    private final NaverLocalSearchService naverLocalSearchService; // 인터페이스 주입
     private final StoreRepository storeRepository;
 
     /**
      * 통합 검색
-     *  - 1) 우리 DB 더미 매장 (STORE)
-     *  - 2) 네이버 지역검색
+     *  - 1) 우리 DB 매장 (STORE)
+     *  - 2) 네이버 지역검색 (NAVER)
      */
     @GetMapping("/places")
     public List<PlaceDto> searchPlaces(@RequestParam("query") String query,
@@ -54,7 +50,7 @@ public class MapApiController {
     /**
      * Store 엔티티 -> PlaceDto 변환
      *  - latitude / longitude (BigDecimal) -> Double 로 변환
-     *  - source = "STORE" 로 표시 (프론트에서 뱃지용)
+     *  - source = "STORE"
      */
     private PlaceDto toStorePlaceDto(Store s) {
         Double lat = null;
@@ -68,13 +64,13 @@ public class MapApiController {
         }
 
         return PlaceDto.builder()
-                //.id(s.getId())
+                .storeId(s.getId())
                 .name(s.getName())
                 .category("STORE")
                 .address(s.getAddress())
                 .roadAddress(s.getAddress())
                 .tel(s.getPhone())
-                .lat(lat)       // 더미데이터용 좌표
+                .lat(lat)       // 우리 DB 매장 좌표 (위도/경도)
                 .lng(lng)
                 .source("STORE")
                 .build();
