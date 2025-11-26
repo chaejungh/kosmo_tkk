@@ -534,19 +534,19 @@
 
 <!-- 하단 네비게이션 -->
 <nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item active">
+    <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span>
         <span>홈</span>
     </a>
-    <a href="/free/1/list.do" class="nav-item">
+    <a th:href="@{/board}" class="nav-item active">
         <span class="icon">📁</span>
         <span>덕질게시판</span>
     </a>
-    <a href="/trade/list.do?page=1&pageLimit=20&sort=createAt" class="nav-item">
+    <a th:href="@{/trade}" class="nav-item">
         <span class="icon">💸</span>
         <span>굿즈거래</span>
     </a>
-    <a href="/mypage/1/" class="nav-item">
+    <a th:href="@{/mypage}" class="nav-item">
         <span class="icon">👤</span>
         <span>내정보</span>
     </a>

@@ -23,6 +23,7 @@ import com.smu.tkk.repository.BoardReportRepository;
 import com.smu.tkk.repository.BoardTagRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -76,20 +77,20 @@ import java.util.Optional;
         }
 
         @Override
-        public List<BoardPost> readAll(Pageable pageable) throws SQLException {
+        public Page<BoardPost> readAll(Pageable pageable) throws SQLException {
             // 삭제되지 않은 게시글만 최신순
             return boardPostRepository.findAllByDeletedYn("N", pageable);
         }
 
         @Override
-        public List<BoardPost> readByKeyword(String keyword) throws SQLException {
-            if (keyword == null || keyword.isBlank()) return List.of();
+        public Page<BoardPost> readByKeyword(String keyword) throws SQLException {
+            //if (keyword == null || keyword.isBlank()) return null; 컨트롤러 일
             // 제목 검색만 우선 구현
             return boardPostRepository.findAllByTitleContainingIgnoreCaseAndDeletedYn(keyword, "N", Pageable.ofSize(20));
         }
 
         @Override
-        public List<BoardPost> readByCategory(Long categoryId) throws SQLException {
+        public Page<BoardPost> readByCategory(Long categoryId) throws SQLException {
             BoardCategory category = null;
             if (categoryId != null) {
                 category = boardCategoryRepository.findById(categoryId).orElse(null);
@@ -163,9 +164,9 @@ import java.util.Optional;
         }
 
         @Override
-        public List<BoardLike> readByLike(Long memberId, Pageable pageable) throws SQLException {
-            if (memberId == null) return List.of();
-            return boardLikeRepository.findByMemberId(memberId, pageable).getContent();
+        public Page<BoardLike> readByLike(Long memberId, Pageable pageable) throws SQLException {
+            //if (memberId == null) return List.of(); 컨트롤러 일
+            return boardLikeRepository.findByMemberId(memberId, pageable);
         }
 
         @Override
