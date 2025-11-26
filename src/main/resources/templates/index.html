@@ -336,18 +336,40 @@
             <!-- Swiper 컨테이너 -->
             <div class="swiper popupSwiper">
                 <div class="swiper-wrapper">
+                    <!--   1-->
+                    <div class="swiper-slide popup-card"
+                          th:each="popup : ${popupList}"
+                          th:onclick="'location.href=\'/popupstore/' + ${popup.id} + '/detail.do\''">
 
-                    <!-- 1 -->
-                    <div class="swiper-slide popup-card" onclick="location.href='/popupstore/1/detail.do'">
-                        <div class="popup-img"></div>
-                        <div class="popup-info">
-                            <p class="popup-title">주술회전 공식 팝업스토어</p>
-                            <p class="popup-place">홍대 ○○몰</p>
-                            <p class="popup-date">11.05 ~ 11.30</p>
-                            <p class="popup-sub">오늘 120명 검색 중</p>
-                        </div>
+                    <!-- 배너 이미지 -->
+                    <div class="popup-img"
+                         th:style="'background-image:url(' + ${popup.bannerImageUrl} + '); background-size:cover; background-position:center;'">
                     </div>
 
+                    <div class="popup-info">
+                        <!-- 제목 -->
+                        <p class="popup-title" th:text="${popup.title}">팝업 제목</p>
+
+                        <!-- 장소 (placeName 있으면 우선, 없으면 regionName) -->
+                        <p class="popup-place"
+                           th:text="${popup.placeName != null ? popup.placeName : popup.regionName}">
+                            장소명
+                        </p>
+
+                        <!-- 기간 -->
+                        <p class="popup-date"
+                           th:text="|${popup.startDate} +'~'+ ${popup.endDate}|">
+                            2025.01.01 ~ 2025.01.31
+                        </p>
+
+                        <!-- 부가 정보: region_name 또는 그냥 설명 일부 -->
+                        <p class="popup-sub"
+                           th:text="${popup.regionName}">
+                            지역명
+                        </p>
+                    </div>
+
+                </div>
                     <!-- 2 -->
                     <div class="swiper-slide popup-card" onclick="location.href='/popupstore/2/detail.do'">
                         <div class="popup-img"></div>
