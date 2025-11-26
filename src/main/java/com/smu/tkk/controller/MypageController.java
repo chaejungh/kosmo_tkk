@@ -59,6 +59,8 @@ public class MypageController {
         model.addAttribute("boardsPage", boardsPage);
         return "mypage/posts/my_posts";
     }
+    @GetMapping("/likes")
+    public String myPostLike() {return "mypage/service/likes";}
 
     // 공지사항 리스트 예시
     @GetMapping("/notice")

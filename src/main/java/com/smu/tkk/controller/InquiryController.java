@@ -40,6 +40,6 @@ public class InquiryController {
 
         model.addAttribute("inquiry", inquiry);
 
-        return "mypage/service/inquiry-detail";
+        return "inquiry_detail";
     }
 }

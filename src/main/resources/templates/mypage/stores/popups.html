@@ -1,9 +1,9 @@
-<!-- src/main/resources/templates/mypage/posts.html -->
+<!-- src/main/resources/templates/mypage/popups.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>나의 더쿠쿠 - 내가 쓴 글</title>
+    <title>나의 더쿠쿠 - 찜한 팝업스토어</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/mypage.css">
 </head>
@@ -12,20 +12,19 @@
 <div class="mypage-page">
     <h2 class="title">나의 더쿠쿠</h2>
 
-    <!-- 연결 서비스: BoardService, TradeService -->
+    <!-- 연결 서비스: PopupService -->
     <div class="section-box">
-        <div class="section-title">📝 내가 쓴 글</div>
-        <p>굿즈로드에서 내가 작성한 게시글과 거래글을 한 번에 모아서 보여주는 화면이야.</p>
+        <div class="section-title">🎪 찜한 팝업스토어</div>
+        <p>놓치기 싫어서 저장해둔 팝업스토어 목록이야.</p>
 
-        <!-- TODO: 나중에 실제 데이터 바인딩 -->
         <div class="list-box">
-            <p>※ 로그인한 회원이 작성한 글 리스트(게시판 + 거래글)를 여기에서 카드/테이블 형태로 보여줄 예정.</p>
+            <p>※ PopupService + PopupBookmark 엔티티 사용해서 회원별 찜한 팝업 리스트를 뿌려주면 됨.</p>
         </div>
     </div>
 </div>
 
 <nav class="bottom-nav">
-    <a href="/" class="nav-item">
+    <a href="/static" class="nav-item">
         <span class="icon">🏠</span><span>홈</span>
     </a>
     <a href="/board" class="nav-item">
