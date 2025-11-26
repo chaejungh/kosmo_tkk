@@ -112,7 +112,7 @@
             </div>
 
             <div class="segmented-control">
-                <button class="seg-btn active"
+                <button class="seg-btn"
                         type="button"
                         th:onclick="|location.href='@{/mcboard/{memberId}/list.do(memberId=${memberId})}'|">내 새끼 자랑</button>
                 <button class="seg-btn"
@@ -120,7 +120,7 @@
                         th:onclick="|location.href='@{/cosplayboard/{memberId}/list.do(memberId=${memberId})}'|">
                     코스프레
                 </button>
-                <button class="seg-btn"
+                <button class="seg-btn active"
                         type="button"
                         th:onclick="|location.href='@{/freeboard/{memberId}/list.do(memberId=${memberId})}'|">자유게시판</button>
             </div>
@@ -221,7 +221,6 @@
 
                             <!-- 카테고리명 -->
                             <div th:text="${post.category.name}">
-                                내 새끼 자랑
                             </div>
                         </div>
                     </div>
@@ -273,7 +272,7 @@
             const postId = card.dataset.postId;
             // 원하는 URL 패턴에 맞게 수정해서 사용
             // 예) /mcboard/{memberId}/{postId}/detail.do
-            const url = `/mcboard/${memberId}/article/${postId}/detail.do`;
+            const url = `/freeboard/${memberId}/article/${postId}/detail.do`;
             window.location.href = url;
         });
     });

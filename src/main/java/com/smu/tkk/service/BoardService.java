@@ -36,7 +36,7 @@ public interface BoardService {
     Page<BoardPost> readByKeyword(String keyword) throws SQLException;
 
     // 7. 카테고리별 게시글 조회 (옵션)(레파지토리 완료)
-    Page<BoardPost> readByCategory(Long categoryId) throws SQLException;
+    Page<BoardPost> readByCategory(Long categoryId,Pageable pageable) throws SQLException;
 
     // 8. 게시판 카테고리 전체 조회(레파지토리 완료)
     List<BoardCategory> readAllCategories() throws SQLException;
