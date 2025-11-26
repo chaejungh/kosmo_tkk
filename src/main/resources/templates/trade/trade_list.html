@@ -2,386 +2,294 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>굿즈 거래 - 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>굿즈거래 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        * { box-sizing: border-box; }
+
+        :root {
+            --purple: #6366f1;
+            --purple-deep: #4f46e5;
+            --bg-soft: #f5f3ff;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+        }
 
         body {
             margin: 0;
-            background: #f6f3ff;
-            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", system-ui, sans-serif;
-            color: #222;
+            padding: 0;
+            background: var(--bg-soft);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ✅ 기존 레이아웃 그대로 */
-        .page {
-            max-width: 760px;   /* <-- 원래 값 유지 */
-            margin: 0 auto;
-            padding: 24px 24px 96px;
-        }
-
-        /* 상단 로고 */
-        .top-bar {
+        /* ===== 상단 헤더 ===== */
+        .trade-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: white;
+            padding: 16px 18px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo-text {
+        .logo {
             font-size: 22px;
             font-weight: 800;
-            color: #6b3df3;
+            color: var(--purple);
         }
 
-        .top-badge {
-            display: inline-flex;
+        .header-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-left: 6px;
+            color: var(--text-main);
+        }
+
+        .header-left {
+            display: flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 12px;
+        }
+
+        /* ===== 카테고리 버튼 ===== */
+        .trade-filter {
+            background: white;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
             border-radius: 999px;
-            background: #f6f0ff;
+            background: #ffffff;
+            border: 1px solid var(--border);
             font-size: 13px;
+            white-space: nowrap;
+            cursor: pointer;
             color: #444;
         }
 
-        /* 메인 카드 */
-        .main-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 18px 18px 16px;
-            box-shadow: 0 14px 30px rgba(65, 41, 155, 0.12);
-            margin-bottom: 18px;
+        .filter-btn.active {
+            background: var(--purple);
+            color: white;
+            border-color: var(--purple);
         }
 
-        .main-card-header {
+        /* ===== 리스트 카드 ===== */
+        .trade-list {
+            padding: 12px 18px 100px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
-        .main-title {
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .main-pill {
-            font-size: 11px;
-            padding: 4px 9px;
-            border-radius: 999px;
-            background: #e5fbf0;
-            color: #14a869;
-            font-weight: 600;
-        }
-
-        .search-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .search-input {
-            flex: 1;
-            border-radius: 999px;
-            border: none;
-            outline: none;
-            padding: 11px 14px;
-            background: #f4f1ff;
-            font-size: 13px;
-            color: #555;
-        }
-
-        .search-btn {
-            border: none;
-            padding: 0 18px;
-            border-radius: 999px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            background: linear-gradient(135deg, #ff7b7b, #ff4b9a);
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .category-row,
-        .sub-filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .category-row { margin-bottom: 10px; }
-
-        .filter-chip {
-            padding: 6px 12px;
-            border-radius: 999px;
-            font-size: 12px;
-            background: #f4f1ff;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .filter-chip--active {
-            background: #5f46ff;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .sub-filter-row { align-items: center; }
-
-        .result-count {
-            font-size: 12px;
-            color: #8a8a8a;
-            margin-right: auto;
-        }
-
-        .sub-chip {
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            background: #f5f1ff;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .sub-chip--active {
-            background: #ede6ff;
-            color: #5f46ff;
-            font-weight: 600;
-        }
-
-        .write-btn {
-            padding: 7px 14px;
-            border-radius: 999px;
-            font-size: 12px;
-            background: #6f52ff;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* 리스트 */
-        .trade-list { margin-top: 14px; }
-
-        .trade-item {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 14px 16px;
-            display: flex;
+            flex-direction: column;
             gap: 14px;
-            margin-bottom: 12px;
-            box-shadow: 0 10px 24px rgba(115, 90, 215, 0.12);
         }
 
-        .thumb {
-            width: 56px;
-            height: 56px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, #6a4dff, #c950ff);
-        }
-
-        .thumb--orange {
-            background: linear-gradient(135deg, #ff7a5c, #ff4da0);
-        }
-
-        .thumb--blue {
-            background: linear-gradient(135deg, #4d8dff, #5a3dff);
-        }
-
-        .trade-body { flex: 1; }
-
-        .trade-top-row {
+        .trade-card {
+            background: var(--card-bg);
+            border-radius: 14px;
             display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
+            gap: 12px;
+            padding: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
 
-        .badge-sell,
-        .badge-swap {
-            font-size: 11px;
-            padding: 3px 7px;
-            border-radius: 999px;
-            font-weight: 600;
+        .trade-thumb {
+            width: 95px;
+            height: 95px;
+            border-radius: 10px;
+            background: #eee;
+            object-fit: cover;
         }
 
-        .badge-sell {
-            background: #f2e7ff;
-            color: #7b3eff;
-        }
-
-        .badge-swap {
-            background: #e8f7ff;
-            color: #1686d9;
+        .trade-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .trade-title {
-            font-size: 14px;
-            font-weight: 700;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
         }
 
         .trade-meta {
             font-size: 12px;
-            color: #7a7a7a;
-            margin-bottom: 2px;
+            color: var(--text-sub);
         }
 
-        .trade-tags {
-            font-size: 11px;
-            color: #a09ad5;
-            margin-top: 4px;
+        .trade-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-top: 6px;
         }
 
-        /* ✅ 하단 탭만 다른 페이지와 동일하게 변경 */
+        /* ===== 글쓰기 floating 버튼 ===== */
+        .write-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--purple);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+            z-index: 30;
+            border: none;
+        }
+
+        .write-btn:hover {
+            background: var(--purple-deep);
+        }
+
+        /* ===== 하단바 ===== */
         .bottom-nav {
             position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
             bottom: 0;
+            left: 0;
             width: 100%;
-            max-width: 1040px;
-            display: flex;
-            justify-content: center;
-            padding: 8px 0 10px;
-            background: rgba(249, 250, 251, 0.96);
-            backdrop-filter: blur(16px);
-            border-top: 1px solid #e5e7eb;
-            z-index: 40;
+            height: 70px;
+            background: #ffffff;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.12);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            z-index: 50;
         }
 
-        .bottom-nav .nav-item {
-            flex: 1;
-            text-align: center;
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 11px;
+        .nav-item {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            justify-content: center;
             align-items: center;
+            font-size: 12px;
+            text-decoration: none;
+            color: var(--text-sub);
+            border-right: 1px solid var(--border);
         }
 
-        .bottom-nav .nav-item .icon {
-            font-size: 18px;
+        .nav-item:last-child {
+            border-right: none;
         }
 
-        .bottom-nav .nav-item.active {
-            color: #4f46e5;
-            font-weight: 600;
+        .nav-item .icon {
+            font-size: 20px;
+            margin-bottom: 4px;
         }
+
+        .nav-item.active {
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        /* 알림 숫자표시 */
+        .badge {
+            position: absolute;
+            top: 8px;
+            right: 26px;
+            background: #ff4e4e;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 999px;
+        }
+
     </style>
 </head>
-
 <body>
 
-<div class="page">
-
-    <header class="top-bar">
-        <div class="logo-text">더쿠쿠</div>
-        <div class="top-badge">
-        </div>
-    </header>
-
-    <section class="main-card">
-        <div class="main-card-header">
-            <div class="main-title">굿즈거래</div>
-            <div class="main-pill">MARKET</div>
-        </div>
-
-        <div class="search-row">
-            <input class="search-input" type="text" placeholder="작품명, 캐릭터, 굿즈명 검색" />
-            <button class="search-btn">검색</button>
-        </div>
-
-        <div class="category-row">
-            <div class="filter-chip filter-chip--active">전체</div>
-            <div class="filter-chip">포카</div>
-            <div class="filter-chip">피규어</div>
-            <div class="filter-chip">앨범</div>
-            <div class="filter-chip">키링</div>
-            <div class="filter-chip">기타</div>
-        </div>
-
-        <div class="sub-filter-row">
-            <span class="result-count"># 총 23건</span>
-            <div class="sub-chip sub-chip--active">최신순</div>
-            <div class="sub-chip">가격 낮은순</div>
-            <div class="sub-chip">인기순</div>
-            <div class="write-btn">+ 거래 글쓰기</div>
-        </div>
-    </section>
-
-    <section class="trade-list">
-
-        <a th:href="@{/trade/detail}">
-            <article class="trade-item">
-                <div class="thumb"></div>
-                <div class="trade-body">
-                    <div class="trade-top-row">
-                        <span class="badge-sell">판매</span>
-                        <span class="trade-title">주술회전 고죠 포카 세트</span>
-                    </div>
-                    <div class="trade-meta">서울 · 직거래 · 10,000원 · 판매중</div>
-                    <div class="trade-tags">#주술회전 #고죠사토루 #포카</div>
-                </div>
-            </article>
-        </a>
-
-        <a th:href="@{/trade/detail}">
-            <article class="trade-item">
-                <div class="thumb thumb--orange"></div>
-                <div class="trade-body">
-                    <div class="trade-top-row">
-                        <span class="badge-swap">교환</span>
-                        <span class="trade-title">귀멸 탄지로 아크릴 키링</span>
-                    </div>
-                    <div class="trade-meta">부산 · 택배 · 교환 희망 · 예약중</div>
-                    <div class="trade-tags">#귀멸의칼날 #탄지로 #키링</div>
-                </div>
-            </article>
-        </a>
-
-        <a th:href="@{/trade/detail}">
-            <article class="trade-item">
-                <div class="thumb thumb--blue"></div>
-                <div class="trade-body">
-                    <div class="trade-top-row">
-                        <span class="badge-sell">판매</span>
-                        <span class="trade-title">블루록 한정 포스터 3종</span>
-                    </div>
-                    <div class="trade-meta">온라인 · 택배 · 25,000원 · 판매중</div>
-                    <div class="trade-tags">#블루록 #포스터 #한정</div>
-                </div>
-            </article>
-        </a>
-
-    </section>
+<!-- ===== 헤더 ===== -->
+<div class="trade-header">
+    <div class="header-left">
+        <div class="logo">더쿠쿠</div>
+        <div class="header-title">굿즈거래</div>
+    </div>
 </div>
 
+<!-- ===== 카테고리 ===== -->
+<div class="trade-filter">
+    <button class="filter-btn active">전체</button>
+    <button class="filter-btn">판매</button>
+    <button class="filter-btn">구매</button>
+    <button class="filter-btn">교환</button>
+    <button class="filter-btn">피규어</button>
+    <button class="filter-btn">포카</button>
+    <button class="filter-btn">기타굿즈</button>
+</div>
+
+<!-- ===== LIST (더미 데이터) ===== -->
+<div class="trade-list">
+
+    <div class="trade-card">
+        <img class="trade-thumb" src="/images/dummy/jujutsu1.jpg">
+        <div class="trade-info">
+            <div>
+                <div class="trade-title">주술회전 나나미 피규어 팝니다</div>
+                <div class="trade-meta">신촌 · 1시간 전</div>
+            </div>
+            <div class="trade-price">85,000원</div>
+        </div>
+    </div>
+
+    <div class="trade-card">
+        <img class="trade-thumb" src="/images/dummy/blue1.jpg">
+        <div class="trade-info">
+            <div>
+                <div class="trade-title">블루록 바치라 포카 교환 원해요</div>
+                <div class="trade-meta">마포구 · 3시간 전</div>
+            </div>
+            <div class="trade-price">교환</div>
+        </div>
+    </div>
+
+    <div class="trade-card">
+        <img class="trade-thumb" src="/images/dummy/demon1.jpg">
+        <div class="trade-info">
+            <div>
+                <div class="trade-title">귀멸 카나오 아크릴 키링</div>
+                <div class="trade-meta">강남 · 5시간 전</div>
+            </div>
+            <div class="trade-price">12,000원</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== 글쓰기 Floating 버튼 ===== -->
+<button class="write-btn">+ 글쓰기</button>
+
+<!-- ===== 하단 네비게이션 ===== -->
 <nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span><span>홈</span>
+
+    <a href="/" class="nav-item">
+        <span class="icon">🏠</span>
+        홈
     </a>
-    <a th:href="@{/board}" class="nav-item">
-        <span class="icon">📁</span><span>덕질게시판</span>
+
+    <a href="/chat" class="nav-item">
+        <span class="icon">💬</span>
+        채팅방
+        <span class="badge">3</span>
     </a>
-    <a th:href="@{/trade}" class="nav-item active">
-        <span class="icon">💸</span><span>굿즈거래</span>
+
+    <a href="/mypage" class="nav-item">
+        <span class="icon">👤</span>
+        내정보
     </a>
-    <a th:href="@{/mypage}" class="nav-item">
-        <span class="icon">👤</span><span>내정보</span>
-    </a>
+
 </nav>
 
 </body>
