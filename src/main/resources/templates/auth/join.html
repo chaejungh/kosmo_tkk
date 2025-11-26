@@ -1,378 +1,486 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>회원가입 화면</title>
-
-    <!-- 기존 공통 스타일 유지 -->
-    <link rel="stylesheet" href="/css/home.css">
-
-    <!-- 이 페이지 전용 스타일 -->
+    <title>회원가입 | 더쿠쿠</title>
     <style>
-        body {
-            font-family: 'Pretendard', sans-serif;
-            background-color: #f7f8fc;
-            margin: 0;
-            padding: 0;
+        :root {
+            --bg-lavender: #f5f3ff;
+            --card-bg: #ffffff;
+            --border-soft: #e5e7eb;
+            --purple: #6366f1;
+            --purple-deep: #4f46e5;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+            --danger: #ef4444;
         }
 
-        #join {
-            display: flex;
-            justify-content: center;
-            padding: 80px 0;
-        }
-
-        .join-wrap {
-            width: 600px;
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 50px 40px;
-            border: 2px solid #d1d5db;
-            box-shadow: 0 12px 30px rgba(15,23,42,0.08);
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1.8px solid #cbd5e1;
-            font-size: 15px;
+        * {
             box-sizing: border-box;
         }
 
-        input:focus {
-            border-color: #2563eb;
-            outline: none;
-            box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            background: var(--bg-lavender);
         }
 
-        /* 아이디 + 중복확인 한 줄 */
-        .id-line {
+        .join-page {
+            min-height: 100vh;
             display: flex;
-            gap: 10px;
-            align-items: center;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
         }
 
-        .id-line input {
-            flex: 1;
+        .join-card {
+            width: 480px;
+            max-width: 100%;
+            background: var(--card-bg);
+            border-radius: 32px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
+            padding: 28px 32px 30px;
         }
 
-        #check-username-btn {
-            white-space: nowrap;
-            padding: 0 18px;
-            height: 48px;
-            border-radius: 10px;
-            border: none;
-            background: #374151;
-            color: #ffffff;
+        .join-logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--purple);
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+
+        .join-subtitle {
+            text-align: left;
             font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 16px;
         }
 
-        #check-username-btn:hover {
-            background: #111827;
-        }
-
-        /* 닉네임 + 중복확인 한 줄 */
-        .nickname-line {
+        .join-form {
             display: flex;
-            gap: 10px;
-            align-items: center;
+            flex-direction: column;
+            gap: 14px;
         }
 
-        .nickname-line input {
-            flex: 1;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        #check-nickname-btn {
-            white-space: nowrap;
-            padding: 0 18px;
-            height: 48px;
-            border-radius: 10px;
-            border: none;
-            background: #374151;
-            color: #ffffff;
-            font-size: 15px;
+        .form-label {
+            font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
+            color: var(--text-main);
         }
 
-        #check-nickname-btn:hover {
-            background: #111827;
+        .form-help {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 2px;
         }
 
-        /* 회원가입 버튼 */
-        .btn-primary {
+        .input-field {
             width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            background: #111827;
-            border: none;
-            color: #ffffff;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 30px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            padding: 0 14px;
+            font-size: 13px;
+            outline: none;
         }
 
-        .btn-primary:hover {
-            background: #020617;
+        .input-field:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15);
         }
+
+        .form-row-inline {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 120px;
+            column-gap: 8px;
+            align-items: center;
+        }
+
+        .form-group.email-row .form-row-inline {
+            grid-template-columns: minmax(0, 1fr) 150px;
+        }
+
+        .btn-inline {
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--purple);
+            background: var(--purple);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .btn-inline:hover {
+            background: var(--purple-deep);
+            border-color: var(--purple-deep);
+        }
+
+        .email-domain-select {
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            padding: 0 12px;
+            font-size: 13px;
+            outline: none;
+            background: #ffffff;
+        }
+
+        .email-domain-select:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15);
+        }
+
+        .select-field {
+            width: 100%;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            padding: 0 12px;
+            font-size: 13px;
+            background: #ffffff;
+            outline: none;
+        }
+
+        .select-field:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15);
+        }
+
+        .gender-nationality-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .toggle-btn {
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            background: #ffffff;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .toggle-btn.active {
+            border-color: var(--purple);
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--purple-deep);
+            font-weight: 600;
+        }
+
+        .terms-card {
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            background: #faf5ff;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .terms-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .terms-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-left: 2px;
+        }
+
+        .terms-item {
+            font-size: 12px;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .terms-item input {
+            width: 14px;
+            height: 14px;
+            accent-color: var(--purple);
+        }
+
+        .btn-join {
+            margin-top: 6px;
+            width: 100%;
+            height: 46px;
+            border-radius: 16px;
+            border: none;
+            background: var(--purple);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-join:hover {
+            background: var(--purple-deep);
+        }
+
+        /* ====== 모바일 최적화 (너 코드 그대로 유지하고, 모바일에서만 변경) ====== */
+        @media (max-width: 480px) {
+
+            /* 전체 레이아웃 */
+            .join-page {
+                padding: 20px 12px;
+                align-items: flex-start;
+            }
+
+            /* 카드 크기 확대 */
+            .join-card {
+                width: 100%;
+                padding: 22px 20px 26px;
+                border-radius: 24px;
+            }
+
+            /* 제목 크기 */
+            .join-logo {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+
+            .join-subtitle {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
+            /* 입력 라벨 */
+            .form-label {
+                font-size: 12px;
+            }
+
+            /* 인풋 크기 조금 증가 */
+            .input-field,
+            .email-domain-select,
+            .select-field {
+                height: 46px;
+                font-size: 14px;
+            }
+
+            /* 인풋 + 버튼 구조 */
+            .form-row-inline {
+                grid-template-columns: minmax(0, 1fr) 110px; /* 모바일은 버튼 조금 줄임 */
+            }
+
+            .form-group.email-row .form-row-inline {
+                grid-template-columns: minmax(0, 1fr) 130px;
+            }
+
+            .btn-inline {
+                height: 46px;
+                font-size: 13px;
+            }
+
+            /* 성별/국적 버튼 크게 */
+            .gender-nationality-row {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+
+            .toggle-btn {
+                height: 44px;
+                font-size: 12px;
+            }
+
+            /* 약관 카드 */
+            .terms-card {
+                padding: 10px 12px;
+            }
+
+            .terms-title {
+                font-size: 11px;
+            }
+
+            .terms-item {
+                font-size: 11px;
+            }
+
+            /* 가입하기 버튼 */
+            .btn-join {
+                height: 48px;
+                font-size: 14px;
+            }
+        }
+
     </style>
 </head>
 <body>
+<div class="join-page">
+    <div class="join-card">
+        <div class="join-logo">더쿠쿠</div>
+        <div class="join-subtitle">회원가입</div>
 
-<section id="join">
-    <div class="join-wrap">
+        <form class="join-form">
 
-        <h1>회원가입</h1>
-
-        <!-- 아이디 + 중복확인 -->
-        <div class="input-group">
-            <label for="username">아이디</label>
-            <div class="id-line">
-                <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요">
-                <button type="button" id="check-username-btn">중복확인</button>
+            <!-- 아이디 -->
+            <div class="form-group">
+                <label class="form-label">아이디</label>
+                <div class="form-row-inline">
+                    <input type="text" class="input-field" placeholder="아이디 입력">
+                    <button type="button" class="btn-inline">중복확인</button>
+                </div>
             </div>
-        </div>
 
-        <!-- 비밀번호 -->
-        <div class="input-group">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요 (영문 대소문자, 숫자 조합으로 8자리 이상)">
-        </div>
+            <!-- 비밀번호 -->
+            <div class="form-group">
+                <label class="form-label">비밀번호</label>
+                <input type="password" class="input-field" placeholder="비밀번호 입력">
+            </div>
 
-        <!-- 비밀번호 확인 -->
-        <div class="input-group">
-            <label for="password-check">비밀번호 확인</label>
-            <input type="password" id="password-check" name="passwordCheck" placeholder="비밀번호 확인을 입력해주세요">
-            <p id="pw-message" style="font-size:14px; margin-top:5px; height:18px;"></p>
+            <!-- 비밀번호 확인 -->
+            <div class="form-group">
+                <label class="form-label">비밀번호 확인</label>
+                <input type="password" class="input-field" placeholder="비밀번호 재입력">
+            </div>
 
-        </div>
+            <!-- 이메일 -->
+            <div class="form-group email-row">
+                <label class="form-label">이메일</label>
+                <div class="form-row-inline">
+                    <input type="text" class="input-field" placeholder="이메일 아이디 (예: banana123)">
+                    <select class="email-domain-select">
+                        <option value="@naver.com">@naver.com</option>
+                        <option value="@gmail.com">@gmail.com</option>
+                        <option value="@daum.net">@daum.net</option>
+                        <option value="@kakao.com">@kakao.com</option>
+                        <option value="@outlook.com">@outlook.com</option>
+                        <option value="custom">직접 입력</option>
+                    </select>
+                </div>
+                <p class="form-help">이메일을 정확하게 입력해주세요.</p>
+            </div>
 
-        <!-- 이름 -->
-        <div class="input-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
-        </div>
+            <!-- 이름 -->
+            <div class="form-group">
+                <label class="form-label">이름</label>
+                <input type="text" class="input-field" placeholder="이름 입력">
+            </div>
 
-        <!-- 생년월일 -->
-        <div class="input-group">
-            <label for="birth">생년월일</label>
-            <div style="display: flex; gap: 10px;">
-                <select id="birth-year" name="birthYear" style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
-                    <option value="">년도</option>
+            <!-- 생년월일 -->
+            <div class="form-group">
+                <label class="form-label">생년월일</label>
+                <input type="text" class="input-field" placeholder="YYYYMMDD">
+            </div>
+
+            <!-- 통신사 선택 -->
+            <div class="form-group">
+                <label class="form-label">통신사 선택</label>
+                <select class="select-field">
+                    <option>SKT</option>
+                    <option>KT</option>
+                    <option>LG U+</option>
+                    <option>알뜰폰(SKT)</option>
+                    <option>알뜰폰(KT)</option>
+                    <option>알뜰폰(LG U+)</option>
                 </select>
-
-                <select id="birth-month" name="birthMonth" style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
-                    <option value="">월</option>
-                </select>
-
-                <select id="birth-day" name="birthDay" style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
-                    <option value="">일</option>
-                </select>
             </div>
-        </div>
 
-        <!-- 닉네임 -->
-        <div class="input-group">
-            <label for="nickname">닉네임</label>
-            <div class="nickname-line">
-            <input type="text" id="nickname" name="nickName" placeholder="닉네임을 입력해주세요">
-            <button type="button" id="check-nickname-btn">중복확인</button>
-        </div>
-
-            <br>
-        <!-- 전화번호 -->
-        <div class="input-group">
-            <label for="phone">전화번호</label>
-            <input type="text" id="phone" name="phone" placeholder="전화번호를 입력해주세요">
-        </div>
-
-        <!-- 이메일 -->
-        <div class="input-group">
-            <label for="email">이메일</label>
-            <div style="display:flex; gap:10px;">
-            <input type="text" id="email-id" name="email" placeholder="이메일을 입력해주세요" style="flex:1">
-            <span style="font-size:16px; display:flex; align-items:center;">@</span>
-                <select id="email-domain" name="emailDomain"
-                        style="flex:1; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
-                    <option value="">선택</option>
-                    <option value="custom">직접입력</option>
-                    <option value="gmail.com">gmail.com</option>
-                    <option value="naver.com">naver.com</option>
-                    <option value="daum.net">daum.net</option>
-                    <option value="nate.com">nate.com</option>
-                    <option value="kakao.com">kakao.com</option>
-                </select>
-                    <input type="text" id="email-custom" placeholder="도메인 입력"
-                           style="flex:1; display:none; padding: 14px; border-radius: 10px; border:1.8px solid #cbd5e1;">
+            <!-- 성별 · 국적 -->
+            <div class="form-group">
+                <label class="form-label">성별 · 국적</label>
+                <div class="gender-nationality-row">
+                    <button type="button" class="toggle-btn">남자</button>
+                    <button type="button" class="toggle-btn">여자</button>
+                    <button type="button" class="toggle-btn active">내국인</button>
+                    <button type="button" class="toggle-btn">외국인</button>
+                </div>
             </div>
-        </div>
 
-        <!-- 성별 -->
-        <div class="input-group">
-            <label for="gender">성별</label>
-            <div style="
-                display: flex;
-                align-items: center;
-                gap: 30px;
-                padding: 8px 0;
-            ">
-                <label style="display:flex; align-items:center; gap:8px;">
-                    <input type="radio" name="gender" value="M">
-                    남자
-                </label>
-                <label style="display:flex; align-items:center; gap:8px;">
-                    <input type="radio" name="gender" value="F">
-                    여자
-                </label>
+            <!-- 휴대전화번호 + 인증요청 -->
+            <div class="form-group">
+                <label class="form-label">휴대전화번호</label>
+                <div class="form-row-inline">
+                    <input type="text" class="input-field" placeholder="01012345678">
+                    <button type="button" class="btn-inline">인증요청</button>
+                </div>
             </div>
-        </div>
 
-
-        <!-- 전체 동의 -->
-        <div class="input-group">
-            <label style="font-size:15px; font-weight:600;">전체 동의</label>
-            <p style="color:#ef4444; font-size:14px; margin:4px 0 12px 0;">
-                ※ 전체 동의 시 할인 쿠폰이 제공됩니다 :)
-            </p>
-
-            <div style="
-                border: 1px solid #e2e8f0;
-                padding: 18px 20px;
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            ">
-                <input type="checkbox" id="agreement" name="agreement">
-                <label for="agreement" style="font-size:15px;">
-                    이용약관 및 개인정보 처리방침 동의
-                </label>
+            <!-- 약관 동의 -->
+            <div class="form-group">
+                <div class="terms-card">
+                    <div class="terms-title">[필수] 약관 전체 동의</div>
+                    <div class="terms-list">
+                        <label class="terms-item">
+                            <input type="checkbox">
+                            <span>개인정보 이용</span>
+                        </label>
+                        <label class="terms-item">
+                            <input type="checkbox">
+                            <span>통신사 이용약관</span>
+                        </label>
+                        <label class="terms-item">
+                            <input type="checkbox">
+                            <span>고유식별정보 처리</span>
+                        </label>
+                        <label class="terms-item">
+                            <input type="checkbox">
+                            <span>인증 서비스 이용약관</span>
+                        </label>
+                        <label class="terms-item">
+                            <input type="checkbox">
+                            <span>더쿠쿠 개인정보수집동의</span>
+                        </label>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- 회원가입 버튼 -->
-        <button class="btn-primary">회원가입</button>
-
+            <!-- 가입하기 버튼 -->
+            <button type="submit" class="btn-join">가입하기</button>
+        </form>
     </div>
-</section>
+</div>
 
 <script>
-    // --- 생년월일 요소 ---
-    const yearSelect = document.getElementById("birth-year");
-    const monthSelect = document.getElementById("birth-month");
-    const daySelect = document.getElementById("birth-day");
+    /* ===============================
+       🔥 성별 · 국적 토글 기능 추가
+       =============================== */
 
-    // --- 비밀번호 요소 ---
-    const pw = document.getElementById("password");
-    const pwCheck = document.getElementById("password-check");
-    const pwMessage = document.getElementById("pw-message");
-    const joinBtn = document.querySelector(".btn-primary");
+    const toggleButtons = document.querySelectorAll(".toggle-btn");
 
-    // --- 이메일 요소 ---
-    const emailDomain = document.getElementById("email-domain");
-    const emailCustom = document.getElementById("email-custom");
+    toggleButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
 
-    // --- 년도 채우기 ---
-    const currentYear = new Date().getFullYear();
-    for (let y = currentYear; y >= currentYear - 50; y--) {
-        const opt = document.createElement("option");
-        opt.value = y;
-        opt.textContent = y;
-        yearSelect.appendChild(opt);
-    }
+            // 성별(남/여) 인덱스 0,1
+            // 국적(내/외) 인덱스 2,3
 
-    // --- 월 채우기 ---
-    for (let m = 1; m <= 12; m++) {
-        const opt = document.createElement("option");
-        opt.value = m.toString().padStart(2, "0");
-        opt.textContent = m;
-        monthSelect.appendChild(opt);
-    }
+            const index = [...toggleButtons].indexOf(btn);
 
-    // --- 일 자동 채우기 ---
-    function updateDays() {
-        const year = yearSelect.value;
-        const month = monthSelect.value;
+            // 성별 그룹
+            if (index === 0 || index === 1) {
+                toggleButtons[0].classList.remove("active");
+                toggleButtons[1].classList.remove("active");
+            }
 
-        if (!year || !month) {
-            daySelect.innerHTML = '<option value="">일</option>';
-            return;
-        }
+            // 국적 그룹
+            if (index === 2 || index === 3) {
+                toggleButtons[2].classList.remove("active");
+                toggleButtons[3].classList.remove("active");
+            }
 
-        const lastDay = new Date(year, month, 0).getDate();
-        daySelect.innerHTML = '<option value="">일</option>';
-
-        for (let d = 1; d <= lastDay; d++) {
-            const opt = document.createElement("option");
-            opt.value = d.toString().padStart(2, "0");
-            opt.textContent = d;
-            daySelect.appendChild(opt);
-        }
-    }
-
-    yearSelect.addEventListener("change", updateDays);
-    monthSelect.addEventListener("change", updateDays);
-
-    // --- 이메일 도메인 직접입력 ---
-    emailDomain.addEventListener("change", () => {
-        if (emailDomain.value === "custom") {
-            emailDomain.style.display = "none";
-            emailCustom.style.display = "block";
-            emailCustom.focus();
-        }
+            btn.classList.add("active");
+        });
     });
-
-    // --- 비밀번호 확인 기능 ---
-    function checkPassword() {
-        if (!pw.value && !pwCheck.value) {
-            pwMessage.textContent = "";
-            joinBtn.disabled = false;
-            joinBtn.style.opacity = 1;
-            return;
-        }
-
-        if (pw.value !== pwCheck.value) {
-            pwMessage.textContent = "비밀번호가 일치하지 않습니다.";
-            pwMessage.style.color = "#ef4444";
-            joinBtn.disabled = true;
-            joinBtn.style.opacity = 0.6;
-        } else {
-            pwMessage.textContent = "비밀번호가 일치합니다.";
-            pwMessage.style.color = "#16a34a";
-            joinBtn.disabled = false;
-            joinBtn.style.opacity = 1;
-        }
-    }
-
-    pw.addEventListener("input", checkPassword);
-    pwCheck.addEventListener("input", checkPassword);
-
-    // 페이지 로드 시 초기 검사
-    checkPassword();
 </script>
 
 </body>

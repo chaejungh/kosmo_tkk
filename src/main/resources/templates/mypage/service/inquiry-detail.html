@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${inquiry.title} + ' - 문의 상세'">문의 상세</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .page { max-width:700px; margin:0 auto; padding:20px; }
+        .back { font-size:13px; color:#4f46e5; text-decoration:none; }
+        .card {
+            background:#fff; padding:16px;
+            border-radius:12px;
+            box-shadow:0 4px 14px rgba(0,0,0,0.1);
+            margin-top:12px;
+        }
+        .title { font-size:18px; font-weight:700; margin-bottom:10px; }
+        .content { font-size:14px; color:#444; line-height:1.5; }
+        .answer-title { margin-top:20px; font-size:16px; font-weight:600; }
+        .answer { background:#f9fafb; padding:12px; border-radius:8px; margin-top:6px; }
+    </style>
 </head>
+
 <body>
+
+<div class="page">
+
+    <a href="/help/list.do" class="back">← 문의 목록으로</a>
+
+    <div class="card">
+        <div class="title" th:text="${inquiry.title}"></div>
+
+        <div class="content" th:text="${inquiry.content}">
+            문의 내용
+        </div>
+
+        <div style="margin-top:12px; font-size:12px; color:#9ca3af;">
+            <span th:text="'작성일: ' + ${inquiry.createdAt}"></span>
+            ·
+            <span th:text="'상태: ' + ${inquiry.status}"></span>
+        </div>
+
+        <div class="answer-title" th:if="${inquiry.answerContent != null}">
+            관리자 답변
+        </div>
+
+        <div class="answer" th:if="${inquiry.answerContent != null}"
+             th:text="${inquiry.answerContent}">
+            관리자 답변 내용
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
