@@ -57,15 +57,17 @@ public class MypageController {
         String yN="N";
         Page<BoardPost> boardsPage =boardService.readByUser(loginMemberId,yN,pageable);
         model.addAttribute("boardsPage", boardsPage);
-        return "mypage/posts/my_posts";
+        return "mypage/board/my_board_posts";
     }
     @GetMapping("/likes")
-    public String myPostLike() {return "mypage/service/likes";}
+    public String myPostLike() {
+        //model.addAttribute("memberId", memberId);
+        return "mypage/board/likes";}
 
     // 공지사항 리스트 예시
     @GetMapping("/notice")
     public String noticeList() {
-        return "mypage/service/notice";   // 나중에 실제 템플릿 이름에 맞게 수정
+        return "mypage/service/notices";   // 나중에 실제 템플릿 이름에 맞게 수정
     }
 
     // 자주 묻는 질문
