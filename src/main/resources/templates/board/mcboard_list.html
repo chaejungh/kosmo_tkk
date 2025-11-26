@@ -103,6 +103,84 @@
 
     <main class="content">
 
+        <!-- 🔥 인기글 TOP5 -->
+        <section class="card hot-posts-card"
+                 th:if="${not #lists.isEmpty(hotCurrentBoard) or not #lists.isEmpty(hotAllBoard)}">
+
+            <div class="hot-posts-grid">
+
+                <!-- 왼쪽: 현재 게시판 인기글 -->
+                <div class="hot-posts-col">
+                    <div class="hot-posts-col-header">
+                        <div class="hot-posts-title">이 게시판 인기글</div>
+                        <div class="hot-posts-subtabs">
+                            <span class="hot-subtab active">오늘 BEST</span>
+                        </div>
+                    </div>
+
+                    <ul class="hot-posts-list">
+                        <li class="hot-post-item"
+                            th:each="post : ${hotCurrentBoard}">
+                        <span class="hot-post-label"
+                              th:text="${post.category.name}">카테고리</span>
+
+                            <a class="hot-post-link"
+                               th:href="@{/mcboard/{memberId}/article/{postId}/detail.do(
+                                    memberId=${memberId},
+                                    postId=${post.id})}">
+                            <span class="hot-post-title"
+                                  th:text="${post.title}">
+                                제목입니다
+                            </span>
+                                <span class="hot-post-comments"
+                                      th:text="'[' + post.commentCount + ']'">[0]</span>
+                            </a>
+                        </li>
+
+                        <li class="hot-post-empty"
+                            th:if="${#lists.isEmpty(hotCurrentBoard)}">
+                            이 게시판의 인기글이 없습니다.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 오른쪽: 전체 게시판 인기글 -->
+                <div class="hot-posts-col">
+                    <div class="hot-posts-col-header">
+                        <div class="hot-posts-title">전체 게시판 인기글</div>
+                        <div class="hot-posts-subtabs">
+                            <span class="hot-subtab active">오늘 BEST</span>
+                        </div>
+                    </div>
+
+                    <ul class="hot-posts-list">
+                        <li class="hot-post-item"
+                            th:each="post : ${hotAllBoard}">
+                        <span class="hot-post-label"
+                              th:text="${post.category.name}">카테고리</span>
+
+                            <a class="hot-post-link"
+                               th:href="@{/mcboard/{memberId}/article/{postId}/detail.do(
+                                    memberId=${memberId},
+                                    postId=${post.id})}">
+                            <span class="hot-post-title"
+                                  th:text="${post.title}">
+                                제목입니다
+                            </span>
+                                <span class="hot-post-comments"
+                                      th:text="'[' + post.commentCount + ']'">[0]</span>
+                            </a>
+                        </li>
+
+                        <li class="hot-post-empty"
+                            th:if="${#lists.isEmpty(hotAllBoard)}">
+                            전체 게시판 인기글이 없습니다.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
         <section class="card board-header-card">
             <div class="card-header">
                 <div class="card-title">

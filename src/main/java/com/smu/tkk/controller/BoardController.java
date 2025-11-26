@@ -34,6 +34,15 @@ public class BoardController {
         Long categoryId=1L;//카테고리아이디 1== mcBoard
         Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
 
+        // ① 이 게시판(현재 카테고리) 인기글 TOP 5
+        //List<BoardPost> hotCurrentBoard = boardService.findHotPostsInCurrentBoard(5);
+
+        // ② 전체 게시판 인기글 TOP 5
+        //List<BoardPost> hotAllBoard = boardService.findHotPostsInAllBoard(5);
+        // 🔥 새로 추가한 인기글 모델
+        //model.addAttribute("hotCurrentBoard", hotCurrentBoard); // 왼쪽
+        //model.addAttribute("hotAllBoard", hotAllBoard);         // 오른쪽
+
         model.addAttribute("memberId", memberId);
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준

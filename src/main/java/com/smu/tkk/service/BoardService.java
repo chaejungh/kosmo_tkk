@@ -72,4 +72,7 @@ public interface BoardService {
     //18. 유저로 삭제 유무 게시글 조회
     Page<BoardPost> readByUser(Long memberId,String yN, Pageable pageable) throws SQLException;
 
+    //List<BoardPost> readHotPostsInCurrentBoard(); //현재게시판 기준 인기글 Top5
+
+    //List<BoardPost> readHotPostsInAllBoard(); // 전체게시판 기준 인기글 Top5
 }
