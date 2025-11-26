@@ -1,19 +1,14 @@
 package com.smu.tkk.repository;
 
-import com.smu.tkk.entity.PopupStore;
 import com.smu.tkk.entity.Store;
-import com.smu.tkk.entity.StoreBookmark;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    // 반경 km 이내의 스토어 (위도/경도 기준)
+    // 반경 km 이내의 스토어
     @Query(value = """
         SELECT * FROM store s
         WHERE (
@@ -26,22 +21,11 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
             )
         ) < :km
         """, nativeQuery = true)
-    List<Store> findNear(
-            double lat,
-            double lng,
-            double km
-    );
+    List<Store> findNear(double lat, double lng, double km);
 
-    // 이름 또는 주소에 키워드가 포함된 매장 (기존 메서드)
+    // 이름/주소에 키워드 포함된 매장 Top20
     List<Store> findTop20ByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(
             String nameKeyword,
-            String addressKeyword
-    );
-
-    // 이름 / 지역명 / 주소 셋 다 대상으로 검색 (새로 추가한 메서드)
-    List<Store> findTop20ByNameContainingIgnoreCaseOrRegionNameContainingIgnoreCaseOrAddressContainingIgnoreCase(
-            String nameKeyword,
-            String regionKeyword,
             String addressKeyword
     );
 }

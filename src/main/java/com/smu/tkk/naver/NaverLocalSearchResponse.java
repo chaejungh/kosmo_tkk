@@ -1,11 +1,12 @@
-// src/main/java/com/smu/tkk/naver/NaverLocalSearchResponse.java
 package com.smu.tkk.naver;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class NaverLocalSearchResponse {
     private String lastBuildDate;
     private int total;

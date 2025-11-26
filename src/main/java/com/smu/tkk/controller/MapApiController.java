@@ -1,3 +1,4 @@
+// src/main/java/com/smu/tkk/controller/MapApiController.java
 package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.PlaceDto;
@@ -15,44 +16,50 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/map")
+@RequestMapping("/api/map")   // ★ 프론트의 /api/map/places 와 반드시 맞아야 함
 public class MapApiController {
 
-    private final NaverLocalSearchService naverLocalSearchService;
+    private final NaverLocalSearchService naverLocalSearchService; // Impl 말고 인터페이스
     private final StoreRepository storeRepository;
 
-    // /api/map/places?query=홍대&limit=5
+    /**
+     * 통합 검색
+     *  - 1) 우리 DB 더미 매장 (STORE)
+     *  - 2) 네이버 지역검색
+     */
     @GetMapping("/places")
-    public List<PlaceDto> searchPlaces(
-            @RequestParam("query") String query,
-            @RequestParam(value = "limit", defaultValue = "5") int limit
-    ) {
+    public List<PlaceDto> searchPlaces(@RequestParam("query") String query,
+                                       @RequestParam(value = "limit", defaultValue = "5") int limit) {
 
-        // 1) 우리 DB 매장 검색 (이름/지역/주소에서 부분 일치)
-        List<PlaceDto> dbPlaces = storeRepository
-                .findTop20ByNameContainingIgnoreCaseOrRegionNameContainingIgnoreCaseOrAddressContainingIgnoreCase(
-                        query, query, query
-                )
-                .stream()
-                .map(this::toStorePlaceDto)
-                .toList();
-
-        // 2) 네이버 지역 검색
+        // 1) 네이버 지역 검색
         List<PlaceDto> naverPlaces = naverLocalSearchService.searchPlaces(query, limit);
 
-        // 3) 합쳐서 반환 (먼저 우리 DB, 그 다음 네이버)
+        // 2) 우리 DB 매장 검색 (이름 / 주소에 query 포함)
+        List<Store> dbStores = storeRepository
+                .findTop20ByNameContainingIgnoreCaseOrAddressContainingIgnoreCase(query, query);
+
         List<PlaceDto> result = new ArrayList<>();
-        result.addAll(dbPlaces);
+
+        // DB 결과 먼저
+        for (Store s : dbStores) {
+            result.add(toStorePlaceDto(s));
+        }
+
+        // 네이버 결과 뒤에 붙이기
         result.addAll(naverPlaces);
+
         return result;
     }
 
-    // Store 엔티티 -> PlaceDto 로 변환
+    /**
+     * Store 엔티티 -> PlaceDto 변환
+     *  - latitude / longitude (BigDecimal) -> Double 로 변환
+     *  - source = "STORE" 로 표시 (프론트에서 뱃지용)
+     */
     private PlaceDto toStorePlaceDto(Store s) {
         Double lat = null;
         Double lng = null;
 
-        // BigDecimal -> Double 로 변환 (PlaceDto 가 Double lat/lng 를 받으니까)
         if (s.getLatitude() != null) {
             lat = s.getLatitude().doubleValue();
         }
@@ -61,15 +68,15 @@ public class MapApiController {
         }
 
         return PlaceDto.builder()
-                .id(s.getId())
+                //.id(s.getId())
                 .name(s.getName())
-                .category("더쿠쿠 매장")              // 필요하면 다른 값으로 바꿔도 됨
+                .category("STORE")
                 .address(s.getAddress())
                 .roadAddress(s.getAddress())
-                .tel(s.getPhone())                  // ★ getPhone() 으로 수정
-                .lat(lat)                           // ★ Double 타입
+                .tel(s.getPhone())
+                .lat(lat)       // 더미데이터용 좌표
                 .lng(lng)
-                .source("STORE_DB")                 // 프론트에서 출처 구분용으로 사용
+                .source("STORE")
                 .build();
     }
 }

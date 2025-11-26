@@ -1,4 +1,3 @@
-// src/main/java/com/smu/tkk/service/NaverLocalSearchServiceImpl.java
 package com.smu.tkk.service;
 
 import com.smu.tkk.dto.PlaceDto;
@@ -26,6 +25,7 @@ public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
     @Value("${naver.search.client-secret}")
     private String clientSecret;
 
+    // 간단하게 new 로 사용 (필요하면 @Bean 으로 분리해도 됨)
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
@@ -34,22 +34,15 @@ public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
             return Collections.emptyList();
         }
 
-        // ✅ 이제 검색어 그대로 쓴다 (네이버 지도 동작과 동일)
-        // "홍대" -> "홍대"
-        // "홍대 굿즈샵" -> "홍대 굿즈샵"
-        // "홍대 피규어샵" -> "홍대 피규어샵"
-        String realQuery = query.trim();
-
-        int display = Math.min(Math.max(limit, 1), 5); // 최대 5
-        int start   = 1;                               // 1~100
+        int display = Math.min(Math.max(limit, 1), 5); // 1~5
 
         URI uri = UriComponentsBuilder
                 .fromUriString("https://openapi.naver.com")
                 .path("/v1/search/local.json")
-                .queryParam("query", realQuery)
-                .queryParam("display", display)
-                .queryParam("start", start)
-                .queryParam("sort", "random") // random / comment
+                .queryParam("query", query)       // "홍대", "홍대 피규어샵" 그대로 보냄
+                .queryParam("display", display)   // 1~5
+                .queryParam("start", 1)           // 문서상 start 최댓값 1
+                .queryParam("sort", "random")     // random / comment
                 .encode(StandardCharsets.UTF_8)
                 .build()
                 .toUri();
@@ -69,31 +62,33 @@ public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
         }
 
         return body.getItems().stream()
-                .map(this::toPlaceDto)
+                .map(this::toPlaceDtoFromApi)
                 .toList();
     }
 
-    private PlaceDto toPlaceDto(NaverLocalItem item) {
+    private PlaceDto toPlaceDtoFromApi(NaverLocalItem item) {
         Double mapx = null;
         Double mapy = null;
-
         try {
-            if (item.getMapx() != null) {
-                mapx = Double.valueOf(item.getMapx());
+            if (item.getMapx() != null && !item.getMapx().isBlank()) {
+                mapx = Double.parseDouble(item.getMapx());
             }
-            if (item.getMapy() != null) {
-                mapy = Double.valueOf(item.getMapy());
+            if (item.getMapy() != null && !item.getMapy().isBlank()) {
+                mapy = Double.parseDouble(item.getMapy());
             }
-        } catch (NumberFormatException ignore) {}
+        } catch (NumberFormatException ignore) { }
 
         return PlaceDto.builder()
+                .storeId(null) // 우리 DB가 아니니까 null
                 .name(stripTags(item.getTitle()))
                 .category(item.getCategory())
                 .address(item.getAddress())
                 .roadAddress(item.getRoadAddress())
                 .tel(item.getTelephone())
-                .mapx(mapx)   // TM128 X
-                .mapy(mapy)   // TM128 Y
+                .lat(null) // TM128 -> LatLng 변환은 프론트에서
+                .lng(null)
+                .mapx(mapx)
+                .mapy(mapy)
                 .source("NAVER")
                 .build();
     }
