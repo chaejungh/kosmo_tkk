@@ -37,6 +37,18 @@ public class BoardController {
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
+    @GetMapping("/mcboard/{memberId}/article/{postId}/detail.do")
+    public String mcBoardDetail(@PathVariable Long memberId,
+                                @PathVariable Long postId,
+                                Model model) throws SQLException {
+        BoardPost post = boardService.readOne(postId);
+
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("post", post);
+
+        return "board/mcboard_detail"; // 상세 템플릿 이름
+    }
+
 
     /**
      * 기존 /board로 들어오는 요청 호환용
