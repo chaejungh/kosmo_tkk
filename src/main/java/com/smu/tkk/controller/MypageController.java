@@ -1,5 +1,6 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
 import com.smu.tkk.service.BoardService;
 import lombok.AllArgsConstructor;
@@ -60,8 +61,11 @@ public class MypageController {
         return "mypage/board/my_board_posts";
     }
     @GetMapping("/likes")
-    public String myPostLike() {
-        //model.addAttribute("memberId", memberId);
+    public String myPostLike(Model model,Pageable pageable) throws SQLException {
+        Long loginMemberId = 1L;
+        Page<BoardLike> boardLikes=boardService.readByLike(loginMemberId,pageable);//좋아요한 게시글 목록
+        model.addAttribute("boardLikes", boardLikes);
+        model.addAttribute("memberId", loginMemberId);
         return "mypage/board/likes";}
 
     // 공지사항 리스트 예시

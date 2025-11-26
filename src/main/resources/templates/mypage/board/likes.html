@@ -1,12 +1,38 @@
 <!-- src/main/resources/templates/mypage/likes.html -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>나의 더쿠쿠 - 좋아요 한 글</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
 </head>
+<style>
+    .list-box {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .post-item {
+        background: white;
+        padding: 18px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .post-title {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .post-info {
+        font-size: 14px;
+        color: #7a7a7a;
+        margin-top: 5px;
+    }
+</style>
 <body>
 
 <div class="mypage-page">
@@ -15,14 +41,22 @@
     <!-- 연결 서비스: BoardLikeService -->
     <div class="section-box">
         <div class="section-title">❤️ 좋아요 한 글</div>
-        <p>내가 좋아요를 누른 게시글/거래글을 모아서 볼 수 있는 화면이야.</p>
 
         <div class="list-box">
-            <p>※ BoardLikeService로 내가 좋아요한 글 목록을 가져와서 여기 리스트로 출력하면 됨.</p>
-        </div>
-    </div>
-</div>
+            <div class="post-item" th:each="like : ${boardLikes.content}">
 
+                <div class="post-title" th:text="${like.boardPost.title}"></div>
+
+                <div class="post-info">
+                    <span th:text="${like.boardPost.category.name}"></span>
+                    ·
+                    <span th:text="${#temporals.format(like.boardPost.createdAt, 'yyyy.MM.dd')}"></span>
+                </div>
+            </div>
+
+        </div>
+</div>
+</div>
 <nav class="bottom-nav">
     <a href="/static" class="nav-item">
         <span class="icon">🏠</span><span>홈</span>
@@ -37,6 +71,5 @@
         <span class="icon">👤</span><span>내정보</span>
     </a>
 </nav>
-
 </body>
 </html>
