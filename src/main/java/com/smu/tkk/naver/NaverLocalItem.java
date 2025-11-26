@@ -1,10 +1,10 @@
-// src/main/java/com/smu/tkk/naver/NaverLocalItem.java
 package com.smu.tkk.naver;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class NaverLocalItem {
     private String title;
     private String link;
@@ -12,10 +12,7 @@ public class NaverLocalItem {
     private String description;
     private String telephone;
     private String address;
-
-    @JsonProperty("roadAddress")
     private String roadAddress;
-
-    private String mapx; // TM128 X
-    private String mapy; // TM128 Y
+    private String mapx;   // 문자열로 옴
+    private String mapy;
 }
