@@ -100,30 +100,27 @@
         </div>
 
         <!-- 주소 -->
-        <div class="popup-detail-location"
-             th:text="${popup.address}">
+        <div class="popup-detail-location" th:text="${popup.address}">
             주소
         </div>
 
         <!-- 기간 -->
         <div class="popup-detail-date"
              th:text="|${popup.startDate} ~ ${popup.endDate}|">
-            2025-01-01 ~ 2025-01-31
         </div>
 
         <!-- 설명 -->
         <h2 class="popup-detail-subtitle">팝업 소개</h2>
-        <p class="popup-detail-text"
-           th:text="${popup.description}">
+        <p class="popup-detail-text" th:text="${popup.description}">
             설명 텍스트
         </p>
 
-        <!-- 지도자리 -->
+        <!-- 지도 자리 -->
         <h2 class="popup-detail-subtitle">위치</h2>
-        <p class="popup-detail-text" th:text="${popup.address}">주소 텍스트</p>
+        <p class="popup-detail-text" th:text="${popup.address}"></p>
 
         <div class="popup-detail-map">
-            <!-- 나중에 Kakao Map 들어갈 자리 -->
+            <!-- 향후 카카오 지도 -->
         </div>
 
     </article>

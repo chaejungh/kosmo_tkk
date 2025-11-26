@@ -1,30 +1,40 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.service.PopupService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
+
+    private final PopupService popupService;  // ⭐ 홈에 팝업 목록 띄우려고 추가
 
     /**
      * 홈 화면
-     * URL  : /
+     * URL : /
      * View : templates/index.html
      */
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) throws Exception {
+
+        // ⭐ 홈 스와이퍼에서 사용할 팝업 리스트  (최대 10개만)
+        model.addAttribute("popupList",
+                popupService.readAll(PageRequest.of(0, 10)));
+
         return "index";
     }
 
     /**
-     * 문의 / 고객센터 진입 (플로팅 버튼)
-     * URL  : /help
+     * 문의 / 고객센터
+     * URL : /help
      * View : templates/mypage/service/inquiries.html
-     *       (혹은 네가 만든 help 전용 화면으로 바꿔도 됨)
      */
     @GetMapping("/help")
     public String help() {
-        // 만약 별도 help.html 쓰고 싶으면 "mypage/service/inquiries" 대신 "mypage/service/help" 등으로 바꿔도 돼.
         return "mypage/service/inquiries";
     }
 }
