@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>팝업스토어 목록 - 더쿠쿠</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 홈이랑 스타일 통일 -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
 
     <style>
@@ -13,6 +14,23 @@
             padding: 16px;
         }
 
+        .popup-list-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .popup-list-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .popup-list-sub {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
         .popup-card {
             border-radius: 16px;
             background: #ffffff;
@@ -20,24 +38,37 @@
             overflow: hidden;
             margin-bottom: 14px;
             cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .popup-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+        }
+
+        .popup-thumb-wrap {
+            width: 100%;
+            height: 160px;
+            background: #e5e7eb;
+            overflow: hidden;
         }
 
         .popup-thumb {
             width: 100%;
-            height: 160px;
-            background: #ddd;
+            height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .popup-info {
-            padding: 12px 14px;
+            padding: 12px 14px 14px;
         }
 
         .popup-title {
             font-size: 16px;
             font-weight: 700;
             margin-bottom: 4px;
-            color: #111;
+            color: #111827;
         }
 
         .popup-place {
@@ -49,52 +80,80 @@
         .popup-date {
             font-size: 13px;
             color: #4b5563;
+            margin-bottom: 2px;
+        }
+
+        .popup-region {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .popup-empty {
+            text-align: center;
+            padding: 24px 0;
+            color: #9ca3af;
+            font-size: 13px;
         }
     </style>
 </head>
 
 <body>
-
 <div class="popup-list-page">
 
-    <h1 style="font-size:18px; font-weight:700; margin-bottom:16px;">
-        팝업스토어 목록
-    </h1>
+    <div class="popup-list-header">
+        <div>
+            <div class="popup-list-title">팝업스토어 목록</div>
+            <div class="popup-list-sub">더쿠쿠에 등록된 팝업 정보를 한 눈에 볼 수 있어요.</div>
+        </div>
+        <a th:href="@{/}" style="font-size:12px; color:#4f46e5; text-decoration:none;">
+            홈으로 →
+        </a>
+    </div>
+
+    <!-- 데이터 없을 때 -->
+    <div class="popup-empty" th:if="${#lists.isEmpty(popupList)}">
+        등록된 팝업스토어가 없습니다.
+    </div>
 
     <!-- 리스트 반복 -->
     <div th:each="item : ${popupList}"
          class="popup-card"
          th:onclick="'location.href=\'/popupstore/' + ${item.id} + '/detail.do\''">
 
-        <!-- 배너 이미지 -->
-        <img class="popup-thumb"
-             th:src="${item.bannerImageUrl != null ? item.bannerImageUrl : '/images/default-popup.jpg'}"
-             alt="팝업 썸네일">
+        <!-- 배너 이미지 영역 -->
+        <div class="popup-thumb-wrap">
+            <img class="popup-thumb"
+                 th:src="${item.bannerImageUrl != null} ? ${item.bannerImageUrl} : @{/images/default-popup.jpg}"
+                 alt="팝업 썸네일">
+        </div>
 
+        <!-- 텍스트 정보 -->
         <div class="popup-info">
             <!-- 제목 -->
             <div class="popup-title" th:text="${item.title}">팝업 제목</div>
 
-            <!-- 장소명 -->
+            <!-- 장소명 (없으면 지역명으로 대체) -->
             <div class="popup-place"
-                 th:text="${item.placeName != null ? item.placeName : item.regionName}">
+                 th:text="${item.placeName != null && !#strings.isEmpty(item.placeName)}
+                          ? ${item.placeName}
+                          : (${item.regionName} != null ? ${item.regionName} : '장소 미정')">
                 장소명
             </div>
 
             <!-- 기간 -->
             <div class="popup-date"
-                 th:text="${item.startDate + ' ~ ' + item.endDate}">
-                2025.00.00 ~ 2025.00.00
+                 th:text="|${item.startDate} ~ ${item.endDate}|">
+                2025-01-01 ~ 2025-01-31
+            </div>
+
+            <!-- 지역 태그 -->
+            <div class="popup-region"
+                 th:if="${item.regionName != null}">
+                #<span th:text="${item.regionName}">지역</span>
             </div>
         </div>
     </div>
 
-    <!-- 데이터 없을 때 -->
-    <div th:if="${#lists.isEmpty(popupList)}" style="text-align:center; padding:20px; color:#777;">
-        등록된 팝업스토어가 없습니다.
-    </div>
-
 </div>
-
 </body>
 </html>

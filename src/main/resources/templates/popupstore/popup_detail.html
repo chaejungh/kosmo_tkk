@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title th:text="${popup.title != null ? popup.title : '팝업 상세'} + ' - 더쿠쿠'">팝업 상세</title>
+    <title th:text="${popup.title} + ' - 팝업 상세 - 더쿠쿠'">팝업 상세</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 
     <style>
         .page {
@@ -14,165 +13,121 @@
             padding: 16px;
         }
 
+        .back-link {
+            font-size: 12px;
+            color: #6b7280;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+
         .popup-detail-card {
             border-radius: 18px;
             background: #ffffff;
-            padding: 18px 20px 22px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+            padding: 16px 18px 20px;
         }
 
         .popup-banner {
             width: 100%;
             height: 220px;
-            border-radius: 14px;
+            border-radius: 16px;
+            background: #e5e7eb;
             object-fit: cover;
-            background-color: #eee;
             margin-bottom: 14px;
         }
 
-        .popup-title {
+        .popup-detail-title {
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 6px;
         }
 
-        .popup-location {
-            font-size: 14px;
-            color: #6b7280;
-            margin-bottom: 3px;
-        }
-
-        .popup-place-name {
+        .popup-detail-location,
+        .popup-detail-date {
             font-size: 14px;
             color: #4b5563;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .popup-date {
-            font-size: 14px;
-            font-weight: 500;
-            color: #111827;
-            margin-bottom: 14px;
-        }
-
-        .section-title {
-            font-size: 15px;
+        .popup-detail-subtitle {
+            font-size: 16px;
             font-weight: 600;
-            margin: 14px 0 6px;
+            margin-top: 20px;
+            margin-bottom: 6px;
         }
 
-        .section-text {
+        .popup-detail-text {
             font-size: 14px;
             color: #4b5563;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        .map-box {
+        .popup-detail-map {
             width: 100%;
-            height: 230px;
-            background: #ddd;
-            border-radius: 14px;
+            height: 240px;
+            background: #d1d5db;
+            border-radius: 12px;
             margin-top: 8px;
-        }
-
-        .actions {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px 0;
-            text-align: center;
-            border-radius: 999px;
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .btn-primary {
-            background: #6366f1;
-            color: #fff;
-        }
-
-        .btn-outline {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            color: #374151;
         }
     </style>
 </head>
 
 <body>
-
 <div class="page">
 
-    <!-- 뒤로가기 버튼 -->
-    <a th:href="@{/popupstore/list.do(page=1,pageLimit=20,sort='createAt')}"
-       style="font-size: 13px; color:#6b7280; text-decoration:none;">
-        ← 팝업 목록으로 돌아가기
+    <!-- 뒤로가기 -->
+    <a th:href="@{/popupstore/list.do(page=1,pageLimit=20,sort='createAt')}" class="back-link">
+        ← 팝업스토어 목록
     </a>
 
     <article class="popup-detail-card">
 
         <!-- 배너 이미지 -->
         <img class="popup-banner"
-             th:src="${popup.bannerImageUrl != null ? popup.bannerImageUrl : '/images/default-popup.jpg'}"
-             alt="팝업 이미지"/>
+             th:src="${popup.bannerImageUrl != null} ? ${popup.bannerImageUrl} : @{/images/default-popup.jpg}"
+             alt="팝업 배너 이미지">
 
         <!-- 제목 -->
-        <h1 class="popup-title" th:text="${popup.title}">팝업 제목</h1>
+        <h1 class="popup-detail-title" th:text="${popup.title}">팝업 제목</h1>
 
-        <!-- 지역명 -->
-        <div class="popup-location"
-             th:text="${popup.regionName != null ? popup.regionName : '지역 정보 없음'}">
-            지역 정보 없음
+        <!-- 장소 -->
+        <div class="popup-detail-location"
+             th:text="${popup.placeName != null ? popup.placeName : popup.regionName}">
+            장소명
         </div>
 
-        <!-- 장소명 -->
-        <div class="popup-place-name"
-             th:text="${popup.placeName != null ? popup.placeName : '장소 정보 없음'}">
-            장소 정보 없음
+        <!-- 주소 -->
+        <div class="popup-detail-location"
+             th:text="${popup.address}">
+            주소
         </div>
 
         <!-- 기간 -->
-        <div class="popup-date"
-             th:text="${popup.startDate + ' ~ ' + popup.endDate}">
-            2025.00.00 ~ 2025.00.00
+        <div class="popup-detail-date"
+             th:text="|${popup.startDate} ~ ${popup.endDate}|">
+            2025-01-01 ~ 2025-01-31
         </div>
 
-        <!-- 소개 -->
-        <section>
-            <h2 class="section-title">팝업 소개</h2>
-            <p class="section-text"
-               th:text="${popup.description != null ? popup.description : '소개 정보 없음'}">
-                소개 정보 없음
-            </p>
-        </section>
+        <!-- 설명 -->
+        <h2 class="popup-detail-subtitle">팝업 소개</h2>
+        <p class="popup-detail-text"
+           th:text="${popup.description}">
+            설명 텍스트
+        </p>
 
+        <!-- 지도자리 -->
+        <h2 class="popup-detail-subtitle">위치</h2>
+        <p class="popup-detail-text" th:text="${popup.address}">주소 텍스트</p>
 
-        <!-- 주소 -->
-        <section>
-            <h2 class="section-title">주소</h2>
-            <p class="section-text"
-               th:text="${popup.streetAddress != null ? popup.streetAddress : '주소 미등록'}">
-                주소 미등록
-            </p>
-            <div class="map-box">
-                <!-- 나중에 좌표 기반 지도 삽입 -->
-            </div>
-        </section>
-
-        <!-- 버튼 -->
-        <div class="actions">
-            <button class="btn btn-outline">찜하기</button>
-            <button class="btn btn-primary">지도에서 보기</button>
+        <div class="popup-detail-map">
+            <!-- 나중에 Kakao Map 들어갈 자리 -->
         </div>
 
     </article>
 
 </div>
-
 </body>
 </html>
