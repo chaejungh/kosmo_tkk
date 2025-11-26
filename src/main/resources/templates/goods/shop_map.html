@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>더쿠쿠 | 매장 지도</title>
 
-    <!-- Naver Maps SDK (geocoder 포함 꼭!!) -->
+    <!-- Naver Maps SDK (geocoder 포함) -->
     <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&submodules=geocoder" defer></script>
     <script>
         window.navermap_authFailure = () =>
@@ -76,7 +76,8 @@
         }
 
         .map-result-panel{
-            display:none;
+            /* ★ 지도 안 검색결과 패널은 이제 사용 안 하므로 강제로 숨김 */
+            display:none !important;
             background:#fff;
             border-radius:14px;
             box-shadow:0 10px 24px rgba(0,0,0,.18);
@@ -178,6 +179,9 @@
 
     let map, infoWin, startMarker, endMarker, userMarker, routeLine;
     let waypointMarkers = [], waypointMode = false;
+
+    // 검색 관련 상태
+    let searchMarkers = [];
     let lastPlaces = [];
 
     function boot(){
@@ -207,7 +211,7 @@
         $('#chipReset').onclick = resetAll;
         $('#chipDirections').onclick = openDirectionsPanel;
 
-        // 지도 안 검색창
+        // ===== 지도 안 검색창 =====
         const si = $('#mapSearchInput');
         const sb = $('#mapSearchBtn');
         if(si && sb){
@@ -222,7 +226,7 @@
             });
         }
 
-        // 헤더 검색창(#q / #btnSearch)도 있으면 연결
+        // 헤더 검색창(#q / #btnSearch)이 iframe 안에 있을 경우 지원 (없으면 무시)
         const hq = document.getElementById('q');
         const hb = document.getElementById('btnSearch');
         if(hq && hb){
@@ -238,12 +242,25 @@
             });
         }
 
+        // 브라우저 Fullscreen API 상태 변화
         document.addEventListener('fullscreenchange', onFullscreenChange);
+
+        // ★ 부모(index)에서 보내는 "이 장소로 포커스해라" 메시지 수신
+        window.addEventListener('message', (event)=>{
+            if(event.origin !== window.location.origin) return;
+            const data = event.data;
+            if(!data || data.type !== 'MAP_FOCUS_PLACE' || !data.place) return;
+            try{
+                focusPlace(data.place);
+            }catch(e){
+                console.warn('MAP_FOCUS_PLACE 처리 중 오류', e);
+            }
+        });
 
         toast('지도 준비 완료');
     }
 
-    // ===== 전체화면 상태 =====
+    // 전체화면 상태 변경 처리
     function onFullscreenChange(){
         const wrap = $('#mapWrap');
         const fs = (document.fullscreenElement === wrap);
@@ -324,7 +341,7 @@
         waypointMarkers = [];
     }
 
-    // ===== 자동차 경로(내부 Directions API 연동) =====
+    // ===== 자동차 경로(내부 API 연동) =====
     async function drawRouteCar(){
         let sLL = startMarker?.getPosition() || userMarker?.getPosition() || map.getCenter();
         if(!endMarker) return toast('도착지를 먼저 지정하세요.');
@@ -374,7 +391,6 @@
 
     // ===== 전체화면 + 길찾기 패널(딥링크) =====
     let bsLoaded=false, dirPanelCreated=false, offcanvasInstance=null;
-
     async function ensureBootstrap(){
         if(bsLoaded) return;
         await new Promise(ok=>{
@@ -392,11 +408,10 @@
         });
         bsLoaded=true;
     }
-
     function createDirPanel(){
         if(dirPanelCreated) return;
 
-        const host = $('#mapWrap');
+        const host = $('#mapWrap'); // fullscreen 요소 내부에 패널 삽입
 
         const wrapper = document.createElement('div');
         wrapper.innerHTML=`
@@ -514,70 +529,91 @@
     }
 
     // ===== 검색 (DB + 네이버 통합) =====
-    function getPlaceName(p){
-        return p.name || p.storeName || p.title || '';
-    }
-    function getPlaceAddress(p){
-        return p.roadAddress || p.storeRoadAddress || p.address || p.storeAddress || '';
-    }
-    function toNum(v){
-        if(v === null || v === undefined || v === '') return null;
-        const n = Number(v);
-        return Number.isFinite(n) ? n : null;
+    function clearSearchMarkers(){
+        searchMarkers.forEach(m=>m.setMap(null));
+        searchMarkers = [];
     }
 
-    // ▶ 여기서 핵심:
-    //   STORE  → lat/lng 직접 사용
-    //   NAVER → 주소로 geocode 해서 좌표 얻기
+    // 객체에서 여러 이름으로 올 수 있는 좌표를 안전하게 뽑는 함수
+    function getField(obj, ...candidates) {
+        for (const name of candidates) {
+            if (obj[name] != null) return obj[name];
+            const lower = name.toLowerCase();
+            for (const k in obj) {
+                if (k.toLowerCase() === lower && obj[k] != null) {
+                    return obj[k];
+                }
+            }
+        }
+        return null;
+    }
+
+    function placeToLatLng(p){
+        if (!p) return null;
+
+        const toNum = (v) => {
+            if (v === null || v === undefined || v === '') return null;
+            const n = Number(v);
+            return Number.isFinite(n) ? n : null;
+        };
+
+        // 우리 DB 더미 + Store: lat/lng, latitude/longitude, x/y 등 다 지원
+        // 네이버: mapx/mapy 또는 mapX/mapY 형태까지 포함
+        let lat = toNum(getField(p, 'lat','latitude','y','mapy','mapY'));
+        let lng = toNum(getField(p, 'lng','lon','longitude','x','mapx','mapX'));
+
+        if (lat == null || lng == null) {
+            console.warn('placeToLatLng: 좌표 못 찾음', p);
+            return null;
+        }
+
+        // 값이 너무 크면 TM128 좌표라고 보고 변환
+        if (Math.abs(lat) > 90 || Math.abs(lng) > 180) {
+            // TM128 은 x=mapx(동서), y=mapy(남북)
+            const tm = new naver.maps.Point(lng, lat); // lng→x, lat→y
+            const ll = naver.maps.TransCoord.fromTM128ToLatLng(tm);
+            return ll;
+        }
+
+        return new naver.maps.LatLng(lat, lng);
+    }
+
     function focusPlace(p){
-        console.log('focusPlace 클릭', p);
-
-        const name = getPlaceName(p);
-        const addr = getPlaceAddress(p);
-
         const apply = (ll) => {
-            if(!ll){
+            if (!ll) {
                 toast('좌표 정보가 없습니다.');
                 return;
             }
             map.panTo(ll);
-
-            if(endMarker) endMarker.setMap(null);
+            if (endMarker) endMarker.setMap(null);
             endMarker = new naver.maps.Marker({
                 map,
                 position: ll,
-                title: name
+                title: p.name
             });
-
             infoWin.setContent(
                 `<div style="padding:6px 8px;font-size:13px">
-                   <div style="font-weight:600;margin-bottom:4px">${name}</div>
-                   <div style="font-size:12px;color:#666">${addr}</div>
-                 </div>`
+               <div style="font-weight:600;margin-bottom:4px">${p.name || ''}</div>
+               <div style="font-size:12px;color:#666">${p.roadAddress || p.address || ''}</div>
+             </div>`
             );
             infoWin.open(map, endMarker);
-            $('#summary').textContent = `도착지: ${name || '선택한 매장'}`;
         };
 
-        // 1) 우리 DB 매장(STORE) : lat/lng 있으면 바로 사용
-        if(p.source === 'STORE'){
-            const lat = toNum(p.lat);
-            const lng = toNum(p.lng);
-            if(lat != null && lng != null){
-                apply(new naver.maps.LatLng(lat, lng));
-                return;
-            }
-        }
-
-        // 2) 그 외(네이버 등): 주소로 geocode
-        const q = addr || name;
-        if(!q){
-            toast('주소 정보가 없습니다.');
+        let ll = placeToLatLng(p);
+        if (ll) {
+            apply(ll);
             return;
         }
 
-        naver.maps.Service.geocode({query:q},(st,r)=>{
-            if(st !== naver.maps.Service.Status.OK || !r?.v2?.addresses?.length){
+        const q = p.roadAddress || p.address || p.name;
+        if (!q) {
+            toast('좌표 정보가 없습니다.');
+            return;
+        }
+
+        naver.maps.Service.geocode({ query: q }, (st, r) => {
+            if (st !== naver.maps.Service.Status.OK || !r?.v2?.addresses?.length) {
                 console.warn('geocode 실패', q, r);
                 toast('위치를 찾을 수 없습니다.');
                 return;
@@ -600,45 +636,69 @@
         }
     }
 
+    // ★ 지도 안 패널은 숨기고, 결과는 index 바텀시트로만 내보내는 함수
     function renderPlaceResults(places){
-        console.log('검색 결과 places', places);
-
         lastPlaces = places;
         const panel = $('#mapSearchResults');
         panel.innerHTML = '';
 
+        clearSearchMarkers();
+
+        // 공통: 부모(index)에 결과 전달
+        const postToParent = (list) => {
+            try{
+                if(window.parent && window.parent !== window){
+                    window.parent.postMessage(
+                        { type: 'MAP_SEARCH_RESULTS', places: list },
+                        window.location.origin
+                    );
+                }
+            }catch(e){
+                console.warn('MAP_SEARCH_RESULTS postMessage 실패', e);
+            }
+        };
+
         if(!places.length){
-            panel.style.display='none';
+            panel.style.display = 'none';
             toast('검색 결과 없음');
+            postToParent([]);
             return;
         }
 
-        const header = document.createElement('div');
-        header.className='map-result-header';
-        header.textContent='검색 결과';
-        panel.appendChild(header);
+        let bounds = null;
 
         places.forEach((p)=>{
-            const name = getPlaceName(p);
-            const addr = getPlaceAddress(p);
+            const ll = placeToLatLng(p);
+            if(ll){
+                const marker = new naver.maps.Marker({
+                    map,
+                    position: ll,
+                    title: p.name || p.title || '',
+                    icon:{
+                        content:
+                            '<div style="width:22px;height:22px;border-radius:50%;' +
+                            'background:#F79287;border:2px solid #fff;' +
+                            'box-shadow:0 0 0 2px rgba(247,146,135,.5)"></div>'
+                    }
+                });
+                searchMarkers.push(marker);
+                naver.maps.Event.addListener(marker,'click',()=>focusPlace(p));
 
-            const btn = document.createElement('button');
-            btn.type='button';
-            btn.className='map-result-item';
-            btn.innerHTML = `
-              <div class="map-result-title">
-                <span>${name || '이름 없음'}</span>
-                ${p.source ? `<span class="map-result-badge">${
-                p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'
-            }</span>` : ''}
-              </div>
-              <div class="map-result-meta">${addr || ''}</div>
-            `;
-            btn.addEventListener('click',()=>focusPlace(p));
-            panel.appendChild(btn);
+                if(!bounds) bounds = new naver.maps.LatLngBounds(ll, ll);
+                else bounds.extend(ll);
+            }
+
+            // 여기서는 지도 안 패널에 버튼을 만들지 않음 (index 바텀시트 전용)
         });
 
-        panel.style.display='block';
+        if(bounds){
+            map.fitBounds(bounds);
+        }
+
+        panel.style.display = 'none'; // 안전하게 한 번 더 숨김
+
+        // 부모(index)에 전체 결과 목록 전달
+        postToParent(places);
     }
 
     function resetAll(){
@@ -646,6 +706,7 @@
         [startMarker,endMarker,userMarker].forEach(m=>m && m.setMap(null));
         startMarker=endMarker=userMarker=null;
         clearWaypoints();
+        clearSearchMarkers();
         $('#summary').textContent='도착지를 검색하거나 지도를 클릭해 지정하세요.';
         toast('초기화 완료');
     }
