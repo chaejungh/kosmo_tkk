@@ -430,6 +430,43 @@
                 등록된 게시글이 없습니다.
             </p>
         </section>
+        <div class="d-flex mt-3 justify-content-end">
+            <nav>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=5)}">5</a>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=10)}">10</a>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=20)}">20</a>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=40)}">40</a>
+            </nav>
+        </div>
+        <div th:with="
+        page=${posts.number},
+        last=${posts.totalPages},
+        sort=${posts.sort},
+        size=${param.size}"
+             class="my-4 d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item"
+                        th:classappend="${page}==0 ? 'disabled' ">
+                        <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
+                    </li>
+                    <li  th:each="i : ${#numbers.sequence(1,last)}"
+                         th:classappend="( (${i}-1)==${page}?'active' )"
+                         class="page-item">
+                        <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
+                    </li>
+                    <li class="page-item"
+                        th:classappend="${page}==(${last}-1) ? 'disabled' ">
+                        <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
 
 
     </main>
