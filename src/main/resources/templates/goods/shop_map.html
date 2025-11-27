@@ -76,8 +76,7 @@
         }
 
         .map-result-panel{
-            /* ★ 지도 안 검색결과 패널은 이제 사용 안 하므로 강제로 숨김 */
-            display:none !important;
+            display:none;
             background:#fff;
             border-radius:14px;
             box-shadow:0 10px 24px rgba(0,0,0,.18);
@@ -183,6 +182,8 @@
     // 검색 관련 상태
     let searchMarkers = [];
     let lastPlaces = [];
+    // 🔥 부모(index)와 공유할 검색 결과
+    window.searchPlaces = [];
 
     function boot(){
         map = new naver.maps.Map('map', {
@@ -209,7 +210,7 @@
         $('#btnRoute').onclick = drawRouteCar;
         $('#btnFullscreen').onclick = toggleFullscreen;
         $('#chipReset').onclick = resetAll;
-        $('#chipDirections').onclick = openDirectionsPanel;
+        $('#chipDirections').onclick = openDirectionsPanel; // 기본 화면에서도 길찾기 패널 열기
 
         // ===== 지도 안 검색창 =====
         const si = $('#mapSearchInput');
@@ -226,7 +227,7 @@
             });
         }
 
-        // 헤더 검색창(#q / #btnSearch)이 iframe 안에 있을 경우 지원 (없으면 무시)
+        // ===== 헤더 검색창(#q / #btnSearch)도 같은 검색에 연결 (있으면) =====
         const hq = document.getElementById('q');
         const hb = document.getElementById('btnSearch');
         if(hq && hb){
@@ -244,18 +245,6 @@
 
         // 브라우저 Fullscreen API 상태 변화
         document.addEventListener('fullscreenchange', onFullscreenChange);
-
-        // ★ 부모(index)에서 보내는 "이 장소로 포커스해라" 메시지 수신
-        window.addEventListener('message', (event)=>{
-            if(event.origin !== window.location.origin) return;
-            const data = event.data;
-            if(!data || data.type !== 'MAP_FOCUS_PLACE' || !data.place) return;
-            try{
-                focusPlace(data.place);
-            }catch(e){
-                console.warn('MAP_FOCUS_PLACE 처리 중 오류', e);
-            }
-        });
 
         toast('지도 준비 완료');
     }
@@ -341,7 +330,7 @@
         waypointMarkers = [];
     }
 
-    // ===== 자동차 경로(내부 API 연동) =====
+    // ===== 자동차 경로(내부) =====
     async function drawRouteCar(){
         let sLL = startMarker?.getPosition() || userMarker?.getPosition() || map.getCenter();
         if(!endMarker) return toast('도착지를 먼저 지정하세요.');
@@ -626,44 +615,48 @@
 
     async function searchPlacesOnMap(query){
         try{
-            const res = await fetch(`/api/map/places?query=${encodeURIComponent(query)}&limit=5`);
+            const res = await fetch(`/api/map/places?query=${encodeURIComponent(query)}&limit=20`);
             if(!res.ok) return toast('검색 실패');
             const list = await res.json();
-            renderPlaceResults(Array.isArray(list)?list:[]);
+            const places = Array.isArray(list)?list:[];
+            renderPlaceResults(places);         // 지도에 마커/범위 표시
+            // 🔥 부모(index)로 검색 결과 전송 (바텀시트용)
+            try{
+                window.searchPlaces = places;
+                if(window.parent && window.parent !== window){
+                    window.parent.postMessage(
+                        { type: 'MAP_SEARCH_RESULTS', places },
+                        window.location.origin
+                    );
+                }
+            }catch(e){
+                console.warn('postMessage 실패', e);
+            }
         }catch(e){
             console.error(e);
             toast('검색 중 오류');
         }
     }
 
-    // ★ 지도 안 패널은 숨기고, 결과는 index 바텀시트로만 내보내는 함수
     function renderPlaceResults(places){
         lastPlaces = places;
+        window.searchPlaces = places; // 🔥 전역에도 보관 (부모가 idx로 요청할 때 사용)
+
         const panel = $('#mapSearchResults');
         panel.innerHTML = '';
 
         clearSearchMarkers();
 
-        // 공통: 부모(index)에 결과 전달
-        const postToParent = (list) => {
-            try{
-                if(window.parent && window.parent !== window){
-                    window.parent.postMessage(
-                        { type: 'MAP_SEARCH_RESULTS', places: list },
-                        window.location.origin
-                    );
-                }
-            }catch(e){
-                console.warn('MAP_SEARCH_RESULTS postMessage 실패', e);
-            }
-        };
-
         if(!places.length){
-            panel.style.display = 'none';
+            panel.style.display='none';
             toast('검색 결과 없음');
-            postToParent([]);
             return;
         }
+
+        const header = document.createElement('div');
+        header.className='map-result-header';
+        header.textContent='검색 결과';
+        panel.appendChild(header);
 
         let bounds = null;
 
@@ -672,13 +665,10 @@
             if(ll){
                 const marker = new naver.maps.Marker({
                     map,
-                    position: ll,
-                    title: p.name || p.title || '',
+                    position:ll,
+                    title:p.name || p.title || '',
                     icon:{
-                        content:
-                            '<div style="width:22px;height:22px;border-radius:50%;' +
-                            'background:#F79287;border:2px solid #fff;' +
-                            'box-shadow:0 0 0 2px rgba(247,146,135,.5)"></div>'
+                        content:`<div style="width:22px;height:22px;border-radius:50%;background:#F79287;border:2px solid #fff;box-shadow:0 0 0 2px rgba(247,146,135,.5)"></div>`
                     }
                 });
                 searchMarkers.push(marker);
@@ -688,17 +678,26 @@
                 else bounds.extend(ll);
             }
 
-            // 여기서는 지도 안 패널에 버튼을 만들지 않음 (index 바텀시트 전용)
+            const btn = document.createElement('button');
+            btn.type='button';
+            btn.className='map-result-item';
+            btn.innerHTML = `
+              <div class="map-result-title">
+                <span>${p.name || '이름 없음'}</span>
+                ${p.source ? `<span class="map-result-badge">${p.source==='STORE'?'굿즈샵(더쿠쿠)':'네이버'}</span>`:''}
+              </div>
+              <div class="map-result-meta">${p.roadAddress || p.address || ''}</div>
+            `;
+            btn.addEventListener('click',()=>focusPlace(p));
+            panel.appendChild(btn);
         });
 
         if(bounds){
             map.fitBounds(bounds);
         }
 
-        panel.style.display = 'none'; // 안전하게 한 번 더 숨김
-
-        // 부모(index)에 전체 결과 목록 전달
-        postToParent(places);
+        // 지도 내부 패널은 필요 없으면 display:none 으로 두고, 마커/fitBounds 만 사용해도 된다.
+        panel.style.display='none'; // 🔥 리스트는 숨기고 마커만 사용
     }
 
     function resetAll(){
@@ -710,6 +709,18 @@
         $('#summary').textContent='도착지를 검색하거나 지도를 클릭해 지정하세요.';
         toast('초기화 완료');
     }
+
+    // 🔥 부모(index.html)에서 "이 idx로 포커스해!" 라는 메시지를 받을 때
+    window.addEventListener('message', (event)=>{
+        if(event.origin !== window.location.origin) return;
+        const data = event.data;
+        if(!data || data.type !== 'MAP_FOCUS_PLACE') return;
+        const idx = data.idx;
+        if(typeof idx !== 'number') return;
+        if(!window.searchPlaces || !window.searchPlaces[idx]) return;
+        const place = window.searchPlaces[idx];
+        focusPlace(place);
+    });
 
     (function wait(){
         if(window.naver?.maps?.Map) boot();
