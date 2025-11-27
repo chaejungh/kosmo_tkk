@@ -2,7 +2,6 @@ package com.smu.tkk.controller;
 
 import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.ServiceNotice;
 import com.smu.tkk.service.BoardService;
 import com.smu.tkk.service.NoticeService;
 import lombok.AllArgsConstructor;
@@ -74,49 +73,5 @@ public class MypageController {
         model.addAttribute("boardLikes", boardLikes);
         model.addAttribute("memberId", loginMemberId);
         return "mypage/board/likes";
-    }
-
-    // 공지사항 리스트 예시
-
-    @Controller
-    @RequestMapping("/mypage/service")
-    @RequiredArgsConstructor
-    public class ServiceNoticeController {
-
-        private final NoticeService serviceNoticeService;
-
-        @GetMapping("/notice")
-        public String noticeList(Model model,
-                                 @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC)
-                                 Pageable pageable) throws SQLException {
-
-            // 1. 전체 조회
-            Page<ServiceNotice> noticeList = serviceNoticeService.readAll(pageable);
-            model.addAttribute("noticeList", noticeList);
-
-            return "mypage/service/notices";   // ← HTML
-        }
-
-        /*@GetMapping("/notice/{id}")
-        public String noticeDetail(@PathVariable Long id, Model model) throws SQLException {
-
-            // 2. 단일 조회
-            ServiceNotice notice = serviceNoticeService.readById(id);
-            model.addAttribute("notice", notice);
-
-            return "mypage/service/notices_detail";  // ← 상세보기 HTML
-        }*/
-
-        // 자주 묻는 질문
-        @GetMapping("/faq")
-        public String faqList() {
-            return "mypage/service/faq";
-        }
-
-        // 1:1 문의
-        @GetMapping("/inquiry")
-        public String inquiryList() {
-            return "mypage/service/inquiries";
-        }
     }
 }

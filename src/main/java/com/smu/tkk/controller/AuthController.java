@@ -58,11 +58,11 @@ public class AuthController {
      * 로그아웃
      * URL : /auth/logout
      */
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
-    }
+//    @GetMapping("/logout")
+//    public String logout(HttpSession session) {
+//        session.invalidate();
+//        return "redirect:/";
+//    }
 
     /**
      * 회원가입 화면
