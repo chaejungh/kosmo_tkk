@@ -37,4 +37,12 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
     @Modifying
     @Query(value = "UPDATE BoardPost b set b.likeCount=b.likeCount+1 WHERE b.id=:postId")
     void updateAddLikeCnt(long postId);
+
+    // 현재 게시판(카테고리) 인기글 TOP5
+    List<BoardPost> findTop5ByCategoryIdAndDeletedYnOrderByLikeCountDesc(
+            Long categoryId, String deletedYn
+    );
+
+    // 전체 게시판 인기글 TOP5
+    List<BoardPost> findTop5ByDeletedYnOrderByLikeCountDesc(String deletedYn);
 }

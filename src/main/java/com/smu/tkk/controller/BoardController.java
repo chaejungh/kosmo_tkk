@@ -1,6 +1,8 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
+import com.smu.tkk.service.BoardLikeService;
 import com.smu.tkk.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +18,7 @@ import java.util.List;
 @Controller
 public class BoardController {
     private final BoardService boardService;
-
+    private final BoardLikeService boardLikeService;
     /**
      * 자유게시판 리스트
      * 예) /free/1/list.do
@@ -34,17 +36,19 @@ public class BoardController {
         Long categoryId=1L;//카테고리아이디 1== mcBoard
         Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
 
-        // ① 이 게시판(현재 카테고리) 인기글 TOP 5
-        //List<BoardPost> hotCurrentBoard = boardService.findHotPostsInCurrentBoard(5);
 
-        // ② 전체 게시판 인기글 TOP 5
-        //List<BoardPost> hotAllBoard = boardService.findHotPostsInAllBoard(5);
-        // 🔥 새로 추가한 인기글 모델
-        //model.addAttribute("hotCurrentBoard", hotCurrentBoard); // 왼쪽
-        //model.addAttribute("hotAllBoard", hotAllBoard);         // 오른쪽
+        // 2) 현재 게시판 인기글 TOP5  (왼쪽)
+        List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
+
+        // 3) 전체 게시판 인기글 TOP5   (오른쪽)
+        List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
+
 
         model.addAttribute("memberId", memberId);
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
+        model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
+        model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
+
         return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
     @GetMapping("/cosplayboard/{memberId}/list.do")
@@ -74,11 +78,14 @@ public class BoardController {
     @GetMapping("/mcboard/{memberId}/article/{postId}/detail.do")
     public String mcBoardDetail(@PathVariable Long memberId,
                                 @PathVariable Long postId,
-                                Model model) throws SQLException {
+                                Model model) throws Exception {
         BoardPost post = boardService.readOne(postId);
+
+        BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
 
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
+        model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
 
         return "board/mcboard_detail"; // 상세 템플릿 이름
     }
