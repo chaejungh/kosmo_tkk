@@ -4,6 +4,7 @@ import com.smu.tkk.entity.ServiceNotice;
 import com.smu.tkk.repository.ServiceNoticeRepository;
 import com.smu.tkk.service.NoticeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,10 +22,9 @@ import java.util.List;
          * 1. 공지사항 리스트 조회 (페이징)
          */
         @Override
-        public List<ServiceNotice> readAll(Pageable pageable) {
-            return ServiceNoticeRepository.findAll(pageable).getContent();
+        public Page<ServiceNotice> readAll(Pageable pageable) {
+            return ServiceNoticeRepository.findAll(pageable);
         }
-
         /**
          * 2. 공지사항 단일 조회
          */
