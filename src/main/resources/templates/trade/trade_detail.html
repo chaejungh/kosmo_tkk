@@ -363,7 +363,7 @@
             <div class="button-wrap">
 
                 <!-- 채팅하기 -->
-                <form th:action="@{|/trade/${currentMemberId}/chat/${trade.id}/start|}"
+                <form th:action="@{|/trade/${currentMemberId}/chat/start/${trade.id}|}"
                       method="post" style="flex:1;">
                     <button type="submit" class="btn-main">
                         💬 채팅하기

@@ -23,4 +23,7 @@ public interface TradeChatService {
 
     // 채팅방 단건 조회
     TradeChatRoom getRoom(Long roomId);
+
+    // ⭐ 자동 생성용 메서드 (추가)
+    TradeChatRoom getOrCreateRoom(Long tradeId, Long buyerId);
 }

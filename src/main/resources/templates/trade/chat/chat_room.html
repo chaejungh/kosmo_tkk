@@ -180,7 +180,7 @@
 </div>
 
 <!-- ===== 입력창 ===== -->
-<form th:action="@{'/chat/rooms/' + ${room.id} + '/send'}"
+<form th:action="@{|/trade/${currentMemberId}/chat/${room.id}/send|}"
       method="post"
       class="input-bar">
 

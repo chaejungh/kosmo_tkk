@@ -29,7 +29,6 @@ public class TradeChatServiceImp implements TradeChatService {
     @Override
     public TradeChatRoom register(Long tradeId, Long buyerId) {
 
-        // 기존 방 조회
         List<TradeChatRoom> rooms = roomRepo.findAll();
 
         for (TradeChatRoom room : rooms) {
@@ -48,8 +47,14 @@ public class TradeChatServiceImp implements TradeChatService {
         return roomRepo.save(newRoom);
     }
 
+    /* ⭐⭐ 자동 생성 전용 메서드 — 기존 코드 사용해서 구현 */
+    @Override
+    public TradeChatRoom getOrCreateRoom(Long tradeId, Long buyerId) {
+        return register(tradeId, buyerId);
+    }
+
     /* ============================================
-     * 2. 텍스트 메시지 전송
+     * 2. 메시지 전송
      * ============================================ */
     @Override
     public TradeChatMessage send(Long roomId, Long senderId, String message) {
