@@ -17,6 +17,7 @@ import java.util.Set;
 @ToString
 @Table(name = "MEMBER")
 public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID", nullable = false)
@@ -44,6 +45,16 @@ public class Member {
     @Column(name = "EMAIL", length = 100)
     private String email;
 
+    /* ----------------------------- ⭐ 추가된 필드 ----------------------------- */
+
+    @Column(name = "GENDER", nullable = false, length = 10)
+    private String gender;     // 남자 / 여자
+
+    @Column(name = "NATIONALITY", nullable = false, length = 10)
+    private String nationality; // 내국인 / 외국인
+
+    /* ------------------------------------------------------------------------- */
+
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
@@ -51,9 +62,11 @@ public class Member {
     @Column(name = "UPDATED_AT")
     private LocalDate updatedAt;
 
-    @ColumnDefault("'N'                          -- 탈퇴 여부 (Y/N)")
+    @ColumnDefault("'N'")
     @Column(name = "DELETED_YN")
     private Boolean deletedYn;
+
+    /* ----------------------------- 연관관계 ----------------------------- */
 
     @OneToMany(mappedBy = "member")
     @ToString.Exclude
@@ -129,5 +142,4 @@ public class Member {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradePost> tradePosts = new LinkedHashSet<>();
-
 }

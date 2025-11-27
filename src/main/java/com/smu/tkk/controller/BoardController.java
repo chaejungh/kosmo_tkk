@@ -31,12 +31,46 @@ public class BoardController {
     public String mcBoardList(@PathVariable("memberId") Long memberId, Model model, Pageable pageable) throws SQLException {
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
-        Page<BoardPost> posts = boardService.readAll(pageable); // 네가 만들 메서드
+        Long categoryId=1L;//카테고리아이디 1== mcBoard
+        Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
+
+        // ① 이 게시판(현재 카테고리) 인기글 TOP 5
+        //List<BoardPost> hotCurrentBoard = boardService.findHotPostsInCurrentBoard(5);
+
+        // ② 전체 게시판 인기글 TOP 5
+        //List<BoardPost> hotAllBoard = boardService.findHotPostsInAllBoard(5);
+        // 🔥 새로 추가한 인기글 모델
+        //model.addAttribute("hotCurrentBoard", hotCurrentBoard); // 왼쪽
+        //model.addAttribute("hotAllBoard", hotAllBoard);         // 오른쪽
 
         model.addAttribute("memberId", memberId);
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
+    @GetMapping("/cosplayboard/{memberId}/list.do")
+    public String cosplayBoardList(@PathVariable("memberId") Long memberId, Model model, Pageable pageable) throws SQLException {
+        // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
+        // 일단은 게시판 리스트 화면만 보여주자.
+        Long categoryId=2L;//카테고리아이디 2== cosplayboard
+        Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
+
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
+        return "board/cosplayboard_list";   // 이미 사용하던 템플릿 이름 기준
+    }
+    @GetMapping("/freeboard/{memberId}/list.do")
+    public String freeBoardList(@PathVariable("memberId") Long memberId, Model model, Pageable pageable) throws SQLException {
+        // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
+        // 일단은 게시판 리스트 화면만 보여주자.
+        Long categoryId=3L;//카테고리아이디 3== freeboard
+        Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
+
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
+        return "board/freeboard_list";   // 이미 사용하던 템플릿 이름 기준
+    }
+
+
     @GetMapping("/mcboard/{memberId}/article/{postId}/detail.do")
     public String mcBoardDetail(@PathVariable Long memberId,
                                 @PathVariable Long postId,
@@ -47,6 +81,28 @@ public class BoardController {
         model.addAttribute("post", post);
 
         return "board/mcboard_detail"; // 상세 템플릿 이름
+    }
+    @GetMapping("/cosplayboard/{memberId}/article/{postId}/detail.do")
+    public String cosplayBoardDetail(@PathVariable Long memberId,
+                                @PathVariable Long postId,
+                                Model model) throws SQLException {
+        BoardPost post = boardService.readOne(postId);
+
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("post", post);
+
+        return "board/cosplayboard_detail"; // 상세 템플릿 이름
+    }
+    @GetMapping("/freeboard/{memberId}/article/{postId}/detail.do")
+    public String freeBoardDetail(@PathVariable Long memberId,
+                                @PathVariable Long postId,
+                                Model model) throws SQLException {
+        BoardPost post = boardService.readOne(postId);
+
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("post", post);
+
+        return "board/freeboard_detail"; // 상세 템플릿 이름
     }
 
 

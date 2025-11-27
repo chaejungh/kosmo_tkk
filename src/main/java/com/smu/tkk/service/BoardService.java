@@ -36,7 +36,7 @@ public interface BoardService {
     Page<BoardPost> readByKeyword(String keyword) throws SQLException;
 
     // 7. 카테고리별 게시글 조회 (옵션)(레파지토리 완료)
-    Page<BoardPost> readByCategory(Long categoryId) throws SQLException;
+    Page<BoardPost> readByCategory(Long categoryId,Pageable pageable) throws SQLException;
 
     // 8. 게시판 카테고리 전체 조회(레파지토리 완료)
     List<BoardCategory> readAllCategories() throws SQLException;
@@ -72,4 +72,7 @@ public interface BoardService {
     //18. 유저로 삭제 유무 게시글 조회
     Page<BoardPost> readByUser(Long memberId,String yN, Pageable pageable) throws SQLException;
 
+    //List<BoardPost> readHotPostsInCurrentBoard(); //현재게시판 기준 인기글 Top5
+
+    //List<BoardPost> readHotPostsInAllBoard(); // 전체게시판 기준 인기글 Top5
 }

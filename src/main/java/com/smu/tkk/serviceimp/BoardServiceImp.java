@@ -90,7 +90,7 @@ import java.util.Optional;
         }
 
         @Override
-        public Page<BoardPost> readByCategory(Long categoryId) throws SQLException {
+        public Page<BoardPost> readByCategory(Long categoryId,Pageable pageable) throws SQLException {
             BoardCategory category = null;
             if (categoryId != null) {
                 category = boardCategoryRepository.findById(categoryId).orElse(null);

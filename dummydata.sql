@@ -1,302 +1,104 @@
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user001', 'pw001', '닉네임001', NULL, '안녕하세요, 유저001입니다.', 2, 'user001@example.com', 'N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user001','pw001','닉네임001','https://example.com/profile/sample1.png','안녕하세요, 유저001입니다.',2,'user001@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user002','pw002','닉네임002','https://example.com/profile/sample1.png','안녕하세요, 유저002입니다.',2,'user002@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user003','pw003','닉네임003','https://example.com/profile/sample1.png','안녕하세요, 유저003입니다.',2,'user003@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user004','pw004','닉네임004','https://example.com/profile/sample1.png','안녕하세요, 유저004입니다.',2,'user004@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user005','pw005','닉네임005','https://example.com/profile/sample1.png','안녕하세요, 유저005입니다.',2,'user005@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user006','pw006','닉네임006','https://example.com/profile/sample1.png','안녕하세요, 유저006입니다.',2,'user006@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user007','pw007','닉네임007','https://example.com/profile/sample1.png','안녕하세요, 유저007입니다.',2,'user007@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user008','pw008','닉네임008','https://example.com/profile/sample1.png','안녕하세요, 유저008입니다.',2,'user008@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user009','pw009','닉네임009','https://example.com/profile/sample1.png','안녕하세요, 유저009입니다.',2,'user009@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user010','pw010','닉네임010','https://example.com/profile/sample1.png','안녕하세요, 유저010입니다.',2,'user010@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user011','pw011','닉네임011','https://example.com/profile/sample2.png','안녕하세요, 유저011입니다.',2,'user011@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user012','pw012','닉네임012','https://example.com/profile/sample2.png','안녕하세요, 유저012입니다.',2,'user012@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user013','pw013','닉네임013','https://example.com/profile/sample2.png','안녕하세요, 유저013입니다.',2,'user013@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user014','pw014','닉네임014','https://example.com/profile/sample2.png','안녕하세요, 유저014입니다.',2,'user014@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user015','pw015','닉네임015','https://example.com/profile/sample2.png','안녕하세요, 유저015입니다.',2,'user015@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user016','pw016','닉네임016','https://example.com/profile/sample2.png','안녕하세요, 유저016입니다.',2,'user016@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user017','pw017','닉네임017','https://example.com/profile/sample2.png','안녕하세요, 유저017입니다.',2,'user017@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user018','pw018','닉네임018','https://example.com/profile/sample2.png','안녕하세요, 유저018입니다.',2,'user018@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user019','pw019','닉네임019','https://example.com/profile/sample2.png','안녕하세요, 유저019입니다.',2,'user019@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user020','pw020','닉네임020','https://example.com/profile/sample2.png','안녕하세요, 유저020입니다.',2,'user020@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user021','pw021','닉네임021','https://example.com/profile/sample3.png','안녕하세요, 유저021입니다.',2,'user021@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user022','pw022','닉네임022','https://example.com/profile/sample3.png','안녕하세요, 유저022입니다.',2,'user022@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user023','pw023','닉네임023','https://example.com/profile/sample3.png','안녕하세요, 유저023입니다.',2,'user023@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user024','pw024','닉네임024','https://example.com/profile/sample3.png','안녕하세요, 유저024입니다.',2,'user024@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user025','pw025','닉네임025','https://example.com/profile/sample3.png','안녕하세요, 유저025입니다.',2,'user025@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user026','pw026','닉네임026','https://example.com/profile/sample3.png','안녕하세요, 유저026입니다.',2,'user026@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user027','pw027','닉네임027','https://example.com/profile/sample3.png','안녕하세요, 유저027입니다.',2,'user027@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user028','pw028','닉네임028','https://example.com/profile/sample3.png','안녕하세요, 유저028입니다.',2,'user028@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user029','pw029','닉네임029','https://example.com/profile/sample3.png','안녕하세요, 유저029입니다.',2,'user029@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user030','pw030','닉네임030','https://example.com/profile/sample3.png','안녕하세요, 유저030입니다.',2,'user030@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user031','pw031','닉네임031',NULL,'안녕하세요, 유저031입니다.',2,'user031@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user032','pw032','닉네임032',NULL,'안녕하세요, 유저032입니다.',2,'user032@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user033','pw033','닉네임033',NULL,'안녕하세요, 유저033입니다.',2,'user033@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user034','pw034','닉네임034',NULL,'안녕하세요, 유저034입니다.',2,'user034@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user035','pw035','닉네임035',NULL,'안녕하세요, 유저035입니다.',2,'user035@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user036','pw036','닉네임036',NULL,'안녕하세요, 유저036입니다.',2,'user036@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user037','pw037','닉네임037',NULL,'안녕하세요, 유저037입니다.',2,'user037@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user038','pw038','닉네임038',NULL,'안녕하세요, 유저038입니다.',2,'user038@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user039','pw039','닉네임039',NULL,'안녕하세요, 유저039입니다.',2,'user039@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user040','pw040','닉네임040',NULL,'안녕하세요, 유저040입니다.',2,'user040@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user041','pw041','닉네임041',NULL,'안녕하세요, 유저041입니다.',2,'user041@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user042','pw042','닉네임042',NULL,'안녕하세요, 유저042입니다.',2,'user042@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user043','pw043','닉네임043',NULL,'안녕하세요, 유저043입니다.',2,'user043@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user044','pw044','닉네임044',NULL,'안녕하세요, 유저044입니다.',2,'user044@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user045','pw045','닉네임045',NULL,'안녕하세요, 유저045입니다.',2,'user045@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user046','pw046','닉네임046',NULL,'안녕하세요, 유저046입니다.',2,'user046@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user047','pw047','닉네임047',NULL,'안녕하세요, 유저047입니다.',2,'user047@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user048','pw048','닉네임048',NULL,'안녕하세요, 유저048입니다.',2,'user048@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user049','pw049','닉네임049',NULL,'안녕하세요, 유저049입니다.',2,'user049@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user050','pw050','닉네임050',NULL,'안녕하세요, 유저050입니다.',2,'user050@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user051','pw051','닉네임051',NULL,'안녕하세요, 유저051입니다.',2,'user051@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user052','pw052','닉네임052',NULL,'안녕하세요, 유저052입니다.',2,'user052@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user053','pw053','닉네임053',NULL,'안녕하세요, 유저053입니다.',2,'user053@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user054','pw054','닉네임054',NULL,'안녕하세요, 유저054입니다.',2,'user054@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user055','pw055','닉네임055',NULL,'안녕하세요, 유저055입니다.',2,'user055@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user056','pw056','닉네임056',NULL,'안녕하세요, 유저056입니다.',2,'user056@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user057','pw057','닉네임057',NULL,'안녕하세요, 유저057입니다.',2,'user057@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user058','pw058','닉네임058',NULL,'안녕하세요, 유저058입니다.',2,'user058@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user059','pw059','닉네임059',NULL,'안녕하세요, 유저059입니다.',2,'user059@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user060','pw060','닉네임060',NULL,'안녕하세요, 유저060입니다.',2,'user060@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user061','pw061','닉네임061',NULL,'안녕하세요, 유저061입니다.',2,'user061@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user062','pw062','닉네임062',NULL,'안녕하세요, 유저062입니다.',2,'user062@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user063','pw063','닉네임063',NULL,'안녕하세요, 유저063입니다.',2,'user063@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user064','pw064','닉네임064',NULL,'안녕하세요, 유저064입니다.',2,'user064@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user065','pw065','닉네임065',NULL,'안녕하세요, 유저065입니다.',2,'user065@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user066','pw066','닉네임066',NULL,'안녕하세요, 유저066입니다.',2,'user066@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user067','pw067','닉네임067',NULL,'안녕하세요, 유저067입니다.',2,'user067@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user068','pw068','닉네임068',NULL,'안녕하세요, 유저068입니다.',2,'user068@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user069','pw069','닉네임069',NULL,'안녕하세요, 유저069입니다.',2,'user069@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user070','pw070','닉네임070',NULL,'안녕하세요, 유저070입니다.',2,'user070@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user071','pw071','닉네임071',NULL,'안녕하세요, 유저071입니다.',2,'user071@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user072','pw072','닉네임072',NULL,'안녕하세요, 유저072입니다.',2,'user072@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user073','pw073','닉네임073',NULL,'안녕하세요, 유저073입니다.',2,'user073@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user074','pw074','닉네임074',NULL,'안녕하세요, 유저074입니다.',2,'user074@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user075','pw075','닉네임075',NULL,'안녕하세요, 유저075입니다.',2,'user075@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user076','pw076','닉네임076',NULL,'안녕하세요, 유저076입니다.',2,'user076@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user077','pw077','닉네임077',NULL,'안녕하세요, 유저077입니다.',2,'user077@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user078','pw078','닉네임078',NULL,'안녕하세요, 유저078입니다.',2,'user078@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user079','pw079','닉네임079',NULL,'안녕하세요, 유저079입니다.',2,'user079@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user080','pw080','닉네임080',NULL,'안녕하세요, 유저080입니다.',2,'user080@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user081','pw081','닉네임081',NULL,'안녕하세요, 유저081입니다.',2,'user081@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user082','pw082','닉네임082',NULL,'안녕하세요, 유저082입니다.',2,'user082@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user083','pw083','닉네임083',NULL,'안녕하세요, 유저083입니다.',2,'user083@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user084','pw084','닉네임084',NULL,'안녕하세요, 유저084입니다.',2,'user084@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user085','pw085','닉네임085',NULL,'안녕하세요, 유저085입니다.',2,'user085@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user086','pw086','닉네임086',NULL,'안녕하세요, 유저086입니다.',2,'user086@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user087','pw087','닉네임087',NULL,'안녕하세요, 유저087입니다.',2,'user087@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user088','pw088','닉네임088',NULL,'안녕하세요, 유저088입니다.',2,'user088@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user089','pw089','닉네임089',NULL,'안녕하세요, 유저089입니다.',2,'user089@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user090','pw090','닉네임090',NULL,'안녕하세요, 유저090입니다.',2,'user090@example.com','여자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user091','pw091','닉네임091',NULL,'안녕하세요, 유저091입니다.',2,'user091@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user092','pw092','닉네임092',NULL,'안녕하세요, 유저092입니다.',2,'user092@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user093','pw093','닉네임093',NULL,'안녕하세요, 유저093입니다.',2,'user093@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user094','pw094','닉네임094',NULL,'안녕하세요, 유저094입니다.',2,'user094@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user095','pw095','닉네임095',NULL,'안녕하세요, 유저095입니다.',2,'user095@example.com','남자','외국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user096','pw096','닉네임096',NULL,'안녕하세요, 유저096입니다.',2,'user096@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user097','pw097','닉네임097',NULL,'안녕하세요, 유저097입니다.',2,'user097@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user098','pw098','닉네임098',NULL,'안녕하세요, 유저098입니다.',2,'user098@example.com','여자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user099','pw099','닉네임099',NULL,'안녕하세요, 유저099입니다.',2,'user099@example.com','남자','내국인','N');
+INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user100','pw100','닉네임100',NULL,'안녕하세요, 유저100입니다.',2,'user100@example.com','여자','외국인','N');
 
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user002', 'pw002', '닉네임002', NULL, '안녕하세요, 유저002입니다.', 3, 'user002@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user003', 'pw003', '닉네임003', 'https://example.com/profile/user003.png', '안녕하세요, 유저003입니다.', 1, 'user003@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user004', 'pw004', '닉네임004', NULL, '안녕하세요, 유저004입니다.', 2, 'user004@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user005', 'pw005', '닉네임005', NULL, '안녕하세요, 유저005입니다.', 3, 'user005@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user006', 'pw006', '닉네임006', 'https://example.com/profile/user006.png', '안녕하세요, 유저006입니다.', 1, 'user006@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user007', 'pw007', '닉네임007', NULL, '안녕하세요, 유저007입니다.', 2, 'user007@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user008', 'pw008', '닉네임008', NULL, '안녕하세요, 유저008입니다.', 3, 'user008@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user009', 'pw009', '닉네임009', 'https://example.com/profile/user009.png', '안녕하세요, 유저009입니다.', 1, 'user009@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user010', 'pw010', '닉네임010', NULL, '안녕하세요, 유저010입니다.', 2, 'user010@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user011', 'pw011', '닉네임011', NULL, '안녕하세요, 유저011입니다.', 3, 'user011@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user012', 'pw012', '닉네임012', 'https://example.com/profile/user012.png', '안녕하세요, 유저012입니다.', 1, 'user012@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user013', 'pw013', '닉네임013', NULL, '안녕하세요, 유저013입니다.', 2, 'user013@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user014', 'pw014', '닉네임014', NULL, '안녕하세요, 유저014입니다.', 3, 'user014@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user015', 'pw015', '닉네임015', 'https://example.com/profile/user015.png', '안녕하세요, 유저015입니다.', 1, 'user015@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user016', 'pw016', '닉네임016', NULL, '안녕하세요, 유저016입니다.', 2, 'user016@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user017', 'pw017', '닉네임017', NULL, '안녕하세요, 유저017입니다.', 3, 'user017@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user018', 'pw018', '닉네임018', 'https://example.com/profile/user018.png', '안녕하세요, 유저018입니다.', 1, 'user018@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user019', 'pw019', '닉네임019', NULL, '안녕하세요, 유저019입니다.', 2, 'user019@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user020', 'pw020', '닉네임020', NULL, '안녕하세요, 유저020입니다.', 3, 'user020@example.com', 'Y');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user021', 'pw021', '닉네임021', 'https://example.com/profile/user021.png', '안녕하세요, 유저021입니다.', 1, 'user021@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user022', 'pw022', '닉네임022', NULL, '안녕하세요, 유저022입니다.', 2, 'user022@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user023', 'pw023', '닉네임023', NULL, '안녕하세요, 유저023입니다.', 3, 'user023@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user024', 'pw024', '닉네임024', 'https://example.com/profile/user024.png', '안녕하세요, 유저024입니다.', 1, 'user024@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user025', 'pw025', '닉네임025', NULL, '안녕하세요, 유저025입니다.', 2, 'user025@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user026', 'pw026', '닉네임026', NULL, '안녕하세요, 유저026입니다.', 3, 'user026@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user027', 'pw027', '닉네임027', 'https://example.com/profile/user027.png', '안녕하세요, 유저027입니다.', 1, 'user027@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user028', 'pw028', '닉네임028', NULL, '안녕하세요, 유저028입니다.', 2, 'user028@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user029', 'pw029', '닉네임029', NULL, '안녕하세요, 유저029입니다.', 3, 'user029@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user030', 'pw030', '닉네임030', 'https://example.com/profile/user030.png', '안녕하세요, 유저030입니다.', 1, 'user030@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user031', 'pw031', '닉네임031', NULL, '안녕하세요, 유저031입니다.', 2, 'user031@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user032', 'pw032', '닉네임032', NULL, '안녕하세요, 유저032입니다.', 3, 'user032@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user033', 'pw033', '닉네임033', 'https://example.com/profile/user033.png', '안녕하세요, 유저033입니다.', 1, 'user033@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user034', 'pw034', '닉네임034', NULL, '안녕하세요, 유저034입니다.', 2, 'user034@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user035', 'pw035', '닉네임035', NULL, '안녕하세요, 유저035입니다.', 3, 'user035@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user036', 'pw036', '닉네임036', 'https://example.com/profile/user036.png', '안녕하세요, 유저036입니다.', 1, 'user036@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user037', 'pw037', '닉네임037', NULL, '안녕하세요, 유저037입니다.', 2, 'user037@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user038', 'pw038', '닉네임038', NULL, '안녕하세요, 유저038입니다.', 3, 'user038@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user039', 'pw039', '닉네임039', 'https://example.com/profile/user039.png', '안녕하세요, 유저039입니다.', 1, 'user039@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user040', 'pw040', '닉네임040', NULL, '안녕하세요, 유저040입니다.', 2, 'user040@example.com', 'Y');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user041', 'pw041', '닉네임041', NULL, '안녕하세요, 유저041입니다.', 3, 'user041@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user042', 'pw042', '닉네임042', 'https://example.com/profile/user042.png', '안녕하세요, 유저042입니다.', 1, 'user042@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user043', 'pw043', '닉네임043', NULL, '안녕하세요, 유저043입니다.', 2, 'user043@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user044', 'pw044', '닉네임044', NULL, '안녕하세요, 유저044입니다.', 3, 'user044@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user045', 'pw045', '닉네임045', 'https://example.com/profile/user045.png', '안녕하세요, 유저045입니다.', 1, 'user045@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user046', 'pw046', '닉네임046', NULL, '안녕하세요, 유저046입니다.', 2, 'user046@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user047', 'pw047', '닉네임047', NULL, '안녕하세요, 유저047입니다.', 3, 'user047@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user048', 'pw048', '닉네임048', 'https://example.com/profile/user048.png', '안녕하세요, 유저048입니다.', 1, 'user048@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user049', 'pw049', '닉네임049', NULL, '안녕하세요, 유저049입니다.', 2, 'user049@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user050', 'pw050', '닉네임050', NULL, '안녕하세요, 유저050입니다.', 3, 'user050@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user051', 'pw051', '닉네임051', 'https://example.com/profile/user051.png', '안녕하세요, 유저051입니다.', 1, 'user051@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user052', 'pw052', '닉네임052', NULL, '안녕하세요, 유저052입니다.', 2, 'user052@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user053', 'pw053', '닉네임053', NULL, '안녕하세요, 유저053입니다.', 3, 'user053@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user054', 'pw054', '닉네임054', 'https://example.com/profile/user054.png', '안녕하세요, 유저054입니다.', 1, 'user054@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user055', 'pw055', '닉네임055', NULL, '안녕하세요, 유저055입니다.', 2, 'user055@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user056', 'pw056', '닉네임056', NULL, '안녕하세요, 유저056입니다.', 3, 'user056@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user057', 'pw057', '닉네임057', 'https://example.com/profile/user057.png', '안녕하세요, 유저057입니다.', 1, 'user057@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user058', 'pw058', '닉네임058', NULL, '안녕하세요, 유저058입니다.', 2, 'user058@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user059', 'pw059', '닉네임059', NULL, '안녕하세요, 유저059입니다.', 3, 'user059@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user060', 'pw060', '닉네임060', 'https://example.com/profile/user060.png', '안녕하세요, 유저060입니다.', 1, 'user060@example.com', 'Y');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user061', 'pw061', '닉네임061', NULL, '안녕하세요, 유저061입니다.', 2, 'user061@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user062', 'pw062', '닉네임062', NULL, '안녕하세요, 유저062입니다.', 3, 'user062@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user063', 'pw063', '닉네임063', 'https://example.com/profile/user063.png', '안녕하세요, 유저063입니다.', 1, 'user063@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user064', 'pw064', '닉네임064', NULL, '안녕하세요, 유저064입니다.', 2, 'user064@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user065', 'pw065', '닉네임065', NULL, '안녕하세요, 유저065입니다.', 3, 'user065@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user066', 'pw066', '닉네임066', 'https://example.com/profile/user066.png', '안녕하세요, 유저066입니다.', 1, 'user066@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user067', 'pw067', '닉네임067', NULL, '안녕하세요, 유저067입니다.', 2, 'user067@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user068', 'pw068', '닉네임068', NULL, '안녕하세요, 유저068입니다.', 3, 'user068@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user069', 'pw069', '닉네임069', 'https://example.com/profile/user069.png', '안녕하세요, 유저069입니다.', 1, 'user069@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user070', 'pw070', '닉네임070', NULL, '안녕하세요, 유저070입니다.', 2, 'user070@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user071', 'pw071', '닉네임071', NULL, '안녕하세요, 유저071입니다.', 3, 'user071@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user072', 'pw072', '닉네임072', 'https://example.com/profile/user072.png', '안녕하세요, 유저072입니다.', 1, 'user072@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user073', 'pw073', '닉네임073', NULL, '안녕하세요, 유저073입니다.', 2, 'user073@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user074', 'pw074', '닉네임074', NULL, '안녕하세요, 유저074입니다.', 3, 'user074@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user075', 'pw075', '닉네임075', 'https://example.com/profile/user075.png', '안녕하세요, 유저075입니다.', 1, 'user075@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user076', 'pw076', '닉네임076', NULL, '안녕하세요, 유저076입니다.', 2, 'user076@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user077', 'pw077', '닉네임077', NULL, '안녕하세요, 유저077입니다.', 3, 'user077@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user078', 'pw078', '닉네임078', 'https://example.com/profile/user078.png', '안녕하세요, 유저078입니다.', 1, 'user078@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user079', 'pw079', '닉네임079', NULL, '안녕하세요, 유저079입니다.', 2, 'user079@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user080', 'pw080', '닉네임080', NULL, '안녕하세요, 유저080입니다.', 3, 'user080@example.com', 'Y');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user081', 'pw081', '닉네임081', 'https://example.com/profile/user081.png', '안녕하세요, 유저081입니다.', 1, 'user081@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user082', 'pw082', '닉네임082', NULL, '안녕하세요, 유저082입니다.', 2, 'user082@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user083', 'pw083', '닉네임083', NULL, '안녕하세요, 유저083입니다.', 3, 'user083@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user084', 'pw084', '닉네임084', 'https://example.com/profile/user084.png', '안녕하세요, 유저084입니다.', 1, 'user084@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user085', 'pw085', '닉네임085', NULL, '안녕하세요, 유저085입니다.', 2, 'user085@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user086', 'pw086', '닉네임086', NULL, '안녕하세요, 유저086입니다.', 3, 'user086@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user087', 'pw087', '닉네임087', 'https://example.com/profile/user087.png', '안녕하세요, 유저087입니다.', 1, 'user087@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user088', 'pw088', '닉네임088', NULL, '안녕하세요, 유저088입니다.', 2, 'user088@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user089', 'pw089', '닉네임089', NULL, '안녕하세요, 유저089입니다.', 3, 'user089@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user090', 'pw090', '닉네임090', 'https://example.com/profile/user090.png', '안녕하세요, 유저090입니다.', 1, 'user090@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user091', 'pw091', '닉네임091', NULL, '안녕하세요, 유저091입니다.', 2, 'user091@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user092', 'pw092', '닉네임092', NULL, '안녕하세요, 유저092입니다.', 3, 'user092@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user093', 'pw093', '닉네임093', 'https://example.com/profile/user093.png', '안녕하세요, 유저093입니다.', 1, 'user093@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user094', 'pw094', '닉네임094', NULL, '안녕하세요, 유저094입니다.', 2, 'user094@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user095', 'pw095', '닉네임095', NULL, '안녕하세요, 유저095입니다.', 3, 'user095@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user096', 'pw096', '닉네임096', 'https://example.com/profile/user096.png', '안녕하세요, 유저096입니다.', 1, 'user096@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user097', 'pw097', '닉네임097', NULL, '안녕하세요, 유저097입니다.', 2, 'user097@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user098', 'pw098', '닉네임098', NULL, '안녕하세요, 유저098입니다.', 3, 'user098@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user099', 'pw099', '닉네임099', 'https://example.com/profile/user099.png', '안녕하세요, 유저099입니다.', 1, 'user099@example.com', 'N');
-
-INSERT INTO member (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, deleted_yn)
-VALUES ('user100', 'pw100', '닉네임100', NULL, '안녕하세요, 유저100입니다.', 2, 'user100@example.com', 'Y');
 commit ;
 
 
@@ -1465,49 +1267,14 @@ commit;
 --
 
 INSERT INTO board_category ( code, name)
-VALUES ( 'NOTICE', '공지사항');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'MY_GOODS', '내 굿즈 자랑');
+VALUES ( 'MY_CHILD', '내 새끼 자랑');
 
 INSERT INTO board_category ( code, name)
 VALUES ( 'COSPLAY', '코스프레');
 
 INSERT INTO board_category ( code, name)
-VALUES ( 'FREE', '자유 게시판');
+VALUES ( 'FREE', '자유');
 
-INSERT INTO board_category ( code, name)
-VALUES ( 'EVENT', '이벤트');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'QNA', '질문 · 답변');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'REVIEW', '후기 · 리뷰');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'POPUP_INFO', '팝업스토어 정보');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'STORE_TIP', '매장 방문 꿀팁');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'PHOTO', '사진 · 포토카드');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'TRADE', '교환 · 나눔');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'FANART', '팬아트');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'GUIDE', '이용 가이드');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'FAQ', '자주 묻는 질문');
-
-INSERT INTO board_category ( code, name)
-VALUES ( 'OFF_TOPIC', '잡담 · 기타');
 commit ;
 
 INSERT INTO board_post (
@@ -1548,617 +1315,111 @@ INSERT INTO board_post (
              30, 6, 2,
              SYSDATE - 48, NULL, 'N'
          );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,4,'테스트 게시글 004번 제목','테스트 게시글 004번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_004.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,5,'테스트 게시글 005번 제목','테스트 게시글 005번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_005.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,6,'테스트 게시글 006번 제목','테스트 게시글 006번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_006.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,7,'테스트 게시글 007번 제목','테스트 게시글 007번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_007.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,8,'테스트 게시글 008번 제목','테스트 게시글 008번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_008.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,9,'테스트 게시글 009번 제목','테스트 게시글 009번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_009.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,10,'테스트 게시글 010번 제목','테스트 게시글 010번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_010.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 4,
-             '테스트 게시글 004번 제목',
-             '테스트 게시글 004번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_004.jpg',
-             40, 8, 3,
-             SYSDATE - 47, SYSDATE - 46, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,11,'테스트 게시글 011번 제목','테스트 게시글 011번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_011.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,12,'테스트 게시글 012번 제목','테스트 게시글 012번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_012.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,13,'테스트 게시글 013번 제목','테스트 게시글 013번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_013.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,14,'테스트 게시글 014번 제목','테스트 게시글 014번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_014.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,15,'테스트 게시글 015번 제목','테스트 게시글 015번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_015.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,16,'테스트 게시글 016번 제목','테스트 게시글 016번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_016.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,17,'테스트 게시글 017번 제목','테스트 게시글 017번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_017.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,18,'테스트 게시글 018번 제목','테스트 게시글 018번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_018.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,19,'테스트 게시글 019번 제목','테스트 게시글 019번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_019.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,20,'테스트 게시글 020번 제목','테스트 게시글 020번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_020.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 5,
-             '테스트 게시글 005번 제목',
-             '테스트 게시글 005번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_005.jpg',
-             50, 10, 4,
-             SYSDATE - 46, NULL, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,21,'테스트 게시글 021번 제목','테스트 게시글 021번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_021.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,22,'테스트 게시글 022번 제목','테스트 게시글 022번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_022.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,23,'테스트 게시글 023번 제목','테스트 게시글 023번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_023.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,24,'테스트 게시글 024번 제목','테스트 게시글 024번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_024.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,25,'테스트 게시글 025번 제목','테스트 게시글 025번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_025.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,26,'테스트 게시글 026번 제목','테스트 게시글 026번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_026.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,27,'테스트 게시글 027번 제목','테스트 게시글 027번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_027.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,28,'테스트 게시글 028번 제목','테스트 게시글 028번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_028.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,29,'테스트 게시글 029번 제목','테스트 게시글 029번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_029.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,30,'테스트 게시글 030번 제목','테스트 게시글 030번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_030.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,31,'테스트 게시글 031번 제목','테스트 게시글 031번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_031.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,32,'테스트 게시글 032번 제목','테스트 게시글 032번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_032.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,33,'테스트 게시글 033번 제목','테스트 게시글 033번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_033.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,34,'테스트 게시글 034번 제목','테스트 게시글 034번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_034.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,35,'테스트 게시글 035번 제목','테스트 게시글 035번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_035.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,36,'테스트 게시글 036번 제목','테스트 게시글 036번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_036.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,37,'테스트 게시글 037번 제목','테스트 게시글 037번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_037.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,38,'테스트 게시글 038번 제목','테스트 게시글 038번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_038.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,39,'테스트 게시글 039번 제목','테스트 게시글 039번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_039.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,40,'테스트 게시글 040번 제목','테스트 게시글 040번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_040.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 6,
-             '테스트 게시글 006번 제목',
-             '테스트 게시글 006번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_006.jpg',
-             60, 12, 0,
-             SYSDATE - 45, SYSDATE - 44, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,41,'테스트 게시글 041번 제목','테스트 게시글 041번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_041.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,42,'테스트 게시글 042번 제목','테스트 게시글 042번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_042.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,43,'테스트 게시글 043번 제목','테스트 게시글 043번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_043.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,44,'테스트 게시글 044번 제목','테스트 게시글 044번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_044.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,45,'테스트 게시글 045번 제목','테스트 게시글 045번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_045.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,46,'테스트 게시글 046번 제목','테스트 게시글 046번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_046.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,47,'테스트 게시글 047번 제목','테스트 게시글 047번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_047.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,48,'테스트 게시글 048번 제목','테스트 게시글 048번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_048.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,49,'테스트 게시글 049번 제목','테스트 게시글 049번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_049.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,50,'테스트 게시글 050번 제목','테스트 게시글 050번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_050.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 7,
-             '테스트 게시글 007번 제목',
-             '테스트 게시글 007번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_007.jpg',
-             70, 14, 1,
-             SYSDATE - 44, NULL, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,51,'테스트 게시글 051번 제목','테스트 게시글 051번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_051.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,52,'테스트 게시글 052번 제목','테스트 게시글 052번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_052.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,53,'테스트 게시글 053번 제목','테스트 게시글 053번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_053.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,54,'테스트 게시글 054번 제목','테스트 게시글 054번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_054.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,55,'테스트 게시글 055번 제목','테스트 게시글 055번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_055.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,56,'테스트 게시글 056번 제목','테스트 게시글 056번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_056.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,57,'테스트 게시글 057번 제목','테스트 게시글 057번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_057.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,58,'테스트 게시글 058번 제목','테스트 게시글 058번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_058.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,59,'테스트 게시글 059번 제목','테스트 게시글 059번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_059.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,60,'테스트 게시글 060번 제목','테스트 게시글 060번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_060.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 8,
-             '테스트 게시글 008번 제목',
-             '테스트 게시글 008번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_008.jpg',
-             80, 16, 2,
-             SYSDATE - 43, SYSDATE - 42, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,61,'테스트 게시글 061번 제목','테스트 게시글 061번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_061.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,62,'테스트 게시글 062번 제목','테스트 게시글 062번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_062.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,63,'테스트 게시글 063번 제목','테스트 게시글 063번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_063.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,64,'테스트 게시글 064번 제목','테스트 게시글 064번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_064.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,65,'테스트 게시글 065번 제목','테스트 게시글 065번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_065.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,66,'테스트 게시글 066번 제목','테스트 게시글 066번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_066.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,67,'테스트 게시글 067번 제목','테스트 게시글 067번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_067.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,68,'테스트 게시글 068번 제목','테스트 게시글 068번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_068.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,69,'테스트 게시글 069번 제목','테스트 게시글 069번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_069.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,70,'테스트 게시글 070번 제목','테스트 게시글 070번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_070.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 9,
-             '테스트 게시글 009번 제목',
-             '테스트 게시글 009번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_009.jpg',
-             90, 18, 3,
-             SYSDATE - 42, NULL, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,71,'테스트 게시글 071번 제목','테스트 게시글 071번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_071.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,72,'테스트 게시글 072번 제목','테스트 게시글 072번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_072.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,73,'테스트 게시글 073번 제목','테스트 게시글 073번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_073.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,74,'테스트 게시글 074번 제목','테스트 게시글 074번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_074.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,75,'테스트 게시글 075번 제목','테스트 게시글 075번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_075.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,76,'테스트 게시글 076번 제목','테스트 게시글 076번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_076.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,77,'테스트 게시글 077번 제목','테스트 게시글 077번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_077.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,78,'테스트 게시글 078번 제목','테스트 게시글 078번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_078.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,79,'테스트 게시글 079번 제목','테스트 게시글 079번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_079.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,80,'테스트 게시글 080번 제목','테스트 게시글 080번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_080.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 10,
-             '테스트 게시글 010번 제목',
-             '테스트 게시글 010번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_010.jpg',
-             100, 20, 4,
-             SYSDATE - 41, SYSDATE - 40, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,81,'테스트 게시글 081번 제목','테스트 게시글 081번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_081.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,82,'테스트 게시글 082번 제목','테스트 게시글 082번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_082.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,83,'테스트 게시글 083번 제목','테스트 게시글 083번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_083.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,84,'테스트 게시글 084번 제목','테스트 게시글 084번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_084.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,85,'테스트 게시글 085번 제목','테스트 게시글 085번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_085.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,86,'테스트 게시글 086번 제목','테스트 게시글 086번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_086.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,87,'테스트 게시글 087번 제목','테스트 게시글 087번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_087.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,88,'테스트 게시글 088번 제목','테스트 게시글 088번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_088.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,89,'테스트 게시글 089번 제목','테스트 게시글 089번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_089.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,90,'테스트 게시글 090번 제목','테스트 게시글 090번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_090.jpg',0,0,0,SYSDATE-50,NULL,'N');
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 11,
-             '테스트 게시글 011번 제목',
-             '테스트 게시글 011번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_011.jpg',
-             110, 22, 0,
-             SYSDATE - 40, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 12,
-             '테스트 게시글 012번 제목',
-             '테스트 게시글 012번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_012.jpg',
-             120, 24, 1,
-             SYSDATE - 39, SYSDATE - 38, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 13,
-             '테스트 게시글 013번 제목',
-             '테스트 게시글 013번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_013.jpg',
-             130, 26, 2,
-             SYSDATE - 38, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 14,
-             '테스트 게시글 014번 제목',
-             '테스트 게시글 014번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_014.jpg',
-             140, 28, 3,
-             SYSDATE - 37, SYSDATE - 36, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 15,
-             '테스트 게시글 015번 제목',
-             '테스트 게시글 015번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_015.jpg',
-             150, 30, 4,
-             SYSDATE - 36, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 16,
-             '테스트 게시글 016번 제목',
-             '테스트 게시글 016번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_016.jpg',
-             160, 32, 0,
-             SYSDATE - 35, SYSDATE - 34, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 17,
-             '테스트 게시글 017번 제목',
-             '테스트 게시글 017번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_017.jpg',
-             170, 34, 1,
-             SYSDATE - 34, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 18,
-             '테스트 게시글 018번 제목',
-             '테스트 게시글 018번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_018.jpg',
-             180, 36, 2,
-             SYSDATE - 33, SYSDATE - 32, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 19,
-             '테스트 게시글 019번 제목',
-             '테스트 게시글 019번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_019.jpg',
-             190, 38, 3,
-             SYSDATE - 32, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 20,
-             '테스트 게시글 020번 제목',
-             '테스트 게시글 020번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_020.jpg',
-             200, 40, 4,
-             SYSDATE - 31, SYSDATE - 30, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 1,
-             '테스트 게시글 021번 제목',
-             '테스트 게시글 021번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_021.jpg',
-             210, 42, 0,
-             SYSDATE - 30, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 2,
-             '테스트 게시글 022번 제목',
-             '테스트 게시글 022번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_022.jpg',
-             220, 44, 1,
-             SYSDATE - 29, SYSDATE - 28, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 3,
-             '테스트 게시글 023번 제목',
-             '테스트 게시글 023번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_023.jpg',
-             230, 46, 2,
-             SYSDATE - 28, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 4,
-             '테스트 게시글 024번 제목',
-             '테스트 게시글 024번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_024.jpg',
-             240, 48, 3,
-             SYSDATE - 27, SYSDATE - 26, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 5,
-             '테스트 게시글 025번 제목',
-             '테스트 게시글 025번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_025.jpg',
-             250, 50, 4,
-             SYSDATE - 26, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 6,
-             '테스트 게시글 026번 제목',
-             '테스트 게시글 026번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_026.jpg',
-             260, 52, 0,
-             SYSDATE - 25, SYSDATE - 24, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 7,
-             '테스트 게시글 027번 제목',
-             '테스트 게시글 027번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_027.jpg',
-             270, 54, 1,
-             SYSDATE - 24, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 8,
-             '테스트 게시글 028번 제목',
-             '테스트 게시글 028번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_028.jpg',
-             280, 56, 2,
-             SYSDATE - 23, SYSDATE - 22, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 9,
-             '테스트 게시글 029번 제목',
-             '테스트 게시글 029번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_029.jpg',
-             290, 58, 3,
-             SYSDATE - 22, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 10,
-             '테스트 게시글 030번 제목',
-             '테스트 게시글 030번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_030.jpg',
-             300, 60, 4,
-             SYSDATE - 21, SYSDATE - 20, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 11,
-             '테스트 게시글 031번 제목',
-             '테스트 게시글 031번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_031.jpg',
-             310, 62, 0,
-             SYSDATE - 20, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 12,
-             '테스트 게시글 032번 제목',
-             '테스트 게시글 032번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_032.jpg',
-             320, 64, 1,
-             SYSDATE - 19, SYSDATE - 18, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 13,
-             '테스트 게시글 033번 제목',
-             '테스트 게시글 033번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_033.jpg',
-             330, 66, 2,
-             SYSDATE - 18, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 14,
-             '테스트 게시글 034번 제목',
-             '테스트 게시글 034번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_034.jpg',
-             340, 68, 3,
-             SYSDATE - 17, SYSDATE - 16, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 15,
-             '테스트 게시글 035번 제목',
-             '테스트 게시글 035번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_035.jpg',
-             350, 70, 4,
-             SYSDATE - 16, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 16,
-             '테스트 게시글 036번 제목',
-             '테스트 게시글 036번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_036.jpg',
-             360, 72, 0,
-             SYSDATE - 15, SYSDATE - 14, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 17,
-             '테스트 게시글 037번 제목',
-             '테스트 게시글 037번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_037.jpg',
-             370, 74, 1,
-             SYSDATE - 14, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 18,
-             '테스트 게시글 038번 제목',
-             '테스트 게시글 038번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_038.jpg',
-             380, 76, 2,
-             SYSDATE - 13, SYSDATE - 12, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 19,
-             '테스트 게시글 039번 제목',
-             '테스트 게시글 039번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_039.jpg',
-             390, 78, 3,
-             SYSDATE - 12, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 20,
-             '테스트 게시글 040번 제목',
-             '테스트 게시글 040번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_040.jpg',
-             400, 80, 4,
-             SYSDATE - 11, SYSDATE - 10, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 1,
-             '테스트 게시글 041번 제목',
-             '테스트 게시글 041번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_041.jpg',
-             410, 82, 0,
-             SYSDATE - 10, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 2,
-             '테스트 게시글 042번 제목',
-             '테스트 게시글 042번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_042.jpg',
-             420, 84, 1,
-             SYSDATE - 9, SYSDATE - 8, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 3,
-             '테스트 게시글 043번 제목',
-             '테스트 게시글 043번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_043.jpg',
-             430, 86, 2,
-             SYSDATE - 8, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 4,
-             '테스트 게시글 044번 제목',
-             '테스트 게시글 044번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_044.jpg',
-             440, 88, 3,
-             SYSDATE - 7, SYSDATE - 6, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 5,
-             '테스트 게시글 045번 제목',
-             '테스트 게시글 045번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_045.jpg',
-             450, 90, 4,
-             SYSDATE - 6, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              1, 6,
-             '테스트 게시글 046번 제목',
-             '테스트 게시글 046번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_046.jpg',
-             460, 92, 0,
-             SYSDATE - 5, SYSDATE - 4, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              2, 7,
-             '테스트 게시글 047번 제목',
-             '테스트 게시글 047번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_047.jpg',
-             470, 94, 1,
-             SYSDATE - 4, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 8,
-             '테스트 게시글 048번 제목',
-             '테스트 게시글 048번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_048.jpg',
-             480, 96, 2,
-             SYSDATE - 3, SYSDATE - 2, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              4, 9,
-             '테스트 게시글 049번 제목',
-             '테스트 게시글 049번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_049.jpg',
-             490, 98, 3,
-             SYSDATE - 2, NULL, 'N'
-         );
-
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              5, 10,
-             '테스트 게시글 050번 제목',
-             '테스트 게시글 050번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_050.jpg',
-             500, 100, 4,
-             SYSDATE - 1, SYSDATE, 'N'
-         );
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,91,'테스트 게시글 091번 제목','테스트 게시글 091번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_091.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,92,'테스트 게시글 092번 제목','테스트 게시글 092번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_092.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,93,'테스트 게시글 093번 제목','테스트 게시글 093번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_093.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,94,'테스트 게시글 094번 제목','테스트 게시글 094번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_094.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,95,'테스트 게시글 095번 제목','테스트 게시글 095번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_095.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,96,'테스트 게시글 096번 제목','테스트 게시글 096번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_096.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,97,'테스트 게시글 097번 제목','테스트 게시글 097번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_097.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,98,'테스트 게시글 098번 제목','테스트 게시글 098번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_098.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,99,'테스트 게시글 099번 제목','테스트 게시글 099번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_099.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,100,'테스트 게시글 100번 제목','테스트 게시글 100번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_100.jpg',0,0,0,SYSDATE-50,NULL,'N');
 commit;
 
 
