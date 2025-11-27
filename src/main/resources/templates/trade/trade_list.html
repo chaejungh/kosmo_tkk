@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-
         :root {
             --purple: #6366f1;
             --purple-deep: #4f46e5;
@@ -85,10 +84,7 @@
 
         /* ===== 리스트 카드 ===== */
         .trade-list {
-            padding: 12px 18px 100px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+            padding: 12px 18px 40px;
         }
 
         .trade-card {
@@ -150,13 +146,14 @@
             cursor: pointer;
             z-index: 30;
             border: none;
+            text-decoration: none;
         }
 
         .write-btn:hover {
             background: var(--purple-deep);
         }
 
-        /* ===== 하단바 ===== */
+        /* ===== 하단 네비게이션 ===== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -171,6 +168,7 @@
         }
 
         .nav-item {
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -195,11 +193,10 @@
             font-weight: 700;
         }
 
-        /* 알림 숫자표시 */
         .badge {
             position: absolute;
-            top: 8px;
-            right: 26px;
+            top: 7px;
+            right: 28px;
             background: #ff4e4e;
             color: white;
             font-size: 10px;
@@ -207,6 +204,15 @@
             border-radius: 999px;
         }
 
+        .badge.pulse {
+            animation: pulseBadge 1.4s infinite;
+        }
+
+        @keyframes pulseBadge {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,78,78,0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(255,78,78,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,78,78,0); }
+        }
     </style>
 </head>
 <body>
@@ -230,67 +236,98 @@
     <button class="filter-btn">기타굿즈</button>
 </div>
 
-<!-- ===== LIST (더미 데이터) ===== -->
+<!-- ===== LIST ===== -->
 <div class="trade-list">
 
-    <div class="trade-card">
-        <img class="trade-thumb" src="/images/dummy/jujutsu1.jpg">
-        <div class="trade-info">
-            <div>
-                <div class="trade-title">주술회전 나나미 피규어 팝니다</div>
-                <div class="trade-meta">신촌 · 1시간 전</div>
-            </div>
-            <div class="trade-price">85,000원</div>
-        </div>
-    </div>
+    <div class="trade-card"
+         th:each="post : ${page.content}"
+         th:onclick="|location.href='/trade/${post.id}/article/detail.do'|">
 
-    <div class="trade-card">
-        <img class="trade-thumb" src="/images/dummy/blue1.jpg">
-        <div class="trade-info">
-            <div>
-                <div class="trade-title">블루록 바치라 포카 교환 원해요</div>
-                <div class="trade-meta">마포구 · 3시간 전</div>
-            </div>
-            <div class="trade-price">교환</div>
-        </div>
-    </div>
+        <!-- 썸네일 -->
+        <img class="trade-thumb"
+             th:src="${post.thumbnailUrl} != null ? ${post.thumbnailUrl} : '/images/dummy/noimg.png'">
 
-    <div class="trade-card">
-        <img class="trade-thumb" src="/images/dummy/demon1.jpg">
+        <!-- 내용 -->
         <div class="trade-info">
             <div>
-                <div class="trade-title">귀멸 카나오 아크릴 키링</div>
-                <div class="trade-meta">강남 · 5시간 전</div>
+                <div class="trade-title" th:text="${post.title}">상품 제목</div>
+                <div class="trade-meta"
+                     th:text="|${post.region} · ${post.timeAgo}|">
+                    지역 · 시간
+                </div>
             </div>
-            <div class="trade-price">12,000원</div>
+
+            <div class="trade-price"
+                 th:text="${post.priceText}">
+                가격
+            </div>
         </div>
     </div>
 
 </div>
 
-<!-- ===== 글쓰기 Floating 버튼 ===== -->
-<button class="write-btn">+ 글쓰기</button>
+<!-- ===== 글쓰기 버튼 ===== -->
+<a href="/trade/write" class="write-btn">+ 글쓰기</a>
 
-<!-- ===== 하단 네비게이션 ===== -->
+<!-- ===== 하단 네비 ===== -->
 <nav class="bottom-nav">
 
-    <a href="/" class="nav-item">
+    <a href="/" class="nav-item" data-page="home">
         <span class="icon">🏠</span>
         홈
     </a>
 
-    <a href="/chat" class="nav-item">
+    <a href="/chat" class="nav-item" data-page="chat">
         <span class="icon">💬</span>
         채팅방
-        <span class="badge">3</span>
+        <span class="badge pulse" id="chatBadge">3</span>
     </a>
 
-    <a href="/mypage" class="nav-item">
+    <a href="/mypage" class="nav-item" data-page="mypage">
         <span class="icon">👤</span>
         내정보
     </a>
 
 </nav>
+
+<!-- ================= JS 기능 ================= -->
+<script>
+    (function () {
+
+        const nav = document.querySelector(".bottom-nav");
+        const items = nav.querySelectorAll(".nav-item");
+        const badge = document.getElementById("chatBadge");
+        const STORAGE_KEY = "duckuku_unread_msg";
+
+        /* --- 활성화 페이지 자동 감지 --- */
+        const pathname = window.location.pathname;
+
+        let active = "home";
+        if (pathname.startsWith("/chat")) active = "chat";
+        else if (pathname.startsWith("/mypage")) active = "mypage";
+
+        items.forEach(i => {
+            if (i.dataset.page === active) i.classList.add("active");
+        });
+
+        /* --- 뱃지 저장된 unread 여부 확인 --- */
+        const unread = localStorage.getItem(STORAGE_KEY);
+
+        if (unread === "0" && badge) {
+            badge.style.display = "none";
+        }
+
+        /* --- 채팅 클릭하면 읽음 처리 --- */
+        const chatItem = document.querySelector('.nav-item[data-page="chat"]');
+        if (chatItem) {
+            chatItem.addEventListener("click", () => {
+                if (badge) badge.style.display = "none";
+                localStorage.setItem(STORAGE_KEY, "0");
+            });
+        }
+
+    })();
+</script>
 
 </body>
 </html>

@@ -1,104 +1,388 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>거래 상세</title>
+    <meta charset="UTF-8"/>
+    <title th:text="${trade.title} + ' | 굿즈거래 | 더쿠쿠'">굿즈거래 상세 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <style>
+        :root {
+            --purple: #6366f1;
+            --purple-deep: #4f46e5;
+            --bg-soft: #f9fafb;
+            --border: #e5e7eb;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            background: #f6f3ff;
-            font-family: "Pretendard", sans-serif;
+            background: var(--bg-soft);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-main);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== 상단 바 ===== */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top-bar-inner {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 10px 16px;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* 🔥 페이지 너비 확장 + 중앙 정렬 */
-        .page {
-            width: 100%;
-            max-width: 820px; /* ← 홈/덕질게시판과 같은 폭 */
-            padding: 24px;
-            margin-bottom: 80px; /* 하단바와 간격 */
-        }
-
-        .header {
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 22px;
-        }
-
-        .detail-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-        }
-
-        .detail-img {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, #b38bff, #ff8bbd);
-            border-radius: 18px;
-            margin-bottom: 22px;
-        }
-
-        .detail-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .detail-sub {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 24px;
-        }
-
-        .detail-desc {
-            font-size: 16px;
-            color: #444;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            background: #6f52ff;
-            color: white;
-            padding: 14px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
+        .back-btn {
+            border: none;
+            background: transparent;
+            font-size: 18px;
             cursor: pointer;
+        }
+
+        .top-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ===== 전체 페이지 레이아웃 ===== */
+        .detail-page {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .detail-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        @media (min-width: 900px) {
+            .detail-layout {
+                display: grid;
+                grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+                gap: 32px;
+                align-items: flex-start;
+            }
+        }
+
+        /* ===== 이미지 영역 ===== */
+        .image-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        .image-frame {
             width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            /* 4:3 ~ 16:10 사이 비율 느낌 */
+            max-height: 460px;
+            margin: 0 auto;
+        }
+
+        /* ===== 오른쪽 정보 카드 ===== */
+        .info-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 18px 20px 20px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        .title {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .meta {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-bottom: 16px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--purple);
+            margin-bottom: 16px;
+        }
+
+        /* ===== 상태 뱃지 ===== */
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-onsale {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--purple-deep);
+        }
+
+        .badge-reserved {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
+        }
+
+        .badge-sold {
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        /* ===== 설명 박스 ===== */
+        .desc-box {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #f9fafb;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ===== 판매자 정보 ===== */
+        .seller-card {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .seller-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #eef2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .seller-info-main {
+            flex: 1;
+        }
+
+        .seller-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .seller-region {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .seller-score {
+            font-size: 12px;
+            color: var(--purple-deep);
+            font-weight: 600;
+        }
+
+        /* ===== 버튼 영역 ===== */
+        .button-wrap {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-main,
+        .btn-sub {
+            border-radius: 999px;
+            padding: 14px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-main {
+            background: var(--purple);
+            color: #ffffff;
+        }
+
+        .btn-main:hover {
+            background: var(--purple-deep);
+        }
+
+        .btn-sub {
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        @media (min-width: 768px) {
+            .button-wrap {
+                flex-direction: row;
+            }
+
+            .btn-main,
+            .btn-sub {
+                flex: 1;
+            }
+        }
+
+        /* ===== 작은 라벨들 ===== */
+        .label-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .label-chip {
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #f3f4f6;
         }
     </style>
 </head>
-
 <body>
 
-<div class="page">
-    <div class="header">거래 상세</div>
-
-    <div class="detail-card">
-
-        <div class="detail-img"></div>
-
-        <div class="detail-title">주술회전 굿즈 팝니다</div>
-
-        <div class="detail-sub">
-            서울 · 직거래 · 10,000원 · 판매중
-        </div>
-
-        <div class="detail-desc">
-            상태 매우 좋습니다!
-            직거래 환영하고 택배도 가능해요.
-            문의 주세요 😊
-        </div>
-
-        <div class="btn">판매자에게 문의하기</div>
-
+<!-- 상단 바 -->
+<header class="top-bar">
+    <div class="top-bar-inner">
+        <button class="back-btn" type="button" onclick="history.back()">←</button>
+        <div class="top-title">굿즈거래</div>
     </div>
-</div>
+</header>
+
+<main class="detail-page">
+
+    <section class="detail-layout">
+
+        <!-- 왼쪽: 이미지 -->
+        <div class="image-box">
+            <div class="image-frame">
+                <img th:src="${coverUrl}" alt="굿즈 이미지"/>
+            </div>
+        </div>
+
+        <!-- 오른쪽: 정보 -->
+        <div class="info-card">
+
+            <!-- 상품 타이틀 / 메타 -->
+            <h1 class="title" th:text="${trade.title}">굿즈 제목</h1>
+
+            <div class="meta">
+                <span th:text="${trade.region != null ? trade.region : '지역 정보 없음'}">서울 · 홍대</span>
+                <span> · </span>
+                <span th:text="${#temporals.format(trade.createdAt, 'MM/dd')} + ' 등록'">1시간 전</span>
+            </div>
+
+            <div class="price" th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">
+                85,000원
+            </div>
+
+            <!-- 상태 / 카테고리 라벨 -->
+            <div class="status-row">
+                <span class="status-badge"
+                      th:classappend="${statusClass}"
+                      th:text="${statusLabel}">
+                    판매중
+                </span>
+
+                <div class="label-row">
+                    <span class="label-chip" th:text="${trade.category}">포카</span>
+                    <span class="label-chip" th:text="${trade.tradeType}">SELL</span>
+                    <span class="label-chip" th:text="${trade.tradeMethod}">DIRECT</span>
+                </div>
+            </div>
+
+            <!-- 설명 -->
+            <div class="desc-box" th:text="${trade.content}">
+                상태 매우 좋습니다. 직거래만 가능해요.
+            </div>
+
+            <!-- 판매자 정보 (엔티티에 맞게 필드 바꿔도 됨) -->
+            <div class="seller-card">
+                <div class="seller-avatar">
+                    <span>👤</span>
+                </div>
+                <div class="seller-info-main">
+                    <!-- nickname 필드가 없으면 sellerId로 보여줘도 됨 -->
+                    <div class="seller-name"
+                         th:text="${trade.seller != null ? trade.seller.nickname : '판매자 #' + trade.sellerId}">
+                        더쿠쿠셀러
+                    </div>
+                    <div class="seller-region"
+                         th:text="${trade.region != null ? trade.region : '지역 미등록'}">
+                        신촌 · 1시간 전
+                    </div>
+                </div>
+                <div class="seller-score">
+                    매너 온도 39.5℃
+                </div>
+            </div>
+
+            <!-- 버튼 -->
+            <div class="button-wrap">
+
+                <!-- 채팅하기 -->
+                <form th:action="@{|/trade/${currentMemberId}/chat/${trade.id}/start|}"
+                      method="post" style="flex:1;">
+                    <button type="submit" class="btn-main">
+                        💬 채팅하기
+                    </button>
+                </form>
+
+                <!-- 구매요청 (지금 기능 없음 → 임시 비활성) -->
+                <form action="#" style="flex:1;">
+                    <button type="button" class="btn-sub" disabled>
+                        🛒 구매 요청 (준비중)
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
 
 </body>
 </html>

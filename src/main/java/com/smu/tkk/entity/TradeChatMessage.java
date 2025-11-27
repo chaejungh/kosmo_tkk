@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "TRADE_CHAT_MESSAGE")
 public class TradeChatMessage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MESSAGE_ID", nullable = false)
@@ -27,7 +28,7 @@ public class TradeChatMessage {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "ROOM_ID", insertable = false,updatable = false)
+    @JoinColumn(name = "ROOM_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private TradeChatRoom room;
@@ -37,7 +38,7 @@ public class TradeChatMessage {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "SENDER_ID", insertable = false,updatable = false)
+    @JoinColumn(name = "SENDER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member sender;
@@ -53,4 +54,14 @@ public class TradeChatMessage {
     @Column(name = "READ_YN")
     private String readYn;
 
+    /* ==========================================================
+       🔥 나중에 이미지/멀티미디어 기능 넣을 때 다시 사용할 필드
+       🔥 지금은 주석 처리 (DB에 없기 때문에 오류남!)
+       ========================================================== */
+
+    // @Column(name = "MESSAGE_TYPE", length = 20)
+    // private String messageType;   // ex) "TEXT", "IMAGE"
+
+    // @Column(name = "IMAGE_URL")
+    // private String imageUrl;
 }

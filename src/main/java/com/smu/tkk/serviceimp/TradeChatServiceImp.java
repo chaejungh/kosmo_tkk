@@ -1,110 +1,131 @@
 package com.smu.tkk.serviceimp;
 
-
 import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
-import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.repository.TradeChatMessageRepository;
 import com.smu.tkk.repository.TradeChatRoomRepository;
 import com.smu.tkk.repository.TradePostRepository;
 import com.smu.tkk.service.TradeChatService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-    @Service
-    @RequiredArgsConstructor
-    @Transactional
+import java.util.List;
+import java.util.stream.Stream;
+
+@Service
+@RequiredArgsConstructor
+@Transactional
 public class TradeChatServiceImp implements TradeChatService {
 
-        private final TradeChatRoomRepository tradeChatRoomRepository;
-        private final TradeChatMessageRepository tradeChatMessageRepository;
-        private final TradePostRepository tradePostRepository;
+    private final TradeChatRoomRepository roomRepo;
+    private final TradeChatMessageRepository messageRepo;
+    private final TradePostRepository postRepo;
 
-        /** -------------------------------------------------------
-         *  1. 채팅방 생성 (존재 시 재사용)
-         * ------------------------------------------------------- */
-        @Override
-        public TradeChatRoom register(Long tradeId, Long buyerId) {
+    /* ============================================
+     * 1. 채팅방 생성 or 기존방 재사용
+     * ============================================ */
+    @Override
+    public TradeChatRoom register(Long tradeId, Long buyerId) {
 
-            // 기존 채팅방 확인
-            return tradeChatRoomRepository.findAll(PageRequest.of(0, 1000)).stream() // 전체 조회 후 필터
-                    .filter(room -> room.getTrade().getId().equals(tradeId)
-                            && room.getMemberId().equals(buyerId))
-                    .findFirst()
-                    .orElseGet(() -> {
-                        TradeChatRoom room = new TradeChatRoom();
-                        room.setTrade(tradePostRepository.findById(tradeId)
-                                .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradeId)));
-                        room.setMemberId(buyerId);
-                        return tradeChatRoomRepository.save(room);
-                    });
+        // 기존 방 조회
+        List<TradeChatRoom> rooms = roomRepo.findAll();
+
+        for (TradeChatRoom room : rooms) {
+            if (room.getTrade().getId().equals(tradeId)
+                    && room.getMemberId().equals(buyerId)) {
+                return room;
+            }
         }
 
-        /** -------------------------------------------------------
-         *  2. 메시지 전송
-         * ------------------------------------------------------- */
-        @Override
-        public TradeChatMessage send(Long roomId, Long senderId, String message) {
+        TradeChatRoom newRoom = new TradeChatRoom();
+        newRoom.setTrade(postRepo.findById(tradeId)
+                .orElseThrow(() -> new IllegalArgumentException("거래글 없음: " + tradeId)));
+        newRoom.setTradeId(tradeId);
+        newRoom.setMemberId(buyerId);
 
-            TradeChatRoom room = tradeChatRoomRepository.findById(roomId)
-                    .orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다. roomId=" + roomId));
-
-            TradeChatMessage chatMessage = new TradeChatMessage();
-            chatMessage.setRoom(room);
-            chatMessage.setSenderId(senderId);
-            chatMessage.setMessage(message);
-            chatMessage.setReadYn("N");
-
-            return tradeChatMessageRepository.save(chatMessage);
-        }
-
-        /** -------------------------------------------------------
-         *  3. 읽음 처리 (내가 아닌 상대가 보낸 메시지)
-         * ------------------------------------------------------- */
-        @Override
-        public boolean markAsRead(Long roomId, Long viewerId) {
-
-            TradeChatRoom room = tradeChatRoomRepository.findById(roomId)
-                    .orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다. roomId=" + roomId));
-
-            Long senderId = room.getMemberId().equals(viewerId)
-                    ? room.getTrade().getSeller().getId()
-                    : room.getMemberId();
-
-            int updated = tradeChatMessageRepository.modifyRead("Y", roomId, senderId);
-            return updated > 0;
-        }
-
-        /** -------------------------------------------------------
-         *  4. 내가 속한 채팅방 목록
-         * ------------------------------------------------------- */
-        @Override
-        public Page<TradeChatRoom> myRooms(Long memberId) {
-
-            Page<TradeChatRoom> buyerRooms = tradeChatRoomRepository.findByMemberId(memberId, PageRequest.of(0, 50));
-
-            // 판매자로 속한 채팅방도 포함하려면 추가 조회
-            Page<TradeChatRoom> sellerRooms = (Page<TradeChatRoom>) tradeChatRoomRepository.findAll(PageRequest.of(0, 50))
-                    .map(room -> room.getTrade().getSeller().getId().equals(memberId) ? room : null)
-                    .filter(room -> room != null);
-
-            // buyerRooms + sellerRooms 합쳐서 반환 (간단하게 1페이지 합치기)
-            // 필요하면 Pageable 커스텀 합병
-            return buyerRooms; // 간단 구현, 필요시 합병
-        }
-
-        /** -------------------------------------------------------
-         *  5. 채팅 메시지 리스트 (오름차순)
-         * ------------------------------------------------------- */
-        @Override
-        public Page<TradeChatMessage> messages(Long roomId) {
-            Pageable pageable = PageRequest.of(0, 100, Sort.by(Sort.Order.asc("id")));
-            return tradeChatMessageRepository.findByRoomId(roomId, pageable);
-        }
-
+        return roomRepo.save(newRoom);
     }
+
+    /* ============================================
+     * 2. 텍스트 메시지 전송
+     * ============================================ */
+    @Override
+    public TradeChatMessage send(Long roomId, Long senderId, String message) {
+
+        TradeChatRoom room = roomRepo.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + roomId));
+
+        TradeChatMessage msg = new TradeChatMessage();
+        msg.setRoom(room);
+        msg.setRoomId(roomId);
+        msg.setSenderId(senderId);
+        msg.setMessage(message);
+        msg.setReadYn("N");
+
+        return messageRepo.save(msg);
+    }
+
+    /* ============================================
+     * 3. 읽음 처리
+     * ============================================ */
+    @Override
+    public boolean markAsRead(Long roomId, Long viewerId) {
+
+        TradeChatRoom room = roomRepo.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + roomId));
+
+        Long opponentId = room.getMemberId().equals(viewerId)
+                ? room.getTrade().getSeller().getId()
+                : room.getMemberId();
+
+        int updated = messageRepo.modifyRead("Y", roomId, opponentId);
+        return updated > 0;
+    }
+
+    /* ============================================
+     * 4. 내가 속한 채팅방 목록
+     * ============================================ */
+    @Override
+    public Page<TradeChatRoom> myRooms(Long memberId) {
+
+        Pageable pageable = PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "lastMessageAt"));
+
+        Page<TradeChatRoom> buyerRooms = roomRepo.findByMemberId(memberId, pageable);
+
+        List<TradeChatRoom> sellerRooms =
+                roomRepo.findAll().stream()
+                        .filter(r -> r.getTrade().getSeller().getId().equals(memberId))
+                        .toList();
+
+        List<TradeChatRoom> merged =
+                Stream.concat(buyerRooms.getContent().stream(), sellerRooms.stream())
+                        .sorted((a, b) -> {
+                            if (a.getLastMessageAt() == null) return 1;
+                            if (b.getLastMessageAt() == null) return -1;
+                            return b.getLastMessageAt().compareTo(a.getLastMessageAt());
+                        })
+                        .toList();
+
+        return new PageImpl<>(merged, pageable, merged.size());
+    }
+
+    /* ============================================
+     * 5. 메시지 목록 조회
+     * ============================================ */
+    @Override
+    public Page<TradeChatMessage> messages(Long roomId) {
+        Pageable pageable = PageRequest.of(0, 200, Sort.by(Sort.Direction.ASC, "id"));
+        return messageRepo.findByRoomId(roomId, pageable);
+    }
+
+    /* ============================================
+     * 6. 채팅방 단건 조회
+     * ============================================ */
+    @Override
+    public TradeChatRoom getRoom(Long roomId) {
+        return roomRepo.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + roomId));
+    }
+}
