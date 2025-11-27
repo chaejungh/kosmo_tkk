@@ -245,7 +245,7 @@
 
         <!-- 썸네일 -->
         <img class="trade-thumb"
-             th:src="${post.thumbnailUrl} != null ? ${post.thumbnailUrl} : '/images/dummy/noimg.png'">
+             th:src="${post.thumbnailUrl != null ? post.thumbnailUrl : '/images/dummy/noimg.png'}" />
 
         <!-- 내용 -->
         <div class="trade-info">
@@ -267,7 +267,7 @@
 </div>
 
 <!-- ===== 글쓰기 버튼 ===== -->
-<a href="/trade/write" class="write-btn">+ 글쓰기</a>
+<a href="/trade/1/write" class="write-btn">+ 글쓰기</a>
 
 <!-- ===== 하단 네비 ===== -->
 <nav class="bottom-nav">
