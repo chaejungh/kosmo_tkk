@@ -28,9 +28,7 @@ public class TradeController {
     private final TradePostImageService tradePostImageService;
 
     /* ===============================================================
-       0) /trade 로 들어오면 리스트로 이동
-       URL : GET /trade
-       → /trade/list.do 로 리다이렉트
+       0) /trade → /trade/list.do 이동
        ============================================================== */
     @GetMapping
     public String tradeRoot() {
@@ -38,8 +36,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       1) 검색  — /trade?keyword=
-       URL : GET /trade?keyword=검색어
+       1) 검색 — GET /trade?keyword=
        ============================================================== */
     @GetMapping(params = "keyword")
     public String searchTrade(@RequestParam String keyword,
@@ -47,7 +44,6 @@ public class TradeController {
                               Model model) {
 
         Page<TradePost> entityPage = tradeService.search(keyword, pageable);
-
         model.addAttribute("page", entityPage.map(this::toListDTO));
         model.addAttribute("keyword", keyword);
 
@@ -55,9 +51,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       2) 거래 리스트 — /trade/list.do
-       URL : GET /trade/list.do?page=&pageLimit=&sort=
-       (pageLimit, sort 는 나중에 Pageable 커스텀해도 됨)
+       2) 거래 리스트 — GET /trade/list.do
        ============================================================== */
     @GetMapping("/list.do")
     public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
@@ -70,8 +64,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       3) 거래 상세 — /trade/{tradePostId}/article/detail.do
-       URL : GET /trade/{tradeId}/article/detail.do
+       3) 거래 상세 — GET /trade/{tradeId}/article/detail.do
        ============================================================== */
     @GetMapping("/{tradeId}/article/detail.do")
     public String tradeDetail(@PathVariable Long tradeId, Model model) {
@@ -85,12 +78,18 @@ public class TradeController {
         model.addAttribute("trade", trade);
         model.addAttribute("coverUrl", coverUrl);
 
+        // 로그인 기능 없으니 임시 memberId
+        Long currentMemberId = 1L;
+        model.addAttribute("currentMemberId", currentMemberId);
+
+        // 판매자 ID (구매요청/채팅 버튼용)
+        model.addAttribute("sellerId", trade.getSellerId());
+
         return "trade/trade_detail";
     }
 
     /* ===============================================================
-       4) 이미지 상세 — /trade/{tradePostId}/article/{imageId}/detail.do
-       URL : GET /trade/{tradeId}/article/{imageId}/detail.do
+       4) 이미지 상세 — GET /trade/{tradeId}/article/{imageId}/detail.do
        ============================================================== */
     @GetMapping("/{tradeId}/article/{imageId}/detail.do")
     public String imageDetail(@PathVariable Long tradeId,
@@ -104,8 +103,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       5) 글쓰기 폼 — /trade/{memberId}/write?t=
-       URL : GET /trade/{memberId}/write?t=SELL (또는 BUY 등)
+       5) 글쓰기 폼 — GET /trade/{memberId}/write?t=
        ============================================================== */
     @GetMapping("/{memberId}/write")
     public String writeForm(@PathVariable Long memberId,
@@ -113,38 +111,27 @@ public class TradeController {
                             Model model) {
 
         TradePost post = new TradePost();
-        post.setSellerId(memberId);      // 작성자
-        if (t != null) {
-            post.setTradeType(t);        // t 로 타입 받아서 기본값 세팅
-        }
+        post.setSellerId(memberId);
+        if (t != null) post.setTradeType(t);
 
         model.addAttribute("memberId", memberId);
-        model.addAttribute("post", post); // th:object 에서 사용
+        model.addAttribute("post", post);
 
         return "trade/trade_write";
     }
 
     /* ===============================================================
-       6) 글쓰기 저장 — /trade/{memberId}/write
-       URL : POST /trade/{memberId}/write
-       form 에서 넘어온 값으로 TradePost 저장
+       6) 글쓰기 저장 — POST /trade/{memberId}/write
        ============================================================== */
     @PostMapping("/{memberId}/write")
     public String writeSubmit(@PathVariable Long memberId,
                               @ModelAttribute TradePost post) {
 
-        // seller 고정
         post.setSellerId(memberId);
+        if (post.getStatus() == null) post.setStatus("ON_SALE");
 
-        // 상태 기본값 (null 들어오면 ON_SALE 로)
-        if (post.getStatus() == null) {
-            post.setStatus("ON_SALE");
-        }
+        tradeService.register(post);
 
-        tradeService.register(post);  // 구현체에서 save 해주는 메서드라고 가정
-
-        // 방금 작성한 글 상세로 보내도 되고, 리스트로 보내도 됨
-        // 아이디 세팅이 확실치 않으니 우선 리스트로 리다이렉트
         return "redirect:/trade/list.do";
     }
 
@@ -159,16 +146,12 @@ public class TradeController {
         dto.setTitle(post.getTitle());
         dto.setRegion(post.getRegion() != null ? post.getRegion() : "지역 미지정");
 
-        if (post.getPrice() == null) {
-            dto.setPriceText("가격 미정");
-        } else {
-            dto.setPriceText(String.format("%,d원", post.getPrice()));
-        }
+        if (post.getPrice() == null) dto.setPriceText("가격 미정");
+        else dto.setPriceText(String.format("%,d원", post.getPrice()));
 
         LocalDate created = post.getCreatedAt();
-        if (created == null) {
-            dto.setTimeAgo("방금 전");
-        } else {
+        if (created == null) dto.setTimeAgo("방금 전");
+        else {
             long days = ChronoUnit.DAYS.between(created, LocalDate.now());
             dto.setTimeAgo(days == 0 ? "오늘" :
                     days == 1 ? "어제" :
@@ -182,5 +165,4 @@ public class TradeController {
 
         return dto;
     }
-
 }

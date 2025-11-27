@@ -109,17 +109,15 @@
     <!-- 반복: 내가 속한 채팅방들 -->
     <div class="room-item"
          th:each="room : ${rooms}"
-         th:onclick="'location.href=\'/trade/1/chat/' + ${room.id} + '\'''">
+         th:onclick="|location.href='/trade/${memberId}/chat/${room.id}'|">
 
         <!-- 상품 이미지 -->
         <img class="thumb"
-             th:src="${room.trade.thumbnailUrl != null}
-                    ? ${room.trade.thumbnailUrl}
-                    : '/images/dummy/noimg.png'"/>
+             th:src="${room.trade.thumbnailUrl != null} ? ${room.trade.thumbnailUrl} : '/images/dummy/noimg.png'"/>
 
         <div class="room-info">
 
-            <!-- 판매자 닉네임 -->
+            <!-- 판매자 닉네임 + 상태 + 시간 -->
             <div class="room-title">
                 <span th:text="${room.trade.seller.nickname}"></span>
 
