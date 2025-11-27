@@ -1,7 +1,10 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.Inquiry;
 import com.smu.tkk.entity.ServiceNotice;
+import com.smu.tkk.service.InquiryService;
 import com.smu.tkk.service.NoticeService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +16,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/mypage/service")
 @RequiredArgsConstructor
-public class ServiceNoticeController {
+public class MyPageServiceController {
 
     private final NoticeService serviceNoticeService;
+    private final InquiryService inquiryService;
 
     @GetMapping("/notice")
     public String noticeList(Model model,
@@ -32,15 +37,6 @@ public class ServiceNoticeController {
 
         return "mypage/service/notices";   // ← HTML
     }
-    @GetMapping("/faq")
-    public String faqList() {
-        return "mypage/service/faq";
-    }
-
-    @GetMapping("/inquiries")
-    public String inquiryList() {
-        return "mypage/service/inquiries";
-    }
         /*@GetMapping("/notice/{id}")
         public String noticeDetail(@PathVariable Long id, Model model) throws SQLException {
 
@@ -51,5 +47,30 @@ public class ServiceNoticeController {
             return "mypage/service/notices_detail";  // ← 상세보기 HTML
         }*/
 
-    // 자주 묻는 질문
+    @GetMapping("/faq")
+    public String faqList() {
+        return "mypage/service/faq";
+    }
+
+    @GetMapping("/inquiries")
+    public String inquiryList(Model model,Pageable pageable) throws SQLException {
+        Long memberId = 1L; // 테스트용
+        List<Inquiry> inquiryList = inquiryService.readById(memberId, pageable);
+
+        model.addAttribute("inquiryList", inquiryList);
+
+        return "mypage/service/inquiries";
+    }
+
+    @GetMapping("/setting")
+    public String settingsPage() {
+        return "mypage/service/setting";
+    }
+
+    @GetMapping("/logout")//로그아웃
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }
