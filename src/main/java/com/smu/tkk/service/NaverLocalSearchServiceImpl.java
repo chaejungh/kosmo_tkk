@@ -20,10 +20,10 @@ import java.util.List;
 public class NaverLocalSearchServiceImpl implements NaverLocalSearchService {
 
     // 🔥 에러 났던 부분: 이 키 이름이 application.properties 에 꼭 있어야 함
-    @Value("${naver.api.client-id}")
+    @Value("${naver.search.client-id}")
     private String clientId;
 
-    @Value("${naver.api.client-secret}")
+    @Value("${naver.search.client-secret}")
     private String clientSecret;
 
     // 따로 Bean 안 만들어도 되게 그냥 new 로 사용
