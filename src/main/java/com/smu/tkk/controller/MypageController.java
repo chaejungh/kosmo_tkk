@@ -1,8 +1,12 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
+import com.smu.tkk.entity.ServiceNotice;
 import com.smu.tkk.service.BoardService;
+import com.smu.tkk.service.NoticeService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,17 +19,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/mypage")
 @AllArgsConstructor(onConstructor_ = @Autowired)
 public class MypageController {
 
-    /** =========================
-     *  마이페이지 메인
-     *  URL : /mypage/{memberId}/
-     *  View: templates/mypage/mypage_main.html
-     *  ========================= */
+    /**
+     * =========================
+     * 마이페이지 메인
+     * URL : /mypage/{memberId}/
+     * View: templates/mypage/mypage_main.html
+     * =========================
+     */
     private final BoardService boardService;
 //    @Autowired
 //    public MypageController(BoardService boardService) {
@@ -51,34 +58,65 @@ public class MypageController {
     @GetMapping("/posts")
     public String myPosts(
             Model model,
-            @PageableDefault(size = 10,page = 0,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(size = 10, page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
     ) throws SQLException {
         Long loginMemberId = 1L;
-        String yN="N";
-        Page<BoardPost> boardsPage =boardService.readByUser(loginMemberId,yN,pageable);
+        String yN = "N";
+        Page<BoardPost> boardsPage = boardService.readByUser(loginMemberId, yN, pageable);
         model.addAttribute("boardsPage", boardsPage);
         return "mypage/board/my_board_posts";
     }
+
     @GetMapping("/likes")
-    public String myPostLike() {
-        //model.addAttribute("memberId", memberId);
-        return "mypage/board/likes";}
+    public String myPostLike(Model model, Pageable pageable) throws SQLException {
+        Long loginMemberId = 1L;
+        Page<BoardLike> boardLikes = boardService.readByLike(loginMemberId, pageable);//좋아요한 게시글 목록
+        model.addAttribute("boardLikes", boardLikes);
+        model.addAttribute("memberId", loginMemberId);
+        return "mypage/board/likes";
+    }
 
     // 공지사항 리스트 예시
-    @GetMapping("/notice")
-    public String noticeList() {
-        return "mypage/service/notices";   // 나중에 실제 템플릿 이름에 맞게 수정
-    }
 
-    // 자주 묻는 질문
-    @GetMapping("/faq")
-    public String faqList() {
-        return "mypage/service/faq";
-    }
+    @Controller
+    @RequestMapping("/mypage/service")
+    @RequiredArgsConstructor
+    public class ServiceNoticeController {
 
-    // 1:1 문의
-    @GetMapping("/inquiry")
-    public String inquiryList() {
-        return "mypage/service/inquiries";
+        private final NoticeService serviceNoticeService;
+
+        @GetMapping("/notice")
+        public String noticeList(Model model,
+                                 @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC)
+                                 Pageable pageable) throws SQLException {
+
+            // 1. 전체 조회
+            Page<ServiceNotice> noticeList = serviceNoticeService.readAll(pageable);
+            model.addAttribute("noticeList", noticeList);
+
+            return "mypage/service/notices";   // ← HTML
+        }
+
+        /*@GetMapping("/notice/{id}")
+        public String noticeDetail(@PathVariable Long id, Model model) throws SQLException {
+
+            // 2. 단일 조회
+            ServiceNotice notice = serviceNoticeService.readById(id);
+            model.addAttribute("notice", notice);
+
+            return "mypage/service/notices_detail";  // ← 상세보기 HTML
+        }*/
+
+        // 자주 묻는 질문
+        @GetMapping("/faq")
+        public String faqList() {
+            return "mypage/service/faq";
+        }
+
+        // 1:1 문의
+        @GetMapping("/inquiry")
+        public String inquiryList() {
+            return "mypage/service/inquiries";
+        }
     }
 }
