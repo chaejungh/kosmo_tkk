@@ -44,13 +44,6 @@ class BoardPostRepositoryTest {
         }
     }
 
-    @Test
-    void findAllByMemberAndDeletedYn() {
-        Optional<Member> member = memberRepository.findById((long)1);
-        if(member.isPresent()){
-            System.out.println(boardPostRepository.findAllByMemberAndDeletedYn(member.get(),"N",pageable));
-        }
-    }
 
     @Test
     void findAllByTitleContainingIgnoreCaseAndDeletedYn() {
@@ -69,5 +62,15 @@ class BoardPostRepositoryTest {
     void findAllByMemberIdAndDeletedYn() {
         Pageable pageable = PageRequest.of(0,5,sort);
         System.out.println(boardPostRepository.findAllByMemberIdAndDeletedYn(1L,"N",pageable).getContent());
+    }
+
+    @Test
+    void findTop5ByCategoryIdAndDeletedYnOrderByLikeCountDesc() {
+        System.out.println(boardPostRepository.findTop5ByCategoryIdAndDeletedYnOrderByLikeCountDesc(1L,"N"));
+    }
+
+    @Test
+    void findTop5ByDeletedYnOrderByLikeCountDesc() {
+        System.out.println(boardPostRepository.findTop5ByDeletedYnOrderByLikeCountDesc("N"));
     }
 }

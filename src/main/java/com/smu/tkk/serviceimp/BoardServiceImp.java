@@ -190,6 +190,23 @@ import java.util.Optional;
         public Page<BoardPost> readByUser(Long memberId, String yN, Pageable pageable) throws SQLException {
             return boardPostRepository.findAllByMemberIdAndDeletedYn(memberId,yN,pageable);
         }
+
+        @Override
+        @Transactional
+        public List<BoardPost> getHotPostsInCategory(Long categoryId) {
+            boardCategoryRepository.findById(categoryId)
+                    .orElseThrow(() -> new IllegalArgumentException("카테고리 없음: " + categoryId));
+
+            return boardPostRepository
+                    .findTop5ByCategoryIdAndDeletedYnOrderByLikeCountDesc(categoryId, "N");
+        }
+
+        @Override
+        @Transactional
+        public List<BoardPost> getHotPostsAll() {
+            return boardPostRepository
+                    .findTop5ByDeletedYnOrderByLikeCountDesc("N");
+        }
     }
 
 

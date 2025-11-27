@@ -24,9 +24,9 @@ class StoreRepositoryTest {
         System.out.println(storeRepository.findNear(37.5665,126.9780,5.0));
     }
 
-    @Test
-    void findAllByNameAndRegionNameContainingIgnoreCase() {
-        Pageable pageable = Pageable.ofSize(10);
-        System.out.println(storeRepository.findAllByNameAndRegionNameContainingIgnoreCase("굿즈샵001","홍대",pageable));
-    }
+//    @Test
+//    void findAllByNameAndRegionNameContainingIgnoreCase() {
+//        Pageable pageable = Pageable.ofSize(10);
+//        System.out.println(storeRepository.findAllByNameAndRegionNameContainingIgnoreCase("굿즈샵001","홍대",pageable));
+//    }
 }
