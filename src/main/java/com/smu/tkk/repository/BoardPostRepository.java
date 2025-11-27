@@ -5,6 +5,7 @@ import com.smu.tkk.entity.BoardCategory;
 import com.smu.tkk.entity.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +20,7 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
 
     // 카테고리별 게시글 목록 (삭제되지 않은 것만, 최신순)
     //Where category is Null
+    @EntityGraph(attributePaths = {"category","member","member.memberNotificationSetting"})
     Page<BoardPost> findAllByCategoryAndDeletedYn(BoardCategory category,String deleteYn, Pageable pageable);
     //Where category=null
 //    List<BoardPost> findAllByCategoryAndDeletedYn(BoardCategory category,String deleteYn, Pageable pageable);

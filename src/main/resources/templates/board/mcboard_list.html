@@ -362,14 +362,21 @@
         </section>
         <!-- 게시글 리스트 (원본 그대로) -->
         <!-- 절대 수정 안 했음 -->
-
+<!--        <ul>-->
+<!--            <li>현재페이지<b th:text="${posts.number}"></b></li>-->
+<!--            <li>전체페이지<b th:text="${posts.totalPages}"></b></li>-->
+<!--            <li>1?<b th:text="${posts.isFirst()}"></b></li>-->
+<!--            <li>마지막?<b th:text="${posts.isLast()}"></b></li>-->
+<!--            <li>한페이지에 출력되는 로우<b th:text="${posts.size}"></b></li>-->
+<!--            <li>정렬<b th:text="${posts.sort}"></b></li>-->
+<!--        </ul>-->
         <!-- ===== 게시글 리스트 카드 ===== -->
         <section class="card">
 
             <!-- 게시글 리스트 -->
             <ul class="post-list" th:if="${not #lists.isEmpty(posts)}">
                 <li class="post-card"
-                    th:each="post : ${posts}"
+                    th:each="post : ${posts.content}"
                     th:attr="data-post-id=${post.id}">
                     <!-- 썸네일 -->
                     <div class="post-thumb-box">
@@ -432,8 +439,43 @@
                 등록된 게시글이 없습니다.
             </p>
         </section>
+        <div class="d-flex mt-3 justify-content-end">
+            <nav>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=10)}">10</a>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=20)}">20</a>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=30)}">30</a>
+                <a class="btn btn-sm btn-outline-dark"
+                   th:href="@{'?'(page=0,size=40)}">40</a>
+            </nav>
+        </div>
+        <div th:with="
+        page=${posts.number},
+        last=${posts.totalPages},
+        sort=${posts.sort},
+        size=${param.size}"
+             class="my-4 d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item"
+                        th:classappend="${page}==0 ? 'disabled' ">
+                        <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
+                    </li>g
+                    <li  th:each="i : ${#numbers.sequence(1,last)}"
+                         th:classappend="( (${i}-1)==${page}?'active' )"
+                         class="page-item">
+                        <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
+                    </li>
+                    <li class="page-item"
+                        th:classappend="${page}==(${last}-1) ? 'disabled' ">
+                        <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
+                    </li>
 
-
+                </ul>
+            </nav>
+        </div>
     </main>
 </div>
 
