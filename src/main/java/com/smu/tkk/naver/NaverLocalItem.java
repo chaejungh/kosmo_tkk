@@ -13,6 +13,6 @@ public class NaverLocalItem {
     private String telephone;
     private String address;
     private String roadAddress;
-    private String mapx;   // 문자열로 옴
-    private String mapy;
+    private String mapx;   // 문자열 TM128 x
+    private String mapy;   // 문자열 TM128 y
 }

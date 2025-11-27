@@ -18,14 +18,14 @@ public class PlaceDto {
     private String roadAddress;
     private String tel;
 
-    // WGS84 위/경도 (우리 DB 매장은 여기 채움)
+    // 우리 DB 매장용 (WGS84 위경도)
     private Double lat;
     private Double lng;
 
-    // 네이버 지역검색에서 오는 TM128 좌표 (실제 매장용)
+    // 네이버 지역검색에서 오는 TM128 좌표
     private Double mapx;
     private Double mapy;
 
-    // "DB" / "NAVER"
+    // "STORE" / "NAVER" 구분
     private String source;
 }
