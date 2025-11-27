@@ -37,7 +37,6 @@ public class TradePost {
     @Column(name = "TITLE", nullable = false, length = 200)
     private String title;
 
-    @Lob
     @Column(name = "CONTENT", nullable = false)
     private String content;
 

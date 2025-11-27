@@ -1,5 +1,6 @@
 package com.smu.tkk.serviceimp;
 
+import com.smu.tkk.dto.TradePostListDto;
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.repository.TradePostImageRepository;
@@ -9,83 +10,107 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-    @Service
-    @RequiredArgsConstructor
-    @Transactional
-    public class TradeServiceImp implements TradeService {
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
-        private final TradePostRepository tradePostRepository;
-        private final TradePostImageRepository tradePostImageRepository;
+@Service
+@RequiredArgsConstructor
+public class TradeServiceImp implements TradeService {
 
-        /** -------------------------------------------------------
-         *  1. 거래글 작성
-         * ------------------------------------------------------- */
-        @Override
-        public TradePost registerTradePost(TradePost tradePost) {
-            return tradePostRepository.save(tradePost);
-        }
+    private final TradePostRepository tradePostRepository;
+    private final TradePostImageRepository tradePostImageRepository;
 
-        /** -------------------------------------------------------
-         *  2. 거래글 수정
-         * ------------------------------------------------------- */
-        @Override
-        public TradePost modifyTradePost(TradePost tradePost) {
-
-            TradePost existing = tradePostRepository.findById((tradePost.getSellerId()))
-                    .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradePost.getId()));
-
-            existing.setTitle(tradePost.getTitle());
-            existing.setContent(tradePost.getContent());
-            existing.setPrice(tradePost.getPrice());
-            // 필요 시 상태(status) 등 다른 필드도 수정
-
-            return tradePostRepository.save(existing);
-        }
-
-        /** -------------------------------------------------------
-         *  3. 거래글 삭제
-         * ------------------------------------------------------- */
-        @Override
-        public TradePost removeTradePost(TradePost tradePostId) {
-
-            TradePost existing = tradePostRepository.findById((tradePostId.getId()))
-                    .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradePostId.getId()));
-
-            tradePostRepository.delete(existing);
-
-            return existing;
-        }
-
-        /** -------------------------------------------------------
-         *  4. 거래글 단일 조회
-         * ------------------------------------------------------- */
-        @Override
-        public TradePost readOneTradePost(TradePost tradePost) {
-            return tradePostRepository.findById((tradePost.getId()))
-                    .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradePost.getId()));
-        }
-
-        /** -------------------------------------------------------
-         *  5. 거래글 전체 조회 (페이징)
-         * ------------------------------------------------------- */
-        @Override
-        public Page<TradePost> readAll(Pageable pageable) {
-            return tradePostRepository.findAll(pageable);
-        }
-
-        /** -------------------------------------------------------
-         *  6. 거래 상태 변경
-         * ------------------------------------------------------- */
-        @Override
-        public TradePost modifyTradepost(TradePost tradePostId, TradePost tradePostStatus) {
-
-            TradePost existing = tradePostRepository.findById((tradePostId.getId()))
-                    .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradePostId.getId()));
-
-            existing.setStatus(tradePostStatus.getStatus()); // 상태만 변경
-            return tradePostRepository.save(existing);
-        }
-
+    /* =========================================================
+       🔵 기존 기능 (절대 삭제 X)
+       ========================================================= */
+    @Override
+    public TradePost registerTradePost(TradePost tradePost) {
+        return tradePostRepository.save(tradePost);
     }
+
+    @Override
+    public TradePost modifyTradePost(TradePost tradePost) {
+        return tradePostRepository.save(tradePost);
+    }
+
+    @Override
+    public TradePost removeTradePost(TradePost tradePost) {
+        tradePostRepository.delete(tradePost);
+        return tradePost;
+    }
+
+    @Override
+    public TradePost readOneTradePost(TradePost tradePost) {
+        return tradePostRepository.findById(tradePost.getId()).orElse(null);
+    }
+
+    @Override
+    public Page<TradePost> readAll(Pageable pageable) {
+        return tradePostRepository.findAll(pageable);
+    }
+
+    @Override
+    public TradePost modifyTradepost(TradePost tradePostId, TradePost tradePostStatus) {
+        tradePostId.setStatus(tradePostStatus.getStatus());
+        return tradePostRepository.save(tradePostId);
+    }
+
+    @Override
+    public void register(TradePost post) {
+    }
+
+    @Override
+    public TradePost readOneTradePostById(Long tradeId) {
+        return tradePostRepository.findById(tradeId).orElse(null);
+    }
+
+    /* =========================================================
+       🔵 DTO 변환 목록 (기존 추가했던 기능)
+       ========================================================= */
+    @Override
+    public Page<TradePostListDto> readAllListDto(Pageable pageable) {
+
+        Page<TradePost> page = tradePostRepository.findAll(pageable);
+
+        return page.map(post -> {
+            // 대표 이미지
+            Optional<TradePostImage> imgOpt =
+                    tradePostImageRepository.findFirstByTradeIdOrderBySortOrderAscIdAsc(post.getId());
+
+            String thumbnail = imgOpt
+                    .map(TradePostImage::getImageUrl)
+                    .orElse("/images/dummy/noimg.png");
+
+            // 시간 표시
+            String timeAgo = calcTimeAgo(post.getCreatedAt());
+
+            return new TradePostListDto(post, thumbnail, timeAgo);
+        });
+    }
+
+
+    /* =========================================================
+       🔥 새로 추가 — 검색 기능
+       ========================================================= */
+    @Override
+    public Page<TradePost> search(String keyword, Pageable pageable) {
+
+        return tradePostRepository.search(keyword, pageable);
+    }
+
+
+    /* =========================================================
+       🔧 유틸 : 시간 계산
+       ========================================================= */
+    private String calcTimeAgo(LocalDate createdAt) {
+        if (createdAt == null) return "방금 전";
+
+        long days = ChronoUnit.DAYS.between(createdAt, LocalDate.now());
+
+        if (days < 1) return "오늘";
+        if (days == 1) return "1일 전";
+        return days + "일 전";
+    }
+}
