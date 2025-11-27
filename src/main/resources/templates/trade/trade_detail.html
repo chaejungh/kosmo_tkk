@@ -61,7 +61,7 @@
             font-weight: 600;
         }
 
-        /* ===== 전체 페이지 레이아웃 ===== */
+        /* ===== 전체 페이지 ===== */
         .detail-page {
             max-width: 1040px;
             margin: 0 auto;
@@ -103,7 +103,6 @@
             height: auto;
             display: block;
             object-fit: cover;
-            /* 4:3 ~ 16:10 사이 비율 느낌 */
             max-height: 460px;
             margin: 0 auto;
         }
@@ -144,9 +143,6 @@
         }
 
         .status-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             padding: 4px 10px;
             border-radius: 999px;
             font-size: 12px;
@@ -168,7 +164,7 @@
             color: #4b5563;
         }
 
-        /* ===== 설명 박스 ===== */
+        /* ===== 설명 ===== */
         .desc-box {
             margin-top: 12px;
             padding: 12px 14px;
@@ -178,7 +174,7 @@
             line-height: 1.6;
         }
 
-        /* ===== 판매자 정보 ===== */
+        /* ===== 판매자 ===== */
         .seller-card {
             margin-top: 18px;
             padding-top: 16px;
@@ -220,7 +216,7 @@
             font-weight: 600;
         }
 
-        /* ===== 버튼 영역 ===== */
+        /* ===== 버튼 ===== */
         .button-wrap {
             margin-top: 20px;
             display: flex;
@@ -264,7 +260,7 @@
             }
         }
 
-        /* ===== 작은 라벨들 ===== */
+        /* ===== 라벨 ===== */
         .label-row {
             display: flex;
             flex-wrap: wrap;
@@ -283,7 +279,6 @@
 </head>
 <body>
 
-<!-- 상단 바 -->
 <header class="top-bar">
     <div class="top-bar-inner">
         <button class="back-btn" type="button" onclick="history.back()">←</button>
@@ -295,74 +290,65 @@
 
     <section class="detail-layout">
 
-        <!-- 왼쪽: 이미지 -->
+        <!-- 🔥 대표 이미지 클릭 → 상세 이미지 페이지 이동 -->
         <div class="image-box">
             <div class="image-frame">
-                <img th:src="${coverUrl}" alt="굿즈 이미지"/>
+                <img th:src="${coverUrl}"
+                     th:onclick="'location.href=\'/trade/' + ${trade.id} + '/article/' + ${coverImageId} + '/detail.do\''"
+                     style="cursor:pointer;"
+                     alt="굿즈 이미지"/>
             </div>
         </div>
 
-        <!-- 오른쪽: 정보 -->
+        <!-- 오른쪽 정보 -->
         <div class="info-card">
 
-            <!-- 상품 타이틀 / 메타 -->
             <h1 class="title" th:text="${trade.title}">굿즈 제목</h1>
 
             <div class="meta">
-                <span th:text="${trade.region != null ? trade.region : '지역 정보 없음'}">서울 · 홍대</span>
+                <span th:text="${trade.region != null ? trade.region : '지역 정보 없음'}"></span>
                 <span> · </span>
-                <span th:text="${#temporals.format(trade.createdAt, 'MM/dd')} + ' 등록'">1시간 전</span>
+                <span th:text="${#temporals.format(trade.createdAt, 'MM/dd')} + ' 등록'"></span>
             </div>
 
-            <div class="price" th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">
-                85,000원
+            <div class="price"
+                 th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">
             </div>
 
-            <!-- 상태 / 카테고리 라벨 -->
             <div class="status-row">
                 <span class="status-badge"
                       th:classappend="${statusClass}"
-                      th:text="${statusLabel}">
-                    판매중
-                </span>
+                      th:text="${statusLabel}"></span>
 
                 <div class="label-row">
-                    <span class="label-chip" th:text="${trade.category}">포카</span>
-                    <span class="label-chip" th:text="${trade.tradeType}">SELL</span>
-                    <span class="label-chip" th:text="${trade.tradeMethod}">DIRECT</span>
+                    <span class="label-chip" th:text="${trade.category}"></span>
+                    <span class="label-chip" th:text="${trade.tradeType}"></span>
+                    <span class="label-chip" th:text="${trade.tradeMethod}"></span>
                 </div>
             </div>
 
-            <!-- 설명 -->
-            <div class="desc-box" th:text="${trade.content}">
-                상태 매우 좋습니다. 직거래만 가능해요.
-            </div>
+            <div class="desc-box" th:text="${trade.content}"></div>
 
-            <!-- 판매자 정보 (엔티티에 맞게 필드 바꿔도 됨) -->
             <div class="seller-card">
                 <div class="seller-avatar">
                     <span>👤</span>
                 </div>
+
                 <div class="seller-info-main">
-                    <!-- nickname 필드가 없으면 sellerId로 보여줘도 됨 -->
                     <div class="seller-name"
                          th:text="${trade.seller != null ? trade.seller.nickname : '판매자 #' + trade.sellerId}">
-                        더쿠쿠셀러
                     </div>
                     <div class="seller-region"
-                         th:text="${trade.region != null ? trade.region : '지역 미등록'}">
-                        신촌 · 1시간 전
-                    </div>
+                         th:text="${trade.region != null ? trade.region : '지역 미등록'}"></div>
                 </div>
+
                 <div class="seller-score">
                     매너 온도 39.5℃
                 </div>
             </div>
 
-            <!-- 버튼 -->
             <div class="button-wrap">
 
-                <!-- 채팅하기 -->
                 <form th:action="@{|/trade/${currentMemberId}/chat/start/${trade.id}|}"
                       method="post" style="flex:1;">
                     <button type="submit" class="btn-main">
@@ -370,7 +356,6 @@
                     </button>
                 </form>
 
-                <!-- 구매요청 (지금 기능 없음 → 임시 비활성) -->
                 <form action="#" style="flex:1;">
                     <button type="button" class="btn-sub" disabled>
                         🛒 구매 요청 (준비중)

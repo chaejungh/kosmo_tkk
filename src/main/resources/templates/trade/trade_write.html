@@ -1,67 +1,240 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>중고 굿즈 글쓰기</title>
+    <title>굿즈거래 글쓰기 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --purple: #6366f1;
+            --purple-deep: #4f46e5;
+            --border: #e5e7eb;
+            --bg: #fafafa;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .write-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        /* 이미지 업로드 */
+        .img-upload-box {
+            background: #ffffff;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .img-upload-box:hover {
+            border-color: var(--purple);
+        }
+
+        .img-preview-wrap {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .preview-item {
+            position: relative;
+        }
+
+        .preview-img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* 입력폼 */
+        .input-box {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* 버튼 */
+        .submit-btn {
+            margin-top: 24px;
+            width: 100%;
+            padding: 16px;
+            background: var(--purple);
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .submit-btn:hover {
+            background: var(--purple-deep);
+        }
+    </style>
 </head>
+
 <body>
-<h1>중고 굿즈 글쓰기</h1>
 
-<form th:action="@{|/trade/${memberId}/write|}" th:object="${post}" method="post">
+<div class="write-wrap">
 
-    <!-- 글 타입(t) 유지하고 싶으면 hidden 으로 넘김 -->
-    <input type="hidden" name="tradeType" th:value="*{tradeType}"/>
+    <h1 class="title">굿즈거래 글쓰기</h1>
 
-    <div>
-        <label>제목</label>
-        <input type="text" th:field="*{title}" required/>
+    <!-- 이미지 업로드 -->
+    <div class="img-upload-box" onclick="document.getElementById('imgInput').click()">
+        📷 클릭해서 이미지 업로드 (여러 장 가능)
     </div>
 
-    <div>
-        <label>굿즈 이름</label>
-        <input type="text" th:field="*{goodsName}" required/>
-    </div>
+    <input type="file" id="imgInput" accept="image/*" multiple style="display:none">
 
-    <div>
-        <label>작품명</label>
-        <input type="text" th:field="*{workName}"/>
-    </div>
+    <div class="img-preview-wrap" id="previewArea"></div>
 
-    <div>
-        <label>캐릭터명</label>
-        <input type="text" th:field="*{characterName}"/>
-    </div>
 
-    <div>
-        <label>카테고리</label>
-        <input type="text" th:field="*{category}"/>
-    </div>
+    <!-- ================== FORM ================== -->
+    <form th:action="@{|/trade/${memberId}/write|}" method="post" enctype="multipart/form-data">
 
-    <div>
-        <label>가격</label>
-        <input type="number" th:field="*{price}" min="0"/>
-    </div>
+        <div class="input-box">
+            <div class="input-label">제목</div>
+            <input type="text" name="title" placeholder="제목을 입력하세요" required>
+        </div>
 
-    <div>
-        <label>거래 방식 (직거래/택배 등)</label>
-        <input type="text" th:field="*{tradeMethod}" required/>
-    </div>
+        <div class="input-box">
+            <div class="input-label">가격</div>
+            <input type="number" name="price" placeholder="예: 15000">
+        </div>
 
-    <div>
-        <label>지역</label>
-        <input type="text" th:field="*{region}"/>
-    </div>
+        <div class="input-box">
+            <div class="input-label">카테고리</div>
+            <select name="category">
+                <option value="">선택하세요</option>
+                <option value="포카">포카</option>
+                <option value="피규어">피규어</option>
+                <option value="기타굿즈">기타굿즈</option>
+            </select>
+        </div>
 
-    <div>
-        <label>내용</label><br>
-        <textarea th:field="*{content}" rows="10" cols="60" required></textarea>
-    </div>
+        <div class="input-box">
+            <div class="input-label">지역</div>
+            <input type="text" name="region" placeholder="예: 홍대 / 신촌 / 강남">
+        </div>
 
-    <div>
-        <button type="submit">등록</button>
-        <a th:href="@{/trade/list.do}">목록으로</a>
-    </div>
-</form>
+        <div class="input-box">
+            <div class="input-label">거래 방식</div>
+            <select name="tradeMethod">
+                <option value="DIRECT">직거래</option>
+                <option value="DELIVERY">택배거래</option>
+                <option value="BOTH">직거래 + 택배</option>
+            </select>
+        </div>
+
+        <div class="input-box">
+            <div class="input-label">설명</div>
+            <textarea name="content" placeholder="상품 상태, 거래 희망 시간 등을 입력해주세요"></textarea>
+        </div>
+
+        <button class="submit-btn">등록하기</button>
+    </form>
+
+</div>
+
+
+<!-- ================== JS: 이미지 미리보기 ================== -->
+<script>
+    const imgInput = document.getElementById("imgInput");
+    const previewArea = document.getElementById("previewArea");
+
+    let selectedFiles = [];
+
+    imgInput.addEventListener("change", (e) => {
+        const files = Array.from(e.target.files);
+
+        selectedFiles = selectedFiles.concat(files);
+        renderPreview();
+    });
+
+    function renderPreview() {
+        previewArea.innerHTML = "";
+
+        selectedFiles.forEach((file, idx) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+
+                const div = document.createElement("div");
+                div.className = "preview-item";
+
+                div.innerHTML = `
+                    <img src="${e.target.result}" class="preview-img">
+                    <div class="remove-btn" onclick="removeImg(${idx})">×</div>
+                `;
+                previewArea.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function removeImg(index) {
+        selectedFiles.splice(index, 1);
+        renderPreview();
+    }
+</script>
 
 </body>
 </html>

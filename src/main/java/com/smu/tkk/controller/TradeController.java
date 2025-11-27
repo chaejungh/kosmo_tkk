@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.data.domain.Sort.Direction.DESC;
@@ -78,26 +79,57 @@ public class TradeController {
         model.addAttribute("trade", trade);
         model.addAttribute("coverUrl", coverUrl);
 
-        // 로그인 기능 없으니 임시 memberId
+        // ⭐ 추가: coverImageId 전달
+        Long coverImageId = coverOpt.map(TradePostImage::getId).orElse(0L);
+        model.addAttribute("coverImageId", coverImageId);
+
         Long currentMemberId = 1L;
         model.addAttribute("currentMemberId", currentMemberId);
 
-        // 판매자 ID (구매요청/채팅 버튼용)
         model.addAttribute("sellerId", trade.getSellerId());
 
         return "trade/trade_detail";
     }
 
     /* ===============================================================
-       4) 이미지 상세 — GET /trade/{tradeId}/article/{imageId}/detail.do
+       4) 이미지 상세 ( 갤러리 + 예외 완전 방지 + 람다 오류 수정)
        ============================================================== */
     @GetMapping("/{tradeId}/article/{imageId}/detail.do")
     public String imageDetail(@PathVariable Long tradeId,
                               @PathVariable Long imageId,
                               Model model) {
 
-        TradePostImage image = tradePostImageService.readOneImageById(imageId);
-        model.addAttribute("image", image);
+        // 전체 이미지 목록 가져오기
+        List<TradePostImage> imageList = tradePostImageService.readAllList(tradeId);
+
+        // ① 이미지가 아예 없으면 dummy 생성
+        if (imageList == null || imageList.isEmpty()) {
+            TradePostImage dummy = new TradePostImage();
+            dummy.setId(0L);
+            dummy.setImageUrl("/images/dummy/noimg.png");
+            imageList = List.of(dummy);
+        }
+
+        //  람다 비교용 final 변수
+        final Long targetImageId = imageId;
+
+        // ② imageId가 실제 이미지에 없으면 첫 이미지로 교체
+        boolean exists = imageList.stream()
+                .anyMatch(i -> i.getId().equals(targetImageId));
+
+        Long validImageId = exists ? imageId : imageList.get(0).getId();
+
+        // ③ 현재 이미지 index 계산
+        int activeIndex = 0;
+        for (int i = 0; i < imageList.size(); i++) {
+            if (imageList.get(i).getId().equals(validImageId)) {
+                activeIndex = i;
+                break;
+            }
+        }
+
+        model.addAttribute("imageList", imageList);
+        model.addAttribute("activeIndex", activeIndex);
 
         return "trade/trade_image_detail";
     }
@@ -128,10 +160,16 @@ public class TradeController {
                               @ModelAttribute TradePost post) {
 
         post.setSellerId(memberId);
-        if (post.getStatus() == null) post.setStatus("ON_SALE");
 
+        // 기본 상태값
+        if (post.getStatus() == null) {
+            post.setStatus("ON_SALE");
+        }
+
+        // 저장
         tradeService.register(post);
 
+        // 저장 후 목록으로 이동
         return "redirect:/trade/list.do";
     }
 

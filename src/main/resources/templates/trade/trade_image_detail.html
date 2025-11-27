@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>이미지 상세 | 굿즈거래 | 더쿠쿠</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #f9fafb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .image-wrap {
+            position: relative;
+        }
+
+        .main-img-box {
+            width: 100%;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .main-img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .zoomed {
+            transform: scale(2.2);
+            cursor: zoom-out;
+        }
+
+        /* 🔥 좌우 화살표 버튼 */
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 14px 16px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            cursor: pointer;
+            font-size: 22px;
+            user-select: none;
+        }
+
+        .arrow-left {
+            left: 6px;
+        }
+
+        .arrow-right {
+            right: 6px;
+        }
+
+        .arrow-btn:hover {
+            background: rgba(0,0,0,0.55);
+        }
+
+        .thumb-list {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .thumb-item {
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            flex-shrink: 0;
+        }
+
+        .thumb-item.active {
+            border-color: #6366f1;
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="back-btn" onclick="history.back()">← 돌아가기</div>
+
+    <div class="image-wrap">
+
+        <!-- 좌측 화살표 -->
+        <div class="arrow-btn arrow-left" onclick="moveSlide(-1)">❮</div>
+
+        <!-- 이미지 박스 -->
+        <div class="main-img-box" id="zoomBox">
+
+            <img th:each="img, iter : ${imageList}"
+                 th:id="'img' + ${iter.index}"
+                 th:if="${iter.index} == ${activeIndex}"
+                 th:src="${img.imageUrl}"
+                 class="main-img"
+                 alt="이미지"/>
+        </div>
+
+        <!-- 우측 화살표 -->
+        <div class="arrow-btn arrow-right" onclick="moveSlide(1)">❯</div>
+    </div>
+
+    <!-- 썸네일 -->
+    <div class="thumb-list">
+
+        <div th:each="img, iter : ${imageList}"
+             th:classappend="${iter.index == activeIndex} ? 'active'"
+             th:onclick="'changeImage(' + ${iter.index} + ')'"
+             class="thumb-item">
+
+            <img th:src="${img.imageUrl}" />
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    let currentIndex = /*[[${activeIndex}]]*/ 0;
+    const total = /*[[${imageList.size()}]]*/ 1;
+
+    const zoomBox = document.getElementById("zoomBox");
+
+    /* 🔥 이미지 변경 함수 */
+    function changeImage(index) {
+        if (index < 0 || index >= total) return;
+
+        currentIndex = index;
+
+        const imgs = document.querySelectorAll(".main-img");
+        imgs.forEach(img => img.style.display = "none");
+
+        const target = document.getElementById("img" + index);
+        if (target) {
+            target.style.display = "block";
+            target.classList.remove("zoomed");
+        }
+
+        updateThumb();
+    }
+
+    /* 🔥 좌우 이동 */
+    function moveSlide(step) {
+        let next = currentIndex + step;
+
+        if (next < 0 || next >= total) return;
+
+        changeImage(next);
+    }
+
+    /* 썸네일 active 표시 업데이트 */
+    function updateThumb() {
+        const thumbs = document.querySelectorAll(".thumb-item");
+        thumbs.forEach((t, idx) => {
+            t.classList.toggle("active", idx === currentIndex);
+        });
+    }
+
+    /* 초기 active 설정 */
+    updateThumb();
+
+    /* 🔥 클릭 확대 기능 */
+    document.addEventListener("click", (e) => {
+        const img = document.getElementById("img" + currentIndex);
+
+        if (!img) return;
+
+        if (img.classList.contains("zoomed")) {
+            img.classList.remove("zoomed");
+        } else {
+            img.classList.add("zoomed");
+        }
+    });
+</script>
+
+</body>
+</html>
