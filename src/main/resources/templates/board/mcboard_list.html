@@ -462,7 +462,7 @@
                     <li class="page-item"
                         th:classappend="${page}==0 ? 'disabled' ">
                         <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
-                    </li>
+                    </li>g
                     <li  th:each="i : ${#numbers.sequence(1,last)}"
                          th:classappend="( (${i}-1)==${page}?'active' )"
                          class="page-item">
