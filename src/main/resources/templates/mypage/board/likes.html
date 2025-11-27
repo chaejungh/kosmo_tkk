@@ -45,12 +45,12 @@
         <div class="list-box">
             <div class="post-item" th:each="like : ${boardLikes.content}">
 
-                <div class="post-title" th:text="${like.boardPost.title}"></div>
+                <div class="post-title" th:text="${like.post.title}"></div>
 
                 <div class="post-info">
-                    <span th:text="${like.boardPost.category.name}"></span>
+                    <span th:text="${like.post.category.name}"></span>
                     ·
-                    <span th:text="${#temporals.format(like.boardPost.createdAt, 'yyyy.MM.dd')}"></span>
+                    <span th:text="${#temporals.format(like.post.createdAt, 'yyyy.MM.dd')}"></span>
                 </div>
             </div>
 
