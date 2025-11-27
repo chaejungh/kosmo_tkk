@@ -95,7 +95,7 @@ import java.util.Optional;
             if (categoryId != null) {
                 category = boardCategoryRepository.findById(categoryId).orElse(null);
             }
-            return boardPostRepository.findAllByCategoryAndDeletedYn(category, "N", Pageable.ofSize(20));
+            return boardPostRepository.findAllByCategoryAndDeletedYn(category, "N",pageable);
         }
 
         @Override
