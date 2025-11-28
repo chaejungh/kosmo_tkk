@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface PopupService {
     // 1. 팝업 스토어 전체 조회(레파지토리 완료)
-    List<PopupStore> readAll(Pageable pageable) throws SQLException;
+    Page<PopupStore> readAll(Pageable pageable) throws SQLException;
 
     // 2. 팝업 상세 조회 (단일)(레파지토리 완료)
     PopupStore readOne(Long popupId) throws SQLException;

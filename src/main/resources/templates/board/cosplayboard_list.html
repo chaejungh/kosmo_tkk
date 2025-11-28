@@ -225,8 +225,11 @@
             <div class="board-search-row">
 
                 <div class="board-search-box">
-                    <input type="text" placeholder="통합 검색 (제목, 닉네임, 태그)">
-                    <span class="board-search-icon">🔍</span>
+                    <input class="col-7 form-control" name="search" type="text" placeholder="통합 검색 (제목, 닉네임, 태그)">
+                    <button class="col-1 btn btn-outline-primary d-flex align-items-center justify-content-center" type="submit">
+                        <span class="board-search-icon me-1">🔍</span>
+                    </button>
+
                 </div>
 
                 <!-- ▶▶ 아이콘 기능 추가된 부분 ◀◀ -->
@@ -463,12 +466,9 @@
                         th:classappend="${page}==(${last}-1) ? 'disabled' ">
                         <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
                     </li>
-
                 </ul>
             </nav>
         </div>
-
-
     </main>
 </div>
 

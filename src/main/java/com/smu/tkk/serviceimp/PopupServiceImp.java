@@ -30,8 +30,8 @@ public class PopupServiceImp implements PopupService {
      * 1. 팝업 스토어 전체 조회
      */
     @Override
-    public List<PopupStore> readAll(Pageable pageable) throws SQLException {
-        return popupStoreRepository.findAll(pageable).getContent();
+    public Page<PopupStore> readAll(Pageable pageable) throws SQLException {
+        return popupStoreRepository.findAll(pageable);
     }
 
     /**
