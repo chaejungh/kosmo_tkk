@@ -1,154 +1,194 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>채팅방 목록</title>
+    <meta charset="UTF-8">
+    <title>중고거래 채팅 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
-            font-family: 'Apple SD Gothic Neo', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #0f172a;
+            color: #f9fafb;
         }
 
-        .header {
-            position: sticky;
-            top: 0;
-            background: white;
-            padding: 16px;
-            font-size: 20px;
-            font-weight: 700;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .chat-list {
-            margin-top: 0;
-        }
-
-        .room-item {
-            display: flex;
-            align-items: center;
-            padding: 14px;
-            background: white;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-        }
-
-        .room-item:hover {
-            background: #fafafa;
-        }
-
-        .thumb {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-right: 12px;
-            background: #ddd;
-        }
-
-        .room-info {
-            flex: 1;
+        .chat-wrap {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #020617;
             display: flex;
             flex-direction: column;
         }
 
-        .room-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
+        header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            border-bottom: 1px solid #1f2937;
+            position: sticky;
+            top: 0;
+            background: #020617;
+            z-index: 10;
         }
 
-        .room-lastmsg {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 2px;
+        header .back-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid #374151;
+            background: transparent;
+            color: #e5e7eb;
+            font-size: 18px;
+            cursor: pointer;
         }
 
-        .room-price {
+        header .title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .chat-list {
+            padding: 8px 0 16px;
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 1px solid #111827;
+            gap: 12px;
+        }
+
+        .chat-item:hover {
+            background: #030712;
+        }
+
+        .chat-thumb {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .chat-main .room-title {
             font-size: 14px;
             font-weight: 600;
-            margin-top: 4px;
+            color: #e5e7eb;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 8px;
-            font-size: 11px;
+        .chat-main .room-sub {
+            font-size: 12px;
+            color: #9ca3af;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
             margin-left: 4px;
-            color: white;
+        }
+
+        .chat-meta .time {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .badge-onsale,
+        .badge-reserved,
+        .badge-sold {
+            display: inline-flex;
+            padding: 2px 6px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 600;
         }
 
         .badge-onsale {
-            background: #5c7cfa;
+            background: rgba(52, 211, 153, 0.2);
+            color: #6ee7b7;
         }
 
         .badge-reserved {
-            background: #f59f00;
+            background: rgba(251, 191, 36, 0.15);
+            color: #facc15;
         }
 
         .badge-sold {
-            background: #e03131;
+            background: rgba(248, 113, 113, 0.18);
+            color: #fca5a5;
         }
-
-        .time {
-            font-size: 12px;
-            color: #999;
-            margin-left: 8px;
-        }
-
     </style>
 </head>
 <body>
+<div class="chat-wrap">
 
-<div class="header">채팅</div>
+    <header>
+        <button class="back-btn" onclick="history.back()">←</button>
+        <div class="title">중고거래 채팅</div>
+    </header>
 
-<div class="chat-list">
+    <section class="chat-list">
+        <a class="chat-item"
+           th:each="room : ${rooms}"
+           th:href="@{|/trade/${memberId}/chat/${room.id}|}">
 
-    <!-- 반복: 내가 속한 채팅방들 -->
-    <div class="room-item"
-         th:each="room : ${rooms}"
-         th:onclick="|location.href='/trade/${memberId}/chat/${room.id}'|">
+            <div class="chat-thumb">
+                <!-- 상품 썸네일 대신 간단 라벨 -->
+                <span th:text="${room.trade != null ? room.trade.region : '굿즈'}">굿즈</span>
+            </div>
 
-        <!-- 상품 이미지 -->
-        <img class="thumb"
-             th:src="${room.trade.thumbnailUrl != null} ? ${room.trade.thumbnailUrl} : '/images/dummy/noimg.png'"/>
+            <div class="chat-main">
+                <div class="room-title"
+                     th:text="${room.trade != null ? room.trade.title : '삭제된 게시글'}">
+                    체인소맨 피규어 팝니다
+                </div>
 
-        <div class="room-info">
+                <div class="room-sub">
+                    <span th:if="${room.trade != null}">
+                        <span th:text="${room.trade.price != null ? #numbers.formatInteger(room.trade.price, 0, 'COMMA') + '원' : '가격 미정'}">
+                            12,000원
+                        </span>
+                        ·
+                        <span th:text="${room.trade.seller != null ? room.trade.seller.nickname : '판매자'}">닉네임</span>
+                    </span>
+                </div>
+            </div>
 
-            <!-- 판매자 닉네임 + 상태 + 시간 -->
-            <div class="room-title">
-                <span th:text="${room.trade.seller.nickname}"></span>
-
-                <span class="badge"
-                      th:classappend="${room.trade.status == 'RESERVED'} ? 'badge-reserved' :
-                                      (${room.trade.status == 'SOLD' || room.trade.status == 'SOLD_OUT'} ? 'badge-sold' : 'badge-onsale')">
-                    <span th:text="${room.trade.status == 'RESERVED' ? '예약중' :
-                                   (room.trade.status == 'SOLD' || room.trade.status == 'SOLD_OUT') ? '완료' : '판매중'}"></span>
-                </span>
-
+            <div class="chat-meta">
                 <span class="time"
-                      th:text="${room.lastMessageAt}"></span>
+                      th:text="${room.lastMessageAt != null ? room.lastMessageAt : ''}">
+                    2025-11-27
+                </span>
             </div>
+        </a>
+    </section>
 
-            <!-- 마지막 메시지 -->
-            <div class="room-lastmsg"
-                 th:text="${room.tradeChatMessages.size() > 0 ?
-                            room.tradeChatMessages.iterator().next().message :
-                            '메시지가 없습니다.'}">
-            </div>
-
-            <!-- 가격 -->
-            <div class="room-price"
-                 th:text="${room.trade.price != null ?
-                           #numbers.formatInteger(room.trade.price, 3, 'COMMA') + '원' :
-                           '가격 미정'}"></div>
-        </div>
-
-    </div> <!-- room-item end -->
-
-</div> <!-- chat-list -->
-
+</div>
 </body>
 </html>

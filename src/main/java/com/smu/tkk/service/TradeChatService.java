@@ -3,6 +3,7 @@ package com.smu.tkk.service;
 import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface TradeChatService {
 
@@ -26,4 +27,6 @@ public interface TradeChatService {
 
     // ⭐ 자동 생성용 메서드 (추가)
     TradeChatRoom getOrCreateRoom(Long tradeId, Long buyerId);
+
+    TradeChatMessage sendImage(Long roomId, Long senderId, MultipartFile file) throws Exception;
 }

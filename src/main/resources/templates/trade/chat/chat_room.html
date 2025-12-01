@@ -1,196 +1,326 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>채팅</title>
+    <title>거래 채팅방 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            margin: 0;
-            background: #111;
-            color: white;
-            font-family: 'Apple SD Gothic Neo', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #F9FAFB;
+            color: #111827;
         }
 
-        /* ===== 상단 바 ===== */
-        .top-bar {
+        .chat-room {
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #F9FAFB;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #ffffff;
+            border-bottom: 1px solid #E5E7EB;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .room-topbar {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: #222;
-            border-bottom: 1px solid #333;
+            padding: 12px 16px;
+            gap: 10px;
         }
 
         .back-btn {
-            font-size: 22px;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid #E5E7EB;
+            background: #ffffff;
+            color: #4B5563;
+            font-size: 18px;
             cursor: pointer;
         }
 
-        .seller-info {
-            display: flex;
-            flex-direction: column;
-        }
+        .seller-info { display: flex; flex-direction: column; gap: 2px; }
+        .seller-name { font-size: 15px; font-weight: 700; color: #111827; }
+        .seller-sub { font-size: 12px; color: #6B7280; }
 
-        .seller-name {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .status-badge {
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 6px;
-            margin-left: 4px;
-        }
-
-        .sold { background: #444; color: #bbb; }
-        .reserved { background: #FFA500; color: #000; }
-
-        /* ===== 상품 요약 박스 ===== */
-        .product-box {
-            display: flex;
-            gap: 12px;
-            padding: 12px;
-            background: #1a1a1a;
-            border-bottom: 1px solid #333;
+        .product-card {
+            display: flex; gap: 12px; padding: 12px 16px;
+            border-bottom: 1px solid #E5E7EB; background: #ffffff;
         }
 
         .product-thumb {
-            width: 60px;
-            height: 60px;
-            border-radius: 6px;
-            object-fit: cover;
+            width: 52px; height: 52px; border-radius: 12px;
+            overflow: hidden; background: #F3F4F6; flex-shrink: 0;
         }
 
-        .product-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .product-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+        .badge-onsale { background: rgba(99,102,241,0.12); color: #4F46E5; }
+        .badge-reserved { background: rgba(251,191,36,0.15); color: #D97706; }
+        .badge-sold { background: #E5E7EB; color: #6B7280; }
 
         .product-title {
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 13px; font-weight: 600; color: #111827;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
-        .product-price {
-            font-size: 13px;
-            margin-top: 4px;
-            color: #f2d78e;
-        }
+        .product-price { font-size: 13px; color: #4F46E5; font-weight: 700; }
 
-        /* ===== 메시지 영역 ===== */
-        .chat-area {
-            height: calc(100vh - 210px);
-            overflow-y: auto;
-            padding: 16px;
+        .chat-body {
+            flex: 1; display: flex; flex-direction: column;
+            padding: 14px 14px 0;
+            overflow-y: auto; background: #F9FAFB;
         }
 
         .msg {
-            max-width: 70%;
-            padding: 12px;
-            margin-bottom: 14px;
-            border-radius: 10px;
-            word-break: break-word;
+            max-width: 70%; margin-bottom: 12px;
+            display: flex; flex-direction: column; gap: 4px;
         }
 
-        .me {
-            margin-left: auto;
-            background: #6366f1;
-            color: white;
-            border-bottom-right-radius: 0;
+        .msg.me { margin-left: auto; align-items: flex-end; }
+        .msg.other { margin-right: auto; align-items: flex-start; }
+
+        .bubble {
+            padding: 10px 14px; font-size: 14px; line-height: 1.45;
+            border-radius: 20px; word-break: break-word;
         }
 
-        .other {
-            margin-right: auto;
-            background: #333;
-            color: white;
-            border-bottom-left-radius: 0;
+        .me .bubble {
+            background: #6366F1; color: #ffffff;
+            border-bottom-right-radius: 6px;
         }
 
-        /* ===== 입력창 ===== */
-        .input-bar {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: #222;
-            border-top: 1px solid #333;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            gap: 8px;
+        .other .bubble {
+            background: #ffffff; color: #111827;
+            border: 1px solid #E5E7EB; border-bottom-left-radius: 6px;
         }
 
-        .plus-btn {
-            background: none;
-            border: none;
-            font-size: 26px;
-            color: #888;
-            cursor: pointer;
+        .time { font-size: 11px; color: #9CA3AF; padding: 0 4px; }
+
+        .chat-input-wrap {
+            position: sticky; bottom: 0; background: #ffffff;
+            border-top: 1px solid #E5E7EB; padding: 12px 14px;
+        }
+
+        .chat-input-form { display: flex; align-items: center; gap: 10px; }
+
+        .btn-plus {
+            width: 32px; height: 32px; border-radius: 999px;
+            border: 1px solid #E5E7EB; background: #ffffff;
+            font-size: 20px; color: #4B5563; cursor: pointer;
         }
 
         .msg-input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            outline: none;
+            flex: 1; border-radius: 999px; border: 1px solid #D1D5DB;
+            background: #ffffff; padding: 10px 16px;
         }
 
-        .send-btn {
-            background: #6366f1;
-            color: white;
-            border: none;
-            padding: 10px 14px;
-            border-radius: 6px;
-            cursor: pointer;
+        .btn-send {
+            border-radius: 999px; border: none;
+            background: #6366F1; color: #ffffff;
+            font-size: 14px; font-weight: 600;
+            padding: 9px 18px; cursor: pointer;
         }
-
     </style>
 </head>
 <body>
+<div class="chat-room">
 
-<!-- ===== 상단바 ===== -->
-<div class="top-bar">
-    <div class="back-btn" onclick="history.back()">←</div>
-    <div class="seller-info">
-        <div class="seller-name" th:text="${sellerName}">판매자</div>
-        <div class="status-badge" th:text="${productStatusLabel}"
-             th:class="'status-badge ' + ${productStatusClass}">판매중</div>
-    </div>
-</div>
+    <!-- 상단 -->
+    <div class="room-header">
+        <div class="room-topbar">
+            <button class="back-btn"
+                    th:onclick="|location.href='@{/trade/{memberId}/chat(memberId=${memberId})}'|">←</button>
 
-<!-- ===== 상품 요약 ===== -->
-<div class="product-box">
-    <img th:src="${productThumbnailUrl}" class="product-thumb">
-    <div class="product-text">
-        <div class="product-title" th:text="${productTitle}">상품 제목</div>
-        <div class="product-price" th:text="${productPriceText}">10,000원</div>
-    </div>
-</div>
+            <div class="seller-info">
+                <div class="seller-name" th:text="${sellerName}"></div>
+                <div class="seller-sub">보통 10분 이내 응답</div>
+            </div>
+        </div>
 
-<!-- ===== 메시지 목록 ===== -->
-<div class="chat-area">
-    <div th:each="msg : ${msgList}">
-        <div th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')"
-             th:text="${msg.message}">
-            메시지
+        <div class="product-card">
+            <div class="product-thumb">
+                <img th:src="${productThumbnailUrl}">
+            </div>
+            <div class="product-info">
+                <span th:text="${productStatusLabel}"
+                      th:class="'badge ' + ${productStatusClass}"></span>
+
+                <div class="product-title" th:text="${productTitle}"></div>
+                <div class="product-price" th:text="${productPriceText}"></div>
+            </div>
         </div>
     </div>
+
+    <!-- 메시지 목록 -->
+    <div id="chatListCont">
+        <div class="chat-body">
+            <div th:each="msg : ${msgList}"
+                 th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')">
+
+                <div class="bubble">
+
+                    <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
+                          th:text="${msg.message}"></span>
+
+                    <img th:if="${#strings.startsWith(msg.message, '[img]')}"
+                         th:src="@{${#strings.substring(msg.message, 5)}}"
+                         style="max-width:200px; border-radius:12px;">
+                </div>
+
+                <div class="time"
+                     th:text="${msg.createdAt != null ? msg.createdAt : ''}"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 입력영역 -->
+    <div class="chat-input-wrap">
+        <form name="chatForm"
+              class="chat-input-form"
+              th:action="@{|/trade/${memberId}/chat/${room.id}/send|}"
+              method="post">
+
+            <button type="button" class="btn-plus" onclick="selectImage()">+</button>
+
+            <input type="file" id="imgFile" accept="image/*" style="display:none;" />
+
+            <input type="text" name="message" class="msg-input"
+                   placeholder="메시지 보내기" autocomplete="off">
+
+            <button type="submit" class="btn-send">전송</button>
+        </form>
+    </div>
+
+    <script>
+        const memberId = "[[${memberId}]]";
+        const roomId = "[[${room.id}]]";
+        const chatForm=document.forms["chatForm"];
+        const chatListCont=document.querySelector(".chat-body");
+
+        setInterval(getChatList,1000);
+
+        function formatTime(date) {
+            let hour = date.getHours();
+            let minute = String(date.getMinutes()).padStart(2,'0');
+            const ampm = hour >= 12 ? '오후':'오전';
+            hour = hour % 12 || 12;
+            return `${ampm} ${hour}:${minute}`;
+        }
+
+        function formatDate(date) {
+            const today = new Date();
+            const d = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+            const t = new Date(today.getFullYear(),today.getMonth(),today.getDate());
+            const diff = (t - d) / (86400000);
+            if(diff===0) return "오늘";
+            if(diff===1) return "어제";
+            return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+        }
+
+        function formatDateTime(str){
+            if(!str) return "";
+            const date=new Date(str);
+            return `${formatDate(date)} ${formatTime(date)}`;
+        }
+
+        async function getChatList(){
+            const response = await fetch(`/trade/api/${roomId}/chat/list`);
+            if(response.ok){
+                const chatList = await response.json();
+                let html="";
+                for(const msg of chatList){
+
+                    let contentHtml = "";
+                    if(msg.message.startsWith("[img]")){
+                        let path = msg.message.substring(5);
+                        contentHtml = `<img src="${path}" style="max-width:200px;border-radius:12px;">`;
+                    } else {
+                        contentHtml = msg.message;
+                    }
+
+                    html+=`
+                <div class="msg ${msg.senderId==memberId?'me':'other'}">
+                    <div class="bubble">${contentHtml}</div>
+                    <div class="time">${msg.createdAt ? formatDateTime(msg.createdAt):''}</div>
+                </div>`;
+                }
+                chatListCont.innerHTML=html;
+
+                /* 🔥 DOM 렌더링 후 자동 스크롤 */
+                setTimeout(() => {
+                    scrollToBottom();
+                }, 30);
+            }
+        }
+
+        function scrollToBottom(){
+            const chatBody=document.querySelector(".chat-body");
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        chatForm.onsubmit = sendMsg;
+
+        async function sendMsg(e){
+            e.preventDefault();
+            let url=`/trade/api/${memberId}/chat/${roomId}/send`;
+            const response=await fetch(url,{method:"POST",body:new FormData(chatForm)});
+            if(response.ok){
+                getChatList();
+
+                /* 🔥 전송 후 자동 스크롤 */
+                setTimeout(() => {
+                    scrollToBottom();
+                }, 30);
+
+                chatForm.reset();
+            }
+        }
+
+        function selectImage() {
+            document.getElementById("imgFile").click();
+        }
+
+        document.getElementById("imgFile")
+            .addEventListener("change", async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const fd = new FormData();
+                fd.append("image", file);
+
+                const response = await fetch(`/trade/api/${memberId}/chat/${roomId}/image`, {
+                    method: "POST",
+                    body: fd
+                });
+
+                if (response.ok) {
+                    getChatList();
+
+                    /* 🔥 이미지 업로드 후 자동 스크롤 */
+                    setTimeout(() => {
+                        scrollToBottom();
+                    }, 30);
+
+                } else {
+                    alert("이미지 전송 실패");
+                }
+            });
+
+    </script>
 </div>
-
-<!-- ===== 입력창 ===== -->
-<form th:action="@{|/trade/${currentMemberId}/chat/${room.id}/send|}"
-      method="post"
-      class="input-bar">
-
-    <button type="button" class="plus-btn">＋</button>
-
-    <input type="text" name="message" placeholder="메시지 보내기"
-           class="msg-input" required>
-
-    <button class="send-btn">전송</button>
-</form>
-
 </body>
 </html>
