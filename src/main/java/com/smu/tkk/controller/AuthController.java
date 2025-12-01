@@ -41,7 +41,7 @@ public class AuthController {
 
         // MEMBER 테이블에 아이디+비밀번호 조합이 존재하는지 검사
         boolean exists = memberRepository.existsByLoginIdAndLoginPw(loginId, loginPw);
-
+        Member member= memberRepository.findByLoginIdAndLoginPw(loginId,loginPw);
         if (!exists) {
             rttr.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
             rttr.addFlashAttribute("loginId", loginId);   // 입력했던 아이디 유지
@@ -49,8 +49,9 @@ public class AuthController {
         }
 
         // 로그인 성공 → 세션에 로그인 아이디만 저장 (레포 수정 안 하려고 간단 버전)
-        session.setAttribute("LOGIN_ID", loginId);
-
+        session.setAttribute("loginId", member.getLoginId());
+        session.setAttribute("nickname", member.getNickname());
+        session.setAttribute("memberId", member.getId());
         return "redirect:/";
     }
 
@@ -58,11 +59,11 @@ public class AuthController {
      * 로그아웃
      * URL : /auth/logout
      */
-//    @GetMapping("/logout")
-//    public String logout(HttpSession session) {
-//        session.invalidate();
-//        return "redirect:/";
-//    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 
     /**
      * 회원가입 화면
