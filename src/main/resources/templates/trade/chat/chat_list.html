@@ -124,8 +124,8 @@
                 <span class="badge"
                       th:classappend="${room.trade.status == 'RESERVED'} ? 'badge-reserved' :
                                       (${room.trade.status == 'SOLD' || room.trade.status == 'SOLD_OUT'} ? 'badge-sold' : 'badge-onsale')">
-                    <span th:text="${room.trade.status == 'RESERVED' ? '예약중' :
-                                   (room.trade.status == 'SOLD' || room.trade.status == 'SOLD_OUT') ? '완료' : '판매중'}"></span>
+                    <span th:text="( (${room.trade.status} == 'RESERVED') ? '예약중' :
+                                   (${room.trade.status} == 'SOLD' || ${room.trade.status} == 'SOLD_OUT' ? '완료' : '판매중') )"></span>
                 </span>
 
                 <span class="time"

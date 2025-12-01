@@ -378,6 +378,18 @@
             padding:4px 0 8px;
         }
 
+        .map-search-detail{
+            margin-left:auto;
+            border:none;
+            background:#111827;
+            color:#fff;
+            font-size:11px;
+            padding:4px 8px;
+            border-radius:999px;
+            cursor:pointer;
+            white-space:nowrap;
+        }
+
         @media (max-width:768px){
             .map-search-bottom{
                 width:100%;
@@ -581,14 +593,26 @@
             list.forEach((p, idx) => {
                 const li = document.createElement('li');
                 li.className = 'map-search-item';
+
+                // STORE 쪽은 storeId 또는 id 사용
+                const storeId = (p.storeId !== undefined && p.storeId !== null)
+                    ? p.storeId
+                    : p.id;
+
                 li.innerHTML = `
                   <div class="map-search-line1">
-                    <button type="button" class="map-search-name">${p.name || '이름 없음'}</button>
+                    <button type="button" class="map-search-name js-focus">${p.name || '이름 없음'}</button>
                     ${p.source ? `<span class="map-search-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
+                    ${p.source === 'STORE' && storeId != null
+                    ? `<button type="button" class="map-search-detail" data-store-id="${storeId}">상세보기</button>`
+                    : ''}
                   </div>
                   <div class="map-search-meta">${p.address || ''}</div>
                 `;
-                li.addEventListener('click', () => {
+
+                // 이름 버튼 클릭 → 지도 포커스 (기존 기능 유지)
+                const focusBtn = li.querySelector('.js-focus');
+                focusBtn.addEventListener('click', () => {
                     const iframe = document.querySelector('.map-frame iframe');
                     if (iframe && iframe.contentWindow) {
                         iframe.contentWindow.postMessage(
@@ -598,6 +622,19 @@
                     }
                     sheet.classList.remove('show');
                 });
+
+                // 상세보기 버튼 클릭 → 매장 상세 페이지 이동
+                const detailBtn = li.querySelector('.map-search-detail');
+                if (detailBtn) {
+                    detailBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const id = detailBtn.dataset.storeId;
+                        if (id) {
+                            window.location.href = `/goods/store/${id}`;
+                        }
+                    });
+                }
+
                 ul.appendChild(li);
             });
 
