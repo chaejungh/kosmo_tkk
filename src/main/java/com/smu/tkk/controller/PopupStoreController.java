@@ -3,8 +3,11 @@ package com.smu.tkk.controller;
 import com.smu.tkk.entity.PopupStore;
 import com.smu.tkk.service.PopupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,27 +27,19 @@ public class PopupStoreController {
      * 예) /popupstore/list.do?page=1&pageLimit=20&sort=createAt
      */
     @GetMapping("/list.do")
-    public String popupList(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int pageLimit,
-            @RequestParam(defaultValue = "createAt") String sort,  // 일단 받기만
-            Model model
+    public String popupList(@PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable, Model model
+                            // 일단 받기만
     ) {
 
-        Pageable pageable = PageRequest.of(page - 1, pageLimit);
-        List<PopupStore> popupList;
+        Page<PopupStore> popupList=null;
 
         try {
             popupList = popupService.readAll(pageable);
         } catch (Exception e) {
             e.printStackTrace();
-            popupList = Collections.emptyList();
         }
 
         model.addAttribute("popupList", popupList);
-        model.addAttribute("page", page);
-        model.addAttribute("pageLimit", pageLimit);
-        model.addAttribute("sort", sort);
 
         return "popupstore/popup_list";   // templates/popupstore/popup_list.html
     }
