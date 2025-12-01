@@ -21,7 +21,8 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
     // 카테고리별 게시글 목록 (삭제되지 않은 것만, 최신순)
     //Where category is Null
     @EntityGraph(attributePaths = {"category","member","member.memberNotificationSetting"})
-    Page<BoardPost> findAllByCategoryAndDeletedYn(BoardCategory category,String deleteYn, Pageable pageable);
+    Page<BoardPost> findAllByCategoryIdAndDeletedYn(Long categoryId, String deletedYn, Pageable pageable);
+
     //Where category=null
 //    List<BoardPost> findAllByCategoryAndDeletedYn(BoardCategory category,String deleteYn, Pageable pageable);
 

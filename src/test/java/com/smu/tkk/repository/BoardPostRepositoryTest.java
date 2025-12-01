@@ -35,12 +35,12 @@ class BoardPostRepositoryTest {
     }
 
     @Test
-    void findAllByCategoryAndDeletedYn() {
+    void findAllByCategoryIdAndDeletedYn() {
 
         Optional<BoardCategory> category =boardCategoryRepository.findById((long)1);
 //        Optional<BoardCategory> category = Optional.ofNullable(null );
         if (category.isPresent()) {
-            System.out.println(boardPostRepository.findAllByCategoryAndDeletedYn(category.get(), "N", pageable));
+            System.out.println(boardPostRepository.findAllByCategoryIdAndDeletedYn(1L, "N", pageable));
         }
     }
 

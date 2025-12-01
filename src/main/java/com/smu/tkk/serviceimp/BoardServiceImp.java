@@ -91,11 +91,8 @@ import java.util.Optional;
 
         @Override
         public Page<BoardPost> readByCategory(Long categoryId,Pageable pageable) throws SQLException {
-            BoardCategory category = null;
-            if (categoryId != null) {
-                category = boardCategoryRepository.findById(categoryId).orElse(null);
-            }
-            return boardPostRepository.findAllByCategoryAndDeletedYn(category, "N",pageable);
+
+            return boardPostRepository.findAllByCategoryIdAndDeletedYn(categoryId, "N",pageable);
         }
 
         @Override

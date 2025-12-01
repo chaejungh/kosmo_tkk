@@ -1,10 +1,15 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.dto.BoardWriteValid;
+import com.smu.tkk.entity.BoardCategory;
 import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
+import com.smu.tkk.entity.Member;
 import com.smu.tkk.service.BoardLikeService;
 import com.smu.tkk.service.BoardService;
+import com.smu.tkk.service.MemberService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,8 +17,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,8 +29,9 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final BoardLikeService boardLikeService;
+    private final MemberService memberService;
 
-     // 리스트 컨트롤러 ---------------------------------------------
+    // 리스트 컨트롤러 ---------------------------------------------
 
     @GetMapping("/mcboard/list.do")
     public String mcBoardList(
@@ -149,14 +157,17 @@ public class BoardController {
      * -> 기본값 memberId의 자유게시판으로 리다이렉트
      */
     @GetMapping("/board")
-
     public String legacyBoardRoot() {
 
         return "redirect:/mcboard/list.do";
     }
 
     @GetMapping("/board/{memberId}/write")
-    public String writeForm(@PathVariable Long memberId,Model model) {
+    public String writeForm(
+            @Valid BoardWriteValid boardWriteValid,
+            BindingResult bindingResult,
+            @PathVariable Long memberId,
+            Model model) {
         model.addAttribute("memberId",memberId);
         return "board/board_write";
     }
@@ -164,6 +175,38 @@ public class BoardController {
     public String writeForm() {
 
         return "board/not_allowed";
+    }
+    @PostMapping("/board/{memberId}/write")
+    public String writeFormSubmit(
+        @Valid BoardWriteValid boardWriteValid,
+        BindingResult bindingResult,
+        @RequestParam(name = "images", required = false)
+        List<MultipartFile> images,
+        @RequestParam(name = "category") Long categoryId,
+        HttpSession session,
+        @SessionAttribute(name = "memberId",required = false) Long memberId
+    ) throws SQLException {
+            if (memberId == null) {
+                return "redirect:/auth/login";
+            }
+            if(bindingResult.hasErrors()){ //valid 를 사용하려면 양식인척 해야함
+                //System.out.println("유효성 검사 문제 발생");
+                return "board/board_write";
+            }
+
+            BoardPost boardPost = new BoardPost();
+            boardPost.setMemberId(memberId);
+            boardPost.setCategoryId(categoryId);
+            boardPost.setTitle(boardWriteValid.getTitle());
+            boardPost.setContent(boardWriteValid.getContent());
+            boardPost.setDeletedYn("N");
+//            boardPost.setBoardPostImages();
+            // 1) 게시글 저장
+            boolean execute =  boardService.register(boardPost);
+            if (!execute){
+                return "board/board_write";
+            };
+            return "redirect:/mcboard/list.do";
     }
 
 }
