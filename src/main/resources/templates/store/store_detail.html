@@ -2,141 +2,133 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="|더쿠쿠 - ${store.storeName}|">더쿠쿠 - 매장 상세</title>
+    <title>더쿠쿠 - 매장 상세</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 공통 홈 CSS 그대로 사용 -->
+    <!-- 홈 화면에서 쓰던 공통 CSS 재사용 -->
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
 
-    <!-- 네이버 지도 SDK -->
-    <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&submodules=geocoder" defer></script>
-    <script>
-        window.navermap_authFailure = () =>
-            alert('네이버 지도 인증 실패: NCP 콘솔 URL/Key 확인');
-    </script>
-
     <style>
-        .store-page {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 16px;
-        }
+        /* ===== 매장 상세 전용 스타일 ===== */
+
         .store-hero {
-            display: grid;
-            grid-template-columns: 220px 1fr;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .store-hero-main {
+            display: flex;
             gap: 20px;
-            border-radius: 18px;
-            background: #ffffff;
-            box-shadow: 0 8px 24px rgba(15,23,42,0.08);
-            padding: 18px;
+            align-items: flex-start;
         }
-        .store-image {
-            width: 100%;
-            border-radius: 14px;
-            overflow: hidden;
-            background: linear-gradient(135deg,#a5b4fc,#f9a8d4);
-            display:flex;
-            align-items:center;
-            justify-content:center;
+
+        .store-hero-text {
+            flex: 2;
+            min-width: 0;
         }
-        .store-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display:block;
-        }
-        .store-image-placeholder {
-            color:#f9fafb;
-            font-size:13px;
-        }
-        .store-main-info {
-            display:flex;
-            flex-direction:column;
-            gap:10px;
-        }
+
         .store-brand {
-            font-size:13px;
-            color:#6b7280;
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #f3f4ff;
+            color: #4f46e5;
+            margin-bottom: 6px;
         }
+
         .store-name {
-            font-size:22px;
-            font-weight:700;
-            color:#111827;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 6px 0;
         }
-        .store-tags {
-            display:flex;
-            flex-wrap:wrap;
-            gap:6px;
-            margin-top:4px;
+
+        .store-address {
+            font-size: 13px;
+            color: #4b5563;
+            margin-bottom: 4px;
         }
-        .store-tag {
-            font-size:11px;
-            padding:3px 8px;
-            border-radius:999px;
-            background:#eef2ff;
-            color:#4f46e5;
+
+        .store-tel,
+        .store-open {
+            font-size: 13px;
+            color: #6b7280;
         }
-        .store-meta {
-            margin-top:10px;
-            display:flex;
-            flex-direction:column;
-            gap:6px;
-            font-size:13px;
-            color:#374151;
+
+        .store-hero-meta {
+            flex: 1.3;
+            font-size: 13px;
+            border-radius: 12px;
+            background: #f9fafb;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
         }
+
         .store-meta-row {
-            display:flex;
-            gap:8px;
+            display: flex;
+            gap: 6px;
+            margin-bottom: 4px;
         }
+
         .store-meta-label {
-            width:60px;
-            color:#9ca3af;
-        }
-        .store-meta-value a {
-            color:#2563eb;
-            text-decoration:none;
-        }
-        .store-meta-value a:hover {
-            text-decoration:underline;
+            width: 56px;
+            flex-shrink: 0;
+            font-weight: 600;
+            color: #4b5563;
         }
 
-        .store-section {
-            margin-top:18px;
-            border-radius:18px;
-            background:#ffffff;
-            box-shadow:0 6px 20px rgba(15,23,42,0.06);
-            padding:16px 18px;
-        }
-        .store-section-title {
-            font-size:15px;
-            font-weight:600;
-            margin-bottom:10px;
-            display:flex;
-            align-items:center;
-            gap:6px;
-        }
-        .store-section-title span.badge {
-            font-size:11px;
-            padding:2px 8px;
-            border-radius:999px;
-            background:#ecfeff;
-            color:#0891b2;
+        .store-meta-value {
+            flex: 1;
+            color: #111827;
+            word-break: keep-all;
         }
 
-        #storeMap {
-            width:100%;
-            height:260px;
-            border-radius:14px;
-            border:1px solid #e5e7eb;
-            overflow:hidden;
+        .store-meta-link a {
+            color: #2563eb;
+            text-decoration: none;
+            word-break: break-all;
         }
 
-        @media (max-width:768px) {
-            .store-page {
-                padding:12px 10px 80px;
+        .store-meta-link a:hover {
+            text-decoration: underline;
+        }
+
+        .store-map-card p {
+            font-size: 13px;
+            color: #4b5563;
+            margin: 0 0 8px 0;
+        }
+
+        .btn-map-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #111827;
+            color: #ffffff;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .btn-map-link span.icon {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .store-hero-main {
+                flex-direction: column;
             }
-            .store-hero {
-                grid-template-columns:1fr;
+
+            .store-hero-meta {
+                width: 100%;
+            }
+
+            .store-name {
+                font-size: 19px;
             }
         }
     </style>
@@ -144,10 +136,11 @@
 <body>
 <div class="page">
 
-    <!-- 상단 공통 헤더 -->
+    <!-- 상단 헤더 (index.html 과 동일 스타일) -->
     <header class="header">
         <div class="header-top">
             <a th:href="@{/}" class="logo">더쿠쿠</a>
+
             <div class="auth-actions">
                 <a th:href="@{/login}" class="btn-auth">로그인</a>
                 <a th:href="@{/join}" class="btn-auth btn-auth-primary">회원가입</a>
@@ -156,104 +149,125 @@
     </header>
 
     <main class="content">
-        <div class="store-page">
 
-            <!-- ===== 매장 기본 정보 ===== -->
-            <section class="store-hero">
-                <div class="store-image">
-                    <img th:if="${store.imageUrl != null}"
-                         th:src="${store.imageUrl}"
-                         alt="매장 이미지"/>
-                    <div th:if="${store.imageUrl == null}"
-                         class="store-image-placeholder">
-                        이미지 준비중
-                    </div>
+        <!-- 매장 기본 정보 -->
+        <section class="card store-hero">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>매장 상세 정보</span>
+                    <span class="pill pill-purple">STORE</span>
+                </div>
+            </div>
+
+            <div class="store-hero-main">
+                <!-- 왼쪽 : 매장 제목/주소 -->
+                <div class="store-hero-text">
+                    <span class="store-brand"
+                          th:text="${store.brand != null and !#strings.isEmpty(store.brand) ? store.brand : '브랜드'}">
+                        브랜드
+                    </span>
+
+                    <h1 class="store-name"
+                        th:text="${store.name != null and !#strings.isEmpty(store.name) ? store.name : '매장 이름'}">
+                        매장 이름
+                    </h1>
+
+                    <p class="store-address"
+                       th:text="${store.address != null and !#strings.isEmpty(store.address) ? store.address : '주소 정보가 없습니다.'}">
+                        서울 어딘가 00로 00
+                    </p>
+
+                    <p class="store-tel"
+                       th:text="${store.tel != null and !#strings.isEmpty(store.tel) ? '전화번호 · ' + store.tel : '전화번호 정보 없음'}">
+                        전화번호 · 02-000-0000
+                    </p>
+
+                    <p class="store-open"
+                       th:text="${store.openTime != null and !#strings.isEmpty(store.openTime) ? '영업시간 · ' + store.openTime : '영업시간 정보 없음'}">
+                        영업시간 · 11:00 ~ 21:00
+                    </p>
                 </div>
 
-                <div class="store-main-info">
-                    <div class="store-brand"
-                         th:text="${store.brandName}">
-                        브랜드명
-                    </div>
-                    <div class="store-name"
-                         th:text="${store.storeName}">
-                        매장명
+                <!-- 오른쪽 : 요약 메타 박스 -->
+                <aside class="store-hero-meta">
+                    <div class="store-meta-row">
+                        <span class="store-meta-label">매장ID</span>
+                        <span class="store-meta-value" th:text="${store.id}">172</span>
                     </div>
 
-                    <div class="store-tags">
-                        <span class="store-tag">굿즈샵</span>
-                        <span class="store-tag"
-                              th:text="${store.regionName}"
-                              th:if="${store.regionName != null}">
-                            지역
+                    <div class="store-meta-row">
+                        <span class="store-meta-label">주소</span>
+                        <span class="store-meta-value"
+                              th:text="${store.address != null && !#strings.isEmpty(store.address) ? store.address : '정보 없음'}">
+                            서울 어딘가 00로 00
                         </span>
                     </div>
 
-                    <div class="store-meta">
-                        <div class="store-meta-row">
-                            <div class="store-meta-label">주소</div>
-                            <div class="store-meta-value"
-                                 th:text="${store.address}">
-                                서울 어디구 어디로 1번지
-                            </div>
-                        </div>
-
-                        <div class="store-meta-row">
-                            <div class="store-meta-label">영업</div>
-                            <div class="store-meta-value"
-                                 th:text="${store.openTime}">
-                                평일 10:00 ~ 21:00
-                            </div>
-                        </div>
-
-                        <div class="store-meta-row">
-                            <div class="store-meta-label">전화</div>
-                            <div class="store-meta-value">
-                                <a th:if="${store.tel != null}"
-                                   th:href="${'tel:' + store.tel}"
-                                   th:text="${store.tel}">
-                                    02-000-0000
-                                </a>
-                                <span th:if="${store.tel == null}">정보 없음</span>
-                            </div>
-                        </div>
-
-                        <div class="store-meta-row">
-                            <div class="store-meta-label">홈페이지</div>
-                            <div class="store-meta-value">
-                                <a th:if="${store.homepage != null}"
-                                   th:href="${store.homepage}"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   th:text="${store.homepage}">
-                                    https://example.com
-                                </a>
-                                <span th:if="${store.homepage == null}">정보 없음</span>
-                            </div>
-                        </div>
+                    <div class="store-meta-row">
+                        <span class="store-meta-label">연락처</span>
+                        <span class="store-meta-value"
+                              th:text="${store.tel != null && !#strings.isEmpty(store.tel) ? store.tel : '정보 없음'}">
+                            02-000-0000
+                        </span>
                     </div>
-                </div>
-            </section>
 
-            <!-- ===== 매장 위치 지도 ===== -->
-            <section class="store-section">
-                <div class="store-section-title">
-                    <span>매장 위치</span>
-                    <span class="badge">NAVER MAP</span>
-                </div>
-                <div id="storeMap"
-                     th:attr="data-lat=${store.latitude},
-                              data-lng=${store.longitude},
-                              data-name=${store.storeName}">
-                </div>
-            </section>
+                    <div class="store-meta-row">
+                        <span class="store-meta-label">영업시간</span>
+                        <span class="store-meta-value"
+                              th:text="${store.openTime != null && !#strings.isEmpty(store.openTime) ? store.openTime : '정보 없음'}">
+                            11:00 ~ 21:00
+                        </span>
+                    </div>
 
-            <!-- 필요하면 여기 아래에 굿즈 목록 섹션 추가 가능 -->
+                    <div class="store-meta-row store-meta-link">
+                        <span class="store-meta-label">홈페이지</span>
+                        <span class="store-meta-value">
+                            <a th:if="${store.homepage != null && !#strings.isEmpty(store.homepage)}"
+                               th:href="${store.homepage}" target="_blank"
+                               th:text="${store.homepage}">https://example.com</a>
+                            <span th:if="${store.homepage == null || #strings.isEmpty(store.homepage)}">
+                                정보 없음
+                            </span>
+                        </span>
+                    </div>
+                </aside>
+            </div>
+        </section>
 
-        </div>
+        <!-- 네이버 지도 / 길찾기 안내 -->
+        <section class="card store-map-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <span>네이버 지도에서 보기</span>
+                    <span class="pill pill-blue">MAP</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <p>
+                    정확한 위치 안내는 네이버 지도를 사용합니다.
+                    아래 버튼을 누르면
+                    <span th:text="${store.name != null && !#strings.isEmpty(store.name) ? store.name : '매장'}">매장</span>
+                    을(를) 네이버 지도에서 바로 확인할 수 있어요.
+                </p>
+
+                <!-- 매장 이름 기준 검색 딥링크 -->
+                <a class="btn-map-link"
+                   th:href="@{|https://map.naver.com/p/search/${store.name}|}"
+                   target="_blank">
+                    <span class="icon">🗺️</span>
+                    <span>네이버 지도에서 길찾기</span>
+                </a>
+
+                <p style="margin-top:8px;font-size:12px;color:#9ca3af;">
+                    * 좌표(latitude/longitude)가 준비되면, 이 영역에 실제 지도를 직접 띄우는 것도 가능해요.
+                </p>
+            </div>
+        </section>
+
     </main>
 
-    <!-- 하단 네비게이션 -->
+    <!-- 하단 네비게이션 (index 와 동일 구조) -->
     <nav class="bottom-nav">
         <a th:href="@{/}" class="nav-item">
             <span class="icon">🏠</span>
@@ -273,39 +287,5 @@
         </a>
     </nav>
 </div>
-
-<script>
-    // 네이버 지도 초기화 (storeMap 의 data-* 사용)
-    function initStoreMapFromDataset() {
-        const el = document.getElementById('storeMap');
-        if (!el) return;
-        const lat = parseFloat(el.dataset.lat);
-        const lng = parseFloat(el.dataset.lng);
-        const name = el.dataset.name || '매장 위치';
-
-        if (!window.naver || !naver.maps || !naver.maps.Map) return;
-        if (!isFinite(lat) || !isFinite(lng)) return;
-
-        const center = new naver.maps.LatLng(lat, lng);
-        const map = new naver.maps.Map('storeMap', {
-            center: center,
-            zoom: 17
-        });
-
-        new naver.maps.Marker({
-            map: map,
-            position: center,
-            title: name
-        });
-    }
-
-    (function wait() {
-        if (window.naver && naver.maps && naver.maps.Map) {
-            initStoreMapFromDataset();
-        } else {
-            setTimeout(wait, 80);
-        }
-    })();
-</script>
 </body>
 </html>
