@@ -2,8 +2,10 @@ package com.smu.tkk.controller;
 
 import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
+import com.smu.tkk.entity.StoreBookmark;
 import com.smu.tkk.service.BoardService;
 import com.smu.tkk.service.NoticeService;
+import com.smu.tkk.service.StoreService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class MypageController {
      * =========================
      */
     private final BoardService boardService;
+    private final StoreService storeService;
+
 //    @Autowired
 //    public MypageController(BoardService boardService) {
 //        this.boardService = boardService;
@@ -73,5 +77,17 @@ public class MypageController {
         model.addAttribute("boardLikes", boardLikes);
         model.addAttribute("memberId", loginMemberId);
         return "mypage/board/likes";
+    }
+
+    @GetMapping("/{memberId}/bookmarks")
+    public String myStoreBookmarks(@PathVariable("memberId") Long memberId,
+                                   Pageable pageable,
+                                   Model model) throws SQLException {
+        Page<StoreBookmark> storeBookmarks = storeService.myBookmarks(memberId, pageable);
+
+        model.addAttribute("storeBookmarks", storeBookmarks);
+        model.addAttribute("memberId", memberId);
+
+        return "mypage/board/my_board_bookmarks";
     }
 }
