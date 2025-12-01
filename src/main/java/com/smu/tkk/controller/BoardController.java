@@ -36,6 +36,7 @@ public class BoardController {
     @GetMapping("/mcboard/list.do")
     public String mcBoardList(
             Model model,
+            HttpSession session,
             @PageableDefault(page = 0,size = 5, sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) throws SQLException {
 
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
@@ -50,8 +51,8 @@ public class BoardController {
         // 3) 전체 게시판 인기글 TOP5   (오른쪽)
         List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
 
-
-
+        Long memberId = (Long) session.getAttribute("memberId");
+        model.addAttribute("memberId",memberId);
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
@@ -61,6 +62,7 @@ public class BoardController {
     @GetMapping("/cosplayboard/list.do")
     public String cosplayBoardList(
             Model model,
+            HttpSession session,
             @PageableDefault(page = 0,size = 5, sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) throws SQLException{
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
@@ -72,14 +74,15 @@ public class BoardController {
         // 3) 전체 게시판 인기글 TOP5   (오른쪽)
         List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
 
-
+        Long memberId = (Long) session.getAttribute("memberId");
+        model.addAttribute("memberId",memberId);
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
         return "board/cosplayboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
     @GetMapping("/freeboard/list.do")
-    public String freeBoardList( Model model, Pageable pageable) throws SQLException {
+    public String freeBoardList( Model model,HttpSession session, Pageable pageable) throws SQLException {
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
         Long categoryId=3L;//카테고리아이디 3== freeboard
@@ -90,6 +93,8 @@ public class BoardController {
         // 3) 전체 게시판 인기글 TOP5   (오른쪽)
         List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
 
+        Long memberId = (Long) session.getAttribute("memberId");
+        model.addAttribute("memberId",memberId);
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
@@ -138,20 +143,11 @@ public class BoardController {
 
 // 비회원 화면
 
-    @GetMapping("/mcboard/null/article/{postId}/detail.do")
-    public String mcBoardDetailForNotMem(){
+    @GetMapping("/board/not-allowed")
+    public String boardNotAllowed(){
         return "board/not_allowed";
     }
 
-    @GetMapping("/cosplayboard/null/article/{postId}/detail.do")
-    public String cosplayBoardDetailForNotMem(){
-        return "board/not_allowed";
-    }
-
-    @GetMapping("/freeboard/null/article/{postId}/detail.do")
-    public String freeBoardDetailForNotMem(){
-        return "board/not_allowed";
-    }
     /**
      * 기존 /board로 들어오는 요청 호환용
      * -> 기본값 memberId의 자유게시판으로 리다이렉트
@@ -171,11 +167,7 @@ public class BoardController {
         model.addAttribute("memberId",memberId);
         return "board/board_write";
     }
-    @GetMapping("/board//write")
-    public String writeForm() {
 
-        return "board/not_allowed";
-    }
     @PostMapping("/board/{memberId}/write")
     public String writeFormSubmit(
         @Valid BoardWriteValid boardWriteValid,
