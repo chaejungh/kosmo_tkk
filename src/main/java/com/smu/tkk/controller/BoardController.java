@@ -4,6 +4,7 @@ import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
 import com.smu.tkk.service.BoardLikeService;
 import com.smu.tkk.service.BoardService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,13 +22,12 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final BoardLikeService boardLikeService;
-    /**
-     * 자유게시판 리스트
-     * 예) /free/1/list.do
-     */
-    @GetMapping("/mcboard/{memberId}/list.do")
+
+     // 리스트 컨트롤러 ---------------------------------------------
+
+    @GetMapping("/mcboard/list.do")
     public String mcBoardList(
-            @PathVariable("memberId") Long memberId, Model model,
+            Model model,
             @PageableDefault(page = 0,size = 5, sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) throws SQLException {
 
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
@@ -43,16 +43,16 @@ public class BoardController {
         List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
 
 
-        model.addAttribute("memberId", memberId);
+
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
 
         return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
-    @GetMapping("/cosplayboard/{memberId}/list.do")
+    @GetMapping("/cosplayboard/list.do")
     public String cosplayBoardList(
-            @PathVariable("memberId") Long memberId, Model model,
+            Model model,
             @PageableDefault(page = 0,size = 5, sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) throws SQLException{
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
@@ -64,14 +64,14 @@ public class BoardController {
         // 3) 전체 게시판 인기글 TOP5   (오른쪽)
         List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
 
-        model.addAttribute("memberId", memberId);
+
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
         return "board/cosplayboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
-    @GetMapping("/freeboard/{memberId}/list.do")
-    public String freeBoardList(@PathVariable("memberId") Long memberId, Model model, Pageable pageable) throws SQLException {
+    @GetMapping("/freeboard/list.do")
+    public String freeBoardList( Model model, Pageable pageable) throws SQLException {
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
         Long categoryId=3L;//카테고리아이디 3== freeboard
@@ -81,12 +81,14 @@ public class BoardController {
 
         // 3) 전체 게시판 인기글 TOP5   (오른쪽)
         List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
-        model.addAttribute("memberId", memberId);
+
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
         return "board/freeboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
+
+    // 디테일 컨트롤러 ---------------------------------------------
 
 
     @GetMapping("/mcboard/{memberId}/article/{postId}/detail.do")
@@ -126,19 +128,36 @@ public class BoardController {
         return "board/freeboard_detail"; // 상세 템플릿 이름
     }
 
+// 비회원 화면
 
+    @GetMapping("/mcboard/null/article/{postId}/detail.do")
+    public String mcBoardDetailForNotMem(){
+        return "board/not_allowed";
+    }
+
+    @GetMapping("/cosplayboard/null/article/{postId}/detail.do")
+    public String cosplayBoardDetailForNotMem(){
+        return "board/not_allowed";
+    }
+
+    @GetMapping("/freeboard/null/article/{postId}/detail.do")
+    public String freeBoardDetailForNotMem(){
+        return "board/not_allowed";
+    }
     /**
      * 기존 /board로 들어오는 요청 호환용
-     * -> 기본값 memberId=1의 자유게시판으로 리다이렉트
+     * -> 기본값 memberId의 자유게시판으로 리다이렉트
      */
     @GetMapping("/board")
+
     public String legacyBoardRoot() {
-        return "redirect:/mcboard/1/list.do";
+
+        return "redirect:/mcboard/list.do";
     }
 
     @GetMapping("/board/{memberId}/write")
     public String writeForm(@PathVariable Long memberId) {
-        // ...
+
         return "board/board_write";
     }
 
