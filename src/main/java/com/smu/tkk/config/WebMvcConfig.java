@@ -10,9 +10,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        String chatPath = System.getProperty("user.dir") + "/upload/chat/";
-
-        registry.addResourceHandler("/upload/chat/**")
-                .addResourceLocations("file:" + chatPath);
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:" + System.getProperty("user.dir") + "/upload/");
     }
 }

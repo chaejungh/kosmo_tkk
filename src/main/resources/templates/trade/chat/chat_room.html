@@ -5,6 +5,10 @@
     <title>거래 채팅방 | 더쿠쿠</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- WebSocket 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -137,6 +141,7 @@
     </style>
 </head>
 <body>
+
 <div class="chat-room">
 
     <!-- 상단 -->
@@ -147,7 +152,7 @@
 
             <div class="seller-info">
                 <div class="seller-name" th:text="${sellerName}"></div>
-                <div class="seller-sub">보통 10분 이내 응답</div>
+                <div class="seller-sub">실시간 채팅</div>
             </div>
         </div>
 
@@ -166,161 +171,292 @@
     </div>
 
     <!-- 메시지 목록 -->
-    <div id="chatListCont">
-        <div class="chat-body">
-            <div th:each="msg : ${msgList}"
-                 th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')">
+    <div class="chat-body" id="chatBody">
+        <!-- 기존 메시지 렌더링 -->
+        <div th:each="msg : ${msgList}"
+             th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')">
 
-                <div class="bubble">
+            <div class="bubble">
 
-                    <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
-                          th:text="${msg.message}"></span>
+                <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
+                      th:text="${msg.message}"></span>
 
-                    <img th:if="${#strings.startsWith(msg.message, '[img]')}"
-                         th:src="@{${#strings.substring(msg.message, 5)}}"
-                         style="max-width:200px; border-radius:12px;">
-                </div>
-
-                <div class="time"
-                     th:text="${msg.createdAt != null ? msg.createdAt : ''}"></div>
+                <img th:if="${#strings.startsWith(msg.message, '[img]')}"
+                     th:src="@{${#strings.substring(msg.message, 5)}}"
+                     style="max-width:200px; border-radius:12px;">
             </div>
+
+            <div class="time"
+                 th:text="${msg.createdAt != null ? msg.createdAt : ''}"></div>
         </div>
     </div>
 
-    <!-- 입력영역 -->
+    <!-- 입력 박스 -->
     <div class="chat-input-wrap">
-        <form name="chatForm"
-              class="chat-input-form"
-              th:action="@{|/trade/${memberId}/chat/${room.id}/send|}"
-              method="post">
-
+        <form class="chat-input-form" onsubmit="return sendMessage();">
             <button type="button" class="btn-plus" onclick="selectImage()">+</button>
-
             <input type="file" id="imgFile" accept="image/*" style="display:none;" />
 
-            <input type="text" name="message" class="msg-input"
+            <input type="text" id="msgInput" class="msg-input"
                    placeholder="메시지 보내기" autocomplete="off">
 
             <button type="submit" class="btn-send">전송</button>
         </form>
     </div>
+</div>
 
-    <script>
-        const memberId = "[[${memberId}]]";
-        const roomId = "[[${room.id}]]";
-        const chatForm=document.forms["chatForm"];
-        const chatListCont=document.querySelector(".chat-body");
 
-        setInterval(getChatList,1000);
+<!-- ========================================== -->
+<!--                WebSocket Script            -->
+<!-- ========================================== -->
 
-        function formatTime(date) {
-            let hour = date.getHours();
-            let minute = String(date.getMinutes()).padStart(2,'0');
-            const ampm = hour >= 12 ? '오후':'오전';
-            hour = hour % 12 || 12;
-            return `${ampm} ${hour}:${minute}`;
-        }
+<script>
+    const memberId = String("[[${memberId}]]");
+    const roomId = String("[[${room.id}]]");
+    const chatBody = document.getElementById("chatBody");
 
-        function formatDate(date) {
-            const today = new Date();
-            const d = new Date(date.getFullYear(),date.getMonth(),date.getDate());
-            const t = new Date(today.getFullYear(),today.getMonth(),today.getDate());
-            const diff = (t - d) / (86400000);
-            if(diff===0) return "오늘";
-            if(diff===1) return "어제";
-            return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-        }
+    let stompClient = null;
 
-        function formatDateTime(str){
-            if(!str) return "";
-            const date=new Date(str);
-            return `${formatDate(date)} ${formatTime(date)}`;
-        }
+    let typingTimer = null;
+    const TYPING_TIMEOUT = 2000;
+    let typingIndicator = null;
 
-        async function getChatList(){
-            const response = await fetch(`/trade/api/${roomId}/chat/list`);
-            if(response.ok){
-                const chatList = await response.json();
-                let html="";
-                for(const msg of chatList){
+    function formatTime(date) {
+        let hour = date.getHours();
+        let minute = String(date.getMinutes()).padStart(2, '0');
+        const ampm = hour >= 12 ? '오후' : '오전';
+        hour = hour % 12 || 12;
+        return `${ampm} ${hour}:${minute}`;
+    }
 
-                    let contentHtml = "";
-                    if(msg.message.startsWith("[img]")){
-                        let path = msg.message.substring(5);
-                        contentHtml = `<img src="${path}" style="max-width:200px;border-radius:12px;">`;
-                    } else {
-                        contentHtml = msg.message;
-                    }
+    function formatDate(date) {
+        const today = new Date();
+        const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        const t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const diff = (t - d) / 86400000;
 
-                    html+=`
-                <div class="msg ${msg.senderId==memberId?'me':'other'}">
-                    <div class="bubble">${contentHtml}</div>
-                    <div class="time">${msg.createdAt ? formatDateTime(msg.createdAt):''}</div>
-                </div>`;
-                }
-                chatListCont.innerHTML=html;
+        if (diff === 0) return "오늘";
+        if (diff === 1) return "어제";
 
-                /* 🔥 DOM 렌더링 후 자동 스크롤 */
-                setTimeout(() => {
-                    scrollToBottom();
-                }, 30);
-            }
-        }
+        return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    }
 
-        function scrollToBottom(){
-            const chatBody=document.querySelector(".chat-body");
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
+    function formatDateTime(str) {
+        if (!str) return "방금 전";
+        let date = new Date(str);
+        if (isNaN(date.getTime())) return "방금 전";
+        return `${formatDate(date)} ${formatTime(date)}`;
+    }
 
-        chatForm.onsubmit = sendMsg;
+    function connectWebSocket() {
+        const socket = new SockJS("/ws-chat");
+        stompClient = Stomp.over(socket);
 
-        async function sendMsg(e){
-            e.preventDefault();
-            let url=`/trade/api/${memberId}/chat/${roomId}/send`;
-            const response=await fetch(url,{method:"POST",body:new FormData(chatForm)});
-            if(response.ok){
-                getChatList();
+        stompClient.connect({}, function () {
 
-                /* 🔥 전송 후 자동 스크롤 */
-                setTimeout(() => {
-                    scrollToBottom();
-                }, 30);
-
-                chatForm.reset();
-            }
-        }
-
-        function selectImage() {
-            document.getElementById("imgFile").click();
-        }
-
-        document.getElementById("imgFile")
-            .addEventListener("change", async (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-
-                const fd = new FormData();
-                fd.append("image", file);
-
-                const response = await fetch(`/trade/api/${memberId}/chat/${roomId}/image`, {
-                    method: "POST",
-                    body: fd
-                });
-
-                if (response.ok) {
-                    getChatList();
-
-                    /* 🔥 이미지 업로드 후 자동 스크롤 */
-                    setTimeout(() => {
-                        scrollToBottom();
-                    }, 30);
-
-                } else {
-                    alert("이미지 전송 실패");
-                }
+            stompClient.subscribe(`/sub/chat.room.${roomId}`, function (msg) {
+                const body = JSON.parse(msg.body);
+                handleIncoming(body);
             });
 
-    </script>
-</div>
+            sendReadEvent();
+        });
+    }
+
+    function sendReadEvent() {
+        if (!stompClient) return;
+        stompClient.send("/pub/chat.read", {}, JSON.stringify({
+            roomId,
+            senderId: memberId,
+            type: "READ"
+        }));
+    }
+
+    function sendTypingEvent() {
+        if (!stompClient) return;
+        stompClient.send("/pub/chat.typing", {}, JSON.stringify({
+            roomId,
+            senderId: memberId,
+            type: "TYPING"
+        }));
+    }
+
+    function sendDeleteEvent(messageId) {
+        if (!stompClient) return;
+        stompClient.send("/pub/chat.delete", {}, JSON.stringify({
+            roomId,
+            senderId: memberId,
+            messageId,
+            type: "DELETE"
+        }));
+    }
+
+    function sendMessage() {
+        const input = document.getElementById("msgInput");
+        const text = input.value.trim();
+        if (!text) return false;
+
+        stompClient.send("/pub/chat.send", {}, JSON.stringify({
+            roomId,
+            senderId: memberId,
+            message: text,
+            type: "TEXT"
+        }));
+
+        input.value = "";
+        return false;
+    }
+
+    function selectImage() {
+        document.getElementById("imgFile").click();
+    }
+
+    document.getElementById("imgFile").addEventListener("change", async (e) => {
+
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("roomId", roomId);
+        formData.append("senderId", memberId);
+        formData.append("image", file);
+
+        const response = await fetch("/chat/upload-image", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) alert("이미지 업로드 실패");
+
+    });
+
+    function handleIncoming(msg) {
+
+        switch (msg.type) {
+
+            // 🔹 TEXT/IMAGE만 메시지 추가
+            case "TEXT":
+            case "IMAGE":
+                addMessage(msg);
+                break;
+
+            // 🔹 읽음 처리
+            case "READ":
+                handleRead(msg);
+                break;
+
+            // 🔹 상대 typing
+            case "TYPING":
+                handleTyping(msg);
+                break;
+
+            // 🔹 메시지 삭제
+            case "DELETE":
+                handleDelete(msg);
+                break;
+
+            // 🔹 그 외 타입은 무시
+            default:
+                console.warn("Unknown message type:", msg);
+                break;
+        }
+    }
+
+    let lastMyMessageEl = null;
+
+    function addMessage(msg) {
+
+        let content = "";
+
+        if (msg.type === "IMAGE" || (msg.message && msg.message.startsWith("[img]"))) {
+            const path = msg.message.replace("[img]", "");
+            content = `<img src="${path}" style="max-width:200px;border-radius:12px;">`;
+        } else {
+            content = msg.message;
+        }
+
+        const wrap = document.createElement("div");
+        wrap.className = "msg " + (String(msg.senderId) === memberId ? "me" : "other");
+
+        if (msg.messageId) wrap.dataset.msgId = msg.messageId;
+
+        wrap.innerHTML = `
+            <div class="bubble">${content}</div>
+            <div class="time">${formatDateTime(msg.createdAt)}</div>
+        `;
+
+        chatBody.appendChild(wrap);
+        scrollToBottom();
+
+        if (String(msg.senderId) === memberId) {
+            lastMyMessageEl = wrap;
+        }
+    }
+
+    function handleRead(msg) {
+        if (String(msg.senderId) === memberId) return;
+
+        const lastMy = lastMyMessageEl || chatBody.querySelector(".msg.me:last-child");
+        if (!lastMy) return;
+
+        const timeEl = lastMy.querySelector(".time");
+        if (timeEl && !timeEl.textContent.includes("읽음")) {
+            timeEl.textContent += " · 읽음";
+        }
+    }
+
+    function handleTyping(msg) {
+
+        if (String(msg.senderId) === memberId) return;
+
+        if (!typingIndicator) {
+            typingIndicator = document.createElement("div");
+            typingIndicator.id = "typingIndicator";
+            typingIndicator.style.fontSize = "12px";
+            typingIndicator.style.color = "#9CA3AF";
+            typingIndicator.style.padding = "4px 16px 6px";
+            typingIndicator.textContent = "상대방이 입력 중…";
+            chatBody.appendChild(typingIndicator);
+        }
+
+        typingIndicator.style.display = "block";
+
+        if (typingTimer) clearTimeout(typingTimer);
+
+        typingTimer = setTimeout(() => {
+            typingIndicator.style.display = "none";
+        }, TYPING_TIMEOUT);
+    }
+
+    function handleDelete(msg) {
+        const target = chatBody.querySelector(`.msg[data-msg-id="${msg.messageId}"]`);
+        if (!target) return;
+
+        const bubble = target.querySelector(".bubble");
+        bubble.textContent = "(삭제된 메시지입니다)";
+        bubble.style.color = "#9CA3AF";
+        bubble.style.fontStyle = "italic";
+    }
+
+    function scrollToBottom() {
+        setTimeout(() => {
+            chatBody.scrollTo({
+                top: chatBody.scrollHeight,
+                behavior: "smooth"
+            });
+        }, 10);
+    }
+
+    const msgInput = document.getElementById("msgInput");
+    msgInput.addEventListener("input", () => {
+        sendTypingEvent();
+    });
+
+    window.onload = function () {
+        connectWebSocket();
+        scrollToBottom();
+    };
+</script>
+
 </body>
 </html>

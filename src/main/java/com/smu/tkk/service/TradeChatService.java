@@ -1,5 +1,6 @@
 package com.smu.tkk.service;
 
+import com.smu.tkk.dto.ChatMessage;
 import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
 import org.springframework.data.domain.Page;
@@ -7,26 +8,28 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface TradeChatService {
 
-    // 채팅방 생성 (없으면 생성, 있으면 재사용)
     TradeChatRoom register(Long tradeId, Long buyerId);
 
-    // 메시지 전송 (텍스트만)
-    TradeChatMessage send(Long roomId, Long senderId, String message);
-
-    // 읽음 처리
-    boolean markAsRead(Long roomId, Long viewerId);
-
-    // 내가 속한 채팅방 목록
-    Page<TradeChatRoom> myRooms(Long memberId);
-
-    // 메시지 목록 조회
-    Page<TradeChatMessage> messages(Long roomId);
-
-    // 채팅방 단건 조회
-    TradeChatRoom getRoom(Long roomId);
-
-    // ⭐ 자동 생성용 메서드 (추가)
     TradeChatRoom getOrCreateRoom(Long tradeId, Long buyerId);
 
+    TradeChatMessage send(Long roomId, Long senderId, String message);
+
+    boolean markAsRead(Long roomId, Long viewerId);
+
+    Page<TradeChatRoom> myRooms(Long memberId);
+
+    Page<TradeChatMessage> messages(Long roomId);
+
+    TradeChatRoom getRoom(Long roomId);
+
     TradeChatMessage sendImage(Long roomId, Long senderId, MultipartFile file) throws Exception;
+
+    // 웹소켓 텍스트 메시지 저장
+    ChatMessage saveWebSocketMessage(ChatMessage msg);
+
+    // 이미지 업로드(WebSocket)
+    String saveWebSocketImage(Long roomId, Long senderId, MultipartFile file) throws Exception;
+
+    // 메시지 삭제
+    void deleteMessage(Long messageId, Long memberId);
 }
