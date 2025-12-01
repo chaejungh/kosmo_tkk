@@ -13,4 +13,6 @@ public interface TradeBookmarkRepository extends JpaRepository<TradeBookmark, Lo
     Optional<TradeBookmark> findByMemberIdAndTradeId(Long memberId, Long tradeId);
 
     List<TradeBookmark> findAllByMemberId(Long memberId);
+
+    Optional<TradeBookmark> findByMemberId(Long memberId);
 }

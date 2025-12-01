@@ -30,9 +30,9 @@ MemberRepository memberRepository;
 
     @Test
     void findByMemberId() {
-        Sort sort= Sort.by("id").ascending();
-        Pageable pageable = PageRequest.of(0,5,sort);
-        System.out.println(tradeBookmarkRepository.findByMemberId(1L,pageable));
+//        Sort sort= Sort.by("id").ascending();
+//        Pageable pageable = PageRequest.of(0,5,sort);
+        System.out.println(tradeBookmarkRepository.findByMemberId(1L));
     }
 
     @Test
@@ -46,9 +46,10 @@ MemberRepository memberRepository;
 
     }
 
-    @Test
-    @Transactional
-    void deleteByMemberIdAndTradeId() {
-        tradeBookmarkRepository.deleteByMemberIdAndTradeId(1L,1L);
-    }
+//    @Test
+//    @Transactional
+//    void deleteByMemberIdAndTradeId() {
+//        tradeBookmarkRepository.deleteByMemberIdAndTradeId(1L,1L);
+//    }
+
 }

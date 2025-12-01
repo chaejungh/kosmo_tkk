@@ -51,4 +51,9 @@ class MemberRepositoryTest {
     void updateImg() {
         System.out.println(memberRepository.updateImg("https://example.com/profile/user001.png",1L));
     }
+
+    @Test
+    void findByLoginIdAndLoginPw() {
+        System.out.println(memberRepository.findByLoginIdAndLoginPw("user001","pw001"));
+    }
 }

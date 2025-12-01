@@ -407,10 +407,22 @@
             <!-- 로고: 클릭 시 홈 -->
             <a th:href="@{/}" class="logo">더쿠쿠</a>
 
-            <!-- 로그인 / 회원가입 -->
+
+            <!-- 오른쪽 로그인/닉네임 영역 -->
             <div class="auth-actions">
-                <a th:href="@{/login}" class="btn-auth">로그인</a>
-                <a th:href="@{/join}" class="btn-auth btn-auth-primary">회원가입</a>
+
+                <!-- ✅ 비로그인 상태: 로그인 / 회원가입 버튼 -->
+                <div th:if="${nickname == null}">
+                    <a th:href="@{/auth/login}" class="btn-auth">로그인</a>
+                    <a th:href="@{/auth/join}" class="btn-auth btn-auth-primary">회원가입</a>
+                </div>
+
+                <!-- ✅ 로그인 상태: 닉네임 + 로그아웃 -->
+                <div class="logged-in-box" th:if="${nickname != null}">
+                <span class="welcome-text"
+                      th:text="|${nickname} 님|">닉네임 님</span>
+                    <a th:href="@{/auth/logout}" class="btn-auth">로그아웃</a>
+                </div>
             </div>
         </div>
     </header>

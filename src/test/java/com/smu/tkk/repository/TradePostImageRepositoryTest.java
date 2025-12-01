@@ -45,7 +45,7 @@ TradePostImageRepository tradePostImageRepository;
     }
 
     @Test
-    void findFirstByTradeIdOrderByIdAsc() {
-        System.out.println(tradePostImageRepository.findFirstByTradeIdOrderByIdAsc(1L));
+    void findFirstByTradeIdOrderBySortOrderAscIdAsc() {
+        System.out.println(tradePostImageRepository.findFirstByTradeIdOrderBySortOrderAscIdAsc(1L));
     }
 }
