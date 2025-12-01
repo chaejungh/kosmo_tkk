@@ -62,4 +62,7 @@ public interface TradeService {
     TradePost modifyTradepost(TradePost tradePostId, TradePost tradePostStatus);
 
     void register(TradePost post);
+
+    // 10. 멤버 별 거래글 조회
+    Page<TradePost> readBySellerId(Long sellerId, Pageable pageable);
 }

@@ -47,12 +47,12 @@
         </a>
 
 
-        <a class="item" href="/mypage/likes">
+        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/likes'}">
             <span class="main">❤️ 좋아요 한 글</span>
             <span class="sub">좋아요한 게시글/거래글 모아보기</span>
         </a>
 
-        <a class="item" href="/mypage/5/bookmarks">
+        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/bookmarks'}">
             <span class="main">📌 북마크 모음</span>
             <span class="sub">다시 보고 싶은 글·매장 북마크 모아보기</span>
         </a>
@@ -62,7 +62,7 @@
     <div class="section-box">
         <div class="section-title">굿즈 거래</div>
 
-        <a class="item" href="/mypage/trade/mine">
+        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/trade/mine'}">
             <span class="main">📦 내가 올린 거래 글</span>
             <span class="sub">내가 등록한 거래글 전체 보기</span>
         </a>

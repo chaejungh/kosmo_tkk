@@ -34,4 +34,5 @@ public interface TradePostRepository extends JpaRepository<TradePost, Long> {
             """)
     Page<TradePost> search(@Param("keyword") String keyword, Pageable pageable);
 
+    Page<TradePost> findBySellerId(Long sellerId, Pageable pageable);
 }

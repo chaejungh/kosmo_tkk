@@ -78,12 +78,12 @@ public class MypageController {
         return "mypage/board/my_board_posts";
     }
 
-    @GetMapping("/likes")
-    public String myPostLike(Model model, Pageable pageable) throws SQLException {
-        Long loginMemberId = 1L;
-        Page<BoardLike> boardLikes = boardService.readByLike(loginMemberId, pageable);//좋아요한 게시글 목록
+    @GetMapping("/{memberId}/likes")
+    public String myPostLike(Model model, @PathVariable Long memberId, Pageable pageable) throws SQLException {
+
+        Page<BoardLike> boardLikes = boardService.readByLike(memberId, pageable);//좋아요한 게시글 목록
         model.addAttribute("boardLikes", boardLikes);
-        model.addAttribute("memberId", loginMemberId);
+        model.addAttribute("memberId", memberId);
         return "mypage/board/likes";
     }
 

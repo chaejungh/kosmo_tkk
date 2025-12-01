@@ -62,6 +62,12 @@ public class TradeServiceImp implements TradeService {
     }
 
     @Override
+    public Page<TradePost> readBySellerId(Long sellerId, Pageable pageable) {
+
+        return tradePostRepository.findBySellerId(sellerId,pageable);
+    }
+
+    @Override
     public TradePost readOneTradePostById(Long tradeId) {
         return tradePostRepository.findById(tradeId).orElse(null);
     }
