@@ -1,6 +1,8 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.TradeBookmark;
 import com.smu.tkk.entity.TradePost;
+import com.smu.tkk.service.TradeBookmarkService;
 import com.smu.tkk.service.TradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MyTradeController {
 
     private final TradeService tradeService;
+    private final TradeBookmarkService tradeBookmarkService;
+
     // 내가 쓴 거래 글 페이지
     @GetMapping("/{memberId}/trade/mine")
     public String myTradePosts(
@@ -32,8 +36,15 @@ public class MyTradeController {
 
     }
 
-    @GetMapping("/trade/wishlist")
-    public String myTradeWishlist() {
+    @GetMapping("/{memberId}/trade/wishlist")
+    public String myTradeWishlist(
+            @PathVariable Long memberId, Model model, @PageableDefault Pageable pageable
+    ) {
+        Page<TradeBookmark> bookmarkPage = tradeBookmarkService.getBookmarks(memberId, pageable);
+
+        model.addAttribute("bookmarks", bookmarkPage);
+        model.addAttribute("memberId", memberId);
+
         return "mypage/trade/my_trade_bookmarks";
     }
 }

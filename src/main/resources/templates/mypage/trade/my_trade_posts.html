@@ -33,9 +33,9 @@
             <ul class="simple-list link-list">
                 <li th:each="tp : ${tradePost.content}">
                     <span th:text="'[' + ${tp.status} + '] ' + ${tp.title}"></span>
-                    ·
+
                     <span th:text="${tp.price} + '원'"></span>
-                    ·
+
                 </li>
             </ul>
         </section>
