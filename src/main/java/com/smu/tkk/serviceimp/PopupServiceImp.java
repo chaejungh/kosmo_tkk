@@ -99,6 +99,7 @@ public class PopupServiceImp implements PopupService {
      // 8. 내 팝업 북마크 목록
     @Override
     public Page<PopupBookmark> myBookmarks(Long memberId, Pageable pageable) {
+
         return popupBookmarkRepository.findAllByMemberId(memberId, pageable);
     }
 }

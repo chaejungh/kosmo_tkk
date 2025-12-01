@@ -1,29 +1,45 @@
 <!-- src/main/resources/templates/mypage/popups.html -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>나의 더쿠쿠 - 찜한 팝업스토어</title>
+    <title>더쿠쿠 - 찜한 팝업스토어</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
 </head>
 <body>
 
 <div class="mypage-page">
+
+    <!-- 제목 -->
     <h2 class="title">나의 더쿠쿠</h2>
 
-    <!-- 연결 서비스: PopupService -->
+    <!-- 팝업스토어 북마크 박스 -->
     <div class="section-box">
         <div class="section-title">🎪 찜한 팝업스토어</div>
-        <p>놓치기 싫어서 저장해둔 팝업스토어 목록이야.</p>
+        <p style="font-size:12px; color:#777; margin-bottom:10px;">
+            놓치기 싫어서 저장해둔 팝업스토어 목록이에요.
+        </p>
 
-        <div class="list-box">
-            <p>※ PopupService + PopupBookmark 엔티티 사용해서 회원별 찜한 팝업 리스트를 뿌려주면 됨.</p>
+        <!-- 리스트 -->
+        <div class="item" th:each="bm : ${popupBookmarks.content}">
+            <div class="main" th:text="${bm.popup.title}">팝업 제목</div>
+
+            <div class="sub">
+                <span th:text="${bm.popup.address}"></span>
+            </div>
+
+            <div class="sub">
+                <span th:text="${#temporals.format(bm.popup.startDate, 'yyyy.MM.dd')}"></span>
+                ~
+                <span th:text="${#temporals.format(bm.popup.endDate, 'yyyy.MM.dd')}"></span>
+            </div>
         </div>
     </div>
+
 </div>
 
-
+<!-- 하단 네비 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span><span>홈</span>

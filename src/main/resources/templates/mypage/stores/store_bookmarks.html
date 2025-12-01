@@ -30,9 +30,12 @@
             </div>
 
             <ul class="simple-list link-list">
-                <li>홍대 ○○○ 스토어</li>
-                <li>강남 ○○샵</li>
-                <li>코엑스 ○○ 부스</li>
+                <li th:each="bm : ${storeBookmarks.content}">
+                    <!--<a th:href="@{/store/{id}/detail.do(id=${bm.storeId})}">-->
+                        <span th:text="${bm.store.name}"></span>
+
+                        <span th:text="${bm.store.address}"></span>
+                </li>
             </ul>
         </section>
     </main>

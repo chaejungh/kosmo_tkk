@@ -69,7 +69,7 @@
 
 
 
-        <a class="item" href="/mypage/trade/wishlist">
+        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/trade/wishlist'}">
             <span class="main">💗 찜한 거래글</span>
             <span class="sub">관심 있는 거래글 찜 목록</span>
         </a>
@@ -81,12 +81,12 @@
     <div class="section-box">
         <div class="section-title">매장 & 팝업</div>
 
-        <a class="item" href="/mypage/stores">
+        <a class="item" th:href="@{/mypage/{memberId}/stores(memberId=${member.id})}">
             <span class="main">🏪 찜한 매장</span>
             <span class="sub">자주 가는 굿즈 매장 즐겨찾기</span>
         </a>
 
-        <a class="item" href="/mypage/popups">
+        <a class="item" th:href="@{/mypage/{memberId}/popups(memberId=${member.id})}">
             <span class="main">🎪 찜한 팝업스토어</span>
             <span class="sub">놓치기 싫은 팝업스토어 저장 목록</span>
         </a>

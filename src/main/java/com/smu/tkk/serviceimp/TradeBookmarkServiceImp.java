@@ -4,6 +4,8 @@ import com.smu.tkk.entity.TradeBookmark;
 import com.smu.tkk.repository.TradeBookmarkRepository;
 import com.smu.tkk.service.TradeBookmarkService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,5 +37,10 @@ public class TradeBookmarkServiceImp implements TradeBookmarkService {
     @Transactional(readOnly = true)
     public boolean isBookmarked(Long memberId, Long tradeId) {
         return tradeBookmarkRepository.existsByMemberIdAndTradeId(memberId, tradeId);
+    }
+
+    @Override
+    public Page<TradeBookmark> getBookmarks(Long memberId, Pageable pageable) {
+        return tradeBookmarkRepository.findByMemberId(memberId, pageable);
     }
 }
