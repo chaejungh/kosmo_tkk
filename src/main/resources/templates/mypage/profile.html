@@ -32,23 +32,23 @@
                 </div>
             </div>
 
+        <form th:action="@{'/mypage/' + ${member.memberId} + '/profile'}" method="post" enctype="multipart/form-data">
+
             <div class="profile-main">
                 <div class="avatar editable">
-                    <span>DH</span>
-                    <button type="button" class="btn-outline btn-xs" style="margin-top:8px;">이미지 변경</button>
+                    <span th:text="${member.nickname.substring(0,2)}">DH</span>
+                    <input type="file" name="profileImage" style="display:none;" id="imgInput">
+                    <button type="button" class="btn-outline btn-xs" onclick="document.getElementById('imgInput').click()" style="margin-top:8px;">이미지 변경</button>
                 </div>
+
                 <div class="profile-text">
                     <div class="form-row">
                         <label>닉네임</label>
-                        <input type="text" value="정다희" />
+                        <input type="text" name="nickname" th:value="${member.nickname}">
                     </div>
                     <div class="form-row">
                         <label>한 줄 소개</label>
-                        <input type="text" value="홍대 팝업 투어 중 · 굿즈 수집가" />
-                    </div>
-                    <div class="form-row">
-                        <label>관심 작품</label>
-                        <input type="text" value="주술회전, 귀멸의 칼날" />
+                        <input type="text" name="intro" th:value="${member.intro}">
                     </div>
                 </div>
             </div>
@@ -58,6 +58,7 @@
                         th:onclick="|location.href='@{/mypage}'|">취소</button>
                 <button type="button" class="btn-primary btn-sm">변경 내용 저장</button>
             </div>
+        </form>
         </section>
 
         <section class="card mypage-section">

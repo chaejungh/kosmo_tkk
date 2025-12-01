@@ -2,8 +2,10 @@ package com.smu.tkk.controller;
 
 import com.smu.tkk.entity.BoardLike;
 import com.smu.tkk.entity.BoardPost;
+import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.StoreBookmark;
 import com.smu.tkk.service.BoardService;
+import com.smu.tkk.service.MemberService;
 import com.smu.tkk.service.NoticeService;
 import com.smu.tkk.service.StoreService;
 import lombok.AllArgsConstructor;
@@ -15,10 +17,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class MypageController {
      */
     private final BoardService boardService;
     private final StoreService storeService;
+    private final MemberService memberService;
 
 //    @Autowired
 //    public MypageController(BoardService boardService) {
@@ -90,4 +93,22 @@ public class MypageController {
 
         return "mypage/board/my_board_bookmarks";
     }
+
+    @PostMapping("/{memberId}/profile")
+    public String updateProfile(
+            @PathVariable Long memberId,
+            @RequestParam String nickname,
+            @RequestParam String intro,
+            @RequestParam(required = false) String profileImage,
+            Model model
+    ) throws IOException, SQLException {
+        Member member = memberService.readOne(memberId);
+        member.setNickname(nickname);
+        member.setProfileImageUrl(profileImage);
+        member.setIntro(intro);
+        memberService.modify(member);
+        model.addAttribute("member", member);
+        return "redirect:/mypage/" + memberId + "/";
+    }
+
 }
