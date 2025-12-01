@@ -8,6 +8,7 @@ import com.smu.tkk.service.BoardService;
 import com.smu.tkk.service.MemberService;
 import com.smu.tkk.service.NoticeService;
 import com.smu.tkk.service.StoreService;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,10 @@ public class MypageController {
 //    }
 
     @GetMapping("/{memberId}/")
-    public String mypageMainWithId(@PathVariable("memberId") Long memberId) {
+    public String mypageMainWithId(@PathVariable("memberId") Long memberId, Model model) throws SQLException {
         // TODO: memberId로 내 정보/찜 리스트 등 나중에 로딩
+        Member member = memberService.readOne(memberId);
+        model.addAttribute("member", member);
         return "mypage/mypage_main";
     }
 
@@ -55,20 +58,22 @@ public class MypageController {
      * 기존 /mypage 진입은 임시로 memberId=1로 리다이렉트
      * 나중에 로그인/세션 붙이면 현재 로그인한 회원 ID로 바꿔주면 됨.
      */
-    @GetMapping
-    public String legacyMypageMain() {
-        return "redirect:/mypage/1/";
+    @GetMapping()
+    public String legacyMypageMain(HttpSession session) {
+        Long memberId = (Long) session.getAttribute("memberId");
+        return "redirect:/mypage/" + memberId + "/";
     }
 
     /* ======= 아래는 서비스/FAQ/문의 등 기존 URL 그대로 사용 ======= */
-    @GetMapping("/posts")
+    @GetMapping("/{memberId}/posts")
     public String myPosts(
             Model model,
+            @PathVariable Long memberId,
             @PageableDefault(size = 10, page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
     ) throws SQLException {
-        Long loginMemberId = 1L;
+
         String yN = "N";
-        Page<BoardPost> boardsPage = boardService.readByUser(loginMemberId, yN, pageable);
+        Page<BoardPost> boardsPage = boardService.readByUser(memberId, yN, pageable);
         model.addAttribute("boardsPage", boardsPage);
         return "mypage/board/my_board_posts";
     }

@@ -27,10 +27,12 @@
             <div class="level-badge">LV3</div>
 
             <!-- 닉네임 (클릭해서 수정) -->
-            <div id="nickname" class="nickname editable">닉네임</div>
+            <div id="nickname" class="nickname editable" th:text="${member.nickname}">
+
+            </div>
 
             <!-- 한 줄 소개 -->
-            <div id="bio" class="bio editable">한 줄 소개를 입력해 주세요.</div>
+            <div id="intro" class="intro editable" th:text="${member.intro}">한 줄 소개를 입력해 주세요.</div>
 
         </div>
     </div>
@@ -39,7 +41,7 @@
     <div class="section-box">
         <div class="section-title">나의 활동</div>
 
-        <a class="item" href="/mypage/posts">
+        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/posts'}">
             <span class="main">📝 내가 쓴 글</span>
             <span class="sub">굿즈로드에서 내가 작성한 글 전체 보기</span>
         </a>
