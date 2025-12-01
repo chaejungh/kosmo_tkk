@@ -156,9 +156,14 @@ public class BoardController {
     }
 
     @GetMapping("/board/{memberId}/write")
-    public String writeForm(@PathVariable Long memberId) {
-
+    public String writeForm(@PathVariable Long memberId,Model model) {
+        model.addAttribute("memberId",memberId);
         return "board/board_write";
+    }
+    @GetMapping("/board//write")
+    public String writeForm() {
+
+        return "board/not_allowed";
     }
 
 }
