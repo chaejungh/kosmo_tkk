@@ -14,4 +14,9 @@ public class MyPageBookmarkController {
     public String storeBookmarksPage() {
         return "mypage/stores/store_bookmarks";
     }
+
+    @GetMapping("/popups")
+    public String popupBookmarksPage() {
+        return "mypage/stores/popups";
+    }
 }
