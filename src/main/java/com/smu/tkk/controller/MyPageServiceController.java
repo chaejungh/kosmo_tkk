@@ -1,8 +1,10 @@
 package com.smu.tkk.controller;
 
 import com.smu.tkk.entity.Inquiry;
+import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.ServiceNotice;
 import com.smu.tkk.service.InquiryService;
+import com.smu.tkk.service.MemberService;
 import com.smu.tkk.service.NoticeService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
@@ -25,6 +28,7 @@ public class MyPageServiceController {
 
     private final NoticeService serviceNoticeService;
     private final InquiryService inquiryService;
+    private final MemberService memberService;
 
     @GetMapping("/notice")
     public String noticeList(Model model,
@@ -52,12 +56,16 @@ public class MyPageServiceController {
         return "mypage/service/faq";
     }
 
-    @GetMapping("/inquiries")
-    public String inquiryList(Model model,Pageable pageable) throws SQLException {
-        Long memberId = 1L; // 테스트용
-        List<Inquiry> inquiryList = inquiryService.readById(memberId, pageable);
+    @GetMapping("/{memberId}/inquiries")
+    public String inquiryList(Model model,
+                              @PathVariable Long memberId,
+                              Pageable pageable) throws SQLException {
+        //Long memberId = 1L; // 테스트용
+        Page<Inquiry> inquiryList = inquiryService.readById(memberId, pageable);
 
-        model.addAttribute("inquiryList", inquiryList);
+        Member member = memberService.readOne(memberId);
+        model.addAttribute("inquiryList", inquiryList.getContent());
+        model.addAttribute("member", member);
 
         return "mypage/service/inquiries";
     }

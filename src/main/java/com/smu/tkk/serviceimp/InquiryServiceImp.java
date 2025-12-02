@@ -4,6 +4,7 @@ import com.smu.tkk.entity.Inquiry;
 import com.smu.tkk.repository.InquiryRepository;
 import com.smu.tkk.service.InquiryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,7 +54,7 @@ import java.util.List;
          *  3. 내가 쓴 문의 목록 조회
          * ------------------------------------------------------- */
         @Override
-        public List<Inquiry> readById(Long memberId, Pageable pageable) {
+        public Page<Inquiry> readById(Long memberId, Pageable pageable) {
             return inquiryRepository.findByMemberId(memberId, pageable);
         }
 

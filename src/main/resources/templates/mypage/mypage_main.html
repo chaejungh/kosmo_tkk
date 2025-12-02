@@ -113,7 +113,7 @@
             <span class="sub">많이 물어보는 질문 모아보기</span>
         </a>
 
-        <a class="item" href="/mypage/service/inquiries">
+        <a class="item" th:href="@{'/mypage/service/' + ${memberId} + '/inquiries'}">
             <span class="main">💬 1:1 문의</span>
             <span class="sub">궁금한 점을 직접 문의하기</span>
         </a>
