@@ -112,9 +112,7 @@
 
                     <ul class="hot-posts-list">
                         <li class="hot-post-item"
-                            th:each="post : ${hotCurrentBoard}"
-                            th:if="${memberId == null}"
-                            th:onclick="|location.href='@{/board/not-allowed}'|">
+                            th:each="post : ${hotCurrentBoard}">
                                 <span class="hot-post-label d-inline d-md-none"
                                       th:text="${#strings.length(post.category.name) > 4
                                             ? #strings.substring(post.category.name, 0, 4) + '...'
@@ -127,9 +125,10 @@
 
 
                             <a class="hot-post-link"
-                               th:href="@{/freeboard/{memberId}/article/{postId}/detail.do(
-                                    memberId=${memberId},
-                                    postId=${post.id})}">
+                               th:href="${memberId} == null ? @{/board/not-allowed} :
+                                        @{/freeboard/{memberId}/article/{postId}/detail.do(
+                                        memberId=${memberId},
+                                        postId=${post.id})}">
                                 <span class="hot-post-title d-inline d-md-none"
                                       th:text="${#strings.length(post.title) > 10
                                                 ? #strings.substring(post.title, 0, 10) + '...'
