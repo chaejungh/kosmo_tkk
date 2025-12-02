@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/home.css}">
 
+    <!-- 🔹 네이버 지도 SDK (geocoder 포함) -->
+    <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&submodules=geocoder" defer></script>
+    <script>
+        // 인증 실패시 알림 (Authentication Failed (200) 디버깅용)
+        window.navermap_authFailure = () =>
+            alert('네이버 지도 인증 실패: NCP 콘솔 URL/Key 확인 (NCP Web 서비스 URL 허용목록 점검)');
+    </script>
+
     <style>
         .page {
             max-width: 960px;
@@ -71,6 +79,7 @@
             background: #d1d5db;
             border-radius: 12px;
             margin-top: 8px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -115,16 +124,75 @@
             설명 텍스트
         </p>
 
-        <!-- 지도 자리 -->
+        <!-- 위치 + 지도 -->
         <h2 class="popup-detail-subtitle">위치</h2>
         <p class="popup-detail-text" th:text="${popup.address}"></p>
 
-        <div class="popup-detail-map">
-            <!-- 향후 카카오 지도 -->
-        </div>
+        <!-- 🔹 여기 안에 네이버 지도 렌더링 -->
+        <div id="popupMap" class="popup-detail-map"></div>
 
     </article>
 
 </div>
+
+<!-- 🔹 팝업 주소 1개만 네이버 지도에 표시 -->
+<script th:inline="javascript">
+    window.addEventListener('load', function () {
+        // 서버에서 전달된 팝업 주소 / 장소명 가져오기
+        const address   = /*[[${popup.address}]]*/ '';
+        const placeName = /*[[${popup.placeName != null ? popup.placeName : popup.title}]]*/ '';
+
+        if (!address) {
+            console.warn('popup.address 가 없습니다. 지도를 초기화하지 않습니다.');
+            return;
+        }
+
+        // geocoder 로 주소 → 좌표 변환
+        naver.maps.Service.geocode(
+            { query: address },
+            function (status, response) {
+                if (status !== naver.maps.Service.Status.OK ||
+                    !response.v2 ||
+                    !response.v2.addresses ||
+                    response.v2.addresses.length === 0) {
+
+                    console.warn('네이버 지오코딩 실패', status, response);
+                    return;
+                }
+
+                const addr = response.v2.addresses[0];
+                const lat  = parseFloat(addr.y);
+                const lng  = parseFloat(addr.x);
+
+                const map = new naver.maps.Map('popupMap', {
+                    center: new naver.maps.LatLng(lat, lng),
+                    zoom: 16,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        position: naver.maps.Position.TOP_RIGHT
+                    }
+                });
+
+                const marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(lat, lng),
+                    map: map,
+                    title: placeName || address
+                });
+
+                const info = new naver.maps.InfoWindow({
+                    content: `
+                        <div style="padding:8px 10px;font-size:12px;">
+                            <div style="font-weight:600;">${placeName || '팝업 위치'}</div>
+                            <div style="color:#4b5563;margin-top:2px;">${address}</div>
+                        </div>
+                    `
+                });
+
+                info.open(map, marker);
+            }
+        );
+    });
+</script>
+
 </body>
 </html>
