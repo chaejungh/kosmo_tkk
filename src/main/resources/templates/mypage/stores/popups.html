@@ -23,7 +23,8 @@
 
         <!-- 리스트 -->
         <div class="item" th:each="bm : ${popupBookmarks.content}">
-            <div class="main" th:text="${bm.popup.title}">팝업 제목</div>
+            <a th:href="@{'/popupstore/' + ${bm.popup.id} + '/detail.do'}" style="display:block;">
+            <div class="main" th:text="${bm.popup.title}"></div>
 
             <div class="sub">
                 <span th:text="${bm.popup.address}"></span>
@@ -34,6 +35,7 @@
                 ~
                 <span th:text="${#temporals.format(bm.popup.endDate, 'yyyy.MM.dd')}"></span>
             </div>
+            </a>
         </div>
     </div>
 
