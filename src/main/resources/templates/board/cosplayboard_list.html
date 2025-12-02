@@ -276,7 +276,9 @@
 
                     <ul class="hot-posts-list">
                         <li class="hot-post-item"
-                            th:each="post : ${hotCurrentBoard}">
+                            th:each="post : ${hotCurrentBoard}"
+                            th:if="${memberId == null}"
+                            th:onclick="|location.href='@{/board/not-allowed}'|">
                                 <span class="hot-post-label d-inline d-md-none"
                                       th:text="${#strings.length(post.category.name) > 4
                                             ? #strings.substring(post.category.name, 0, 4) + '...'
@@ -323,7 +325,9 @@
 
                     <ul class="hot-posts-list">
                         <li class="hot-post-item"
-                            th:each="post : ${hotAllBoard}">
+                            th:each="post : ${hotAllBoard}"
+                            th:if="${memberId == null}"
+                            th:onclick="|location.href='@{/board/not-allowed}'|">
                             <span class="hot-post-label d-inline d-md-none"
                                   th:text="${#strings.length(post.category.name) > 4
                                             ? #strings.substring(post.category.name, 0, 4) + '...'
@@ -459,7 +463,7 @@
             <nav>
                 <ul class="pagination">
                     <li class="page-item"
-                        th:classappend="${page}==0 ? 'disabled' ">
+                        th:classappend="${page}==0 ? 'disabled':''">
                         <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
                     </li>
                     <li  th:each="i : ${#numbers.sequence(1,last)}"
@@ -468,7 +472,7 @@
                         <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
                     </li>
                     <li class="page-item"
-                        th:classappend="${page}==(${last}-1) ? 'disabled' ">
+                        th:classappend="${page}==(${last}-1) ? 'disabled':''">
                         <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
                     </li>
                 </ul>
@@ -512,6 +516,11 @@
             const postId = card.dataset.postId;
             // 원하는 URL 패턴에 맞게 수정해서 사용
             // 예) /mcboard/{memberId}/{postId}/detail.do
+            if (memberId == null){//비회원이면 조회불가
+                const url = `/board/not-allowed`;
+                window.location.href = url;
+                return;
+            }
             const url = `/cosplayboard/${memberId}/article/${postId}/detail.do`;
             window.location.href = url;
         });

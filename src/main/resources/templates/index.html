@@ -484,9 +484,9 @@
 
                         <!-- 배너 이미지 -->
                         <div class="popup-img"
-                             th:style="'background-image:url(' + ${popup.bannerImageUrl} + ');
-                            background-size:cover;
-                            background-position:center;'">
+                             th:style="|background-image:url(${popup.bannerImageUrl});
+                                       background-size:cover;
+                                       background-position:center;|">
                         </div>
 
                         <!-- 팝업 정보 -->
@@ -503,7 +503,7 @@
 
                             <!-- 기간 -->
                             <p class="popup-date"
-                               th:text="|${popup.startDate} ~ ${popup.endDate}|">
+                               th:text="|${popup.startDate}+'~'+ ${popup.endDate}|">
                                 2025.01.01 ~ 2025.01.31
                             </p>
 
