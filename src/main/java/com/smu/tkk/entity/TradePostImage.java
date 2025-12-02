@@ -15,6 +15,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @ToString
 @Table(name = "TRADE_POST_IMAGE")
 public class TradePostImage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IMAGE_ID", nullable = false)

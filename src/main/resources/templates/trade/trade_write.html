@@ -33,7 +33,6 @@
             margin-bottom: 14px;
         }
 
-        /* 이미지 업로드 */
         .img-upload-box {
             background: #ffffff;
             border: 1px dashed var(--border);
@@ -41,6 +40,7 @@
             padding: 18px;
             text-align: center;
             cursor: pointer;
+            margin-bottom: 10px;
         }
 
         .img-upload-box:hover {
@@ -82,7 +82,6 @@
             cursor: pointer;
         }
 
-        /* 입력폼 */
         .input-box {
             background: white;
             border-radius: 12px;
@@ -112,7 +111,6 @@
             resize: vertical;
         }
 
-        /* 버튼 */
         .submit-btn {
             margin-top: 24px;
             width: 100%;
@@ -138,32 +136,38 @@
 
     <h1 class="title">굿즈거래 글쓰기</h1>
 
-    <!-- 이미지 업로드 -->
-    <div class="img-upload-box" onclick="document.getElementById('imgInput').click()">
-        📷 클릭해서 이미지 업로드 (여러 장 가능)
-    </div>
+    <!-- TradePost 객체 바인딩 -->
+    <form th:action="@{|/trade/${memberId}/write|}"
+          th:object="${post}"
+          method="post"
+          enctype="multipart/form-data">
 
-    <input type="file" id="imgInput" accept="image/*" multiple style="display:none">
-
-    <div class="img-preview-wrap" id="previewArea"></div>
-
-
-    <!-- ================== FORM ================== -->
-    <form th:action="@{|/trade/${memberId}/write|}" method="post" enctype="multipart/form-data">
-
-        <div class="input-box">
-            <div class="input-label">제목</div>
-            <input type="text" name="title" placeholder="제목을 입력하세요" required>
+        <!-- 이미지 업로드 -->
+        <div class="img-upload-box" onclick="document.getElementById('imgInput').click()">
+            📷 클릭해서 이미지 업로드 (여러 장 가능)
         </div>
 
+        <input type="file" id="imgInput" name="images" accept="image/*" multiple style="display:none">
+        <div class="img-preview-wrap" id="previewArea"></div>
+
+        <!-- ⭐ 굿즈 이름 필드는 삭제했음 (goodsName은 서버에서 title로 채워줌) -->
+
+        <!-- 제목 -->
+        <div class="input-box">
+            <div class="input-label">제목 *</div>
+            <input type="text" th:field="*{title}" placeholder="제목을 입력하세요" required>
+        </div>
+
+        <!-- 가격 -->
         <div class="input-box">
             <div class="input-label">가격</div>
-            <input type="number" name="price" placeholder="예: 15000">
+            <input type="number" th:field="*{price}" placeholder="예: 15000">
         </div>
 
+        <!-- 카테고리 -->
         <div class="input-box">
             <div class="input-label">카테고리</div>
-            <select name="category">
+            <select th:field="*{category}">
                 <option value="">선택하세요</option>
                 <option value="포카">포카</option>
                 <option value="피규어">피규어</option>
@@ -171,23 +175,26 @@
             </select>
         </div>
 
+        <!-- 지역 -->
         <div class="input-box">
             <div class="input-label">지역</div>
-            <input type="text" name="region" placeholder="예: 홍대 / 신촌 / 강남">
+            <input type="text" th:field="*{region}" placeholder="예: 홍대 / 신촌 / 강남">
         </div>
 
+        <!-- 거래 방식 -->
         <div class="input-box">
             <div class="input-label">거래 방식</div>
-            <select name="tradeMethod">
+            <select th:field="*{tradeMethod}">
                 <option value="DIRECT">직거래</option>
                 <option value="DELIVERY">택배거래</option>
                 <option value="BOTH">직거래 + 택배</option>
             </select>
         </div>
 
+        <!-- 상세 내용 -->
         <div class="input-box">
             <div class="input-label">설명</div>
-            <textarea name="content" placeholder="상품 상태, 거래 희망 시간 등을 입력해주세요"></textarea>
+            <textarea th:field="*{content}" placeholder="상품 상태, 거래 희망 시간 등을 입력해주세요"></textarea>
         </div>
 
         <button class="submit-btn">등록하기</button>
@@ -195,8 +202,6 @@
 
 </div>
 
-
-<!-- ================== JS: 이미지 미리보기 ================== -->
 <script>
     const imgInput = document.getElementById("imgInput");
     const previewArea = document.getElementById("previewArea");
@@ -205,8 +210,7 @@
 
     imgInput.addEventListener("change", (e) => {
         const files = Array.from(e.target.files);
-
-        selectedFiles = selectedFiles.concat(files);
+        selectedFiles = files;
         renderPreview();
     });
 
@@ -216,10 +220,8 @@
         selectedFiles.forEach((file, idx) => {
             const reader = new FileReader();
             reader.onload = (e) => {
-
                 const div = document.createElement("div");
                 div.className = "preview-item";
-
                 div.innerHTML = `
                     <img src="${e.target.result}" class="preview-img">
                     <div class="remove-btn" onclick="removeImg(${idx})">×</div>
@@ -232,6 +234,11 @@
 
     function removeImg(index) {
         selectedFiles.splice(index, 1);
+
+        const dt = new DataTransfer();
+        selectedFiles.forEach(f => dt.items.add(f));
+        imgInput.files = dt.files;
+
         renderPreview();
     }
 </script>
