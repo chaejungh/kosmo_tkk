@@ -4,6 +4,9 @@ import com.smu.tkk.dto.TradePostListDto;
 import com.smu.tkk.entity.TradePost;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 public interface TradeService {
 
@@ -57,7 +60,6 @@ public interface TradeService {
 
     /* ============================================================
        ⚠ 9) 상태만 수정하는 오래된 메서드 (이름 비추천)
-          -> 필요 없으면 삭제 가능. 현재는 남겨둠.
        ============================================================ */
     TradePost modifyTradepost(TradePost tradePostId, TradePost tradePostStatus);
 
@@ -65,4 +67,12 @@ public interface TradeService {
 
     // 10. 멤버 별 거래글 조회
     Page<TradePost> readBySellerId(Long sellerId, Pageable pageable);
+
+
+    /* ============================================================
+       ⭐ 11) 이미지 포함 거래글 등록 (새로 추가)
+       ============================================================ */
+    void createPostWithImages(TradePost post, List<MultipartFile> images);
+
+    TradePostListDto toListDTO(TradePost post);
 }

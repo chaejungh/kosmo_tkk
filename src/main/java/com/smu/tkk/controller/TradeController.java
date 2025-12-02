@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -33,24 +34,37 @@ public class TradeController {
         return "redirect:/trade/list.do";
     }
 
+    /* ===============================================================
+       🔥 검색 - DTO 기반으로 변경
+       ============================================================== */
     @GetMapping(params = "keyword")
     public String searchTrade(@RequestParam String keyword,
                               @PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
                               Model model) {
 
         Page<TradePost> entityPage = tradeService.search(keyword, pageable);
-        model.addAttribute("page", entityPage.map(this::toListDTO));
+
+        // 🔥 이미지 포함 DTO로 변환
+        Page<TradePostListDto> dtoPage = entityPage.map(post -> {
+            return tradeService.toListDTO(post);
+        });
+
+        model.addAttribute("page", dtoPage);
         model.addAttribute("keyword", keyword);
 
         return "trade/trade_list";
     }
 
+    /* ===============================================================
+       🔥 목록 - DTO 기반으로 변경
+       ============================================================== */
     @GetMapping("/list.do")
     public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
                             Model model) {
 
-        Page<TradePost> entityPage = tradeService.readAll(pageable);
-        model.addAttribute("page", entityPage.map(this::toListDTO));
+        // 🔥 TradeService에서 만든 readAllListDto 사용!
+        Page<TradePostListDto> dtoPage = tradeService.readAllListDto(pageable);
+        model.addAttribute("page", dtoPage);
 
         return "trade/trade_list";
     }
@@ -73,7 +87,6 @@ public class TradeController {
         Long coverImageId = coverOpt.map(TradePostImage::getId).orElse(0L);
         model.addAttribute("coverImageId", coverImageId);
 
-        // ⭐ 핵심: HTML과 동일하게 currentMemberId 전달
         Long memberId = 1L;
         model.addAttribute("currentMemberId", memberId);
 
@@ -137,6 +150,9 @@ public class TradeController {
         return "trade/trade_image_detail";
     }
 
+    /* ===============================================================
+       글쓰기 페이지
+       ============================================================== */
     @GetMapping("/{memberId}/write")
     public String writeForm(@PathVariable Long memberId,
                             @RequestParam(name = "t", required = false) String t,
@@ -152,21 +168,36 @@ public class TradeController {
         return "trade/trade_write";
     }
 
+    /* ===============================================================
+       🔥 이미지 포함 글 등록
+       ============================================================== */
     @PostMapping("/{memberId}/write")
     public String writeSubmit(@PathVariable Long memberId,
-                              @ModelAttribute TradePost post) {
+                              @ModelAttribute TradePost post,
+                              @RequestParam(required = false, name = "images") List<MultipartFile> images) {
 
         post.setSellerId(memberId);
 
-        if (post.getStatus() == null) {
+        if (post.getGoodsName() == null || post.getGoodsName().isBlank()) {
+            post.setGoodsName(post.getTitle());
+        }
+
+        if (post.getTradeType() == null || post.getTradeType().isBlank()) {
+            post.setTradeType("SELL");
+        }
+
+        if (post.getStatus() == null || post.getStatus().isBlank()) {
             post.setStatus("ON_SALE");
         }
 
-        tradeService.register(post);
+        tradeService.createPostWithImages(post, images);
 
         return "redirect:/trade/list.do";
     }
 
+    /* ===============================================================
+       DTO 변환 (이미지까지 매핑)
+       ============================================================== */
     private TradePostListDto toListDTO(TradePost post) {
 
         TradePostListDto dto = new TradePostListDto();
