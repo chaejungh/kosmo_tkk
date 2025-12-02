@@ -2,6 +2,7 @@ package com.smu.tkk.service;
 
 import com.smu.tkk.entity.BoardComment;
 import com.smu.tkk.entity.Inquiry;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.sql.SQLException;
@@ -15,10 +16,12 @@ public interface InquiryService {
     boolean remove(Long inquiryId) throws SQLException;
 
     //3. 문의 내가 쓴글 조회
-    List<Inquiry> readById(Long memberId, Pageable pageable);
+    //List<Inquiry> readById(Long memberId, Pageable pageable);
 
     //4. 문의 단일 상세 조회
     Inquiry readOne(Long inquiryId);
+
+    Page<Inquiry> readById(Long memberId, Pageable pageable);
 
 }
     /// 관리자 답변 등록/수정 , AI

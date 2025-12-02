@@ -31,10 +31,11 @@
 
             <ul class="simple-list link-list">
                 <li th:each="bm : ${storeBookmarks.content}">
-                    <!--<a th:href="@{/store/{id}/detail.do(id=${bm.storeId})}">-->
+                <a th:href="@{'/store/' + ${bm.storeId} + '/detail.do'}">
                         <span th:text="${bm.store.name}"></span>
 
                         <span th:text="${bm.store.address}"></span>
+                </a>
                 </li>
             </ul>
         </section>

@@ -32,10 +32,11 @@
 
             <ul class="simple-list link-list">
                 <li th:each="tp : ${tradePost.content}">
+                    <a th:href="@{'/trade/' + ${tp.id} + '/article/detail.do'}">
                     <span th:text="'[' + ${tp.status} + '] ' + ${tp.title}"></span>
 
                     <span th:text="${tp.price} + '원'"></span>
-
+                    </a>
                 </li>
             </ul>
         </section>

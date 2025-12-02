@@ -32,10 +32,11 @@
 
             <ul class="simple-list link-list">
                 <li th:each="bm : ${bookmarks.content}">
+                <a th:href="@{'/trade/' + ${bm.trade.id} + '/article/detail.do'}">
                     <span th:text="'[' + ${bm.trade.status} + '] ' + ${bm.trade.title}"></span>
 
                     <span th:text="${#numbers.formatInteger(bm.trade.price, 3, 'COMMA')} + '원'"></span>
-
+                </a>
                 </li>
             </ul>
 

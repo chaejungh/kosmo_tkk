@@ -28,13 +28,13 @@ public class InquiryController {
     public String detail(@PathVariable Integer id, Model model) {
         Inquiry inquiry = inquiryRepository.findById(id).orElse(null);
         model.addAttribute("inquiry", inquiry);
-        return "mypage/service/inquiry-detail";
+        return "mypage/service/inquiry_detail";
     }
 
     /** 문의 작성 화면 */
     @GetMapping("/write.do")
     public String writeForm() {
-        return "mypage/service/inquiry-write";
+        return "mypage/service/inquiry_write";
     }
 
     /** 문의 작성 처리 */
