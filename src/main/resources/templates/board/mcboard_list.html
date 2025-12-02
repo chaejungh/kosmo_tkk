@@ -240,8 +240,14 @@
 
                     <!-- 🔥 정렬 메뉴를 search-actions 안으로 이동 -->
                     <div id="sortMenu" class="sort-menu hidden">
-                        <div class="sort-option active" data-sort="latest">최신순</div>
-                        <div class="sort-option" data-sort="popular">인기순</div>
+                        <div class="sort-option"
+                             data-sort="latest"
+                             th:classappend="${sortType} == 'latest'? 'active': ''">
+                            최신순</div>
+                        <div class="sort-option"
+                             data-sort="popular"
+                             th:classappend="${sortType} == 'popular'? 'active': ''"
+                        >인기순</div>
                     </div>
                 </div>
 
@@ -474,7 +480,7 @@
             <nav>
                 <ul class="pagination">
                     <li class="page-item"
-                        th:classappend="${page}==0 ? 'disabled' ">
+                        th:classappend="${page}==0 ? 'disabled' : '' ">
                         <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
                     </li>
                     <li  th:each="i : ${#numbers.sequence(1,last)}"
@@ -483,7 +489,7 @@
                         <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
                     </li>
                     <li class="page-item"
-                        th:classappend="${page}==(${last}-1) ? 'disabled' ">
+                        th:classappend="${page}==(${last}-1) ? 'disabled' : '' ">
                         <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
                     </li>
                 </ul>
@@ -523,6 +529,8 @@
 </button>
 
 <script th:inline="javascript">
+
+
     const postList = document.getElementById("postList");
     const viewListBtn = document.getElementById("viewListBtn");
     const viewPhotoBtn = document.getElementById("viewPhotoBtn");
@@ -580,6 +588,25 @@
     document.addEventListener("click", () => {
         sortMenu.classList.add("hidden");
     });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        sortPage();
+    });
+    function sortPage(){//페이지 정렬 (최신순,인기순)
+        const sortOptions = document.querySelectorAll('#sortMenu .sort-option');
+
+        sortOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const sortType = option.dataset.sort; // latest or popular
+                const url = new URL(window.location.href);
+                url.searchParams.set('sortType', sortType);
+                url.searchParams.set('page', 1); // 정렬 바꿀 때 1페이지로
+
+                window.location.href = url.toString(); // 서버에 다시 요청
+            });
+        });
+    }
 </script>
 </body>
 </html>

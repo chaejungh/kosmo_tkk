@@ -2,6 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 새끼 자랑 상세</title>
 
     <!-- 공통 스타일 (이미 쓰고 있는 파일) -->
@@ -9,6 +10,56 @@
     <link rel="stylesheet" th:href="@{/css/board.css}">
 
     <style>
+        /* ================= 모바일 전용 레이아웃 ================= */
+        @media (max-width: 768px) {
+            /* 페이지 전체를 가운데 1열로 배치 (모바일일 때만) */
+            .page.board-page {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+            }
+
+            .page.board-page .page-inner {
+                width: 100%;
+                max-width: 480px;          /* 모바일 기준 폭 */
+                margin: 0 auto;
+                padding: 16px 12px 80px;   /* 하단 네비 높이만큼 아래 여백 */
+            }
+
+            /* 하단 네비도 모바일일 때만 폭 제한 + 가운데 정렬 */
+            .bottom-nav {
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 0;
+                width: 100%;
+                max-width: 480px;
+                background: #ffffff;
+                border-top: 1px solid #eee;
+                display: flex;
+                justify-content: space-around;
+                padding: 6px 0 8px;
+                z-index: 50;
+            }
+
+            .bottom-nav .nav-item {
+                flex: 1;
+                text-align: center;
+                font-size: 11px;
+            }
+
+            .bottom-nav .nav-item .icon {
+                display: block;
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+
+            .bottom-nav .nav-item.active {
+                color: #6C4CF7;
+                font-weight: 600;
+            }
+        }
+
         /* ====== 이 파일(상세화면)에서만 쓰는 추가 스타일 ====== */
 
         /* 상단 영역 */
@@ -197,6 +248,7 @@
                 padding: 22px 26px;
             }
         }
+
         .like-btn {
             border: none;
             background: none;
@@ -208,7 +260,6 @@
         .like-btn.active {
             transform: scale(1.1);
         }
-
     </style>
 </head>
 
@@ -253,7 +304,6 @@
                         </span>
                         ·
                         <span th:text="${post.category.name}">
-                            내 새끼 자랑
                         </span>
                     </div>
                 </div>
@@ -402,5 +452,4 @@
         }
     }
 </script>
-
 </html>
