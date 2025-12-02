@@ -1,0 +1,21 @@
+<!-- templates/fragments/footer.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+
+<footer class="footer mt-5 py-3 border-top" th:fragment="footer">
+    <div class="container small text-muted d-flex flex-column flex-md-row justify-content-between gap-2">
+        <div>
+            <strong>더쿠쿠</strong> &copy; 2025
+            <span class="ms-2">All rights reserved.</span>
+        </div>
+        <div>
+            <span class="me-2">문의: support@thekuku.com</span>
+            <a th:href="@{/service/terms}" class="text-decoration-none me-2">이용약관</a>
+            <a th:href="@{/service/privacy}" class="text-decoration-none">개인정보처리방침</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

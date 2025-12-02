@@ -1,49 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>더쿠쿠 - 홈</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 기존 CSS 그대로 사용 -->
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-
+    <link rel="stylesheet" href="/src/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/auth.css}"/>
+    <script src="/src/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        /* ===== 상단 로그인/회원가입 ===== */
-        .auth-actions {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-auth {
-            padding: 6px 12px;
-            border-radius: 999px;
-            font-size: 12px;
-            border: 1px solid #e5e7eb;
-            background: #ffffff;
-            color: #4b5563;
-            text-decoration: none;
-            line-height: 1;
-        }
-
-        .btn-auth-primary {
-            border-color: #6366f1;
-            background: #6366f1;
-            color: #ffffff;
-        }
-
-        .btn-auth:hover {
-            background: #f3f4ff;
-        }
-
-        .btn-auth-primary:hover {
-            background: #4f46e5;
-        }
-
         /* ===== 지도 검색창 (기존 유지, 반응형만 살짝) ===== */
         .map-search-inline {
             display: flex;
@@ -161,93 +130,6 @@
             font-size: 11px !important;
         }
 
-        /* ===== 이벤트 & 출석체크 영역 ===== */
-        .event-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-        }
-
-        .event-tabs {
-            display: inline-flex;
-            align-items: center;
-            background: #f3f4ff;
-            padding: 3px;
-            border-radius: 999px;
-        }
-
-        .event-tab {
-            border: none;
-            background: transparent;
-            font-size: 11px;
-            padding: 5px 10px;
-            border-radius: 999px;
-            cursor: pointer;
-            color: #6b7280;
-        }
-
-        .event-tab.active {
-            background: #ffffff;
-            color: #4f46e5;
-            box-shadow: 0 1px 4px rgba(79, 70, 229, 0.25);
-        }
-
-        .event-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .event-card {
-            border-radius: 16px;
-            background: #ffffff;
-            padding: 12px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #eef2ff;
-            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
-        }
-
-        .event-left {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .event-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #111827;
-        }
-
-        .event-desc {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .event-tag {
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 999px;
-            background: #f3e8ff;
-            color: #7c3aed;
-            margin-right: 6px;
-        }
-
-        .event-right {
-            font-size: 12px;
-            background: #111827;
-            color: #ffffff;
-            padding: 8px 10px;
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
-
         .event-right span.icon-dot {
             width: 4px;
             height: 4px;
@@ -330,19 +212,6 @@
             overflow-y:auto;
             padding-right:4px;
         }
-        .map-search-list{
-            list-style:none;
-            margin:0;
-            padding:0;
-        }
-        .map-search-item{
-            padding:6px 0;
-            border-radius:8px;
-            cursor:pointer;
-        }
-        .map-search-item:hover{
-            background:#f9fafb;
-        }
         .map-search-line1{
             display:flex;
             align-items:center;
@@ -413,35 +282,12 @@
 <body>
 <div class="page">
 
-    <!-- 헤더 -->
-    <header class="header">
-        <div class="header-top">
-            <!-- 로고: 클릭 시 홈 -->
-            <a th:href="@{/}" class="logo" style="margin-right: 10px;">더쿠쿠</a>
-            <a th:href="@{/trade/list.do}" class="logo">굿즈거래</a>
+    <!-- ✅ 공통 헤더 -->
+    <div th:replace="~{fragments/header :: header}"></div>
 
+    <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
+    <main class="content" layout:fragment="content">
 
-
-            <!-- 오른쪽 로그인/닉네임 영역 -->
-            <div class="auth-actions">
-
-                <!-- ✅ 비로그인 상태: 로그인 / 회원가입 버튼 -->
-                <div th:if="${nickname == null}">
-                    <a th:href="@{/auth/login}" class="btn-auth">로그인</a>
-                    <a th:href="@{/auth/join}" class="btn-auth btn-auth-primary">회원가입</a>
-                </div>
-
-                <!-- ✅ 로그인 상태: 닉네임 + 로그아웃 -->
-                <div class="logged-in-box" th:if="${nickname != null}">
-                <span class="welcome-text"
-                      th:text="|${nickname} 님|">닉네임 님</span>
-                    <a th:href="@{/auth/logout}" class="btn-auth">로그아웃</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="content">
 
         <!-- ===== 지도 섹션 ===== -->
         <section class="card map-section">
@@ -522,6 +368,13 @@
 
     </main>
 
+    <!-- ✅ 공통 푸터 -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+
+
+
+
     <!-- 문의 floating 버튼 -->
     <a th:href="@{/help}" class="fab">
         <span class="fab-icon">💬</span>
@@ -562,6 +415,8 @@
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+
+<!-- 🔥 지도 검색 결과 바텀시트 동작 스크립트 -->
 <script>
     const popupSwiper = new Swiper(".popupSwiper", {
         slidesPerView: 1,
@@ -575,10 +430,7 @@
             disableOnInteraction: false,
         },
     });
-</script>
 
-<!-- 🔥 지도 검색 결과 바텀시트 동작 스크립트 -->
-<script>
     (function () {
         const sheet = document.getElementById('mapSearchSheet');
         const contentEl = document.getElementById('mapSearchSheetContent');
