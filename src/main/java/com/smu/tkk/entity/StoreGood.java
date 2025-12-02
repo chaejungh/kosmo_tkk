@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @Table(name = "STORE_GOODS")
 @ToString
 public class StoreGood {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GOODS_ID", nullable = false)
@@ -59,5 +60,4 @@ public class StoreGood {
 
     @Column(name = "UPDATED_AT")
     private LocalDate updatedAt;
-
 }

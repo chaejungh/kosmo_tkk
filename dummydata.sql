@@ -306,604 +306,447 @@ VALUES ('모노폴리 롯데 영플라자 명동점','BT21·라인프렌즈 등 
 commit;
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품001', '작품001', '캐릭터001', '포토카드', 5000, 5, 'https://example.com/goods/goods001.jpg');
-
+VALUES (1, '원피스 루피 포토카드', '원피스', '루피', '포토카드', 5000, 30, 'https://example.com/goods/op_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품002', '작품002', '캐릭터002', '키링', 6000, 7, 'https://example.com/goods/goods002.jpg');
-
+VALUES (1, '원피스 루피 피규어', '원피스', '루피', '피규어', 25000, 8, 'https://example.com/goods/op_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품003', '작품003', '캐릭터003', '피규어', 7000, 9, 'https://example.com/goods/goods003.jpg');
-
+VALUES (1, '원피스 루피 인형', '원피스', '루피', '인형', 18000, 12, 'https://example.com/goods/op_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품004', '작품004', '캐릭터004', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods004.jpg');
-
+VALUES (1, '원피스 루피 키링', '원피스', '루피', '키링', 7000, 25, 'https://example.com/goods/op_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품005', '작품005', '캐릭터005', '인형', 9000, 13, 'https://example.com/goods/goods005.jpg');
+VALUES (1, '원피스 루피 아크릴스탠드', '원피스', '루피', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품006', '작품006', '캐릭터006', '스티커', 10000, 15, 'https://example.com/goods/goods006.jpg');
-
+VALUES (1, '원피스 조로 포토카드', '원피스', '조로', '포토카드', 5000, 30, 'https://example.com/goods/op_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품007', '작품007', '캐릭터007', '엽서', 11000, 17, 'https://example.com/goods/goods007.jpg');
-
+VALUES (1, '원피스 조로 피규어', '원피스', '조로', '피규어', 25000, 8, 'https://example.com/goods/op_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품008', '작품008', '캐릭터008', '티셔츠', 12000, 19, 'https://example.com/goods/goods008.jpg');
-
+VALUES (1, '원피스 조로 인형', '원피스', '조로', '인형', 18000, 12, 'https://example.com/goods/op_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품009', '작품009', '캐릭터009', '머그컵', 13000, 21, 'https://example.com/goods/goods009.jpg');
-
+VALUES (1, '원피스 조로 키링', '원피스', '조로', '키링', 7000, 25, 'https://example.com/goods/op_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품010', '작품010', '캐릭터010', '후드티', 14000, 23, 'https://example.com/goods/goods010.jpg');
+VALUES (1, '원피스 조로 아크릴스탠드', '원피스', '조로', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품011', '작품011', '캐릭터011', '포토카드', 5000, 5, 'https://example.com/goods/goods011.jpg');
-
+VALUES (1, '원피스 나미 포토카드', '원피스', '나미', '포토카드', 5000, 30, 'https://example.com/goods/op_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품012', '작품012', '캐릭터012', '키링', 6000, 7, 'https://example.com/goods/goods012.jpg');
-
+VALUES (1, '원피스 나미 피규어', '원피스', '나미', '피규어', 25000, 8, 'https://example.com/goods/op_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품013', '작품013', '캐릭터013', '피규어', 7000, 9, 'https://example.com/goods/goods013.jpg');
-
+VALUES (1, '원피스 나미 인형', '원피스', '나미', '인형', 18000, 12, 'https://example.com/goods/op_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품014', '작품014', '캐릭터014', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods014.jpg');
-
+VALUES (1, '원피스 나미 키링', '원피스', '나미', '키링', 7000, 25, 'https://example.com/goods/op_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품015', '작품015', '캐릭터015', '인형', 9000, 13, 'https://example.com/goods/goods015.jpg');
+VALUES (1, '원피스 나미 아크릴스탠드', '원피스', '나미', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품016', '작품016', '캐릭터016', '스티커', 10000, 15, 'https://example.com/goods/goods016.jpg');
-
+VALUES (1, '원피스 상디 포토카드', '원피스', '상디', '포토카드', 5000, 30, 'https://example.com/goods/op_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품017', '작품017', '캐릭터017', '엽서', 11000, 17, 'https://example.com/goods/goods017.jpg');
-
+VALUES (1, '원피스 상디 피규어', '원피스', '상디', '피규어', 25000, 8, 'https://example.com/goods/op_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품018', '작품018', '캐릭터018', '티셔츠', 12000, 19, 'https://example.com/goods/goods018.jpg');
-
+VALUES (1, '원피스 상디 인형', '원피스', '상디', '인형', 18000, 12, 'https://example.com/goods/op_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품019', '작품019', '캐릭터019', '머그컵', 13000, 21, 'https://example.com/goods/goods019.jpg');
-
+VALUES (1, '원피스 상디 키링', '원피스', '상디', '키링', 7000, 25, 'https://example.com/goods/op_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품020', '작품020', '캐릭터020', '후드티', 14000, 23, 'https://example.com/goods/goods020.jpg');
+VALUES (1, '원피스 상디 아크릴스탠드', '원피스', '상디', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품021', '작품001', '캐릭터021', '포토카드', 5000, 5, 'https://example.com/goods/goods021.jpg');
-
+VALUES (1, '원피스 쵸파 포토카드', '원피스', '쵸파', '포토카드', 5000, 30, 'https://example.com/goods/op_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품022', '작품002', '캐릭터022', '키링', 6000, 7, 'https://example.com/goods/goods022.jpg');
-
+VALUES (1, '원피스 쵸파 피규어', '원피스', '쵸파', '피규어', 25000, 8, 'https://example.com/goods/op_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품023', '작품003', '캐릭터023', '피규어', 7000, 9, 'https://example.com/goods/goods023.jpg');
-
+VALUES (1, '원피스 쵸파 인형', '원피스', '쵸파', '인형', 18000, 12, 'https://example.com/goods/op_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품024', '작품004', '캐릭터024', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods024.jpg');
-
+VALUES (1, '원피스 쵸파 키링', '원피스', '쵸파', '키링', 7000, 25, 'https://example.com/goods/op_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품025', '작품005', '캐릭터025', '인형', 9000, 13, 'https://example.com/goods/goods025.jpg');
+VALUES (1, '원피스 쵸파 아크릴스탠드', '원피스', '쵸파', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품026', '작품006', '캐릭터026', '스티커', 10000, 15, 'https://example.com/goods/goods026.jpg');
-
+VALUES (2, '나루토 나루토 포토카드', '나루토', '나루토', '포토카드', 5000, 30, 'https://example.com/goods/nr_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품027', '작품007', '캐릭터027', '엽서', 11000, 17, 'https://example.com/goods/goods027.jpg');
-
+VALUES (2, '나루토 나루토 피규어', '나루토', '나루토', '피규어', 25000, 8, 'https://example.com/goods/nr_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품028', '작품008', '캐릭터028', '티셔츠', 12000, 19, 'https://example.com/goods/goods028.jpg');
-
+VALUES (2, '나루토 나루토 인형', '나루토', '나루토', '인형', 18000, 12, 'https://example.com/goods/nr_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품029', '작품009', '캐릭터029', '머그컵', 13000, 21, 'https://example.com/goods/goods029.jpg');
-
+VALUES (2, '나루토 나루토 키링', '나루토', '나루토', '키링', 7000, 25, 'https://example.com/goods/nr_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품030', '작품010', '캐릭터030', '후드티', 14000, 23, 'https://example.com/goods/goods030.jpg');
+VALUES (2, '나루토 나루토 아크릴스탠드', '나루토', '나루토', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품031', '작품011', '캐릭터031', '포토카드', 5000, 5, 'https://example.com/goods/goods031.jpg');
-
+VALUES (2, '나루토 사스케 포토카드', '나루토', '사스케', '포토카드', 5000, 30, 'https://example.com/goods/nr_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품032', '작품012', '캐릭터032', '키링', 6000, 7, 'https://example.com/goods/goods032.jpg');
-
+VALUES (2, '나루토 사스케 피규어', '나루토', '사스케', '피규어', 25000, 8, 'https://example.com/goods/nr_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품033', '작품013', '캐릭터033', '피규어', 7000, 9, 'https://example.com/goods/goods033.jpg');
-
+VALUES (2, '나루토 사스케 인형', '나루토', '사스케', '인형', 18000, 12, 'https://example.com/goods/nr_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품034', '작품014', '캐릭터034', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods034.jpg');
-
+VALUES (2, '나루토 사스케 키링', '나루토', '사스케', '키링', 7000, 25, 'https://example.com/goods/nr_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품035', '작품015', '캐릭터035', '인형', 9000, 13, 'https://example.com/goods/goods035.jpg');
+VALUES (2, '나루토 사스케 아크릴스탠드', '나루토', '사스케', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품036', '작품016', '캐릭터036', '스티커', 10000, 15, 'https://example.com/goods/goods036.jpg');
-
+VALUES (2, '나루토 사쿠라 포토카드', '나루토', '사쿠라', '포토카드', 5000, 30, 'https://example.com/goods/nr_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품037', '작품017', '캐릭터037', '엽서', 11000, 17, 'https://example.com/goods/goods037.jpg');
-
+VALUES (2, '나루토 사쿠라 피규어', '나루토', '사쿠라', '피규어', 25000, 8, 'https://example.com/goods/nr_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품038', '작품018', '캐릭터038', '티셔츠', 12000, 19, 'https://example.com/goods/goods038.jpg');
-
+VALUES (2, '나루토 사쿠라 인형', '나루토', '사쿠라', '인형', 18000, 12, 'https://example.com/goods/nr_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품039', '작품019', '캐릭터039', '머그컵', 13000, 21, 'https://example.com/goods/goods039.jpg');
-
+VALUES (2, '나루토 사쿠라 키링', '나루토', '사쿠라', '키링', 7000, 25, 'https://example.com/goods/nr_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품040', '작품020', '캐릭터040', '후드티', 14000, 23, 'https://example.com/goods/goods040.jpg');
+VALUES (2, '나루토 사쿠라 아크릴스탠드', '나루토', '사쿠라', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품041', '작품001', '캐릭터041', '포토카드', 5000, 5, 'https://example.com/goods/goods041.jpg');
-
+VALUES (2, '나루토 카카시 포토카드', '나루토', '카카시', '포토카드', 5000, 30, 'https://example.com/goods/nr_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품042', '작품002', '캐릭터042', '키リング', 6000, 7, 'https://example.com/goods/goods042.jpg');
-
+VALUES (2, '나루토 카카시 피규어', '나루토', '카카시', '피규어', 25000, 8, 'https://example.com/goods/nr_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품043', '작품003', '캐릭터043', '피규어', 7000, 9, 'https://example.com/goods/goods043.jpg');
-
+VALUES (2, '나루토 카카시 인형', '나루토', '카카시', '인형', 18000, 12, 'https://example.com/goods/nr_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품044', '작품004', '캐릭터044', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods044.jpg');
-
+VALUES (2, '나루토 카카시 키링', '나루토', '카카시', '키링', 7000, 25, 'https://example.com/goods/nr_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품045', '작품005', '캐릭터045', '인형', 9000, 13, 'https://example.com/goods/goods045.jpg');
+VALUES (2, '나루토 카카시 아크릴스탠드', '나루토', '카카시', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품046', '작품006', '캐릭터046', '스티커', 10000, 15, 'https://example.com/goods/goods046.jpg');
-
+VALUES (2, '나루토 히나타 포토카드', '나루토', '히나타', '포토카드', 5000, 30, 'https://example.com/goods/nr_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품047', '작품007', '캐릭터047', '엽서', 11000, 17, 'https://example.com/goods/goods047.jpg');
-
+VALUES (2, '나루토 히나타 피규어', '나루토', '히나타', '피규어', 25000, 8, 'https://example.com/goods/nr_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품048', '작품008', '캐릭터048', '티셔츠', 12000, 19, 'https://example.com/goods/goods048.jpg');
-
+VALUES (2, '나루토 히나타 인형', '나루토', '히나타', '인형', 18000, 12, 'https://example.com/goods/nr_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품049', '작품009', '캐릭터049', '머그컵', 13000, 21, 'https://example.com/goods/goods049.jpg');
-
+VALUES (2, '나루토 히나타 키링', '나루토', '히나타', '키링', 7000, 25, 'https://example.com/goods/nr_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품050', '작품010', '캐릭터050', '후드티', 14000, 23, 'https://example.com/goods/goods050.jpg');
+VALUES (2, '나루토 히나타 아크릴스탠드', '나루토', '히나타', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품051', '작품011', '캐릭터051', '포토카드', 5000, 5, 'https://example.com/goods/goods051.jpg');
-
+VALUES (3, '귀멸의칼날 탄지로 포토카드', '귀멸의칼날', '탄지로', '포토카드', 5000, 30, 'https://example.com/goods/ds_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품052', '작품012', '캐릭터052', '키링', 6000, 7, 'https://example.com/goods/goods052.jpg');
-
+VALUES (3, '귀멸의칼날 탄지로 피규어', '귀멸의칼날', '탄지로', '피규어', 25000, 8, 'https://example.com/goods/ds_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품053', '작품013', '캐릭터053', '피규어', 7000, 9, 'https://example.com/goods/goods053.jpg');
-
+VALUES (3, '귀멸의칼날 탄지로 인형', '귀멸의칼날', '탄지로', '인형', 18000, 12, 'https://example.com/goods/ds_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품054', '작품014', '캐릭터054', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods054.jpg');
-
+VALUES (3, '귀멸의칼날 탄지로 키링', '귀멸의칼날', '탄지로', '키링', 7000, 25, 'https://example.com/goods/ds_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품055', '작품015', '캐릭터055', '인형', 9000, 13, 'https://example.com/goods/goods055.jpg');
+VALUES (3, '귀멸의칼날 탄지로 아크릴스탠드', '귀멸의칼날', '탄지로', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품056', '작품016', '캐릭터056', '스티커', 10000, 15, 'https://example.com/goods/goods056.jpg');
-
+VALUES (3, '귀멸의칼날 네즈코 포토카드', '귀멸의칼날', '네즈코', '포토카드', 5000, 30, 'https://example.com/goods/ds_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품057', '작품017', '캐릭터057', '엽서', 11000, 17, 'https://example.com/goods/goods057.jpg');
-
+VALUES (3, '귀멸의칼날 네즈코 피규어', '귀멸의칼날', '네즈코', '피규어', 25000, 8, 'https://example.com/goods/ds_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품058', '작품018', '캐릭터058', '티셔츠', 12000, 19, 'https://example.com/goods/goods058.jpg');
-
+VALUES (3, '귀멸의칼날 네즈코 인형', '귀멸의칼날', '네즈코', '인형', 18000, 12, 'https://example.com/goods/ds_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품059', '작품019', '캐릭터059', '머그컵', 13000, 21, 'https://example.com/goods/goods059.jpg');
-
+VALUES (3, '귀멸의칼날 네즈코 키링', '귀멸의칼날', '네즈코', '키링', 7000, 25, 'https://example.com/goods/ds_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품060', '작품020', '캐릭터060', '후드티', 14000, 23, 'https://example.com/goods/goods060.jpg');
+VALUES (3, '귀멸의칼날 네즈코 아크릴스탠드', '귀멸의칼날', '네즈코', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품061', '작품001', '캐릭터061', '포토카드', 5000, 5, 'https://example.com/goods/goods061.jpg');
-
+VALUES (3, '귀멸의칼날 젠이츠 포토카드', '귀멸의칼날', '젠이츠', '포토카드', 5000, 30, 'https://example.com/goods/ds_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품062', '작품002', '캐릭터062', '키링', 6000, 7, 'https://example.com/goods/goods062.jpg');
-
+VALUES (3, '귀멸의칼날 젠이츠 피규어', '귀멸의칼날', '젠이츠', '피규어', 25000, 8, 'https://example.com/goods/ds_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품063', '작품003', '캐릭터063', '피규어', 7000, 9, 'https://example.com/goods/goods063.jpg');
-
+VALUES (3, '귀멸의칼날 젠이츠 인형', '귀멸의칼날', '젠이츠', '인형', 18000, 12, 'https://example.com/goods/ds_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품064', '작품004', '캐릭터064', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods064.jpg');
-
+VALUES (3, '귀멸의칼날 젠이츠 키링', '귀멸의칼날', '젠이츠', '키링', 7000, 25, 'https://example.com/goods/ds_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품065', '작품005', '캐릭터065', '인형', 9000, 13, 'https://example.com/goods/goods065.jpg');
+VALUES (3, '귀멸의칼날 젠이츠 아크릴스탠드', '귀멸의칼날', '젠이츠', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품066', '작품006', '캐릭터066', '스티커', 10000, 15, 'https://example.com/goods/goods066.jpg');
-
+VALUES (3, '귀멸의칼날 이노스케 포토카드', '귀멸의칼날', '이노스케', '포토카드', 5000, 30, 'https://example.com/goods/ds_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품067', '작품007', '캐릭터067', '엽서', 11000, 17, 'https://example.com/goods/goods067.jpg');
-
+VALUES (3, '귀멸의칼날 이노스케 피규어', '귀멸의칼날', '이노스케', '피규어', 25000, 8, 'https://example.com/goods/ds_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품068', '작품008', '캐릭터068', '티셔츠', 12000, 19, 'https://example.com/goods/goods068.jpg');
-
+VALUES (3, '귀멸의칼날 이노스케 인형', '귀멸의칼날', '이노스케', '인형', 18000, 12, 'https://example.com/goods/ds_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품069', '작품009', '캐릭터069', '머그컵', 13000, 21, 'https://example.com/goods/goods069.jpg');
-
+VALUES (3, '귀멸의칼날 이노스케 키링', '귀멸의칼날', '이노스케', '키링', 7000, 25, 'https://example.com/goods/ds_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품070', '작품010', '캐릭터070', '후드티', 14000, 23, 'https://example.com/goods/goods070.jpg');
+VALUES (3, '귀멸의칼날 이노스케 아크릴스탠드', '귀멸의칼날', '이노스케', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품071', '작품011', '캐릭터071', '포토카드', 5000, 5, 'https://example.com/goods/goods071.jpg');
-
+VALUES (3, '귀멸의칼날 렌고쿠 포토카드', '귀멸의칼날', '렌고쿠', '포토카드', 5000, 30, 'https://example.com/goods/ds_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품072', '작품012', '캐릭터072', '키링', 6000, 7, 'https://example.com/goods/goods072.jpg');
-
+VALUES (3, '귀멸의칼날 렌고쿠 피규어', '귀멸의칼날', '렌고쿠', '피규어', 25000, 8, 'https://example.com/goods/ds_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품073', '작품013', '캐릭터073', '피규어', 7000, 9, 'https://example.com/goods/goods073.jpg');
-
+VALUES (3, '귀멸의칼날 렌고쿠 인형', '귀멸의칼날', '렌고쿠', '인형', 18000, 12, 'https://example.com/goods/ds_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품074', '작품014', '캐릭터074', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods074.jpg');
-
+VALUES (3, '귀멸의칼날 렌고쿠 키링', '귀멸의칼날', '렌고쿠', '키링', 7000, 25, 'https://example.com/goods/ds_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품075', '작품015', '캐릭터075', '인형', 9000, 13, 'https://example.com/goods/goods075.jpg');
+VALUES (3, '귀멸의칼날 렌고쿠 아크릴스탠드', '귀멸의칼날', '렌고쿠', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품076', '작품016', '캐릭터076', '스티커', 10000, 15, 'https://example.com/goods/goods076.jpg');
-
+VALUES (4, '블루록 이사기 포토카드', '블루록', '이사기', '포토카드', 5000, 30, 'https://example.com/goods/bl_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품077', '작품017', '캐릭터077', '엽서', 11000, 17, 'https://example.com/goods/goods077.jpg');
-
+VALUES (4, '블루록 이사기 피규어', '블루록', '이사기', '피규어', 25000, 8, 'https://example.com/goods/bl_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품078', '작품018', '캐릭터078', '티셔츠', 12000, 19, 'https://example.com/goods/goods078.jpg');
-
+VALUES (4, '블루록 이사기 인형', '블루록', '이사기', '인형', 18000, 12, 'https://example.com/goods/bl_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품079', '작품019', '캐릭터079', '머그컵', 13000, 21, 'https://example.com/goods/goods079.jpg');
-
+VALUES (4, '블루록 이사기 키링', '블루록', '이사기', '키링', 7000, 25, 'https://example.com/goods/bl_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품080', '작품020', '캐릭터080', '후드티', 14000, 23, 'https://example.com/goods/goods080.jpg');
+VALUES (4, '블루록 이사기 아크릴스탠드', '블루록', '이사기', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품081', '작품001', '캐릭터081', '포토카드', 5000, 5, 'https://example.com/goods/goods081.jpg');
-
+VALUES (4, '블루록 나기 포토카드', '블루록', '나기', '포토카드', 5000, 30, 'https://example.com/goods/bl_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품082', '작품002', '캐릭터082', '키링', 6000, 7, 'https://example.com/goods/goods082.jpg');
-
+VALUES (4, '블루록 나기 피규어', '블루록', '나기', '피규어', 25000, 8, 'https://example.com/goods/bl_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품083', '작품003', '캐릭터083', '피규어', 7000, 9, 'https://example.com/goods/goods083.jpg');
-
+VALUES (4, '블루록 나기 인형', '블루록', '나기', '인형', 18000, 12, 'https://example.com/goods/bl_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품084', '작품004', '캐릭터084', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods084.jpg');
-
+VALUES (4, '블루록 나기 키링', '블루록', '나기', '키링', 7000, 25, 'https://example.com/goods/bl_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품085', '작품005', '캐릭터085', '인형', 9000, 13, 'https://example.com/goods/goods085.jpg');
+VALUES (4, '블루록 나기 아크릴스탠드', '블루록', '나기', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품086', '작품006', '캐릭터086', '스티커', 10000, 15, 'https://example.com/goods/goods086.jpg');
-
+VALUES (4, '블루록 바치라 포토카드', '블루록', '바치라', '포토카드', 5000, 30, 'https://example.com/goods/bl_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품087', '작품007', '캐릭터087', '엽서', 11000, 17, 'https://example.com/goods/goods087.jpg');
-
+VALUES (4, '블루록 바치라 피규어', '블루록', '바치라', '피규어', 25000, 8, 'https://example.com/goods/bl_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품088', '작품008', '캐릭터088', '티셔츠', 12000, 19, 'https://example.com/goods/goods088.jpg');
-
+VALUES (4, '블루록 바치라 인형', '블루록', '바치라', '인형', 18000, 12, 'https://example.com/goods/bl_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품089', '작품009', '캐릭터089', '머그컵', 13000, 21, 'https://example.com/goods/goods089.jpg');
-
+VALUES (4, '블루록 바치라 키링', '블루록', '바치라', '키링', 7000, 25, 'https://example.com/goods/bl_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품090', '작품010', '캐릭터090', '후드티', 14000, 23, 'https://example.com/goods/goods090.jpg');
+VALUES (4, '블루록 바치라 아크릴스탠드', '블루록', '바치라', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품091', '작품011', '캐릭터091', '포토카드', 5000, 5, 'https://example.com/goods/goods091.jpg');
-
+VALUES (4, '블루록 치기리 포토카드', '블루록', '치기리', '포토카드', 5000, 30, 'https://example.com/goods/bl_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품092', '작품012', '캐릭터092', '키링', 6000, 7, 'https://example.com/goods/goods092.jpg');
-
+VALUES (4, '블루록 치기리 피규어', '블루록', '치기리', '피규어', 25000, 8, 'https://example.com/goods/bl_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품093', '작품013', '캐릭터093', '피규어', 7000, 9, 'https://example.com/goods/goods093.jpg');
-
+VALUES (4, '블루록 치기리 인형', '블루록', '치기리', '인형', 18000, 12, 'https://example.com/goods/bl_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품094', '작품014', '캐릭터094', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods094.jpg');
-
+VALUES (4, '블루록 치기리 키링', '블루록', '치기리', '키링', 7000, 25, 'https://example.com/goods/bl_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품095', '작품015', '캐릭터095', '인형', 9000, 13, 'https://example.com/goods/goods095.jpg');
+VALUES (4, '블루록 치기리 아크릴스탠드', '블루록', '치기리', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품096', '작품016', '캐릭터096', '스티커', 10000, 15, 'https://example.com/goods/goods096.jpg');
-
+VALUES (4, '블루록 렌스케 포토카드', '블루록', '렌스케', '포토카드', 5000, 30, 'https://example.com/goods/bl_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품097', '작품017', '캐릭터097', '엽서', 11000, 17, 'https://example.com/goods/goods097.jpg');
-
+VALUES (4, '블루록 렌스케 피규어', '블루록', '렌스케', '피규어', 25000, 8, 'https://example.com/goods/bl_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품098', '작품018', '캐릭터098', '티셔츠', 12000, 19, 'https://example.com/goods/goods098.jpg');
-
+VALUES (4, '블루록 렌스케 인형', '블루록', '렌스케', '인형', 18000, 12, 'https://example.com/goods/bl_23.jpg');
+INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
+VALUES (4, '블루록 렌스케 키링', '블루록', '렌스케', '키링', 7000, 25, 'https://example.com/goods/bl_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품099', '작품019', '캐릭터099', '머그컵', 13000, 21, 'https://example.com/goods/goods099.jpg');
+VALUES (4, '블루록 렌스케 아크릴스탠드', '블루록', '렌스케', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품100', '작품020', '캐릭터100', '후드티', 14000, 23, 'https://example.com/goods/goods100.jpg');
+VALUES (5, '주술회전 이타도리 포토카드', '주술회전', '이타도리', '포토카드', 5000, 30, 'https://example.com/goods/jjk_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품101', '작품001', '캐릭터101', '포토카드', 5000, 5, 'https://example.com/goods/goods101.jpg');
-
+VALUES (5, '주술회전 이타도리 피규어', '주술회전', '이타도리', '피규어', 25000, 8, 'https://example.com/goods/jjk_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품102', '작품002', '캐릭터102', '키링', 6000, 7, 'https://example.com/goods/goods102.jpg');
-
+VALUES (5, '주술회전 이타도리 인형', '주술회전', '이타도리', '인형', 18000, 12, 'https://example.com/goods/jjk_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품103', '작품003', '캐릭터103', '피규어', 7000, 9, 'https://example.com/goods/goods103.jpg');
-
+VALUES (5, '주술회전 이타도리 키링', '주술회전', '이타도리', '키링', 7000, 25, 'https://example.com/goods/jjk_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품104', '작품004', '캐릭터104', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods104.jpg');
+VALUES (5, '주술회전 이타도리 아크릴스탠드', '주술회전', '이타도리', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품105', '작품005', '캐릭터105', '인형', 9000, 13, 'https://example.com/goods/goods105.jpg');
-
+VALUES (5, '주술회전 후시구로 포토카드', '주술회전', '후시구로', '포토카드', 5000, 30, 'https://example.com/goods/jjk_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품106', '작품006', '캐릭터106', '스티커', 10000, 15, 'https://example.com/goods/goods106.jpg');
-
+VALUES (5, '주술회전 후시구로 피규어', '주술회전', '후시구로', '피규어', 25000, 8, 'https://example.com/goods/jjk_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품107', '작품007', '캐릭터107', '엽서', 11000, 17, 'https://example.com/goods/goods107.jpg');
-
+VALUES (5, '주술회전 후시구로 인형', '주술회전', '후시구로', '인형', 18000, 12, 'https://example.com/goods/jjk_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품108', '작품008', '캐릭터108', '티셔츠', 12000, 19, 'https://example.com/goods/goods108.jpg');
-
+VALUES (5, '주술회전 후시구로 키링', '주술회전', '후시구로', '키링', 7000, 25, 'https://example.com/goods/jjk_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품109', '작품009', '캐릭터109', '머그컵', 13000, 21, 'https://example.com/goods/goods109.jpg');
+VALUES (5, '주술회전 후시구로 아크릴스탠드', '주술회전', '후시구로', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품110', '작품010', '캐릭터110', '후드티', 14000, 23, 'https://example.com/goods/goods110.jpg');
-
+VALUES (5, '주술회전 쿠기사키 포토카드', '주술회전', '쿠기사키', '포토카드', 5000, 30, 'https://example.com/goods/jjk_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품111', '작품011', '캐릭터111', '포토카드', 5000, 5, 'https://example.com/goods/goods111.jpg');
-
+VALUES (5, '주술회전 쿠기사키 피규어', '주술회전', '쿠기사키', '피규어', 25000, 8, 'https://example.com/goods/jjk_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품112', '작품012', '캐릭터112', '키링', 6000, 7, 'https://example.com/goods/goods112.jpg');
-
+VALUES (5, '주술회전 쿠기사키 인형', '주술회전', '쿠기사키', '인형', 18000, 12, 'https://example.com/goods/jjk_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품113', '작품013', '캐릭터113', '피규어', 7000, 9, 'https://example.com/goods/goods113.jpg');
-
+VALUES (5, '주술회전 쿠기사키 키링', '주술회전', '쿠기사키', '키링', 7000, 25, 'https://example.com/goods/jjk_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품114', '작품014', '캐릭터114', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods114.jpg');
+VALUES (5, '주술회전 쿠기사키 아크릴스탠드', '주술회전', '쿠기사키', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품115', '작품015', '캐릭터115', '인형', 9000, 13, 'https://example.com/goods/goods115.jpg');
-
+VALUES (5, '주술회전 고죠 포토카드', '주술회전', '고죠', '포토카드', 5000, 30, 'https://example.com/goods/jjk_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품116', '작품016', '캐릭터116', '스티커', 10000, 15, 'https://example.com/goods/goods116.jpg');
-
+VALUES (5, '주술회전 고죠 피규어', '주술회전', '고죠', '피규어', 25000, 8, 'https://example.com/goods/jjk_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품117', '작품017', '캐릭터117', '엽서', 11000, 17, 'https://example.com/goods/goods117.jpg');
-
+VALUES (5, '주술회전 고죠 인형', '주술회전', '고죠', '인형', 18000, 12, 'https://example.com/goods/jjk_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품118', '작품018', '캐릭터118', '티셔츠', 12000, 19, 'https://example.com/goods/goods118.jpg');
-
+VALUES (5, '주술회전 고죠 키링', '주술회전', '고죠', '키링', 7000, 25, 'https://example.com/goods/jjk_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품119', '작품019', '캐릭터119', '머그컵', 13000, 21, 'https://example.com/goods/goods119.jpg');
+VALUES (5, '주술회전 고죠 아크릴스탠드', '주술회전', '고죠', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품120', '작품020', '캐릭터120', '후드티', 14000, 23, 'https://example.com/goods/goods120.jpg');
-
+VALUES (5, '주술회전 나나미 포토카드', '주술회전', '나나미', '포토카드', 5000, 30, 'https://example.com/goods/jjk_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품121', '작품001', '캐릭터121', '포토카드', 5000, 5, 'https://example.com/goods/goods121.jpg');
-
+VALUES (5, '주술회전 나나미 피규어', '주술회전', '나나미', '피규어', 25000, 8, 'https://example.com/goods/jjk_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품122', '작품002', '캐릭터122', '키링', 6000, 7, 'https://example.com/goods/goods122.jpg');
-
+VALUES (5, '주술회전 나나미 인형', '주술회전', '나나미', '인형', 18000, 12, 'https://example.com/goods/jjk_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품123', '작품003', '캐릭터123', '피규어', 7000, 9, 'https://example.com/goods/goods123.jpg');
-
+VALUES (5, '주술회전 나나미 키링', '주술회전', '나나미', '키링', 7000, 25, 'https://example.com/goods/jjk_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품124', '작품004', '캐릭터124', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods124.jpg');
+VALUES (5, '주술회전 나나미 아크릴스탠드', '주술회전', '나나미', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품125', '작품005', '캐릭터125', '인형', 9000, 13, 'https://example.com/goods/goods125.jpg');
-
+VALUES (6, '체인소맨 덴지 포토카드', '체인소맨', '덴지', '포토카드', 5000, 30, 'https://example.com/goods/csm_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품126', '작품006', '캐릭터126', '스티커', 10000, 15, 'https://example.com/goods/goods126.jpg');
-
+VALUES (6, '체인소맨 덴지 피규어', '체인소맨', '덴지', '피규어', 25000, 8, 'https://example.com/goods/csm_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품127', '작품007', '캐릭터127', '엽서', 11000, 17, 'https://example.com/goods/goods127.jpg');
-
+VALUES (6, '체인소맨 덴지 인형', '체인소맨', '덴지', '인형', 18000, 12, 'https://example.com/goods/csm_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품128', '작품008', '캐릭터128', '티셔츠', 12000, 19, 'https://example.com/goods/goods128.jpg');
-
+VALUES (6, '체인소맨 덴지 키링', '체인소맨', '덴지', '키링', 7000, 25, 'https://example.com/goods/csm_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품129', '작품009', '캐릭터129', '머그컵', 13000, 21, 'https://example.com/goods/goods129.jpg');
+VALUES (6, '체인소맨 덴지 아크릴스탠드', '체인소맨', '덴지', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품130', '작품010', '캐릭터130', '후드티', 14000, 23, 'https://example.com/goods/goods130.jpg');
-
+VALUES (6, '체인소맨 파워 포토카드', '체인소맨', '파워', '포토카드', 5000, 30, 'https://example.com/goods/csm_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품131', '작품011', '캐릭터131', '포토카드', 5000, 5, 'https://example.com/goods/goods131.jpg');
-
+VALUES (6, '체인소맨 파워 피규어', '체인소맨', '파워', '피규어', 25000, 8, 'https://example.com/goods/csm_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품132', '작품012', '캐릭터132', '키링', 6000, 7, 'https://example.com/goods/goods132.jpg');
-
+VALUES (6, '체인소맨 파워 인형', '체인소맨', '파워', '인형', 18000, 12, 'https://example.com/goods/csm_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품133', '작품013', '캐릭터133', '피규어', 7000, 9, 'https://example.com/goods/goods133.jpg');
-
+VALUES (6, '체인소맨 파워 키링', '체인소맨', '파워', '키링', 7000, 25, 'https://example.com/goods/csm_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품134', '작품014', '캐릭터134', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods134.jpg');
+VALUES (6, '체인소맨 파워 아크릴스탠드', '체인소맨', '파워', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품135', '작품015', '캐릭터135', '인형', 9000, 13, 'https://example.com/goods/goods135.jpg');
-
+VALUES (6, '체인소맨 마키마 포토카드', '체인소맨', '마키마', '포토카드', 5000, 30, 'https://example.com/goods/csm_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품136', '작품016', '캐릭터136', '스티커', 10000, 15, 'https://example.com/goods/goods136.jpg');
-
+VALUES (6, '체인소맨 마키마 피규어', '체인소맨', '마키마', '피규어', 25000, 8, 'https://example.com/goods/csm_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품137', '작품017', '캐릭터137', '엽서', 11000, 17, 'https://example.com/goods/goods137.jpg');
-
+VALUES (6, '체인소맨 마키마 인형', '체인소맨', '마키마', '인형', 18000, 12, 'https://example.com/goods/csm_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품138', '작품018', '캐릭터138', '티셔츠', 12000, 19, 'https://example.com/goods/goods138.jpg');
-
+VALUES (6, '체인소맨 마키마 키링', '체인소맨', '마키마', '키링', 7000, 25, 'https://example.com/goods/csm_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품139', '작품019', '캐릭터139', '머그컵', 13000, 21, 'https://example.com/goods/goods139.jpg');
+VALUES (6, '체인소맨 마키마 아크릴스탠드', '체인소맨', '마키마', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품140', '작품020', '캐릭터140', '후드티', 14000, 23, 'https://example.com/goods/goods140.jpg');
-
+VALUES (6, '체인소맨 아키 포토카드', '체인소맨', '아키', '포토카드', 5000, 30, 'https://example.com/goods/csm_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품141', '작품001', '캐릭터141', '포토카드', 5000, 5, 'https://example.com/goods/goods141.jpg');
-
+VALUES (6, '체인소맨 아키 피규어', '체인소맨', '아키', '피규어', 25000, 8, 'https://example.com/goods/csm_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품142', '작품002', '캐릭터142', '키링', 6000, 7, 'https://example.com/goods/goods142.jpg');
-
+VALUES (6, '체인소맨 아키 인형', '체인소맨', '아키', '인형', 18000, 12, 'https://example.com/goods/csm_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품143', '작품003', '캐릭터143', '피규어', 7000, 9, 'https://example.com/goods/goods143.jpg');
-
+VALUES (6, '체인소맨 아키 키링', '체인소맨', '아키', '키링', 7000, 25, 'https://example.com/goods/csm_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품144', '작품004', '캐릭터144', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods144.jpg');
+VALUES (6, '체인소맨 아키 아크릴스탠드', '체인소맨', '아키', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품145', '작품005', '캐릭터145', '인형', 9000, 13, 'https://example.com/goods/goods145.jpg');
-
+VALUES (6, '체인소맨 히메노 포토카드', '체인소맨', '히메노', '포토카드', 5000, 30, 'https://example.com/goods/csm_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품146', '작품006', '캐릭터146', '스티커', 10000, 15, 'https://example.com/goods/goods146.jpg');
-
+VALUES (6, '체인소맨 히메노 피규어', '체인소맨', '히메노', '피규어', 25000, 8, 'https://example.com/goods/csm_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품147', '작품007', '캐릭터147', '엽서', 11000, 17, 'https://example.com/goods/goods147.jpg');
-
+VALUES (6, '체인소맨 히메노 인형', '체인소맨', '히메노', '인형', 18000, 12, 'https://example.com/goods/csm_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품148', '작품008', '캐릭터148', '티셔츠', 12000, 19, 'https://example.com/goods/goods148.jpg');
-
+VALUES (6, '체인소맨 히메노 키링', '체인소맨', '히메노', '키링', 7000, 25, 'https://example.com/goods/csm_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품149', '작품009', '캐릭터149', '머그컵', 13000, 21, 'https://example.com/goods/goods149.jpg');
+VALUES (6, '체인소맨 히메노 아크릴스탠드', '체인소맨', '히메노', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품150', '작품010', '캐릭터150', '후드티', 14000, 23, 'https://example.com/goods/goods150.jpg');
-
+VALUES (7, '하이큐 히나타 포토카드', '하이큐', '히나타', '포토카드', 5000, 30, 'https://example.com/goods/hq_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품151', '작품011', '캐릭터151', '포토카드', 5000, 5, 'https://example.com/goods/goods151.jpg');
-
+VALUES (7, '하이큐 히나타 피규어', '하이큐', '히나타', '피규어', 25000, 8, 'https://example.com/goods/hq_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품152', '작품012', '캐릭터152', '키링', 6000, 7, 'https://example.com/goods/goods152.jpg');
-
+VALUES (7, '하이큐 히나타 인형', '하이큐', '히나타', '인형', 18000, 12, 'https://example.com/goods/hq_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품153', '작품013', '캐릭터153', '피규어', 7000, 9, 'https://example.com/goods/goods153.jpg');
-
+VALUES (7, '하이큐 히나타 키링', '하이큐', '히나타', '키링', 7000, 25, 'https://example.com/goods/hq_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품154', '작품014', '캐릭터154', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods154.jpg');
+VALUES (7, '하이큐 히나타 아크릴스탠드', '하이큐', '히나타', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품155', '작품015', '캐릭터155', '인형', 9000, 13, 'https://example.com/goods/goods155.jpg');
-
+VALUES (7, '하이큐 카게야마 포토카드', '하이큐', '카게야마', '포토카드', 5000, 30, 'https://example.com/goods/hq_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품156', '작품016', '캐릭터156', '스티커', 10000, 15, 'https://example.com/goods/goods156.jpg');
-
+VALUES (7, '하이큐 카게야마 피규어', '하이큐', '카게야마', '피규어', 25000, 8, 'https://example.com/goods/hq_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품157', '작품017', '캐릭터157', '엽서', 11000, 17, 'https://example.com/goods/goods157.jpg');
-
+VALUES (7, '하이큐 카게야마 인형', '하이큐', '카게야마', '인형', 18000, 12, 'https://example.com/goods/hq_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품158', '작품018', '캐릭터158', '티셔츠', 12000, 19, 'https://example.com/goods/goods158.jpg');
-
+VALUES (7, '하이큐 카게야마 키링', '하이큐', '카게야마', '키링', 7000, 25, 'https://example.com/goods/hq_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품159', '작품019', '캐릭터159', '머그컵', 13000, 21, 'https://example.com/goods/goods159.jpg');
+VALUES (7, '하이큐 카게야마 아크릴스탠드', '하이큐', '카게야마', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품160', '작품020', '캐릭터160', '후드티', 14000, 23, 'https://example.com/goods/goods160.jpg');
-
+VALUES (7, '하이큐 츠키시마 포토카드', '하이큐', '츠키시마', '포토카드', 5000, 30, 'https://example.com/goods/hq_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품161', '작품001', '캐릭터161', '포토카드', 5000, 5, 'https://example.com/goods/goods161.jpg');
-
+VALUES (7, '하이큐 츠키시마 피규어', '하이큐', '츠키시마', '피규어', 25000, 8, 'https://example.com/goods/hq_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품162', '작품002', '캐릭터162', '키링', 6000, 7, 'https://example.com/goods/goods162.jpg');
-
+VALUES (7, '하이큐 츠키시마 인형', '하이큐', '츠키시마', '인형', 18000, 12, 'https://example.com/goods/hq_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품163', '작품003', '캐릭터163', '피규어', 7000, 9, 'https://example.com/goods/goods163.jpg');
-
+VALUES (7, '하이큐 츠키시마 키링', '하이큐', '츠키시마', '키링', 7000, 25, 'https://example.com/goods/hq_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품164', '작품004', '캐릭터164', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods164.jpg');
+VALUES (7, '하이큐 츠키시마 아크릴스탠드', '하이큐', '츠키시마', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품165', '작품005', '캐릭터165', '인형', 9000, 13, 'https://example.com/goods/goods165.jpg');
-
+VALUES (7, '하이큐 니시노야 포토카드', '하이큐', '니시노야', '포토카드', 5000, 30, 'https://example.com/goods/hq_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품166', '작품006', '캐릭터166', '스티커', 10000, 15, 'https://example.com/goods/goods166.jpg');
-
+VALUES (7, '하이큐 니시노야 피규어', '하이큐', '니시노야', '피규어', 25000, 8, 'https://example.com/goods/hq_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품167', '작품007', '캐릭터167', '엽서', 11000, 17, 'https://example.com/goods/goods167.jpg');
-
+VALUES (7, '하이큐 니시노야 인형', '하이큐', '니시노야', '인형', 18000, 12, 'https://example.com/goods/hq_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품168', '작품008', '캐릭터168', '티셔츠', 12000, 19, 'https://example.com/goods/goods168.jpg');
-
+VALUES (7, '하이큐 니시노야 키링', '하이큐', '니시노야', '키링', 7000, 25, 'https://example.com/goods/hq_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품169', '작품009', '캐릭터169', '머그컵', 13000, 21, 'https://example.com/goods/goods169.jpg');
+VALUES (7, '하이큐 니시노야 아크릴스탠드', '하이큐', '니시노야', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품170', '작품010', '캐릭터170', '후드티', 14000, 23, 'https://example.com/goods/goods170.jpg');
-
+VALUES (7, '하이큐 스가와라 포토카드', '하이큐', '스가와라', '포토카드', 5000, 30, 'https://example.com/goods/hq_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품171', '작품011', '캐릭터171', '포토카드', 5000, 5, 'https://example.com/goods/goods171.jpg');
-
+VALUES (7, '하이큐 스가와라 피규어', '하이큐', '스가와라', '피규어', 25000, 8, 'https://example.com/goods/hq_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품172', '작품012', '캐릭터172', '키링', 6000, 7, 'https://example.com/goods/goods172.jpg');
-
+VALUES (7, '하이큐 스가와라 인형', '하이큐', '스가와라', '인형', 18000, 12, 'https://example.com/goods/hq_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품173', '작품013', '캐릭터173', '피규어', 7000, 9, 'https://example.com/goods/goods173.jpg');
-
+VALUES (7, '하이큐 스가와라 키링', '하이큐', '스가와라', '키링', 7000, 25, 'https://example.com/goods/hq_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품174', '작품014', '캐릭터174', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods174.jpg');
+VALUES (7, '하이큐 스가와라 아크릴스탠드', '하이큐', '스가와라', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_25.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품175', '작품015', '캐릭터175', '인형', 9000, 13, 'https://example.com/goods/goods175.jpg');
-
+VALUES (8, '진격의거인 에렌 포토카드', '진격의거인', '에렌', '포토카드', 5000, 30, 'https://example.com/goods/aot_01.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품176', '작품016', '캐릭터176', '스티커', 10000, 15, 'https://example.com/goods/goods176.jpg');
-
+VALUES (8, '진격의거인 에렌 피규어', '진격의거인', '에렌', '피규어', 25000, 8, 'https://example.com/goods/aot_02.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품177', '작품017', '캐릭터177', '엽서', 11000, 17, 'https://example.com/goods/goods177.jpg');
-
+VALUES (8, '진격의거인 에렌 인형', '진격의거인', '에렌', '인형', 18000, 12, 'https://example.com/goods/aot_03.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품178', '작품018', '캐릭터178', '티셔츠', 12000, 19, 'https://example.com/goods/goods178.jpg');
-
+VALUES (8, '진격의거인 에렌 키링', '진격의거인', '에렌', '키링', 7000, 25, 'https://example.com/goods/aot_04.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품179', '작품019', '캐릭터179', '머그컵', 13000, 21, 'https://example.com/goods/goods179.jpg');
+VALUES (8, '진격의거인 에렌 아크릴스탠드', '진격의거인', '에렌', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_05.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품180', '작품020', '캐릭터180', '후드티', 14000, 23, 'https://example.com/goods/goods180.jpg');
-
+VALUES (8, '진격의거인 미카사 포토카드', '진격의거인', '미카사', '포토카드', 5000, 30, 'https://example.com/goods/aot_06.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품181', '작품001', '캐릭터181', '포토카드', 5000, 5, 'https://example.com/goods/goods181.jpg');
-
+VALUES (8, '진격의거인 미카사 피규어', '진격의거인', '미카사', '피규어', 25000, 8, 'https://example.com/goods/aot_07.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품182', '작품002', '캐릭터182', '키링', 6000, 7, 'https://example.com/goods/goods182.jpg');
-
+VALUES (8, '진격의거인 미카사 인형', '진격의거인', '미카사', '인형', 18000, 12, 'https://example.com/goods/aot_08.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품183', '작품003', '캐릭터183', '피규어', 7000, 9, 'https://example.com/goods/goods183.jpg');
-
+VALUES (8, '진격의거인 미카사 키링', '진격의거인', '미카사', '키링', 7000, 25, 'https://example.com/goods/aot_09.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품184', '작품004', '캐릭터184', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods184.jpg');
+VALUES (8, '진격의거인 미카사 아크릴스탠드', '진격의거인', '미카사', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_10.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품185', '작품005', '캐릭터185', '인형', 9000, 13, 'https://example.com/goods/goods185.jpg');
-
+VALUES (8, '진격의거인 알민 포토카드', '진격의거인', '알민', '포토카드', 5000, 30, 'https://example.com/goods/aot_11.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품186', '작품006', '캐릭터186', '스티커', 10000, 15, 'https://example.com/goods/goods186.jpg');
-
+VALUES (8, '진격의거인 알민 피규어', '진격의거인', '알민', '피규어', 25000, 8, 'https://example.com/goods/aot_12.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품187', '작품007', '캐릭터187', '엽서', 11000, 17, 'https://example.com/goods/goods187.jpg');
-
+VALUES (8, '진격의거인 알민 인형', '진격의거인', '알민', '인형', 18000, 12, 'https://example.com/goods/aot_13.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품188', '작품008', '캐릭터188', '티셔츠', 12000, 19, 'https://example.com/goods/goods188.jpg');
-
+VALUES (8, '진격의거인 알민 키링', '진격의거인', '알민', '키링', 7000, 25, 'https://example.com/goods/aot_14.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품189', '작품009', '캐릭터189', '머그컵', 13000, 21, 'https://example.com/goods/goods189.jpg');
+VALUES (8, '진격의거인 알민 아크릴스탠드', '진격의거인', '알민', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_15.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품190', '작품010', '캐릭터190', '후드티', 14000, 23, 'https://example.com/goods/goods190.jpg');
-
+VALUES (8, '진격의거인 리바이 포토카드', '진격의거인', '리바이', '포토카드', 5000, 30, 'https://example.com/goods/aot_16.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '굿즈상품191', '작품011', '캐릭터191', '포토카드', 5000, 5, 'https://example.com/goods/goods191.jpg');
-
+VALUES (8, '진격의거인 리바이 피규어', '진격의거인', '리바이', '피규어', 25000, 8, 'https://example.com/goods/aot_17.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '굿즈상품192', '작품012', '캐릭터192', '키링', 6000, 7, 'https://example.com/goods/goods192.jpg');
-
+VALUES (8, '진격의거인 리바이 인형', '진격의거인', '리바이', '인형', 18000, 12, 'https://example.com/goods/aot_18.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '굿즈상품193', '작품013', '캐릭터193', '피규어', 7000, 9, 'https://example.com/goods/goods193.jpg');
-
+VALUES (8, '진격의거인 리바이 키링', '진격의거인', '리바이', '키링', 7000, 25, 'https://example.com/goods/aot_19.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '굿즈상품194', '작품014', '캐릭터194', '아크릴스탠드', 8000, 11, 'https://example.com/goods/goods194.jpg');
+VALUES (8, '진격의거인 리바이 아크릴스탠드', '진격의거인', '리바이', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_20.jpg');
 
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '굿즈상품195', '작품015', '캐릭터195', '인형', 9000, 13, 'https://example.com/goods/goods195.jpg');
-
+VALUES (8, '진격의거인 한지 포토카드', '진격의거인', '한지', '포토카드', 5000, 30, 'https://example.com/goods/aot_21.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '굿즈상품196', '작품016', '캐릭터196', '스티커', 10000, 15, 'https://example.com/goods/goods196.jpg');
-
+VALUES (8, '진격의거인 한지 피규어', '진격의거인', '한지', '피규어', 25000, 8, 'https://example.com/goods/aot_22.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '굿즈상품197', '작품017', '캐릭터197', '엽서', 11000, 17, 'https://example.com/goods/goods197.jpg');
-
+VALUES (8, '진격의거인 한지 인형', '진격의거인', '한지', '인형', 18000, 12, 'https://example.com/goods/aot_23.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '굿즈상품198', '작품018', '캐릭터198', '티셔츠', 12000, 19, 'https://example.com/goods/goods198.jpg');
-
+VALUES (8, '진격의거인 한지 키링', '진격의거인', '한지', '키링', 7000, 25, 'https://example.com/goods/aot_24.jpg');
 INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (9, '굿즈상품199', '작품019', '캐릭터199', '머그컵', 13000, 21, 'https://example.com/goods/goods199.jpg');
+VALUES (8, '진격의거인 한지 아크릴스탠드', '진격의거인', '한지', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_25.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (10, '굿즈상품200', '작품020', '캐릭터200', '후드티', 14000, 23, 'https://example.com/goods/goods200.jpg');
-commit;
+COMMIT;
+
 
 
 
