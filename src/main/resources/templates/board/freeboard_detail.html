@@ -2,6 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 새끼 자랑 상세</title>
 
     <!-- 공통 스타일 (이미 쓰고 있는 파일) -->
@@ -9,6 +10,56 @@
     <link rel="stylesheet" th:href="@{/css/board.css}">
 
     <style>
+        /* ================= 모바일 전용 레이아웃 ================= */
+        @media (max-width: 768px) {
+            /* 페이지 전체를 가운데 1열로 배치 (모바일일 때만) */
+            .page.board-page {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+            }
+
+            .page.board-page .page-inner {
+                width: 100%;
+                max-width: 480px;          /* 모바일 기준 폭 */
+                margin: 0 auto;
+                padding: 16px 12px 80px;   /* 하단 네비 높이만큼 아래 여백 */
+            }
+
+            /* 하단 네비도 모바일일 때만 폭 제한 + 가운데 정렬 */
+            .bottom-nav {
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 0;
+                width: 100%;
+                max-width: 480px;
+                background: #ffffff;
+                border-top: 1px solid #eee;
+                display: flex;
+                justify-content: space-around;
+                padding: 6px 0 8px;
+                z-index: 50;
+            }
+
+            .bottom-nav .nav-item {
+                flex: 1;
+                text-align: center;
+                font-size: 11px;
+            }
+
+            .bottom-nav .nav-item .icon {
+                display: block;
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+
+            .bottom-nav .nav-item.active {
+                color: #6C4CF7;
+                font-weight: 600;
+            }
+        }
+
         /* ====== 이 파일(상세화면)에서만 쓰는 추가 스타일 ====== */
 
         /* 상단 영역 */
@@ -197,6 +248,18 @@
                 padding: 22px 26px;
             }
         }
+
+        .like-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 4px 0 0;
+        }
+
+        .like-btn.active {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -265,16 +328,24 @@
             <div class="detail-stats-row">
                 <div class="detail-stats-left">
                     <div class="detail-stat-item">
-                        ❤️ <span th:text="${post.likeCount}"></span>
+                        <button type="button"
+                                id="like-btn"
+                                class="like-btn"
+                                th:data-post-id="${post.id}"
+                                th:data-member-id="${memberId}"
+                                th:data-liked="${likeInfo.id != null}">
+                            ❤️
+                        </button>
+                        <span th:text="${post.likeCount}">0</span>
                     </div>
                     <div class="detail-stat-item">
-                        💬 <span th:text="${post.commentCount}"></span>
+                        💬 <span th:text="${post.commentCount}">0</span>
                     </div>
                     <div class="detail-stat-item">
                         📌 <span>저장</span>
                     </div>
                     <div class="detail-stat-item">
-                        👀 <span th:text="${post.viewCount}"></span>
+                        👀 <span th:text="${post.viewCount}">0</span>
                     </div>
                 </div>
                 <button type="button" class="detail-share-btn">📤</button>
@@ -339,4 +410,44 @@
 </nav>
 
 </body>
+<script th:inline="javascript">
+    const likeBtn = document.getElementById("like-btn");
+    const likeCountSpan = document.getElementById("like-count");
+
+    if (likeBtn && likeCountSpan) {
+        likeBtn.addEventListener("click", async () => {
+            const postId = likeBtn.dataset.postId;
+            const memberId = likeBtn.dataset.memberId;
+
+            try {
+                const res = await fetch(`/api/board-like/${postId}/toggle?memberId=${memberId}`, {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                });
+
+                if (!res.ok) {
+                    console.error("like api error", res.status);
+                    return;
+                }
+
+                const data = await res.json();   // { likeCount: 숫자, liked: boolean }
+
+                // 화면 갱신
+                likeCountSpan.textContent = data.likeCount;
+                likeBtn.dataset.liked = data.liked;
+                likeBtn.classList.toggle("active", data.liked);
+            } catch (e) {
+                console.error("like toggle error", e);
+            }
+        });
+
+        // 처음 로딩 시 이미 좋아요 상태면 active 적용
+        if (likeBtn.dataset.liked === "true") {
+            likeBtn.classList.add("active");
+        }
+    }
+</script>
+
 </html>

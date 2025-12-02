@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -37,14 +38,27 @@ public class BoardController {
     public String mcBoardList(
             Model model,
             HttpSession session,
-            @PageableDefault(page = 0,size = 5, sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) throws SQLException {
+            @PageableDefault(page = 0,size = 10) Pageable pageable,
+            @RequestParam(name = "sortType",defaultValue = "latest")String sortType) throws SQLException {
 
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
         Long categoryId=1L;//카테고리아이디 1== mcBoard
-        Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
+
+        Sort sort = switch (sortType){
+            case "popular" -> Sort.by(Sort.Direction.DESC, "likeCount");
+            default -> Sort.by(Sort.Direction.DESC, "createdAt");
+        };
+
+        Pageable sortedPageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                sort
+        );
 
 
+
+        Page<BoardPost> posts = boardService.readByCategory(categoryId,sortedPageable);
         // 2) 현재 게시판 인기글 TOP5  (왼쪽)
         List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
 
@@ -56,18 +70,31 @@ public class BoardController {
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
-
+        model.addAttribute("sortType",sortType);
         return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
     @GetMapping("/cosplayboard/list.do")
     public String cosplayBoardList(
             Model model,
             HttpSession session,
-            @PageableDefault(page = 0,size = 5, sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) throws SQLException{
+            @PageableDefault(page = 0,size = 10) Pageable pageable,
+            @RequestParam(name = "sortType",defaultValue = "latest")String sortType) throws SQLException{
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
         Long categoryId=2L;//카테고리아이디 2== cosplayboard
-        Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
+
+        Sort sort = switch (sortType){
+            case "popular" -> Sort.by(Sort.Direction.DESC, "likeCount");
+            default -> Sort.by(Sort.Direction.DESC, "createdAt");
+        };
+
+        Pageable sortedPageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                sort
+        );
+
+        Page<BoardPost> posts = boardService.readByCategory(categoryId,sortedPageable);
         // 2) 현재 게시판 인기글 TOP5  (왼쪽)
         List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
 
@@ -79,14 +106,30 @@ public class BoardController {
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
+        model.addAttribute("sortType",sortType);
         return "board/cosplayboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
     @GetMapping("/freeboard/list.do")
-    public String freeBoardList( Model model,HttpSession session, Pageable pageable) throws SQLException {
+    public String freeBoardList(
+            Model model,
+            HttpSession session,
+            @PageableDefault(page = 0,size = 10) Pageable pageable,
+            @RequestParam(name = "sortType",defaultValue = "latest")String sortType) throws SQLException {
         // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
         // 일단은 게시판 리스트 화면만 보여주자.
         Long categoryId=3L;//카테고리아이디 3== freeboard
-        Page<BoardPost> posts = boardService.readByCategory(categoryId,pageable);
+
+        Sort sort = switch (sortType){
+            case "popular" -> Sort.by(Sort.Direction.DESC, "likeCount");
+            default -> Sort.by(Sort.Direction.DESC, "createdAt");
+        };
+
+        Pageable sortedPageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                sort
+        );
+        Page<BoardPost> posts = boardService.readByCategory(categoryId,sortedPageable);
         // 2) 현재 게시판 인기글 TOP5  (왼쪽)
         List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
 
@@ -98,6 +141,7 @@ public class BoardController {
         model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
         model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
+        model.addAttribute("sortType",sortType);
         return "board/freeboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
 
@@ -109,7 +153,6 @@ public class BoardController {
                                 @PathVariable Long postId,
                                 Model model) throws Exception {
         BoardPost post = boardService.readOne(postId);
-
         BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
 
         model.addAttribute("memberId", memberId);
@@ -121,23 +164,23 @@ public class BoardController {
     @GetMapping("/cosplayboard/{memberId}/article/{postId}/detail.do")
     public String cosplayBoardDetail(@PathVariable Long memberId,
                                 @PathVariable Long postId,
-                                Model model) throws SQLException {
+                                Model model) throws Exception {
         BoardPost post = boardService.readOne(postId);
-
+        BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
-
+        model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
         return "board/cosplayboard_detail"; // 상세 템플릿 이름
     }
     @GetMapping("/freeboard/{memberId}/article/{postId}/detail.do")
     public String freeBoardDetail(@PathVariable Long memberId,
                                 @PathVariable Long postId,
-                                Model model) throws SQLException {
+                                Model model) throws Exception {
         BoardPost post = boardService.readOne(postId);
-
+        BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
-
+        model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
         return "board/freeboard_detail"; // 상세 템플릿 이름
     }
 
