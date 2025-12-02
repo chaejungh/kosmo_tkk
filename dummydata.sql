@@ -4913,305 +4913,217 @@ INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(14,37,SYSDATE-4
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(14,38,SYSDATE-3);
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(15,39,SYSDATE-2);
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(15,40,SYSDATE-1);
-INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈001', '더미굿즈001', '포카', 8000, 'g001.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈002', '더미굿즈002', '인형', 9000, 'g002.jpg');
-
+VALUES (1, '원피스 올스타 포토카드 세트', '원피스 주요 캐릭터 10종 한정 포카 세트', '포카', 8000, 'g001.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈003', '더미굿즈003', '키링', 10000, 'g003.jpg');
-
+VALUES (1, '귀멸의 칼날 탄지로 미니 인형', '탄지로 SD 버전 봉제 인형 굿즈', '인형', 9000, 'g002.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈004', '더미굿즈004', '아크릴스탠드', 11000, 'g004.jpg');
-
+VALUES (1, '주술회전 이타도리 유우지 키링', '이타도리 캐릭터 아크릴 키링', '키링', 10000, 'g003.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈005', '더미굿즈005', '기타', 12000, 'g005.jpg');
-
+VALUES (1, '체인소맨 덴지 아크릴 스탠드', '전기톱맨 변신 포즈 아크릴 스탠드', '아크릴스탠드', 11000, 'g004.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈006', '더미굿즈006', '포카', 8000, 'g006.jpg');
-
+VALUES (1, '덕후로드 시즌1 로고 스티커 팩', '덕후로드 팝업 시즌1 한정 홀로그램 스티커 세트', '기타', 12000, 'g005.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈007', '더미굿즈007', '인형', 9000, 'g007.jpg');
-
+VALUES (1, '나루토 팀7 포토카드 세트', '나루토·사스케·사쿠라가 담긴 팀7 포카 세트', '포카', 8000, 'g006.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈008', '더미굿즈008', '키링', 10000, 'g008.jpg');
-
+VALUES (1, '하이큐 히나타 쇼요 마스코트 인형', '카라스노 에이스 히나타 점프 포즈 봉제 인형', '인형', 9000, 'g007.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈009', '더미굿즈009', '아크릴스탠드', 11000, 'g009.jpg');
-
+VALUES (1, '블루록 이사기 요이치 키링', '스트라이커 유니폼 버전 아크릴 키링', '키링', 10000, 'g008.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (1, '굿즈010', '더미굿즈010', '기타', 12000, 'g010.jpg');
-
+VALUES (1, '진격의 거인 엘런&미카사 스탠드', '성벽 위 전투 장면을 담은 아크릴 스탠드', '아크릴스탠드', 11000, 'g009.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈011', '더미굿즈011', '포카', 8000, 'g011.jpg');
+VALUES (1, '주술회전×체인소맨 클리어파일 세트', '두 작품 일러스트가 들어간 한정판 클리어파일 세트', '기타', 12000, 'g010.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈012', '더미굿즈012', '인형', 9000, 'g012.jpg');
-
+VALUES (2, '블루록 스트라이커 포카 세트', '블루록 주요 스트라이커 8종 콜렉션 포토카드', '포카', 8000, 'g011.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈013', '더미굿즈013', '키링', 10000, 'g013.jpg');
-
+VALUES (2, '나루토 카카시 안대 미니 인형', '사륜안 가면을 쓴 카카시 봉제 인형', '인형', 9000, 'g012.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈014', '더미굿즈014', '아크릴스탠드', 11000, 'g014.jpg');
-
+VALUES (2, '스파이 패밀리 아냐 페이스 키링', '아냐 표정이 담긴 동그란 아크릴 키링', '키링', 10000, 'g013.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈015', '더미굿즈015', '기타', 12000, 'g015.jpg');
-
+VALUES (2, '귀멸의 칼날 9귀 기둥 아크릴 스탠드', '기둥 전원이 모인 단체 일러스트 스탠드', '아크릴스탠드', 11000, 'g014.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈016', '더미굿즈016', '포카', 8000, 'g016.jpg');
-
+VALUES (2, '원피스 조로 메탈 배지 세트', '조로 일러스트 메탈 뱃지 3종 세트', '기타', 12000, 'g015.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈017', '더미굿즈017', '인형', 9000, 'g017.jpg');
-
+VALUES (2, '체인소맨 1기 키 비주얼 포카', '애니 키 비주얼을 담은 포토카드 세트', '포카', 8000, 'g016.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈018', '더미굿즈018', '키링', 10000, 'g018.jpg');
-
+VALUES (2, '진격의 거인 초대형 거인 쿠션', '밤하늘 배경 초대형 거인 미니 쿠션 인형', '인형', 9000, 'g017.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈019', '더미굿즈019', '아크릴스탠드', 11000, 'g019.jpg');
-
+VALUES (2, '하이큐 카라스노 배구공 키링', '오렌지 배구공 모양 러버 키링', '키링', 10000, 'g018.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (2, '굿즈020', '더미굿즈020', '기타', 12000, 'g020.jpg');
-
+VALUES (2, '나루토 나선환 디오라마 스탠드', '나루토가 나선환을 쓰는 장면 아크릴 디오라마', '아크릴스탠드', 11000, 'g019.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈021', '더미굿즈021', '포카', 8000, 'g021.jpg');
+VALUES (2, '주술회전 스페셜 티켓 홀더', '극장판 티켓 전용 홀더와 목걸이 세트', '기타', 12000, 'g020.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈022', '더미굿즈022', '인형', 9000, 'g022.jpg');
-
+VALUES (3, '드래곤볼Z 초사이어인 포카', '손오공·베지터 변신 장면을 담은 포토카드 세트', '포카', 8000, 'g021.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈023', '더미굿즈023', '키링', 10000, 'g023.jpg');
-
+VALUES (3, '세일러문 루나 고양이 인형', '달빛에서 빛나는 루나 캐릭터 봉제 인형', '인형', 9000, 'g022.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈024', '더미굿즈024', '아크릴스탠드', 11000, 'g024.jpg');
-
+VALUES (3, '슬램덩크 강백호 유니폼 키링', '경기 유니폼 디자인의 아크릴 키링', '키링', 10000, 'g023.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈025', '더미굿즈025', '기타', 12000, 'g025.jpg');
-
+VALUES (3, '카드캡터 사쿠라 매직 서클 스탠드', '매직 서클과 열쇠가 들어간 아크릴 스탠드', '아크릴스탠드', 11000, 'g024.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈026', '더미굿즈026', '포카', 8000, 'g026.jpg');
-
+VALUES (3, '포켓몬스터 1세대 레트로 자석 세트', '레드·피카츄 일러스트 미니 자석 4종', '기타', 12000, 'g025.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈027', '더미굿즈027', '인형', 9000, 'g027.jpg');
-
+VALUES (3, '디지몬 어드벤처 파트너 포카', '태일&아구몬 등 파트너 조합 포토카드 세트', '포카', 8000, 'g026.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈028', '더미굿즈028', '키링', 10000, 'g028.jpg');
-
+VALUES (3, '유유백서 쿠라마 미니 인형', '장미채찍을 든 쿠라마 레트로 스타일 인형', '인형', 9000, 'g027.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈029', '더미굿즈029', '아크릴스탠드', 11000, 'g029.jpg');
-
+VALUES (3, '이누야샤 철쇄아 미니 검 키링', '철쇄아 모양 메탈 키링', '키링', 10000, 'g028.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (3, '굿즈030', '더미굿즈030', '기타', 12000, 'g030.jpg');
-
+VALUES (3, '신기동전기 건담W 윙제로 스탠드', '윙제로 버스트 모드 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g029.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈031', '더미굿즈031', '포카', 8000, 'g031.jpg');
+VALUES (3, '명탐정 코난 극장판 레트로 포스터 카드', '초기 극장판 포스터 엽서형 카드 세트', '기타', 12000, 'g030.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈032', '더미굿즈032', '인형', 9000, 'g032.jpg');
-
+VALUES (4, 'BTS 컴백 스페셜 포카 세트', '멤버 7인 개인컷과 단체컷 포토카드', '포카', 8000, 'g031.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈033', '더미굿즈033', '키링', 10000, 'g033.jpg');
-
+VALUES (4, '세븐틴 캐럿봉 마스코트 인형', '응원봉 모양 포근한 쿠션 인형', '인형', 9000, 'g032.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈034', '더미굿즈034', '아크릴스탠드', 11000, 'g034.jpg');
-
+VALUES (4, '뉴진스 버니 로고 키링', '버니 로고 실루엣 아크릴 키링', '키링', 10000, 'g033.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈035', '더미굿즈035', '기타', 12000, 'g035.jpg');
-
+VALUES (4, '르세라핌 단체 콘셉트 스탠드', '타이틀 곡 무대 의상 일러스트 스탠드', '아크릴스탠드', 11000, 'g034.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈036', '더미굿즈036', '포카', 8000, 'g036.jpg');
-
+VALUES (4, '아이브 앨범 아트 미니 포스터', '앨범 재킷 일러스트 미니 포스터 3종 세트', '기타', 12000, 'g035.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈037', '더미굿즈037', '인형', 9000, 'g037.jpg');
-
+VALUES (4, '스트레이 키즈 유닛 포카 콜렉션', '유닛별 셀카 포토카드 모음 세트', '포카', 8000, 'g036.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈038', '더미굿즈038', '키링', 10000, 'g038.jpg');
-
+VALUES (4, '에스파 카리나 캐릭터 인형', '아바타 컨셉을 반영한 SD 봉제 인형', '인형', 9000, 'g037.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈039', '더미굿즈039', '아크릴스탠드', 11000, 'g039.jpg');
-
+VALUES (4, '엔하이픈 로고 메탈 키링', '로고 플레이트와 참 장식이 달린 키링', '키링', 10000, 'g038.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (4, '굿즈040', '더미굿즈040', '기타', 12000, 'g040.jpg');
-
+VALUES (4, '투모로우바이투게더 스테이지 스탠드', '야간 무대 콘셉트 아크릴 스탠드', '아크릴스탠드', 11000, 'g039.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈041', '더미굿즈041', '포카', 8000, 'g041.jpg');
+VALUES (4, 'NCT DREAM 응원 슬로건 패키지', '슬로건 천과 스티커, 포카가 포함된 세트', '기타', 12000, 'g040.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈042', '더미굿즈042', '인형', 9000, 'g042.jpg');
-
+VALUES (5, '밤하늘 피규어 라인업 카드', '팝업 한정 피규어 라인업을 소개하는 포카 세트', '포카', 8000, 'g041.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈043', '더미굿즈043', '키링', 10000, 'g043.jpg');
-
+VALUES (5, '진격의 거인 야간 전투 피규어', '야경 조명 효과가 들어간 엘런 피규어', '인형', 9000, 'g042.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈044', '더미굿즈044', '아크릴스탠드', 11000, 'g044.jpg');
-
+VALUES (5, '주술회전 야간 배틀 SD 피규어 키링', '야간 전투 컨셉 SD 피규어 키링', '키링', 10000, 'g043.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈045', '더미굿즈045', '기타', 12000, 'g045.jpg');
-
+VALUES (5, '체인소맨 네온 시티 디오라마 스탠드', '도시 야경과 덴지가 함께 있는 아크릴 스탠드', '아크릴스탠드', 11000, 'g044.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈046', '더미굿즈046', '포카', 8000, 'g046.jpg');
-
+VALUES (5, '원피스 조로 나이트 버전 피규어', '녹색 오라 연출이 있는 한정판 조로 피규어', '기타', 12000, 'g045.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈047', '더미굿즈047', '인형', 9000, 'g047.jpg');
-
+VALUES (5, '피규어 구매 특전 일러스트 카드', '밤하늘 테마 일러스트 특전 포토카드 세트', '포카', 8000, 'g046.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈048', '더미굿즈048', '키링', 10000, 'g048.jpg');
-
+VALUES (5, '귀멸의 칼날 야간 전투 탄지로 피규어', '물의 호흡 이펙트가 있는 프리미엄 피규어', '인형', 9000, 'g047.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈049', '더미굿즈049', '아크릴스탠드', 11000, 'g049.jpg');
-
+VALUES (5, '하이큐 야간 체육관 미니 피규어 키링', '야간 연습 장면을 모티브로 한 키링', '키링', 10000, 'g048.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '굿즈050', '더미굿즈050', '기타', 12000, 'g050.jpg');
-
+VALUES (5, '블루록 스타 스트라이커 LED 스탠드', '야간 경기장 배경 LED 아크릴 스탠드', '아크릴스탠드', 11000, 'g049.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈051', '더미굿즈051', '포카', 8000, 'g051.jpg');
+VALUES (5, '은하철도999 디오라마 피규어 세트', '기차와 별자리를 표현한 디오라마 피규어', '기타', 12000, 'g050.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈052', '더미굿즈052', '인형', 9000, 'g052.jpg');
-
+VALUES (6, '나루토 아트 엽서 포카 세트', '원화 느낌 일러스트를 담은 엽서형 포토카드', '포카', 8000, 'g051.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈053', '더미굿즈053', '키링', 10000, 'g053.jpg');
-
+VALUES (6, '굿즈 캔버스 마스코트 인형', '브랜드 마스코트 일러스트가 새겨진 쿠션 인형', '인형', 9000, 'g052.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈054', '더미굿즈054', '아크릴스탠드', 11000, 'g054.jpg');
-
+VALUES (6, '원피스 캔버스 로고 키링', '붓터치 스타일 로고가 인쇄된 키링', '키링', 10000, 'g053.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈055', '더미굿즈055', '기타', 12000, 'g055.jpg');
-
+VALUES (6, '귀멸의 칼날 수채화 아크릴 스탠드', '수채화 느낌 배경과 캐릭터가 있는 스탠드', '아크릴스탠드', 11000, 'g054.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈056', '더미굿즈056', '포카', 8000, 'g056.jpg');
-
+VALUES (6, '체인소맨 B2 아트 포스터', '전시용으로도 좋은 대형 아트 포스터', '기타', 12000, 'g055.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈057', '더미굿즈057', '인형', 9000, 'g057.jpg');
-
+VALUES (6, '블루록 콘셉트 아트 포카', '컨셉 아트 원화를 바탕으로 한 포토카드', '포카', 8000, 'g056.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈058', '더미굿즈058', '키링', 10000, 'g058.jpg');
-
+VALUES (6, '하이큐 볼 아트 쿠션', '일러스트가 인쇄된 배구공 모양 쿠션 인형', '인형', 9000, 'g057.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈059', '더미굿즈059', '아크릴스탠드', 11000, 'g059.jpg');
-
+VALUES (6, '주술회전 캘리그라피 로고 키링', '붓글씨 로고와 부적 디자인이 들어간 키링', '키링', 10000, 'g058.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈060', '더미굿즈060', '기타', 12000, 'g060.jpg');
-
+VALUES (6, '진격의 거인 스케치 아크릴 패널', '연필 스케치 스타일 일러스트 스탠드', '아크릴스탠드', 11000, 'g059.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈061', '더미굿즈061', '포카', 8000, 'g061.jpg');
+VALUES (6, '스파이 패밀리 한정 아트 프린트 세트', '고급 용지에 인쇄된 아트 프린트 3종', '기타', 12000, 'g060.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈062', '더미굿즈062', '인형', 9000, 'g062.jpg');
-
+VALUES (7, '서머 비치 콘셉트 포카 세트', '여름 해변 배경의 캐릭터 포토카드 모음', '포카', 8000, 'g061.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈063', '더미굿즈063', '키링', 10000, 'g063.jpg');
-
+VALUES (7, '원피스 초파 서머 인형', '수박 모자와 튜브를 낀 초파 봉제 인형', '인형', 9000, 'g062.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈064', '더미굿즈064', '아크릴스탠드', 11000, 'g064.jpg');
-
+VALUES (7, '블루록 서머 유니폼 키링', '여름 한정 유니폼 일러스트 아크릴 키링', '키링', 10000, 'g063.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈065', '더미굿즈065', '기타', 12000, 'g065.jpg');
-
+VALUES (7, '하이큐 해변 배구 아크릴 스탠드', '해변에서 스파이크하는 장면을 담은 스탠드', '아크릴스탠드', 11000, 'g064.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈066', '더미굿즈066', '포카', 8000, 'g066.jpg');
-
+VALUES (7, '귀멸의 칼날 여름 유카타 부채', '유카타 차림 캐릭터가 그려진 접이식 부채', '기타', 12000, 'g065.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈067', '더미굿즈067', '인형', 9000, 'g067.jpg');
-
+VALUES (7, '체인소맨 서머 일러스트 포카', '바다 배경 일러스트 특전 포토카드', '포카', 8000, 'g066.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈068', '더미굿즈068', '키링', 10000, 'g068.jpg');
-
+VALUES (7, '프리! 수영부 튜브 인형', '튜브를 낀 마스코트 캐릭터 봉제 인형', '인형', 9000, 'g067.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈069', '더미굿즈069', '아크릴스탠드', 11000, 'g069.jpg');
-
+VALUES (7, '나루토 여름 축제 유카타 키링', '유카타 차림 나루토 아크릴 키링', '키링', 10000, 'g068.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '굿즈070', '더미굿즈070', '기타', 12000, 'g070.jpg');
-
+VALUES (7, '스파이 패밀리 아이스바 스탠드', '아이스바를 들고 있는 아냐 일러스트 스탠드', '아크릴스탠드', 11000, 'g069.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈071', '더미굿즈071', '포카', 8000, 'g071.jpg');
+VALUES (7, '진격의 거인 바캉스 타월', '해변 패러디 일러스트가 인쇄된 핸드 타월', '기타', 12000, 'g070.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈072', '더미굿즈072', '인형', 9000, 'g072.jpg');
-
+VALUES (8, '대구 한정 베스트 포카 세트', '전국 원정전 인기 캐릭터만 모은 포카 세트', '포카', 8000, 'g071.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈073', '더미굿즈073', '키링', 10000, 'g073.jpg');
-
+VALUES (8, '귀멸의 칼날 탄지로&네즈코 인형', '둘이 함께 있는 커플 세트 봉제 인형', '인형', 9000, 'g072.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈074', '더미굿즈074', '아크릴스탠드', 11000, 'g074.jpg');
-
+VALUES (8, '원피스 루피 기어5 키링', '기어5 폼을 표현한 아크릴 키링', '키링', 10000, 'g073.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈075', '더미굿즈075', '기타', 12000, 'g075.jpg');
-
+VALUES (8, '블루록 이사기&바치라 스탠드', '2인 콤비 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g074.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈076', '더미굿즈076', '포카', 8000, 'g076.jpg');
-
+VALUES (8, '나루토 베스트 일러스트 엽서북', '명장면 일러스트를 모은 엽서북', '기타', 12000, 'g075.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈077', '더미굿즈077', '인형', 9000, 'g077.jpg');
-
+VALUES (8, '하이큐 베스트 매치 포카', '명경기 장면만 모은 포토카드 세트', '포카', 8000, 'g076.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈078', '더미굿즈078', '키링', 10000, 'g078.jpg');
-
+VALUES (8, '주술회전 이누마키 마스코트 인형', '온리 톡 캐릭터를 담은 SD 봉제 인형', '인형', 9000, 'g077.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈079', '더미굿즈079', '아크릴스탠드', 11000, 'g079.jpg');
-
+VALUES (8, '체인소맨 파워 피규어 키링', '파워 SD 피규어 스타일 아크릴 키링', '키링', 10000, 'g078.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '굿즈080', '더미굿즈080', '기타', 12000, 'g080.jpg');
-
+VALUES (8, '진격의 거인 최종 시즌 스탠드', '최종 시즌 메인 비주얼 아크릴 스탠드', '아크릴스탠드', 11000, 'g079.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈081', '더미굿즈081', '포카', 8000, 'g081.jpg');
+VALUES (8, '스파이 패밀리 베스트 컷 클리어파일', '명장면 컷이 인쇄된 클리어파일 세트', '기타', 12000, 'g080.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈082', '더미굿즈082', '인형', 9000, 'g082.jpg');
-
+VALUES (9, '아트토이 작가 라인업 카드', '참여 크리에이터와 시그니처 캐릭터를 소개하는 카드 세트', '포카', 8000, 'g081.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈083', '더미굿즈083', '키링', 10000, 'g083.jpg');
-
+VALUES (9, '우주 토끼 아트토이 인형', '은하 배경이 어울리는 오리지널 토끼 캐릭터 인형', '인형', 9000, 'g082.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈084', '더미굿즈084', '아크릴스탠드', 11000, 'g084.jpg');
-
+VALUES (9, '네온 슬라임 몬스터 키링', '야광으로 빛나는 슬라임 몬스터 피규어 키링', '키링', 10000, 'g083.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈085', '더미굿즈085', '기타', 12000, 'g085.jpg');
-
+VALUES (9, '메카 아트 로봇 아크릴 스탠드', '로봇 애니메이션에서 영감을 받은 오리지널 메카 스탠드', '아크릴스탠드', 11000, 'g084.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈086', '더미굿즈086', '포카', 8000, 'g086.jpg');
-
+VALUES (9, '인디 아티스트 사인 카드&스티커', '작가 사인 카드와 스티커가 함께 들어 있는 세트', '기타', 12000, 'g085.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈087', '더미굿즈087', '인형', 9000, 'g087.jpg');
-
+VALUES (9, '에반게리온 스타일 아트 카드', '에반게리온 분위기를 오마주한 일러스트 카드 세트', '포카', 8000, 'g086.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈088', '더미굿즈088', '키링', 10000, 'g088.jpg');
-
+VALUES (9, '구름 곰돌이 아트토이 피규어', '몽글몽글한 구름 질감을 표현한 곰돌이 피규어', '인형', 9000, 'g087.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈089', '더미굿즈089', '아크릴스탠드', 11000, 'g089.jpg');
-
+VALUES (9, '해파리 유령 글로우 키링', '어두운 곳에서 빛나는 해파리 유령 캐릭터 키링', '키링', 10000, 'g088.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '굿즈090', '더미굿즈090', '기타', 12000, 'g090.jpg');
-
+VALUES (9, '스팀펑크 소녀 일러스트 스탠드', '기어 장식이 가득한 스팀펑크 소녀 아크릴 아트', '아크릴스탠드', 11000, 'g089.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈091', '더미굿즈091', '포카', 8000, 'g091.jpg');
+VALUES (9, '한정 아트토이 미니 포스터 세트', '아트토이 주인공들이 그려진 미니 포스터 3종', '기타', 12000, 'g090.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈092', '더미굿즈092', '인형', 9000, 'g092.jpg');
-
+VALUES (10, '할로윈 코스튬 애니 포카 세트', '여러 작품 캐릭터가 분장한 할로윈 포토카드', '포카', 8000, 'g091.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈093', '더미굿즈093', '키링', 10000, 'g093.jpg');
-
+VALUES (10, '귀멸의 칼날 네즈코 박쥐 망토 인형', '박쥐 망토를 두른 네즈코 할로윈 버전 인형', '인형', 9000, 'g092.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈094', '더미굿즈094', '아크릴스탠드', 11000, 'g094.jpg');
-
+VALUES (10, '주술회전 고죠 할로윈 키링', '호박 모자를 쓴 고죠 캐릭터 아크릴 키링', '키링', 10000, 'g093.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈095', '더미굿즈095', '기타', 12000, 'g095.jpg');
-
+VALUES (10, '체인소맨 할로윈 호러 스탠드', '호러 무비 포스터 느낌의 체인소맨 아크릴 스탠드', '아크릴스탠드', 11000, 'g094.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈096', '더미굿즈096', '포카', 8000, 'g096.jpg');
-
+VALUES (10, '원피스 해골 호박 스티커 팩', '조로·루피가 등장하는 해골 호박 스티커 세트', '기타', 12000, 'g095.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈097', '더미굿즈097', '인형', 9000, 'g097.jpg');
-
+VALUES (10, '나루토&사쿠라 할로윈 포카', '할로윈 파티 의상의 나루토와 사쿠라 포토카드', '포카', 8000, 'g096.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈098', '더미굿즈098', '키링', 10000, 'g098.jpg');
-
+VALUES (10, '진격의 거인 유령 거인 인형', '유령 시트를 쓴 거인 콘셉트 봉제 인형', '인형', 9000, 'g097.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈099', '더미굿즈099', '아크릴스탠드', 11000, 'g099.jpg');
-
+VALUES (10, '스파이 패밀리 아냐 마녀 키링', '마녀 모자를 쓴 아냐 SD 캐릭터 키링', '키링', 10000, 'g098.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '굿즈100', '더미굿즈100', '기타', 12000, 'g100.jpg');
+VALUES (10, '블루록 뱀파이어 유니폼 스탠드', '뱀파이어 콘셉트 유니폼 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g099.jpg');
+INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
+VALUES (10, '하이큐 호러 나이트 포스터 세트', '체육관을 배경으로 한 호러 컨셉 일러스트 포스터', '기타', 12000, 'g100.jpg');
+
 
 INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(1, 1, 'SELLER',SYSDATE-10,SYSDATE-9);
 INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(2,1,'SELLER',SYSDATE-9,SYSDATE-8);

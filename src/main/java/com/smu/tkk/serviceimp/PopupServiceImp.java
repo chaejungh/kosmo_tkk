@@ -35,13 +35,13 @@ public class PopupServiceImp implements PopupService {
     }
 
     /**
-     * 2. 팝업 상세 조회
+     * 2. 팝업 하나 상세 조회
      */
     @Override
     public PopupStore readOne(Long popupId) throws SQLException {
         return popupStoreRepository.findById(popupId)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("팝업을 찾을 수 없습니다. id=" + popupId));
+                        new SQLException("해당 팝업을 찾을 수 없습니다. id=" + popupId));
     }
 
     /**
@@ -59,8 +59,6 @@ public class PopupServiceImp implements PopupService {
     public List<PopupGood> goods(Long popupId, Pageable pageable) throws SQLException {
         Page<PopupGood> page = popupGoodRepository.findByPopupId(popupId, pageable);
         return page.getContent();
-        // 만약 레포지토리에 List<PopupGood> findAllByPopupId(Long popupId)만 있다면
-        // return popupGoodRepository.findAllByPopupId(popupId); 로 바꿔서 쓰면 됨
     }
 
     /**
@@ -78,7 +76,6 @@ public class PopupServiceImp implements PopupService {
                 .orElseGet(() -> {
                     // 없으면 새로 생성
                     PopupBookmark bookmark = new PopupBookmark();
-                    // 엔티티가 memberId, popupId 필드를 가진다고 가정
                     bookmark.setMemberId(memberId);
                     bookmark.setPopupId(popupId);
 
@@ -95,11 +92,11 @@ public class PopupServiceImp implements PopupService {
         return popupBookmarkRepository.existsByMemberIdAndPopupId(memberId, popupId);
     }
 
-
-     // 8. 내 팝업 북마크 목록
+    /**
+     * 8. 내 팝업 북마크 목록
+     */
     @Override
     public Page<PopupBookmark> myBookmarks(Long memberId, Pageable pageable) {
-
         return popupBookmarkRepository.findAllByMemberId(memberId, pageable);
     }
 }
