@@ -1,10 +1,13 @@
 package com.smu.tkk.service;
 
 import com.smu.tkk.dto.ChatMessage;
+import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 public interface TradeChatService {
 
@@ -32,4 +35,8 @@ public interface TradeChatService {
 
     // 메시지 삭제
     void deleteMessage(Long messageId, Long memberId);
+
+    // ✅ 채팅방 목록 화면용 DTO 리스트
+    // 당근 채팅 탭처럼 보여줄 데이터 한 방에 모아서 내려줌
+    java.util.List<ChatRoomListDTO> getChatRoomList(Long memberId);
 }

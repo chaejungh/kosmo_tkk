@@ -1,6 +1,7 @@
 package com.smu.tkk.serviceimp;
 
 import com.smu.tkk.dto.ChatMessage;
+import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
 import com.smu.tkk.repository.TradeChatMessageRepository;
@@ -57,7 +58,7 @@ public class TradeChatServiceImp implements TradeChatService {
     }
 
     /* ============================================================
-     * 2. 기존 폴링/REST에서 쓰던 send (지금은 거의 WebSocket 위주)
+     * 2. 기존 REST에서 사용하던 send (지금은 WS 위주)
      * ============================================================ */
     @Override
     public TradeChatMessage send(Long roomId, Long senderId, String message) {
@@ -70,10 +71,10 @@ public class TradeChatServiceImp implements TradeChatService {
         msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setMessage(message);
-        msg.setCreatedAt(LocalDate.now());   // 🔹 엔티티는 LocalDate
+        msg.setCreatedAt(LocalDate.now());
         msg.setReadYn("N");
 
-        room.setLastMessageAt(LocalDate.now()); // 🔹 채팅방도 LocalDate
+        room.setLastMessageAt(LocalDate.now());
         roomRepo.save(room);
 
         return messageRepo.save(msg);
@@ -142,7 +143,7 @@ public class TradeChatServiceImp implements TradeChatService {
     }
 
     /* ============================================================
-     * 7. 이미지 전송 (REST에서 사용)
+     * 7. 이미지 전송 (REST)
      * ============================================================ */
     @Override
     public TradeChatMessage sendImage(Long roomId, Long senderId, MultipartFile file) throws Exception {
@@ -163,7 +164,7 @@ public class TradeChatServiceImp implements TradeChatService {
         msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setMessage("[img]/upload/chat/" + fileName);
-        msg.setCreatedAt(LocalDate.now());   // 🔹 엔티티는 LocalDate
+        msg.setCreatedAt(LocalDate.now());
         msg.setReadYn("N");
 
         room.setLastMessageAt(LocalDate.now());
@@ -174,8 +175,6 @@ public class TradeChatServiceImp implements TradeChatService {
 
     /* ============================================================
      * 8. WebSocket 텍스트 메시지 저장
-     *    - DB에는 LocalDate만 저장
-     *    - 프론트에는 LocalDateTime 문자열로 내려줌
      * ============================================================ */
     @Override
     public ChatMessage saveWebSocketMessage(ChatMessage dto) {
@@ -183,7 +182,7 @@ public class TradeChatServiceImp implements TradeChatService {
         TradeChatRoom room = roomRepo.findById(dto.getRoomId())
                 .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + dto.getRoomId()));
 
-        LocalDateTime now = LocalDateTime.now(); // 🔹 실제 시간(날짜+시간)
+        LocalDateTime now = LocalDateTime.now();
 
         TradeChatMessage entity = new TradeChatMessage();
         entity.setRoom(room);
@@ -191,16 +190,15 @@ public class TradeChatServiceImp implements TradeChatService {
         entity.setSenderId(dto.getSenderId());
         entity.setMessage(dto.getMessage());
         entity.setReadYn("N");
-        entity.setCreatedAt(now.toLocalDate());  // 🔹 엔티티에는 날짜만
+        entity.setCreatedAt(now.toLocalDate());
 
         room.setLastMessageAt(now.toLocalDate());
         roomRepo.save(room);
 
         TradeChatMessage saved = messageRepo.save(entity);
 
-        // 프론트에서 시간까지 보이게 하고 싶어서 now 기준으로 내려줌
         dto.setMessageId(saved.getId());
-        dto.setCreatedAt(now.toString());  // 예: 2025-12-02T01:40:12.345
+        dto.setCreatedAt(now.toString());
         dto.setRead(false);
         dto.setType(dto.getType() == null ? "TEXT" : dto.getType());
 
@@ -208,7 +206,7 @@ public class TradeChatServiceImp implements TradeChatService {
     }
 
     /* ============================================================
-     * 9. WebSocket + 이미지 업로드에서 사용할 저장 로직
+     * 9. WebSocket 이미지 저장
      * ============================================================ */
     @Override
     public String saveWebSocketImage(Long roomId, Long senderId, MultipartFile file) throws Exception {
@@ -231,31 +229,101 @@ public class TradeChatServiceImp implements TradeChatService {
         msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setMessage("[img]/upload/chat/" + fileName);
-        msg.setCreatedAt(now.toLocalDate());  // 🔹 엔티티는 LocalDate
+        msg.setCreatedAt(now.toLocalDate());
         msg.setReadYn("N");
 
         messageRepo.save(msg);
 
-        // 프론트에서는 이 경로로 <img src="..."> 사용
         return "/upload/chat/" + fileName;
     }
 
     /* ============================================================
-     * 10. 메시지 삭제 (소프트 삭제)
+     * 10. 메시지 삭제(소프트 삭제)
      * ============================================================ */
     @Override
     public void deleteMessage(Long messageId, Long memberId) {
         TradeChatMessage msg = messageRepo.findById(messageId)
                 .orElseThrow(() -> new IllegalArgumentException("메시지 없음: " + messageId));
 
-        // 보낸 사람만 삭제 가능
         if (!msg.getSenderId().equals(memberId)) {
             throw new IllegalStateException("본인이 보낸 메시지만 삭제할 수 있습니다.");
         }
 
-        // 실제 삭제 대신 "삭제된 메시지입니다" 표시
         msg.setMessage("(삭제된 메시지입니다)");
         msg.setReadYn("Y");
         messageRepo.save(msg);
+    }
+
+    /* ============================================================
+     * 11. 채팅방 목록(썸네일/닉네임/최근메세지/시간/안읽음)
+     * ============================================================ */
+    @Override
+    @Transactional(readOnly = true)
+    public List<ChatRoomListDTO> getChatRoomList(Long memberId) {
+
+        List<TradeChatRoom> rooms = myRooms(memberId).getContent();
+
+        List<ChatRoomListDTO> result = new java.util.ArrayList<>();
+
+        for (TradeChatRoom room : rooms) {
+
+            ChatRoomListDTO dto = new ChatRoomListDTO();
+            dto.setRoomId(room.getId());
+            dto.setTradeId(room.getTradeId());
+
+            // 🔹 거래글 썸네일 – 일단 null 로 두고, 나중에 TradePost 엔티티 보고 진짜 필드 연결
+            String thumb = null;
+
+            if (room.getTrade() != null) {
+                // TODO: TradePost 엔티티에 썸네일(대표이미지) 필드가 뭐인지 확인해서
+                // 예: thumb = room.getTrade().getImageUrl();
+                //     thumb = room.getTrade().getMainImg();
+                // 이런 식으로 한 줄만 채워 넣으면 됨.
+            }
+
+            dto.setTradeThumb(thumb);
+
+            Long opponentId;
+            String opponentName;
+
+            if (room.getMemberId().equals(memberId)) {
+                opponentId = room.getTrade().getSeller().getId();
+                opponentName = room.getTrade().getSeller().getNickname();
+            } else {
+                opponentId = room.getMemberId();
+                opponentName = room.getMember() != null ? room.getMember().getNickname() : "알 수 없음";
+            }
+
+            dto.setOpponentId(opponentId);
+            dto.setOpponentName(opponentName);
+
+            TradeChatMessage lastMsg = messageRepo.findTopByRoomIdOrderByIdDesc(room.getId());
+            if (lastMsg != null) {
+                String msgText = lastMsg.getMessage();
+                if (msgText != null && msgText.startsWith("[img]")) {
+                    dto.setLastMessage("(사진을 보냈습니다)");
+                } else {
+                    dto.setLastMessage(msgText);
+                }
+
+                dto.setLastTime(lastMsg.getCreatedAt() != null
+                        ? lastMsg.getCreatedAt().toString()
+                        : "");
+            } else {
+                dto.setLastMessage("아직 대화가 없습니다.");
+                dto.setLastTime("");
+            }
+
+            int unreadCount = 0;
+            try {
+                unreadCount = messageRepo.countUnread(room.getId(), memberId);
+            } catch (Exception ignored) {}
+
+            dto.setUnreadCount(unreadCount);
+
+            result.add(dto);
+        }
+
+        return result;
     }
 }
