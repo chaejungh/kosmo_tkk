@@ -74,6 +74,16 @@ public class MyPageServiceController {
     public String settingsPage() {
         return "mypage/service/setting";
     }
+    // 약관 페이지
+    @GetMapping("/terms")
+    public String termsPage() {
+        return "mypage/service/terms";
+    }
+
+    @GetMapping("/privacy")
+    public String privacyPage() {
+        return "mypage/service/privacy";
+    }
 
     @GetMapping("/logout")//로그아웃
     public String logout(HttpSession session) {
