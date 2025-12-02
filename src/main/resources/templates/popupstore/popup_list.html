@@ -159,18 +159,24 @@
             </div>
         </div>
     </div>
-    <div class="d-flex mt-3 justify-content-end">
-        <nav>
-            <a class="btn btn-sm btn-outline-dark"
-               th:href="@{'?'(page=0,size=5)}">5</a>
-            <a class="btn btn-sm btn-outline-dark"
-               th:href="@{'?'(page=0,size=10)}">10</a>
-            <a class="btn btn-sm btn-outline-dark"
-               th:href="@{'?'(page=0,size=20)}">20</a>
-            <a class="btn btn-sm btn-outline-dark"
-               th:href="@{'?'(page=0,size=40)}">40</a>
-        </nav>
-    </div>
+    <nav class="d-flex justify-content-end align-items-center gap-2 mt-3">
+        <select class="form-select form-select-sm w-auto"
+                onchange="location.href='?page=0&size=' + this.value;">
+            <option disabled selected>보기</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="40">40</option>
+        </select>
+        <a class="btn btn-sm btn-outline-dark d-none"
+           th:href="@{'?'(page=0, size=5)}">5</a>
+        <a class="btn btn-sm btn-outline-dark d-none"
+           th:href="@{'?'(page=0, size=10)}">10</a>
+        <a class="btn btn-sm btn-outline-dark d-none"
+           th:href="@{'?'(page=0, size=20)}">20</a>
+        <a class="btn btn-sm btn-outline-dark d-none"
+           th:href="@{'?'(page=0, size=40)}">40</a>
+    </nav>
     <div th:with="
         page=${popupList.number},
         last=${popupList.totalPages},
