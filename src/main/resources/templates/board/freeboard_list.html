@@ -232,31 +232,39 @@
                 </div>
 
                 <!-- ▶▶ 아이콘 기능 추가된 부분 ◀◀ -->
-                <div class="search-actions">
-                    <button id="viewListBtn" class="icon-btn active">☰</button>
-                    <button id="viewPhotoBtn" class="icon-btn">▢</button>
-                    <button id="sortBtn" class="icon-btn">⇅</button>
+                <div class="board-search-row">
+                    <form method="post" th:action="@{/freeboard/list.do}">
+                        <div class="board-search-box">
+                            <input class="col-7 form-control"
+                                   name="search"
+                                   type="text"
+                                   placeholder="통합 검색 (제목, 닉네임)"
+                                   th:value="${search}"
+                            >
+                            <button class="col-1 btn btn-outline-primary d-flex align-items-center justify-content-center" type="submit">
+                                <span class="board-search-icon me-1">🔍</span>
+                            </button>
+                        </div>
+                    </form>
 
-                    <!-- 🔥 정렬 메뉴를 search-actions 안으로 이동 -->
-                    <div id="sortMenu" class="sort-menu hidden">
-                        <div class="sort-option active" data-sort="latest">최신순</div>
-                        <div class="sort-option" data-sort="popular">인기순</div>
+                    <!-- ▶▶ 아이콘 기능 추가된 부분 ◀◀ -->
+                    <div class="search-actions">
+                        <button id="viewListBtn" class="icon-btn active">☰</button>
+                        <button id="viewPhotoBtn" class="icon-btn">▢</button>
+                        <button id="sortBtn" class="icon-btn">⇅</button>
+
+                        <!-- 🔥 정렬 메뉴를 search-actions 안으로 이동 -->
+                        <div id="sortMenu" class="sort-menu hidden">
+                            <div class="sort-option"
+                                 data-sort="latest"
+                                 th:classappend="${sortType} == 'latest'? 'active': ''">
+                                최신순</div>
+                            <div class="sort-option"
+                                 data-sort="popular"
+                                 th:classappend="${sortType} == 'popular'? 'active': ''"
+                            >인기순</div>
+                        </div>
                     </div>
-                </div>
-
-
-
-
-                <!-- PC에서는 오른쪽 끝에 -->
-                <div class="desktop-write-btn">
-                    <button class="btn-primary btn-sm"
-                            th:onclick="|location.href='@{/board/{memberId}/write(memberId=${memberId})}'|">
-                        + 글쓰기
-                    </button>
-                </div>
-
-
-            </div>
 
         </section>
 

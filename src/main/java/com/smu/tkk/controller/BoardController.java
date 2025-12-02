@@ -38,111 +38,52 @@ public class BoardController {
     public String mcBoardList(
             Model model,
             HttpSession session,
-            @PageableDefault(page = 0,size = 10) Pageable pageable,
-            @RequestParam(name = "sortType",defaultValue = "latest")String sortType) throws SQLException {
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
+    ) throws SQLException {
 
-        // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
-        // 일단은 게시판 리스트 화면만 보여주자.
-        Long categoryId=1L;//카테고리아이디 1== mcBoard
-
-        Sort sort = switch (sortType){
-            case "popular" -> Sort.by(Sort.Direction.DESC, "likeCount");
-            default -> Sort.by(Sort.Direction.DESC, "createdAt");
-        };
-
-        Pageable sortedPageable = PageRequest.of(
-                pageable.getPageNumber(),
-                pageable.getPageSize(),
-                sort
+        Long categoryId = 1L; // 내 새끼 자랑
+        return renderBoardList(
+                categoryId,
+                "board/mcboard_list",
+                model,
+                session,
+                pageable,
+                null          // ★ 검색어 없음 → 일반 리스트
         );
-
-
-
-        Page<BoardPost> posts = boardService.readByCategory(categoryId,sortedPageable);
-        // 2) 현재 게시판 인기글 TOP5  (왼쪽)
-        List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
-
-        // 3) 전체 게시판 인기글 TOP5   (오른쪽)
-        List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
-
-        Long memberId = (Long) session.getAttribute("memberId");
-        model.addAttribute("memberId",memberId);
-        model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
-        model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
-        model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
-        model.addAttribute("sortType",sortType);
-        return "board/mcboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
     @GetMapping("/cosplayboard/list.do")
     public String cosplayBoardList(
             Model model,
             HttpSession session,
-            @PageableDefault(page = 0,size = 10) Pageable pageable,
-            @RequestParam(name = "sortType",defaultValue = "latest")String sortType) throws SQLException{
-        // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
-        // 일단은 게시판 리스트 화면만 보여주자.
-        Long categoryId=2L;//카테고리아이디 2== cosplayboard
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable)
+            throws SQLException {
 
-        Sort sort = switch (sortType){
-            case "popular" -> Sort.by(Sort.Direction.DESC, "likeCount");
-            default -> Sort.by(Sort.Direction.DESC, "createdAt");
-        };
-
-        Pageable sortedPageable = PageRequest.of(
-                pageable.getPageNumber(),
-                pageable.getPageSize(),
-                sort
+        Long categoryId = 2L; // 코스프레
+        return renderBoardList(
+                categoryId,
+                "board/cosplayboard_list",
+                model,
+                session,
+                pageable,
+                null          // ★ 검색어 없음 → 일반 리스트
         );
-
-        Page<BoardPost> posts = boardService.readByCategory(categoryId,sortedPageable);
-        // 2) 현재 게시판 인기글 TOP5  (왼쪽)
-        List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
-
-        // 3) 전체 게시판 인기글 TOP5   (오른쪽)
-        List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
-
-        Long memberId = (Long) session.getAttribute("memberId");
-        model.addAttribute("memberId",memberId);
-        model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
-        model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
-        model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
-        model.addAttribute("sortType",sortType);
-        return "board/cosplayboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
     @GetMapping("/freeboard/list.do")
     public String freeBoardList(
             Model model,
             HttpSession session,
-            @PageableDefault(page = 0,size = 10) Pageable pageable,
-            @RequestParam(name = "sortType",defaultValue = "latest")String sortType) throws SQLException {
-        // TODO: memberId 사용해서 내가 쓴 글, 권한 등 나중에 서비스 붙이면 됨
-        // 일단은 게시판 리스트 화면만 보여주자.
-        Long categoryId=3L;//카테고리아이디 3== freeboard
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable)
+            throws SQLException {
 
-        Sort sort = switch (sortType){
-            case "popular" -> Sort.by(Sort.Direction.DESC, "likeCount");
-            default -> Sort.by(Sort.Direction.DESC, "createdAt");
-        };
-
-        Pageable sortedPageable = PageRequest.of(
-                pageable.getPageNumber(),
-                pageable.getPageSize(),
-                sort
+        Long categoryId = 3L; // 자유
+        return renderBoardList(
+                categoryId,
+                "board/freeboard_list",
+                model,
+                session,
+                pageable,
+                null          // ★ 검색어 없음 → 일반 리스트
         );
-        Page<BoardPost> posts = boardService.readByCategory(categoryId,sortedPageable);
-        // 2) 현재 게시판 인기글 TOP5  (왼쪽)
-        List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
-
-        // 3) 전체 게시판 인기글 TOP5   (오른쪽)
-        List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
-
-        Long memberId = (Long) session.getAttribute("memberId");
-        model.addAttribute("memberId",memberId);
-        model.addAttribute("posts", posts); // ★ 타임리프에서 ${posts}로 사용
-        model.addAttribute("hotCurrentBoard", hotCurrentBoard);//현재게시판기준 핫글
-        model.addAttribute("hotAllBoard", hotAllBoard);//전체게시판기준 핫글
-        model.addAttribute("sortType",sortType);
-        return "board/freeboard_list";   // 이미 사용하던 템플릿 이름 기준
     }
 
     // 디테일 컨트롤러 ---------------------------------------------
@@ -184,6 +125,70 @@ public class BoardController {
         return "board/freeboard_detail"; // 상세 템플릿 이름
     }
 
+    //    검색 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @PostMapping("/mcboard/list.do")
+    public String mcBoardSearch(
+            Model model,
+            HttpSession session,
+            @RequestParam(name = "search") String search,
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
+    ) throws SQLException {
+
+        Long categoryId = 1L; // 내 새끼 자랑
+        return renderBoardList(
+                categoryId,
+                "board/mcboard_list",
+                model,
+                session,
+                pageable,
+                search        // ★ 검색어 전달
+        );
+    }
+    @PostMapping("/cosplayboard/list.do")
+    public String cosplayBoardSearch(
+            Model model,
+            HttpSession session,
+            @RequestParam(name = "search") String search,
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
+    ) throws SQLException {
+
+        Long categoryId = 2L; // 내 새끼 자랑
+        return renderBoardList(
+                categoryId,
+                "board/cosplayboard_list",
+                model,
+                session,
+                pageable,
+                search        // ★ 검색어 전달
+        );
+    }
+    @PostMapping("/freeboard/list.do")
+    public String freeBoardSearch(
+            Model model,
+            HttpSession session,
+            @RequestParam(name = "search") String search,
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
+    ) throws SQLException {
+
+        Long categoryId = 3L; // 내 새끼 자랑
+        return renderBoardList(
+                categoryId,
+                "board/freeboard_list",
+                model,
+                session,
+                pageable,
+                search        // ★ 검색어 전달
+        );
+    }
+
+
+
+
+
+
+
+
+
 // 비회원 화면
 
     @GetMapping("/board/not-allowed")
@@ -201,6 +206,9 @@ public class BoardController {
         return "redirect:/mcboard/list.do";
     }
 
+
+
+//    글쓰기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/board/{memberId}/write")
     public String writeForm(
             @Valid BoardWriteValid boardWriteValid,
@@ -243,5 +251,52 @@ public class BoardController {
             };
             return "redirect:/mcboard/list.do";
     }
+
+//    리스트 출력시 공통 메서드
+// ✅ 공통 리스트 + 검색 처리 메서드
+    private String renderBoardList(
+            Long categoryId,
+            String viewName,              // 예: "board/mcboard_list"
+            Model model,
+            HttpSession session,
+            Pageable pageable,
+            String search                 // 검색어 (없으면 null/빈문자)
+    ) throws SQLException {
+
+        // 1) 목록 or 검색 결과
+        Page<BoardPost> posts;
+        if (search != null && !search.isBlank()) {
+            // 🔍 검색일 때
+            posts = boardService.readByKeyword(search, pageable);
+            // 필요하면 categoryId까지 걸러주는 메서드로 바꿔도 됨
+            // posts = boardService.readByKeywordInCategory(categoryId, search, sortedPageable);
+        } else {
+            // 일반 리스트일 때
+            posts = boardService.readByCategory(categoryId, pageable);
+        }
+
+        // 2) 인기글 TOP5
+        List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
+        List<BoardPost> hotAllBoard = boardService.getHotPostsAll();
+
+        //UI 표시용 (뺴도 됨)
+        String sortType = "latest"; // 기본값: 최신순
+        Sort sort = pageable.getSort();
+        Sort.Order likeOrder = sort.getOrderFor("likeCount");
+        if (likeOrder != null && likeOrder.isDescending()) {
+            sortType = "popular";
+        }
+        // 3) 공통 모델 세팅
+        Long memberId = (Long) session.getAttribute("memberId");
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("posts", posts);
+        model.addAttribute("hotCurrentBoard", hotCurrentBoard);
+        model.addAttribute("hotAllBoard", hotAllBoard);
+        model.addAttribute("sortType", sortType);
+        model.addAttribute("search", search);
+
+        return viewName;
+    }
+
 
 }

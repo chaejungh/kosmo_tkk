@@ -83,11 +83,17 @@ import java.util.Optional;
         }
 
         @Override
-        public Page<BoardPost> readByKeyword(String keyword) throws SQLException {
+        public Page<BoardPost> readByKeyword(String keyword,Pageable pageable) throws SQLException {
             //if (keyword == null || keyword.isBlank()) return null; 컨트롤러 일
             // 제목 검색만 우선 구현
-            return boardPostRepository.findAllByTitleContainingIgnoreCaseAndDeletedYn(keyword, "N", Pageable.ofSize(20));
+            return boardPostRepository.findAllByTitleContainingIgnoreCaseAndDeletedYn(keyword, "N", pageable);
         }
+
+        @Override
+        public Page<BoardPost> readByNickname(String nickname, Pageable pageable) throws SQLException {
+            return boardPostRepository.findAllByMember_NicknameContainingIgnoreCaseAndDeletedYn(nickname,"N",pageable);
+        }
+
 
         @Override
         public Page<BoardPost> readByCategory(Long categoryId,Pageable pageable) throws SQLException {

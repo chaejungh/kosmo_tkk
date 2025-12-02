@@ -46,6 +46,28 @@
             cursor: pointer;
         }
 
+        /* 검색 줄 전체 레이아웃 */
+        .board-search-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* 아이콘/글쓰기 버튼은 오른쪽에 그대로 */
+            gap: 10px;
+        }
+
+        /* 왼쪽 영역(form)을 한 칸 꽉 채우게 하고, 그 안에서 검색창을 가운데로 */
+        .board-search-row form {
+            flex: 1;
+            display: flex;
+            justify-content: center; /* ← 검색창 박스를 중앙에 */
+        }
+
+        /* 실제 검색 박스 너비 + 내부 정렬 */
+        .board-search-box {
+            display: flex;
+            align-items: center;
+            width: min(420px, 100%); /* 너무 넓지 않게 */
+        }
+
         /* 정렬 아이콘 3개 묶음 */
         .search-actions {
             display: flex;
@@ -224,13 +246,19 @@
             </div>
 
             <div class="board-search-row">
-
-                <div class="board-search-box">
-                    <input class="col-7 form-control" name="search" type="text" placeholder="통합 검색 (제목, 닉네임, 태그)">
-                    <button class="col-1 btn btn-outline-primary d-flex align-items-center justify-content-center" type="submit">
-                        <span class="board-search-icon me-1">🔍</span>
-                    </button>
-                </div>
+                <form method="post" th:action="@{/mcboard/list.do}">
+                    <div class="board-search-box">
+                        <input class="col-7 form-control"
+                               name="search"
+                               type="text"
+                               placeholder="통합 검색 (제목, 닉네임)"
+                               th:value="${search}"
+                                >
+                        <button class="col-1 btn btn-outline-primary d-flex align-items-center justify-content-center" type="submit">
+                            <span class="board-search-icon me-1">🔍</span>
+                        </button>
+                    </div>
+                </form>
 
                 <!-- ▶▶ 아이콘 기능 추가된 부분 ◀◀ -->
                 <div class="search-actions">
@@ -394,7 +422,7 @@
         <section class="card">
 
             <!-- 게시글 리스트 -->
-            <ul class="post-list" th:if="${not #lists.isEmpty(posts)}">
+            <ul id="postList" class="post-list" th:if="${not #lists.isEmpty(posts)}">
                 <li class="post-card"
                     th:each="post : ${posts.content}"
                     th:attr="data-post-id=${post.id}">
@@ -592,24 +620,35 @@
         sortMenu.classList.add("hidden");
     });
 
-
     document.addEventListener('DOMContentLoaded', () => {
-        sortPage();
+        bindSortChange();
     });
-    function sortPage(){//페이지 정렬 (최신순,인기순)
+
+    function bindSortChange() { // 페이지 정렬 (최신순, 인기순)
         const sortOptions = document.querySelectorAll('#sortMenu .sort-option');
 
         sortOptions.forEach(option => {
             option.addEventListener('click', () => {
-                const sortType = option.dataset.sort; // latest or popular
+                const sortType = option.dataset.sort; // "latest" or "popular"
                 const url = new URL(window.location.href);
-                url.searchParams.set('sortType', sortType);
-                url.searchParams.set('page', 1); // 정렬 바꿀 때 1페이지로
 
-                window.location.href = url.toString(); // 서버에 다시 요청
+                // ✅ Spring Pageable이 이해하는 sort 파라미터로 변환
+                if (sortType === 'latest') {
+                    // createdAt 기준 최신순
+                    url.searchParams.set('sort', 'createdAt,desc');
+                } else if (sortType === 'popular') {
+                    // likeCount 기준 인기순
+                    url.searchParams.set('sort', 'likeCount,desc');
+                }
+
+                // 페이지는 0부터 시작
+                url.searchParams.set('page', 0);
+
+                window.location.href = url.toString();
             });
         });
     }
+
 </script>
 </body>
 </html>

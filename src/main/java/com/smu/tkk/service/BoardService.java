@@ -32,9 +32,11 @@ public interface BoardService {
     // 5. 게시글 전체 목록 조회(레파지토리 완료)
     Page<BoardPost> readAll(Pageable pageable) throws SQLException;
 
-    // 6. 게시글 검색 (제목·내용·태그 등은 구현할 때 team rule)(레파지토리 완료)
-    Page<BoardPost> readByKeyword(String keyword) throws SQLException;
+    // 6. 게시글 검색 (제목 등은 구현할 때 team rule)(레파지토리 완료)
+    Page<BoardPost> readByKeyword(String keyword,Pageable pageable) throws SQLException;
 
+    /// 6-1. 게시글 검색 (제목·내용·태그 등은 구현할 때 team rule)(레파지토리 완료)
+    Page<BoardPost> readByNickname(String nickname,Pageable pageable) throws SQLException;
     // 7. 카테고리별 게시글 조회 (옵션)(레파지토리 완료)
     Page<BoardPost> readByCategory(Long categoryId,Pageable pageable) throws SQLException;
 

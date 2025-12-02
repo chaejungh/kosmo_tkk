@@ -73,4 +73,9 @@ class BoardPostRepositoryTest {
     void findTop5ByDeletedYnOrderByLikeCountDesc() {
         System.out.println(boardPostRepository.findTop5ByDeletedYnOrderByLikeCountDesc("N"));
     }
+
+    @Test
+    void findAllByMember_NicknameContainingIgnoreCaseAndDeletedYn() {
+        System.out.println(boardPostRepository.findAllByMember_NicknameContainingIgnoreCaseAndDeletedYn("닉네임085","N",pageable).getContent());
+    }
 }

@@ -32,6 +32,8 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
 //
 //    // 제목 검색 (키워드 포함, 삭제되지 않은 것만, 최신순)
     Page<BoardPost> findAllByTitleContainingIgnoreCaseAndDeletedYn(String keyword,String deleteYn,Pageable pageable);
+
+    Page<BoardPost> findAllByMember_NicknameContainingIgnoreCaseAndDeletedYn(String nickname,String deleteYn,Pageable pageable);
 //
 //    // 단일 조회(삭제되지 않은 게시글만)
 //    Optional<BoardPost> findByIdAndDeletedYn(Long id);
