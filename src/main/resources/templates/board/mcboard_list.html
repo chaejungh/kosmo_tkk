@@ -471,13 +471,16 @@
         sort=${posts.sort},
         size=${param.size}"
              class="my-4 d-flex justify-content-center">
-            <nav>
+            <nav
+                    th:with="  start=${ page - 2 < 0 ? 0 : page - 2 },
+                                end=${ page + 3 > last ? last : page + 3 }"
+            >
                 <ul class="pagination">
                     <li class="page-item"
                         th:classappend="${page}==0 ? 'disabled' ">
                         <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
                     </li>
-                    <li  th:each="i : ${#numbers.sequence(1,last)}"
+                    <li  th:each="i : ${#numbers.sequence(start+1,end)}"
                          th:classappend="( (${i}-1)==${page}?'active' )"
                          class="page-item">
                         <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
