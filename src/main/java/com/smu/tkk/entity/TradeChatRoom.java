@@ -19,6 +19,7 @@ import java.util.Set;
 @ToString
 @Table(name = "TRADE_CHAT_ROOM")
 public class TradeChatRoom {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ROOM_ID", nullable = false)
@@ -58,5 +59,4 @@ public class TradeChatRoom {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradeChatMessage> tradeChatMessages = new LinkedHashSet<>();
-
 }
