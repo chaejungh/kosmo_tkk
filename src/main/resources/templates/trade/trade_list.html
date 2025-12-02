@@ -220,8 +220,8 @@
 <!-- ===== 헤더 ===== -->
 <div class="trade-header">
     <div class="header-left">
-        <div class="logo">더쿠쿠</div>
-        <div class="header-title">굿즈거래</div>
+        <a th:href="@{/}" class="logo" style="margin-right: 10px;">더쿠쿠</a>
+        <a th:href="@{/trade/list.do}" class="logo">굿즈거래</a>
     </div>
 </div>
 
@@ -272,7 +272,7 @@
 <!-- ===== 하단 네비 ===== -->
 <nav class="bottom-nav">
 
-    <a href="/" class="nav-item" data-page="home">
+    <a href="/trade/list.do" class="nav-item" data-page="home">
         <span class="icon">🏠</span>
         홈
     </a>
