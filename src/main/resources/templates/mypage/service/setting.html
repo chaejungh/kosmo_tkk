@@ -146,6 +146,34 @@
             }
         });
     });
+
+    // ====== 알림 토글 LocalStorage 저장 ======
+    const alertToggle = document.getElementById("likeToggle");
+    window.addEventListener("load", () => {
+        const saved = localStorage.getItem("board_alert_on");
+
+        if (saved === "Y") {
+            alertToggle.checked = true;
+        } else if (saved === "N") {
+            alertToggle.checked = false;
+        } else {
+            alertToggle.checked = true;
+            localStorage.setItem("board_alert_on", "Y");
+        }
+    });
+
+    alertToggle.addEventListener("change", () => {
+        localStorage.setItem("board_alert_on", alertToggle.checked ? "Y" : "N");
+    });
+
+    // ====== SSE 알림 수신 + 토스트 띄우기 ======
+    const es = new EventSource(`/notifications/stream/${memberId}`);
+
+    es.addEventListener("notification", (event) => {
+        const setting = localStorage.getItem("board_alert_on");
+        if (setting === "N") return;
+        showToast(event.data);
+    });
 </script>
 
 <nav class="bottom-nav">
@@ -163,24 +191,7 @@
     </a>
 </nav>
 
-        <script>
-            const memberId=1;
-            const es = new EventSource(`/alarm/stream/${memberId}`);
-            console.log(es);
-            es.onmessage = (event) => {
-                // showToast(event.data); // 서버에서 보낸 메시지를 토스트로 띄움
-                console.log(event.data)
 
-            };
-
-            es.addEventListener("notification", (event) => {
-                // showToast(event.data);
-                console.log(event.data)
-
-            });
-
-
-        </script>
 
 
 </body>
