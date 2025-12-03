@@ -4,15 +4,38 @@
 <body>
 
 <footer class="footer mt-5 py-3 border-top" th:fragment="footer">
-    <div class="container small text-muted d-flex flex-column flex-md-row justify-content-between gap-2">
-        <div>
-            <strong>더쿠쿠</strong> &copy; 2025
-            <span class="ms-2">All rights reserved.</span>
+    <div class="container small text-muted ">
+        <!-- 1줄: 공지사항 + 이용약관/개인정보 -->
+        <div class="footer-row d-flex justify-content-between align-items-center border-bottom py-2">
+            <div class="left">
+                <a th:href="@{/mypage/service/notice}">공지사항</a>
+            </div>
+            <div class="right">
+                <a th:href="@{/mypage/service/terms}" class="text-decoration-none me-3">이용약관</a>
+                <a th:href="@{/mypage/service/privacy}" class="text-decoration-none">개인정보처리방침</a>
+                <a th:href="@{/mypage/service/faq}" class="text-decoration-none">자주묻는질문</a>
+            </div>
         </div>
-        <div>
-            <span class="me-2">문의: support@thekuku.com</span>
-<!--            <a th:href="@{/service/terms}" class="text-decoration-none me-2">이용약관</a>-->
-<!--            <a th:href="@{/service/privacy}" class="text-decoration-none">개인정보처리방침</a>-->
+        <div class="footer-row d-flex justify-content-between align-items-center border-bottom py-2">
+            <div class="left d-flex align-items-center">
+                <h3 class="me-2 mb-0">활용한 Developers</h3>
+            </div>
+
+            <div class="right">
+                <a th:href="@{https://www.java.com/}" class="text-decoration-none me-3">자바</a>
+                <a th:href="@{https://www.oracle.com/kr/}" class="text-decoration-none me-3">오라클</a>
+                <a th:href="@{https://getbootstrap.kr/}" class="text-decoration-none me-3">부트스트랩</a>
+                <a th:href="@{https://chatgpt.com/}" class="text-decoration-none">chatGPT</a>
+            </div>
+        </div>
+        <!-- 3줄: 더쿠쿠 + 문의 -->
+        <div class="footer-row d-flex justify-content-between align-items-center py-2">
+            <div class="left">
+                더쿠쿠 © 2025 All rights reserved.
+            </div>
+            <div class="right">
+                문의: support@thekuku.com
+            </div>
         </div>
     </div>
 </footer>
