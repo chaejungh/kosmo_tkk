@@ -9,7 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -19,6 +19,7 @@ import java.util.Set;
 @ToString
 @Table(name = "TRADE_POST")
 public class TradePost {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TRADE_ID", nullable = false)
@@ -76,12 +77,13 @@ public class TradePost {
     @Column(name = "LIKE_COUNT")
     private Long likeCount;
 
+    /** 🔥 LocalDate → LocalDateTime 변경 완료! */
     @ColumnDefault("SYSDATE")
-    @Column(name = "CREATED_AT")
-    private LocalDate createdAt;
+    @Column(name = "CREATED_AT", updatable = false)
+    private LocalDateTime createdAt;
 
     @Column(name = "UPDATED_AT")
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     @ColumnDefault("'N'")
     @Column(name = "DELETED_YN")
@@ -101,5 +103,4 @@ public class TradePost {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
-
 }
