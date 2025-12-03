@@ -1,5 +1,7 @@
 
-    const memberId=[[${memberId}]];
+
+///session 멤버아이디로 변경 ///
+    const memberId=1;
     const es = new EventSource(`/alarm/stream/${memberId}`);
     console.log(es);
     es.onmessage = (event) => {

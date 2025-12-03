@@ -1,5 +1,6 @@
 package com.smu.tkk.serviceimp;
 
+import com.smu.tkk.config.NotificationPublisher;
 import com.smu.tkk.entity.BoardComment;
 import com.smu.tkk.repository.BoardCommentRepository;
 import com.smu.tkk.service.CommentService;
@@ -18,6 +19,7 @@ public class CommentServiceImp implements CommentService {
 
     private final BoardCommentRepository boardCommentRepository;
     private final NotificationService notificationService;
+    private final NotificationPublisher notificationPublisher;
 
 
     @Override
@@ -46,6 +48,11 @@ public class CommentServiceImp implements CommentService {
                     message,              // 메시지
                     "BOARD",              // linkType
                     comment.getPost().getId()          // 이동 대상 게시글 ID
+            );
+
+            notificationPublisher.send(
+                    postWriterId,
+                    message
             );
         }
 
