@@ -147,10 +147,13 @@
             📷 클릭해서 이미지 업로드 (여러 장 가능)
         </div>
 
-        <input type="file" id="imgInput" name="images" accept="image/*" multiple style="display:none">
+        <input type="file"
+               id="imgInput"
+               name="images"
+               accept="image/*"
+               multiple
+               style="display:none">
         <div class="img-preview-wrap" id="previewArea"></div>
-
-        <!-- ⭐ 굿즈 이름 필드는 삭제했음 (goodsName은 서버에서 title로 채워줌) -->
 
         <!-- 제목 -->
         <div class="input-box">
@@ -193,11 +196,13 @@
 
         <!-- 상세 내용 -->
         <div class="input-box">
-            <div class="input-label">설명</div>
-            <textarea th:field="*{content}" placeholder="상품 상태, 거래 희망 시간 등을 입력해주세요"></textarea>
+            <div class="input-label">설명 *</div>
+            <textarea th:field="*{content}"
+                      placeholder="상품 상태, 거래 희망 시간 등을 입력해주세요"
+                      required></textarea>
         </div>
 
-        <button class="submit-btn">등록하기</button>
+        <button class="submit-btn" type="submit">등록하기</button>
     </form>
 
 </div>
