@@ -37,6 +37,97 @@
         .inq-title { font-size: 16px; font-weight: 600; }
         .inq-category { font-size: 12px; color:#6b7280; }
         .inq-date { font-size: 12px; color:#9ca3af; margin-top: 2px; }
+
+        /* ==== AI 상담 영역 추가 스타일 ==== */
+        .ai-box {
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+        .ai-header-main {
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .ai-chip {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .ai-subtext {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+        .ai-input-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ai-textarea {
+            width: 100%;
+            min-height: 70px;
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            resize: vertical;
+            font-size: 13px;
+            font-family: inherit;
+        }
+        .ai-textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 1px rgba(79,70,229,0.15);
+        }
+        .ai-btn-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .ai-help-text {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+        .ai-send-btn {
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: none;
+            background: #4f46e5;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .ai-send-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+        .ai-answer {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        .ai-answer-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #4b5563;
+        }
     </style>
 </head>
 
@@ -44,6 +135,41 @@
 <div class="page">
 
     <div class="title">나의 문의 목록</div>
+
+    <!-- 🔹 AI 상담 영역 시작 -->
+    <div class="ai-box">
+        <div class="ai-header-main">
+            AI 빠른 상담
+            <span class="ai-chip">베타</span>
+        </div>
+        <div class="ai-subtext">
+            간단한 이용문의는 AI에게 먼저 물어보세요. 원하는 답이 없으면 아래에서 직접 문의를 남길 수 있어요.
+        </div>
+
+        <div class="ai-input-row">
+            <textarea id="aiQuestion"
+                      class="ai-textarea"
+                      placeholder="예) 굿즈 거래는 어떻게 진행되나요? / 매장 북마크는 어디서 볼 수 있나요?"></textarea>
+
+            <div class="ai-btn-row">
+                <div class="ai-help-text">
+                    AI 답변은 실제 운영자 답변과 다를 수 있어요.
+                </div>
+                <button type="button"
+                        class="ai-send-btn"
+                        id="aiSendBtn"
+                        onclick="sendAiInquiry()">
+                    AI에게 물어보기
+                </button>
+            </div>
+        </div>
+
+        <div id="aiAnswerBox" class="ai-answer" style="display:none;">
+            <div class="ai-answer-title">AI 답변</div>
+            <div id="aiAnswerText"></div>
+        </div>
+    </div>
+    <!-- 🔹 AI 상담 영역 끝 -->
 
     <a href="/help/write.do" class="write-btn">문의 작성하기</a>
 
@@ -58,5 +184,49 @@
     </div>
 
 </div>
+
+<!-- 🔹 AI 상담 JS (백엔드 연동용) -->
+<script>
+    async function sendAiInquiry() {
+        const textarea = document.getElementById('aiQuestion');
+        const btn = document.getElementById('aiSendBtn');
+        const answerBox = document.getElementById('aiAnswerBox');
+        const answerText = document.getElementById('aiAnswerText');
+
+        const question = textarea.value.trim();
+        if (!question) {
+            alert('AI에게 물어볼 내용을 입력해 주세요.');
+            textarea.focus();
+            return;
+        }
+
+        btn.disabled = true;
+        answerBox.style.display = 'block';
+        answerText.textContent = '답변 생성 중입니다...';
+
+        try {
+            const res = await fetch('/api/help/ai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question: question })
+            });
+
+            if (!res.ok) {
+                throw new Error('response not ok');
+            }
+
+            const data = await res.json();
+            answerText.textContent = data.answer || '답변을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+        } catch (e) {
+            console.error(e);
+            answerText.textContent = '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+        } finally {
+            btn.disabled = false;
+        }
+    }
+</script>
+
 </body>
 </html>
