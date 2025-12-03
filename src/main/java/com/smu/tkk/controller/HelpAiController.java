@@ -16,13 +16,7 @@ public class HelpAiController {
 
     @PostMapping("/ai")
     public ResponseEntity<AiInquiryResponse> ask(@RequestBody AiInquiryRequest request) {
-
-        String question = request.getQuestion();
-        String answer = helpAiService.ask(question);
-
-        AiInquiryResponse resp = new AiInquiryResponse();
-        resp.setAnswer(answer);
-
-        return ResponseEntity.ok(resp);
+        String answer = helpAiService.ask(request.getQuestion());
+        return ResponseEntity.ok(new AiInquiryResponse(answer));
     }
 }

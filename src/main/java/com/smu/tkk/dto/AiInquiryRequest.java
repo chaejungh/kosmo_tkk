@@ -6,6 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AiInquiryRequest {
-    // JS에서 { question: "..." } 로 보내는 값
-    private String question;
+    private String question;   // 프론트에서 오는 문의 내용
 }

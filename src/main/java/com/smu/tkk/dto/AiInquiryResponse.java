@@ -1,11 +1,14 @@
 package com.smu.tkk.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AiInquiryResponse {
-    // 백엔드에서 AI 답변을 담아서 돌려줌
-    private String answer;
+    private String answer;   // AI가 돌려주는 답변
 }
