@@ -183,7 +183,7 @@ body {
 
 .page {
     width: 100%;
-    max-width: 1040px;   /* ← 여기!! 화면 전체폭 키우는 핵심 한 줄 */
+    max-width: 100%;   /* ← 여기!! 화면 전체폭 키우는 핵심 한 줄 */
     min-height: 100vh;
     margin: 0 auto;
     padding-bottom: 80px;
@@ -550,7 +550,7 @@ body {
     transform: translateX(-50%);
     bottom: 0;
     width: 100%;
-    max-width: 1040px;       /* ⬅ page랑 폭 맞춤 */
+    max-width: 100%;       /* ⬅ page랑 폭 맞춤 */
     display: flex;
     justify-content: center;
     padding: 8px 0 10px;
