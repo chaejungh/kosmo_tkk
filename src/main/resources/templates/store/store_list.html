@@ -1,155 +1,155 @@
-<!-- src/main/resources/templates/store/store-list.html -->
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>팝업스토어 목록</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            sans-serif;
-            background-color: #f5f5f5;
-        }
+<!--&lt;!&ndash; src/main/resources/templates/store/store-list.html &ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>팝업스토어 목록</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",-->
+<!--            sans-serif;-->
+<!--            background-color: #f5f5f5;-->
+<!--        }-->
 
-        .page-wrapper {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 24px;
-        }
+<!--        .page-wrapper {-->
+<!--            max-width: 1100px;-->
+<!--            margin: 40px auto;-->
+<!--            padding: 0 24px;-->
+<!--        }-->
 
-        .page-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
+<!--        .page-title {-->
+<!--            font-size: 20px;-->
+<!--            font-weight: 700;-->
+<!--            margin-bottom: 16px;-->
+<!--        }-->
 
-        .card {
-            background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+<!--        .card {-->
+<!--            background-color: #ffffff;-->
+<!--            border-radius: 16px;-->
+<!--            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);-->
+<!--            padding: 16px 24px;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 20px;-->
+<!--        }-->
 
-        .card + .card {
-            margin-top: 12px;
-        }
+<!--        .card + .card {-->
+<!--            margin-top: 12px;-->
+<!--        }-->
 
-        .thumb-box {
-            width: 80px;
-            height: 80px;
-            border-radius: 12px;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
+<!--        .thumb-box {-->
+<!--            width: 80px;-->
+<!--            height: 80px;-->
+<!--            border-radius: 12px;-->
+<!--            background-color: #f0f0f0;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            overflow: hidden;-->
+<!--            flex-shrink: 0;-->
+<!--        }-->
 
-        .thumb-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+<!--        .thumb-box img {-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            object-fit: cover;-->
+<!--        }-->
 
-        .thumb-label {
-            font-size: 13px;
-            color: #555;
-        }
+<!--        .thumb-label {-->
+<!--            font-size: 13px;-->
+<!--            color: #555;-->
+<!--        }-->
 
-        .info-box {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+<!--        .info-box {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            gap: 4px;-->
+<!--        }-->
 
-        .store-title {
-            font-size: 16px;
-            font-weight: 600;
-        }
+<!--        .store-title {-->
+<!--            font-size: 16px;-->
+<!--            font-weight: 600;-->
+<!--        }-->
 
-        .store-location {
-            font-size: 13px;
-            color: #666;
-        }
+<!--        .store-location {-->
+<!--            font-size: 13px;-->
+<!--            color: #666;-->
+<!--        }-->
 
-        .store-period {
-            font-size: 12px;
-            color: #999;
-        }
+<!--        .store-period {-->
+<!--            font-size: 12px;-->
+<!--            color: #999;-->
+<!--        }-->
 
-        /* 목록 비었을 때 문구 */
-        .empty-message {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
+<!--        /* 목록 비었을 때 문구 */-->
+<!--        .empty-message {-->
+<!--            margin-top: 40px;-->
+<!--            text-align: center;-->
+<!--            font-size: 14px;-->
+<!--            color: #777;-->
+<!--        }-->
 
-        /* 카드 전체를 클릭 가능하게 만들고 싶으면 a로 감싸기 */
-        a.store-link {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
-</head>
-<body>
-<div class="page-wrapper">
+<!--        /* 카드 전체를 클릭 가능하게 만들고 싶으면 a로 감싸기 */-->
+<!--        a.store-link {-->
+<!--            text-decoration: none;-->
+<!--            color: inherit;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="page-wrapper">-->
 
-    <!-- 상단 제목 -->
-    <div class="page-title">팝업스토어 목록</div>
+<!--    &lt;!&ndash; 상단 제목 &ndash;&gt;-->
+<!--    <div class="page-title">팝업스토어 목록</div>-->
 
-    <!-- 헤더 카드(샘플 라벨만 있는 부분) -->
-    <div class="card">
-        <div class="thumb-box">
-            <span class="thumb-label">팝업 썸네일</span>
-        </div>
-        <div class="info-box">
-            <div class="store-title">팝업 제목</div>
-            <div class="store-location">장소명</div>
-            <div class="store-period">2025.00.00 ~ 2025.00.00</div>
-        </div>
-    </div>
+<!--    &lt;!&ndash; 헤더 카드(샘플 라벨만 있는 부분) &ndash;&gt;-->
+<!--    <div class="card">-->
+<!--        <div class="thumb-box">-->
+<!--            <span class="thumb-label">팝업 썸네일</span>-->
+<!--        </div>-->
+<!--        <div class="info-box">-->
+<!--            <div class="store-title">팝업 제목</div>-->
+<!--            <div class="store-location">장소명</div>-->
+<!--            <div class="store-period">2025.00.00 ~ 2025.00.00</div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <!-- 실제 store 리스트 -->
-    <div th:if="${not #lists.isEmpty(stores)}">
-        <a class="store-link card"
-           th:each="store : ${stores}"
-           th:href="@{/stores/{id}(id=${store.id})}">
-            <div class="thumb-box">
-                <!-- 썸네일이 있을 때 -->
-                <img th:if="${store.thumbnailUrl != null}"
-                     th:src="@{${store.thumbnailUrl}}"
-                     alt="팝업 썸네일">
-                <!-- 썸네일이 없을 때 -->
-                <span class="thumb-label" th:if="${store.thumbnailUrl == null}">이미지 없음</span>
-            </div>
+<!--    &lt;!&ndash; 실제 store 리스트 &ndash;&gt;-->
+<!--    <div th:if="${not #lists.isEmpty(stores)}">-->
+<!--        <a class="store-link card"-->
+<!--           th:each="store : ${stores}"-->
+<!--           th:href="@{/stores/{id}(id=${store.id})}">-->
+<!--            <div class="thumb-box">-->
+<!--                &lt;!&ndash; 썸네일이 있을 때 &ndash;&gt;-->
+<!--                <img th:if="${store.thumbnailUrl != null}"-->
+<!--                     th:src="@{${store.thumbnailUrl}}"-->
+<!--                     alt="팝업 썸네일">-->
+<!--                &lt;!&ndash; 썸네일이 없을 때 &ndash;&gt;-->
+<!--                <span class="thumb-label" th:if="${store.thumbnailUrl == null}">이미지 없음</span>-->
+<!--            </div>-->
 
-            <div class="info-box">
-                <div class="store-title"
-                     th:text="${store.name}">팝업 제목</div>
+<!--            <div class="info-box">-->
+<!--                <div class="store-title"-->
+<!--                     th:text="${store.name}">팝업 제목</div>-->
 
-                <div class="store-location"
-                     th:text="${store.locationName}">장소명</div>
+<!--                <div class="store-location"-->
+<!--                     th:text="${store.locationName}">장소명</div>-->
 
-                <div class="store-period"
-                     th:text="${#temporals.format(store.startDate, 'yyyy.MM.dd') + ' ~ '
-                              + #temporals.format(store.endDate, 'yyyy.MM.dd')}">
-                    2025.00.00 ~ 2025.00.00
-                </div>
-            </div>
-        </a>
-    </div>
+<!--                <div class="store-period"-->
+<!--                     th:text="${#temporals.format(store.startDate, 'yyyy.MM.dd') + ' ~ '-->
+<!--                              + #temporals.format(store.endDate, 'yyyy.MM.dd')}">-->
+<!--                    2025.00.00 ~ 2025.00.00-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
 
-    <!-- store 리스트가 비어 있을 때 출력 -->
-    <div class="empty-message" th:if="${#lists.isEmpty(stores)}">
-        등록된 팝업스토어가 없습니다.
-    </div>
+<!--    &lt;!&ndash; store 리스트가 비어 있을 때 출력 &ndash;&gt;-->
+<!--    <div class="empty-message" th:if="${#lists.isEmpty(stores)}">-->
+<!--        등록된 팝업스토어가 없습니다.-->
+<!--    </div>-->
 
-</div>
-</body>
-</html>
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

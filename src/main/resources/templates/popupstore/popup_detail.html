@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title th:text="${popup.title} + ' - 팝업 상세 - 더쿠쿠'">팝업 상세</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-
     <!-- ✅ 네이버 지도 SDK (지오코더 포함) -->
     <script
             src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&submodules=geocoder">
@@ -199,10 +197,10 @@
 </head>
 
 <body>
-<div class="page">
+<div layout:fragment="content">
 
     <!-- 뒤로가기 -->
-    <a th:href="@{/popupstore/list.do(page=0,pageLimit=20,sort='createAt')}" class="back-link">
+    <a th:href="@{/popupstore/list.do}" class="back-link">
         ← 팝업스토어 목록
     </a>
 
@@ -293,7 +291,7 @@
 </div>
 
 <!-- ================= JS: 지도 + 굿즈 검색 ================= -->
-<script th:inline="javascript">
+<script th:inline="javascript" layout:fragment="script">
     const popupAddress = /*[[${popup.address}]]*/ '';
     const popupTitle = /*[[${popup.title}]]*/ '';
 

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>더쿠쿠 - 매장 상세</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 홈 화면에서 쓰던 공통 CSS 재사용 -->
-    <link rel="stylesheet" th:href="@{/css/home.css}"/>
 
     <style>
         /* ===== 매장 상세 전용 스타일 ===== */
@@ -240,34 +238,9 @@
     </style>
 </head>
 <body>
-<div class="page">
-
-    <!-- 헤더 -->
-    <header class="header">
-        <div class="header-top">
-            <!-- 로고: 클릭 시 홈 -->
-            <a th:href="@{/}" class="logo">더쿠쿠</a>
-
-            <!-- 오른쪽 로그인/닉네임 영역 -->
-            <div class="auth-actions">
-
-                <!-- ✅ 비로그인 상태: 로그인 / 회원가입 버튼 -->
-                <div th:if="${nickname == null}">
-                    <a th:href="@{/auth/login}" class="btn-auth">로그인</a>
-                    <a th:href="@{/auth/join}" class="btn-auth btn-auth-primary">회원가입</a>
-                </div>
-
-                <!-- ✅ 로그인 상태: 닉네임 + 로그아웃 -->
-                <div class="logged-in-box" th:if="${nickname != null}">
-                    <span class="welcome-text"
-                          th:text="|${nickname} 님|">닉네임 님</span>
-                    <a th:href="@{/auth/logout}" class="btn-auth">로그아웃</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="content">
+<div layout:fragment="content">
+    <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
+    <main>
 
         <!-- 매장 기본 정보 -->
         <section class="card store-hero">
@@ -471,26 +444,6 @@
         </section>
 
     </main>
-
-    <!-- 하단 네비게이션 (index 와 동일 구조) -->
-    <nav class="bottom-nav">
-        <a th:href="@{/}" class="nav-item">
-            <span class="icon">🏠</span>
-            <span>홈</span>
-        </a>
-        <a th:href="@{/board}" class="nav-item">
-            <span class="icon">📁</span>
-            <span>덕질게시판</span>
-        </a>
-        <a th:href="@{/trade}" class="nav-item">
-            <span class="icon">💸</span>
-            <span>굿즈거래</span>
-        </a>
-        <a th:href="@{/mypage}" class="nav-item">
-            <span class="icon">👤</span>
-            <span>내정보</span>
-        </a>
-    </nav>
 </div>
 </body>
 </html>
