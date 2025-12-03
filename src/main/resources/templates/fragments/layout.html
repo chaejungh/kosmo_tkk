@@ -51,7 +51,15 @@
             <span class="icon">📁</span>
             <span>덕질게시판</span>
         </a>
-        <a th:href="@{/mypage}" class="nav-item">
+        <a th:if="${memberId !=null}"
+           th:href="@{/mypage}"
+           class="nav-item">
+            <span class="icon">👤</span>
+            <span>내정보</span>
+        </a>
+        <a th:if="${memberId ==null}"
+           th:href="@{/board/not-allowed}"
+           class="nav-item">
             <span class="icon">👤</span>
             <span>내정보</span>
         </a>
