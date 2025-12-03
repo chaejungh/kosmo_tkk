@@ -354,11 +354,23 @@
             </div>
         </section>
 
+        <!-- 🔥 지도 검색 결과 바텀시트 -->
+        <div id="mapSearchSheet" class="map-search-bottom" style="z-index: 999;">
+            <div class="map-search-sheet-inner">
+                <div class="map-search-sheet-header">
+                    <span class="map-search-sheet-title">검색 결과</span>
+                    <button type="button" class="map-search-close" aria-label="닫기">×</button>
+                </div>
+                <div id="mapSearchSheetContent" class="map-search-sheet-content">
+                    <!-- JS로 리스트 렌더링 -->
+                </div>
+            </div>
+        </div>
     </main>
 
 
     <!-- 문의 floating 버튼 -->
-    <a th:href="@{/help}" class="fab" style="z-index: 999">
+    <a th:href="@{/help}" class="fab" style="z-index: 998">
         <span class="fab-icon">💬</span>
         <span class="fab-text">문의 · AI 상담</span>
     </a>
@@ -366,18 +378,7 @@
 
 
 
-<!-- 🔥 지도 검색 결과 바텀시트 -->
-<div id="mapSearchSheet" class="map-search-bottom">
-    <div class="map-search-sheet-inner">
-        <div class="map-search-sheet-header">
-            <span class="map-search-sheet-title">검색 결과</span>
-            <button type="button" class="map-search-close" aria-label="닫기">×</button>
-        </div>
-        <div id="mapSearchSheetContent" class="map-search-sheet-content">
-            <!-- JS로 리스트 렌더링 -->
-        </div>
-    </div>
-</div>
+
 
 <!-- Swiper JS -->
 
