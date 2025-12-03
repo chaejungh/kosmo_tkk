@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
     @Service
@@ -104,5 +105,23 @@ import java.util.List;
             notificationRepository.deleteAll(list);
 
             return true;
+        }
+
+        @Override
+        public Notification create(Long memberId, String notifType, String message, String linkType, Long linkTargetId) {
+            Notification n = new Notification();
+            n.setMemberId(memberId);
+            n.setNotifType(notifType);
+            n.setMessage(message);
+            n.setLinkType(linkType);
+            n.setReadYn("N");
+            n.setCreatedAt(LocalDate.now());
+
+            return notificationRepository.save(n);
+        }
+
+        @Override
+        public boolean markRead(Long notificationId) {
+            return false;
         }
     }

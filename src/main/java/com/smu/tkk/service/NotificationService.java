@@ -23,4 +23,16 @@ public interface NotificationService {
 
     // 5. 알림 전체 삭제 (레파지토리 완료)
     boolean removeAll(Member memberId) throws SQLException;
+
+    Notification create(
+            Long memberId,          // 알림 받을 사람
+            String notifType,       // 알림 유형 (LIKE, COMMENT, TRADE...)
+            String message,         // 내용
+            String linkType,        // 화면 이동 타입 (BOARD, TRADE 등)
+            Long linkTargetId       // 이동할 id
+    );
+    /** 단건 읽음 처리 */
+    boolean markRead(Long notificationId);
+
+
 }

@@ -51,6 +51,7 @@ public class MypageController {
         // TODO: memberId로 내 정보/찜 리스트 등 나중에 로딩
         Member member = memberService.readOne(memberId);
         model.addAttribute("member", member);
+        model.addAttribute("memberId", memberId);
         return "mypage/mypage_main";
     }
 
@@ -61,6 +62,7 @@ public class MypageController {
     @GetMapping()
     public String legacyMypageMain(HttpSession session) {
         Long memberId = (Long) session.getAttribute("memberId");
+
         return "redirect:/mypage/" + memberId + "/";
     }
 
@@ -116,4 +118,10 @@ public class MypageController {
         return "redirect:/mypage/" + memberId + "/";
     }
 
+    @GetMapping("/{memberId}/settings/alarm")
+    public String alarmSettings(@PathVariable Long memberId, Model model) throws SQLException {
+        model.addAttribute("member", memberId);
+
+        return "mypage/service/setting_alarm";
+    }
 }
