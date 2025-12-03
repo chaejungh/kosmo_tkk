@@ -4,6 +4,11 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
+ext {
+    // Spring AI 버전 – 1.0.0이 문서/블로그에서 많이 쓰는 안정 버전이라 이걸 추천
+    springAiVersion = "1.0.0"
+}
+
 group = 'com.smu'
 version = '0.0.1-SNAPSHOT'
 description = 'tkk'
@@ -32,8 +37,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
-    // 🔹 OpenAI Java SDK
-    implementation 'com.openai:openai-java:4.8.0'
+    // 🔹 Spring AI + Ollama (티스토리 글이랑 같은 계열)
+    implementation "org.springframework.ai:spring-ai-starter-model-ollama"
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -42,6 +47,12 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    }
 }
 
 tasks.named('test') {
