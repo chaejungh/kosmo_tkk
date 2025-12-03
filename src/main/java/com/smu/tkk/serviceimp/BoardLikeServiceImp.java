@@ -1,8 +1,11 @@
 package com.smu.tkk.serviceimp;
 
 import com.smu.tkk.entity.BoardLike;
+import com.smu.tkk.entity.BoardPost;
 import com.smu.tkk.repository.BoardLikeRepository;
+import com.smu.tkk.repository.BoardPostRepository;
 import com.smu.tkk.service.BoardLikeService;
+import com.smu.tkk.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class BoardLikeServiceImp implements BoardLikeService {
 
     private final BoardLikeRepository boardLikeRepository;
+    private final BoardPostRepository boardPostRepository;
+    private final NotificationService notificationService;
+
 
     @Override
     public BoardLike registerOne(Long postId, Long userId) throws Exception {
@@ -28,7 +34,29 @@ public class BoardLikeServiceImp implements BoardLikeService {
         like.setPostId(postId);
         like.setMemberId(userId);
 
-        return boardLikeRepository.save(like);
+        BoardLike saved = boardLikeRepository.save(like);
+
+        // 2) 좋아요 알림 보내기 (여기부터 추가)
+        BoardPost post = boardPostRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+
+        Long writerId = post.getMember().getId();
+
+        // 자기 글에 본인이 좋아요 누른 경우 알림 제외
+        if (!writerId.equals(userId)) {
+
+            String message = "회원이 내 게시글을 좋아했습니다.";
+
+            notificationService.create(
+                    writerId,     // 알림 받을 사람 = 게시글 작성자
+                    "LIKE",       // 알림 타입
+                    message,      // 메시지
+                    "BOARD",      // linkType
+                    postId        // 이동 대상 ID
+            );
+        }
+
+        return saved;
     }
 
     @Override
