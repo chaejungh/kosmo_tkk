@@ -61,6 +61,10 @@ import java.util.List;
         @Transactional
         public boolean modifyRead(Long memberId, boolean read) {
 
+            if (memberId == null) {
+                throw new IllegalArgumentException("memberId is null");
+            }
+
             String readYn = read ? "Y" : "N";
 
             int updated = notificationRepository.modifyRead(readYn, memberId);
@@ -82,6 +86,8 @@ import java.util.List;
         @Override
         public Long unreadCount(Long memberId) throws SQLException {
 
+            if (memberId == null) return 0L;
+
             List<Notification> unread =
                     notificationRepository.findByMemberIdAndReadYn(memberId, "N", Pageable.unpaged());
 
@@ -99,10 +105,12 @@ import java.util.List;
                 throw new IllegalArgumentException("잘못된 사용자 정보입니다.");
             }
 
-            List<Notification> list =
-                    notificationRepository.findByMemberIdAndReadYn(member.getId(), "Y", Pageable.unpaged());
+            /*List<Notification> list =
+                    notificationRepository.findByMemberIdAndReadYn(member.getId(), "Y", Pageable.unpaged());*/
 
-            notificationRepository.deleteAll(list);
+            /*notificationRepository.deleteAll(list);*/
+
+            notificationRepository.deleteByMemberId(member.getId());
 
             return true;
         }
@@ -122,6 +130,13 @@ import java.util.List;
 
         @Override
         public boolean markRead(Long notificationId) {
+
+            Notification noti = notificationRepository.findById(notificationId)
+                    .orElseThrow(() -> new IllegalArgumentException("해당 알림이 존재하지 않습니다."));
+
+            noti.setReadYn("Y");
+            notificationRepository.save(noti);
+
             return false;
         }
     }
