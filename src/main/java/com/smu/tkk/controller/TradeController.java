@@ -14,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +33,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       🔥 검색 - DTO 기반으로 변경
+       🔥 검색
        ============================================================== */
     @GetMapping(params = "keyword")
     public String searchTrade(@RequestParam String keyword,
@@ -44,10 +42,8 @@ public class TradeController {
 
         Page<TradePost> entityPage = tradeService.search(keyword, pageable);
 
-        // 🔥 이미지 포함 DTO로 변환
-        Page<TradePostListDto> dtoPage = entityPage.map(post -> {
-            return tradeService.toListDTO(post);
-        });
+        // ⭐ 서비스에서 DTO 변환 수행
+        Page<TradePostListDto> dtoPage = entityPage.map(tradeService::toListDTO);
 
         model.addAttribute("page", dtoPage);
         model.addAttribute("keyword", keyword);
@@ -56,13 +52,12 @@ public class TradeController {
     }
 
     /* ===============================================================
-       🔥 목록 - DTO 기반으로 변경
+       🔥 목록
        ============================================================== */
     @GetMapping("/list.do")
     public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
                             Model model) {
 
-        // 🔥 TradeService에서 만든 readAllListDto 사용!
         Page<TradePostListDto> dtoPage = tradeService.readAllListDto(pageable);
         model.addAttribute("page", dtoPage);
 
@@ -70,13 +65,14 @@ public class TradeController {
     }
 
     /* ===============================================================
-       거래 상세
+       🔥 거래 상세
        ============================================================== */
     @GetMapping("/{tradeId}/article/detail.do")
     public String tradeDetail(@PathVariable Long tradeId, Model model) {
 
         TradePost trade = tradeService.readOneTradePostById(tradeId);
 
+        // 표지 이미지
         Optional<TradePostImage> coverOpt = tradePostImageService.readOneImage(tradeId);
         String coverUrl = coverOpt.map(TradePostImage::getImageUrl)
                 .orElse("/images/dummy/noimg.png");
@@ -87,6 +83,7 @@ public class TradeController {
         Long coverImageId = coverOpt.map(TradePostImage::getId).orElse(0L);
         model.addAttribute("coverImageId", coverImageId);
 
+        // 로그인 user (임시)
         Long memberId = 1L;
         model.addAttribute("currentMemberId", memberId);
 
@@ -94,6 +91,7 @@ public class TradeController {
                 (trade.getSeller() != null ? trade.getSeller().getId() : trade.getSellerId());
         model.addAttribute("sellerId", sellerId);
 
+        // 상태 라벨링
         String status = trade.getStatus();
         String statusLabel = "판매중";
         String statusClass = "badge-onsale";
@@ -113,7 +111,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       이미지 상세
+       🔥 이미지 상세
        ============================================================== */
     @GetMapping("/{tradeId}/article/{imageId}/detail.do")
     public String imageDetail(@PathVariable Long tradeId,
@@ -151,7 +149,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       글쓰기 페이지
+       🔥 글쓰기 페이지
        ============================================================== */
     @GetMapping("/{memberId}/write")
     public String writeForm(@PathVariable Long memberId,
@@ -173,8 +171,8 @@ public class TradeController {
        ============================================================== */
     @PostMapping("/{memberId}/write")
     public String writeSubmit(@PathVariable Long memberId,
-                              @ModelAttribute TradePost post,
-                              @RequestParam(required = false, name = "images") List<MultipartFile> images) {
+                              TradePost post,
+                              @RequestParam("images") List<MultipartFile> images) {
 
         post.setSellerId(memberId);
 
@@ -193,36 +191,5 @@ public class TradeController {
         tradeService.createPostWithImages(post, images);
 
         return "redirect:/trade/list.do";
-    }
-
-    /* ===============================================================
-       DTO 변환 (이미지까지 매핑)
-       ============================================================== */
-    private TradePostListDto toListDTO(TradePost post) {
-
-        TradePostListDto dto = new TradePostListDto();
-
-        dto.setId(post.getId());
-        dto.setTitle(post.getTitle());
-        dto.setRegion(post.getRegion() != null ? post.getRegion() : "지역 미지정");
-
-        if (post.getPrice() == null) dto.setPriceText("가격 미정");
-        else dto.setPriceText(String.format("%,d원", post.getPrice()));
-
-        LocalDate created = post.getCreatedAt();
-        if (created == null) dto.setTimeAgo("방금 전");
-        else {
-            long days = ChronoUnit.DAYS.between(created, LocalDate.now());
-            dto.setTimeAgo(days == 0 ? "오늘" :
-                    days == 1 ? "어제" :
-                            days < 7 ? days + "일 전" :
-                                    created.toString());
-        }
-
-        if (post.getTradePostImages() != null && !post.getTradePostImages().isEmpty()) {
-            dto.setThumbnailUrl(post.getTradePostImages().iterator().next().getImageUrl());
-        }
-
-        return dto;
     }
 }
