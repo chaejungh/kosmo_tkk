@@ -338,7 +338,8 @@
                         th:data-liked="${likeInfo.id != null}">
                             ❤️
                         </button>
-                        <span th:text="${post.likeCount}">0</span>
+                        <span id="like-count" th:text="${post.likeCount}">0</span>
+
                     </div>
                     <div class="detail-stat-item">
                         💬 <span th:text="${post.commentCount}">0</span>
@@ -414,10 +415,16 @@
 
 </body>
 <script th:inline="javascript">
-    const likeBtn = document.getElementById("like-btn");
-    const likeCountSpan = document.getElementById("like-count");
+    (function() {
 
-    if (likeBtn && likeCountSpan) {
+        const likeBtn = document.getElementById("like-btn");
+        const likeCountSpan = document.getElementById("like-count");
+
+        // 좋아요 버튼이 없으면 스크립트 바로 종료 (안전)
+        if (!likeBtn || !likeCountSpan) {
+            return;
+        }
+
         likeBtn.addEventListener("click", async () => {
             const postId = likeBtn.dataset.postId;
             const memberId = likeBtn.dataset.memberId;
@@ -441,15 +448,18 @@
                 likeCountSpan.textContent = data.likeCount;
                 likeBtn.dataset.liked = data.liked;
                 likeBtn.classList.toggle("active", data.liked);
+
             } catch (e) {
                 console.error("like toggle error", e);
             }
         });
 
-        // 처음 로딩 시 이미 좋아요 상태면 active 적용
+        // 처음부터 좋아요 상태면 active 적용
         if (likeBtn.dataset.liked === "true") {
             likeBtn.classList.add("active");
         }
-    }
+
+    })();
 </script>
+
 </html>

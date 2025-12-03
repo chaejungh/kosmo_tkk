@@ -20,4 +20,9 @@ public interface NotificationRepository extends JpaRepository<Notification,Long>
     @Query(value = "UPDATE Notification n set n.readYn=:readYn where n.memberId=:memberId")
     int modifyRead(String readYn, Long memberId);
 
+    // 특정 회원 미읽음 알림 개수
+    Long countByMemberIdAndReadYn(Long memberId, String readYn);
+
+    // 특정 회원 알림 전체 삭제
+    void deleteByMemberId(Long memberId);
 }

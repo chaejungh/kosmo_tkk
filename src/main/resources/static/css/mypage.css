@@ -181,3 +181,60 @@ a {
     color: #4f46e5;
     font-weight: 600;
 }
+
+.toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+/* 스위치 전체 */
+.tkk-switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+}
+
+/* 실제 체크박스 숨김 */
+.tkk-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* 배경 (OFF 상태) */
+.tkk-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #d3d3d3;
+    transition: 0.25s;
+    border-radius: 30px;
+}
+
+/* 동그라미 */
+.tkk-slider::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    transition: 0.25s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+/* 체크 ON 배경 색 (카카오/당근 스타일) */
+.tkk-switch input:checked + .tkk-slider {
+    background-color: #6c5ce7;  /* 보라색 → 더쿠쿠 스타일 */
+}
+
+/* 체크 ON 상태: 동그라미 오른쪽 이동 */
+.tkk-switch input:checked + .tkk-slider::before {
+    transform: translateX(20px);
+}
+
