@@ -5643,4 +5643,73 @@ VALUES(20,NULL,16,'과도한 비방 표현이 포함된 게시글입니다.','WA
 commit ;
 
 
+--------------------------------------------------------
+-- 5. 기본 역할 데이터 4개(SUPER, MANAGER, CS, CONTENT)
+--------------------------------------------------------
+INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES ( 'SUPER',   '최고관리자',      '모든 기능 사용 가능');
 
+INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES ( 'MANAGER', '운영자',          '회원/게시판/거래 관리');
+
+INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES ( 'CS',      '고객센터',        '문의/FAQ/공지 관리');
+
+INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES ( 'CONTENT', '콘텐츠관리자',    '메인 배너/추천 검색어 관리');
+
+--------------------------------------------------------
+-- 6. 관리자 계정 1개 생성 (ID: admin / PW: admin1234)
+--------------------------------------------------------
+INSERT INTO ADMIN_USER (
+     LOGIN_ID, LOGIN_PW, NAME, EMAIL, PHONE, STATUS
+) VALUES (
+
+             'admin',
+             'admin1234',           -- 학습/과제용: 평문, 실서비스이면 반드시 암호화
+             '관리자',
+             'admin@tkk.com',
+             '010-0000-0000',
+             'Y'
+         );
+
+COMMIT;
+
+--------------------------------------------------------
+-- 7. admin 계정에 SUPER 권한 매핑
+--    (숫자를 직접 안 쓰고, 서브쿼리로 안전하게 매핑)
+--------------------------------------------------------
+INSERT INTO ADMIN_USER_ROLE (ADMIN_ID, ROLE_ID)
+SELECT u.ADMIN_ID, r.ROLE_ID
+FROM   ADMIN_USER u
+           JOIN ADMIN_ROLE r ON r.ROLE_CODE = 'SUPER'
+WHERE  u.LOGIN_ID = 'admin'
+  AND  NOT EXISTS (
+    SELECT 1
+    FROM   ADMIN_USER_ROLE ur
+    WHERE  ur.ADMIN_ID = u.ADMIN_ID
+      AND    ur.ROLE_ID  = r.ROLE_ID
+);
+
+COMMIT;
+
+--------------------------------------------------------
+-- 8. 최종 확인용 쿼리 (필요할 때만 실행)
+--------------------------------------------------------
+-- 현재 스키마 확인
+-- SELECT USER FROM DUAL;
+--
+-- -- 관리자 계정 확인
+-- SELECT ADMIN_ID, LOGIN_ID, LOGIN_PW, STATUS
+-- FROM ADMIN_USER;
+--
+-- -- 역할 목록 확인
+-- SELECT ROLE_ID, ROLE_CODE, ROLE_NAME
+-- FROM ADMIN_ROLE;
+--
+-- -- 권한 매핑 확인
+-- SELECT *
+-- FROM ADMIN_USER_ROLE;
+
+
+commit;
