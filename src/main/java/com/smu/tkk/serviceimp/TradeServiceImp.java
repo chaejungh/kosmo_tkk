@@ -3,6 +3,8 @@ package com.smu.tkk.serviceimp;
 import com.smu.tkk.dto.TradePostListDto;
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
+import com.smu.tkk.repository.TradeBookmarkRepository;
+import com.smu.tkk.repository.TradeChatRoomRepository;
 import com.smu.tkk.repository.TradePostImageRepository;
 import com.smu.tkk.repository.TradePostRepository;
 import com.smu.tkk.service.S3StorageService;
@@ -27,6 +29,10 @@ public class TradeServiceImp implements TradeService {
     private final TradePostRepository tradePostRepository;
     private final TradePostImageRepository tradePostImageRepository;
     private final S3StorageService s3StorageService;
+
+    // 🔥 새로 주입: 채팅방 / 북마크 레포지토리
+    private final TradeChatRoomRepository tradeChatRoomRepository;
+    private final TradeBookmarkRepository tradeBookmarkRepository;
 
     @Override
     public TradePost registerTradePost(TradePost tradePost) {
@@ -90,7 +96,7 @@ public class TradeServiceImp implements TradeService {
 
         LocalDateTime now = LocalDateTime.now();
         log.info(now.toString(), createdAt.toString());
-        // 미래 시간 방지 (서버/DB 시간 차이 등)
+
         if (createdAt.isAfter(now)) {
             return "방금 전";
         }
@@ -106,21 +112,18 @@ public class TradeServiceImp implements TradeService {
         if (days == 1) return "어제";
         if (days < 7) return days + "일 전";
 
-        // 1주 이상 1달 미만
         if (days < 30) {
             long weeks = days / 7;
             if (weeks < 1) weeks = 1;
             return weeks + "주 전";
         }
 
-        // 1달 이상 1년 미만
         if (days < 365) {
             long months = days / 30;
             if (months < 1) months = 1;
             return months + "개월 전";
         }
 
-        // 1년 이상
         long years = days / 365;
         if (years < 1) years = 1;
         return years + "년 전";
@@ -147,13 +150,27 @@ public class TradeServiceImp implements TradeService {
         Optional<TradePostImage> imgOpt =
                 tradePostImageRepository.findFirstByTradeIdOrderBySortOrderAscIdAsc(post.getId());
 
-        // 🔥 여기만 변경: DB에 있는 URL → 프리사인드 URL로 변환
         String thumbnail = imgOpt
-                .map(TradePostImage::getImageUrl)              // DB에 저장된 원래 URL
-                .map(s3StorageService::createPresignedFromFullUrl) // 10분짜리 프리사인드 URL로 변환
+                .map(TradePostImage::getImageUrl)
+                .map(s3StorageService::createPresignedFromFullUrl)
                 .orElse("/images/dummy/noimg.png");
 
         dto.setThumbnailUrl(thumbnail);
+
+        // 👀 조회수
+        dto.setViewCount(
+                post.getViewCount() != null
+                        ? post.getViewCount()
+                        : 0L
+        );
+
+        // 👥 채팅 건 사람 수 (채팅방 개수)
+        long chatCount = tradeChatRoomRepository.countByTradeId(post.getId());
+        dto.setChatCount(chatCount);
+
+        // ♥ 찜(북마크) 개수
+        long likeCount = tradeBookmarkRepository.countByTradeId(post.getId());
+        dto.setLikeCount(likeCount);
 
         return dto;
     }
@@ -175,7 +192,6 @@ public class TradeServiceImp implements TradeService {
     @Override
     public void createPostWithImages(TradePost post, List<MultipartFile> images) {
 
-        // 1) 글 먼저 저장
         TradePost savedPost = tradePostRepository.save(post);
 
         if (images == null || images.isEmpty()) {
@@ -194,10 +210,8 @@ public class TradeServiceImp implements TradeService {
             }
 
             try {
-                // 2) S3 업로드
                 String imageUrl = s3StorageService.upload(file);
 
-                // 3) DB에 이미지 정보 저장
                 TradePostImage img = new TradePostImage();
                 img.setTradeId(savedPost.getId());
                 img.setImageUrl(imageUrl);
@@ -211,5 +225,18 @@ public class TradeServiceImp implements TradeService {
                 e.printStackTrace();
             }
         }
+    }
+
+    /* ============================================================
+       🔥 조회수 증가
+       ============================================================ */
+    @Override
+    public void increaseViewCount(Long tradeId) {
+        tradePostRepository.findById(tradeId).ifPresent(post -> {
+            Long current = post.getViewCount();
+            if (current == null) current = 0L;
+            post.setViewCount(current + 1);
+            tradePostRepository.save(post);
+        });
     }
 }

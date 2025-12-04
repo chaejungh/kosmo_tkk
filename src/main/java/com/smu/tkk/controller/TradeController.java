@@ -5,15 +5,19 @@ import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
+import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
+import com.smu.tkk.repository.TradeBookmarkRepository;  // 🔥 추가
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ 추가
+import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ 기존
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +34,10 @@ public class TradeController {
 
     // ★ WebSocket으로 이벤트 쏘기 위해 추가
     private final SimpMessagingTemplate messagingTemplate;
+
+    // 🔥 채팅방 / 북마크 개수 조회용 레포지토리 추가
+    private final TradeChatRoomRepository tradeChatRoomRepository;
+    private final TradeBookmarkRepository tradeBookmarkRepository;
 
     @GetMapping
     public String tradeRoot() {
@@ -74,6 +82,9 @@ public class TradeController {
     @GetMapping("/{tradeId}/article/detail.do")
     public String tradeDetail(@PathVariable Long tradeId, Model model) {
 
+        // 🔥 상세 진입할 때 조회수 +1
+        tradeService.increaseViewCount(tradeId);
+
         TradePost trade = tradeService.readOneTradePostById(tradeId);
 
         // 표지 이미지
@@ -94,6 +105,12 @@ public class TradeController {
         Long sellerId =
                 (trade.getSeller() != null ? trade.getSeller().getId() : trade.getSellerId());
         model.addAttribute("sellerId", sellerId);
+
+        // 🔥 채팅 / 찜 개수 모델에 추가 (trade_detail.html에서 사용)
+        long chatCount = tradeChatRoomRepository.countByTradeId(tradeId);
+        long likeCount = tradeBookmarkRepository.countByTradeId(tradeId);
+        model.addAttribute("chatCount", chatCount);
+        model.addAttribute("likeCount", likeCount);
 
         // 상태 라벨링
         String status = trade.getStatus();

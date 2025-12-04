@@ -75,4 +75,9 @@ public interface TradeService {
     void createPostWithImages(TradePost post, List<MultipartFile> images);
 
     TradePostListDto toListDTO(TradePost post);
+
+    /* ============================================================
+       ⭐ 12) 조회수 증가
+       ============================================================ */
+    void increaseViewCount(Long tradeId);
 }

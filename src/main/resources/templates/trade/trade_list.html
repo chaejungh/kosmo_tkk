@@ -5,7 +5,7 @@
     <title>굿즈거래 | 더쿠쿠</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 🔥 WebSocket 라이브러리 추가 (채팅에서 쓰는 거랑 동일) -->
+    <!-- 🔥 WebSocket 라이브러리 (채팅이랑 동일) -->
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
 
@@ -59,31 +59,47 @@
             gap: 6px;
         }
 
-        /* ===== 카테고리 버튼 ===== */
+        /* ===== 검색 영역 (예전 카테고리 자리에) ===== */
         .trade-filter {
             background: white;
             padding: 12px 18px;
             border-bottom: 1px solid var(--border);
+        }
+
+        .trade-search-form {
             display: flex;
             gap: 8px;
-            overflow-x: auto;
+            width: 100%;
         }
 
-        .filter-btn {
-            padding: 6px 14px;
+        .trade-search-input {
+            flex: 1;
             border-radius: 999px;
-            background: #ffffff;
             border: 1px solid var(--border);
+            padding: 9px 14px;
             font-size: 13px;
-            white-space: nowrap;
-            cursor: pointer;
-            color: #444;
+            outline: none;
         }
 
-        .filter-btn.active {
+        .trade-search-input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 1px rgba(99,102,241,0.18);
+        }
+
+        .trade-search-button {
+            border-radius: 999px;
+            border: none;
             background: var(--purple);
             color: white;
-            border-color: var(--purple);
+            padding: 0 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .trade-search-button:hover {
+            background: var(--purple-deep);
         }
 
         /* ===== 리스트 카드 ===== */
@@ -99,6 +115,10 @@
             padding: 12px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
             cursor: pointer;
+        }
+
+        .trade-card + .trade-card {
+            margin-top: 10px;
         }
 
         .trade-thumb {
@@ -124,6 +144,13 @@
         }
 
         .trade-meta {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* 채팅/찜/조회 숫자 라인 */
+        .trade-stats {
+            margin-top: 4px;
             font-size: 12px;
             color: var(--text-sub);
         }
@@ -229,15 +256,16 @@
     </div>
 </div>
 
-<!-- ===== 카테고리 ===== -->
+<!-- ===== 검색 (예전 카테고리 자리) ===== -->
 <div class="trade-filter">
-    <button class="filter-btn active">전체</button>
-    <button class="filter-btn">판매</button>
-    <button class="filter-btn">구매</button>
-    <button class="filter-btn">교환</button>
-    <button class="filter-btn">피규어</button>
-    <button class="filter-btn">포카</button>
-    <button class="filter-btn">기타굿즈</button>
+    <form class="trade-search-form" th:action="@{/trade}" method="get">
+        <input type="text"
+               name="keyword"
+               class="trade-search-input"
+               placeholder="굿즈명, 제목, 지역 검색"
+               th:value="${keyword}">
+        <button type="submit" class="trade-search-button">검색</button>
+    </form>
 </div>
 
 <!-- ===== LIST ===== -->
@@ -255,9 +283,17 @@
         <div class="trade-info">
             <div>
                 <div class="trade-title" th:text="${post.title}">상품 제목</div>
+
                 <div class="trade-meta">
                     <span th:text="${post.region}"></span> ·
                     <span th:text="${post.timeAgo}"></span>
+                </div>
+
+                <!-- ❤️ 찜 · 💬 채팅 · 👀 조회 순서 -->
+                <div class="trade-stats">
+                    ♥ <span th:text="${post.likeCount}">0</span> 찜 ·
+                    💬 <span th:text="${post.chatCount}">0</span> 채팅 ·
+                    👀 <span th:text="${post.viewCount}">0</span> 조회
                 </div>
             </div>
 
@@ -294,7 +330,7 @@
 
 </nav>
 
-<!-- ================= JS 기능 ================= -->
+<!-- ================= 하단 JS (기존 네비/뱃지 + 새 글 실시간) ================= -->
 <script>
     (function () {
 
@@ -336,14 +372,14 @@
 <!-- 🔥 새 게시글 실시간 반영용 WebSocket 구독 -->
 <script>
     (function () {
-        const socket = new SockJS("/ws-chat");      // WebSocketConfig의 endpoint
+        const socket = new SockJS("/ws-chat");      // WebSocketConfig endpoint
         const stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function () {
             // 서버에서 messagingTemplate.convertAndSend("/sub/trade.list", ...) 보내면 여기서 받음
             stompClient.subscribe("/sub/trade.list", function (msg) {
                 console.log("📢 새 게시글 알림 도착:", msg.body);
-                // 리스트 다시 로드해서 새 글 바로 보이게
+                // 리스트 다시 로드해서 새 글 바로 보기
                 location.reload();
             });
         });
