@@ -57,34 +57,28 @@ public class BoardBookmarkServiceImp implements BoardBookmarkService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<BoardBookmark> readAll(Long postId, Long memberId, Pageable pageable) throws Exception {
-        if (memberId == null) {
-            throw new IllegalArgumentException("memberId 가 없습니다.");
-        }
-
-        // 일단 해당 회원의 북마크 전체 조회
-        List<BoardBookmark> fullList =
-                boardBookmarkRepository.findByMemberId(memberId, Pageable.unpaged());
-
-        // postId가 넘어오면 그 게시글만 필터링 (옵션)
-        if (postId != null) {
-            fullList = fullList.stream()
-                    .filter(b -> postId.equals(b.getPostId()))
-                    .collect(Collectors.toList());
-        }
-
-        int start = (int) pageable.getOffset();
-        int end = Math.min(start + pageable.getPageSize(), fullList.size());
-
-        List<BoardBookmark> content;
-        if (start > fullList.size()) {
-            content = Collections.emptyList();
-        } else {
-            content = fullList.subList(start, end);
-        }
-
-        return new PageImpl<>(content, pageable, fullList.size());
+    public Page<BoardBookmark> readAll(Pageable pageable) {
+        return boardBookmarkRepository.findAll(pageable);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public BoardBookmark readOne(Long postId, Long memberId) throws Exception {
+        return boardBookmarkRepository
+                .findByPostIdAndMemberId(postId, memberId)
+                .orElse(null);
+    }
+
+    @Override
+    public Page<BoardBookmark> readByMemberId(Long memberId, Pageable pageable) throws Exception {
+        if (memberId == null) {
+            throw new IllegalArgumentException("memberId가 없습니다.");
+        }
+
+        return boardBookmarkRepository.findByMemberId(memberId, pageable);
+    }
+
+
 
     @Override
     public boolean toggle(Long postId, Long memberId) throws Exception {

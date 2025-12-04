@@ -1,6 +1,7 @@
 package com.smu.tkk.repository;
 
 import com.smu.tkk.entity.BoardBookmark;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public interface BoardBookmarkRepository extends JpaRepository<BoardBookmark,Lon
     Optional<BoardBookmark> findByPostIdAndMemberId(Long postId, Long userId);
 
     // 한 회원이 북마크한 게시글들 전부
-    List<BoardBookmark> findByMemberId(Long memberId,Pageable pageable);
+    Page<BoardBookmark> findByMemberId(Long memberId, Pageable pageable);
 
     // 해당 게시글을 북마크한 사람들 목록 (필요하면 사용)
     //List<BoardBookmark> findByPostId(Long postId);
