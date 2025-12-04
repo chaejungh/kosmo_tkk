@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ 상세 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f6f3ff;
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+        }
+
+        .mypage-page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #444;
+        }
+
+        .notice-box {
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .notice-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .notice-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="mypage-page">
+
+    <a th:href="@{/mypage/service/faq}" class="back-btn">← FAQ 목록으로</a>
+
+    <div class="notice-box">
+
+        <div class="notice-title" th:text="${faq.question}">
+            질문 제목
+        </div>
+
+        <div class="notice-content" th:text="${faq.answer}">
+            답변 내용
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

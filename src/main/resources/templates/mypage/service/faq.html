@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>자주 묻는 질문 - 더쿠쿠</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+    <style>
+        .item {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .item:hover {
+            background: #fafafa;
+        }
+
+        .item span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .item .sub {
+            font-size: 14px;
+            color: #7a7a7a;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,20 +43,19 @@
 
     <div class="section-box">
 
-        <div class="item">
-            <span>🔑 비밀번호를 잊어버렸어요</span>
-            <span class="sub">로그인 화면에서 ‘비밀번호 찾기’를 눌러주세요.</span>
-        </div>
+        <!-- 🔥 DB 반복 출력 -->
+        <a class="item"
+           th:each="f : ${faqList.content}"
+           th:href="@{'/mypage/service/faq/' + ${f.id}}">
+            <span th:text="${f.question}">질문 제목</span>
+            <span class="sub" th:text="${f.answer}">답변 요약</span>
+        </a>
 
-        <div class="item">
-            <span>🛒 거래는 어떻게 하나요?</span>
-            <span class="sub">굿즈 거래 메뉴에서 글을 작성하거나 검색하세요.</span>
-        </div>
-
-        <div class="item">
-            <span>📸 프로필 사진은 어떻게 바꾸나요?</span>
-            <span class="sub">마이페이지 화면에서 프로필 이미지를 누르면 변경됩니다.</span>
-        </div>
+        <!-- FAQ가 비어있을 때 -->
+        <p th:if="${faqList.content.isEmpty()}"
+           style="color:#999; text-align:center; margin-top:20px;">
+            등록된 FAQ가 없습니다.
+        </p>
 
     </div>
 
