@@ -103,14 +103,18 @@
 
     <!-- ✅ 여기부터 폼 -->
     <form class="write-card"
-        th:action="@{/board/{memberId}/write(memberId=${memberId})}"
-        method="post"
-        enctype="multipart/form-data"
-        th:object="${boardWriteValid}">
+          th:action="${mode} == 'edit' ?
+        @{/board/{memberId}/article/{postId}/edit.do(memberId=${memberId}, postId=${postId})} :
+        @{/board/{memberId}/write(memberId=${memberId})}"
+          method="post"
+          enctype="multipart/form-data"
+          th:object="${boardWriteValid}">
 
         <select class="form-select"
                 aria-label="Default select example"
-                name="category">
+                name="categoryId"
+                th:value="*{categoryId}"
+            >
             <option selected>게시판 선택</option>
             <option value="1">내 새끼 자랑</option>
             <option value="2">코스프레</option>
@@ -159,9 +163,11 @@
 
         <div class="submit-wrap">
             <!-- ✅ type="submit" 으로 변경 -->
-            <button class="submit-btn" type="submit">
+            <button class="submit-btn" type="submit"
+                    th:text="${mode} == 'edit' ? '글 수정' : '글 등록'">
                 글 등록
             </button>
+
         </div>
     </form>
 </div>

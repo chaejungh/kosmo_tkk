@@ -83,6 +83,114 @@ public class BoardController {
 
         return "board/board_detail"; // 상세 템플릿 이름
     }
+    // =============================
+// 게시글 수정 폼
+// =============================
+    @GetMapping("/board/{memberId}/article/{postId}/edit.do")
+    public String editForm(@PathVariable Long memberId,
+                           @PathVariable Long postId,
+                           HttpSession session,
+                           Model model) throws Exception {
+
+
+        // 게시글 조회
+        BoardPost post = boardService.readOne(postId);
+        if (post == null) {
+            return "redirect:/board/1/list.do"; // 없으면 대략 리스트로
+        }
+
+        //  작성자 본인인지 한 번 더 확인
+        if (!post.getMemberId().equals(memberId)) {
+            return "redirect:/board/not-allowed";
+        }
+
+        // 폼 바인딩용 DTO 세팅 (BoardWriteValid 기준)
+        BoardWriteValid form = new BoardWriteValid();
+        form.setTitle(post.getTitle());
+        form.setContent(post.getContent());
+        // 카테고리 선택값이 필요하면
+        form.setCategoryId(post.getCategory().getId());
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("postId", postId);
+        model.addAttribute("categoryId", post.getCategory().getId());
+        model.addAttribute("boardWriteValid", form);
+        model.addAttribute("mode", "edit");
+
+        // 👉 별도 템플릿을 쓰면 "board/board_edit",
+        //    기존 작성 폼 재사용이면 "board/board_write" 로 맞춰서 사용
+        return "board/board_write";
+    }
+// =============================
+// 게시글 수정 처리
+// =============================
+    @PostMapping("/board/{memberId}/article/{postId}/edit.do")
+    public String editSubmit(@PathVariable Long memberId,
+                             @PathVariable Long postId,
+                             @Valid BoardWriteValid boardWriteValid,
+                             BindingResult bindingResult,
+                             @RequestParam("categoryId") Long categoryId,
+                             HttpSession session,
+                             Model model) throws Exception {
+
+
+        BoardPost post = boardService.readOne(postId);
+        if (post == null || !post.getMemberId().equals(memberId)) {
+            return "redirect:/board/not-allowed";
+        }
+
+        // 유효성 에러 있으면 다시 폼으로
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberId", memberId);
+            model.addAttribute("postId", postId);
+            model.addAttribute("categoryId", categoryId);
+            return "board/board_edit";
+        }
+
+        // 변경 값 세팅
+        post.setCategoryId(categoryId);
+        post.setTitle(boardWriteValid.getTitle());
+        post.setContent(boardWriteValid.getContent());
+        post.setDeletedYn("N");
+        // 카테고리 변경 허용이면 여기서 바꿔주기
+        if (!post.getCategory().getId().equals(categoryId)) {
+            BoardCategory category = new BoardCategory();
+            category.setId(categoryId);
+            post.setCategory(category);
+        }
+
+        boolean success = boardService.modify(post);
+        if (!success) {
+            model.addAttribute("errorMessage", "게시글 수정에 실패했습니다.");
+            model.addAttribute("memberId", memberId);
+            model.addAttribute("postId", postId);
+            return "board/board_edit";
+        }
+
+        // 수정 후 상세로 이동
+        return "redirect:/board/" + memberId + "/article/" + postId + "/detail.do";
+    }
+
+    // =============================
+// 게시글 삭제
+// =============================
+    @GetMapping("/board/{memberId}/article/{postId}/delete.do")
+    public String deletePost(@PathVariable Long memberId,
+                             @PathVariable Long postId,
+                             HttpSession session) throws Exception {
+
+
+        BoardPost post = boardService.readOne(postId);
+        if (post == null || !post.getMemberId().equals(memberId)) {
+            return "redirect:/board/not-allowed";
+        }
+
+        Long categoryId = post.getCategoryId();
+
+        boardService.remove(postId);  // 내부에서 deleted_yn = 'Y' 소프트 삭제라고 가정
+
+        // 삭제 후 해당 카테고리 리스트로 이동
+        return "redirect:/board/" + categoryId + "/list.do";
+    }
 
     //    검색 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @PostMapping("/board/list.do")
@@ -134,6 +242,7 @@ public class BoardController {
             @PathVariable Long memberId,
             Model model) {
         model.addAttribute("memberId",memberId);
+        model.addAttribute("mode", "create");
         return "board/board_write";
     }
 
@@ -143,7 +252,7 @@ public class BoardController {
         BindingResult bindingResult,
         @RequestParam(name = "images", required = false)
         List<MultipartFile> images,
-        @RequestParam(name = "category") Long categoryId,
+        @RequestParam(name = "categoryId") Long categoryId,
         HttpSession session,
         @SessionAttribute(name = "memberId",required = false) Long memberId
     ) throws SQLException {

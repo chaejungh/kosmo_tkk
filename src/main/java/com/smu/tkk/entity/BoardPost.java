@@ -54,17 +54,14 @@ public class BoardPost {
     @Column(name = "THUMBNAIL_URL")
     private String thumbnailUrl;
 
-    @ColumnDefault("0")
     @Column(name = "VIEW_COUNT")
-    private Long viewCount;
+    private Long viewCount = 0L;
 
-    @ColumnDefault("0")
     @Column(name = "LIKE_COUNT")
-    private Long likeCount;
+    private Long likeCount = 0L;
 
-    @ColumnDefault("0")
     @Column(name = "COMMENT_COUNT")
-    private Long commentCount;
+    private Long commentCount = 0L;
 
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT")
@@ -73,9 +70,8 @@ public class BoardPost {
     @Column(name = "UPDATED_AT")
     private LocalDate updatedAt;
 
-    @ColumnDefault("'N'")
     @Column(name = "DELETED_YN")
-    private String deletedYn;
+    private String deletedYn = "N";
 
 
     @OneToMany(mappedBy = "post")

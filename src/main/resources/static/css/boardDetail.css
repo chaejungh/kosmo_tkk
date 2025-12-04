@@ -248,3 +248,44 @@
 .like-btn.active {
     transform: scale(1.1);
 }
+.post-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-profile-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-header-actions {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.detail-action-btn {
+    border: none;
+    background: none;
+    padding: 4px 8px;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #666;
+    text-decoration: none;
+}
+
+.detail-action-btn:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.detail-action-delete {
+    color: #e45757;
+}
+
+.detail-action-delete:hover {
+    background: #ffe5e5;
+    color: #c63030;
+}

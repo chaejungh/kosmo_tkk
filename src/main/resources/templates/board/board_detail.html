@@ -26,31 +26,48 @@
         <!-- ============ 상세 카드 ============ -->
         <section class="card post-detail-card">
             <div class="post-detail-header">
-                <div class="detail-profile-photo">
-                    <!-- 프로필 이미지가 있으면 이미지, 없으면 '프로필' 글자 -->
-                    <img th:if="${post.member.profileImageUrl} != null"
-                         th:src="${post.member.profileImageUrl}"
-                         alt="프로필"
-                         style="width:40px; height:40px; border-radius:50%; object-fit:cover;" >
-                    <span th:if="${post.member.profileImageUrl} == null">프로필</span>
+                <!-- 왼쪽 : 프로필 영역 -->
+                <div class="detail-profile-left">
+                    <div class="detail-profile-photo">
+                        <!-- 프로필 이미지가 있으면 이미지, 없으면 '프로필' 글자 -->
+                        <img th:if="${post.member.profileImageUrl} != null"
+                             th:src="${post.member.profileImageUrl}"
+                             alt="프로필"
+                             style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                        <span th:if="${post.member.profileImageUrl} == null">프로필</span>
+                    </div>
+
+                    <div class="detail-profile-meta">
+                        <!-- 닉네임 -->
+                        <div class="detail-nickname"
+                             th:text="${post.member.nickname}">
+                            히롱이
+                        </div>
+                        <!-- 작성일 · 카테고리명 -->
+                        <div class="detail-sub-meta">
+                <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">
+                    3분 전
+                </span>
+                            ·
+                            <span th:text="${post.category.name}"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="detail-profile-meta">
-                    <!-- 닉네임 -->
-                    <div class="detail-nickname"
-                         th:text="${post.member.nickname}">
-                        히롱이
-                    </div>
-                    <!-- 작성일 · 카테고리명 -->
-                    <div class="detail-sub-meta">
-                        <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">
-                            3분 전
-                        </span>
-                        ·
-                        <span th:text="${post.category.name}">
-                        </span>
-                    </div>
+
+                <!-- 오른쪽 : 수정 / 삭제 (작성자일 때만 노출) -->
+                <div class="detail-header-actions"
+                     th:if="${memberId != null and memberId == post.memberId}">
+                    <a class="detail-action-btn"
+                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/edit.do'}">
+                        수정
+                    </a>
+                    <a class="detail-action-btn detail-action-delete"
+                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/delete.do'}">
+                        삭제
+                    </a>
                 </div>
             </div>
+
 
             <!-- 대표 사진 -->
             <div class="detail-main-image">
