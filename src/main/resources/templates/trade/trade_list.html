@@ -343,7 +343,7 @@
             // 서버에서 messagingTemplate.convertAndSend("/sub/trade.list", ...) 보내면 여기서 받음
             stompClient.subscribe("/sub/trade.list", function (msg) {
                 console.log("📢 새 게시글 알림 도착:", msg.body);
-                // 리스트 다시 로드해서 새 글 바로 보이게
+                // 리스트 다시 로드해서 새 글 바로 보이게.
                 location.reload();
             });
         });
