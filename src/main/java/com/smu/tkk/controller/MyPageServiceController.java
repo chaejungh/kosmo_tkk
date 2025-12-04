@@ -1,8 +1,10 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.Faq;
 import com.smu.tkk.entity.Inquiry;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.ServiceNotice;
+import com.smu.tkk.service.FaqService;
 import com.smu.tkk.service.InquiryService;
 import com.smu.tkk.service.MemberService;
 import com.smu.tkk.service.NoticeService;
@@ -29,6 +31,7 @@ public class MyPageServiceController {
     private final NoticeService serviceNoticeService;
     private final InquiryService inquiryService;
     private final MemberService memberService;
+    private final FaqService faqService;
 
     @GetMapping("/notice")
     public String noticeList(Model model,
@@ -52,8 +55,21 @@ public class MyPageServiceController {
         }
 
     @GetMapping("/faq")
-    public String faqList() {
+    public String faqList(Model model, @PageableDefault(size = 10,sort = "sortOrder") Pageable pageable) throws SQLException {
+        Page<Faq> faqList = faqService.readAll(pageable);
+
+        model.addAttribute("faqList", faqList);
+
         return "mypage/service/faq";
+    }
+
+    @GetMapping("/faq/{id}")
+    public String faqDetail(@PathVariable Long id, Model model) throws SQLException {
+        Faq faq = faqService.readById(id);
+
+        model.addAttribute("faq", faq);
+
+        return "mypage/service/faq_detail";
     }
 
     @GetMapping("/{memberId}/inquiries")

@@ -28,7 +28,7 @@
     <div class="post-list">
         <a class="post-item"
            th:each="post : ${boardsPage.getContent()}"
-           th:href="@{|/board/${post.category.code}/${post.id}|}">
+           th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/detail.do'}">
 
             <div class="post-title" th:text="${post.title}"></div>
 
