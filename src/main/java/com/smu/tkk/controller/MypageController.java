@@ -1,13 +1,7 @@
 package com.smu.tkk.controller;
 
-import com.smu.tkk.entity.BoardLike;
-import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.Member;
-import com.smu.tkk.entity.StoreBookmark;
-import com.smu.tkk.service.BoardService;
-import com.smu.tkk.service.MemberService;
-import com.smu.tkk.service.NoticeService;
-import com.smu.tkk.service.StoreService;
+import com.smu.tkk.entity.*;
+import com.smu.tkk.service.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +34,7 @@ public class MypageController {
     private final BoardService boardService;
     private final StoreService storeService;
     private final MemberService memberService;
+    private final BoardBookmarkService boardBookmarkService;
 
 //    @Autowired
 //    public MypageController(BoardService boardService) {
@@ -101,16 +96,18 @@ public class MypageController {
     }
 
     @GetMapping("/{memberId}/bookmarks")
-    public String myStoreBookmarks(@PathVariable("memberId") Long memberId,
-                                   Pageable pageable,
-                                   Model model) throws SQLException {
-        Page<StoreBookmark> storeBookmarks = storeService.myBookmarks(memberId, pageable);
+    public String myPostBookmarks(@PathVariable Long memberId,
+                                  Pageable pageable,
+                                  Model model) throws Exception {
 
-        model.addAttribute("storeBookmarks", storeBookmarks);
+        Page<BoardBookmark> postBookmarks = boardBookmarkService.readByMemberId(memberId, pageable);
+
+        model.addAttribute("postBookmarks", postBookmarks);
         model.addAttribute("memberId", memberId);
 
         return "mypage/board/my_board_bookmarks";
     }
+
 
     @PostMapping("/{memberId}/profile")
     public String updateProfile(
