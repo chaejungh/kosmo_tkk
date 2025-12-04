@@ -322,101 +322,102 @@
 </button>
 
 <script th:inline="javascript" layout:fragment="script">
+    document.addEventListener('DOMContentLoaded', () => { //이벤트리스너가 html모두 출력 동작하기위해 있음.
 
+        const postList = document.getElementById("postList");
+        const viewListBtn = document.getElementById("viewListBtn");
+        const viewPhotoBtn = document.getElementById("viewPhotoBtn");
 
-    const postList = document.getElementById("postList");
-    const viewListBtn = document.getElementById("viewListBtn");
-    const viewPhotoBtn = document.getElementById("viewPhotoBtn");
+        // 타임리프에서 memberId 값을 JS 변수로 주입
+        const memberId = /*[[${memberId}]]*/ 0;
 
-    // 타임리프에서 memberId 값을 JS 변수로 주입
-    const memberId = /*[[${memberId}]]*/ 0;
-
-    document.querySelectorAll('.post-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const postId = card.dataset.postId;
-            // 원하는 URL 패턴에 맞게 수정해서 사용
-            // 예) /mcboard/{memberId}/{postId}/detail.do
-            // th:if="${memberId == null}"
-            //     th:onclick="|location.href='@{/board/not-allowed}'|"
-            if (memberId == null){//비회원이면 조회불가
-                const url = `/board/not-allowed`;
-                window.location.href = url;
-                return;
-            }
-            const url = `/mcboard/${memberId}/article/${postId}/detail.do`;
-            window.location.href = url;
-        });
-    });
-    /* 리스트 보기 */
-    viewListBtn.onclick = () => {
-        postList.classList.remove("photo-view");
-        viewListBtn.classList.add("active");
-        viewPhotoBtn.classList.remove("active");
-    };
-
-    /* 사진 보기 */
-    viewPhotoBtn.onclick = () => {
-        postList.classList.add("photo-view");
-        viewPhotoBtn.classList.add("active");
-        viewListBtn.classList.remove("active");
-    };
-
-    /* ===== 정렬 메뉴 기능 ===== */
-    const sortBtn = document.getElementById("sortBtn");      // 아이콘 버튼
-    const sortMenu = document.getElementById("sortMenu");    // 메뉴 박스
-    const sortOptions = document.querySelectorAll(".sort-option");
-
-    // 정렬 버튼 클릭 → 메뉴 열기/닫기
-    sortBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        sortMenu.classList.toggle("hidden");
-    });
-
-    // 정렬 옵션 클릭 → 메뉴 닫기 + 적용
-    sortOptions.forEach(option => {
-        option.addEventListener("click", () => {
-            sortOptions.forEach(o => o.classList.remove("active"));
-            option.classList.add("active");
-
-            sortMenu.classList.add("hidden");
-
-            console.log("정렬:", option.dataset.sort);
-        });
-    });
-
-    // 화면 클릭하면 닫힘
-    document.addEventListener("click", () => {
-        sortMenu.classList.add("hidden");
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-        bindSortChange();
-    });
-
-    function bindSortChange() { // 페이지 정렬 (최신순, 인기순)
-        const sortOptions = document.querySelectorAll('#sortMenu .sort-option');
-
-        sortOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const sortType = option.dataset.sort; // "latest" or "popular"
-                const url = new URL(window.location.href);
-
-                // ✅ Spring Pageable이 이해하는 sort 파라미터로 변환
-                if (sortType === 'latest') {
-                    // createdAt 기준 최신순
-                    url.searchParams.set('sort', 'createdAt,desc');
-                } else if (sortType === 'popular') {
-                    // likeCount 기준 인기순
-                    url.searchParams.set('sort', 'likeCount,desc');
+        document.querySelectorAll('.post-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const postId = card.dataset.postId;
+                // 원하는 URL 패턴에 맞게 수정해서 사용
+                // 예) /mcboard/{memberId}/{postId}/detail.do
+                // th:if="${memberId == null}"
+                //     th:onclick="|location.href='@{/board/not-allowed}'|"
+                if (memberId == null) {//비회원이면 조회불가
+                    const url = `/board/not-allowed`;
+                    window.location.href = url;
+                    return;
                 }
-
-                // 페이지는 0부터 시작
-                url.searchParams.set('page', 0);
-
-                window.location.href = url.toString();
+                const url = `/mcboard/${memberId}/article/${postId}/detail.do`;
+                window.location.href = url;
             });
         });
-    }
+        /* 리스트 보기 */
+        viewListBtn.onclick = () => {
+            postList.classList.remove("photo-view");
+            viewListBtn.classList.add("active");
+            viewPhotoBtn.classList.remove("active");
+        };
+
+        /* 사진 보기 */
+        viewPhotoBtn.onclick = () => {
+            postList.classList.add("photo-view");
+            viewPhotoBtn.classList.add("active");
+            viewListBtn.classList.remove("active");
+        };
+
+        /* ===== 정렬 메뉴 기능 ===== */
+        const sortBtn = document.getElementById("sortBtn");      // 아이콘 버튼
+        const sortMenu = document.getElementById("sortMenu");    // 메뉴 박스
+        const sortOptions = document.querySelectorAll(".sort-option");
+
+        // 정렬 버튼 클릭 → 메뉴 열기/닫기
+        sortBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            sortMenu.classList.toggle("hidden");
+        });
+
+        // 정렬 옵션 클릭 → 메뉴 닫기 + 적용
+        sortOptions.forEach(option => {
+            option.addEventListener("click", () => {
+                sortOptions.forEach(o => o.classList.remove("active"));
+                option.classList.add("active");
+
+                sortMenu.classList.add("hidden");
+
+                console.log("정렬:", option.dataset.sort);
+            });
+        });
+
+        // 화면 클릭하면 닫힘
+        document.addEventListener("click", () => {
+            sortMenu.classList.add("hidden");
+        });
+
+
+        bindSortChange();
+
+
+        function bindSortChange() { // 페이지 정렬 (최신순, 인기순)
+            const sortOptions = document.querySelectorAll('#sortMenu .sort-option');
+
+            sortOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const sortType = option.dataset.sort; // "latest" or "popular"
+                    const url = new URL(window.location.href);
+
+                    // ✅ Spring Pageable이 이해하는 sort 파라미터로 변환
+                    if (sortType === 'latest') {
+                        // createdAt 기준 최신순
+                        url.searchParams.set('sort', 'createdAt,desc');
+                    } else if (sortType === 'popular') {
+                        // likeCount 기준 인기순
+                        url.searchParams.set('sort', 'likeCount,desc');
+                    }
+
+                    // 페이지는 0부터 시작
+                    url.searchParams.set('page', 0);
+
+                    window.location.href = url.toString();
+                });
+            });
+        }
+    });
 
 </script>
 </body>
