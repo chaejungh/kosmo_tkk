@@ -86,7 +86,6 @@ public class TradeServiceImp implements TradeService {
        ============================================================ */
     private String calcTimeAgo(LocalDateTime createdAt) {
 
-
         if (createdAt == null) return "등록 시간 없음";
 
         LocalDateTime now = LocalDateTime.now();
@@ -141,13 +140,17 @@ public class TradeServiceImp implements TradeService {
         if (post.getPrice() == null) dto.setPriceText("가격 미정");
         else dto.setPriceText(String.format("%,d원", post.getPrice()));
 
-        // ⏱ 여기서 항상 "현재 시간 기준"으로 문자열 계산됨
+        // ⏰ 상대 시간 표시
         dto.setTimeAgo(calcTimeAgo(post.getCreatedAt()));
 
+        // 🖼 썸네일 이미지
         Optional<TradePostImage> imgOpt =
                 tradePostImageRepository.findFirstByTradeIdOrderBySortOrderAscIdAsc(post.getId());
 
-        String thumbnail = imgOpt.map(TradePostImage::getImageUrl)
+        // 🔥 여기만 변경: DB에 있는 URL → 프리사인드 URL로 변환
+        String thumbnail = imgOpt
+                .map(TradePostImage::getImageUrl)              // DB에 저장된 원래 URL
+                .map(s3StorageService::createPresignedFromFullUrl) // 10분짜리 프리사인드 URL로 변환
                 .orElse("/images/dummy/noimg.png");
 
         dto.setThumbnailUrl(thumbnail);

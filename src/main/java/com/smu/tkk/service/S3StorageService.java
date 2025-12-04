@@ -14,9 +14,14 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3ClientBuilder;
 import software.amazon.awssdk.services.s3.S3Configuration;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
+import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequest;
 
 import java.io.IOException;
 import java.net.URI;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -73,6 +78,25 @@ public class S3StorageService {
     }
 
     /**
+     * 🔧 S3Presigner 생성 (프리사인드 URL용)
+     */
+    private S3Presigner createPresigner() {
+        S3Presigner.Builder builder = S3Presigner.builder()
+                .region(Region.of(region))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(accessKey, secretKey)
+                        )
+                );
+
+        if (endpoint != null && !endpoint.isBlank()) {
+            builder = builder.endpointOverride(URI.create(endpoint));
+        }
+
+        return builder.build();
+    }
+
+    /**
      * 🔥 S3에 파일 업로드하고, 접근 가능한 URL을 리턴
      */
     public String upload(MultipartFile file) {
@@ -119,5 +143,59 @@ public class S3StorageService {
             log.error("❌ [S3 업로드 실패] {}", e.getMessage(), e);
             throw new RuntimeException("S3 파일 업로드 실패: " + e.getMessage(), e);
         }
+    }
+
+    // ============================================================
+    // 🔥 여기부터 프리사인드 URL 관련 기능
+    // ============================================================
+
+    /**
+     * 전체 URL에서 S3 key 부분만 추출
+     * 예) https://bucket.s3.region.amazonaws.com/trade/aaa.png
+     *   -> trade/aaa.png
+     */
+    public String extractKeyFromUrl(String url) {
+        try {
+            URI uri = URI.create(url);
+            String path = uri.getPath();   // "/trade/xxx..."
+            return path.startsWith("/") ? path.substring(1) : path;
+        } catch (Exception e) {
+            // 혹시 파싱 실패하면 그냥 원래 값 반환
+            return url;
+        }
+    }
+
+    /**
+     * S3 key 로부터 10분짜리 프리사인드 GET URL 생성
+     */
+    public String createPresignedGetUrl(String key) {
+        S3Presigner presigner = createPresigner();
+        try {
+            GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                    .bucket(bucket)
+                    .key(key)
+                    .build();
+
+            GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
+                    .signatureDuration(Duration.ofMinutes(10)) // 10분 유효
+                    .getObjectRequest(getObjectRequest)
+                    .build();
+
+            PresignedGetObjectRequest presigned =
+                    presigner.presignGetObject(presignRequest);
+
+            return presigned.url().toString();
+        } finally {
+            presigner.close();
+        }
+    }
+
+    /**
+     * DB에 전체 URL이 들어있을 때,
+     * 그걸 프리사인드 URL로 변환해 주는 helper
+     */
+    public String createPresignedFromFullUrl(String url) {
+        String key = extractKeyFromUrl(url);
+        return createPresignedGetUrl(key);
     }
 }
