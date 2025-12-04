@@ -36,7 +36,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.772'
+
+    implementation 'software.amazon.awssdk:s3:2.25.26'
+    implementation 'software.amazon.awssdk:auth:2.25.26'
+
     // 🔹 Spring AI + Ollama (티스토리 글이랑 같은 계열)
     implementation "org.springframework.ai:spring-ai-starter-model-ollama"
 

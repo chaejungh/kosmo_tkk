@@ -2,14 +2,14 @@ package com.smu.tkk.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -78,10 +78,11 @@ public class TradePost {
     private Long likeCount;
 
     /** 🔥 LocalDate → LocalDateTime 변경 완료! */
+    @CreationTimestamp
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT", updatable = false)
     private LocalDateTime createdAt;
-
+    @UpdateTimestamp
     @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
 
@@ -103,4 +104,5 @@ public class TradePost {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
+
 }
