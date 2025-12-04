@@ -118,7 +118,8 @@ public class MypageController {
             @RequestParam String nickname,
             @RequestParam String intro,
             @RequestParam(required = false) String profileImage,
-            Model model
+            Model model,
+            HttpSession session
     ) throws IOException, SQLException {
         Member member = memberService.readOne(memberId);
         member.setNickname(nickname);
@@ -126,6 +127,7 @@ public class MypageController {
         member.setIntro(newIntro);
         member.setProfileImageUrl(profileImage);
         memberService.modify(member);
+        session.setAttribute("loginMember", member);
         model.addAttribute("member", member);
         return "redirect:/mypage/" + memberId + "/";
     }
@@ -136,5 +138,11 @@ public class MypageController {
 
         return "mypage/service/setting_alarm";
     }
+    @ModelAttribute("nickname")
+    public String addNicknameToModel(HttpSession session) {
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        return (loginMember != null) ? loginMember.getNickname() : null;
+    }
+
 
 }
