@@ -129,11 +129,108 @@
         <!-- ============ 댓글 입력 ============ -->
         <section class="card comment-write-card">
             <div class="comment-write-title">
-                댓글 (<span th:text="${post.commentCount}">0</span>)
+                댓글 (<span th:text="${commentList.size()}">0</span>)
             </div>
-            <div class="comment-input-row">
-                <input type="text" placeholder="댓글을 입력해 주세요 :)">
-                <button type="button">댓글 달기</button>
+
+            <form th:action="@{'/mcboard/' + ${memberId} + '/article/' + ${post.id} + '/comment/write.do'}"
+                  method="post">
+
+                <div class="comment-input-row">
+                    <input name="content" type="text" placeholder="댓글을 입력해 주세요 :)">
+                    <button type="submit">댓글 달기</button>
+                </div>
+            </form>
+            <style>
+                .comment-list {
+                    margin-top: 20px;
+                }
+
+                .comment-item {
+                    border: 1px solid #ddd;
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 12px;
+                    background: #fafafa;
+                    transition: 0.2s;
+                }
+
+                .comment-item:hover {
+                    background: #f0f0f0;
+                }
+
+                .comment-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 6px;
+                }
+
+                .comment-writer {
+                    font-weight: 600;
+                    color: #333;
+                }
+
+                .comment-date {
+                    font-size: 13px;
+                    color: #888;
+                    margin-left: 10px;
+                }
+
+                .comment-delete-btn {
+                    font-size: 13px;
+                    color: #725bff;
+                    text-decoration: none;
+                    margin-left: 10px;
+                }
+
+                .comment-delete-btn:hover {
+                    text-decoration: underline;
+                }
+
+                .comment-content {
+                    font-size: 15px;
+                    color: #444;
+                    line-height: 1.4;
+                    margin-top: 5px;
+                    white-space: pre-wrap;
+                }
+
+                .comment-empty {
+                    text-align: center;
+                    padding: 20px;
+                    color: #666;
+                }
+            </style>
+            <!-- ============ 댓글 리스트 ============ -->
+            <div class="comment-list">
+
+                <div th:if="${#lists.isEmpty(commentList)}"
+                     class="comment-empty">
+                    등록된 댓글이 없습니다.
+                </div>
+
+                <div th:each="c : ${commentList}" class="comment-item">
+
+                    <!-- 댓글 상단 (닉네임 + 날짜 + 삭제 버튼) -->
+                    <div class="comment-header">
+                        <span class="comment-writer" th:text="${c.member.nickname}">닉네임</span>
+
+                        <span class="comment-date"
+                              th:text="${c.createdAt}">2025-01-01</span>
+
+                        <a th:href="@{'/mcboard/' + ${memberId} + '/article/' + ${post.id} +
+                        '/comment/' + ${c.id} + '/delete.do'}"
+                           class="comment-delete-btn">
+                            삭제
+                        </a>
+                    </div>
+
+                    <!-- 댓글 내용 -->
+                    <div class="comment-content" th:text="${c.content}">
+                        댓글 내용
+                    </div>
+
+                </div>
             </div>
         </section>
 

@@ -79,7 +79,18 @@ public class MypageController {
         model.addAttribute("boardsPage", boardsPage);
         return "mypage/board/my_board_posts";
     }
-
+    @PostMapping("/profile/{memberId}")
+    public String profileNickname(
+            @PathVariable Long memberId,
+            @RequestParam String nickname,
+            Model model
+    ) throws SQLException {
+        Member member = memberService.readOne(memberId);
+        member.setNickname(nickname);
+        memberService.modify(member);
+        model.addAttribute("member", member);
+        return "redirect:/mypage/" + memberId ;
+    }
     @GetMapping("/{memberId}/likes")
     public String myPostLike(Model model, @PathVariable Long memberId, Pageable pageable) throws SQLException {
 
@@ -111,8 +122,9 @@ public class MypageController {
     ) throws IOException, SQLException {
         Member member = memberService.readOne(memberId);
         member.setNickname(nickname);
+        String newIntro = "안녕하세요, " + nickname + "입니다.";
+        member.setIntro(newIntro);
         member.setProfileImageUrl(profileImage);
-        member.setIntro(intro);
         memberService.modify(member);
         model.addAttribute("member", member);
         return "redirect:/mypage/" + memberId + "/";
@@ -124,4 +136,5 @@ public class MypageController {
 
         return "mypage/service/setting_alarm";
     }
+
 }
