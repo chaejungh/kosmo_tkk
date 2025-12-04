@@ -198,7 +198,7 @@ public class TradeController {
         // 글 + 이미지 저장
         tradeService.createPostWithImages(post, images);
 
-        // ★★ 새 글 등록됨 → 리스트 보고 있는 사람들한테 알림 푸시
+        // ★★ 새 글 등록됨 → 리스트 보고 있는 사람들한테 알림 푸시.
         messagingTemplate.convertAndSend("/sub/trade.list", "NEW_POST");
 
         return "redirect:/trade/list.do";
