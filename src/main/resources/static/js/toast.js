@@ -2,7 +2,7 @@ if (memberId) {
     const es = new EventSource(`/alarm/stream/${memberId}`);
 
     es.addEventListener("notification", (event) => {
-        showToast(event.data);   // 드디어 토스트 뜸!
+        showToast(event.data);   //
         console.log(event.data);
     });
 }
