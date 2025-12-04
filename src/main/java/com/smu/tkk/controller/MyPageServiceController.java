@@ -41,7 +41,7 @@ public class MyPageServiceController {
 
         return "mypage/service/notices";   // ← HTML
     }
-        /*@GetMapping("/notice/{id}")
+        @GetMapping("/notice/{id}")
         public String noticeDetail(@PathVariable Long id, Model model) throws SQLException {
 
             // 2. 단일 조회
@@ -49,7 +49,7 @@ public class MyPageServiceController {
             model.addAttribute("notice", notice);
 
             return "mypage/service/notices_detail";  // ← 상세보기 HTML
-        }*/
+        }
 
     @GetMapping("/faq")
     public String faqList() {

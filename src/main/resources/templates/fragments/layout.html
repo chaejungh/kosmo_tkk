@@ -30,7 +30,6 @@
         console.log(memberId)
 
     </script>
-    <script  defer th:src="@{/js/toast.js}"></script>
 </head>
 <body>
 
@@ -75,16 +74,25 @@
             <span>내정보</span>
         </a>
     </nav>
-<script layout:fragment="script">
-
+<script>
+    console.log(memberId)
     if (memberId) {
-        const es = new EventSource(`/alarm/stream/${memberId}`);
+        const connectSSE = () => {
 
-        es.addEventListener("notification", (event) => {
-            const setting = localStorage.getItem("board_alert_on");
-            if (setting === "N") return;
-            showToast(event.data);
-        });
+            const es = new EventSource(`/alarm/stream/${memberId}`);
+            console.log(es)
+
+            es.addEventListener("notification", (event) => {
+                const setting = localStorage.getItem("board_alert_on");
+                if (setting === "N") return;
+                showToast(event.data);
+            });
+            es.onerror = () => {
+                console.log("SSE 연결 끊김 → 재연결 중...");
+                setTimeout(connectSSE, 3000);
+            };
+        };
+        connectSSE();
     }
 
     function showToast(message) {
@@ -94,6 +102,8 @@
         new bootstrap.Toast(toastEl).show();
     }
 
+</script>
+<script layout:fragment="script">
 </script>
 </body>
 </html>

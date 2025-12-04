@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>공지사항 상세 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f6f3ff;
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+        }
+
+        .mypage-page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .notice-box {
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .notice-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .notice-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .notice-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            white-space: pre-line;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #444;
+        }
+    </style>
 </head>
+
 <body>
+
+<div class="mypage-page">
+
+    <a href="/mypage" class="back-btn">← 공지사항 목록</a>
+
+    <div class="notice-box">
+
+        <!-- 제목 -->
+        <div class="notice-title">🔧 서비스 점검 안내</div>
+
+        <!-- 날짜 (원하면 th:text로 동적 처리 가능) -->
+        <div class="notice-date">2024-11-20</div>
+
+        <!-- 내용 -->
+        <div class="notice-content">
+            더쿠쿠 서비스 안정화 작업을 위한 점검이 예정되어 있습니다.
+
+            ⏱ 점검 일시
+            - **11월 20일(수) 00:00 ~ 04:00**
+
+            🔧 점검 영향
+            - 점검 시간 동안 서비스 이용이 일시적으로 불가할 수 있습니다.
+
+            더 좋은 서비스를 제공하기 위한 필수 작업이오니
+            이용자 여러분의 양해 부탁드립니다.
+
+            감사합니다.
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
