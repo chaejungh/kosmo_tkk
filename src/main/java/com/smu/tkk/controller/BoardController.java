@@ -1,10 +1,7 @@
 package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.BoardWriteValid;
-import com.smu.tkk.entity.BoardCategory;
-import com.smu.tkk.entity.BoardLike;
-import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.Member;
+import com.smu.tkk.entity.*;
 import com.smu.tkk.service.BoardLikeService;
 import com.smu.tkk.service.BoardService;
 import com.smu.tkk.service.MemberService;
@@ -22,6 +19,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.smu.tkk.service.CommentService;
+import org.springframework.data.domain.PageRequest;
+import com.smu.tkk.entity.BoardComment;
+
+
+
+
 
 import java.sql.SQLException;
 import java.util.List;
@@ -31,6 +35,8 @@ public class BoardController {
     private final BoardService boardService;
     private final BoardLikeService boardLikeService;
     private final MemberService memberService;
+    private final CommentService commentService;
+
 
     // 리스트 컨트롤러 ---------------------------------------------
 
@@ -96,9 +102,15 @@ public class BoardController {
         BoardPost post = boardService.readOne(postId);
         BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
 
+        List<BoardComment> commentList =
+                commentService.readByPost(postId, PageRequest.of(0, 100));
+
+        model.addAttribute("commentList", commentList);
+
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
         model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
+        model.addAttribute("commentList", commentList);
 
         return "board/mcboard_detail"; // 상세 템플릿 이름
     }
@@ -297,6 +309,50 @@ public class BoardController {
 
         return viewName;
     }
+    // =============================
+// 댓글 등록
+// =============================
+    @PostMapping("/mcboard/{memberId}/article/{postId}/comment/write.do")
+    public String writeComment(
+            @PathVariable Long memberId,
+            @PathVariable Long postId,
+            @RequestParam("content") String content
+    ) throws Exception {
 
+        // 1️⃣ 게시글 불러오기 (작성자 정보 포함)
+        BoardPost post = boardService.readOne(postId);
 
+        // 2️⃣ 댓글 객체 생성
+        BoardComment comment = new BoardComment();
+        comment.setContent(content);
+
+        // 3️⃣ 댓글 작성자 넣기
+        Member member = new Member();
+        member.setId(memberId);   // ★ 로그인한 사용자 ID (URL에서 받음)
+        comment.setMember(member);
+
+        // 4️⃣ 어떤 게시글에 달린 댓글인지 지정
+        comment.setPost(post);
+
+        // 5️⃣ 저장
+        commentService.register(comment);
+
+        // 6️⃣ 다시 원래 화면으로 돌아가기
+        return "redirect:/mcboard/" + memberId + "/article/" + postId + "/detail.do";
+    }
+
+    // =============================
+// 댓글 삭제
+// =============================
+    @GetMapping("/mcboard/{memberId}/article/{postId}/comment/{commentId}/delete.do")
+    public String deleteComment(
+            @PathVariable Long memberId,
+            @PathVariable Long postId,
+            @PathVariable Long commentId
+    ) throws Exception {
+
+        commentService.remove(commentId);
+
+        return "redirect:/mcboard/" + memberId + "/article/" + postId + "/detail.do";
+    }
 }

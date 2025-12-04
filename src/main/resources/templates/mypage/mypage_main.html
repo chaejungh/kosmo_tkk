@@ -34,6 +34,47 @@
             <!-- 한 줄 소개 -->
             <div id="intro" class="intro editable" th:text="${member.intro}">한 줄 소개를 입력해 주세요.</div>
 
+            <!-- ========== 닉네임 변경 영역 ========== -->
+            <div class="profile-edit-box">
+
+                <!-- 닉네임 변경 버튼 -->
+                <button id="nicknameEditBtn" class="nickname-edit-btn">
+                    닉네임 변경
+                </button>
+
+                <!-- 닉네임 변경 폼 (처음에는 숨김) -->
+                <form id="nicknameForm"
+                      th:action="@{'/mypage/profile/{id}' (id=${member.id})}"
+                      method="post"
+                      style="display:none; margin-top:12px;">
+
+                    <input type="text"
+                           name="nickname"
+                           placeholder="새 닉네임을 입력하세요"
+                           required
+                           class="nickname-input">
+
+                    <input type="hidden" name="intro" value="">
+                    <input type="hidden" name="profileImage" th:value="${member.profileImageUrl}">
+
+                    <button type="submit" class="nickname-save-btn">저장</button>
+
+                    <!-- 🔥 새로 추가되는 취소 버튼 -->
+                    <button type="button" id="nicknameCancelBtn" class="nickname-cancel-btn">
+                        취소
+                    </button>
+                </form>
+            </div>
+            <script>
+                document.getElementById("nicknameEditBtn").onclick = function () {
+                    document.getElementById("nicknameForm").style.display = "block";
+                };
+
+                // 🔥 취소 버튼 클릭 시 입력폼 숨기기
+                document.getElementById("nicknameCancelBtn").onclick = function () {
+                    document.getElementById("nicknameForm").style.display = "none";
+                };
+            </script>
         </div>
     </div>
 
