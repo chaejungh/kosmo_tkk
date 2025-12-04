@@ -11,21 +11,24 @@
 
         <section class="card board-header-card">
             <div class="segmented-control">
-                <button class="seg-btn active"
-                        type="button"
-                        th:onclick="|location.href='@{/mcboard/list.do}'|">내 새끼 자랑</button>
                 <button class="seg-btn"
                         type="button"
-                        th:onclick="|location.href='@{/cosplayboard/list.do}'|">
+                        th:onclick="|location.href='@{/board/1/list.do}'|"
+                        th:classappend="${categoryId} == 1 ? ' active' : ''">내 새끼 자랑</button>
+                <button class="seg-btn"
+                        type="button"
+                        th:onclick="|location.href='@{/board/2/list.do}'|"
+                        th:classappend="${categoryId} == 2 ? ' active' : ''">
                     코스프레
                 </button>
                 <button class="seg-btn"
                         type="button"
-                        th:onclick="|location.href='@{/freeboard/list.do}'|">자유게시판</button>
+                        th:onclick="|location.href='@{/board/3/list.do}'|"
+                        th:classappend="${categoryId} == 3 ? ' active' : ''">자유게시판</button>
             </div>
 
             <div class="board-search-row">
-                <form method="post" th:action="@{/mcboard/list.do}">
+                <form method="post" th:action="@{/board/list.do}">
                     <div class="board-search-box">
                         <input class="col-7 form-control"
                                name="search"
@@ -112,7 +115,7 @@
 
                             <a class="hot-post-link"
                                 th:href="${memberId} == null ? @{/board/not-allowed} :
-                                        @{/mcboard/{memberId}/article/{postId}/detail.do(
+                                        @{/board/{memberId}/article/{postId}/detail.do(
                                         memberId=${memberId},
                                         postId=${post.id})}">
                                 <span class="hot-post-title d-inline d-md-none"
@@ -159,7 +162,7 @@
 
                             <a class="hot-post-link"
                                th:href="${memberId} == null ? @{/board/not-allowed} :
-                                        @{/mcboard/{memberId}/article/{postId}/detail.do(
+                                        @{/board/{memberId}/article/{postId}/detail.do(
                                         memberId=${memberId},
                                         postId=${post.id})}">
                                 <span class="hot-post-title d-inline d-md-none"
@@ -334,16 +337,12 @@
         document.querySelectorAll('.post-card').forEach(card => {
             card.addEventListener('click', () => {
                 const postId = card.dataset.postId;
-                // 원하는 URL 패턴에 맞게 수정해서 사용
-                // 예) /mcboard/{memberId}/{postId}/detail.do
-                // th:if="${memberId == null}"
-                //     th:onclick="|location.href='@{/board/not-allowed}'|"
                 if (memberId == null) {//비회원이면 조회불가
                     const url = `/board/not-allowed`;
                     window.location.href = url;
                     return;
                 }
-                const url = `/mcboard/${memberId}/article/${postId}/detail.do`;
+                const url = `/board/${memberId}/article/${postId}/detail.do`;
                 window.location.href = url;
             });
         });

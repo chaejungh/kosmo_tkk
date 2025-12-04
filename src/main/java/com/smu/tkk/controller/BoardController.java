@@ -18,9 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.smu.tkk.service.CommentService;
-import org.springframework.data.domain.PageRequest;
 import com.smu.tkk.entity.BoardComment;
 
 
@@ -34,57 +32,24 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final BoardLikeService boardLikeService;
-    private final MemberService memberService;
+
     private final CommentService commentService;
 
 
     // 리스트 컨트롤러 ---------------------------------------------
 
-    @GetMapping("/mcboard/list.do")
-    public String mcBoardList(
+    @GetMapping("/board/{categoryId}/list.do")
+    public String boardList(
+            @PathVariable Long categoryId,
             Model model,
             HttpSession session,
             @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
     ) throws SQLException {
 
-        Long categoryId = 1L; // 내 새끼 자랑
-        return renderBoardList(
-                categoryId,
-                "board/mcboard_list",
-                model,
-                session,
-                pageable,
-                null          // ★ 검색어 없음 → 일반 리스트
-        );
-    }
-    @GetMapping("/cosplayboard/list.do")
-    public String cosplayBoardList(
-            Model model,
-            HttpSession session,
-            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable)
-            throws SQLException {
 
-        Long categoryId = 2L; // 코스프레
         return renderBoardList(
                 categoryId,
-                "board/cosplayboard_list",
-                model,
-                session,
-                pageable,
-                null          // ★ 검색어 없음 → 일반 리스트
-        );
-    }
-    @GetMapping("/freeboard/list.do")
-    public String freeBoardList(
-            Model model,
-            HttpSession session,
-            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable)
-            throws SQLException {
-
-        Long categoryId = 3L; // 자유
-        return renderBoardList(
-                categoryId,
-                "board/freeboard_list",
+                "board/board_list",
                 model,
                 session,
                 pageable,
@@ -95,8 +60,8 @@ public class BoardController {
     // 디테일 컨트롤러 ---------------------------------------------
 
 
-    @GetMapping("/mcboard/{memberId}/article/{postId}/detail.do")
-    public String mcBoardDetail(@PathVariable Long memberId,
+    @GetMapping("/board/{memberId}/article/{postId}/detail.do")
+    public String boardDetail(@PathVariable Long memberId,
                                 @PathVariable Long postId,
                                 Model model) throws Exception {
         BoardPost post = boardService.readOne(postId);
@@ -112,34 +77,12 @@ public class BoardController {
         model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
         model.addAttribute("commentList", commentList);
 
-        return "board/mcboard_detail"; // 상세 템플릿 이름
-    }
-    @GetMapping("/cosplayboard/{memberId}/article/{postId}/detail.do")
-    public String cosplayBoardDetail(@PathVariable Long memberId,
-                                @PathVariable Long postId,
-                                Model model) throws Exception {
-        BoardPost post = boardService.readOne(postId);
-        BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
-        model.addAttribute("memberId", memberId);
-        model.addAttribute("post", post);
-        model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
-        return "board/cosplayboard_detail"; // 상세 템플릿 이름
-    }
-    @GetMapping("/freeboard/{memberId}/article/{postId}/detail.do")
-    public String freeBoardDetail(@PathVariable Long memberId,
-                                @PathVariable Long postId,
-                                Model model) throws Exception {
-        BoardPost post = boardService.readOne(postId);
-        BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
-        model.addAttribute("memberId", memberId);
-        model.addAttribute("post", post);
-        model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
-        return "board/freeboard_detail"; // 상세 템플릿 이름
+        return "board/board_detail"; // 상세 템플릿 이름
     }
 
     //    검색 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    @PostMapping("/mcboard/list.do")
-    public String mcBoardSearch(
+    @PostMapping("/board/list.do")
+    public String boardSearch(
             Model model,
             HttpSession session,
             @RequestParam(name = "search") String search,
@@ -149,54 +92,13 @@ public class BoardController {
         Long categoryId = 1L; // 내 새끼 자랑
         return renderBoardList(
                 categoryId,
-                "board/mcboard_list",
+                "board/board_list",
                 model,
                 session,
                 pageable,
                 search        // ★ 검색어 전달
         );
     }
-    @PostMapping("/cosplayboard/list.do")
-    public String cosplayBoardSearch(
-            Model model,
-            HttpSession session,
-            @RequestParam(name = "search") String search,
-            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
-    ) throws SQLException {
-
-        Long categoryId = 2L; // 내 새끼 자랑
-        return renderBoardList(
-                categoryId,
-                "board/cosplayboard_list",
-                model,
-                session,
-                pageable,
-                search        // ★ 검색어 전달
-        );
-    }
-    @PostMapping("/freeboard/list.do")
-    public String freeBoardSearch(
-            Model model,
-            HttpSession session,
-            @RequestParam(name = "search") String search,
-            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
-    ) throws SQLException {
-
-        Long categoryId = 3L; // 내 새끼 자랑
-        return renderBoardList(
-                categoryId,
-                "board/freeboard_list",
-                model,
-                session,
-                pageable,
-                search        // ★ 검색어 전달
-        );
-    }
-
-
-
-
-
 
 
 
@@ -215,7 +117,7 @@ public class BoardController {
     @GetMapping("/board")
     public String legacyBoardRoot() {
 
-        return "redirect:/mcboard/list.do";
+        return "redirect:/board/1/list.do";
     }
 
 
@@ -261,14 +163,14 @@ public class BoardController {
             if (!execute){
                 return "board/board_write";
             };
-            return "redirect:/mcboard/list.do";
+            return "redirect:/board/"+categoryId+"/list.do";
     }
 
 //    리스트 출력시 공통 메서드
 // ✅ 공통 리스트 + 검색 처리 메서드
     private String renderBoardList(
             Long categoryId,
-            String viewName,              // 예: "board/mcboard_list"
+            String viewName,              // 예: "board/board_list"
             Model model,
             HttpSession session,
             Pageable pageable,
@@ -300,6 +202,7 @@ public class BoardController {
         }
         // 3) 공통 모델 세팅
         Long memberId = (Long) session.getAttribute("memberId");
+        model.addAttribute("categoryId", categoryId);
         model.addAttribute("memberId", memberId);
         model.addAttribute("posts", posts);
         model.addAttribute("hotCurrentBoard", hotCurrentBoard);
@@ -312,7 +215,7 @@ public class BoardController {
     // =============================
 // 댓글 등록
 // =============================
-    @PostMapping("/mcboard/{memberId}/article/{postId}/comment/write.do")
+    @PostMapping("/board/{memberId}/article/{postId}/comment/write.do")
     public String writeComment(
             @PathVariable Long memberId,
             @PathVariable Long postId,
@@ -338,13 +241,13 @@ public class BoardController {
         commentService.register(comment);
 
         // 6️⃣ 다시 원래 화면으로 돌아가기
-        return "redirect:/mcboard/" + memberId + "/article/" + postId + "/detail.do";
+        return "redirect:/board/" + memberId + "/article/" + postId + "/detail.do";
     }
 
     // =============================
 // 댓글 삭제
 // =============================
-    @GetMapping("/mcboard/{memberId}/article/{postId}/comment/{commentId}/delete.do")
+    @GetMapping("/board/{memberId}/article/{postId}/comment/{commentId}/delete.do")
     public String deleteComment(
             @PathVariable Long memberId,
             @PathVariable Long postId,
@@ -353,6 +256,6 @@ public class BoardController {
 
         commentService.remove(commentId);
 
-        return "redirect:/mcboard/" + memberId + "/article/" + postId + "/detail.do";
+        return "redirect:/board/" + memberId + "/article/" + postId + "/detail.do";
     }
 }

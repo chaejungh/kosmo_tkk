@@ -132,7 +132,7 @@
                 댓글 (<span th:text="${commentList.size()}">0</span>)
             </div>
 
-            <form th:action="@{'/mcboard/' + ${memberId} + '/article/' + ${post.id} + '/comment/write.do'}"
+            <form th:action="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/comment/write.do'}"
                   method="post">
 
                 <div class="comment-input-row">
@@ -218,7 +218,7 @@
                         <span class="comment-date"
                               th:text="${c.createdAt}">2025-01-01</span>
 
-                        <a th:href="@{'/mcboard/' + ${memberId} + '/article/' + ${post.id} +
+                        <a th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} +
                         '/comment/' + ${c.id} + '/delete.do'}"
                            class="comment-delete-btn">
                             삭제
