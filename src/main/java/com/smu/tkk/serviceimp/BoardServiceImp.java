@@ -210,6 +210,16 @@ import java.util.Optional;
             return boardPostRepository
                     .findTop5ByDeletedYnOrderByLikeCountDesc("N");
         }
+
+        @Override
+        @Transactional
+        public void increaseViewCount(Long postId) throws SQLException {
+            BoardPost post = boardPostRepository.findById(postId)
+                    .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+            post.setViewCount(post.getViewCount() + 1);
+            boardPostRepository.save(post);
+
+        }
     }
 
 

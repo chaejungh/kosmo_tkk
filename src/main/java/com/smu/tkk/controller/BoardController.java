@@ -65,17 +65,22 @@ public class BoardController {
                                 @PathVariable Long postId,
                                 Model model) throws Exception {
         BoardPost post = boardService.readOne(postId);
+        boardService.increaseViewCount(postId);
         BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
 
         List<BoardComment> commentList =
                 commentService.readByPost(postId, PageRequest.of(0, 100));
 
-        model.addAttribute("commentList", commentList);
+        // 🔥 댓글 개수 조회 추가
+        long commentCount = commentService.countByPostId(postId);
+        model.addAttribute("commentCount", commentCount);
 
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
         model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
         model.addAttribute("commentList", commentList);
+        model.addAttribute("commentCount", commentCount);   // 🔥 추가된 부분
+        post.setCommentCount(commentService.countByPostId(post.getId()));
 
         return "board/board_detail"; // 상세 템플릿 이름
     }
@@ -188,6 +193,15 @@ public class BoardController {
             // 일반 리스트일 때
             posts = boardService.readByCategory(categoryId, pageable);
         }
+        // 🔥 각 게시글마다 댓글 개수 세팅
+        for (BoardPost post : posts.getContent()) {
+            long commentCount = commentService.countByPostId(post.getId());
+            post.setCommentCount(commentCount);
+        }
+        for (BoardPost post : posts.getContent()) {
+            long commentCount = commentService.countByPostId(post.getId());
+            post.setCommentCount(commentCount);
+        }
 
         // 2) 인기글 TOP5
         List<BoardPost> hotCurrentBoard = boardService.getHotPostsInCategory(categoryId);
@@ -222,20 +236,18 @@ public class BoardController {
             @RequestParam("content") String content
     ) throws Exception {
 
-        // 1️⃣ 게시글 불러오기 (작성자 정보 포함)
-        BoardPost post = boardService.readOne(postId);
+
 
         // 2️⃣ 댓글 객체 생성
         BoardComment comment = new BoardComment();
         comment.setContent(content);
 
         // 3️⃣ 댓글 작성자 넣기
-        Member member = new Member();
-        member.setId(memberId);   // ★ 로그인한 사용자 ID (URL에서 받음)
-        comment.setMember(member);
+          // ★ 로그인한 사용자 ID (URL에서 받음)
+        comment.setMemberId(memberId);
 
         // 4️⃣ 어떤 게시글에 달린 댓글인지 지정
-        comment.setPost(post);
+        comment.setPostId(postId);
 
         // 5️⃣ 저장
         commentService.register(comment);
