@@ -5,10 +5,9 @@ import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.repository.TradePostImageRepository;
 import com.smu.tkk.repository.TradePostRepository;
-import com.smu.tkk.service.FileStorageService;
+import com.smu.tkk.service.S3StorageService;
 import com.smu.tkk.service.TradeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,10 +24,7 @@ public class TradeServiceImp implements TradeService {
 
     private final TradePostRepository tradePostRepository;
     private final TradePostImageRepository tradePostImageRepository;
-    private final FileStorageService fileStorageService;
-
-    @Value("${file.upload-dir}")
-    private String uploadPath;
+    private final S3StorageService s3StorageService;
 
     @Override
     public TradePost registerTradePost(TradePost tradePost) {
@@ -76,7 +72,7 @@ public class TradeServiceImp implements TradeService {
     public void register(TradePost post) { }
 
     /* ============================================================
-       🔥 검색 기능 구현 (필수 수정)
+       🔥 검색 기능 구현
        ============================================================ */
     @Override
     public Page<TradePost> search(String keyword, Pageable pageable) {
@@ -104,7 +100,7 @@ public class TradeServiceImp implements TradeService {
     }
 
     /* ============================================================
-       🔥 리스트 DTO 변환 (컨트롤러 중복 제거)
+       🔥 리스트 DTO 변환
        ============================================================ */
     @Override
     public TradePostListDto toListDTO(TradePost post) {
@@ -114,14 +110,11 @@ public class TradeServiceImp implements TradeService {
         dto.setTitle(post.getTitle());
         dto.setRegion(post.getRegion() != null ? post.getRegion() : "지역 미지정");
 
-        // 가격 표시
         if (post.getPrice() == null) dto.setPriceText("가격 미정");
         else dto.setPriceText(String.format("%,d원", post.getPrice()));
 
-        // 상대 시간 표시
         dto.setTimeAgo(calcTimeAgo(post.getCreatedAt()));
 
-        // 썸네일 지정
         Optional<TradePostImage> imgOpt =
                 tradePostImageRepository.findFirstByTradeIdOrderBySortOrderAscIdAsc(post.getId());
 
@@ -145,31 +138,44 @@ public class TradeServiceImp implements TradeService {
     }
 
     /* ============================================================
-       🔥 이미지 저장 포함한 글 등록
+       🔥 이미지 저장 포함한 글 등록 (S3 적용)
        ============================================================ */
     @Override
     public void createPostWithImages(TradePost post, List<MultipartFile> images) {
 
+        // 1) 글 먼저 저장
         TradePost savedPost = tradePostRepository.save(post);
 
-        if (images == null || images.isEmpty()) return;
+        if (images == null || images.isEmpty()) {
+            System.out.println("⚠ createPostWithImages: 전달된 이미지가 없습니다.");
+            return;
+        }
+
+        System.out.println("✅ createPostWithImages: 이미지 개수 = " + images.size());
 
         int sortOrder = 1;
 
         for (MultipartFile file : images) {
-            if (file.isEmpty()) continue;
+            if (file.isEmpty()) {
+                System.out.println("⚠ 비어있는 파일 하나 건너뜀");
+                continue;
+            }
 
             try {
-                String imageUrl = fileStorageService.saveFile(file);
+                // 2) S3 업로드
+                String imageUrl = s3StorageService.upload(file);
 
+                // 3) DB에 이미지 정보 저장
                 TradePostImage img = new TradePostImage();
                 img.setTradeId(savedPost.getId());
                 img.setImageUrl(imageUrl);
                 img.setSortOrder((long) sortOrder++);
 
                 tradePostImageRepository.save(img);
+                System.out.println("✅ TradePostImage 저장 완료: " + imageUrl);
 
             } catch (Exception e) {
+                System.out.println("❌ createPostWithImages 내부 에러: " + e.getMessage());
                 e.printStackTrace();
             }
         }

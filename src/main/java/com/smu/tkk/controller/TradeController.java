@@ -148,6 +148,8 @@ public class TradeController {
         return "trade/trade_image_detail";
     }
 
+    // ...
+
     /* ===============================================================
        🔥 글쓰기 페이지
        ============================================================== */
@@ -173,6 +175,9 @@ public class TradeController {
     public String writeSubmit(@PathVariable Long memberId,
                               TradePost post,
                               @RequestParam("images") List<MultipartFile> images) {
+
+        System.out.println("📩 [writeSubmit] memberId=" + memberId
+                + ", 이미지 수=" + (images != null ? images.size() : 0));
 
         post.setSellerId(memberId);
 
