@@ -12,7 +12,7 @@
             alert('네이버 지도 인증 실패: NCP 콘솔 URL/Key 확인');
     </script>
 
-    <!-- 🔥 Bootstrap: 정적으로 로드 -->
+    <!-- Bootstrap (지금은 스타일만 쓸 수 있게 그대로 둠) -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -29,10 +29,6 @@
         .vbar{display:flex;flex-direction:column;gap:8px}
         .ctrl{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:#fff;border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;user-select:none}
         .ctrl.on{outline:2px solid var(--accent)}
-
-        .chipbar{display:flex;gap:8px;background:#ffffffea;border:1px solid var(--line);padding:6px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-        .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;cursor:pointer}
-        .chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 
         .panel{position:absolute;left:12px;bottom:12px;background:#fff;border:1px solid var(--line);
             border-radius:10px;padding:8px 10px;font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
@@ -135,19 +131,17 @@
 <section id="mapWrap">
     <div id="map"></div>
 
-    <!-- 오른쪽 도구모음 (자동차 경로 그리기 버튼 제거됨) -->
+    <!-- 오른쪽 도구모음 (자동차 경로/길찾기 패널 관련 버튼 제거됨) -->
     <div class="vbar" style="position:absolute;right:12px;top:50%;transform:translateY(-50%)">
         <div id="btnZoomIn"  class="ctrl" title="확대">+</div>
         <div id="btnZoomOut" class="ctrl" title="축소">−</div>
         <div id="btnMyLoc"   class="ctrl" title="내 위치">◎</div>
         <div id="btnWp"      class="ctrl" title="경유지 모드">W</div>
         <div id="btnWpClr"   class="ctrl" title="경유지 초기화">C</div>
-        <!-- <div id="btnRoute"   class="ctrl" title="자동차 경로 그리기">→</div>  👉 제거 -->
-        <!-- 브라우저 전체화면 토글 -->
-        <div id="btnFullscreen" class="ctrl" title="전체화면(길찾기 패널)">⛶</div>
+        <div id="btnFullscreen" class="ctrl" title="전체화면">⛶</div>
     </div>
 
-    <!-- 왼쪽 상단 초기화/길찾기 chip 영역 제거됨 -->
+    <!-- 왼쪽 상단 chip(초기화/길찾기) 완전 제거 -->
 
     <!-- 지도 안 검색 UI -->
     <div class="map-search-wrap">
@@ -161,77 +155,6 @@
 
     <div id="summary" class="panel">도착지를 검색하거나 지도를 클릭해 지정하세요.</div>
     <div id="toast" class="toast"></div>
-
-    <!-- 🔥 Bootstrap 오프캔버스 길찾기 패널 (지도 안에 넣음) -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="dirPanel" style="width:360px">
-        <div class="offcanvas-header">
-            <h6 class="offcanvas-title">길찾기 (네이버 딥링크)</h6>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav nav-pills mb-3" role="tablist">
-                <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tabCar" type="button">자동차</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabWalk" type="button">도보</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabTransit" type="button">대중교통</button>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <!-- 자동차 -->
-                <div class="tab-pane fade show active" id="tabCar">
-                    <div class="mb-2">
-                        <label class="form-label">출발지(위도,경도 또는 장소명)</label>
-                        <input id="sCar" class="form-control" placeholder="예) 37.5665,126.9780 / 서울역">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">도착지(위도,경도 또는 장소명)</label>
-                        <input id="eCar" class="form-control" placeholder="예) 37.4979,127.0276 / 강남역">
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary flex-fill" id="btnFillMyCar">내 위치</button>
-                        <button class="btn btn-outline-secondary flex-fill" id="btnUseMarkerCar">마커 사용</button>
-                        <button class="btn btn-primary flex-fill" id="btnGoCar">길찾기</button>
-                    </div>
-                </div>
-                <!-- 도보 -->
-                <div class="tab-pane fade" id="tabWalk">
-                    <div class="mb-2">
-                        <label class="form-label">출발지</label>
-                        <input id="sWalk" class="form-control" placeholder="예) 37.5665,126.9780 / 서울역">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">도착지</label>
-                        <input id="eWalk" class="form-control" placeholder="예) 37.4979,127.0276 / 강남역">
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary flex-fill" id="btnFillMyWalk">내 위치</button>
-                        <button class="btn btn-outline-secondary flex-fill" id="btnUseMarkerWalk">마커 사용</button>
-                        <button class="btn btn-primary flex-fill" id="btnGoWalk">길찾기</button>
-                    </div>
-                </div>
-                <!-- 대중교통 -->
-                <div class="tab-pane fade" id="tabTransit">
-                    <div class="mb-2">
-                        <label class="form-label">출발지</label>
-                        <input id="sTransit" class="form-control" placeholder="예) 37.5665,126.9780 / 서울역">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">도착지</label>
-                        <input id="eTransit" class="form-control" placeholder="예) 37.4979,127.0276 / 강남역">
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary flex-fill" id="btnFillMyTransit">내 위치</button>
-                        <button class="btn btn-outline-secondary flex-fill" id="btnUseMarkerTransit">마커 사용</button>
-                        <button class="btn btn-primary flex-fill" id="btnGoTransit">길찾기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <script>
@@ -254,25 +177,6 @@
     let searchMarkers = [];
     let lastPlaces = [];
     window.searchPlaces = [];
-
-    // 길찾기 패널
-    let dirOffcanvas = null;
-
-    function initDirPanel(){
-        const panel = $('#dirPanel');
-        if(!panel || !window.bootstrap || !window.bootstrap.Offcanvas) return;
-
-        dirOffcanvas = new window.bootstrap.Offcanvas(panel);
-
-        ['Car','Walk','Transit'].forEach(k=>{
-            const fill = $('#btnFillMy'+k);
-            const use  = $('#btnUseMarker'+k);
-            const go   = $('#btnGo'+k);
-            if(fill) fill.onclick = ()=> fillMy(k);
-            if(use)  use.onclick  = ()=> useMarkers(k);
-            if(go)   go.onclick   = ()=> launchDeepLink(k);
-        });
-    }
 
     function boot(){
         map = new naver.maps.Map('map', {
@@ -331,28 +235,15 @@
 
         document.addEventListener('fullscreenchange', onFullscreenChange);
 
-        // Bootstrap 로드가 끝났을 때 패널 초기화
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            setTimeout(initDirPanel, 0);
-        } else {
-            document.addEventListener('DOMContentLoaded', initDirPanel);
-        }
-
         toast('지도 준비 완료');
     }
 
-    // ===== 전체화면 상태 변경 =====
+    // ===== 전체화면 상태 변경 (길찾기 패널 없이, 그냥 지도만 확대) =====
     function onFullscreenChange(){
         const wrap = $('#mapWrap');
         const fs = (document.fullscreenElement === wrap);
         wrap.classList.toggle('fs', fs);
         $('#btnFullscreen').classList.toggle('on', fs);
-
-        if(fs){
-            openDirectionsPanel();
-        }else{
-            closeDirectionsPanel();
-        }
 
         syncResultPanelForFullscreen();
 
@@ -439,76 +330,6 @@
         }
     }
 
-    // ===== 길찾기 패널 열고 닫기 =====
-    function openDirectionsPanel(){
-        if(!dirOffcanvas) initDirPanel();
-        if(dirOffcanvas){
-            dirOffcanvas.show();
-            ['Car','Walk','Transit'].forEach(useMarkers);
-        }
-    }
-    function closeDirectionsPanel(){
-        if(dirOffcanvas) dirOffcanvas.hide();
-    }
-
-    // ===== 딥링크 공통 =====
-    function parseLatLngOrGeocode(text, cb){
-        if(!text) return cb(null);
-        const m = text.trim().match(/^\s*(-?\d+(\.\d+)?)\s*,\s*(-?\d+(\.\d+)?)\s*$/);
-        if(m) return cb(new naver.maps.LatLng(parseFloat(m[1]),parseFloat(m[3])));
-        naver.maps.Service.geocode({query:text},(st,r)=>{
-            if(st!==naver.maps.Service.Status.OK || !r?.v2?.addresses?.length) return cb(null);
-            const a=r.v2.addresses[0];
-            cb(new naver.maps.LatLng(+a.y,+a.x));
-        });
-    }
-    function fillMy(k){
-        if(!('geolocation'in navigator)) return toast('위치 권한 필요');
-        navigator.geolocation.getCurrentPosition(p=>{
-            $('#s'+k).value = `${p.coords.latitude.toFixed(6)},${p.coords.longitude.toFixed(6)}`;
-        },()=>toast('위치 권한 필요'));
-    }
-    function useMarkers(k){
-        const sInput = $('#s'+k);
-        const eInput = $('#e'+k);
-        if(startMarker && sInput){
-            const s=startMarker.getPosition();
-            sInput.value=`${s.lat().toFixed(6)},${s.lng().toFixed(6)}`;
-        }else if(userMarker && sInput){
-            const s=userMarker.getPosition();
-            sInput.value=`${s.lat().toFixed(6)},${s.lng().toFixed(6)}`;
-        }
-        if(endMarker && eInput){
-            const e=endMarker.getPosition();
-            eInput.value=`${e.lat().toFixed(6)},${e.lng().toFixed(6)}`;
-        }
-    }
-    const modeOf = k => k==='Car'?'car':(k==='Walk'?'walk':'public');
-    function launchDeepLink(k){
-        const sTxt = ($('#s'+k)?.value || '').trim();
-        const eTxt = ($('#e'+k)?.value || '').trim();
-        parseLatLngOrGeocode(sTxt,(sLL)=>{
-            let s = sLL || startMarker?.getPosition() || userMarker?.getPosition() || map.getCenter();
-            parseLatLngOrGeocode(eTxt,(eLL)=>{
-                let e = eLL || endMarker?.getPosition();
-                if(!e) return toast('도착지를 입력하거나 지도에서 선택하세요.');
-                const sname = startMarker?.getTitle?.() || '출발지';
-                const ename = endMarker?.getTitle?.() || '도착지';
-                const appname = (location.host||'com.deokuku.web').replace(/[^a-zA-Z0-9_.]/g,'');
-                const scheme =
-                    `nmap://route/${modeOf(k)}?slat=${s.lat()}&slng=${s.lng()}&sname=${encodeURIComponent(sname)}`+
-                    `&elat=${e.lat()}&elng=${e.lng()}&ename=${encodeURIComponent(ename)}&appname=${encodeURIComponent(appname)}`;
-                if(IS_MOBILE){
-                    location.href=scheme;
-                    setTimeout(()=>window.open('https://map.naver.com/','_blank'),800);
-                }else{
-                    window.open('https://map.naver.com/','_blank');
-                    toast('데스크톱은 웹 네이버 지도로 안내합니다.');
-                }
-            });
-        });
-    }
-
     // ===== 검색 (DB + 네이버 통합) =====
     function clearSearchMarkers(){
         searchMarkers.forEach(m=>m.setMap(null));
@@ -591,7 +412,7 @@
         naver.maps.Service.geocode({ query: q }, (st, r) => {
             if (st !== naver.maps.Service.Status.OK || !r?.v2?.addresses?.length) {
                 console.warn('geocode 실패', q, r);
-                toast('위를 찾을 수 없습니다.');
+                toast('위치를 찾을 수 없습니다.');
                 return;
             }
             const a = r.v2.addresses[0];
