@@ -120,7 +120,7 @@ public class MypageController {
 
     @GetMapping("/{memberId}/settings/alarm")
     public String alarmSettings(@PathVariable Long memberId, Model model) throws SQLException {
-        model.addAttribute("member", memberId);
+        model.addAttribute("memberId", memberId);
 
         return "mypage/service/setting_alarm";
     }
