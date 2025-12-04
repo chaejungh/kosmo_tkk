@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 관리자 - 회원 상세</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --admin-bg: #0b1120;
+            --admin-card-bg: #ffffff;
+            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
+            --admin-accent: #6366f1;
+            --admin-text: #111827;
+            --admin-text-soft: #6b7280;
+            --border-soft: #e5e7eb;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+            background: #f3f4f6;
+            color: var(--admin-text);
+        }
+
+        .admin-header {
+            background: var(--admin-bg);
+            color: #e5e7eb;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .admin-header-left { display: flex; align-items: center; gap: 12px; }
+        .admin-logo { font-weight: 700; font-size: 18px; }
+        .admin-header-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, .2);
+        }
+        .admin-header-right {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-header-right a {
+            color: #cbd5f5;
+            text-decoration: none;
+        }
+
+        .admin-main { padding: 24px 32px 32px; }
+
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .page-title h1 { margin: 0; font-size: 20px; }
+        .page-title p { margin: 2px 0 0; font-size: 13px; color: var(--admin-text-soft); }
+
+        .admin-card {
+            background: var(--admin-card-bg);
+            border-radius: 16px;
+            padding: 18px 20px 20px;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid var(--border-soft);
+            margin-bottom: 16px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            row-gap: 10px;
+            column-gap: 12px;
+            font-size: 14px;
+        }
+        .field-label {
+            font-weight: 600;
+            color: var(--admin-text-soft);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+        }
+        .tag-active {
+            background: rgba(16, 185, 129, .1);
+            color: #047857;
+        }
+        .tag-deleted {
+            background: rgba(239, 68, 68, .08);
+            color: #b91c1c;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .btn {
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 6px 12px;
+        }
+        .btn-primary { background: var(--admin-accent); color: #fff; }
+        .btn-outline {
+            background: #fff;
+            color: var(--admin-text-soft);
+            border: 1px solid var(--border-soft);
+        }
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .form-inline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .form-inline select,
+        .form-inline input[type="number"] {
+            padding: 6px 10px;
+            font-size: 13px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .message {
+            margin-bottom: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            background: rgba(16, 185, 129, .07);
+            color: #047857;
+        }
+
+        @media (max-width: 640px) {
+            .admin-main { padding: 18px 14px 28px; }
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <span class="admin-header-badge">회원 상세</span>
+    </div>
+    <div class="admin-header-right">
+        <a th:href="@{/admin}">대시보드</a>
+        <span>|</span>
+        <a th:href="@{/admin/logout}">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+
+    <div class="page-title">
+        <div>
+            <h1 th:text="|회원 상세 - ${member.nickname}|">회원 상세</h1>
+            <p th:text="|회원 ID ${member.id}|">회원 ID</p>
+        </div>
+        <div class="btn-row">
+            <a th:href="@{/admin/members}" class="btn btn-outline">← 목록으로</a>
+        </div>
+    </div>
+
+    <!-- 플래시 메시지 -->
+    <div th:if="${message != null}" class="message" th:text="${message}"></div>
+
+    <!-- 기본 정보 카드 -->
+    <section class="admin-card">
+        <h2 style="margin:0 0 12px;font-size:16px;">기본 정보</h2>
+        <div class="field-grid">
+            <div class="field-label">회원 번호</div>
+            <div th:text="${member.id}">1</div>
+
+            <div class="field-label">로그인 ID</div>
+            <div th:text="${member.loginId}">user001</div>
+
+            <div class="field-label">닉네임</div>
+            <div th:text="${member.nickname}">닉네임</div>
+
+            <div class="field-label">이메일</div>
+            <div th:text="${member.email}">user@example.com</div>
+
+            <div class="field-label">회원 등급</div>
+            <div th:text="${member.userLevel}">1</div>
+
+            <div class="field-label">상태</div>
+            <div>
+                <span th:if="${member.deletedYn == 'Y'}" class="tag tag-deleted">비활성</span>
+                <span th:if="${member.deletedYn != 'Y'}" class="tag tag-active">활성</span>
+            </div>
+
+            <div class="field-label">가입일</div>
+            <div th:text="${#temporals.format(member.createdAt, 'yyyy-MM-dd HH:mm')}">
+                2025-01-01 12:00
+            </div>
+        </div>
+    </section>
+
+    <!-- 상태 변경 카드 -->
+    <section class="admin-card">
+        <h2 style="margin:0 0 8px;font-size:16px;">회원 상태 관리</h2>
+        <p style="margin:0 0 10px;font-size:13px;color:var(--admin-text-soft);">
+            회원을 비활성화하면 로그인 및 서비스 이용이 제한됩니다.
+        </p>
+
+        <form class="form-inline"
+              th:action="@{/admin/members/{memberId}/status(memberId=${member.id})}"
+              method="post">
+            <select name="deletedYn">
+                <option value="N"
+                        th:selected="${member.deletedYn != 'Y'}">활성 (N)</option>
+                <option value="Y"
+                        th:selected="${member.deletedYn == 'Y'}">비활성 (Y)</option>
+            </select>
+            <button type="submit" class="btn btn-danger">상태 변경</button>
+        </form>
+    </section>
+
+    <!-- 등급 변경 카드 -->
+    <section class="admin-card">
+        <h2 style="margin:0 0 8px;font-size:16px;">회원 등급 관리</h2>
+        <p style="margin:0 0 10px;font-size:13px;color:var(--admin-text-soft);">
+            숫자가 클수록 상위 등급으로 사용한다고 가정합니다.
+        </p>
+
+        <form class="form-inline"
+              th:action="@{/admin/members/{memberId}/level(memberId=${member.id})}"
+              method="post">
+            <input type="number" name="userLevel"
+                   min="0" max="10"
+                   th:value="${member.userLevel}">
+            <button type="submit" class="btn btn-primary">등급 변경</button>
+        </form>
+    </section>
+
+</main>
+
+</body>
+</html>

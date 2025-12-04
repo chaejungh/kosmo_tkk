@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>더쿠쿠 관리자 - 게시판 관리</title>
+
+    <style>
+        :root {
+            --admin-bg: #111827;
+            --admin-bg-sub: #0f172a;
+            --admin-card: #ffffff;
+            --admin-border: #e5e7eb;
+            --admin-text-main: #111827;
+            --admin-text-sub: #6b7280;
+            --admin-accent: #4f46e5;
+            --admin-accent-soft: #eef2ff;
+            --admin-danger: #dc2626;
+            --admin-danger-soft: #fef2f2;
+            --admin-success: #16a34a;
+            --admin-success-soft: #ecfdf3;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            "Malgun Gothic", sans-serif;
+            background: #f3f4f6;
+            color: var(--admin-text-main);
+        }
+
+        /* 상단 관리자 헤더 */
+
+        .admin-header {
+            height: 56px;
+            background: var(--admin-bg);
+            color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .admin-section-badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .admin-header-link {
+            color: #e5e7eb;
+            text-decoration: none;
+        }
+
+        .admin-header-link:hover {
+            text-decoration: underline;
+        }
+
+        .admin-header-divider {
+            color: #4b5563;
+        }
+
+        /* 메인 영역 */
+
+        .admin-main {
+            padding: 24px 32px 40px;
+        }
+
+        .admin-page-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+
+        .admin-page-sub {
+            margin: 0 0 20px;
+            color: var(--admin-text-sub);
+            font-size: 13px;
+        }
+
+        .admin-card {
+            background: var(--admin-card);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+            border: 1px solid var(--admin-border);
+            padding: 20px 24px 24px;
+        }
+
+        /* 검색 영역 */
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .filter-label {
+            font-size: 13px;
+            color: var(--admin-text-sub);
+            margin-right: 4px;
+        }
+
+        .filter-select,
+        .filter-input {
+            height: 32px;
+            padding: 0 10px;
+            border-radius: 6px;
+            border: 1px solid var(--admin-border);
+            font-size: 13px;
+        }
+
+        .filter-select {
+            min-width: 140px;
+        }
+
+        .filter-input {
+            min-width: 220px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            height: 32px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--admin-accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: var(--admin-text-main);
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-secondary-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+            padding: 0 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            background: #f3f4f6;
+            color: var(--admin-text-main);
+        }
+
+        .btn-secondary-link:hover {
+            background: #e5e7eb;
+        }
+
+        /* 리스트 헤더 */
+
+        .list-summary {
+            font-size: 12px;
+            color: var(--admin-text-sub);
+            margin-bottom: 8px;
+        }
+
+        /* 테이블 */
+
+        .admin-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table.admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .admin-table thead {
+            background: #f9fafb;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            border-bottom: 1px solid var(--admin-border);
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        .admin-table th {
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 12px;
+        }
+
+        .admin-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .col-number {
+            width: 60px;
+        }
+
+        .col-status {
+            width: 90px;
+        }
+
+        .col-actions {
+            width: 160px;
+        }
+
+        .title-cell a {
+            color: var(--admin-accent);
+            text-decoration: none;
+        }
+
+        .title-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 46px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+        }
+
+        .badge-active {
+            background: var(--admin-success-soft);
+            color: var(--admin-success);
+        }
+
+        .badge-inactive {
+            background: var(--admin-danger-soft);
+            color: var(--admin-danger);
+        }
+
+        .action-link,
+        .action-button {
+            font-size: 12px;
+            color: var(--admin-accent);
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .action-link:hover,
+        .action-button:hover {
+            text-decoration: underline;
+        }
+
+        .action-divider {
+            margin: 0 4px;
+            color: #d1d5db;
+            font-size: 11px;
+        }
+
+        .empty-row {
+            text-align: center;
+            padding: 24px 0;
+            color: var(--admin-text-sub);
+        }
+
+        /* 페이징 */
+
+        .admin-pagination {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .admin-pagination ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 4px;
+            font-size: 12px;
+        }
+
+        .admin-pagination a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            padding: 0 8px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            color: var(--admin-text-main);
+            text-decoration: none;
+        }
+
+        .admin-pagination li.active a {
+            background: var(--admin-accent);
+            border-color: var(--admin-accent);
+            color: #ffffff;
+        }
+
+        .admin-pagination li.disabled a {
+            color: #d1d5db;
+            cursor: default;
+        }
+
+        .admin-pagination li:not(.disabled):not(.active) a:hover {
+            background: #f3f4f6;
+            border-color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <div class="admin-header-left">
+        <span class="admin-logo">더쿠쿠 관리자</span>
+        <span class="admin-section-badge">게시판 관리</span>
+    </div>
+    <div class="admin-header-right">
+        <a th:href="@{/admin/dashboard}" class="admin-header-link">대시보드</a>
+        <span class="admin-header-divider">|</span>
+        <a th:href="@{/logout}" class="admin-header-link">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+    <h1 class="admin-page-title">게시판 관리</h1>
+    <p class="admin-page-sub">게시글 목록을 조회하고 상태(활성/비활성)를 관리합니다.</p>
+
+    <section class="admin-card">
+
+        <!-- 검색 영역 -->
+        <form th:action="@{/admin/boards}" method="get">
+            <div class="filter-row">
+                <label class="filter-label" for="categoryId">카테고리</label>
+                <select id="categoryId" name="categoryId" class="filter-select">
+                    <option th:value=""
+                            th:selected="${categoryId == null}">
+                        전체 게시판
+                    </option>
+                    <option th:each="cat : ${categories}"
+                            th:value="${cat.id}"
+                            th:text="${cat.categoryName}"
+                            th:selected="${categoryId != null and categoryId == cat.id}">
+                    </option>
+                </select>
+
+                <label class="filter-label" for="keyword">제목 검색</label>
+                <input id="keyword"
+                       type="text"
+                       name="keyword"
+                       class="filter-input"
+                       placeholder="제목 키워드"
+                       th:value="${keyword}"/>
+
+                <button type="submit" class="btn-primary">검색</button>
+                <a th:href="@{/admin/boards}" class="btn-secondary-link">초기화</a>
+            </div>
+        </form>
+
+        <!-- 요약 -->
+        <div class="list-summary"
+             th:text="|총 ${page.totalElements}건 / ${page.totalPages == 0 ? 1 : page.totalPages} 페이지|">
+            총 0건 / 1 페이지
+        </div>
+
+        <!-- 테이블 -->
+        <div class="admin-table-wrap">
+            <table class="admin-table">
+                <thead>
+                <tr>
+                    <th class="col-number">번호</th>
+                    <th>카테고리</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th class="col-status">상태</th>
+                    <th class="col-actions">액션</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 데이터 없을 때 -->
+                <tr th:if="${page.empty}">
+                    <td colspan="7" class="empty-row">등록된 게시글이 없습니다.</td>
+                </tr>
+
+                <!-- 게시글 목록 -->
+                <tr th:each="post, stat : ${page.content}">
+                    <!-- 역순 번호 -->
+                    <td th:text="${page.totalElements - (page.number * page.size) - stat.index}">
+                        1
+                    </td>
+
+                    <td th:text="${post.category != null ? post.category.categoryName : '미지정'}">
+                        자유
+                    </td>
+
+                    <td class="title-cell">
+                        <a th:href="@{|/admin/boards/${post.id}|}"
+                           th:text="${post.title}">
+                            게시글 제목
+                        </a>
+                    </td>
+
+                    <td th:text="${post.member != null ? post.member.nickname : '탈퇴 회원'}">
+                        닉네임
+                    </td>
+
+                    <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">
+                        2025-12-04 00:00
+                    </td>
+
+                    <td>
+                        <span class="badge-status"
+                              th:text="${post.deletedYn == 'N' ? '활성' : '비활성'}"
+                              th:classappend="${post.deletedYn == 'N'} ? ' badge-active' : ' badge-inactive'">
+                            활성
+                        </span>
+                    </td>
+
+                    <td>
+                        <a th:href="@{|/admin/boards/${post.id}|}" class="action-link">상세보기</a>
+                        <span class="action-divider">|</span>
+
+                        <form th:action="@{|/admin/boards/${post.id}/status|}"
+                              method="post"
+                              style="display:inline;">
+                            <input type="hidden" name="deletedYn"
+                                   th:value="${post.deletedYn == 'N' ? 'Y' : 'N'}"/>
+                            <input type="hidden" name="page" th:value="${page.number}"/>
+                            <input type="hidden" name="size" th:value="${page.size}"/>
+                            <input type="hidden" name="categoryId" th:value="${categoryId}"/>
+                            <input type="hidden" name="keyword" th:value="${keyword}"/>
+
+                            <button type="submit"
+                                    class="action-button"
+                                    th:text="${post.deletedYn == 'N' ? '비활성 처리' : '활성 처리'}">
+                                비활성 처리
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="admin-pagination" th:if="${page.totalPages > 1}">
+            <ul>
+                <!-- 이전 -->
+                <li th:classappend="${page.first} ? 'disabled'">
+                    <a th:href="${page.first} ? '#'
+                           : @{/admin/boards(page=${page.number - 1},
+                                             size=${page.size},
+                                             categoryId=${categoryId},
+                                             keyword=${keyword})}">
+                        이전
+                    </a>
+                </li>
+
+                <!-- 페이지 번호 -->
+                <li th:each="p : ${#numbers.sequence(0, page.totalPages - 1)}"
+                    th:classappend="${p == page.number} ? 'active'">
+                    <a th:href="@{/admin/boards(page=${p},
+                                               size=${page.size},
+                                               categoryId=${categoryId},
+                                               keyword=${keyword})}"
+                       th:text="${p + 1}">
+                        1
+                    </a>
+                </li>
+
+                <!-- 다음 -->
+                <li th:classappend="${page.last} ? 'disabled'">
+                    <a th:href="${page.last} ? '#'
+                           : @{/admin/boards(page=${page.number + 1},
+                                             size=${page.size},
+                                             categoryId=${categoryId},
+                                             keyword=${keyword})}">
+                        다음
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+</main>
+
+</body>
+</html>
