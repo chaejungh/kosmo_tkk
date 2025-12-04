@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/chat-file")   // ⬅⬅⬅ 수정된 부분 (절대 /chat 쓰면 안됨!!)
-public class ChatFileController {
+public class TradeChatFileController {
 
     private final TradeChatService chatService;
     private final SimpMessagingTemplate template;

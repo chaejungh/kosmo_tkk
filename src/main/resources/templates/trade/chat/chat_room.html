@@ -321,7 +321,8 @@
         formData.append("senderId", memberId);
         formData.append("image", file);
 
-        const response = await fetch("/chat/upload-image", {
+        // ✅ ChatFileController 와 매핑되는 경로 ( /chat-file + /upload-image )
+        const response = await fetch("/chat-file/upload-image", {
             method: "POST",
             body: formData
         });
