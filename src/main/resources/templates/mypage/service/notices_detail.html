@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${notice.title}">공지사항 상세 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f6f3ff;
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+        }
+        .mypage-page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .notice-box {
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        .notice-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .notice-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .notice-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            white-space: pre-line; /* 줄바꿈 유지 */
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #444;
+        }
+    </style>
 </head>
+
 <body>
+
+<div class="mypage-page">
+
+    <a href="/mypage" class="back-btn">← 공지사항 목록</a>
+
+    <div class="notice-box">
+
+        <!-- 제목 -->
+        <div class="notice-title" th:text="${notice.title}">공지 제목</div>
+
+        <!-- 날짜 -->
+        <div class="notice-date" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}">
+            2024-11-20
+        </div>
+
+        <!-- 내용 -->
+        <div class="notice-content" th:text="${notice.content}">
+            공지 내용
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
