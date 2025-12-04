@@ -15,14 +15,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws-chat")
                 .setAllowedOriginPatterns("*")
                 .withSockJS();
-
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        // 클라이언트 → 서버
+        // 클라이언트 → 서버 목적지 prefix
         registry.setApplicationDestinationPrefixes("/pub");
-        // 서버 → 클라이언트
+        // 서버 → 클라이언트 브로커 prefix
         registry.enableSimpleBroker("/sub");
     }
 }
