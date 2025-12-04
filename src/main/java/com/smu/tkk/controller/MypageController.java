@@ -127,22 +127,14 @@ public class MypageController {
         member.setIntro(newIntro);
         member.setProfileImageUrl(profileImage);
         memberService.modify(member);
-        session.setAttribute("loginMember", member);
         model.addAttribute("member", member);
         return "redirect:/mypage/" + memberId + "/";
     }
 
     @GetMapping("/{memberId}/settings/alarm")
     public String alarmSettings(@PathVariable Long memberId, Model model) throws SQLException {
-        model.addAttribute("memberId", memberId);
+        model.addAttribute("member", memberId);
 
         return "mypage/service/setting_alarm";
     }
-    @ModelAttribute("nickname")
-    public String addNicknameToModel(HttpSession session) {
-        Member loginMember = (Member) session.getAttribute("loginMember");
-        return (loginMember != null) ? loginMember.getNickname() : null;
-    }
-
-
 }
