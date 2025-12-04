@@ -24,16 +24,22 @@ public class BoardComment {
     @Column(name = "COMMENT_ID", nullable = false)
     private Long id;
 
+    @Column(name = "POST_ID", nullable = false)
+    private Long postId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "POST_ID", nullable = false)
+    @JoinColumn(name = "POST_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private BoardPost post;
 
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @JoinColumn(name = "MEMBER_ID",insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
@@ -59,9 +65,8 @@ public class BoardComment {
     @Column(name = "UPDATED_AT")
     private LocalDate updatedAt;
 
-    @ColumnDefault("'N'")
-    @Column(name = "DELETED_YN")
-    private Boolean deletedYn;
+    @Column(name = "DELETED_YN", columnDefinition = "CHAR(1) default 'N'")
+    private String deletedYn = "N";
 
     @OneToMany(mappedBy = "parentComment")
     @ToString.Exclude

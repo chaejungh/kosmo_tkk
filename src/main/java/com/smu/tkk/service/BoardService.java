@@ -29,6 +29,9 @@ public interface BoardService {
     // 4. 게시글 상세 조회(레파지토리 완료)
     BoardPost readOne(Long postId) throws SQLException;
 
+    // 🔥 조회수 증가
+    void increaseViewCount(Long postId) throws SQLException;
+
     // 5. 게시글 전체 목록 조회(레파지토리 완료)
     Page<BoardPost> readAll(Pageable pageable) throws SQLException;
 
@@ -78,4 +81,7 @@ public interface BoardService {
     List<BoardPost> getHotPostsInCategory(Long categoryId);
 
     List<BoardPost> getHotPostsAll();
+
+
+
 }

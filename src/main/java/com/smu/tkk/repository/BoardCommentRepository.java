@@ -11,5 +11,11 @@ public interface BoardCommentRepository extends JpaRepository<BoardComment, Long
 //    // 3. 특정 게시글의 댓글 목록 조회
 //    List<BoardComment> readByPost(Long postId, Pageable pageable) throws SQLException;
     List<BoardComment> findByPostId(Long postId, Pageable pageable);
+    // 댓글 개수 조회
+
+    long countByPostId(Long postId);
+
+    // BoardCommentRepository.java
+    List<BoardComment> findByPostIdAndDeletedYn(Long postId, String deletedYn, Pageable pageable);
 
 }

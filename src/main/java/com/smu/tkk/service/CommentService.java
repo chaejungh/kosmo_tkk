@@ -25,4 +25,6 @@ public interface CommentService {
     // 3. 특정 게시글의 댓글 목록 조회
     List<BoardComment> readByPost(Long postId, Pageable pageable) throws SQLException;
 
+    long countByPostId(Long postId) throws SQLException;
+
 }
