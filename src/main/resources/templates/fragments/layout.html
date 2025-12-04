@@ -95,6 +95,13 @@
                 if (setting === "N") return;
                 showToast(event.data);
             });
+
+            es.addEventListener("message-alert", (event) => {
+                const setting = localStorage.getItem("message_alert_on");
+                if (setting === "N") return;  // 메시지 알림 OFF면 막기
+                showToast(event.data);
+            });
+
             es.onerror = () => {
                 console.log("SSE 연결 끊김 → 재연결 중...");
                 setTimeout(connectSSE, 3000);
