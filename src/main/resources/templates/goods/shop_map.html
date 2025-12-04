@@ -135,25 +135,19 @@
 <section id="mapWrap">
     <div id="map"></div>
 
-    <!-- 오른쪽 도구모음 -->
+    <!-- 오른쪽 도구모음 (자동차 경로 그리기 버튼 제거됨) -->
     <div class="vbar" style="position:absolute;right:12px;top:50%;transform:translateY(-50%)">
         <div id="btnZoomIn"  class="ctrl" title="확대">+</div>
         <div id="btnZoomOut" class="ctrl" title="축소">−</div>
         <div id="btnMyLoc"   class="ctrl" title="내 위치">◎</div>
         <div id="btnWp"      class="ctrl" title="경유지 모드">W</div>
         <div id="btnWpClr"   class="ctrl" title="경유지 초기화">C</div>
-        <div id="btnRoute"   class="ctrl" title="자동차 경로 그리기">→</div>
+        <!-- <div id="btnRoute"   class="ctrl" title="자동차 경로 그리기">→</div>  👉 제거 -->
         <!-- 브라우저 전체화면 토글 -->
         <div id="btnFullscreen" class="ctrl" title="전체화면(길찾기 패널)">⛶</div>
     </div>
 
-    <!-- 좌상단: 초기화 + 길찾기 버튼 -->
-    <div style="position:absolute;left:12px;top:12px;z-index:21">
-        <div class="chipbar">
-            <button class="chip" id="chipReset">초기화</button>
-            <button class="chip" id="chipDirections">길찾기</button>
-        </div>
-    </div>
+    <!-- 왼쪽 상단 초기화/길찾기 chip 영역 제거됨 -->
 
     <!-- 지도 안 검색 UI -->
     <div class="map-search-wrap">
@@ -302,10 +296,7 @@
             toast(waypointMode ? '경유지 모드 ON' : '경유지 모드 OFF');
         };
         $('#btnWpClr').onclick = clearWaypoints;
-        $('#btnRoute').onclick = drawRouteCar;
         $('#btnFullscreen').onclick = toggleFullscreen;
-        $('#chipReset').onclick = resetAll;
-        $('#chipDirections').onclick = openDirectionsPanel;
 
         // 지도 안 검색창
         const si = $('#mapSearchInput');
@@ -431,39 +422,6 @@
     function clearWaypoints(){
         waypointMarkers.forEach(m=>m.setMap(null));
         waypointMarkers = [];
-    }
-
-    // ===== 자동차 경로(내부) =====
-    async function drawRouteCar(){
-        let sLL = startMarker?.getPosition() || userMarker?.getPosition() || map.getCenter();
-        if(!endMarker) return toast('도착지를 먼저 지정하세요.');
-        const start = encodeURIComponent(llToParam(sLL));
-        const goal  = encodeURIComponent(llToParam(endMarker.getPosition()));
-        const wp = waypointMarkers.length
-            ? '&waypoints='+encodeURIComponent(waypointMarkers.map(m=>llToParam(m.getPosition())).join('|'))
-            : '';
-        try{
-            const res = await fetch(`/api/directions?start=${start}&goal=${goal}&option=traoptimal${wp}`);
-            if(!res.ok) return toast('경로 요청 실패');
-            const data  = await res.json();
-            const route = data?.route?.traoptimal?.[0];
-            if(!route?.path?.length) return toast('경로가 없습니다.');
-            const path = route.path.map(([x,y])=>new naver.maps.LatLng(y,x));
-            if(routeLine) routeLine.setMap(null);
-            routeLine = new naver.maps.Polyline({
-                map,path,strokeWeight:6,strokeOpacity:.9,strokeColor:'#F79287'
-            });
-            let bounds = new naver.maps.LatLngBounds(path[0],path[0]);
-            path.forEach(p=>bounds.extend(p));
-            map.fitBounds(bounds);
-            const km  = (route.summary.distance/1000).toFixed(1);
-            const min = Math.round(route.summary.duration/60000);
-            $('#summary').textContent =
-                `자동차 경로 · 약 ${km}km · ${min}분${wp?` · 경유지 ${waypointMarkers.length}개`:''}`;
-        }catch(e){
-            console.error(e);
-            toast('경로 요청 오류');
-        }
     }
 
     // ===== 전체화면 토글 =====
@@ -633,7 +591,7 @@
         naver.maps.Service.geocode({ query: q }, (st, r) => {
             if (st !== naver.maps.Service.Status.OK || !r?.v2?.addresses?.length) {
                 console.warn('geocode 실패', q, r);
-                toast('위치를 찾을 수 없습니다.');
+                toast('위를 찾을 수 없습니다.');
                 return;
             }
             const a = r.v2.addresses[0];
