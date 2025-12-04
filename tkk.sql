@@ -452,3 +452,144 @@ CREATE TABLE TKK.service_notice (
                                 end_date        DATE,                                                -- 노출 종료일
                                 created_at      DATE DEFAULT SYSDATE                                 -- 등록일
 );
+
+--------------------------------------------------------
+-- 1. 관리자 계정 테이블 + 시퀀스
+--------------------------------------------------------
+CREATE TABLE ADMIN_USER (
+                            ADMIN_ID        NUMBER(10)        CONSTRAINT PK_ADMIN_USER PRIMARY KEY,
+                            LOGIN_ID        VARCHAR2(50)      CONSTRAINT UQ_ADMIN_USER_LOGIN UNIQUE NOT NULL,
+                            LOGIN_PW        VARCHAR2(200)     NOT NULL,
+                            NAME            VARCHAR2(50)      NOT NULL,
+                            EMAIL           VARCHAR2(100),
+                            PHONE           VARCHAR2(20),
+                            STATUS          CHAR(1)           DEFAULT 'Y' NOT NULL
+                                CHECK (STATUS IN ('Y','N')), -- Y: 활성, N: 비활성
+                            LAST_LOGIN_AT   DATE,
+                            CREATED_AT      DATE              DEFAULT SYSDATE NOT NULL,
+                            UPDATED_AT      DATE
+);
+
+CREATE SEQUENCE ADMIN_USER_SEQ
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE;
+
+--------------------------------------------------------
+-- 2. 관리자 역할(권한) 테이블 + 시퀀스
+--------------------------------------------------------
+CREATE TABLE ADMIN_ROLE (
+                            ROLE_ID         NUMBER(10)       CONSTRAINT PK_ADMIN_ROLE PRIMARY KEY,
+                            ROLE_CODE       VARCHAR2(30)     CONSTRAINT UQ_ADMIN_ROLE_CODE UNIQUE NOT NULL,
+                            ROLE_NAME       VARCHAR2(50)     NOT NULL,
+                            DESCRIPTION     VARCHAR2(200),
+                            CREATED_AT      DATE             DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE ADMIN_ROLE_SEQ
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE;
+
+--------------------------------------------------------
+-- 3. 관리자-역할 매핑 테이블
+--------------------------------------------------------
+CREATE TABLE ADMIN_USER_ROLE (
+                                 ADMIN_ID    NUMBER(10)   NOT NULL,
+                                 ROLE_ID     NUMBER(10)   NOT NULL,
+                                 CREATED_AT  DATE         DEFAULT SYSDATE NOT NULL,
+                                 CONSTRAINT PK_ADMIN_USER_ROLE PRIMARY KEY (ADMIN_ID, ROLE_ID),
+                                 CONSTRAINT FK_AUR_ADMIN
+                                     FOREIGN KEY (ADMIN_ID) REFERENCES ADMIN_USER (ADMIN_ID),
+                                 CONSTRAINT FK_AUR_ROLE
+                                     FOREIGN KEY (ROLE_ID)  REFERENCES ADMIN_ROLE (ROLE_ID)
+);
+
+--------------------------------------------------------
+-- 4. 관리자 활동 로그 테이블 + 시퀀스
+--------------------------------------------------------
+CREATE TABLE ADMIN_LOG (
+                           LOG_ID          NUMBER(20)       CONSTRAINT PK_ADMIN_LOG PRIMARY KEY,
+                           ADMIN_ID        NUMBER(10)       NOT NULL,
+                           ACTION_TYPE     VARCHAR2(50)     NOT NULL,  -- 'LOGIN', 'DELETE_POST', ...
+                           TARGET_TABLE    VARCHAR2(50),
+                           TARGET_ID       NUMBER(20),
+                           DESCRIPTION     VARCHAR2(400),
+                           IP_ADDRESS      VARCHAR2(45),
+                           CREATED_AT      DATE             DEFAULT SYSDATE NOT NULL,
+                           CONSTRAINT FK_ADMIN_LOG_ADMIN
+                               FOREIGN KEY (ADMIN_ID) REFERENCES ADMIN_USER (ADMIN_ID)
+);
+
+CREATE SEQUENCE ADMIN_LOG_SEQ
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE;
+
+--------------------------------------------------------
+-- 5. 기본 역할 데이터 4개(SUPER, MANAGER, CS, CONTENT)
+--------------------------------------------------------
+INSERT INTO ADMIN_ROLE (ROLE_ID, ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES (ADMIN_ROLE_SEQ.NEXTVAL, 'SUPER',   '최고관리자',      '모든 기능 사용 가능');
+
+INSERT INTO ADMIN_ROLE (ROLE_ID, ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES (ADMIN_ROLE_SEQ.NEXTVAL, 'MANAGER', '운영자',          '회원/게시판/거래 관리');
+
+INSERT INTO ADMIN_ROLE (ROLE_ID, ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES (ADMIN_ROLE_SEQ.NEXTVAL, 'CS',      '고객센터',        '문의/FAQ/공지 관리');
+
+INSERT INTO ADMIN_ROLE (ROLE_ID, ROLE_CODE, ROLE_NAME, DESCRIPTION)
+VALUES (ADMIN_ROLE_SEQ.NEXTVAL, 'CONTENT', '콘텐츠관리자',    '메인 배너/추천 검색어 관리');
+
+--------------------------------------------------------
+-- 6. 관리자 계정 1개 생성 (ID: admin / PW: admin1234)
+--------------------------------------------------------
+INSERT INTO ADMIN_USER (
+    ADMIN_ID, LOGIN_ID, LOGIN_PW, NAME, EMAIL, PHONE, STATUS
+) VALUES (
+             ADMIN_USER_SEQ.NEXTVAL,
+             'admin',
+             'admin1234',           -- 학습/과제용: 평문, 실서비스이면 반드시 암호화
+             '관리자',
+             'admin@tkk.com',
+             '010-0000-0000',
+             'Y'
+         );
+
+COMMIT;
+
+--------------------------------------------------------
+-- 7. admin 계정에 SUPER 권한 매핑
+--    (숫자를 직접 안 쓰고, 서브쿼리로 안전하게 매핑)
+--------------------------------------------------------
+INSERT INTO ADMIN_USER_ROLE (ADMIN_ID, ROLE_ID)
+SELECT u.ADMIN_ID, r.ROLE_ID
+FROM   ADMIN_USER u
+           JOIN ADMIN_ROLE r ON r.ROLE_CODE = 'SUPER'
+WHERE  u.LOGIN_ID = 'admin'
+  AND  NOT EXISTS (
+    SELECT 1
+    FROM   ADMIN_USER_ROLE ur
+    WHERE  ur.ADMIN_ID = u.ADMIN_ID
+      AND    ur.ROLE_ID  = r.ROLE_ID
+);
+
+COMMIT;
+
+--------------------------------------------------------
+-- 8. 최종 확인용 쿼리 (필요할 때만 실행)
+--------------------------------------------------------
+-- 현재 스키마 확인
+SELECT USER FROM DUAL;
+
+-- 관리자 계정 확인
+SELECT ADMIN_ID, LOGIN_ID, LOGIN_PW, STATUS
+FROM ADMIN_USER;
+
+-- 역할 목록 확인
+SELECT ROLE_ID, ROLE_CODE, ROLE_NAME
+FROM ADMIN_ROLE;
+
+-- 권한 매핑 확인
+SELECT *
+FROM ADMIN_USER_ROLE;
