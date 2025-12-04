@@ -44,7 +44,7 @@
 
                 <!-- 닉네임 변경 폼 (처음에는 숨김) -->
                 <form id="nicknameForm"
-                      th:action="@{'/mypage/profile/{id}' (id=${member.id})}"
+                      th:action="@{'/mypage/' + ${member.id} + '/profile'}"
                       method="post"
                       style="display:none; margin-top:12px;">
 

@@ -23,9 +23,12 @@
             </div>
 
             <!-- ✅ 로그인 상태: 닉네임 + 로그아웃 -->
-            <div class="logged-in-box" th:if="${nickname != null}">
-                <span class="welcome-text"
-                      th:text="|${nickname} 님|">닉네임 님</span>
+            <div class="logged-in-box"
+                 th:if="${session.loginMember != null or nickname != null}">
+                 <span class="welcome-text"
+                th:text="|${session.loginMember != null ? session.loginMember.nickname : nickname} 님|">
+                닉네임 님
+                </span>
                 <a th:href="@{/auth/logout}" class="btn-auth">로그아웃</a>
             </div>
         </div>
