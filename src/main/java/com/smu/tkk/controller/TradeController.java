@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ 추가
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,9 @@ public class TradeController {
 
     private final TradeService tradeService;
     private final TradePostImageService tradePostImageService;
+
+    // ★ WebSocket으로 이벤트 쏘기 위해 추가
+    private final SimpMessagingTemplate messagingTemplate;
 
     @GetMapping
     public String tradeRoot() {
@@ -148,8 +152,6 @@ public class TradeController {
         return "trade/trade_image_detail";
     }
 
-    // ...
-
     /* ===============================================================
        🔥 글쓰기 페이지
        ============================================================== */
@@ -193,7 +195,11 @@ public class TradeController {
             post.setStatus("ON_SALE");
         }
 
+        // 글 + 이미지 저장
         tradeService.createPostWithImages(post, images);
+
+        // ★★ 새 글 등록됨 → 리스트 보고 있는 사람들한테 알림 푸시
+        messagingTemplate.convertAndSend("/sub/trade.list", "NEW_POST");
 
         return "redirect:/trade/list.do";
     }
