@@ -8,6 +8,7 @@ import com.smu.tkk.repository.TradePostRepository;
 import com.smu.tkk.service.S3StorageService;
 import com.smu.tkk.service.TradeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TradeServiceImp implements TradeService {
@@ -84,19 +86,45 @@ public class TradeServiceImp implements TradeService {
        ============================================================ */
     private String calcTimeAgo(LocalDateTime createdAt) {
 
-        if (createdAt == null) return "방금 전";
+
+        if (createdAt == null) return "등록 시간 없음";
 
         LocalDateTime now = LocalDateTime.now();
+        log.info(now.toString(), createdAt.toString());
+        // 미래 시간 방지 (서버/DB 시간 차이 등)
+        if (createdAt.isAfter(now)) {
+            return "방금 전";
+        }
 
         long minutes = ChronoUnit.MINUTES.between(createdAt, now);
-        long hours = ChronoUnit.HOURS.between(createdAt, now);
-        long days = ChronoUnit.DAYS.between(createdAt, now);
-
         if (minutes < 1) return "방금 전";
         if (minutes < 60) return minutes + "분 전";
+
+        long hours = ChronoUnit.HOURS.between(createdAt, now);
         if (hours < 24) return hours + "시간 전";
+
+        long days = ChronoUnit.DAYS.between(createdAt, now);
         if (days == 1) return "어제";
-        return days + "일 전";
+        if (days < 7) return days + "일 전";
+
+        // 1주 이상 1달 미만
+        if (days < 30) {
+            long weeks = days / 7;
+            if (weeks < 1) weeks = 1;
+            return weeks + "주 전";
+        }
+
+        // 1달 이상 1년 미만
+        if (days < 365) {
+            long months = days / 30;
+            if (months < 1) months = 1;
+            return months + "개월 전";
+        }
+
+        // 1년 이상
+        long years = days / 365;
+        if (years < 1) years = 1;
+        return years + "년 전";
     }
 
     /* ============================================================
@@ -113,6 +141,7 @@ public class TradeServiceImp implements TradeService {
         if (post.getPrice() == null) dto.setPriceText("가격 미정");
         else dto.setPriceText(String.format("%,d원", post.getPrice()));
 
+        // ⏱ 여기서 항상 "현재 시간 기준"으로 문자열 계산됨
         dto.setTimeAgo(calcTimeAgo(post.getCreatedAt()));
 
         Optional<TradePostImage> imgOpt =
