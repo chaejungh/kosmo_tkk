@@ -7,6 +7,8 @@ import com.smu.tkk.repository.BoardPostRepository;
 import com.smu.tkk.service.BoardLikeService;
 import com.smu.tkk.service.NotificationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -94,5 +96,15 @@ public class BoardLikeServiceImp implements BoardLikeService {
         like.setLikeCount(count);
 
         return like;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<BoardLike> readLikesByMember(Long memberId, Pageable pageable) {
+        if (memberId == null) {
+            throw new IllegalArgumentException("memberId 가 없습니다.");
+        }
+
+        return boardLikeRepository.findByMemberId(memberId, pageable);
     }
 }

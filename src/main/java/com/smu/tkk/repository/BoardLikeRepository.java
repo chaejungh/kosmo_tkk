@@ -18,8 +18,8 @@ public interface BoardLikeRepository extends JpaRepository<BoardLike, Long> {
 //    Page<BoardPost> findByMember_Id(Long memberId, Pageable pageable);
 //    List<BoardPost> findByMember_Id(Long memberId);
 
-    @Query(value = "SELECT b FROM BoardPost b Join Fetch b.boardLikes l WHERE l.member.id=:memberId")
-    Page<BoardPost> findByMember_Id(Long memberId,Pageable pageable);
+    //@Query(value = "SELECT b FROM BoardPost b Join Fetch b.boardLikes l WHERE l.member.id=:memberId")
+    //Page<BoardPost> findByMember_Id(Long memberId,Pageable pageable);
     //좋아요 한 게시글 조회
     Page<BoardLike> findByMemberId(Long userId, Pageable pageable);
 
