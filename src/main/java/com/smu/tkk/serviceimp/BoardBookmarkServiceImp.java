@@ -3,6 +3,7 @@ package com.smu.tkk.serviceimp;
 import com.smu.tkk.entity.BoardBookmark;
 import com.smu.tkk.repository.BoardBookmarkRepository;
 import com.smu.tkk.service.BoardBookmarkService;
+import com.smu.tkk.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -82,5 +84,18 @@ public class BoardBookmarkServiceImp implements BoardBookmarkService {
         }
 
         return new PageImpl<>(content, pageable, fullList.size());
+    }
+
+    @Override
+    public boolean toggle(Long postId, Long memberId) throws Exception {
+        Optional<BoardBookmark> opt = boardBookmarkRepository.findByPostIdAndMemberId(postId,memberId);
+
+        if (opt.isPresent()){
+            boardBookmarkRepository.delete(opt.get());
+            return false;//북마크 해제상태
+        }else {
+            register(postId,memberId);
+            return true;//북마크 On
+        }
     }
 }

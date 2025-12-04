@@ -2,9 +2,7 @@ package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.BoardWriteValid;
 import com.smu.tkk.entity.*;
-import com.smu.tkk.service.BoardLikeService;
-import com.smu.tkk.service.BoardService;
-import com.smu.tkk.service.MemberService;
+import com.smu.tkk.service.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.smu.tkk.service.CommentService;
 import com.smu.tkk.entity.BoardComment;
 
 
@@ -32,7 +29,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final BoardLikeService boardLikeService;
-
+    private final BoardBookmarkService boardBookmarkService;
     private final CommentService commentService;
 
 
@@ -67,6 +64,7 @@ public class BoardController {
         BoardPost post = boardService.readOne(postId);
         boardService.increaseViewCount(postId);
         BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
+        boolean bookmarked = boardBookmarkService.toggle(postId,memberId);
 
         List<BoardComment> commentList =
                 commentService.readByPost(postId, PageRequest.of(0, 100));
@@ -78,6 +76,7 @@ public class BoardController {
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
         model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
+        model.addAttribute("bookmarked",bookmarked);
         model.addAttribute("commentList", commentList);
         model.addAttribute("commentCount", commentCount);   // 🔥 추가된 부분
         post.setCommentCount(commentService.countByPostId(post.getId()));

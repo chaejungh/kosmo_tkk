@@ -88,7 +88,19 @@
                         💬 <span th:text="${commentCount}"></span>
                     </div>
                     <div class="detail-stat-item">
-                        📌 <span>저장</span>
+                        <span type="button"
+                                id="bookmark-btn"
+                                class="bookmark-btn"
+                                th:data-post-id="${post.id}"
+                                th:data-member-id="${memberId}"
+                                th:data-bookmarked="${bookmarked}">
+                            📌
+                        </span>
+                        <span id="bookmark-label"
+                              th:text="${bookmarked} ? '저장됨' : '저장'">
+                            저장
+                        </span>
+
                     </div>
                     <div class="detail-stat-item">
                         👀 <span th:text="${post.viewCount}">0</span>
@@ -283,6 +295,47 @@
         if (likeBtn.dataset.liked === "true") {
             likeBtn.classList.add("active");
         }
+
+        // ===================== 북마크 =====================
+        const bookmarkBtn = document.getElementById("bookmark-btn");
+        const bookmarkLabel = document.getElementById("bookmark-label");
+
+        if (bookmarkBtn && bookmarkLabel) {
+
+            const updateBookmarkUI = (bookmarked) => {
+                bookmarkBtn.dataset.bookmarked = bookmarked;
+                bookmarkBtn.classList.toggle("active", bookmarked);
+                bookmarkLabel.textContent = bookmarked ? "저장됨" : "저장";
+            };
+
+            // 최초 상태 반영 (서버에서 내려준 bookmarked 값)
+            if (bookmarkBtn.dataset.bookmarked === "true") {
+                updateBookmarkUI(true);
+            }
+
+            bookmarkBtn.addEventListener("click", async () => {
+                const postId = bookmarkBtn.dataset.postId;
+                const memberId = bookmarkBtn.dataset.memberId;
+
+                try {
+                    const res = await fetch(`/api/board-bookmark/${postId}/toggle?memberId=${memberId}`, {
+                        method: "POST",
+                        headers: { "X-Requested-With": "XMLHttpRequest" }
+                    });
+
+                    if (!res.ok) return;
+
+                    const data = await res.json();   // { bookmarked: true/false }
+                    updateBookmarkUI(data.bookmarked);
+
+                } catch (e) {
+                    console.error("bookmark toggle error", e);
+                }
+            });
+        }
+
+
+
 
     })();
 </script>
