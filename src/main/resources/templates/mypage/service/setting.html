@@ -27,7 +27,36 @@
 <!--    </header>-->
 
     <main>
-
+        <style>
+            .btn-change {
+                border-radius: 20px;
+                padding: 2px 14px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: all 0.25s ease-in-out;
+            }
+            .btn-change:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            }
+            .btn-email {
+                color: #495057;
+                border: 1px solid #dee2e6;
+                background-color: #fff;
+            }
+            .btn-email:hover {
+                background-color: #f8f9fa;
+            }
+            .btn-password {
+                color: #0d6efd;
+                border: 1px solid #0d6efd;
+                background-color: #fff;
+            }
+            .btn-password:hover {
+                background-color: #0d6efd;
+                color: #fff;
+            }
+        </style>
         <!-- 계정 섹션 -->
         <section class="card mypage-section">
             <div class="card-header">
@@ -35,14 +64,85 @@
                     <span>계정</span>
                 </div>
             </div>
-            <ul class="simple-list">
+            <ul class="list-group list-group-flush">
                 <!-- ✅ 순서 변경: 가입일 → 이메일 → 비밀번호 변경 -->
-                <li>가입일 : 2025-11-01</li>
-                <li>로그인 이메일 : example@email.com</li>
-                <li>비밀번호 변경</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>가입일</strong><br>
+                        <small th:text="${#temporals.format(member.createdAt, 'yyyy-MM-dd')}"
+                               class="text-muted">2025-11-01</small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>로그인 이메일</strong><br>
+                        <small class="text-muted">현재: user001@example.com</small>
+                    </div>
+                    <button class="btn btn-change btn-email">✉ 이메일 변경</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>비밀번호</strong><br>
+                        <small class="text-muted">최근 변경일: 2025-11-01</small>
+                    </div>
+                    <button class="btn btn-change btn-password">🔒 비밀번호 변경</button>
+                </li>
             </ul>
         </section>
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
+                <div class="modal-content" style="border-radius: 10px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passwordModalLabel">비밀번호 변경</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form th:action="@{/mypage/service/updatePassword}" method="post">
+                            <!-- 나중에 세션으로 교체 -->
+                            <input type="hidden" name="memberId" value="1" />
 
+                            <input type="password" name="loginPw" class="form-control mb-3"
+                                   placeholder="새 비밀번호 입력" required style="width: 200px; margin: 0 auto;">
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary btn-sm">변경</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
+                <div class="modal-content" style="border-radius: 10px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">이메일 변경</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form th:action="@{/mypage/service/updateEmail}" method="post">
+                            <!-- 로그인된 회원 ID -->
+                            <input type="hidden" name="memberId" th:value="${member.id}"/>
+
+                            <div class="mb-3">
+                                <label class="form-label">현재 이메일</label>
+                                <input type="email" class="form-control" th:value="${member.email}" readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">새 이메일</label>
+                                <input type="email" name="email" class="form-control" placeholder="새 이메일 입력" required>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary btn-sm">변경</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
         <!-- 알림 설정 섹션 -->
 
 
@@ -158,6 +258,7 @@
     alertToggle.addEventListener("change", () => {
         localStorage.setItem("board_alert_on", alertToggle.checked ? "Y" : "N");
     });
+
 
     //====== SSE 알림 수신 + 토스트 띄우기 ======
 
