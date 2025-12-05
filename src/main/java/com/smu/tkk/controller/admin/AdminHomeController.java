@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminHomeController {
 
-    @GetMapping
+    @GetMapping("/admin/home")
     public String adminHome(HttpSession session, Model model) {
-
-        Object adminName = session.getAttribute("adminName");
-        model.addAttribute("adminName", adminName != null ? adminName : "관리자");
-
-        return "admin/dashboard"; // templates/admin/dashboard.html
+        // 원래 있던 코드 그대로 두면 됨
+        return "admin/home"; // 너희가 쓰는 뷰 이름 유지
     }
 }
