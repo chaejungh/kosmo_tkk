@@ -28,7 +28,7 @@ public class BoardComment {
     private Long postId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "POST_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
@@ -38,14 +38,14 @@ public class BoardComment {
     private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID",insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "PARENT_COMMENT_ID")
     @ToString.Exclude
     @JsonIgnore

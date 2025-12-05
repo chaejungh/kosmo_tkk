@@ -27,36 +27,6 @@
 <!--    </header>-->
 
     <main>
-        <style>
-            .btn-change {
-                border-radius: 20px;
-                padding: 2px 14px;
-                font-size: 0.9rem;
-                font-weight: 500;
-                transition: all 0.25s ease-in-out;
-            }
-            .btn-change:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            }
-            .btn-email {
-                color: #495057;
-                border: 1px solid #dee2e6;
-                background-color: #fff;
-            }
-            .btn-email:hover {
-                background-color: #f8f9fa;
-            }
-            .btn-password {
-                color: #0d6efd;
-                border: 1px solid #0d6efd;
-                background-color: #fff;
-            }
-            .btn-password:hover {
-                background-color: #0d6efd;
-                color: #fff;
-            }
-        </style>
         <!-- 계정 섹션 -->
         <section class="card mypage-section">
             <div class="card-header">
@@ -73,22 +43,40 @@
                                class="text-muted">2025-11-01</small>
                     </div>
                 </li>
+
+                <!-- 이메일 변경 -->
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>로그인 이메일</strong><br>
                         <small class="text-muted">현재: user001@example.com</small>
                     </div>
-                    <button class="btn btn-change btn-email">✉ 이메일 변경</button>
+                    <!-- 🧩 모달 연결 속성 추가 -->
+                    <button type="button"
+                            class="btn btn-outline-secondary btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#emailModal">
+                        변경
+                    </button>
                 </li>
+
+                <!-- 비밀번호 변경 -->
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>비밀번호</strong><br>
                         <small class="text-muted">최근 변경일: 2025-11-01</small>
                     </div>
-                    <button class="btn btn-change btn-password">🔒 비밀번호 변경</button>
+                    <!-- 🧩 모달 연결 속성 추가 -->
+                    <button type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#passwordModal">
+                        변경
+                    </button>
                 </li>
             </ul>
         </section>
+
+        <!-- 비밀번호 변경 모달 -->
         <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
                 <div class="modal-content" style="border-radius: 10px;">
@@ -112,6 +100,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- 이메일 변경 모달 -->
         <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
                 <div class="modal-content" style="border-radius: 10px;">
@@ -143,6 +133,7 @@
             </div>
         </div>
     </main>
+
         <!-- 알림 설정 섹션 -->
 
 
@@ -216,6 +207,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <script layout:fragment="script" th:inline="javascript">
 

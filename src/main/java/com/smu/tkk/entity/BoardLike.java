@@ -25,7 +25,7 @@ public class BoardLike {
     private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID",insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
@@ -34,7 +34,7 @@ public class BoardLike {
     private Long postId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "POST_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore

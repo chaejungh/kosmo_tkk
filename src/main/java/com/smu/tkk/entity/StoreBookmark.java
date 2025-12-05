@@ -26,7 +26,7 @@ public class StoreBookmark {
     private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
@@ -35,7 +35,7 @@ public class StoreBookmark {
     @Column(name = "STORE_ID", nullable = false)
     private Long storeId;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "STORE_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore

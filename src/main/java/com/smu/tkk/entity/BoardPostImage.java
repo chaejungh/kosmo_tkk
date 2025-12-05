@@ -21,7 +21,7 @@ public class BoardPostImage {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "POST_ID", nullable = false)
     @ToString.Exclude
     @JsonIgnore
