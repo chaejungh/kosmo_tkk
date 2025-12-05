@@ -47,6 +47,7 @@ public class LoginController {
             model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
             return "auth/login"; // 로그인 실패 시 다시 로그인 페이지로
         }
+        System.out.println(member);
 
         // ✅ 로그인 성공 시 세션 저장
         session.setAttribute("loginMember", member);

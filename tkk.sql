@@ -60,7 +60,7 @@ CREATE TABLE TKK.member_notification_setting (
                                              created_at  DATE       DEFAULT SYSDATE,                -- 생성일
                                              updated_at  DATE,                                      -- 수정일
                                              CONSTRAINT fk_mns_member FOREIGN KEY (member_id)
-                                                 REFERENCES TKK.member(member_id)
+                                                 REFERENCES TKK.member(member_id) ON DELETE CASCADE
 );
 --
 -- ------------------------------------------------------------

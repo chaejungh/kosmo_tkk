@@ -26,7 +26,7 @@ public class PopupBookmark {
     private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID",insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore
@@ -36,7 +36,7 @@ public class PopupBookmark {
     private Long popupId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "POPUP_ID", insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore

@@ -20,14 +20,14 @@ public class BoardPostTag {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "POST_ID", nullable = false)
     @ToString.Exclude
     @JsonIgnore
     private BoardPost post;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "TAG_ID", nullable = false)
     @ToString.Exclude
     @JsonIgnore

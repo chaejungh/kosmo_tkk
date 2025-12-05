@@ -27,7 +27,7 @@ public class TradeChatMessage {
     private Long roomId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ROOM_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
@@ -37,7 +37,7 @@ public class TradeChatMessage {
     private Long senderId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "SENDER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore

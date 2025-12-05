@@ -23,21 +23,21 @@ public class BoardReport {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "POST_ID")
     @ToString.Exclude
     @JsonIgnore
     private BoardPost post;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "COMMENT_ID")
     @ToString.Exclude
     @JsonIgnore
     private BoardComment comment;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "REPORTER_ID", referencedColumnName = "MEMBER_ID", nullable = false)
     @ToString.Exclude
     @JsonIgnore

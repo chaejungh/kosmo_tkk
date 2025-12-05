@@ -52,6 +52,8 @@ public class AuthController {
         session.setAttribute("loginId", member.getLoginId());
         session.setAttribute("nickname", member.getNickname());
         session.setAttribute("memberId", member.getId());
+        session.setAttribute("loginMember", member);
+
         return "redirect:/";
     }
 
