@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -111,6 +110,10 @@ public class TradeController {
         long likeCount = tradeBookmarkRepository.countByTradeId(tradeId);
         model.addAttribute("chatCount", chatCount);
         model.addAttribute("likeCount", likeCount);
+
+        // 🔥 이 글을 내가 이미 찜했는지 여부 (빈 하트 / 빨간 하트 판단용)
+        boolean liked = tradeBookmarkRepository.existsByMemberIdAndTradeId(memberId, tradeId);
+        model.addAttribute("liked", liked);
 
         // 상태 라벨링
         String status = trade.getStatus();
