@@ -7,6 +7,7 @@ import com.smu.tkk.repository.TradeBookmarkRepository;   // 🔥 추가
 import com.smu.tkk.repository.TradeChatRoomRepository;  // 🔥 추가
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
+import jakarta.servlet.http.HttpSession;                 // 🔥 세션 사용
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +37,14 @@ public class TradeController {
     // 🔥 채팅방 / 북마크 개수 조회용 레포지토리
     private final TradeChatRoomRepository tradeChatRoomRepository;
     private final TradeBookmarkRepository tradeBookmarkRepository;
+
+    // ✅ 로그인한 회원 ID 가져오는 헬퍼
+    private Long getLoginMemberId(HttpSession session) {
+        Object id = session.getAttribute("loginMemberId");
+        if (id instanceof Long) return (Long) id;
+        if (id instanceof Integer) return ((Integer) id).longValue();
+        return null;
+    }
 
     @GetMapping
     public String tradeRoot() {
@@ -111,7 +120,9 @@ public class TradeController {
        🔥 거래 상세
        ============================================================== */
     @GetMapping("/{tradeId}/article/detail.do")
-    public String tradeDetail(@PathVariable Long tradeId, Model model) {
+    public String tradeDetail(@PathVariable Long tradeId,
+                              Model model,
+                              HttpSession session) {
 
         // 🔥 상세 진입할 때 조회수 +1
         tradeService.increaseViewCount(tradeId);
@@ -129,8 +140,11 @@ public class TradeController {
         Long coverImageId = coverOpt.map(TradePostImage::getId).orElse(0L);
         model.addAttribute("coverImageId", coverImageId);
 
-        // 📌 로그인 user (임시) - 나중에 세션/시큐리티로 교체
-        Long memberId = 1L;
+        // 📌 로그인 user (세션에서)
+        Long memberId = getLoginMemberId(session);
+        if (memberId == null) {
+            memberId = 0L; // 비로그인 상태일 때 표시용
+        }
         model.addAttribute("currentMemberId", memberId);
 
         Long sellerId =
@@ -144,7 +158,10 @@ public class TradeController {
         model.addAttribute("likeCount", likeCount);
 
         // 🔥 현재 사용자가 이 글을 찜했는지 여부 → detail.html 의 liked 에 사용
-        boolean liked = tradeBookmarkRepository.existsByMemberIdAndTradeId(memberId, tradeId);
+        boolean liked = false;
+        if (memberId != null && memberId != 0L) {
+            liked = tradeBookmarkRepository.existsByMemberIdAndTradeId(memberId, tradeId);
+        }
         model.addAttribute("liked", liked);
 
         // 상태 라벨링
@@ -216,7 +233,19 @@ public class TradeController {
     public String writeForm(@PathVariable Long memberId,
                             @RequestParam(name = "t", required = false) String t,
                             @RequestParam(name = "tradeId", required = false) Long tradeId,
-                            Model model) {
+                            Model model,
+                            HttpSession session) {
+
+        // ✅ 세션에서 로그인 사용자 확인
+        Long loginMemberId = getLoginMemberId(session);
+        if (loginMemberId == null) {
+            return "redirect:/login";
+        }
+
+        // 🔒 URL에 있는 memberId가 세션이랑 다르면, 세션 기준으로 맞춤
+        if (!loginMemberId.equals(memberId)) {
+            memberId = loginMemberId;
+        }
 
         TradePost post;
 
@@ -254,7 +283,17 @@ public class TradeController {
     @PostMapping("/{memberId}/write")
     public String writeSubmit(@PathVariable Long memberId,
                               TradePost post,
-                              @RequestParam(value = "images", required = false) List<MultipartFile> images) {
+                              @RequestParam(value = "images", required = false) List<MultipartFile> images,
+                              HttpSession session) {
+
+        // ✅ 세션에서 로그인 사용자 확인
+        Long loginMemberId = getLoginMemberId(session);
+        if (loginMemberId == null) {
+            return "redirect:/login";
+        }
+        if (!loginMemberId.equals(memberId)) {
+            memberId = loginMemberId;
+        }
 
         System.out.println("📩 [writeSubmit] memberId=" + memberId
                 + ", tradeId=" + post.getId()
@@ -288,10 +327,14 @@ public class TradeController {
        URL: POST /trade/{tradeId}/delete
        ============================================================== */
     @PostMapping("/{tradeId}/delete")
-    public String deletePost(@PathVariable Long tradeId) {
+    public String deletePost(@PathVariable Long tradeId,
+                             HttpSession session) {
 
-        // 📌 로그인 유저 (임시)
-        Long currentMemberId = 1L;
+        // 📌 로그인 유저
+        Long currentMemberId = getLoginMemberId(session);
+        if (currentMemberId == null) {
+            return "redirect:/login";
+        }
 
         TradePost post = tradeService.readOneTradePostById(tradeId);
         if (post == null) {
@@ -318,10 +361,14 @@ public class TradeController {
        ============================================================== */
     @PostMapping("/{tradeId}/status")
     public String updateStatus(@PathVariable Long tradeId,
-                               @RequestParam("status") String status) {
+                               @RequestParam("status") String status,
+                               HttpSession session) {
 
-        // 📌 로그인 유저 (임시)
-        Long currentMemberId = 1L;
+        // 📌 로그인 유저
+        Long currentMemberId = getLoginMemberId(session);
+        if (currentMemberId == null) {
+            return "redirect:/login";
+        }
 
         TradePost post = tradeService.readOneTradePostById(tradeId);
         if (post == null) {

@@ -34,7 +34,7 @@ public class LoginController {
         return "auth/join";    // auth 폴더 내부의 join.html 표시
     }
 
-    // ✅ 여기에 로그인 처리 로직 추가
+    // ✅ 로그인 처리 로직
     @PostMapping("/login")
     public String login(@RequestParam String loginId,
                         @RequestParam String loginPw,
@@ -49,8 +49,9 @@ public class LoginController {
         }
 
         // ✅ 로그인 성공 시 세션 저장
-        session.setAttribute("loginMember", member);
-        session.setAttribute("memberId", member.getId());
+        session.setAttribute("loginMember", member);          // 전체 멤버 객체
+        session.setAttribute("loginMemberId", member.getId()); // 🔥 컨트롤러에서 쓸 ID
+        session.setAttribute("loginNickname", member.getNickname()); // (필요하면 사용)
 
         // ✅ 로그인 후 메인 페이지로 이동
         return "redirect:/";
