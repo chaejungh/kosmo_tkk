@@ -140,6 +140,10 @@
 
     <div class="login-title">로그인</div>
 
+    <div th:if="${param.passwordChanged}" class="alert alert-info text-center">
+        🔐 비밀번호가 변경되었습니다. 새 비밀번호로 다시 로그인해주세요.
+    </div>
+
     <!-- 일반 로그인 Form -->
     <form th:action="@{/auth/login.do}" method="post">
 

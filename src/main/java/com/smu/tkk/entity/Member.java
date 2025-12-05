@@ -142,4 +142,11 @@ public class Member {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradePost> tradePosts = new LinkedHashSet<>();
+
+    @PrePersist
+    public void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDate.now();
+        }
+    }
 }
