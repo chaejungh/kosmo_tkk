@@ -140,6 +140,14 @@ public class TradeServiceImp implements TradeService {
         dto.setTitle(post.getTitle());
         dto.setRegion(post.getRegion() != null ? post.getRegion() : "지역 미지정");
 
+        // 🔥 판매자 정보 세팅
+        dto.setSellerId(post.getSellerId());
+        if (post.getSeller() != null && post.getSeller().getNickname() != null) {
+            dto.setSellerNickname(post.getSeller().getNickname());
+        } else {
+            dto.setSellerNickname("판매자 #" + post.getSellerId());
+        }
+
         if (post.getPrice() == null) dto.setPriceText("가격 미정");
         else dto.setPriceText(String.format("%,d원", post.getPrice()));
 

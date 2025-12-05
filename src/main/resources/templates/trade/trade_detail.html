@@ -118,93 +118,26 @@
         .title {
             font-size: 19px;
             font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .meta {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 8px;
-        }
-
-        /* 🔹 좋아요 / 채팅 / 조회수 라인 */
-        .stats-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 16px;
-        }
-
-        .like-form {
-            margin: 0;
-        }
-
-        .like-btn {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 18px;
-            line-height: 1;
-            padding: 0;
-        }
-
-        .like-btn.liked {
-            color: #ef4444; /* 빨간 하트 */
+            margin: 8px 0 6px;
         }
 
         .price {
             font-size: 22px;
             font-weight: 800;
             color: var(--purple);
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
-        /* ===== 상태 뱃지 ===== */
-        .status-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
+        .meta {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin: 6px 0 10px;
         }
 
-        .status-badge {
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge-onsale {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--purple-deep);
-        }
-
-        .badge-reserved {
-            background: rgba(251, 191, 36, 0.1);
-            color: #d97706;
-        }
-
-        .badge-sold {
-            background: #e5e7eb;
-            color: #4b5563;
-        }
-
-        /* ===== 설명 ===== */
-        .desc-box {
-            margin-top: 12px;
-            padding: 12px 14px;
-            border-radius: 12px;
-            background: #f9fafb;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* ===== 판매자 ===== */
+        /* ===== 판매자 카드 ===== */
         .seller-card {
             padding-bottom: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -237,56 +170,40 @@
             margin-top: 2px;
         }
 
-        /* ===== 버튼 ===== */
-        .button-wrap {
-            margin-top: 20px;
+        /* ===== 상태 / 라벨 ===== */
+        .status-row {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
         }
 
-        .btn-main,
-        .btn-sub {
+        .status-badge {
+            padding: 4px 10px;
             border-radius: 999px;
-            padding: 14px 18px;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 600;
-            border: none;
-            cursor: pointer;
         }
 
-        .btn-main {
-            background: var(--purple);
-            color: #ffffff;
+        .badge-onsale {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--purple-deep);
         }
 
-        .btn-main:hover {
-            background: var(--purple-deep);
+        .badge-reserved {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
         }
 
-        .btn-sub {
-            background: #ffffff;
-            color: var(--text-main);
-            border: 1px solid var(--border);
+        .badge-sold {
+            background: #e5e7eb;
+            color: #4b5563;
         }
 
-        @media (min-width: 768px) {
-            .button-wrap {
-                flex-direction: row;
-            }
-
-            .btn-main,
-            .btn-sub {
-                flex: 1;
-            }
-        }
-
-        /* ===== 라벨 ===== */
         .label-row {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-bottom: 4px;
             font-size: 12px;
             color: var(--text-sub);
         }
@@ -295,6 +212,138 @@
             padding: 2px 8px;
             border-radius: 999px;
             background: #f3f4f6;
+        }
+
+        /* ===== 설명 ===== */
+        .desc-box {
+            margin-top: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #f9fafb;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* 🔹 좋아요 / 채팅 / 조회수 라인 */
+        .stats-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 10px;
+        }
+
+        .like-form {
+            margin: 0;
+        }
+
+        .like-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .like-btn.liked {
+            color: #ef4444;
+        }
+
+        /* ===== 상태 변경 버튼 (판매자만) ===== */
+        .status-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .status-actions .btn-status {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* ===== 버튼 영역 ===== */
+        .button-wrap {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-main {
+            border-radius: 999px;
+            padding: 14px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            background: var(--purple);
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .btn-main:hover {
+            background: var(--purple-deep);
+        }
+
+        /* ===== 더보기(수정/삭제) ===== */
+        .more-wrapper {
+            align-self: flex-end;
+            position: relative;
+        }
+
+        .more-btn {
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .more-menu {
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+            padding: 6px;
+            min-width: 120px;
+            display: none;
+            z-index: 30;
+        }
+
+        .more-menu.open {
+            display: block;
+        }
+
+        .more-menu form {
+            margin: 0;
+        }
+
+        .more-menu button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 8px 10px;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .more-menu button:hover {
+            background: #f3f4f6;
+        }
+
+        .more-menu button.delete {
+            color: #ef4444;
         }
     </style>
 </head>
@@ -324,7 +373,7 @@
         <!-- 오른쪽 정보 -->
         <div class="info-card">
 
-            <!-- 🔼 프로필 카드 (닉네임 클릭 → 판매자 리스트로 이동) -->
+            <!-- 👤 판매자 카드 -->
             <div class="seller-card">
                 <div class="seller-avatar"><span>👤</span></div>
 
@@ -335,24 +384,85 @@
                             판매자
                         </a>
                     </div>
-
+                    <!-- 닉네임 아래 한 줄 설명 (지금은 그대로 둠) -->
                     <div class="seller-region"
-                         th:text="${trade.region != null ? trade.region : '지역 미등록'}"></div>
+                         th:text="${trade.seller != null && trade.seller.intro != null ? trade.seller.intro : ''}">
+                    </div>
                 </div>
             </div>
 
-            <!-- 글 제목 -->
-            <h1 class="title" th:text="${trade.title}"></h1>
+            <!-- 제목 -->
+            <h1 class="title" th:text="${trade.title}">제목</h1>
 
-            <!-- 등록일 -->
-            <div class="meta">
-                <span th:text="${#temporals.format(trade.createdAt, 'MM/dd')} + ' 등록'"></span>
+            <!-- 가격 -->
+            <div class="price"
+                 th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">0원</div>
+
+            <!-- 상태 / 카테고리 / 거래방식 -->
+            <div class="status-row">
+                <span class="status-badge"
+                      th:classappend="${statusClass}"
+                      th:text="${statusLabel}">
+                    판매중
+                </span>
+
+                <div class="label-row">
+                    <!-- 카테고리(있을 때만) -->
+                    <span class="label-chip"
+                          th:if="${trade.category != null}"
+                          th:text="${trade.category}">
+                        카테고리
+                    </span>
+
+                    <!-- 거래 타입 (SELL/BUY/EXCHANGE → 한글) -->
+                    <span class="label-chip"
+                          th:text="${trade.tradeType == 'SELL' ? '판매' :
+                                   (trade.tradeType == 'BUY' ? '삽니다' :
+                                   (trade.tradeType == 'EXCHANGE' ? '교환' : trade.tradeType))}">
+                        거래타입
+                    </span>
+
+                    <!-- 거래 방식 (DIRECT/DELIVERY → 한글) -->
+                    <span class="label-chip"
+                          th:text="${trade.tradeMethod == 'DIRECT' ? '직거래' :
+                                   (trade.tradeMethod == 'DELIVERY' ? '택배거래' : trade.tradeMethod)}">
+                        거래방식
+                    </span>
+                </div>
             </div>
 
-            <!-- 🔹 좋아요 / 채팅 / 조회수 + 토글 하트 -->
+            <!-- 등록 시간 + 지역 (상대시간 + 지역) -->
+            <div class="meta">
+                <span th:text="(timeAgo != null ? timeAgo : '등록 시간 없음')
+                               + ' · '
+                               + (trade.region != null ? trade.region : '지역 미등록')">
+                    5분 전 · 서울 강남구
+                </span>
+            </div>
+
+            <!-- 내용 -->
+            <div class="desc-box" th:text="${trade.content}">내용</div>
+
+            <!-- 🔥 판매자만 보는 상태 변경 버튼 -->
+            <div class="status-actions" th:if="${currentMemberId == sellerId}">
+                <form th:action="@{|/trade/${trade.id}/status|}" method="post">
+                    <input type="hidden" name="status" value="ON_SALE"/>
+                    <button type="submit" class="btn-status">판매중</button>
+                </form>
+                <form th:action="@{|/trade/${trade.id}/status|}" method="post">
+                    <input type="hidden" name="status" value="RESERVED"/>
+                    <button type="submit" class="btn-status">예약중</button>
+                </form>
+                <form th:action="@{|/trade/${trade.id}/status|}" method="post">
+                    <input type="hidden" name="status" value="SOLD"/>
+                    <button type="submit" class="btn-status">거래완료</button>
+                </form>
+            </div>
+
+            <!-- ♡ 찜 / 채팅 / 조회수 -->
             <div class="stats-row">
 
-                <!-- 빈 하트 (아직 찜 안함) -->
+                <!-- 빈 하트 -->
                 <form class="like-form"
                       th:if="${!liked}"
                       th:action="@{|/trade/${currentMemberId}/BookMark|}"
@@ -361,7 +471,7 @@
                     <button type="submit" class="like-btn">♡</button>
                 </form>
 
-                <!-- 빨간 하트 (이미 찜한 상태) -->
+                <!-- 빨간 하트 -->
                 <form class="like-form"
                       th:if="${liked}"
                       th:action="@{|/trade/${currentMemberId}/BookMarkDelete|}"
@@ -377,74 +487,32 @@
                 </span>
             </div>
 
-            <!-- 가격 -->
-            <div class="price"
-                 th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'"></div>
-
-            <div class="status-row">
-                <span class="status-badge"
-                      th:classappend="${statusClass}"
-                      th:text="${statusLabel}"></span>
-
-                <div class="label-row">
-                    <span class="label-chip" th:text="${trade.category}"></span>
-                    <span class="label-chip" th:text="${trade.tradeType}"></span>
-                    <span class="label-chip" th:text="${trade.tradeMethod}"></span>
-                </div>
-            </div>
-
-            <!-- ✅ 상태 변경 버튼 (내 글일 때만 노출) -->
-            <div th:if="${currentMemberId == sellerId}"
-                 style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
-
-                <form th:action="@{|/trade/${trade.id}/status|}" method="post" style="margin:0;">
-                    <input type="hidden" name="status" value="ON_SALE"/>
-                    <button type="submit" class="btn-sub"
-                            style="padding:8px 12px; font-size:12px;">판매중</button>
-                </form>
-
-                <form th:action="@{|/trade/${trade.id}/status|}" method="post" style="margin:0;">
-                    <input type="hidden" name="status" value="RESERVED"/>
-                    <button type="submit" class="btn-sub"
-                            style="padding:8px 12px; font-size:12px;">예약중</button>
-                </form>
-
-                <form th:action="@{|/trade/${trade.id}/status|}" method="post" style="margin:0;">
-                    <input type="hidden" name="status" value="SOLD"/>
-                    <button type="submit" class="btn-sub"
-                            style="padding:8px 12px; font-size:12px;">거래완료</button>
-                </form>
-            </div>
-
-            <div class="desc-box" th:text="${trade.content}"></div>
-
-            <!-- 채팅 / (내 글일 때만) 수정 · 삭제 -->
+            <!-- 채팅 + 더보기(수정/삭제) -->
             <div class="button-wrap">
 
-                <!-- ✅ 누구나 채팅 가능 -->
+                <!-- 누구나 채팅 가능 -->
                 <form th:action="@{|/trade/${trade.id}/chat/start/${currentMemberId}|}"
-                      method="post" style="flex:1; margin:0;">
+                      method="post" style="margin:0;">
                     <button type="submit" class="btn-main">채팅하기</button>
                 </form>
 
-                <!-- ✅ 내가 쓴 글일 때만 수정 / 삭제 버튼 노출 -->
-                <div th:if="${currentMemberId == sellerId}"
-                     style="display:flex; gap:8px; flex:1;">
+                <!-- 판매자만 수정/삭제 more 메뉴 -->
+                <div class="more-wrapper" th:if="${currentMemberId == sellerId}">
+                    <button type="button" class="more-btn" id="moreToggle">⋮</button>
 
-                    <!-- ✏ 수정하기 → 기존 write 폼 재사용 -->
-                    <form th:action="@{|/trade/${currentMemberId}/write?tradeId=${trade.id}|}"
-                          method="get"
-                          style="flex:1; margin:0;">
-                        <button type="submit" class="btn-sub">수정하기</button>
-                    </form>
-
-                    <!-- 🗑 삭제하기 -->
-                    <form th:action="@{|/trade/${trade.id}/delete|}"
-                          method="post"
-                          style="flex:1; margin:0;"
-                          onsubmit="return confirm('정말 이 게시글을 삭제할까요?');">
-                        <button type="submit" class="btn-sub">삭제하기</button>
-                    </form>
+                    <div class="more-menu" id="moreMenu">
+                        <!-- 수정하기 -->
+                        <form th:action="@{|/trade/${currentMemberId}/write?tradeId=${trade.id}|}"
+                              method="get">
+                            <button type="submit">수정하기</button>
+                        </form>
+                        <!-- 삭제하기 -->
+                        <form th:action="@{|/trade/${trade.id}/delete|}"
+                              method="post"
+                              onsubmit="return confirm('정말 이 게시글을 삭제할까요?');">
+                            <button type="submit" class="delete">삭제하기</button>
+                        </form>
+                    </div>
                 </div>
 
             </div>
@@ -453,6 +521,24 @@
     </section>
 
 </main>
+
+<script>
+    // … 메뉴 토글
+    (function () {
+        const btn = document.getElementById("moreToggle");
+        const menu = document.getElementById("moreMenu");
+        if (!btn || !menu) return;
+
+        btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            menu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", function () {
+            menu.classList.remove("open");
+        });
+    })();
+</script>
 
 </body>
 </html>

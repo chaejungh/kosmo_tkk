@@ -12,6 +12,10 @@ public class TradePostListDto {
     private String title;
     private String region;
 
+    // 🔥 추가: 판매자 정보
+    private Long sellerId;
+    private String sellerNickname;
+
     // 썸네일 / 시간 / 가격
     private String thumbnailUrl;
     private String timeAgo;
@@ -32,6 +36,15 @@ public class TradePostListDto {
         this.id = post.getId();
         this.title = post.getTitle();
         this.region = post.getRegion();
+
+        // 🔥 판매자 정보도 함께 초기화 (가능하면)
+        this.sellerId = post.getSellerId();
+        if (post.getSeller() != null && post.getSeller().getNickname() != null) {
+            this.sellerNickname = post.getSeller().getNickname();
+        } else {
+            this.sellerNickname = "판매자 #" + post.getSellerId();
+        }
+
         this.thumbnailUrl = thumbnailUrl;
         this.timeAgo = timeAgo;
 
@@ -41,7 +54,7 @@ public class TradePostListDto {
             this.priceText = "가격문의";
         }
 
-        // 🔥 생성자에서도 조회수 세팅 (필요하면)
+        // 🔥 필요하면 여기서 조회수도 세팅할 수 있음
         // this.viewCount = post.getViewCount() != null ? post.getViewCount() : 0L;
     }
 }

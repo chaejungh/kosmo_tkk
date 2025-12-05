@@ -1,14 +1,16 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.TradeChatRoom;
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
-import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
+import com.smu.tkk.repository.TradeChatRoomRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;   // 🔥 추가
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,18 +36,27 @@ public class TradeChatController {
     @PostMapping("/{tradeId}/chat/start/{memberId}")
     public String startChat(
             @PathVariable Long tradeId,
-            @PathVariable Long memberId
+            @PathVariable Long memberId,   // URL 형태 맞추기용 (실제 사용 X)
+            HttpSession session
     ) {
+        // ✅ 세션에서 로그인 회원 꺼내기
+        // Member 전체 객체를 쓰고 싶으면 loginMember, PK만 쓰고 싶으면 memberId 사용
+        Long currentMemberId = (Long) session.getAttribute("memberId");
+
+        if (currentMemberId == null) {
+            // 로그인 안 돼 있으면 로그인 페이지로
+            return "redirect:/login";
+        }
+
         // 1) 채팅방 생성 또는 기존방 재사용
-        TradeChatRoom room = chatService.getOrCreateRoom(tradeId, memberId);
+        TradeChatRoom room = chatService.getOrCreateRoom(tradeId, currentMemberId);
 
         // 2) 해당 거래글의 채팅방 개수 세고 → 웹소켓으로 브로드캐스트
         long chatCount = tradeChatRoomRepository.countByTradeId(tradeId);
-        // 구독 주소: /sub/trade.stats.{tradeId}
         messagingTemplate.convertAndSend("/sub/trade.stats." + tradeId, chatCount);
 
         // 3) 생성된 채팅방으로 이동
-        return "redirect:/trade/" + memberId + "/chat/" + room.getId();
+        return "redirect:/trade/" + currentMemberId + "/chat/" + room.getId();
     }
 
     /* ======================================================

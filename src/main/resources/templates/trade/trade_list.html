@@ -290,9 +290,15 @@
             <div>
                 <div class="trade-title" th:text="${post.title}">상품 제목</div>
 
+                <!-- 🔥 판매자 닉네임 + 지역 + 시간 -->
                 <div class="trade-meta">
-                    <span th:text="${post.region}"></span> ·
-                    <span th:text="${post.timeAgo}"></span>
+                    <a th:href="@{|/trade/seller/${post.sellerId}|}"
+                       th:text="${post.sellerNickname}"
+                       style="font-weight:600;">
+                        판매자
+                    </a>
+                    · <span th:text="${post.region}"></span>
+                    · <span th:text="${post.timeAgo}"></span>
                 </div>
 
                 <!-- ❤️ 찜 · 💬 채팅 · 👀 조회 순서 -->
@@ -313,7 +319,19 @@
 </div>
 
 <!-- ===== 글쓰기 버튼 ===== -->
-<a href="/trade/1/write" class="write-btn">+ 글쓰기</a>
+<!-- ✅ 로그인한 경우: 로그인한 유저 id로 write 이동 -->
+<a th:if="${session.loginMember != null}"
+   th:href="@{|/trade/${session.loginMember.id}/write|}"
+   class="write-btn">
+    + 글쓰기
+</a>
+
+<!-- ✅ 비로그인인 경우: 로그인 페이지로 -->
+<a th:if="${session.loginMember == null}"
+   th:href="@{/login}"
+   class="write-btn">
+    + 글쓰기
+</a>
 
 <!-- ===== 하단 네비 ===== -->
 <nav class="bottom-nav">

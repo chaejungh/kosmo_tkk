@@ -1,23 +1,26 @@
 package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.TradePostListDto;
+import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
-import com.smu.tkk.repository.TradeBookmarkRepository;   // 🔥 추가
-import com.smu.tkk.repository.TradeChatRoomRepository;  // 🔥 추가
+import com.smu.tkk.repository.TradeBookmarkRepository;
+import com.smu.tkk.repository.TradeChatRoomRepository;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
-import jakarta.servlet.http.HttpSession;                 // 🔥 세션 사용
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ WebSocket
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,12 +41,61 @@ public class TradeController {
     private final TradeChatRoomRepository tradeChatRoomRepository;
     private final TradeBookmarkRepository tradeBookmarkRepository;
 
-    // ✅ 로그인한 회원 ID 가져오는 헬퍼
+    // ✅ 로그인한 회원 ID 가져오는 헬퍼 (세션 키 이름 맞게 수정!)
     private Long getLoginMemberId(HttpSession session) {
-        Object id = session.getAttribute("loginMemberId");
-        if (id instanceof Long) return (Long) id;
-        if (id instanceof Integer) return ((Integer) id).longValue();
+
+        // 1) 전체 Member 객체가 있으면 거기서 바로 PK 꺼내기
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember != null) {
+            return loginMember.getId();
+        }
+
+        // 2) PK만 따로 저장된 경우 (memberId)
+        Object id = session.getAttribute("memberId");
+        if (id instanceof Long) {
+            return (Long) id;
+        }
+        if (id instanceof Integer) {
+            return ((Integer) id).longValue();
+        }
+
+        // 3) 로그인 안 되어 있으면 null
         return null;
+    }
+
+    // ✅ 상세 페이지에서 쓸 상대 시간 계산
+    private String calcTimeAgo(LocalDateTime createdAt) {
+        if (createdAt == null) return "등록 시간 없음";
+
+        LocalDateTime now = LocalDateTime.now();
+        if (createdAt.isAfter(now)) return "방금 전";
+
+        long minutes = ChronoUnit.MINUTES.between(createdAt, now);
+        if (minutes < 1) return "방금 전";
+        if (minutes < 60) return minutes + "분 전";
+
+        long hours = ChronoUnit.HOURS.between(createdAt, now);
+        if (hours < 24) return hours + "시간 전";
+
+        long days = ChronoUnit.DAYS.between(createdAt, now);
+        if (days == 1) return "어제";
+        if (days < 7) return days + "일 전";
+
+        if (days < 30) {
+            long weeks = days / 7;
+            if (weeks < 1) weeks = 1;
+            return weeks + "주 전";
+        }
+
+        if (days < 365) {
+            long months = days / 30;
+            if (months < 1) months = 1;
+            return months + "개월 전";
+        }
+
+        long years = days / 365;
+        if (years < 1) years = 1;
+        return years + "년 전";
     }
 
     @GetMapping
@@ -85,20 +137,15 @@ public class TradeController {
 
     /* ===============================================================
        🔥 특정 판매자의 거래글 목록
-       URL 예: /trade/seller/1
        ============================================================== */
     @GetMapping("/seller/{sellerId}")
     public String tradeListBySeller(@PathVariable Long sellerId,
                                     @PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
                                     Model model) {
 
-        // 1) 해당 판매자의 글 목록 조회 (엔티티)
         Page<TradePost> entityPage = tradeService.readBySellerId(sellerId, pageable);
-
-        // 2) DTO 변환
         Page<TradePostListDto> dtoPage = entityPage.map(tradeService::toListDTO);
 
-        // 3) 상단에 보여줄 판매자 이름
         String sellerName = "판매자 #" + sellerId;
         if (entityPage.hasContent()) {
             TradePost first = entityPage.getContent().get(0);
@@ -110,9 +157,8 @@ public class TradeController {
         model.addAttribute("page", dtoPage);
         model.addAttribute("sellerId", sellerId);
         model.addAttribute("sellerName", sellerName);
-        model.addAttribute("isSellerList", true);   // 판매자 목록인지 구분용 플래그
+        model.addAttribute("isSellerList", true);
 
-        // 👉 기존 리스트 템플릿 재사용
         return "trade/trade_list";
     }
 
@@ -128,6 +174,10 @@ public class TradeController {
         tradeService.increaseViewCount(tradeId);
 
         TradePost trade = tradeService.readOneTradePostById(tradeId);
+
+        // ✅ 상대 시간 문자열 계산 (몇분 전 / 몇시간 전 / 어제 ...)
+        String timeAgo = calcTimeAgo(trade.getCreatedAt());
+        model.addAttribute("timeAgo", timeAgo);
 
         // 표지 이미지
         Optional<TradePostImage> coverOpt = tradePostImageService.readOneImage(tradeId);
@@ -157,7 +207,7 @@ public class TradeController {
         model.addAttribute("chatCount", chatCount);
         model.addAttribute("likeCount", likeCount);
 
-        // 🔥 현재 사용자가 이 글을 찜했는지 여부 → detail.html 의 liked 에 사용
+        // 🔥 현재 사용자가 이 글을 찜했는지 여부
         boolean liked = false;
         if (memberId != null && memberId != 0L) {
             liked = tradeBookmarkRepository.existsByMemberIdAndTradeId(memberId, tradeId);
@@ -223,11 +273,6 @@ public class TradeController {
 
     /* ===============================================================
        🔥 글쓰기 / 수정 폼
-       - tradeId 파라미터가 있으면 "수정 모드"
-       - 없으면 "새 글 작성"
-       URL 예)
-         새 글:   /trade/1/write
-         수정:    /trade/1/write?tradeId=10
        ============================================================== */
     @GetMapping("/{memberId}/write")
     public String writeForm(@PathVariable Long memberId,
@@ -270,15 +315,13 @@ public class TradeController {
         }
 
         model.addAttribute("memberId", memberId);
-        model.addAttribute("post", post);  // 🔥 trade_write.html에서 이 이름으로 받음
+        model.addAttribute("post", post);
 
         return "trade/trade_write";
     }
 
     /* ===============================================================
        🔥 이미지 포함 글 등록 / 수정
-       - post.id 가 null이면 INSERT
-       - post.id 가 있으면 UPDATE (JPA가 merge 해줌)
        ============================================================== */
     @PostMapping("/{memberId}/write")
     public String writeSubmit(@PathVariable Long memberId,
@@ -324,7 +367,6 @@ public class TradeController {
 
     /* ===============================================================
        🔥 글 삭제 (작성자만 가능)
-       URL: POST /trade/{tradeId}/delete
        ============================================================== */
     @PostMapping("/{tradeId}/delete")
     public String deletePost(@PathVariable Long tradeId,
@@ -356,8 +398,6 @@ public class TradeController {
 
     /* ===============================================================
        🔥 거래 상태 변경 (판매자만 가능)
-       URL: POST /trade/{tradeId}/status
-       파라미터: status = ON_SALE / RESERVED / SOLD
        ============================================================== */
     @PostMapping("/{tradeId}/status")
     public String updateStatus(@PathVariable Long tradeId,

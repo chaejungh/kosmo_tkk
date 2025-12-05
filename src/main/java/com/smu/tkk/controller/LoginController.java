@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*; // ✅ PostMapping, RequestParam 등 추가
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -18,42 +18,44 @@ public class LoginController {
 
     /**
      * 로그인 페이지
-     * /login 요청 → templates/auth/login.html 반환
      */
     @GetMapping("/login")
     public String loginForm() {
-        return "auth/login";   // auth 폴더 내부의 login.html 표시
+        return "auth/login";   // templates/auth/login.html
     }
 
     /**
-     * 회원가입 페이지
-     * /join 요청 → templates/auth/join.html 반환
+     * 로그인 처리
      */
-    @GetMapping("/join")
-    public String joinForm() {
-        return "auth/join";    // auth 폴더 내부의 join.html 표시
-    }
-
-    // ✅ 로그인 처리 로직
     @PostMapping("/login")
-    public String login(@RequestParam String loginId,
-                        @RequestParam String loginPw,
+    public String login(@RequestParam("loginId") String loginId,
+                        @RequestParam("loginPw") String loginPw,
                         HttpSession session,
                         Model model) throws SQLException {
 
+        // 🔥 아이디/비번으로 회원 조회
         Member member = memberService.login(loginId, loginPw);
 
         if (member == null) {
+            // 로그인 실패
             model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            return "auth/login"; // 로그인 실패 시 다시 로그인 페이지로
+            return "auth/login";
         }
 
-        // ✅ 로그인 성공 시 세션 저장
-        session.setAttribute("loginMember", member);          // 전체 멤버 객체
-        session.setAttribute("loginMemberId", member.getId()); // 🔥 컨트롤러에서 쓸 ID
-        session.setAttribute("loginNickname", member.getNickname()); // (필요하면 사용)
+        // ✅ 로그인 성공 → 세션에 저장
+        session.setAttribute("loginMember", member);      // 전체 객체
+        session.setAttribute("memberId", member.getId()); // PK만 따로
 
-        // ✅ 로그인 후 메인 페이지로 이동
+        // 메인으로 이동
+        return "redirect:/";
+    }
+
+    /**
+     * 로그아웃 (있으면 편함)
+     */
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/";
     }
 }
