@@ -216,6 +216,9 @@ import java.util.Optional;
         public void increaseViewCount(Long postId) throws SQLException {
             BoardPost post = boardPostRepository.findById(postId)
                     .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+
+            Long currentView = (post.getViewCount() == null ? 0L : post.getViewCount());
+
             post.setViewCount(post.getViewCount() + 1);
             boardPostRepository.save(post);
 
