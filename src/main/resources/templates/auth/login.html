@@ -138,6 +138,13 @@
 
 <div class="login-container">
 
+    <!-- 🔥 회원가입 성공 메시지 출력 -->
+    <div th:if="${joinSuccess}"
+         style="background:#d1fae5; color:#065f46; padding:12px; border-radius:10px;
+                text-align:center; margin-bottom:15px; font-size:14px; font-weight:600;">
+        <span th:text="${joinSuccess}"></span>
+    </div>
+
     <div class="login-title">로그인</div>
 
     <div th:if="${param.passwordChanged}" class="alert alert-info text-center">

@@ -331,13 +331,20 @@
         <div class="join-logo">더쿠쿠</div>
         <div class="join-subtitle">회원가입</div>
 
-        <form class="join-form">
+        <form class="join-form" method="post" action="/auth/join">
+
+
+            <input type="hidden" name="gender" id="genderValue" value="남자">
+            <input type="hidden" name="nationality" id="nationalityValue" value="내국인">
+            <input type="hidden" name="email" id="emailFull">
+
+
 
             <!-- 아이디 -->
             <div class="form-group">
                 <label class="form-label">아이디</label>
                 <div class="form-row-inline">
-                    <input type="text" class="input-field" placeholder="아이디 입력">
+                    <input type="text" class="input-field" name="loginId" placeholder="아이디 입력">
                     <button type="button" class="btn-inline">중복확인</button>
                 </div>
             </div>
@@ -345,7 +352,7 @@
             <!-- 비밀번호 -->
             <div class="form-group">
                 <label class="form-label">비밀번호</label>
-                <input type="password" class="input-field" placeholder="비밀번호 입력">
+                <input type="password" class="input-field" name="loginPw" placeholder="비밀번호 입력">
             </div>
 
             <!-- 비밀번호 확인 -->
@@ -358,8 +365,8 @@
             <div class="form-group email-row">
                 <label class="form-label">이메일</label>
                 <div class="form-row-inline">
-                    <input type="text" class="input-field" placeholder="이메일 아이디 (예: banana123)">
-                    <select class="email-domain-select">
+                    <input type="text" class="input-field" name="emailId" placeholder="이메일 아이디 (예: banana123)">
+                    <select class="email-domain-select" name="emailDomain">
                         <option value="@naver.com">@naver.com</option>
                         <option value="@gmail.com">@gmail.com</option>
                         <option value="@daum.net">@daum.net</option>
@@ -374,7 +381,7 @@
             <!-- 이름 -->
             <div class="form-group">
                 <label class="form-label">이름</label>
-                <input type="text" class="input-field" placeholder="이름 입력">
+                <input type="text" class="input-field" name="nickname" placeholder="이름 입력">
             </div>
 
             <!-- 생년월일 -->
@@ -397,10 +404,11 @@
             </div>
 
             <!-- 성별 · 국적 -->
+
             <div class="form-group">
                 <label class="form-label">성별 · 국적</label>
                 <div class="gender-nationality-row">
-                    <button type="button" class="toggle-btn">남자</button>
+                    <button type="button" class="toggle-btn active">남자</button>
                     <button type="button" class="toggle-btn">여자</button>
                     <button type="button" class="toggle-btn active">내국인</button>
                     <button type="button" class="toggle-btn">외국인</button>
@@ -456,32 +464,43 @@
        🔥 성별 · 국적 토글 기능 추가
        =============================== */
 
+
+    document.querySelector(".join-form").addEventListener("submit", function () {
+        const id = document.querySelector("input[name='emailId']").value;
+        const domain = document.querySelector("select[name='emailDomain']").value;
+
+        let email = id + domain;
+        document.getElementById("emailFull").value = email;
+    });
+
     const toggleButtons = document.querySelectorAll(".toggle-btn");
 
     toggleButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-
-            // 성별(남/여) 인덱스 0,1
-            // 국적(내/외) 인덱스 2,3
-
+            const text = btn.textContent.trim();
             const index = [...toggleButtons].indexOf(btn);
 
-            // 성별 그룹
-            if (index === 0 || index === 1) {
+
+// 1) 성별 선택 처리
+            if (text === "남자" || text === "여자") {
+                document.getElementById("genderValue").value = text;
+
                 toggleButtons[0].classList.remove("active");
                 toggleButtons[1].classList.remove("active");
             }
 
-            // 국적 그룹
-            if (index === 2 || index === 3) {
+            // 2) 국적 선택 처리
+            if (text === "내국인" || text === "외국인") {
+                document.getElementById("nationalityValue").value = text;
+
                 toggleButtons[2].classList.remove("active");
                 toggleButtons[3].classList.remove("active");
             }
+
 
             btn.classList.add("active");
         });
     });
 </script>
-
 </body>
 </html>
