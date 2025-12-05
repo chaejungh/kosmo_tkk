@@ -96,7 +96,7 @@
                 showToast(event.data);
             });
 
-            es.addEventListener("message-alert", (event) => {
+            es.addEventListener("notification", (event) => {
                 const setting = localStorage.getItem("message_alert_on");
                 if (setting === "N") return;  // 메시지 알림 OFF면 막기
                 showToast(event.data);

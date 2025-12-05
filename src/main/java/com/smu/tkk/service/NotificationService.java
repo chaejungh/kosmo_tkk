@@ -34,5 +34,5 @@ public interface NotificationService {
     /** 단건 읽음 처리 */
     boolean markRead(Long notificationId);
 
-
+    void sendChatNotification(Long roomId, Long senderId);
 }
