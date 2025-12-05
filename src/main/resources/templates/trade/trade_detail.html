@@ -324,13 +324,17 @@
         <!-- 오른쪽 정보 -->
         <div class="info-card">
 
-            <!-- 🔼 프로필 카드 -->
+            <!-- 🔼 프로필 카드 (닉네임 클릭 → 판매자 리스트로 이동) -->
             <div class="seller-card">
                 <div class="seller-avatar"><span>👤</span></div>
 
                 <div class="seller-info-main">
-                    <div class="seller-name"
-                         th:text="${trade.seller != null ? trade.seller.nickname : '판매자 #' + trade.sellerId}"></div>
+                    <div class="seller-name">
+                        <a th:href="@{|/trade/seller/${sellerId}|}"
+                           th:text="${trade.seller != null ? trade.seller.nickname : '판매자 #' + trade.sellerId}">
+                            판매자
+                        </a>
+                    </div>
 
                     <div class="seller-region"
                          th:text="${trade.region != null ? trade.region : '지역 미등록'}"></div>
