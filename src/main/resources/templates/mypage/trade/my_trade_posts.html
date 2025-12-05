@@ -1,61 +1,38 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html   lang="ko"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{fragments/mypage_fragment/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>더쿠쿠 - 내가 쓴 굿즈거래 글</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+
 </head>
 <body>
-<div class="page">
-    <header class="header">
-        <div class="header-top">
-            <a th:href="@{/mypage}" class="logo">← 내정보</a>
-            <div class="logo-badge subtle">
-                <span>💸</span>
-                <span>굿즈거래 글</span>
-            </div>
-        </div>
-        <div class="search-area">
-            <p class="search-meta">내가 올린 판매/교환/양도 글을 확인해요.</p>
-        </div>
-    </header>
+<div layout:fragment="content">
 
-    <main class="content">
-        <section class="card mypage-section">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>내 거래 글</span>
-                    <span class="pill pill-green small">TRADE</span>
+    <div class="section-box">
+        <div class="section-title">💸 내 거래 글</div>
+
+        <div class="list-box">
+            <a class="post-item"
+               th:each="tp : ${tradePost.content}"
+               th:href="@{'/trade/' + ${tp.id} + '/article/detail.do'}">
+
+                <!-- 제목 영역 -->
+                <div class="post-title"
+                     th:text="'[' + ${tp.status} + '] ' + ${tp.title}">
                 </div>
-            </div>
 
-            <ul class="simple-list link-list">
-                <li th:each="tp : ${tradePost.content}">
-                    <a th:href="@{'/trade/' + ${tp.id} + '/article/detail.do'}">
-                    <span th:text="'[' + ${tp.status} + '] ' + ${tp.title}"></span>
+                <!-- 부가 정보 (가격) -->
+                <div class="post-info">
+                    <span th:text="${#numbers.formatInteger(tp.price, 3, 'COMMA')} + '원'"></span>
+                </div>
 
-                    <span th:text="${tp.price} + '원'"></span>
-                    </a>
-                </li>
-            </ul>
-        </section>
-    </main>
+            </a>
+        </div>
+    </div>
+
 </div>
 
-<nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span><span>홈</span>
-    </a>
-    <a th:href="@{/board}" class="nav-item">
-        <span class="icon">📁</span><span>덕질게시판</span>
-    </a>
-    <a th:href="@{/trade}" class="nav-item active">
-        <span class="icon">💸</span><span>굿즈거래</span>
-    </a>
-    <a th:href="@{/mypage}" class="nav-item">
-        <span class="icon">👤</span><span>내정보</span>
-    </a>
-</nav>
+
 </body>
 </html>

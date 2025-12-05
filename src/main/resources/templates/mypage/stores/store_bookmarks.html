@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html   lang="ko"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{fragments/mypage_fragment/layout}">
 <head>
     <meta charset="UTF-8">
     <title>더쿠쿠 - 즐겨찾기한 매장</title>
@@ -7,54 +10,27 @@
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
-<div class="page">
-    <header class="header">
-        <div class="header-top">
-            <a th:href="@{/mypage}" class="logo">← 내정보</a>
-            <div class="logo-badge subtle">
-                <span>📍</span>
-                <span>즐겨찾기 매장</span>
-            </div>
-        </div>
-        <div class="search-area">
-            <p class="search-meta">자주 가는 굿즈 매장을 즐겨찾기해서 관리해요.</p>
-        </div>
-    </header>
+<div layout:fragment="content">
+    <div class="section-box">
+        <div class="section-title">❤️ 좋아요 한 글</div>
 
-    <main class="content">
-        <section class="card mypage-section">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>즐겨찾기 리스트</span>
+        <div class="item" th:each="bm : ${storeBookmarks.content}">
+            <a th:href="@{'/storestore/' + ${bm.storeId} + '/detail.do'}" style="display:block;">
+                <div class="main" th:text="${bm.store.name}"></div>
+
+                <div class="sub">
+                    <span th:text="${bm.store.address}"></span>
                 </div>
-            </div>
 
-            <ul class="simple-list link-list">
-                <li th:each="bm : ${storeBookmarks.content}">
-                <a th:href="@{'/store/' + ${bm.storeId} + '/detail.do'}">
-                        <span th:text="${bm.store.name}"></span>
+                <div class="sub">
+                    <span th:text="${bm.store.oneLineDesc}"></span>
+                    ⊙
+                    <span th:text="${bm.store.avgRating}"></span>
+                </div>
+            </a>
+        </div>
+    </div>
 
-                        <span th:text="${bm.store.address}"></span>
-                </a>
-                </li>
-            </ul>
-        </section>
-    </main>
 </div>
-
-<nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span><span>홈</span>
-    </a>
-    <a th:href="@{/board}" class="nav-item">
-        <span class="icon">📁</span><span>덕질게시판</span>
-    </a>
-    <a th:href="@{/trade}" class="nav-item">
-        <span class="icon">💸</span><span>굿즈거래</span>
-    </a>
-    <a th:href="@{/mypage}" class="nav-item active">
-        <span class="icon">👤</span><span>내정보</span>
-    </a>
-</nav>
 </body>
 </html>
