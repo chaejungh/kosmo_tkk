@@ -1,11 +1,15 @@
 package com.smu.tkk.serviceimp;
 
+import com.smu.tkk.config.NotificationPublisher;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.Notification;
+import com.smu.tkk.entity.TradeChatRoom;
 import com.smu.tkk.repository.NotificationRepository;
+import com.smu.tkk.repository.TradeChatRoomRepository;
 import com.smu.tkk.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +20,12 @@ import java.util.List;
     @Service
     @RequiredArgsConstructor
     @Transactional
-
+    @Component
     public class NotificationServiceImp implements NotificationService {
 
         private final NotificationRepository notificationRepository;
+        private final NotificationPublisher notificationPublisher;
+        private final TradeChatRoomRepository roomRepository;
 
         /** -------------------------------------------------------
          *  1. 알림 등록
@@ -138,5 +144,27 @@ import java.util.List;
             notificationRepository.save(noti);
 
             return false;
+        }
+
+        @Override
+        public void sendChatNotification(Long roomId, Long senderId) {
+
+            // 1) 채팅방 불러오기
+            TradeChatRoom room = roomRepository.findDetailById(roomId);
+            if (room == null) {
+                throw new IllegalArgumentException("채팅방 없음: " + roomId);
+            }
+
+            // 2) 상대방 아이디 찾기
+            Long buyerId = room.getMemberId();
+            Long sellerId = room.getTrade().getSeller().getId();
+
+            Long target = senderId.equals(buyerId) ? sellerId : buyerId;
+
+            System.out.println("📌 알림 받을 대상 ID = " + target);
+
+            // 3) 토스트 전송
+            notificationPublisher.send(target, "새 채팅 메시지가 도착했습니다."
+            );
         }
     }
