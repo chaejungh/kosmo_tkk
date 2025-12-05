@@ -16,9 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -86,10 +84,10 @@ public class MyPageServiceController {
         return "mypage/service/inquiries";
     }
 
-    @GetMapping("/setting")
-    public String settingsPage() {
-        return "mypage/service/setting";
-    }
+//    @GetMapping("/setting")
+//    public String settingsPage() {
+//        return "mypage/service/setting";
+//    }
     // 약관 페이지
     @GetMapping("/terms")
     public String termsPage() {
@@ -106,5 +104,47 @@ public class MyPageServiceController {
         session.invalidate();
         return "redirect:/";
     }
+    @PostMapping("/updatePassword")
+    public String updatePassword(@RequestParam Long memberId,
+                                 @RequestParam String loginPw,
+                                 HttpSession session) throws SQLException {
 
+        Member member = memberService.readOne(memberId);
+        if (member == null) {
+            throw new IllegalArgumentException("해당 회원이 존재하지 않습니다.");
+        }
+
+        member.setLoginPw(loginPw);
+        memberService.modify(member);
+
+        // ✅ 세션 초기화 → 로그아웃 처리
+        session.invalidate();
+
+        // ✅ 로그인 페이지로 리다이렉트
+        return "redirect:/login?passwordChanged=true";
+    }
+    @PostMapping("/updateEmail")
+    public String updateEmail(@RequestParam Long memberId,
+                              @RequestParam String email) throws SQLException {
+
+        Member member = memberService.readOne(memberId);
+        if (member == null) {
+            throw new IllegalArgumentException("해당 회원이 존재하지 않습니다.");
+        }
+
+        member.setEmail(email);
+        memberService.modify(member);
+
+        // ✅ 다시 설정 페이지로 돌아가면서 메시지 표시
+        return "redirect:/mypage/service/setting?emailUpdated=true";
+    }
+    @GetMapping("/setting")
+    public String settingsPage(HttpSession session, Model model) throws SQLException {
+        Long memberId = (Long) session.getAttribute("memberId");
+        if (memberId != null) {
+            Member member = memberService.readOne(memberId);
+            model.addAttribute("member", member);
+        }
+        return "mypage/service/setting";
+    }
 }
