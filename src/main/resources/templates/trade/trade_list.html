@@ -268,6 +268,12 @@
     </form>
 </div>
 
+<!-- 🔥 판매자 전용 리스트일 때만 안내 문구 표시 -->
+<div th:if="${sellerName != null}"
+     style="padding: 8px 18px 0; font-size: 13px; color: var(--text-sub);">
+    <span th:text="${sellerName}">판매자</span> 님의 판매 상품
+</div>
+
 <!-- ===== LIST ===== -->
 <div class="trade-list">
 
@@ -369,18 +375,24 @@
     })();
 </script>
 
-<!-- 🔥 새 게시글 실시간 반영용 WebSocket 구독 -->
+<!-- 🔥 새 게시글 / 새 채팅방 실시간 반영용 WebSocket 구독 -->
 <script>
     (function () {
         const socket = new SockJS("/ws-chat");      // WebSocketConfig endpoint
         const stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function () {
-            // 서버에서 messagingTemplate.convertAndSend("/sub/trade.list", ...) 보내면 여기서 받음
+
+            /* 📌 1) 새 게시글 올라왔을 때 (이미 있던 기능) */
             stompClient.subscribe("/sub/trade.list", function (msg) {
                 console.log("📢 새 게시글 알림 도착:", msg.body);
-                // 리스트 다시 로드해서 새 글 바로 보기
-                location.reload();
+                location.reload();   // 새 글 보려고 전체 리로드
+            });
+
+            /* 📌 2) 새 채팅방 생겼을 때 (채팅 수 실시간 반영) */
+            stompClient.subscribe("/sub/trade.chat", function (msg) {
+                console.log("💬 새 채팅방 알림 도착:", msg.body);
+                location.reload();   // 채팅 수, 찜 수, 조회수 다시 불러오기
             });
         });
     })();

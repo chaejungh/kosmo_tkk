@@ -5,8 +5,10 @@ import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
+import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;   // 🔥 추가
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,10 @@ public class TradeChatController {
     private final TradeChatService chatService;
     private final TradePostImageService tradePostImageService;
 
+    // 🔥 실시간 채팅 수 전송용
+    private final SimpMessagingTemplate messagingTemplate;
+    private final TradeChatRoomRepository tradeChatRoomRepository;
+
     /* ======================================================
        🔥 채팅 시작 기능 (채팅방 생성 or 기존방 재사용)
        ====================================================== */
@@ -33,7 +39,12 @@ public class TradeChatController {
         // 1) 채팅방 생성 또는 기존방 재사용
         TradeChatRoom room = chatService.getOrCreateRoom(tradeId, memberId);
 
-        // 2) 생성된 채팅방으로 이동
+        // 2) 해당 거래글의 채팅방 개수 세고 → 웹소켓으로 브로드캐스트
+        long chatCount = tradeChatRoomRepository.countByTradeId(tradeId);
+        // 구독 주소: /sub/trade.stats.{tradeId}
+        messagingTemplate.convertAndSend("/sub/trade.stats." + tradeId, chatCount);
+
+        // 3) 생성된 채팅방으로 이동
         return "redirect:/trade/" + memberId + "/chat/" + room.getId();
     }
 
@@ -92,7 +103,6 @@ public class TradeChatController {
 
         model.addAttribute("memberId", memberId);
         model.addAttribute("room", room);
-        // 초기 렌더링용 메시지 목록 (옵션 – 없애고 전부 웹소켓으로만 해도 됨)
         model.addAttribute("msgList", chatService.messages(roomId).getContent());
         model.addAttribute("currentMemberId", currentMemberId);
 
@@ -107,16 +117,7 @@ public class TradeChatController {
     }
 
     /* ======================================================
-       ❌ (폴링용 텍스트 전송/조회 API 제거됨)
-       - sendMessage()
-       - /api/{roomId}/chat/list
-       - /api/{memberId}/chat/{roomId}/send
-       ====================================================== */
-
-    /* ======================================================
        ✅ 이미지 업로드 API (REST 유지)
-       - 파일만 업로드하고, 실제 채팅 메시지는
-         "[img]/upload/chat/파일명" 형태로 웹소켓으로 보내는 구조로 사용 가능
        ====================================================== */
     @ResponseBody
     @PostMapping("/api/{memberId}/chat/{roomId}/image")
@@ -126,7 +127,6 @@ public class TradeChatController {
             @RequestParam("image") MultipartFile file
     ) {
         try {
-            // 이미지 저장 + [img] 경로로 메시지 저장
             chatService.sendImage(roomId, memberId, file);
             return ResponseEntity.ok().build();
         } catch (Exception e) {

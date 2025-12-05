@@ -3,16 +3,15 @@ package com.smu.tkk.controller;
 import com.smu.tkk.dto.TradePostListDto;
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
+import com.smu.tkk.repository.TradeBookmarkRepository;  // 🔥 추가
+import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
-import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
-import com.smu.tkk.repository.TradeBookmarkRepository;  // 🔥 추가
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ 기존
+import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ WebSocket
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +33,7 @@ public class TradeController {
     // ★ WebSocket으로 이벤트 쏘기 위해 추가
     private final SimpMessagingTemplate messagingTemplate;
 
-    // 🔥 채팅방 / 북마크 개수 조회용 레포지토리 추가
+    // 🔥 채팅방 / 북마크 개수 조회용 레포지토리
     private final TradeChatRoomRepository tradeChatRoomRepository;
     private final TradeBookmarkRepository tradeBookmarkRepository;
 
@@ -63,7 +62,7 @@ public class TradeController {
     }
 
     /* ===============================================================
-       🔥 목록
+       🔥 전체 목록
        ============================================================== */
     @GetMapping("/list.do")
     public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
@@ -72,6 +71,39 @@ public class TradeController {
         Page<TradePostListDto> dtoPage = tradeService.readAllListDto(pageable);
         model.addAttribute("page", dtoPage);
 
+        return "trade/trade_list";
+    }
+
+    /* ===============================================================
+       🔥 특정 판매자의 거래글 목록
+       URL 예: /trade/seller/1
+       ============================================================== */
+    @GetMapping("/seller/{sellerId}")
+    public String tradeListBySeller(@PathVariable Long sellerId,
+                                    @PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
+                                    Model model) {
+
+        // 1) 해당 판매자의 글 목록 조회 (엔티티)
+        Page<TradePost> entityPage = tradeService.readBySellerId(sellerId, pageable);
+
+        // 2) DTO 변환
+        Page<TradePostListDto> dtoPage = entityPage.map(tradeService::toListDTO);
+
+        // 3) 상단에 보여줄 판매자 이름
+        String sellerName = "판매자 #" + sellerId;
+        if (entityPage.hasContent()) {
+            TradePost first = entityPage.getContent().get(0);
+            if (first.getSeller() != null && first.getSeller().getNickname() != null) {
+                sellerName = first.getSeller().getNickname();
+            }
+        }
+
+        model.addAttribute("page", dtoPage);
+        model.addAttribute("sellerId", sellerId);
+        model.addAttribute("sellerName", sellerName);
+        model.addAttribute("isSellerList", true);   // 판매자 목록인지 구분용 플래그
+
+        // 👉 기존 리스트 템플릿 재사용
         return "trade/trade_list";
     }
 
@@ -105,13 +137,13 @@ public class TradeController {
                 (trade.getSeller() != null ? trade.getSeller().getId() : trade.getSellerId());
         model.addAttribute("sellerId", sellerId);
 
-        // 🔥 채팅 / 찜 개수 모델에 추가 (trade_detail.html에서 사용)
+        // 🔥 채팅 / 찜 개수
         long chatCount = tradeChatRoomRepository.countByTradeId(tradeId);
         long likeCount = tradeBookmarkRepository.countByTradeId(tradeId);
         model.addAttribute("chatCount", chatCount);
         model.addAttribute("likeCount", likeCount);
 
-        // 🔥 이 글을 내가 이미 찜했는지 여부 (빈 하트 / 빨간 하트 판단용)
+        // 🔥 현재 사용자가 이 글을 찜했는지 여부 → detail.html 의 liked 에 사용
         boolean liked = tradeBookmarkRepository.existsByMemberIdAndTradeId(memberId, tradeId);
         model.addAttribute("liked", liked);
 
