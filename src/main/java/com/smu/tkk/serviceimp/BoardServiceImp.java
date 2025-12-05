@@ -219,7 +219,7 @@ import java.util.Optional;
 
             Long currentView = (post.getViewCount() == null ? 0L : post.getViewCount());
 
-            post.setViewCount(post.getViewCount() + 1);
+            post.setViewCount(currentView + 1);
             boardPostRepository.save(post);
 
         }

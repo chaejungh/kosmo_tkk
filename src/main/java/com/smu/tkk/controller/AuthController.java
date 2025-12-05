@@ -85,6 +85,8 @@ public class AuthController {
             @RequestParam String loginPw,
             @RequestParam String nickname,
             @RequestParam(required = false) String email,
+            @RequestParam String gender,
+            @RequestParam String nationality,
             RedirectAttributes rttr
     ) {
 
@@ -111,10 +113,10 @@ public class AuthController {
         member.setLoginPw(loginPw);
         member.setNickname(nickname);
         member.setEmail(email);
-        // 나머지 필드는 null / default 값 그대로 두면 됨
+        member.setGender(gender);
+        member.setNationality(nationality);
 
-
-
+        // 나머지 필드는 null / default 값 그대로 두면 됨 > gender,nationlity 없어서 12월 5일 수정함
 
         memberRepository.save(member);
 

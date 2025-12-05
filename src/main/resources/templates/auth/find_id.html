@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기 - 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background: #f3f4f6;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .find-container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 32px 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-box {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: #6366f1;
+            background: #f9fafb;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4f46e5;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #4338ca;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .result-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .result-fail {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="find-container">
+
+    <div class="title">아이디 찾기</div>
+
+    <!-- 아이디 찾기 Form -->
+    <form th:action="@{/auth/find-id}" method="post">
+
+        <div class="form-box">
+            <label class="form-label">이름</label>
+            <input type="text" name="nickname" class="form-input" placeholder="가입 시 입력한 이름">
+        </div>
+
+        <div class="form-box">
+            <label class="form-label">이메일</label>
+            <input type="text" name="email" class="form-input" placeholder="가입 시 입력한 이메일">
+        </div>
+
+        <button type="submit" class="submit-btn"> 찾기</button>
+    </form>
+
+    <!-- 검색 결과 성공 -->
+    <div th:if="${foundId}" class="result-box result-success">
+         아이디 : <span th:text="${foundId}"></span>
+    </div>
+
+    <!-- 검색 결과 실패 -->
+    <div th:if="${notFound}" class="result-box result-fail">
+         일치하는 회원 정보가 존재하지 않습니다.
+    </div>
+
+</div>
+
+</body>
+</html>
