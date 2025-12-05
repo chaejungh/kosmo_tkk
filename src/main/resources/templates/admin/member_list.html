@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 관리자 - 회원 관리</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --admin-bg: #0b1120;
+            --admin-card-bg: #ffffff;
+            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
+            --admin-accent: #6366f1;
+            --admin-text: #111827;
+            --admin-text-soft: #6b7280;
+            --border-soft: #e5e7eb;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+            background: #f3f4f6;
+            color: var(--admin-text);
+        }
+
+        .admin-header {
+            background: var(--admin-bg);
+            color: #e5e7eb;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .admin-header-left { display: flex; align-items: center; gap: 12px; }
+        .admin-logo { font-weight: 700; font-size: 18px; }
+        .admin-header-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, .2);
+        }
+        .admin-header-right {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-header-right a {
+            color: #cbd5f5;
+            text-decoration: none;
+        }
+
+        .admin-main { padding: 24px 32px 32px; }
+
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .page-title h1 { margin: 0; font-size: 20px; }
+        .page-title p { margin: 2px 0 0; font-size: 13px; color: var(--admin-text-soft); }
+
+        .admin-card {
+            background: var(--admin-card-bg);
+            border-radius: 16px;
+            padding: 18px 20px 20px;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid var(--border-soft);
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 6px 10px;
+            font-size: 13px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+            min-width: 220px;
+        }
+        .btn {
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 6px 12px;
+        }
+        .btn-primary { background: var(--admin-accent); color: #fff; }
+        .btn-outline {
+            background: #fff;
+            color: var(--admin-text-soft);
+            border: 1px solid var(--border-soft);
+        }
+
+        .table-wrap { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        thead { background: #f9fafb; }
+        th, td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+            white-space: nowrap;
+        }
+        th { font-weight: 600; color: var(--admin-text-soft); }
+        tbody tr:hover { background: #f3f4ff; }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 7px;
+            border-radius: 999px;
+            font-size: 11px;
+        }
+        .tag-deleted {
+            background: rgba(239, 68, 68, .08);
+            color: #b91c1c;
+        }
+        .tag-active {
+            background: rgba(16, 185, 129, .1);
+            color: #047857;
+        }
+
+        .pagination {
+            margin-top: 14px;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+        .pagination a, .pagination span {
+            min-width: 26px;
+            padding: 4px 8px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: var(--admin-text-soft);
+        }
+        .pagination a:hover {
+            border-color: var(--border-soft);
+            background: #f9fafb;
+        }
+        .pagination .current {
+            background: var(--admin-accent);
+            border-color: var(--admin-accent);
+            color: #fff;
+        }
+        .pagination .disabled {
+            opacity: .4;
+            cursor: default;
+        }
+
+        @media (max-width: 640px) {
+            .admin-main { padding: 18px 14px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <span class="admin-header-badge">회원 관리</span>
+    </div>
+    <div class="admin-header-right">
+        <a th:href="@{/admin}">대시보드</a>
+        <span>|</span>
+        <a th:href="@{/admin/logout}">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+    <div class="page-title">
+        <div>
+            <h1>회원 목록</h1>
+            <p>회원 정보를 조회하고 상세 정보/상태를 관리합니다.</p>
+        </div>
+        <div th:if="${members != null}">
+            <p th:text="|총 ${members.totalElements}명 / ${members.totalPages}페이지|"></p>
+        </div>
+    </div>
+
+    <section class="admin-card">
+
+        <!-- 검색 폼 -->
+        <form class="filter-row" th:action="@{/admin/members}" method="get">
+            <input type="text" name="keyword"
+                   placeholder="아이디/닉네임/이메일 검색"
+                   th:value="${keyword}">
+            <button type="submit" class="btn btn-primary">검색</button>
+            <a th:href="@{/admin/members}" class="btn btn-outline">초기화</a>
+        </form>
+
+        <!-- 테이블 -->
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>회원ID</th>
+                    <th>닉네임</th>
+                    <th>이메일</th>
+                    <th>등급</th>
+                    <th>상태</th>
+                    <th>가입일</th>
+                    <th>상세</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- 데이터 없을 때 -->
+                <tr th:if="${members == null or members.empty}">
+                    <td colspan="8">등록된 회원이 없습니다.</td>
+                </tr>
+
+                <!-- 데이터 있을 때 -->
+                <tr th:each="m, stat : ${members != null ? members.content : {}}">
+                    <!-- 번호: 전체 개수 기준 역순 -->
+                    <td th:text="${members.totalElements - (members.number * members.size + stat.index)}">1</td>
+
+                    <!-- 로그인 ID 기준 -->
+                    <td th:text="${m.loginId}">user001</td>
+                    <td th:text="${m.nickname}">닉네임</td>
+                    <td th:text="${m.email}">user@example.com</td>
+
+                    <!-- 등급 -->
+                    <td th:text="${m.userLevel}">1</td>
+
+                    <!-- 상태 태그 -->
+                    <td>
+                        <span th:if="${m.deletedYn == 'Y'}"
+                              class="tag tag-deleted">비활성</span>
+                        <span th:if="${m.deletedYn != 'Y'}"
+                              class="tag tag-active">활성</span>
+                    </td>
+
+                    <!-- 가입일 -->
+                    <td th:text="${#temporals.format(m.createdAt, 'yyyy-MM-dd HH:mm')}">
+                        2025-01-01 12:00
+                    </td>
+
+                    <!-- 상세 버튼 -->
+                    <td>
+                        <a th:href="@{/admin/members/{memberId}(memberId=${m.id})}"
+                           style="font-size: 12px; color: var(--admin-accent); text-decoration: none;">
+                            상세보기
+                        </a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination"
+             th:if="${members != null and members.totalPages > 1}">
+
+            <!-- 이전 페이지 -->
+            <span th:if="${members.first}" class="disabled">&laquo;</span>
+            <a th:if="${!members.first}"
+               th:href="@{/admin/members(page=${members.number - 1}, size=${members.size}, keyword=${keyword})}">
+                &laquo;
+            </a>
+
+            <!-- 페이지 번호들 -->
+            <span th:each="i : ${#numbers.sequence(0, members.totalPages - 1)}"
+                  th:classappend="${i == members.number} ? 'current'">
+                <a th:if="${i != members.number}"
+                   th:href="@{/admin/members(page=${i}, size=${members.size}, keyword=${keyword})}"
+                   th:text="${i + 1}">1</a>
+                <span th:if="${i == members.number}"
+                      th:text="${i + 1}">1</span>
+            </span>
+
+            <!-- 다음 페이지 -->
+            <span th:if="${members.last}" class="disabled">&raquo;</span>
+            <a th:if="${!members.last}"
+               th:href="@{/admin/members(page=${members.number + 1}, size=${members.size}, keyword=${keyword})}">
+                &raquo;
+            </a>
+        </div>
+
+    </section>
+</main>
+
+</body>
+</html>

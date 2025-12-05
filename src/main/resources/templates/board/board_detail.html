@@ -2,7 +2,7 @@
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+      layout:decorate="~{fragments/tkk_fragment/layout}">
 <head></head>
 <body>
 
@@ -22,35 +22,57 @@
 <!--                <div class="detail-logo">더쿠쿠</div>-->
 <!--            </div>-->
 <!--        </header>-->
-
+<!--        <div id="share-popup" class="share-popup">-->
+<!--            <div class="share-popup-inner">-->
+<!--                <span id="share-url"></span>-->
+<!--                <button id="copy-url-btn">복사</button>-->
+<!--            </div>-->
+<!--        </div>-->
         <!-- ============ 상세 카드 ============ -->
         <section class="card post-detail-card">
             <div class="post-detail-header">
-                <div class="detail-profile-photo">
-                    <!-- 프로필 이미지가 있으면 이미지, 없으면 '프로필' 글자 -->
-                    <img th:if="${post.member.profileImageUrl} != null"
-                         th:src="${post.member.profileImageUrl}"
-                         alt="프로필"
-                         style="width:40px; height:40px; border-radius:50%; object-fit:cover;" >
-                    <span th:if="${post.member.profileImageUrl} == null">프로필</span>
+                <!-- 왼쪽 : 프로필 영역 -->
+                <div class="detail-profile-left">
+                    <div class="detail-profile-photo">
+                        <!-- 프로필 이미지가 있으면 이미지, 없으면 '프로필' 글자 -->
+                        <img th:if="${post.member.profileImageUrl} != null"
+                             th:src="${post.member.profileImageUrl}"
+                             alt="프로필"
+                             style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                        <span th:if="${post.member.profileImageUrl} == null">프로필</span>
+                    </div>
+
+                    <div class="detail-profile-meta">
+                        <!-- 닉네임 -->
+                        <div class="detail-nickname"
+                             th:text="${post.member.nickname}">
+                            히롱이
+                        </div>
+                        <!-- 작성일 · 카테고리명 -->
+                        <div class="detail-sub-meta">
+                <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">
+                    3분 전
+                </span>
+                            ·
+                            <span th:text="${post.category.name}"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="detail-profile-meta">
-                    <!-- 닉네임 -->
-                    <div class="detail-nickname"
-                         th:text="${post.member.nickname}">
-                        히롱이
-                    </div>
-                    <!-- 작성일 · 카테고리명 -->
-                    <div class="detail-sub-meta">
-                        <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">
-                            3분 전
-                        </span>
-                        ·
-                        <span th:text="${post.category.name}">
-                        </span>
-                    </div>
+
+                <!-- 오른쪽 : 수정 / 삭제 (작성자일 때만 노출) -->
+                <div class="detail-header-actions"
+                     th:if="${memberId != null and memberId == post.memberId}">
+                    <a class="detail-action-btn"
+                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/edit.do'}">
+                        수정
+                    </a>
+                    <a class="detail-action-btn detail-action-delete"
+                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/delete.do'}">
+                        삭제
+                    </a>
                 </div>
             </div>
+
 
             <!-- 대표 사진 -->
             <div class="detail-main-image">
@@ -152,67 +174,6 @@
                     <button type="submit">댓글 달기</button>
                 </div>
             </form>
-            <style>
-                .comment-list {
-                    margin-top: 20px;
-                }
-
-                .comment-item {
-                    border: 1px solid #ddd;
-                    border-radius: 12px;
-                    padding: 15px;
-                    margin-bottom: 12px;
-                    background: #fafafa;
-                    transition: 0.2s;
-                }
-
-                .comment-item:hover {
-                    background: #f0f0f0;
-                }
-
-                .comment-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 6px;
-                }
-
-                .comment-writer {
-                    font-weight: 600;
-                    color: #333;
-                }
-
-                .comment-date {
-                    font-size: 13px;
-                    color: #888;
-                    margin-left: 10px;
-                }
-
-                .comment-delete-btn {
-                    font-size: 13px;
-                    color: #725bff;
-                    text-decoration: none;
-                    margin-left: 10px;
-                }
-
-                .comment-delete-btn:hover {
-                    text-decoration: underline;
-                }
-
-                .comment-content {
-                    font-size: 15px;
-                    color: #444;
-                    line-height: 1.4;
-                    margin-top: 5px;
-                    white-space: pre-wrap;
-                }
-
-                .comment-empty {
-                    text-align: center;
-                    padding: 20px;
-                    color: #666;
-                }
-            </style>
             <!-- ============ 댓글 리스트 ============ -->
             <div class="comment-list">
 
@@ -245,7 +206,24 @@
                 </div>
             </div>
         </section>
-
+        <div id="share-modal-overlay" class="share-modal-overlay">
+            <div class="share-modal">
+                <div class="share-modal-header">
+                    <span>링크 공유</span>
+                    <button type="button" id="share-modal-close" class="share-modal-close">✕</button>
+                </div>
+                <div class="share-modal-body">
+                    <p class="share-modal-text">
+                        아래 링크를 복사해서 친구에게 공유해 보세요.
+                    </p>
+                    <div class="share-modal-url-row">
+                        <input id="share-url-input" type="text" readonly>
+                        <button type="button" id="copy-url-btn" class="share-copy-btn">복사</button>
+                    </div>
+                    <small id="share-copy-msg" class="share-copy-msg"></small>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -334,7 +312,69 @@
             });
         }
 
+        // ===================== 공유 모달 =====================
+        const shareBtn = document.querySelector(".detail-share-btn");
+        const shareOverlay = document.getElementById("share-modal-overlay");
+        const shareCloseBtn = document.getElementById("share-modal-close");
+        const shareUrlInput = document.getElementById("share-url-input");
+        const copyUrlBtn2 = document.getElementById("copy-url-btn");
+        const shareCopyMsg = document.getElementById("share-copy-msg");
 
+        if (shareBtn && shareOverlay && shareUrlInput && copyUrlBtn2) {
+
+            const openShareModal = () => {
+                const currentUrl = window.location.href;
+                shareUrlInput.value = currentUrl;
+                shareCopyMsg.textContent = "";
+
+                shareOverlay.style.display = "flex";
+
+                // 자동 선택 (바로 Ctrl+C 하고 싶은 사람용)
+                setTimeout(() => {
+                    shareUrlInput.focus();
+                    shareUrlInput.select();
+                }, 10);
+            };
+
+            const closeShareModal = () => {
+                shareOverlay.style.display = "none";
+            };
+
+            // 공유 버튼 클릭 → 모달 열기
+            shareBtn.addEventListener("click", openShareModal);
+
+            // X 버튼 클릭 → 모달 닫기
+            if (shareCloseBtn) {
+                shareCloseBtn.addEventListener("click", closeShareModal);
+            }
+
+            // 오버레이 바깥(검은 영역) 클릭 → 모달 닫기 (옵션)
+            shareOverlay.addEventListener("click", (e) => {
+                if (e.target === shareOverlay) {
+                    closeShareModal();
+                }
+            });
+
+            // 복사 버튼 클릭 → 클립보드 복사
+            copyUrlBtn2.addEventListener("click", async () => {
+                const url = shareUrlInput.value;
+
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(url);
+                    } else {
+                        // 구형 브라우저 대응
+                        shareUrlInput.focus();
+                        shareUrlInput.select();
+                        document.execCommand("copy");
+                    }
+                    shareCopyMsg.textContent = "링크가 복사되었습니다 ✅";
+                } catch (err) {
+                    console.error("URL 복사 실패:", err);
+                    shareCopyMsg.textContent = "복사에 실패했어요. 직접 복사해 주세요.";
+                }
+            });
+        }
 
 
     })();

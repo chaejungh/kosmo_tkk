@@ -1,18 +1,15 @@
 <!-- src/main/resources/templates/mypage/popups.html -->
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html   lang="ko"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{fragments/mypage_fragment/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>더쿠쿠 - 찜한 팝업스토어</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+
 </head>
 <body>
 
-<div class="mypage-page">
-
-    <!-- 제목 -->
-    <h2 class="title">나의 더쿠쿠</h2>
+<div layout:fragment="content">
 
     <!-- 팝업스토어 북마크 박스 -->
     <div class="section-box">
@@ -41,21 +38,7 @@
 
 </div>
 
-<!-- 하단 네비 -->
-<nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span><span>홈</span>
-    </a>
-    <a th:href="@{/board}" class="nav-item">
-        <span class="icon">📁</span><span>덕질게시판</span>
-    </a>
-    <a th:href="@{/trade}" class="nav-item">
-        <span class="icon">💸</span><span>굿즈거래</span>
-    </a>
-    <a th:href="@{/mypage}" class="nav-item active">
-        <span class="icon">👤</span><span>내정보</span>
-    </a>
-</nav>
+
 
 </body>
 </html>

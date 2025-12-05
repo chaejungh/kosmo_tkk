@@ -76,7 +76,7 @@
             <span>내정보</span>
         </a>
         <a th:if="${memberId ==null}"
-           th:href="@{/board/not-allowed}"
+           th:href="@{/auth/login}"
            class="nav-item">
             <span class="icon">👤</span>
             <span>내정보</span>
@@ -96,7 +96,7 @@
                 showToast(event.data);
             });
 
-            es.addEventListener("notification", (event) => {
+            es.addEventListener("message-alert", (event) => {
                 const setting = localStorage.getItem("message_alert_on");
                 if (setting === "N") return;  // 메시지 알림 OFF면 막기
                 showToast(event.data);

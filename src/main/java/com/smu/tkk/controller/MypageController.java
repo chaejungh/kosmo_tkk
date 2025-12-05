@@ -115,7 +115,8 @@ public class MypageController {
             @RequestParam String nickname,
             @RequestParam String intro,
             @RequestParam(required = false) String profileImage,
-            Model model
+            Model model,
+            HttpSession session
     ) throws IOException, SQLException {
         Member member = memberService.readOne(memberId);
         member.setNickname(nickname);
@@ -129,9 +130,8 @@ public class MypageController {
 
     @GetMapping("/{memberId}/settings/alarm")
     public String alarmSettings(@PathVariable Long memberId, Model model) throws SQLException {
-        model.addAttribute("memberId", memberId);
+        model.addAttribute("member", memberId);
 
         return "mypage/service/setting_alarm";
     }
-
 }

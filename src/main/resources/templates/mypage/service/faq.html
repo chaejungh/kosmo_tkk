@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html   lang="ko"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{fragments/mypage_fragment/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>자주 묻는 질문 - 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{/css/mypage.css}">
     <style>
         .item {
             display: flex;
@@ -37,12 +36,11 @@
 </head>
 
 <body>
-<div class="container mypage-wrapper">
+<div layout:fragment="content">
 
-    <h2 class="title">❓ 자주 묻는 질문</h2>
 
     <div class="section-box">
-
+        <div class="section-title">❓ 자주 묻는 질문</div>
         <!-- 🔥 DB 반복 출력 -->
         <a class="item"
            th:each="f : ${faqList.content}"
