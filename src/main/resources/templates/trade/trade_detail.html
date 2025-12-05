@@ -393,14 +393,60 @@
                 </div>
             </div>
 
+            <!-- ✅ 상태 변경 버튼 (내 글일 때만 노출) -->
+            <div th:if="${currentMemberId == sellerId}"
+                 style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+
+                <form th:action="@{|/trade/${trade.id}/status|}" method="post" style="margin:0;">
+                    <input type="hidden" name="status" value="ON_SALE"/>
+                    <button type="submit" class="btn-sub"
+                            style="padding:8px 12px; font-size:12px;">판매중</button>
+                </form>
+
+                <form th:action="@{|/trade/${trade.id}/status|}" method="post" style="margin:0;">
+                    <input type="hidden" name="status" value="RESERVED"/>
+                    <button type="submit" class="btn-sub"
+                            style="padding:8px 12px; font-size:12px;">예약중</button>
+                </form>
+
+                <form th:action="@{|/trade/${trade.id}/status|}" method="post" style="margin:0;">
+                    <input type="hidden" name="status" value="SOLD"/>
+                    <button type="submit" class="btn-sub"
+                            style="padding:8px 12px; font-size:12px;">거래완료</button>
+                </form>
+            </div>
+
             <div class="desc-box" th:text="${trade.content}"></div>
 
-            <!-- 채팅하기 버튼 -->
+            <!-- 채팅 / (내 글일 때만) 수정 · 삭제 -->
             <div class="button-wrap">
+
+                <!-- ✅ 누구나 채팅 가능 -->
                 <form th:action="@{|/trade/${trade.id}/chat/start/${currentMemberId}|}"
-                      method="post" style="flex:1;">
+                      method="post" style="flex:1; margin:0;">
                     <button type="submit" class="btn-main">채팅하기</button>
                 </form>
+
+                <!-- ✅ 내가 쓴 글일 때만 수정 / 삭제 버튼 노출 -->
+                <div th:if="${currentMemberId == sellerId}"
+                     style="display:flex; gap:8px; flex:1;">
+
+                    <!-- ✏ 수정하기 → 기존 write 폼 재사용 -->
+                    <form th:action="@{|/trade/${currentMemberId}/write?tradeId=${trade.id}|}"
+                          method="get"
+                          style="flex:1; margin:0;">
+                        <button type="submit" class="btn-sub">수정하기</button>
+                    </form>
+
+                    <!-- 🗑 삭제하기 -->
+                    <form th:action="@{|/trade/${trade.id}/delete|}"
+                          method="post"
+                          style="flex:1; margin:0;"
+                          onsubmit="return confirm('정말 이 게시글을 삭제할까요?');">
+                        <button type="submit" class="btn-sub">삭제하기</button>
+                    </form>
+                </div>
+
             </div>
 
         </div>

@@ -239,4 +239,15 @@ public class TradeServiceImp implements TradeService {
             tradePostRepository.save(post);
         });
     }
+
+    /* ============================================================
+       🔥 거래 상태 변경 (판매중 / 예약중 / 거래완료)
+       ============================================================ */
+    @Override
+    public void updateStatus(Long tradeId, String status) {
+        tradePostRepository.findById(tradeId).ifPresent(post -> {
+            post.setStatus(status);
+            tradePostRepository.save(post);
+        });
+    }
 }
