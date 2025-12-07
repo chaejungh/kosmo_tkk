@@ -1,11 +1,15 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.entity.PopupStore;
 import com.smu.tkk.service.PopupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,6 +28,17 @@ public class HomeController {
         // ⭐ 홈 스와이퍼에서 사용할 팝업 리스트  (최대 10개만)
         model.addAttribute("popupList",
                 popupService.readAll(PageRequest.of(0, 10)));
+
+
+        // ⭐ 진행 중 팝업 4개까지
+        List<PopupStore> activeList = popupService.active(LocalDate.now());
+
+        // 4개까지만 자르기
+        List<PopupStore> fourPopupList = activeList.stream()
+                .limit(4)
+                .toList();
+
+        model.addAttribute("activePopupList", fourPopupList);
 
         return "index";
     }
