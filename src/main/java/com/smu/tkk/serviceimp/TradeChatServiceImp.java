@@ -6,6 +6,7 @@ import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
 import com.smu.tkk.repository.TradeChatMessageRepository;
 import com.smu.tkk.repository.TradeChatRoomRepository;
+import com.smu.tkk.repository.TradePostImageRepository;
 import com.smu.tkk.repository.TradePostRepository;
 import com.smu.tkk.service.TradeChatService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -29,6 +32,7 @@ public class TradeChatServiceImp implements TradeChatService {
     private final TradeChatRoomRepository roomRepo;
     private final TradeChatMessageRepository messageRepo;
     private final TradePostRepository postRepo;
+    private final TradePostImageRepository postImageRepo;
 
     /* ============================================================
      * 1. 채팅방 생성 or 기존방 재사용
@@ -84,13 +88,14 @@ public class TradeChatServiceImp implements TradeChatService {
      * 3. 읽음 처리
      * ============================================================ */
     @Override
+    @Transactional
     public boolean markAsRead(Long roomId, Long viewerId) {
 
         TradeChatRoom room = roomRepo.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + roomId));
 
         Long opponentId = room.getMemberId().equals(viewerId)
-                ? room.getTrade().getSeller().getId()
+                ? room.getTrade().getSellerId()
                 : room.getMemberId();
 
         int updated = messageRepo.modifyRead("Y", roomId, opponentId);
@@ -103,25 +108,29 @@ public class TradeChatServiceImp implements TradeChatService {
     @Override
     public Page<TradeChatRoom> myRooms(Long memberId) {
 
-        Pageable pageable = PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "lastMessageAt"));
+//        Pageable pageable = PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "lastMessageAt"));
 
-        Page<TradeChatRoom> buyerRooms = roomRepo.findByMemberId(memberId, pageable);
+        Page<TradeChatRoom> buyerRooms = roomRepo.findByMemberId(memberId, Pageable.unpaged());
 
         List<TradeChatRoom> sellerRooms =
                 roomRepo.findAll().stream()
                         .filter(r -> r.getTrade().getSeller().getId().equals(memberId))
                         .toList();
 
-        List<TradeChatRoom> merged =
-                Stream.concat(buyerRooms.getContent().stream(), sellerRooms.stream())
-                        .sorted((a, b) -> {
-                            if (a.getLastMessageAt() == null) return 1;
-                            if (b.getLastMessageAt() == null) return -1;
-                            return b.getLastMessageAt().compareTo(a.getLastMessageAt());
-                        })
-                        .toList();
+        Map<Long, TradeChatRoom> roomMap = new HashMap<>();
 
-        return new PageImpl<>(merged, pageable, merged.size());
+        Stream.concat(buyerRooms.getContent().stream(), sellerRooms.stream())
+                .forEach(r -> roomMap.putIfAbsent(r.getId(), r));
+
+        List<TradeChatRoom> merged = roomMap.values().stream()
+                .sorted((a, b) -> {
+                    if (a.getLastMessageAt() == null) return 1;
+                    if (b.getLastMessageAt() == null) return -1;
+                    return b.getLastMessageAt().compareTo(a.getLastMessageAt());
+                })
+                .toList();
+
+        return new PageImpl<>(merged, Pageable.unpaged(), merged.size());
     }
 
     /* ============================================================
@@ -279,6 +288,8 @@ public class TradeChatServiceImp implements TradeChatService {
                 // 예: thumb = room.getTrade().getImageUrl();
                 //     thumb = room.getTrade().getMainImg();
                 // 이런 식으로 한 줄만 채워 넣으면 됨.
+                Long tradeId = room.getTradeId();
+                thumb = String.valueOf(postImageRepo.findFirstByTradeIdOrderBySortOrderAscIdAsc(tradeId));
             }
 
             dto.setTradeThumb(thumb);
@@ -287,7 +298,7 @@ public class TradeChatServiceImp implements TradeChatService {
             String opponentName;
 
             if (room.getMemberId().equals(memberId)) {
-                opponentId = room.getTrade().getSeller().getId();
+                opponentId = room.getTrade().getSellerId();
                 opponentName = room.getTrade().getSeller().getNickname();
             } else {
                 opponentId = room.getMemberId();
@@ -317,7 +328,9 @@ public class TradeChatServiceImp implements TradeChatService {
             int unreadCount = 0;
             try {
                 unreadCount = messageRepo.countUnread(room.getId(), memberId);
-            } catch (Exception ignored) {}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             dto.setUnreadCount(unreadCount);
 

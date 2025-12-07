@@ -9,6 +9,7 @@ import lombok.Setter;
 public class TradePostListDto {
 
     private Long id;
+    private Long sellerId;
     private String title;
     private String region;
 

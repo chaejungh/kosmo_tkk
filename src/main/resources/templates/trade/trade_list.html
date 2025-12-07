@@ -254,6 +254,21 @@
         <a th:href="@{/}" class="logo" style="margin-right: 10px;">더쿠쿠</a>
         <a th:href="@{/trade/list.do}" class="logo">굿즈거래</a>
     </div>
+
+    <!-- ✅ 비로그인 상태: 로그인 / 회원가입 버튼 -->
+    <div th:if="${nickname == null}">
+        <a th:href="@{/auth/login}" class="btn-auth">로그인</a>
+        <a th:href="@{/auth/join}" class="btn-auth btn-auth-primary">회원가입</a>
+    </div>
+    <!-- ✅ 로그인 상태: 닉네임 + 로그아웃 -->
+    <div class="logged-in-box"
+         th:if="${session.loginMember != null or nickname != null}">
+                 <span class="welcome-text"
+                       th:text="|${session.loginMember != null ? session.loginMember.nickname : nickname} 님|">
+                닉네임 님
+                </span>
+        <a th:href="@{/auth/logout}" class="btn-auth">로그아웃</a>
+    </div>
 </div>
 
 <!-- ===== 검색 (예전 카테고리 자리) ===== -->

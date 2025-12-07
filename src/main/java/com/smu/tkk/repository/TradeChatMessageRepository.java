@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface TradeChatMessageRepository extends JpaRepository<TradeChatMessage, Long> {
 
@@ -16,7 +17,9 @@ public interface TradeChatMessageRepository extends JpaRepository<TradeChatMessa
     @Modifying
     @Query("UPDATE TradeChatMessage t SET t.readYn = :readYn " +
             "WHERE t.roomId = :roomId AND t.senderId = :sender")
-    int modifyRead(String readYn, Long roomId, Long sender);
+    int modifyRead(@Param("readYn") String readYn,
+                   @Param("roomId") Long roomId,
+                   @Param("sender") Long sender);
 
     // ================== 🔽 여기서부터 새로 추가한 메서드들 🔽 ==================
 

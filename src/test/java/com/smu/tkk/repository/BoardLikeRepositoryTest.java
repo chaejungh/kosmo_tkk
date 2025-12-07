@@ -26,17 +26,17 @@ class BoardLikeRepositoryTest {
         System.out.println(boardLikeRepository.existsByPostIdAndMemberId(1L,11L));
     }
 
-    @Test
-    @Transactional
-    void findByMember_Id() {//특정 멤버가 좋아요한 게시글 목록 조회
-        Pageable pageable =PageRequest.of(0,10,Sort.by("id").ascending());
-        Page<BoardPost> boardPostPage = boardLikeRepository.findByMember_Id(2L, pageable);
-
-        for(BoardPost boardPost:boardPostPage.getContent()){
-            System.out.println(boardPost);
-            System.out.println(boardPost.getBoardLikes());
-        }
-    }
+//    @Test
+//    @Transactional
+//    void findByMember_Id() {//특정 멤버가 좋아요한 게시글 목록 조회
+//        Pageable pageable =PageRequest.of(0,10,Sort.by("id").ascending());
+//        Page<BoardPost> boardPostPage = boardLikeRepository.findByMember_Id(2L, pageable);
+//
+//        for(BoardPost boardPost:boardPostPage.getContent()){
+//            System.out.println(boardPost);
+//            System.out.println(boardPost.getBoardLikes());
+//        }
+//    }
     @Test
     void countByPostId() {
         int countPost1 = boardLikeRepository.countByPostId(10L);

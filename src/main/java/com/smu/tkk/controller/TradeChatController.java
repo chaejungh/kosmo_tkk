@@ -7,6 +7,7 @@ import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;   // 🔥 추가
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,7 @@ public class TradeChatController {
        채팅 목록
        ====================================================== */
     @GetMapping("/{memberId}/chat")
-    public String myChatRooms(@PathVariable Long memberId, Model model) {
+    public String myChatRooms(@PathVariable Long memberId, Model model, Pageable pageable) {
 
         model.addAttribute("memberId", memberId);
         model.addAttribute("rooms", chatService.myRooms(memberId).getContent());

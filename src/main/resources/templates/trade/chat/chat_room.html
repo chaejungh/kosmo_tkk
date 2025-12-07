@@ -148,7 +148,7 @@
     <div class="room-header">
         <div class="room-topbar">
             <button class="back-btn"
-                    th:onclick="|location.href='@{/trade/{memberId}/chat(memberId=${memberId})}'|">←</button>
+                    onclick="history.back()">←</button>
 
             <div class="seller-info">
                 <div class="seller-name" th:text="${sellerName}"></div>
@@ -339,6 +339,8 @@
             case "TEXT":
             case "IMAGE":
                 addMessage(msg);
+
+                sendReadEvent();
                 break;
 
             // 🔹 읽음 처리
