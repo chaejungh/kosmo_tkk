@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: tkk
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  config:
+    import: optional:application-api.yml   # 🔥 여기 주의: .yml 로 통일
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/tkk
+    username: tkk
+    password: kosmo1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: llama3.2:3b
+
+server:
+  port: 8080
+
+naver:
+  search:
+    client-id: ${keys.naver.search.client-id}
+    client-secret: ${keys.naver.search.client-secret}
+
+  key-id: ${keys.naver.key-id}
+  key: ${keys.naver.key}
+
+openai:
+  api-key: ${keys.openai.api-key}
+
+file:
+  upload-dir: ./uploads
+
+cloud:
+  aws:
+    credentials:
+      # 🔹 환경변수 말고, 우리가 따로 정의한 aws.* 키 참조
+      access-key: ${aws.access-key}
+      secret-key: ${aws.secret-key}
+    s3:
+      bucket: ${aws.s3-bucket}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
