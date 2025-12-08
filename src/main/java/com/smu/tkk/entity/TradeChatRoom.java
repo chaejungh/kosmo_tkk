@@ -70,11 +70,11 @@ public class TradeChatRoom {
 
 
     @CreationTimestamp
-    @Column(name = "CREATED_AT")
+    @Column(name = "CREATED_AT",nullable = true)
     private LocalDateTime createdAt;
 
     @CreationTimestamp
-    @Column(name = "LAST_MESSAGE_AT")
+    @Column(name = "LAST_MESSAGE_AT",nullable = true)
     private LocalDateTime lastMessageAt;
 
     @OneToMany(mappedBy = "room")

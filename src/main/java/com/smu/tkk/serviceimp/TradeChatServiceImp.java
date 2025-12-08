@@ -4,6 +4,7 @@ import com.smu.tkk.dto.ChatMessage;
 import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.entity.TradeChatMessage;
 import com.smu.tkk.entity.TradeChatRoom;
+import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.repository.TradeChatMessageRepository;
 import com.smu.tkk.repository.TradeChatRoomRepository;
 import com.smu.tkk.repository.TradePostImageRepository;
@@ -18,10 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
@@ -41,18 +39,21 @@ public class TradeChatServiceImp implements TradeChatService {
     public TradeChatRoom register(Long tradeId, Long buyerId) {
         List<TradeChatRoom> rooms = roomRepo.findAll();
         for (TradeChatRoom room : rooms) {
-            if (room.getTrade().getId().equals(tradeId)
+            if (room.getTradeId().equals(tradeId)
                     && room.getBuyerId().equals(buyerId)) {
                 return room;
             }
         }
 
         TradeChatRoom newRoom = new TradeChatRoom();
-        newRoom.setTrade(postRepo.findById(tradeId)
-                .orElseThrow(() -> new IllegalArgumentException("거래글 없음: " + tradeId)));
-        newRoom.setTradeId(tradeId);
-        newRoom.setBuyerId(buyerId);
+        Optional<TradePost> tradePost = postRepo.findById(tradeId);
 
+        newRoom.setTradeId(tradeId);
+        newRoom.setSellerId(tradePost.get().getSellerId());
+        newRoom.setBuyerId(buyerId);
+        //newRoom.setCreatedAt(LocalDateTime.now());
+        //newRoom.setLastMessageAt(LocalDateTime.now());
+        System.out.println(newRoom);
         return roomRepo.save(newRoom);
     }
 

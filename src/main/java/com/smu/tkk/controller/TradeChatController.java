@@ -33,10 +33,10 @@ public class TradeChatController {
     /* ======================================================
        🔥 채팅 시작 기능 (채팅방 생성 or 기존방 재사용)
        ====================================================== */
-    @PostMapping("/{tradeId}/chat/start/{memberId}")
+    @PostMapping("/{tradeId}/chat/start")
     public String startChat(
             @PathVariable Long tradeId,
-            @PathVariable Long memberId
+            @SessionAttribute Long memberId
     ) {
         // 1) 채팅방 생성 또는 기존방 재사용
         TradeChatRoom room = chatService.getOrCreateRoom(tradeId, memberId);

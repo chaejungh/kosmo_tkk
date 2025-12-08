@@ -399,7 +399,7 @@
             <div class="button-wrap">
                 <form
                         th:if="${trade.sellerId != currentMemberId}"
-                        th:action="@{|/trade/${trade.id}/chat/start/${currentMemberId}|}"
+                        th:action="@{|/trade/${trade.id}/chat/start|}"
                       method="post" style="flex:1;">
                     <button type="submit" class="btn-main">채팅하기</button>
                 </form>
