@@ -323,7 +323,11 @@
             }
         }
 
-        .form-msg { font-size: 13px; margin-top: 4px; color: var(--text-sub); }
+        .form-msg {
+            font-size: 13px;
+            margin-top: 4px;
+            color: inherit;
+        }
 
 
     </style>
@@ -486,6 +490,7 @@
 </div>
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
     // 메시지 요소 선언
     const msgId = document.getElementById("idCheckMessage");
@@ -502,26 +507,18 @@
     const id = document.querySelector("input[name='loginId']");
     const pw = document.getElementById("pw");
     const pwConfirm = document.getElementById("pwConfirm");
-    const emailId = document.querySelector("input[name='emailId']");git
+    const emailId = document.querySelector("input[name='emailId']");
     const emailDomain = document.querySelector("select[name='emailDomain']");
     const name = document.querySelector("input[name='nickname']");
-    const birth = document.querySelector("input[placeholder='YYYYMMDD']");
+    const birth = document.querySelector("input[name='birth']");
     const phone = document.querySelector("input[name='phone']");
     const termsAll = document.getElementById("termsAll");
+    const termsChecks = document.querySelectorAll(".terms-check");
 
 
     /* ===============================
        🔥 성별 · 국적 토글 기능 추가
        =============================== */
-
-
-    document.querySelector(".join-form").addEventListener("submit", function () {
-        const id = document.querySelector("input[name='emailId']").value;
-        const domain = document.querySelector("select[name='emailDomain']").value;
-
-        let email = id + domain;
-        document.getElementById("emailFull").value = email;
-    });
 
     const toggleButtons = document.querySelectorAll(".toggle-btn");
 
@@ -580,7 +577,6 @@
             // =======================
 // 🔥 약관 전체 동의 기능
 // =======================
-            const termsChecks = document.querySelectorAll(".terms-check");
 
 // 전체 동의 클릭 → 개별 체크 전부 체크/해제
             termsAll.addEventListener("change", () => {
@@ -628,30 +624,6 @@
         }
     });
 
-    // 3) 폼 제출 시 마지막 방어
-    joinForm.addEventListener("submit", (event) => {
-
-        if (!validatePasswordRule(pw.value)) {
-            event.preventDefault();
-            msgPw.style.color = "#dc2626";
-            msgPw.textContent = "특수문자를 포함한 8자 이상 비밀번호를 입력해야 합니다.";
-            pw.focus();
-            return;
-        }
-
-        if (pw.value !== pwConfirm.value) {
-            event.preventDefault();
-            msgPwConfirm.style.color = "#dc2626";
-            msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
-            pwConfirm.focus();
-            return;
-
-
-        }
-
-    });
-
-
     // 회원 가입 시 빈칸 오류 메세지
     joinForm.addEventListener("submit", function(event) {
 
@@ -659,6 +631,12 @@
 
         // 초기화
         document.querySelectorAll(".form-msg").forEach(msg => msg.textContent = "");
+
+        const emailIdVal = emailId.value.trim();
+        const emailDomainVal = emailDomain.value;
+        if (emailIdVal && emailDomainVal) {
+            document.getElementById("emailFull").value = emailIdVal + emailDomainVal;
+        }
 
         if (id.value.trim() === "") {
             msgId.textContent = "아이디를 입력해주세요.";
@@ -668,10 +646,18 @@
             msgPw.textContent = "비밀번호를 입력해주세요.";
             isValid = false;
         }
+
+        // 비밀번호 규칙 검사
+        if (!validatePasswordRule(pw.value)) {
+            msgPw.textContent = "특수문자를 포함한 8자 이상 입력해야 합니다.";
+            isValid = false;
+        }
+
         if (pwConfirm.value.trim() === "") {
             msgPwConfirm.textContent = "비밀번호 확인이 필요합니다.";
             isValid = false;
         }
+
         if (pw.value !== pwConfirm.value) {
             msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
             isValid = false;
@@ -701,6 +687,7 @@
             event.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" }); // UX 좋게!
         }
+    });
     });
 
 
