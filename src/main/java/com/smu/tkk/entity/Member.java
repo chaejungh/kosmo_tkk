@@ -133,10 +133,19 @@ public class Member {
     @JsonIgnore
     private Set<TradeChatMessage> tradeChatMessages = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "member")
+//    @OneToMany(mappedBy = "member")
+//    @ToString.Exclude
+//    @JsonIgnore
+//    private Set<TradeChatRoom> tradeChatRooms = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "seller")
     @ToString.Exclude
     @JsonIgnore
-    private Set<TradeChatRoom> tradeChatRooms = new LinkedHashSet<>();
+    private Set<TradeChatRoom> sellerTradeChatRooms = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "buyer")
+    @ToString.Exclude
+    @JsonIgnore
+    private Set<TradeChatRoom> buyerTradeChatRooms = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "seller")
     @ToString.Exclude

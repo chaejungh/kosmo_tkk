@@ -42,7 +42,7 @@ public class TradeChatServiceImp implements TradeChatService {
         List<TradeChatRoom> rooms = roomRepo.findAll();
         for (TradeChatRoom room : rooms) {
             if (room.getTrade().getId().equals(tradeId)
-                    && room.getMemberId().equals(buyerId)) {
+                    && room.getBuyerId().equals(buyerId)) {
                 return room;
             }
         }
@@ -51,7 +51,7 @@ public class TradeChatServiceImp implements TradeChatService {
         newRoom.setTrade(postRepo.findById(tradeId)
                 .orElseThrow(() -> new IllegalArgumentException("거래글 없음: " + tradeId)));
         newRoom.setTradeId(tradeId);
-        newRoom.setMemberId(buyerId);
+        newRoom.setBuyerId(buyerId);
 
         return roomRepo.save(newRoom);
     }
@@ -75,10 +75,10 @@ public class TradeChatServiceImp implements TradeChatService {
         msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setMessage(message);
-        msg.setCreatedAt(LocalDate.now());
+        msg.setCreatedAt(LocalDateTime.now());
         msg.setReadYn("N");
 
-        room.setLastMessageAt(LocalDate.now());
+        room.setLastMessageAt(LocalDateTime.now());
         roomRepo.save(room);
 
         return messageRepo.save(msg);
@@ -94,9 +94,9 @@ public class TradeChatServiceImp implements TradeChatService {
         TradeChatRoom room = roomRepo.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + roomId));
 
-        Long opponentId = room.getMemberId().equals(viewerId)
-                ? room.getTrade().getSellerId()
-                : room.getMemberId();
+        Long opponentId = room.getBuyerId().equals(viewerId)
+                ? room.getSellerId()
+                : room.getBuyerId();
 
         int updated = messageRepo.modifyRead("Y", roomId, opponentId);
         return updated > 0;
@@ -110,27 +110,10 @@ public class TradeChatServiceImp implements TradeChatService {
 
 //        Pageable pageable = PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "lastMessageAt"));
 
-        Page<TradeChatRoom> buyerRooms = roomRepo.findByMemberId(memberId, Pageable.unpaged());
+        Page<TradeChatRoom> buyerRooms = roomRepo.findBySellerIdOrBuyerId(memberId,Pageable.unpaged());
 
-        List<TradeChatRoom> sellerRooms =
-                roomRepo.findAll().stream()
-                        .filter(r -> r.getTrade().getSeller().getId().equals(memberId))
-                        .toList();
 
-        Map<Long, TradeChatRoom> roomMap = new HashMap<>();
-
-        Stream.concat(buyerRooms.getContent().stream(), sellerRooms.stream())
-                .forEach(r -> roomMap.putIfAbsent(r.getId(), r));
-
-        List<TradeChatRoom> merged = roomMap.values().stream()
-                .sorted((a, b) -> {
-                    if (a.getLastMessageAt() == null) return 1;
-                    if (b.getLastMessageAt() == null) return -1;
-                    return b.getLastMessageAt().compareTo(a.getLastMessageAt());
-                })
-                .toList();
-
-        return new PageImpl<>(merged, Pageable.unpaged(), merged.size());
+        return buyerRooms;
     }
 
     /* ============================================================
@@ -173,10 +156,10 @@ public class TradeChatServiceImp implements TradeChatService {
         msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setMessage("[img]/upload/chat/" + fileName);
-        msg.setCreatedAt(LocalDate.now());
+        msg.setCreatedAt(LocalDateTime.now());
         msg.setReadYn("N");
 
-        room.setLastMessageAt(LocalDate.now());
+        room.setLastMessageAt(LocalDateTime.now());
         roomRepo.save(room);
 
         return messageRepo.save(msg);
@@ -199,9 +182,9 @@ public class TradeChatServiceImp implements TradeChatService {
         entity.setSenderId(dto.getSenderId());
         entity.setMessage(dto.getMessage());
         entity.setReadYn("N");
-        entity.setCreatedAt(now.toLocalDate());
+        entity.setCreatedAt(now);
 
-        room.setLastMessageAt(now.toLocalDate());
+        room.setLastMessageAt(now);
         roomRepo.save(room);
 
         TradeChatMessage saved = messageRepo.save(entity);
@@ -238,7 +221,7 @@ public class TradeChatServiceImp implements TradeChatService {
         msg.setRoomId(roomId);
         msg.setSenderId(senderId);
         msg.setMessage("[img]/upload/chat/" + fileName);
-        msg.setCreatedAt(now.toLocalDate());
+        msg.setCreatedAt(now);
         msg.setReadYn("N");
 
         messageRepo.save(msg);
@@ -297,12 +280,12 @@ public class TradeChatServiceImp implements TradeChatService {
             Long opponentId;
             String opponentName;
 
-            if (room.getMemberId().equals(memberId)) {
+            if (room.getBuyerId().equals(memberId)) {
                 opponentId = room.getTrade().getSellerId();
                 opponentName = room.getTrade().getSeller().getNickname();
             } else {
-                opponentId = room.getMemberId();
-                opponentName = room.getMember() != null ? room.getMember().getNickname() : "알 수 없음";
+                opponentId = room.getBuyerId();
+                opponentName = room.getBuyer() != null ? room.getBuyer().getNickname() : "알 수 없음";
             }
 
             dto.setOpponentId(opponentId);

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @RequiredArgsConstructor
@@ -15,9 +16,12 @@ public class TradeChatListController {
 
     // ⭐ 이미 /chat 으로 잘 되어 있음
     @GetMapping("/chat/list")
-    public String chatListPage(HttpSession session, Model model) {
+    public String chatListPage(
+            HttpSession session,
+            Model model,
+            @SessionAttribute(name = "memberId") Long memberId
+    ) {
 
-        Long memberId = (Long) session.getAttribute("memberId");
 
         // ⭐ 여기만 수정! (절대 다른 부분 변형 x)
         if (memberId == null) {

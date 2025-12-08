@@ -6,6 +6,7 @@ import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
+import com.smu.tkk.service.TradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class TradeChatController {
 
     private final TradeChatService chatService;
     private final TradePostImageService tradePostImageService;
-
+    private final TradeService tradeService;
     // 🔥 실시간 채팅 수 전송용
     private final SimpMessagingTemplate messagingTemplate;
     private final TradeChatRoomRepository tradeChatRoomRepository;
@@ -64,21 +65,23 @@ public class TradeChatController {
     /* ======================================================
        채팅방 입장
        ====================================================== */
-    @GetMapping("/{memberId}/chat/{roomId}")
-    public String chatRoom(@PathVariable Long memberId,
+    @GetMapping("/{tradeId}/chat/{roomId}")
+    public String chatRoom(
+            @SessionAttribute(name = "memberId") Long loginUserId,
+            @PathVariable Long tradeId,
                            @PathVariable Long roomId,
                            Model model) {
 
-        Long currentMemberId = memberId;
+        Long currentMemberId = loginUserId;
 
         TradeChatRoom room = chatService.getRoom(roomId);
-        TradePost trade = room.getTrade();
+        TradePost trade = tradeService.readOneTradePostById(tradeId);
 
         String sellerName = trade.getSeller() != null
                 ? trade.getSeller().getNickname()
                 : "판매자";
 
-        Optional<TradePostImage> coverOpt = tradePostImageService.readOneImage(trade.getId());
+        Optional<TradePostImage> coverOpt = tradePostImageService.readOneImage(tradeId);
         String productThumb = coverOpt
                 .map(TradePostImage::getImageUrl)
                 .orElse("/images/dummy/noimg.png");
@@ -102,7 +105,6 @@ public class TradeChatController {
         // 읽음처리
         chatService.markAsRead(roomId, currentMemberId);
 
-        model.addAttribute("memberId", memberId);
         model.addAttribute("room", room);
         model.addAttribute("msgList", chatService.messages(roomId).getContent());
         model.addAttribute("currentMemberId", currentMemberId);

@@ -211,7 +211,7 @@
 <!-- ========================================== -->
 
 <script>
-    const memberId = String("[[${memberId}]]");
+    const currentMemberId = String("[[${currentMemberId}]]");
     const roomId = String("[[${room.id}]]");
     const chatBody = document.getElementById("chatBody");
 
@@ -267,7 +267,7 @@
         if (!stompClient) return;
         stompClient.send("/pub/chat.read", {}, JSON.stringify({
             roomId,
-            senderId: memberId,
+            senderId: currentMemberId,
             type: "READ"
         }));
     }
@@ -276,7 +276,7 @@
         if (!stompClient) return;
         stompClient.send("/pub/chat.typing", {}, JSON.stringify({
             roomId,
-            senderId: memberId,
+            senderId: currentMemberId,
             type: "TYPING"
         }));
     }
@@ -285,7 +285,7 @@
         if (!stompClient) return;
         stompClient.send("/pub/chat.delete", {}, JSON.stringify({
             roomId,
-            senderId: memberId,
+            senderId: currentMemberId,
             messageId,
             type: "DELETE"
         }));
@@ -298,7 +298,7 @@
 
         stompClient.send("/pub/chat.send", {}, JSON.stringify({
             roomId,
-            senderId: memberId,
+            senderId: currentMemberId,
             message: text,
             type: "TEXT"
         }));
@@ -318,7 +318,7 @@
 
         const formData = new FormData();
         formData.append("roomId", roomId);
-        formData.append("senderId", memberId);
+        formData.append("senderId", currentMemberId);
         formData.append("image", file);
 
         // ✅ ChatFileController 와 매핑되는 경로 ( /chat-file + /upload-image )
@@ -379,7 +379,7 @@
         }
 
         const wrap = document.createElement("div");
-        wrap.className = "msg " + (String(msg.senderId) === memberId ? "me" : "other");
+        wrap.className = "msg " + (String(msg.senderId) === currentMemberId ? "me" : "other");
 
         if (msg.messageId) wrap.dataset.msgId = msg.messageId;
 
@@ -391,13 +391,13 @@
         chatBody.appendChild(wrap);
         scrollToBottom();
 
-        if (String(msg.senderId) === memberId) {
+        if (String(msg.senderId) === currentMemberId) {
             lastMyMessageEl = wrap;
         }
     }
 
     function handleRead(msg) {
-        if (String(msg.senderId) === memberId) return;
+        if (String(msg.senderId) === currentMemberId) return;
 
         const lastMy = lastMyMessageEl || chatBody.querySelector(".msg.me:last-child");
         if (!lastMy) return;
@@ -410,7 +410,7 @@
 
     function handleTyping(msg) {
 
-        if (String(msg.senderId) === memberId) return;
+        if (String(msg.senderId) === currentMemberId) return;
 
         if (!typingIndicator) {
             typingIndicator = document.createElement("div");

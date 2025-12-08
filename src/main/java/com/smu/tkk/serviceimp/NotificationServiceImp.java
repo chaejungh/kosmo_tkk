@@ -16,8 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-    @Service
+@Service
     @RequiredArgsConstructor
     @Transactional
     @Component
@@ -150,13 +151,13 @@ import java.util.List;
         public void sendChatNotification(Long roomId, Long senderId) {
 
             // 1) 채팅방 불러오기
-            TradeChatRoom room = roomRepository.findDetailById(roomId);
-            if (room == null) {
+            Optional<TradeChatRoom> roomOpt = roomRepository.findById(roomId);
+            if (roomOpt.isEmpty()) {
                 throw new IllegalArgumentException("채팅방 없음: " + roomId);
             }
-
+            TradeChatRoom room=roomOpt.get();
             // 2) 상대방 아이디 찾기
-            Long buyerId = room.getMemberId();
+            Long buyerId = room.getBuyerId();
             Long sellerId = room.getTrade().getSeller().getId();
 
             Long target = senderId.equals(buyerId) ? sellerId : buyerId;

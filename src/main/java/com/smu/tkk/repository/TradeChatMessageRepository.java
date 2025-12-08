@@ -33,10 +33,12 @@ public interface TradeChatMessageRepository extends JpaRepository<TradeChatMessa
      * 안 읽은(unread) 메시지 개수
      * - viewerId 기준으로, 상대가 보냈고 아직 readYn = 'N' 인 것들만 카운트
      */
-    @Query("SELECT COUNT(m) " +
-            "FROM TradeChatMessage m " +
-            "WHERE m.roomId = :roomId " +
-            "AND m.senderId <> :viewerId " +
-            "AND m.readYn = 'N'")
+    @Query("""
+SELECT COUNT(m) 
+            FROM TradeChatMessage m 
+            WHERE m.roomId = :roomId 
+            AND m.senderId != :viewerId 
+    AND m.readYn = 'N'
+            """)
     int countUnread(Long roomId, Long viewerId);
 }
