@@ -157,7 +157,7 @@
 <main class="admin-main">
     <section class="page-title">
         <h1>대시보드</h1>
-        <p>좌측/상단 메뉴에서 원하는 관리 메뉴를 선택하여 기능을 사용하세요.</p>
+        <p>상단 카드에서 원하는 관리 메뉴를 선택하여 기능을 사용하세요.</p>
     </section>
 
     <section class="dashboard-grid">
@@ -175,11 +175,18 @@
             <p class="dashboard-card-footer">게시판 관리 화면으로 이동 &rarr;</p>
         </a>
 
-        <!-- 거래/매장 관리 -->
+        <!-- 거래 관리 -->
         <a class="dashboard-card" th:href="@{/admin/trades}">
-            <h2 class="dashboard-card-title">거래/매장 관리</h2>
-            <p class="dashboard-card-desc">굿즈 거래글, 채팅 신고, 매장/팝업 정보 관리.</p>
-            <p class="dashboard-card-footer">거래/매장 관리 화면으로 이동 &rarr;</p>
+            <h2 class="dashboard-card-title">거래 관리</h2>
+            <p class="dashboard-card-desc">굿즈 거래글 목록, 거래 신고, 거래 채팅 신고 관리.</p>
+            <p class="dashboard-card-footer">거래 관리 화면으로 이동 &rarr;</p>
+        </a>
+
+        <!-- 매장/팝업 관리 -->
+        <a class="dashboard-card" th:href="@{/admin/stores}">
+            <h2 class="dashboard-card-title">매장/팝업 관리</h2>
+            <p class="dashboard-card-desc">굿즈 매장, 팝업스토어 정보 및 노출 상태(활성/비활성) 관리.</p>
+            <p class="dashboard-card-footer">매장/팝업 관리 화면으로 이동 &rarr;</p>
         </a>
 
         <!-- 고객센터/공지 -->
