@@ -326,9 +326,17 @@
         .form-msg {
             font-size: 13px;
             margin-top: 4px;
-            color: inherit;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all 0.25s ease;
         }
 
+        .form-msg.show {
+            opacity: 1;
+            transform: translateY(0);
+            color: inherit;
+        }
 
     </style>
 </head>
@@ -557,6 +565,7 @@
             if (!loginId) {
                 messageBox.style.color = "#dc2626";  // 빨간색
                 messageBox.textContent = "아이디를 입력해주세요.";
+                msgId.classList.add("show");
                 return;
             }
 
@@ -567,9 +576,11 @@
                     if (result === "duplicate") {
                         messageBox.style.color = "#dc2626"; //  빨간색
                         messageBox.textContent = "이미 사용 중인 아이디입니다.";
+                        msgId.classList.add("show");
                     } else {
                         messageBox.style.color = "#16a34a"; //  초록색
                         messageBox.textContent = "사용 가능한 아이디입니다";
+                        msgId.classList.add("show");
                     }
                 });
             });
@@ -604,6 +615,8 @@
 
     // 입력할 때마다 실시간 체크
     pw.addEventListener("input", () => {
+        msgPw.classList.add("show");
+
         if (!validatePasswordRule(pw.value)) {
             msgPw.style.color = "#dc2626";
             msgPw.textContent = "특수문자를 포함한 8자 이상이어야 합니다.";
@@ -615,6 +628,8 @@
 
     // 2) 비밀번호 확인 체크
     pwConfirm.addEventListener("input", () => {
+        msgPwConfirm.classList.add("show");
+
         if (pwConfirm.value !== pw.value) {
             msgPwConfirm.style.color = "#dc2626";
             msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
@@ -630,7 +645,11 @@
         let isValid = true;
 
         // 초기화
-        document.querySelectorAll(".form-msg").forEach(msg => msg.textContent = "");
+        document.querySelectorAll(".form-msg").forEach(msg => {
+
+        msg.textContent = "";
+        msg.classList.remove("show");
+        });
 
         const emailIdVal = emailId.value.trim();
         const emailDomainVal = emailDomain.value;
@@ -640,46 +659,61 @@
 
         if (id.value.trim() === "") {
             msgId.textContent = "아이디를 입력해주세요.";
+            msgId.classList.add("show");
             isValid = false;
         }
         if (pw.value.trim() === "") {
             msgPw.textContent = "비밀번호를 입력해주세요.";
+            msgPw.classList.add("show");
             isValid = false;
         }
 
         // 비밀번호 규칙 검사
         if (!validatePasswordRule(pw.value)) {
             msgPw.textContent = "특수문자를 포함한 8자 이상 입력해야 합니다.";
+            msgPw.classList.add("show");
             isValid = false;
         }
 
         if (pwConfirm.value.trim() === "") {
             msgPwConfirm.textContent = "비밀번호 확인이 필요합니다.";
+            msgPwConfirm.classList.add("show");
             isValid = false;
         }
 
         if (pw.value !== pwConfirm.value) {
             msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
+            msgPwConfirm.classList.add("show");
             isValid = false;
         }
         if (emailId.value.trim() === "" || emailDomain.value === "") {
+            msgEmail.style.color = "#dc2626";
             msgEmail.textContent = "이메일을 입력해주세요.";
+            msgEmail.classList.add("show");
             isValid = false;
         }
         if (name.value.trim() === "") {
+            msgName.style.color = "#dc2626";
             msgName.textContent = "이름을 입력해주세요.";
+            msgName.classList.add("show");
             isValid = false;
         }
         if (birth.value.trim() === "") {
+            msgBirth.style.color = "#dc2626";
             msgBirth.textContent = "생년월일을 입력해주세요.";
+            msgBirth.classList.add("show");
             isValid = false;
         }
         if (phone.value.trim() === "") {
+            msgPhone.style.color = "#dc2626";
             msgPhone.textContent = "휴대전화번호를 입력해주세요.";
+            msgPhone.classList.add("show");
             isValid = false;
         }
         if (!termsAll.checked) {
+            msgTerms.style.color = "#dc2626";
             msgTerms.textContent = "필수 약관에 동의해야 가입할 수 있습니다.";
+            msgTerms.classList.add("show");
             isValid = false;
         }
 
@@ -687,10 +721,8 @@
             event.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" }); // UX 좋게!
         }
+        });
     });
-    });
-
-
 
 </script>
 </body>
