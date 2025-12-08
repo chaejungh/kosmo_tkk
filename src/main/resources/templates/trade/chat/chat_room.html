@@ -169,6 +169,67 @@
         .read-status {
             /* 필요하면 굵기 같은 거 추가 */
         }
+        .room-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* 좌우로 나누기 */
+            padding: 12px 16px;
+            gap: 10px;
+        }
+
+        .top-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .room-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .header-btn {
+            min-width: 52px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid #E5E7EB;
+            background: #ffffff;
+            font-size: 11px;
+            color: #4B5563;
+            cursor: pointer;
+        }
+
+        .header-btn-exit {
+            color: #EF4444;
+            border-color: #FECACA;
+            background: #FEF2F2;
+        }
+
+        .header-btn-edit {
+            font-weight: 600;
+        }
+
+        .header-btn-edit.active {
+            background: #6366F1;
+            color: #ffffff;
+            border-color: #6366F1;
+        }
+        .msg-delete-btn {
+            display: none;              /* 기본은 숨김 */
+            margin-top: 2px;
+            font-size: 11px;
+            color: #EF4444;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 편집모드 + 내 메시지(me)일 때만 삭제 버튼 보이게 */
+        .chat-room.edit-mode .msg.me .msg-delete-btn {
+            display: inline-flex;
+        }
+
 
     </style>
 </head>
@@ -179,14 +240,24 @@
     <!-- 상단 -->
     <div class="room-header">
         <div class="room-topbar">
-            <button class="back-btn"
-                    onclick="history.back()">←</button>
+            <!-- 왼쪽: 뒤로가기 + 상대 정보 -->
+            <div class="top-left">
+                <button class="back-btn"
+                        onclick="history.back()">←</button>
 
-            <div class="seller-info">
-                <div class="seller-name" th:text="${sellerName}"></div>
-                <div class="seller-sub">실시간 채팅</div>
+                <div class="seller-info">
+                    <div class="seller-name" th:text="${sellerName}"></div>
+                    <div class="seller-sub">실시간 채팅</div>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 나가기 / 편집 버튼 -->
+            <div class="room-actions">
+                <button type="button" id="exitBtn" class="header-btn header-btn-exit">나가기</button>
+                <button type="button" id="editBtn" class="header-btn header-btn-edit">편집</button>
             </div>
         </div>
+
 
         <div class="product-card">
             <div class="product-thumb">
@@ -201,11 +272,12 @@
             </div>
         </div>
     </div>
-
-    <!-- 메시지 목록 -->
-    <div class="chat-body" id="chatBody">
+    <div id="chatBody" class="chat-body">
+        <!-- 메시지 목록 -->
         <div th:each="msg : ${msgList}"
-             th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')">
+             th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')"
+             th:attr="data-msg-id=${msg.id}">
+            <!-- 🔼 여기 data-msg-id 추가 -->
 
             <!-- 시간 + 말풍선 한 줄 -->
             <div class="bubble-row">
@@ -213,10 +285,9 @@
                      th:text="${msg.createdAt != null ? #temporals.format(msg.createdAt, 'a h:mm') : ''}">
                 </div>
 
-
                 <div class="bubble">
-            <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
-                  th:text="${msg.message}"></span>
+                <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
+                      th:text="${msg.message}"></span>
 
                     <img th:if="${#strings.startsWith(msg.message, '[img]')}"
                          th:src="@{${#strings.substring(msg.message, 5)}}"
@@ -227,12 +298,13 @@
             <!-- 말풍선 아래 읽음/안읽음 (내가 보낸 메시지만) -->
             <div class="status-row"
                  th:if="${msg.senderId} == ${currentMemberId}">
-        <span class="read-status"
-              th:text="${msg.readYn == 'Y' ? '읽음' : '안읽음'}">
-        </span>
+            <span class="read-status"
+                  th:text="${msg.readYn == 'Y' ? '읽음' : '안읽음'}"></span>
             </div>
-        </div>
 
+            <!-- 편집 모드에서만 보이는 삭제 버튼 (내 메시지만 보이게 CSS로 제어) -->
+            <button type="button" class="msg-delete-btn">삭제</button>
+        </div>
     </div>
 
     <!-- 입력 박스 -->
@@ -258,6 +330,8 @@
     const currentMemberId = String("[[${currentMemberId}]]");
     const roomId = String("[[${room.id}]]");
     const chatBody = document.getElementById("chatBody");
+    const chatRoomEl = document.querySelector(".chat-room");
+    let editMode = false;
 
     let stompClient = null;
 
@@ -410,6 +484,26 @@
         }
     }
 
+    // 편집 모드에서 삭제 버튼 클릭 처리 (이벤트 위임)
+    chatBody.addEventListener("click", (e) => {
+        if (!editMode) return;
+
+        const btn = e.target.closest(".msg-delete-btn");
+        if (!btn) return;
+
+        const msgEl = btn.closest(".msg");
+        if (!msgEl) return;
+        if (!msgEl.classList.contains("me")) return; // 혹시 모를 안정장치
+
+        const msgId = msgEl.dataset.msgId;
+        if (!msgId) return;
+
+        if (!confirm("이 메시지를 삭제하시겠습니까?")) return;
+
+        sendDeleteEvent(msgId);
+    });
+
+
     let lastMyMessageEl = null;
 
     function addMessage(msg) {
@@ -446,6 +540,7 @@
             <div class="bubble">${content}</div>
         </div>
         ${statusHtml}
+        <button type="button" class="msg-delete-btn">삭제</button>
     `;
 
         chatBody.appendChild(wrap);
@@ -503,6 +598,51 @@
         bubble.style.color = "#9CA3AF";
         bubble.style.fontStyle = "italic";
     }
+    const editBtn = document.getElementById("editBtn");
+    if (editBtn) {
+        editBtn.addEventListener("click", () => {
+            editMode = !editMode;
+
+            if (editMode) {
+                chatRoomEl.classList.add("edit-mode");
+                editBtn.classList.add("active");
+                editBtn.textContent = "완료";
+            } else {
+                chatRoomEl.classList.remove("edit-mode");
+                editBtn.classList.remove("active");
+                editBtn.textContent = "편집";
+            }
+        });
+    }
+
+    const exitBtn = document.getElementById("exitBtn");
+    if (exitBtn) {
+        exitBtn.addEventListener("click", async () => {
+            if (!confirm("채팅방을 나가시겠습니까?")) return;
+
+            try {
+                const res = await fetch(`/trade/chat/${roomId}/leave`, {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                });
+
+                if (!res.ok) {
+                    alert("채팅방 나가기 중 오류가 발생했습니다.");
+                    return;
+                }
+
+                // ✅ 백엔드 처리 성공 후 목록으로 이동
+                window.location.href = "/chat/list";
+            } catch (e) {
+                console.error(e);
+                alert("서버 통신 오류로 채팅방을 나갈 수 없습니다.");
+            }
+        });
+    }
+
+
 
     function scrollToBottom(instant) {
         // 실제 스크롤 되는 엘리먼트 (html/body)

@@ -57,7 +57,7 @@ public class TradeChatController {
     public String myChatRooms(@PathVariable Long memberId, Model model, Pageable pageable) {
 
         model.addAttribute("memberId", memberId);
-        model.addAttribute("rooms", chatService.myRooms(memberId).getContent());
+        model.addAttribute("rooms", chatService.myRooms(memberId));
 
         return "trade/chat/chat_list";
     }
@@ -148,5 +148,15 @@ public class TradeChatController {
 
         // TODO: 실제 삭제 로직이 필요하면 service 쪽에 메서드 추가
         return "redirect:/trade/" + memberId + "/chat";
+    }
+
+    @PostMapping("/chat/{roomId}/leave")
+    @ResponseBody
+    public ResponseEntity<Void> leaveRoom(@PathVariable Long roomId,
+                                          @SessionAttribute Long memberId) {
+
+
+        chatService.leaveRoom(roomId, memberId);
+        return ResponseEntity.ok().build();
     }
 }

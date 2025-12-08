@@ -20,7 +20,7 @@ public interface TradeChatService {
 
     boolean markAsRead(Long roomId, Long viewerId);
 
-    Page<TradeChatRoom> myRooms(Long memberId);
+    List<TradeChatRoom> myRooms(Long memberId);
 
     Page<TradeChatMessage> messages(Long roomId);
 
@@ -40,4 +40,7 @@ public interface TradeChatService {
     // ✅ 채팅방 목록 화면용 DTO 리스트
     // 당근 채팅 탭처럼 보여줄 데이터 한 방에 모아서 내려줌
     java.util.List<ChatRoomListDTO> getChatRoomList(Long memberId);
+
+    void leaveRoom(Long roomId, Long memberId);
+
 }

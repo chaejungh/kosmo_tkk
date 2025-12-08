@@ -14,11 +14,17 @@ public interface TradeChatRoomRepository extends JpaRepository<TradeChatRoom, Lo
     // 내가 속한 채팅방 목록
     @Query("""
         SELECT r FROM TradeChatRoom r
-        WHERE r.buyerId= :memberId OR r.sellerId=:memberId
+        WHERE (r.buyerId= :memberId OR r.sellerId=:memberId) and (r.buyerLeftYn='N'and r.sellerLeftYn='N')
             ORDER BY r.lastMessageAt desc
     """)
-    Page<TradeChatRoom> findBySellerIdOrBuyerId(Long memberId,Pageable pageable);
+    List<TradeChatRoom> findBySellerIdOrBuyerId(Long memberId);
     List<TradeChatRoom> findBySellerId(Long memberId);
+
+    // 구매자 기준: 내가 buyer이면서, 아직 나가지 않은 방
+    List<TradeChatRoom> findByBuyerIdAndBuyerLeftYn(Long memberId, String buyerLeftYn);
+
+    // 판매자 기준: 내가 seller이면서, 아직 나가지 않은 방
+    List<TradeChatRoom> findByTrade_SellerIdAndSellerLeftYn(Long sellerId, String sellerLeftYn);
 
     TradeChatRoom findByTradeIdAndBuyerId(Long tradeId, Long buyerId);
 
