@@ -323,6 +323,9 @@
             }
         }
 
+        .form-msg { font-size: 13px; margin-top: 4px; color: var(--text-sub); }
+
+
     </style>
 </head>
 <body>
@@ -338,27 +341,39 @@
             <input type="hidden" name="nationality" id="nationalityValue" value="내국인">
             <input type="hidden" name="email" id="emailFull">
 
-
-
             <!-- 아이디 -->
             <div class="form-group">
                 <label class="form-label">아이디</label>
+
                 <div class="form-row-inline">
-                    <input type="text" class="input-field" name="loginId" placeholder="아이디 입력">
-                    <button type="button" class="btn-inline">중복확인</button>
+                    <input type="text" class="input-field" name="loginId"
+                           placeholder="아이디 입력" th:value="${loginId}">
+                    <button type="button" class="btn-inline" id="btnCheckId">중복확인</button>
                 </div>
+
+                <p id="idCheckMessage" class="form-msg" style="font-size:13px; margin-top:6px;"></p>
             </div>
+
+            <!-- 아이디 중복 또는 닉네임 중복 에러 표시 -->
+            <div th:if="${joinError}"
+                 style="background:#fdecea; color:#b91c1c; padding:10px; border-radius:10px;
+            margin-bottom:15px; text-align:center; font-size:14px;">
+                <span th:text="${joinError}"></span>
+            </div>
+
 
             <!-- 비밀번호 -->
             <div class="form-group">
                 <label class="form-label">비밀번호</label>
-                <input type="password" class="input-field" name="loginPw" placeholder="비밀번호 입력">
+                <input type="password" class="input-field" id="pw" name="loginPw" placeholder="비밀번호 입력">
+                <p id="pwMessage" class="form-msg"></p>
             </div>
 
             <!-- 비밀번호 확인 -->
             <div class="form-group">
                 <label class="form-label">비밀번호 확인</label>
-                <input type="password" class="input-field" placeholder="비밀번호 재입력">
+                <input type="password" class="input-field" id="pwConfirm" placeholder="비밀번호 재입력">
+                <p id="pwConfirmMessage" class="form-msg"></p>
             </div>
 
             <!-- 이메일 -->
@@ -375,6 +390,7 @@
                         <option value="custom">직접 입력</option>
                     </select>
                 </div>
+                <p class="form-msg" id="msgEmail"></p>
                 <p class="form-help">이메일을 정확하게 입력해주세요.</p>
             </div>
 
@@ -382,12 +398,14 @@
             <div class="form-group">
                 <label class="form-label">이름</label>
                 <input type="text" class="input-field" name="nickname" placeholder="이름 입력">
+                <p class="form-msg" id="msgName"></p>
             </div>
 
             <!-- 생년월일 -->
             <div class="form-group">
                 <label class="form-label">생년월일</label>
-                <input type="text" class="input-field" placeholder="YYYYMMDD">
+                <input type="text" class="input-field" name="birth" placeholder="YYYYMMDD">
+                <p class="form-msg" id="msgBirth"></p>
             </div>
 
             <!-- 통신사 선택 -->
@@ -401,6 +419,7 @@
                     <option>알뜰폰(KT)</option>
                     <option>알뜰폰(LG U+)</option>
                 </select>
+                <p class="form-msg" id="msgPhone"></p>
             </div>
 
             <!-- 성별 · 국적 -->
@@ -419,7 +438,7 @@
             <div class="form-group">
                 <label class="form-label">휴대전화번호</label>
                 <div class="form-row-inline">
-                    <input type="text" class="input-field" placeholder="01012345678">
+                    <input type="text" class="input-field" name="phone" placeholder="01012345678">
                     <button type="button" class="btn-inline">인증요청</button>
                 </div>
             </div>
@@ -427,26 +446,33 @@
             <!-- 약관 동의 -->
             <div class="form-group">
                 <div class="terms-card">
-                    <div class="terms-title">[필수] 약관 전체 동의</div>
+                    <div class="terms-title">
+                    <label style="cursor:pointer;">
+                    <input type="checkbox" id="termsAll">
+                        [필수] 약관 전체 동의
+                    </label>
+                    <p class="form-msg" id="msgTerms"></p>
+                    </div>
+
                     <div class="terms-list">
                         <label class="terms-item">
-                            <input type="checkbox">
+                            <input type="checkbox" class="terms-check">
                             <span>개인정보 이용</span>
                         </label>
                         <label class="terms-item">
-                            <input type="checkbox">
+                            <input type="checkbox" class="terms-check">
                             <span>통신사 이용약관</span>
                         </label>
                         <label class="terms-item">
-                            <input type="checkbox">
+                            <input type="checkbox" class="terms-check">
                             <span>고유식별정보 처리</span>
                         </label>
                         <label class="terms-item">
-                            <input type="checkbox">
+                            <input type="checkbox" class="terms-check">
                             <span>인증 서비스 이용약관</span>
                         </label>
                         <label class="terms-item">
-                            <input type="checkbox">
+                            <input type="checkbox" class="terms-check">
                             <span>더쿠쿠 개인정보수집동의</span>
                         </label>
                     </div>
@@ -460,6 +486,30 @@
 </div>
 
 <script>
+
+    // 메시지 요소 선언
+    const msgId = document.getElementById("idCheckMessage");
+    const msgPw = document.getElementById("pwMessage");
+    const msgPwConfirm = document.getElementById("pwConfirmMessage");
+    const msgEmail = document.getElementById("msgEmail");
+    const msgName = document.getElementById("msgName");
+    const msgBirth = document.getElementById("msgBirth");
+    const msgPhone = document.getElementById("msgPhone");
+    const msgTerms = document.getElementById("msgTerms");
+
+    const joinForm = document.querySelector(".join-form");
+
+    const id = document.querySelector("input[name='loginId']");
+    const pw = document.getElementById("pw");
+    const pwConfirm = document.getElementById("pwConfirm");
+    const emailId = document.querySelector("input[name='emailId']");git
+    const emailDomain = document.querySelector("select[name='emailDomain']");
+    const name = document.querySelector("input[name='nickname']");
+    const birth = document.querySelector("input[placeholder='YYYYMMDD']");
+    const phone = document.querySelector("input[name='phone']");
+    const termsAll = document.getElementById("termsAll");
+
+
     /* ===============================
        🔥 성별 · 국적 토글 기능 추가
        =============================== */
@@ -501,6 +551,160 @@
             btn.classList.add("active");
         });
     });
+// 아이디 중복확인 기능
+        document.getElementById("btnCheckId").addEventListener("click", function () {
+
+            const loginId = document.querySelector("input[name='loginId']").value;
+            const messageBox = document.getElementById("idCheckMessage");
+
+            if (!loginId) {
+                messageBox.style.color = "#dc2626";  // 빨간색
+                messageBox.textContent = "아이디를 입력해주세요.";
+                return;
+            }
+
+            fetch(`/auth/check-id?loginId=` + loginId)
+                .then(res => res.text())
+                .then(result => {
+
+                    if (result === "duplicate") {
+                        messageBox.style.color = "#dc2626"; //  빨간색
+                        messageBox.textContent = "이미 사용 중인 아이디입니다.";
+                    } else {
+                        messageBox.style.color = "#16a34a"; //  초록색
+                        messageBox.textContent = "사용 가능한 아이디입니다";
+                    }
+                });
+            });
+
+            // =======================
+// 🔥 약관 전체 동의 기능
+// =======================
+            const termsChecks = document.querySelectorAll(".terms-check");
+
+// 전체 동의 클릭 → 개별 체크 전부 체크/해제
+            termsAll.addEventListener("change", () => {
+                const checked = termsAll.checked;
+                termsChecks.forEach(chk => chk.checked = checked);
+            });
+
+// 개별 체크 변경 시 → 전체동의 자동 업데이트
+            termsChecks.forEach(chk => {
+                chk.addEventListener("change", () => {
+                    const allChecked = Array.from(termsChecks).every(c => c.checked);
+                    termsAll.checked = allChecked;
+                });
+            });
+
+    /* ===============================
+🔥 비밀번호 유효성 검사
+=============================== */
+
+    // 1) 비밀번호 규칙: 특수문자 1개 + 8자 이상
+    function validatePasswordRule(password) {
+        const regex = /^(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\-])(?!.*\s).{8,}$/;
+        return regex.test(password);
+    }
+
+    // 입력할 때마다 실시간 체크
+    pw.addEventListener("input", () => {
+        if (!validatePasswordRule(pw.value)) {
+            msgPw.style.color = "#dc2626";
+            msgPw.textContent = "특수문자를 포함한 8자 이상이어야 합니다.";
+        } else {
+            msgPw.style.color = "#16a34a";
+            msgPw.textContent = "안전한 비밀번호입니다.";
+        }
+    });
+
+    // 2) 비밀번호 확인 체크
+    pwConfirm.addEventListener("input", () => {
+        if (pwConfirm.value !== pw.value) {
+            msgPwConfirm.style.color = "#dc2626";
+            msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
+        } else {
+            msgPwConfirm.style.color = "#16a34a";
+            msgPwConfirm.textContent = "비밀번호가 일치합니다.";
+        }
+    });
+
+    // 3) 폼 제출 시 마지막 방어
+    joinForm.addEventListener("submit", (event) => {
+
+        if (!validatePasswordRule(pw.value)) {
+            event.preventDefault();
+            msgPw.style.color = "#dc2626";
+            msgPw.textContent = "특수문자를 포함한 8자 이상 비밀번호를 입력해야 합니다.";
+            pw.focus();
+            return;
+        }
+
+        if (pw.value !== pwConfirm.value) {
+            event.preventDefault();
+            msgPwConfirm.style.color = "#dc2626";
+            msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
+            pwConfirm.focus();
+            return;
+
+
+        }
+
+    });
+
+
+    // 회원 가입 시 빈칸 오류 메세지
+    joinForm.addEventListener("submit", function(event) {
+
+        let isValid = true;
+
+        // 초기화
+        document.querySelectorAll(".form-msg").forEach(msg => msg.textContent = "");
+
+        if (id.value.trim() === "") {
+            msgId.textContent = "아이디를 입력해주세요.";
+            isValid = false;
+        }
+        if (pw.value.trim() === "") {
+            msgPw.textContent = "비밀번호를 입력해주세요.";
+            isValid = false;
+        }
+        if (pwConfirm.value.trim() === "") {
+            msgPwConfirm.textContent = "비밀번호 확인이 필요합니다.";
+            isValid = false;
+        }
+        if (pw.value !== pwConfirm.value) {
+            msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
+            isValid = false;
+        }
+        if (emailId.value.trim() === "" || emailDomain.value === "") {
+            msgEmail.textContent = "이메일을 입력해주세요.";
+            isValid = false;
+        }
+        if (name.value.trim() === "") {
+            msgName.textContent = "이름을 입력해주세요.";
+            isValid = false;
+        }
+        if (birth.value.trim() === "") {
+            msgBirth.textContent = "생년월일을 입력해주세요.";
+            isValid = false;
+        }
+        if (phone.value.trim() === "") {
+            msgPhone.textContent = "휴대전화번호를 입력해주세요.";
+            isValid = false;
+        }
+        if (!termsAll.checked) {
+            msgTerms.textContent = "필수 약관에 동의해야 가입할 수 있습니다.";
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" }); // UX 좋게!
+        }
+    });
+
+
+
 </script>
 </body>
 </html>

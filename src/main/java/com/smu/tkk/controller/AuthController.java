@@ -22,6 +22,17 @@ public class AuthController {
      * URL  : /auth/login  또는 /auth/login.do
      * View : templates/auth/login.html
      */
+
+    // ✅ 아이디 중복확인 AJAX API
+    @GetMapping("/check-id")
+    @ResponseBody
+    public String checkId(@RequestParam String loginId) {
+
+        boolean exists = memberRepository.existsByLoginId(loginId);
+
+        return exists ? "duplicate" : "ok";
+    }
+
     @GetMapping({"/login", "/login.do"})
     public String loginForm() {
         return "auth/login";
@@ -92,22 +103,22 @@ public class AuthController {
             RedirectAttributes rttr
     ) {
 
-        // 아이디 / 닉네임 중복 체크 (기존 레포 그대로 사용)
+   /*     // 아이디 / 닉네임 중복 체크 (기존 레포 그대로 사용)
         if (memberRepository.existsByLoginId(loginId)) {
             rttr.addFlashAttribute("joinError", "이미 사용 중인 아이디입니다.");
             rttr.addFlashAttribute("loginId", loginId);
             rttr.addFlashAttribute("nickname", nickname);
             rttr.addFlashAttribute("email", email);
             return "redirect:/auth/join";
-        }
+        }*/
 
-        if (memberRepository.existsByNickname(nickname)) {
+        /*if (memberRepository.existsByNickname(nickname)) {
             rttr.addFlashAttribute("joinError", "이미 사용 중인 닉네임입니다.");
             rttr.addFlashAttribute("loginId", loginId);
             rttr.addFlashAttribute("nickname", nickname);
             rttr.addFlashAttribute("email", email);
             return "redirect:/auth/join";
-        }
+        }*/
 
         // 새 회원 엔티티 생성 (비번 평문 저장 - 더미데이터랑 맞춤)
         Member member = new Member();
