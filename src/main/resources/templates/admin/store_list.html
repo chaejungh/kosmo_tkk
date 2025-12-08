@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 관리자 - 매장 관리</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --bg-body: #f5f7fb;
+            --bg-card: #ffffff;
+            --bg-header: #050816;
+            --bg-chip-active: #e5f8ec;
+            --bg-chip-inactive: #ffefef;
+            --border-subtle: #e1e4f0;
+            --border-strong: #c6cadb;
+            --ink-strong: #111827;
+            --ink-muted: #6b7280;
+            --accent: #2563eb;
+            --accent-soft: #e0edff;
+            --danger: #ef4444;
+            --danger-soft: #ffe4e6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
+            background: var(--bg-body);
+            color: var(--ink-strong);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* 상단 헤더 */
+        .admin-header {
+            background: var(--bg-header);
+            color: #f9fafb;
+            padding: 0 32px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .admin-nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .admin-nav-tab {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #e5e7eb;
+        }
+
+        .admin-nav-tab.active {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-subtle);
+        }
+
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+        }
+
+        .admin-header-link {
+            color: #e5e7eb;
+        }
+
+        .admin-header-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 메인 컨테이너 */
+        .admin-main {
+            max-width: 1200px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        .admin-section-title {
+            margin-bottom: 16px;
+        }
+
+        .admin-section-title h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .admin-section-title p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        /* 검색 카드 */
+        .search-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+
+        .search-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-row select,
+        .search-row input[type="text"] {
+            height: 34px;
+            padding: 0 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-strong);
+            font-size: 13px;
+        }
+
+        .search-row select {
+            min-width: 180px;
+        }
+
+        .search-row input[type="text"] {
+            flex: 1 1 260px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 0 14px;
+            height: 34px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-strong);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(0.96);
+        }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+        }
+
+        .btn-small {
+            height: 28px;
+            padding: 0 10px;
+            font-size: 12px;
+            border-radius: 999px;
+        }
+
+        .btn-small-secondary {
+            background: #ffffff;
+            border-color: var(--border-strong);
+            color: var(--ink-strong);
+        }
+
+        .btn-small-secondary:hover {
+            background: #f3f4ff;
+        }
+
+        .btn-small-danger {
+            background: var(--danger-soft);
+            border-color: #fecaca;
+            color: var(--danger);
+        }
+
+        .btn-small-danger:hover {
+            filter: brightness(0.97);
+        }
+
+        .table-card {
+            margin-top: 8px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px 12px;
+        }
+
+        .table-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .table-top-row strong {
+            color: var(--ink-strong);
+        }
+
+        table.admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .admin-table thead {
+            background: #f9fafb;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: left;
+        }
+
+        .admin-table th {
+            font-weight: 600;
+            color: var(--ink-muted);
+            font-size: 12px;
+        }
+
+        .admin-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .col-number {
+            width: 60px;
+        }
+
+        .col-type {
+            width: 120px;
+        }
+
+        .col-region {
+            width: 150px;
+        }
+
+        .col-phone {
+            width: 130px;
+        }
+
+        .col-status {
+            width: 90px;
+        }
+
+        .col-actions {
+            width: 190px;
+        }
+
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-chip.active {
+            background: var(--bg-chip-active);
+            color: #166534;
+        }
+
+        .status-chip.inactive {
+            background: var(--bg-chip-inactive);
+            color: #b91c1c;
+        }
+
+        .empty-row {
+            text-align: center;
+            color: var(--ink-muted);
+            padding: 32px 0;
+        }
+
+        .pagination {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            font-size: 13px;
+        }
+
+        .page-link {
+            min-width: 28px;
+            height: 28px;
+            padding: 0 8px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--ink-muted);
+            background: transparent;
+        }
+
+        .page-link:hover {
+            border-color: var(--border-strong);
+            background: #ffffff;
+        }
+
+        .page-link.current {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .page-link.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .title-link {
+            color: var(--accent);
+        }
+
+        .title-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .admin-main {
+                padding: 0 12px;
+            }
+
+            .search-card {
+                padding: 12px;
+            }
+
+            .search-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-row select,
+            .search-row input[type="text"] {
+                width: 100%;
+            }
+
+            .admin-table thead {
+                display: none;
+            }
+
+            .admin-table tr {
+                display: block;
+                border-bottom: 1px solid var(--border-subtle);
+                margin-bottom: 8px;
+            }
+
+            .admin-table td {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: none;
+                padding: 6px 4px;
+            }
+
+            .admin-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--ink-muted);
+                margin-right: 10px;
+                font-size: 11px;
+            }
+
+            .col-actions {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <nav class="admin-nav-tabs">
+            <a th:href="@{/admin/members}" class="admin-nav-tab">회원 관리</a>
+            <a th:href="@{/admin/boards}" class="admin-nav-tab">게시판 관리</a>
+            <a th:href="@{/admin/trades}" class="admin-nav-tab">거래 관리</a>
+            <a th:href="@{/admin/stores}" class="admin-nav-tab active">매장 관리</a>
+        </nav>
+    </div>
+    <div class="admin-header-right">
+        <a th:href="@{/admin/dashboard}" class="admin-header-link">대시보드</a>
+        <span>|</span>
+        <a th:href="@{/logout}" class="admin-header-link">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+    <section>
+        <div class="admin-section-title">
+            <h1>매장 관리</h1>
+            <p>굿즈 매장 및 팝업스토어 목록을 조회하고 상태(활성/비활성)를 관리합니다.</p>
+        </div>
+
+        <!-- stores : Page<Store> / type, keyword : String -->
+        <form th:action="@{/admin/stores}" method="get" class="search-card">
+            <div class="search-row">
+                <!-- 유형 선택 (지금은 UI만; 실제 필터는 나중에) -->
+                <select name="type">
+                    <option value=""
+                            th:selected="${type == null or type == ''}">
+                        전체 유형
+                    </option>
+                    <option value="SHOP"
+                            th:selected="${type == 'SHOP'}">
+                        상설 매장
+                    </option>
+                    <option value="POPUP"
+                            th:selected="${type == 'POPUP'}">
+                        팝업 스토어
+                    </option>
+                </select>
+
+                <!-- 매장명 / 지역 검색 -->
+                <input type="text"
+                       name="keyword"
+                       placeholder="매장명 또는 지역 검색"
+                       th:value="${keyword}">
+                <button type="submit" class="btn btn-primary">검색</button>
+                <a th:href="@{/admin/stores}" class="btn btn-outline">초기화</a>
+            </div>
+        </form>
+
+        <div class="table-card">
+            <div class="table-top-row" th:if="${stores != null}">
+                <div>
+                    총 <strong th:text="${stores.totalElements}">0</strong>건 /
+                    <span th:text="${stores.totalPages}">1</span> 페이지
+                </div>
+                <div th:if="${stores.totalPages > 0}">
+                    <span th:text="${stores.number + 1}">1</span> /
+                    <span th:text="${stores.totalPages}">1</span> 페이지
+                </div>
+            </div>
+            <div class="table-top-row" th:if="${stores == null}">
+                <div>총 0건 / 0 페이지</div>
+            </div>
+
+            <table class="admin-table">
+                <thead>
+                <tr>
+                    <th class="col-number">번호</th>
+                    <th class="col-type">유형</th>
+                    <th>매장명</th>
+                    <th class="col-region">지역</th>
+                    <th class="col-phone">전화번호</th>
+                    <th class="col-status">상태</th>
+                    <th class="col-actions">액션</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 데이터 없을 때 -->
+                <tr th:if="${stores == null or stores.totalElements == 0}">
+                    <td class="empty-row" colspan="7">
+                        등록된 매장이 없습니다.
+                    </td>
+                </tr>
+
+                <!-- 매장 행 -->
+                <tr th:each="store, stat : ${stores}">
+                    <td class="col-number"
+                        data-label="번호"
+                        th:text="${stores.totalElements - (stores.number * stores.size) - stat.index}">
+                        1
+                    </td>
+
+                    <!-- ★ Store 엔티티에 storeType 필드가 없으므로 고정 텍스트 -->
+                    <td class="col-type" data-label="유형">
+                        상설 매장
+                    </td>
+
+                    <td data-label="매장명">
+                        <a class="title-link"
+                           th:href="@{/store/{id}/detail.do(id=${store.id})}"
+                           th:text="${store.name}">
+                            매장명
+                        </a>
+                    </td>
+
+                    <td class="col-region"
+                        data-label="지역"
+                        th:text="${store.regionName != null ? store.regionName : store.address}">
+                        서울
+                    </td>
+
+                    <td class="col-phone"
+                        data-label="전화번호"
+                        th:text="${store.phone}">
+                        02-000-0000
+                    </td>
+
+                    <td class="col-status" data-label="상태">
+                        <span class="status-chip active"
+                              th:if="${store.deletedYn == null or store.deletedYn == 'N'}">
+                            활성
+                        </span>
+                        <span class="status-chip inactive"
+                              th:if="${store.deletedYn != null and store.deletedYn != 'N'}">
+                            비활성
+                        </span>
+                    </td>
+
+                    <td class="col-actions" data-label="액션">
+                        <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                            <form th:action="@{/admin/stores/{id}/toggle(id=${store.id})}"
+                                  method="post"
+                                  style="margin:0;">
+                                <button type="submit"
+                                        class="btn btn-small"
+                                        th:classappend="${store.deletedYn != null && store.deletedYn != 'N'} ? ' btn-small-secondary' : ' btn-small-danger'"
+                                        th:text="${store.deletedYn != null && store.deletedYn != 'N'} ? '활성 처리' : '비활성 처리'">
+                                    비활성 처리
+                                </button>
+                            </form>
+
+                            <a class="btn btn-small btn-small-secondary"
+                               th:href="@{/admin/stores/{id}(id=${store.id})}">
+                                상세보기
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- 페이지네이션 -->
+            <div class="pagination"
+                 th:if="${stores != null and stores.totalPages > 1}">
+                <!-- 이전 -->
+                <a class="page-link"
+                   th:classappend="${stores.first} ? ' disabled'"
+                   th:href="${stores.first} ? '#' : @{/admin/stores(page=${stores.number - 1}, type=${type}, keyword=${keyword})}">
+                    ‹
+                </a>
+
+                <!-- 페이지 번호 -->
+                <a class="page-link"
+                   th:each="pageNum : ${#numbers.sequence(0, stores.totalPages - 1)}"
+                   th:text="${pageNum + 1}"
+                   th:classappend="${pageNum == stores.number} ? ' current'"
+                   th:href="@{/admin/stores(page=${pageNum}, type=${type}, keyword=${keyword})}">
+                    1
+                </a>
+
+                <!-- 다음 -->
+                <a class="page-link"
+                   th:classappend="${stores.last} ? ' disabled'"
+                   th:href="${stores.last} ? '#' : @{/admin/stores(page=${stores.number + 1}, type=${type}, keyword=${keyword})}">
+                    ›
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 관리자 - 거래 상세</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- trade_list.html 과 동일 디자인 -->
+    <style>
+        :root {
+            --bg-body: #f5f7fb;
+            --bg-card: #ffffff;
+            --bg-header: #050816;
+            --bg-chip-active: #e5f8ec;
+            --bg-chip-inactive: #ffefef;
+            --border-subtle: #e1e4f0;
+            --border-strong: #c6cadb;
+            --ink-strong: #111827;
+            --ink-muted: #6b7280;
+            --accent: #2563eb;
+            --accent-soft: #e0edff;
+            --danger: #ef4444;
+            --danger-soft: #ffe4e6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
+            background: var(--bg-body);
+            color: var(--ink-strong);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; }
+
+        .admin-header {
+            background: var(--bg-header);
+            color: #f9fafb;
+            padding: 0 32px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-logo { font-weight: 700; font-size: 18px; }
+
+        .admin-nav-tabs { display: flex; gap: 8px; }
+
+        .admin-nav-tab {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #e5e7eb;
+        }
+
+        .admin-nav-tab.active {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-subtle);
+        }
+
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+        }
+
+        .admin-header-link { color: #e5e7eb; }
+        .admin-header-link:hover { text-decoration: underline; }
+
+        .admin-main {
+            max-width: 1200px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        .admin-section-title { margin-bottom: 16px; }
+
+        .admin-section-title h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .admin-section-title p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .table-card {
+            margin-top: 8px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 18px 20px 16px;
+        }
+
+        table.admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: left;
+        }
+
+        .admin-table th {
+            width: 120px;
+            font-weight: 600;
+            color: var(--ink-muted);
+            background: #f9fafb;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 0 14px;
+            height: 32px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-strong);
+        }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+        }
+
+        .btn-small {
+            height: 28px;
+            padding: 0 10px;
+            font-size: 12px;
+            border-radius: 999px;
+        }
+
+        .btn-small-secondary {
+            background: #ffffff;
+            border-color: var(--border-strong);
+            color: var(--ink-strong);
+        }
+
+        .btn-small-secondary:hover {
+            background: #f3f4ff;
+        }
+
+        .btn-small-danger {
+            background: var(--danger-soft);
+            border-color: #fecaca;
+            color: var(--danger);
+        }
+
+        .btn-small-danger:hover {
+            filter: brightness(0.97);
+        }
+
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-chip.active {
+            background: var(--bg-chip-active);
+            color: #166534;
+        }
+
+        .status-chip.inactive {
+            background: var(--bg-chip-inactive);
+            color: #b91c1c;
+        }
+
+        @media (max-width: 768px) {
+            .admin-main { padding: 0 12px; }
+            .admin-table th { width: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <nav class="admin-nav-tabs">
+            <a th:href="@{/admin/members}" class="admin-nav-tab">회원 관리</a>
+            <a th:href="@{/admin/boards}" class="admin-nav-tab">게시판 관리</a>
+            <a th:href="@{/admin/trades}" class="admin-nav-tab active">거래 관리</a>
+        </nav>
+    </div>
+    <div class="admin-header-right">
+        <a th:href="@{/admin/dashboard}" class="admin-header-link">대시보드</a>
+        <span>|</span>
+        <a th:href="@{/logout}" class="admin-header-link">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+    <section>
+        <div class="admin-section-title">
+            <h1>거래 상세</h1>
+            <p>거래글 정보를 확인하고 상태 변경 및 삭제를 할 수 있습니다.</p>
+        </div>
+
+        <div class="table-card">
+            <!-- 상단 버튼들 -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <div style="font-size:13px; color:var(--ink-muted);">
+                    거래글 ID :
+                    <strong th:text="${trade.id}">0</strong>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <a class="btn btn-small btn-outline"
+                       th:href="@{/admin/trades(page=${page}, keyword=${keyword})}">
+                        목록으로
+                    </a>
+                    <a class="btn btn-small btn-small-secondary"
+                       th:href="@{'/trade/' + ${trade.id} + '/article/detail.do'}"
+                       target="_blank">
+                        사용자 화면으로 보기
+                    </a>
+                </div>
+            </div>
+
+            <!-- 기본 정보 -->
+            <table class="admin-table">
+                <tbody>
+                <tr>
+                    <th>제목</th>
+                    <td th:text="${trade.title}">제목</td>
+                </tr>
+                <tr>
+                    <th>가격</th>
+                    <td>
+                        <span th:if="${trade.price != null}"
+                              th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">
+                            10,000원
+                        </span>
+                        <span th:if="${trade.price == null}">-</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>상태</th>
+                    <td>
+                        <span class="status-chip active"
+                              th:if="${trade.status == 'SALE'}">
+                            판매중
+                        </span>
+                        <span class="status-chip inactive"
+                              th:if="${trade.status == 'RESERVED'}">
+                            예약중
+                        </span>
+                        <span class="status-chip inactive"
+                              th:if="${trade.status == 'COMPLETED'}">
+                            판매완료
+                        </span>
+                        <span class="status-chip inactive"
+                              th:if="${trade.status == null}">
+                            미지정
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>작성일</th>
+                    <td th:text="${#temporals.format(trade.createdAt, 'yyyy-MM-dd HH:mm')}">
+                        2025-01-01 00:00
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- 내용 -->
+            <div style="margin-top:16px;">
+                <div style="font-size:13px; color:var(--ink-muted); margin-bottom:6px;">내용</div>
+                <div style="border:1px solid var(--border-subtle); border-radius:8px; padding:12px;
+                            background:#f9fafb; font-size:13px; white-space:pre-line;"
+                     th:text="${trade.content}">
+                    내용입니다.
+                </div>
+            </div>
+
+            <!-- 액션 영역 -->
+            <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+                <!-- 상태 변경 -->
+                <form th:action="@{/admin/trades/{id}/status(id=${trade.id})}"
+                      method="post"
+                      style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+                    <span style="font-size:13px;">거래 상태 변경</span>
+                    <select name="status"
+                            style="height:30px; border-radius:8px; border:1px solid var(--border-strong);
+                                   font-size:13px; padding:0 8px;">
+                        <option value="SALE"
+                                th:selected="${trade.status == 'SALE'}">판매중</option>
+                        <option value="RESERVED"
+                                th:selected="${trade.status == 'RESERVED'}">예약중</option>
+                        <option value="COMPLETED"
+                                th:selected="${trade.status == 'COMPLETED'}">판매완료</option>
+                    </select>
+                    <input type="hidden" name="page" th:value="${page}">
+                    <input type="hidden" name="keyword" th:value="${keyword}">
+                    <button type="submit" class="btn btn-small btn-small-secondary">
+                        상태 저장
+                    </button>
+                </form>
+
+                <!-- 삭제 -->
+                <form th:action="@{/admin/trades/{id}/delete(id=${trade.id})}"
+                      method="post"
+                      onsubmit="return confirm('정말 이 거래글을 삭제하시겠습니까? 삭제 후에는 복구가 어려울 수 있습니다.');">
+                    <input type="hidden" name="page" th:value="${page}">
+                    <input type="hidden" name="keyword" th:value="${keyword}">
+                    <button type="submit" class="btn btn-small btn-small-danger">
+                        거래글 삭제
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

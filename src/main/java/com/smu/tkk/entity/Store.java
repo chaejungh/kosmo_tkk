@@ -18,6 +18,7 @@ import java.util.Set;
 @ToString
 @Table(name = "STORE")
 public class Store {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STORE_ID", nullable = false)
@@ -55,6 +56,12 @@ public class Store {
     @ColumnDefault("SYSDATE -- 등록일")
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
+
+    // ================== 여기만 새로 추가 ==================
+    @ColumnDefault("'N'")
+    @Column(name = "DELETED_YN", length = 1, nullable = false)
+    private String deletedYn = "N";   // N = 노출, Y = 숨김
+    // =====================================================
 
     @OneToMany(mappedBy = "store")
     @ToString.Exclude
