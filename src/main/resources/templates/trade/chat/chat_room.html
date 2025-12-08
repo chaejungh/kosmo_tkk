@@ -138,6 +138,38 @@
             font-size: 14px; font-weight: 600;
             padding: 9px 18px; cursor: pointer;
         }
+        .bubble-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        /* 내 메시지는 오른쪽 정렬, 상대는 왼쪽 정렬 */
+        .msg.me .bubble-row {
+            justify-content: flex-end;
+        }
+
+        .msg.other .bubble-row {
+            justify-content: flex-start;
+        }
+
+        .time-left {
+            font-size: 11px;
+            color: #9CA3AF;
+            white-space: nowrap;
+        }
+
+        .status-row {
+            font-size: 11px;
+            color: #9CA3AF;
+            margin: 2px 4px 0;
+            text-align: right;
+        }
+
+        .read-status {
+            /* 필요하면 굵기 같은 거 추가 */
+        }
+
     </style>
 </head>
 <body>
@@ -172,23 +204,35 @@
 
     <!-- 메시지 목록 -->
     <div class="chat-body" id="chatBody">
-        <!-- 기존 메시지 렌더링 -->
         <div th:each="msg : ${msgList}"
              th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')">
 
-            <div class="bubble">
+            <!-- 시간 + 말풍선 한 줄 -->
+            <div class="bubble-row">
+                <div class="time-left"
+                     th:text="${msg.createdAt != null ? #temporals.format(msg.createdAt, 'a h:mm') : ''}">
+                </div>
 
-                <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
-                      th:text="${msg.message}"></span>
 
-                <img th:if="${#strings.startsWith(msg.message, '[img]')}"
-                     th:src="@{${#strings.substring(msg.message, 5)}}"
-                     style="max-width:200px; border-radius:12px;">
+                <div class="bubble">
+            <span th:if="${!#strings.startsWith(msg.message, '[img]')}"
+                  th:text="${msg.message}"></span>
+
+                    <img th:if="${#strings.startsWith(msg.message, '[img]')}"
+                         th:src="@{${#strings.substring(msg.message, 5)}}"
+                         style="max-width:200px; border-radius:12px;">
+                </div>
             </div>
 
-            <div class="time"
-                 th:text="${msg.createdAt != null ? msg.createdAt : ''}"></div>
+            <!-- 말풍선 아래 읽음/안읽음 (내가 보낸 메시지만) -->
+            <div class="status-row"
+                 th:if="${msg.senderId} == ${currentMemberId}">
+        <span class="read-status"
+              th:text="${msg.readYn == 'Y' ? '읽음' : '안읽음'}">
+        </span>
+            </div>
         </div>
+
     </div>
 
     <!-- 입력 박스 -->
@@ -242,11 +286,12 @@
     }
 
     function formatDateTime(str) {
-        if (!str) return "방금 전";
+        if (!str) return "";
         let date = new Date(str);
-        if (isNaN(date.getTime())) return "방금 전";
-        return `${formatDate(date)} ${formatTime(date)}`;
+        if (isNaN(date.getTime())) return "";
+        return formatTime(date);   // 위에 이미 있는 함수 재사용
     }
+
 
     function connectWebSocket() {
         const socket = new SockJS("/ws-chat");
@@ -378,35 +423,53 @@
             content = msg.message;
         }
 
+        const isMe = String(msg.senderId) === currentMemberId;
+
+        if (isMe && lastMyMessageEl) {
+            const prevStatus = lastMyMessageEl.querySelector(".status-row");
+            if (prevStatus) prevStatus.remove();
+        }
+
         const wrap = document.createElement("div");
-        wrap.className = "msg " + (String(msg.senderId) === currentMemberId ? "me" : "other");
+        wrap.className = "msg " + (isMe ? "me" : "other");
 
         if (msg.messageId) wrap.dataset.msgId = msg.messageId;
 
+        // 내 메시지에는 기본값으로 "안읽음" 표시
+        const statusHtml = isMe
+            ? `<div class="status-row"><span class="read-status">안읽음</span></div>`
+            : "";
+
         wrap.innerHTML = `
+        <div class="bubble-row">
+            <div class="time-left">${formatDateTime(msg.createdAt)}</div>
             <div class="bubble">${content}</div>
-            <div class="time">${formatDateTime(msg.createdAt)}</div>
-        `;
+        </div>
+        ${statusHtml}
+    `;
 
         chatBody.appendChild(wrap);
         scrollToBottom();
 
-        if (String(msg.senderId) === currentMemberId) {
+        if (isMe) {
             lastMyMessageEl = wrap;
         }
     }
 
+
     function handleRead(msg) {
+        // 내가 보낸 READ 이벤트면 무시 (상대가 읽었다는 신호만 처리)
         if (String(msg.senderId) === currentMemberId) return;
 
         const lastMy = lastMyMessageEl || chatBody.querySelector(".msg.me:last-child");
         if (!lastMy) return;
 
-        const timeEl = lastMy.querySelector(".time");
-        if (timeEl && !timeEl.textContent.includes("읽음")) {
-            timeEl.textContent += " · 읽음";
+        const statusEl = lastMy.querySelector(".read-status");
+        if (statusEl) {
+            statusEl.textContent = "읽음";
         }
     }
+
 
     function handleTyping(msg) {
 
@@ -441,14 +504,23 @@
         bubble.style.fontStyle = "italic";
     }
 
-    function scrollToBottom() {
-        setTimeout(() => {
-            chatBody.scrollTo({
-                top: chatBody.scrollHeight,
+    function scrollToBottom(instant) {
+        // 실제 스크롤 되는 엘리먼트 (html/body)
+        const el = document.scrollingElement || document.documentElement;
+        const top = el.scrollHeight;
+
+        if (instant) {
+            // 즉시 맨 아래로 점프 (초기 로딩용)
+            el.scrollTop = top;
+        } else {
+            // 새 메시지 올 때는 부드럽게
+            el.scrollTo({
+                top,
                 behavior: "smooth"
             });
-        }, 10);
+        }
     }
+
 
     const msgInput = document.getElementById("msgInput");
     msgInput.addEventListener("input", () => {
@@ -456,9 +528,22 @@
     });
 
     window.onload = function () {
+        // 🔥 페이지 처음 열릴 때: 기존 메시지들 중 마지막 내 메시지 하나만 상태 남기기
+        const myMsgs = chatBody.querySelectorAll(".msg.me");
+        if (myMsgs.length > 0) {
+            lastMyMessageEl = myMsgs[myMsgs.length - 1];
+            for (let i = 0; i < myMsgs.length - 1; i++) {
+                const statusRow = myMsgs[i].querySelector(".status-row");
+                if (statusRow) statusRow.remove();
+            }
+        }
+
         connectWebSocket();
-        scrollToBottom();
+        setTimeout(() => {
+            scrollToBottom(true); // instant=true
+        }, 0);
     };
+
 </script>
 
 </body>

@@ -77,9 +77,10 @@ public class TradeChatController {
         TradeChatRoom room = chatService.getRoom(roomId);
         TradePost trade = tradeService.readOneTradePostById(tradeId);
 
-        String sellerName = trade.getSeller() != null
-                ? trade.getSeller().getNickname()
-                : "판매자";
+        String sellerName = room.getSellerId().equals(loginUserId)  //상대방 이름 표시 용
+                ? room.getBuyer().getNickname()
+                : room.getSeller().getNickname();
+
 
         Optional<TradePostImage> coverOpt = tradePostImageService.readOneImage(tradeId);
         String productThumb = coverOpt
