@@ -39,13 +39,12 @@ public class AdminBoardController {
                 Sort.by(Sort.Direction.DESC, "createdAt")
         );
 
-        Page<BoardPost> posts = adminBoardService.readPosts(pageable, categoryId, keyword);
+        Page<BoardPost> boards = adminBoardService.readPosts(pageable, categoryId, keyword);
 
-        // board_list.html 에서 사용하는 이름들
-        model.addAttribute("page", posts);        // page.totalElements, page.content 등
-        model.addAttribute("pageable", pageable); // 번호 계산 등에 필요하면 사용
-        model.addAttribute("posts", posts);       // 필요하면 별도로 사용
+        // ★ 템플릿에서 boards 로 사용하므로 이름을 맞춰줌
+        model.addAttribute("boards", boards);
 
+        // 검색 조건 유지용
         model.addAttribute("categoryId", categoryId);
         model.addAttribute("keyword", keyword);
 
@@ -73,7 +72,6 @@ public class AdminBoardController {
                 Sort.by(Sort.Direction.DESC, "createdAt")
         );
 
-        // (postId, pageable) 순서로 호출
         Page<BoardComment> comments = adminBoardService.readComments(postId, pageable);
 
         model.addAttribute("post", post);
@@ -85,7 +83,7 @@ public class AdminBoardController {
 
     /**
      * 리스트 화면에서 상태 토글 (활성 <-> 비활성)
-     *   /admin/boards/{postId}/status
+     *  - deletedYn 파라미터로 'Y' 또는 'N'을 넘김
      */
     @PostMapping("/{postId}/status")
     public String changeStatus(@PathVariable Long postId,

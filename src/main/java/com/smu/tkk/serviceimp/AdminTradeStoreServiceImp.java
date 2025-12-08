@@ -15,62 +15,80 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class AdminTradeStoreServiceImp implements AdminTradeStoreService {
 
     private final TradePostRepository tradePostRepository;
     private final StoreRepository storeRepository;
     private final PopupStoreRepository popupStoreRepository;
 
-    // ▽ 거래글 목록 (지금은 검색어 무시하고 전체 조회)
+    // ===================== 거래글 =====================
+
     @Override
-    @Transactional(readOnly = true)
     public Page<TradePost> readTradePosts(Pageable pageable, String keyword) {
-        return tradePostRepository.findAll(pageable);
+        if (keyword != null && !keyword.isBlank()) {
+            // 검색 시 삭제된 글은 제외
+            return tradePostRepository.search(keyword, pageable);
+        }
+        // 삭제 안 된 글만 (DELETED_YN IS NULL OR 'N')
+        return tradePostRepository.findByDeletedYnIsNullOrDeletedYn("N", pageable);
     }
 
     @Override
+    @Transactional
     public void softDeleteTradePost(Long tradeId) {
         TradePost post = tradePostRepository.findById(tradeId)
                 .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradeId));
-        // 엔티티에 Boolean deletedYn 이 있다고 가정
-        post.setDeletedYn(Boolean.TRUE);
+
+        // 🔥 여기서는 문자열 "Y"/"N" 으로 관리 (엔티티도 String 이어야 함)
+        post.setDeletedYn("Y");
+        tradePostRepository.save(post);
     }
 
     @Override
+    @Transactional
     public void restoreTradePost(Long tradeId) {
         TradePost post = tradePostRepository.findById(tradeId)
                 .orElseThrow(() -> new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradeId));
-        post.setDeletedYn(Boolean.FALSE);
+
+        post.setDeletedYn("N");
+        tradePostRepository.save(post);
     }
 
-    // ▽ 매장 목록
+    // ===================== 상설 매장 =====================
+
     @Override
-    @Transactional(readOnly = true)
     public Page<Store> readStores(Pageable pageable, String keyword) {
+        // 지금은 키워드 무시하고 전체 조회 (필요하면 검색용 Repository 메서드 추가)
         return storeRepository.findAll(pageable);
     }
 
-    // ▽ 매장 활성/비활성 (현재는 상태 필드가 없어서 “검증만 하는 NO-OP 메소드”로 둠)
     @Override
+    @Transactional
     public void changeStoreActive(Long storeId, boolean active) {
-        storeRepository.findById(storeId)
-                .orElseThrow(() -> new IllegalArgumentException("매장이 존재하지 않습니다. id=" + storeId));
-        // TODO: Store 엔티티에 상태(예: activeYn, deletedYn 등) 필드가 생기면 여기서 값 변경
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new IllegalArgumentException("매장을 찾을 수 없습니다. id=" + storeId));
+
+        // 예: deletedYn 으로 숨김 처리하고 있다면 이렇게
+        store.setDeletedYn(active ? "N" : "Y");
+        storeRepository.save(store);
     }
 
-    // ▽ 팝업 목록
+    // ===================== 팝업스토어 =====================
+
     @Override
-    @Transactional(readOnly = true)
     public Page<PopupStore> readPopupStores(Pageable pageable, String keyword) {
+        // 마찬가지로 일단 전체 조회
         return popupStoreRepository.findAll(pageable);
     }
 
-    // ▽ 팝업 활성/비활성 (역시 NO-OP)
     @Override
+    @Transactional
     public void changePopupActive(Long popupId, boolean active) {
-        popupStoreRepository.findById(popupId)
-                .orElseThrow(() -> new IllegalArgumentException("팝업스토어가 존재하지 않습니다. id=" + popupId));
-        // TODO: PopupStore 엔티티에 상태 필드가 생기면 여기서 값 변경
+        PopupStore popup = popupStoreRepository.findById(popupId)
+                .orElseThrow(() -> new IllegalArgumentException("팝업스토어를 찾을 수 없습니다. id=" + popupId));
+
+        popup.setDeletedYn(active ? "N" : "Y");
+        popupStoreRepository.save(popup);
     }
 }
