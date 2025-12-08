@@ -203,5 +203,10 @@ public class MemberServiceImp implements MemberService {
         int result = memberRepository.updateImg(profileImage.getProfileImageUrl(), memberId);
         return result > 0;
     }
+    @Override
+    @Transactional
+    public void deleteMember(Long memberId) {
+        memberRepository.deleteById(memberId);  // ⭐ Hard Delete 실행
+    }
 }
 

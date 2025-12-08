@@ -25,7 +25,7 @@ public class SearchLog {
     private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID",insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
