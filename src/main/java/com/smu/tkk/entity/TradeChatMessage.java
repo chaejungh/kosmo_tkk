@@ -6,10 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -46,9 +48,9 @@ public class TradeChatMessage {
     @Column(name = "MESSAGE", nullable = false, length = 1000)
     private String message;
 
-    @ColumnDefault("SYSDATE")
+    @CreationTimestamp
     @Column(name = "CREATED_AT")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @ColumnDefault("'N'")
     @Column(name = "READ_YN")

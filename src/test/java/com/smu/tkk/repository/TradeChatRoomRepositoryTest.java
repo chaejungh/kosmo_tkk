@@ -10,31 +10,40 @@ import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class TradeChatRoomRepositoryTest {
 
     @Autowired
     TradeChatRoomRepository tradeChatRoomRepository;
 
-    @Test
-    void findByMemberId() {
-        Sort sort= Sort.by("id").ascending();
-        Pageable pageable = PageRequest.of(0,5,sort);
-        System.out.println(tradeChatRoomRepository.findByMemberId(1L, pageable));
-    }
+
 
     @Test
     @Transactional
     void register(){
         TradeChatRoom tradeChatRoom=new TradeChatRoom();
-        tradeChatRoom.setCreatedAt(LocalDate.now());
-        tradeChatRoom.setMemberId(1L);
+        tradeChatRoom.setCreatedAt(LocalDateTime.now());
+        tradeChatRoom.setSellerId(1L);
+        tradeChatRoom.setBuyerId(2L);
         tradeChatRoom.setTradeId(21L);
-        tradeChatRoom.setType("SELLER");
-        tradeChatRoom.setLastMessageAt(LocalDate.now());
-        tradeChatRoom.setCreatedAt(LocalDate.now());
+        tradeChatRoom.setLastMessageAt(LocalDateTime.now());
+        tradeChatRoom.setCreatedAt(LocalDateTime.now());
         tradeChatRoomRepository.save(tradeChatRoom);
     }
+
+    @Test
+    void findBySellerIdOrBuyerId() {
+        Sort sort= Sort.by("id").ascending();
+        Pageable pageable = PageRequest.of(0,5,sort);
+        System.out.println(tradeChatRoomRepository.findBySellerIdOrBuyerId(1L,pageable));
+    }
+
+    @Test
+    void findById() {
+        System.out.println(tradeChatRoomRepository.findById(1L).get());
+    }
+
+
 }

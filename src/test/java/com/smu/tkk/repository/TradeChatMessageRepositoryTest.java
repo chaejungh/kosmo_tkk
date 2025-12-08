@@ -28,4 +28,9 @@ class TradeChatMessageRepositoryTest {
     void modifyRead() {
         System.out.println(tradeChatMessageRepository.modifyRead("Y",1L,2L));
     }
+
+    @Test
+    void countUnread() {
+        System.out.println(tradeChatMessageRepository.countUnread(9L,1L));
+    }
 }

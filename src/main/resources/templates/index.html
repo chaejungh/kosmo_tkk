@@ -268,6 +268,39 @@
                 max-height:60vh; /* 모바일에서는 조금 더 크게 허용 */
             }
         }
+
+        #popupStoreModal .modal-content {
+            position: relative;
+            z-index: 9999 !important;
+        }
+
+        #popupStoreModal .carousel-item {
+            position: relative;
+            z-index: 1;
+        }
+
+        #popupStoreModal .btn-primary {
+            position: relative;
+            z-index: 99999 !important;
+            pointer-events: auto !important;
+        }
+
+        .modal-backdrop {
+            z-index: 3000 !important;
+        }
+
+        #popupStoreModal {
+            z-index: 3100 !important;
+        }
+
+        #popupStoreModal .modal-content {
+            z-index: 3200 !important;
+        }
+
+        .map-search-bottom {
+            z-index: 500 !important;  /* 모달보다 낮게 */
+        }
+
     </style>
 </head>
 
@@ -368,6 +401,75 @@
         </div>
     </main>
 
+    <div class="modal fade" id="popupStoreModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 18px;">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">진행 중인 팝업스토어</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div id="popupCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <!-- ⭐ 여러 팝업을 carousel-item으로 반복 -->
+                            <div class="carousel-item"
+                                 th:each="p, i : ${activePopupList}"
+                                 th:classappend="${i.index == 0} ? ' active' : ''">
+
+                                <!-- 대표 이미지 (bannerImageUrl) -->
+                                <img th:if="${p.bannerImageUrl != null}"
+                                     th:src="${p.bannerImageUrl}"
+                                     class="d-block w-100"
+                                     style="border-radius:12px; margin-bottom:12px; object-fit:cover; max-height:260px;"/>
+
+                                <!-- 제목 -->
+                                <h5 th:text="${p.title}">팝업 제목</h5>
+
+                                <!-- 장소: placeName 있으면 그거, 없으면 regionName -->
+                                <p th:if="${p.placeName != null}"
+                                   th:text="'📍 ' + ${p.placeName}">장소</p>
+                                <p th:if="${p.placeName == null}"
+                                   th:text="'📍 ' + ${p.regionName}">장소</p>
+
+                                <!-- 기간 -->
+                                <p th:text="'📅 ' + ${p.startDate} + ' ~ ' + ${p.endDate}">기간</p>
+
+                                <!-- 설명 -->
+                                <p th:text="${p.description}">설명</p>
+
+                                <!-- 상세 페이지 링크 -->
+                                <a class="btn btn-primary mt-2"
+                                   th:href="@{'/popupstore/' + ${p.id} + '/detail.do'}">
+                                    자세히 보기
+                                </a>
+
+
+
+                            </div>
+
+                        </div>
+
+                        <!-- 이전 / 다음 버튼 -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#popupCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#popupCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- 문의 floating 버튼 -->
     <a th:href="@{/help}" class="fab" style="z-index: 998">
@@ -376,113 +478,121 @@
     </a>
 </div>
 
+<!-- 🔥 페이지별 스크립트 fragment -->
+<th:block layout:fragment="script">
 
+    <!-- Swiper + 지도 바텀시트 -->
+    <script>
 
+        const popupSwiper = new Swiper(".popupSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 12,
+            loop: true,
+            centeredSlides: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+        });
 
+        (function () {
+            const sheet = document.getElementById('mapSearchSheet');
+            const contentEl = document.getElementById('mapSearchSheetContent');
+            const closeBtn = sheet ? sheet.querySelector('.map-search-close') : null;
 
-<!-- Swiper JS -->
+            function renderPlaces(places) {
+                if (!sheet || !contentEl) return;
 
+                const list = Array.isArray(places) ? places : [];
 
-<!-- 🔥 지도 검색 결과 바텀시트 동작 스크립트 -->
-<script layout:fragment="script">
-    const popupSwiper = new Swiper(".popupSwiper", {
-        slidesPerView: 1,
-        spaceBetween: 12,
-        loop: true,
-        centeredSlides: true,
-        grabCursor: true,
+                contentEl.innerHTML = '';
 
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-    });
-
-    (function () {
-        const sheet = document.getElementById('mapSearchSheet');
-        const contentEl = document.getElementById('mapSearchSheetContent');
-        const closeBtn = sheet ? sheet.querySelector('.map-search-close') : null;
-
-        function renderPlaces(places) {
-            if (!sheet || !contentEl) return;
-
-            const list = Array.isArray(places) ? places : [];
-
-            contentEl.innerHTML = '';
-
-            if (!list.length) {
-                contentEl.innerHTML = '<p class="map-search-empty">검색 결과가 없습니다.</p>';
-                sheet.classList.add('show');
-                return;
-            }
-
-            const ul = document.createElement('ul');
-            ul.className = 'map-search-list';
-
-            list.forEach((p, idx) => {
-                const li = document.createElement('li');
-                li.className = 'map-search-item';
-
-                // STORE 쪽은 storeId 또는 id 사용
-                const storeId = (p.storeId !== undefined && p.storeId !== null)
-                    ? p.storeId
-                    : p.id;
-
-                li.innerHTML = `
-                  <div class="map-search-line1">
-                    <button type="button" class="map-search-name js-focus">${p.name || '이름 없음'}</button>
-                    ${p.source ? `<span class="map-search-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
-                    ${p.source === 'STORE' && storeId != null
-                    ? `<button type="button" class="map-search-detail" data-store-id="${storeId}">상세보기</button>`
-                    : ''}
-                  </div>
-                  <div class="map-search-meta">${p.address || ''}</div>
-                `;
-
-                // 이름 버튼 클릭 → 지도 포커스 (기존 기능 유지)
-                const focusBtn = li.querySelector('.js-focus');
-                focusBtn.addEventListener('click', () => {
-                    const iframe = document.querySelector('.map-frame iframe');
-                    if (iframe && iframe.contentWindow) {
-                        iframe.contentWindow.postMessage(
-                            {type: 'MAP_FOCUS_PLACE', idx},
-                            window.location.origin
-                        );
-                    }
-                    sheet.classList.remove('show');
-                });
-
-                // 상세보기 버튼 클릭 → 매장 상세 페이지 이동
-                const detailBtn = li.querySelector('.map-search-detail');
-                if (detailBtn) {
-                    detailBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const id = detailBtn.dataset.storeId;
-                        if (id) {
-                            window.location.href = `/goods/store/${id}`;
-                        }
-                    });
+                if (!list.length) {
+                    contentEl.innerHTML = '<p class="map-search-empty">검색 결과가 없습니다.</p>';
+                    sheet.classList.add('show');
+                    return;
                 }
 
-                ul.appendChild(li);
+                const ul = document.createElement('ul');
+                ul.className = 'map-search-list';
+
+                list.forEach((p, idx) => {
+                    const li = document.createElement('li');
+                    li.className = 'map-search-item';
+
+                    const storeId = (p.storeId !== undefined && p.storeId !== null)
+                        ? p.storeId
+                        : p.id;
+
+                    li.innerHTML = `
+                      <div class="map-search-line1">
+                        <button type="button" class="map-search-name js-focus">${p.name || '이름 없음'}</button>
+                        ${p.source ? `<span class="map-search-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
+                        ${p.source === 'STORE' && storeId != null
+                        ? `<button type="button" class="map-search-detail" data-store-id="${storeId}">상세보기</button>`
+                        : ''}
+                      </div>
+                      <div class="map-search-meta">${p.address || ''}</div>
+                    `;
+
+                    const focusBtn = li.querySelector('.js-focus');
+                    focusBtn.addEventListener('click', () => {
+                        const iframe = document.querySelector('.map-frame iframe');
+                        if (iframe && iframe.contentWindow) {
+                            iframe.contentWindow.postMessage(
+                                {type: 'MAP_FOCUS_PLACE', idx},
+                                window.location.origin
+                            );
+                        }
+                        sheet.classList.remove('show');
+                    });
+
+                    const detailBtn = li.querySelector('.map-search-detail');
+                    if (detailBtn) {
+                        detailBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const id = detailBtn.dataset.storeId;
+                            if (id) {
+                                window.location.href = `/goods/store/${id}`;
+                            }
+                        });
+                    }
+
+                    ul.appendChild(li);
+                });
+
+                contentEl.appendChild(ul);
+                sheet.classList.add('show');
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => sheet.classList.remove('show'));
+            }
+
+            window.addEventListener('message', (event) => {
+                if (event.origin !== window.location.origin) return;
+                const data = event.data;
+                if (!data || data.type !== 'MAP_SEARCH_RESULTS') return;
+                renderPlaces(data.places || []);
             });
+        })();
+    </script>
 
-            contentEl.appendChild(ul);
-            sheet.classList.add('show');
-        }
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => sheet.classList.remove('show'));
-        }
-
-        // iframe(shop_map) → index 로 넘어오는 메시지 처리
-        window.addEventListener('message', (event) => {
-            if (event.origin !== window.location.origin) return;
-            const data = event.data;
-            if (!data || data.type !== 'MAP_SEARCH_RESULTS') return;
-            renderPlaces(data.places || []);
+    <!-- 🔥 진행 중 팝업스토어 자동 모달 실행 -->
+    <script th:if="${activePopupList != null and activePopupList.size() > 0}">
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal = new bootstrap.Modal(document.getElementById("popupStoreModal"));
+            modal.show();
         });
-    })();
-</script>
+    </script>
+
+</th:block>
+
 </body>
 </html>
+
+
+
+
+

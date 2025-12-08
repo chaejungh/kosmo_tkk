@@ -4758,117 +4758,289 @@ INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(9,17,SYSDATE-1)
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(9,18,SYSDATE-1);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,19,SYSDATE);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,20,SYSDATE);
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (1,'[귀멸의 칼날] 탄지로 포카 거래 #001','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 1번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (2,'[귀멸의 칼날] 네즈코 아크릴스탠드 거래 #002','[귀멸의 칼날] 네즈코 아크릴스탠드 거래글 더미 데이터 2번입니다.','네즈코 아크릴스탠드','귀멸의 칼날','네즈코','아크릴스탠드',9000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (3,'[나루토] 나루토 피규어 거래 #003','[나루토] 나루토 피규어 거래글 더미 데이터 3번입니다.','나루토 피규어','나루토','나루토','피규어',10000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
 
--- (동일 패턴으로 trade_id만 변경해서 100번까지)
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (4,'[나루토] 사스케 키링 거래 #004','[나루토] 사스케 키링 거래글 더미 데이터 4번입니다.','사스케 키링','나루토','사스케','키링',12000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (5,'[주술회전] 이타도리 유우지 포카 거래 #005','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 5번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',15000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
 
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (6,'[주술회전] 고죠 사토루 아크릴스탠드 거래 #006','[주술회전] 고죠 사토루 아크릴스탠드 거래글 더미 데이터 6번입니다.','고죠 사토루 아크릴스탠드','주술회전','고죠 사토루','아크릴스탠드',8000,'EXCHANGE','DELIVERY','대구 동성로','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (7,'[원피스] 루피 피규어 거래 #007','[원피스] 루피 피규어 거래글 더미 데이터 7번입니다.','루피 피규어','원피스','루피','피규어',9000,'SELL','DIRECT','인천 부평','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (8,'[원피스] 조로 키링 거래 #008','[원피스] 조로 키링 거래글 더미 데이터 8번입니다.','조로 키링','원피스','조로','키링',10000,'BUY','DELIVERY','경기 수원','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (9,'[진격의 거인] 에렌 포카 거래 #009','[진격의 거인] 에렌 포카 거래글 더미 데이터 9번입니다.','에렌 포카','진격의 거인','에렌','포카',12000,'EXCHANGE','DIRECT','서울 홍대','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (10,'[진격의 거인] 리바이 아크릴스탠드 거래 #010','[진격의 거인] 리바이 아크릴스탠드 거래글 더미 데이터 10번입니다.','리바이 아크릴스탠드','진격의 거인','리바이','아크릴스탠드',15000,'SELL','DELIVERY','서울 강남','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+-- 11 ~ 20
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (11,'[귀멸의 칼날] 탄지로 피규어 거래 #011','[귀멸의 칼날] 탄지로 피규어 거래글 더미 데이터 11번입니다.','탄지로 피규어','귀멸의 칼날','탄지로','피규어',8000,'BUY','DIRECT','서울 신촌','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (12,'[귀멸의 칼날] 네즈코 키링 거래 #012','[귀멸의 칼날] 네즈코 키링 거래글 더미 데이터 12번입니다.','네즈코 키링','귀멸의 칼날','네즈코','키링',9000,'EXCHANGE','DELIVERY','서울 명동','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (13,'[나루토] 나루토 포카 거래 #013','[나루토] 나루토 포카 거래글 더미 데이터 13번입니다.','나루토 포카','나루토','나루토','포카',10000,'SELL','DIRECT','부산 서면','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (14,'[나루토] 사스케 아크릴스탠드 거래 #014','[나루토] 사스케 아크릴스탠드 거래글 더미 데이터 14번입니다.','사스케 아크릴스탠드','나루토','사스케','아크릴스탠드',12000,'BUY','DELIVERY','대구 동성로','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (15,'[주술회전] 이타도리 유우지 피규어 거래 #015','[주술회전] 이타도리 유우지 피규어 거래글 더미 데이터 15번입니다.','이타도리 유우지 피규어','주술회전','이타도리 유우지','피규어',15000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (16,'[주술회전] 고죠 사토루 키링 거래 #016','[주술회전] 고죠 사토루 키링 거래글 더미 데이터 16번입니다.','고죠 사토루 키링','주술회전','고죠 사토루','키링',8000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (17,'[원피스] 루피 포카 거래 #017','[원피스] 루피 포카 거래글 더미 데이터 17번입니다.','루피 포카','원피스','루피','포카',9000,'BUY','DIRECT','서울 홍대','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (18,'[원피스] 조로 아크릴스탠드 거래 #018','[원피스] 조로 아크릴스탠드 거래글 더미 데이터 18번입니다.','조로 아크릴스탠드','원피스','조로','아크릴스탠드',10000,'EXCHANGE','DELIVERY','서울 강남','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (19,'[진격의 거인] 에렌 피규어 거래 #019','[진격의 거인] 에렌 피규어 거래글 더미 데이터 19번입니다.','에렌 피규어','진격의 거인','에렌','피규어',12000,'SELL','DIRECT','서울 신촌','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (20,'[진격의 거인] 리바이 키링 거래 #020','[진격의 거인] 리바이 키링 거래글 더미 데이터 20번입니다.','리바이 키링','진격의 거인','리바이','키링',15000,'BUY','DELIVERY','서울 명동','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+-- 21 ~ 30
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (21,'[귀멸의 칼날] 탄지로 포카 거래 #021','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 21번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'EXCHANGE','DIRECT','부산 서면','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (22,'[귀멸의 칼날] 네즈코 아크릴스탠드 거래 #022','[귀멸의 칼날] 네즈코 아크릴스탠드 거래글 더미 데이터 22번입니다.','네즈코 아크릴스탠드','귀멸의 칼날','네즈코','아크릴스탠드',9000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (23,'[나루토] 나루토 피규어 거래 #023','[나루토] 나루토 피규어 거래글 더미 데이터 23번입니다.','나루토 피규어','나루토','나루토','피규어',10000,'BUY','DIRECT','인천 부평','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (24,'[나루토] 사스케 키링 거래 #024','[나루토] 사스케 키링 거래글 더미 데이터 24번입니다.','사스케 키링','나루토','사스케','키링',12000,'EXCHANGE','DELIVERY','경기 수원','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (25,'[주술회전] 이타도리 유우지 포카 거래 #025','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 25번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',15000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (26,'[주술회전] 고죠 사토루 아크릴스탠드 거래 #026','[주술회전] 고죠 사토루 아크릴스탠드 거래글 더미 데이터 26번입니다.','고죠 사토루 아크릴스탠드','주술회전','고죠 사토루','아크릴스탠드',8000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (27,'[원피스] 루피 피규어 거래 #027','[원피스] 루피 피규어 거래글 더미 데이터 27번입니다.','루피 피규어','원피스','루피','피규어',9000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (28,'[원피스] 조로 키링 거래 #028','[원피스] 조로 키링 거래글 더미 데이터 28번입니다.','조로 키링','원피스','조로','키링',10000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (29,'[진격의 거인] 에렌 포카 거래 #029','[진격의 거인] 에렌 포카 거래글 더미 데이터 29번입니다.','에렌 포카','진격의 거인','에렌','포카',12000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (30,'[진격의 거인] 리바이 아크릴스탠드 거래 #030','[진격의 거인] 리바이 아크릴스탠드 거래글 더미 데이터 30번입니다.','리바이 아크릴스탠드','진격의 거인','리바이','아크릴스탠드',15000,'EXCHANGE','DELIVERY','대구 동성로','DONE',0,0,SYSDATE-1,NULL,'N');
+
+-- 31 ~ 40
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (31,'[귀멸의 칼날] 탄지로 피규어 거래 #031','[귀멸의 칼날] 탄지로 피규어 거래글 더미 데이터 31번입니다.','탄지로 피규어','귀멸의 칼날','탄지로','피규어',8000,'SELL','DIRECT','인천 부평','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (32,'[귀멸의 칼날] 네즈코 키링 거래 #032','[귀멸의 칼날] 네즈코 키링 거래글 더미 데이터 32번입니다.','네즈코 키링','귀멸의 칼날','네즈코','키링',9000,'BUY','DELIVERY','경기 수원','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (33,'[나루토] 나루토 포카 거래 #033','[나루토] 나루토 포카 거래글 더미 데이터 33번입니다.','나루토 포카','나루토','나루토','포카',10000,'EXCHANGE','DIRECT','서울 홍대','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (34,'[나루토] 사스케 아크릴스탠드 거래 #034','[나루토] 사스케 아크릴스탠드 거래글 더미 데이터 34번입니다.','사스케 아크릴스탠드','나루토','사스케','아크릴스탠드',12000,'SELL','DELIVERY','서울 강남','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (35,'[주술회전] 이타도리 유우지 피규어 거래 #035','[주술회전] 이타도리 유우지 피규어 거래글 더미 데이터 35번입니다.','이타도리 유우지 피규어','주술회전','이타도리 유우지','피규어',15000,'BUY','DIRECT','서울 신촌','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (36,'[주술회전] 고죠 사토루 키링 거래 #036','[주술회전] 고죠 사토루 키링 거래글 더미 데이터 36번입니다.','고죠 사토루 키링','주술회전','고죠 사토루','키링',8000,'EXCHANGE','DELIVERY','서울 명동','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (37,'[원피스] 루피 포카 거래 #037','[원피스] 루피 포카 거래글 더미 데이터 37번입니다.','루피 포카','원피스','루피','포카',9000,'SELL','DIRECT','부산 서면','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (38,'[원피스] 조로 아크릴스탠드 거래 #038','[원피스] 조로 아크릴스탠드 거래글 더미 데이터 38번입니다.','조로 아크릴스탠드','원피스','조로','아크릴스탠드',10000,'BUY','DELIVERY','대구 동성로','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (39,'[진격의 거인] 에렌 피규어 거래 #039','[진격의 거인] 에렌 피규어 거래글 더미 데이터 39번입니다.','에렌 피규어','진격의 거인','에렌','피규어',12000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (40,'[진격의 거인] 리바이 키링 거래 #040','[진격의 거인] 리바이 키링 거래글 더미 데이터 40번입니다.','리바이 키링','진격의 거인','리바이','키링',15000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+-- 41 ~ 50
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (41,'[귀멸의 칼날] 탄지로 포카 거래 #041','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 41번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'BUY','DIRECT','서울 홍대','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (42,'[귀멸의 칼날] 네즈코 아크릴스탠드 거래 #042','[귀멸의 칼날] 네즈코 아크릴스탠드 거래글 더미 데이터 42번입니다.','네즈코 아크릴스탠드','귀멸의 칼날','네즈코','아크릴스탠드',9000,'EXCHANGE','DELIVERY','서울 강남','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (43,'[나루토] 나루토 피규어 거래 #043','[나루토] 나루토 피규어 거래글 더미 데이터 43번입니다.','나루토 피규어','나루토','나루토','피규어',10000,'SELL','DIRECT','서울 신촌','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (44,'[나루토] 사스케 키링 거래 #044','[나루토] 사스케 키링 거래글 더미 데이터 44번입니다.','사스케 키링','나루토','사스케','키링',12000,'BUY','DELIVERY','서울 명동','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (45,'[주술회전] 이타도리 유우지 포카 거래 #045','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 45번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',15000,'EXCHANGE','DIRECT','부산 서면','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (46,'[주술회전] 고죠 사토루 아크릴스탠드 거래 #046','[주술회전] 고죠 사토루 아크릴스탠드 거래글 더미 데이터 46번입니다.','고죠 사토루 아크릴스탠드','주술회전','고죠 사토루','아크릴스탠드',8000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (47,'[원피스] 루피 피규어 거래 #047','[원피스] 루피 피규어 거래글 더미 데이터 47번입니다.','루피 피규어','원피스','루피','피규어',9000,'BUY','DIRECT','인천 부평','RESERVED',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (48,'[원피스] 조로 키링 거래 #048','[원피스] 조로 키링 거래글 더미 데이터 48번입니다.','조로 키링','원피스','조로','키링',10000,'EXCHANGE','DELIVERY','경기 수원','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (49,'[진격의 거인] 에렌 포카 거래 #049','[진격의 거인] 에렌 포카 거래글 더미 데이터 49번입니다.','에렌 포카','진격의 거인','에렌','포카',12000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (50,'[진격의 거인] 리바이 아크릴스탠드 거래 #050','[진격의 거인] 리바이 아크릴스탠드 거래글 더미 데이터 50번입니다.','리바이 아크릴스탠드','진격의 거인','리바이','아크릴스탠드',15000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
 -- 51 ~ 100
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+-- 51 ~ 60
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (51,'[귀멸의 칼날] 탄지로 포카 거래 #051','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 51번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (52,'[귀멸의 칼날] 네즈코 피규어 거래 #052','[귀멸의 칼날] 네즈코 피규어 거래글 더미 데이터 52번입니다.','네즈코 피규어','귀멸의 칼날','네즈코','피규어',13000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (53,'[나루토] 나루토 포카 거래 #053','[나루토] 나루토 포카 거래글 더미 데이터 53번입니다.','나루토 포카','나루토','나루토','포카',7000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (54,'[나루토] 카카시 키링 거래 #054','[나루토] 카카시 키링 거래글 더미 데이터 54번입니다.','카카시 키링','나루토','카카시','키링',9000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
 
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post(seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn) VALUES(1,'굿즈 거래글','테스트용 더미 데이터입니다.','더미굿즈','더미작품','더미캐릭터','포카',10000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (55,'[주술회전] 이타도리 유우지 포카 거래 #055','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 55번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',11000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (56,'[주술회전] 고죠 사토루 피규어 거래 #056','[주술회전] 고죠 사토루 피규어 거래글 더미 데이터 56번입니다.','고죠 사토루 피규어','주술회전','고죠 사토루','피규어',20000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (57,'[원피스] 루피 포카 거래 #057','[원피스] 루피 포카 거래글 더미 데이터 57번입니다.','루피 포카','원피스','루피','포카',8000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (58,'[원피스] 조로 피규어 거래 #058','[원피스] 조로 피규어 거래글 더미 데이터 58번입니다.','조로 피규어','원피스','조로','피규어',16000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (59,'[진격의 거인] 에렌 포카 거래 #059','[진격의 거인] 에렌 포카 거래글 더미 데이터 59번입니다.','에렌 포카','진격의 거인','에렌','포카',9000,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (60,'[진격의 거인] 리바이 피규어 거래 #060','[진격의 거인] 리바이 피규어 거래글 더미 데이터 60번입니다.','리바이 피규어','진격의 거인','리바이','피규어',22000,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
+
+-- 61 ~ 70
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (61,'[귀멸의 칼날] 젠이츠 포카 거래 #061','[귀멸의 칼날] 젠이츠 포카 거래글 더미 데이터 61번입니다.','젠이츠 포카','귀멸의 칼날','젠이츠','포카',7000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (62,'[귀멸의 칼날] 이노스케 피규어 거래 #062','[귀멸의 칼날] 이노스케 피규어 거래글 더미 데이터 62번입니다.','이노스케 피규어','귀멸의 칼날','이노스케','피규어',15000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (63,'[나루토] 사쿠라 포카 거래 #063','[나루토] 사쿠라 포카 거래글 더미 데이터 63번입니다.','사쿠라 포카','나루토','사쿠라','포카',6000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (64,'[나루토] 이타치 피규어 거래 #064','[나루토] 이타치 피규어 거래글 더미 데이터 64번입니다.','이타치 피규어','나루토','이타치','피규어',23000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (65,'[주술회전] 후시구로 메구미 포카 거래 #065','[주술회전] 후시구로 메구미 포카 거래글 더미 데이터 65번입니다.','후시구로 메구미 포카','주술회전','후시구로 메구미','포카',9000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (66,'[주술회전] 나나미 켄토 피규어 거래 #066','[주술회전] 나나미 켄토 피규어 거래글 더미 데이터 66번입니다.','나나미 켄토 피규어','주술회전','나나미 켄토','피규어',21000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (67,'[원피스] 나미 포카 거래 #067','[원피스] 나미 포카 거래글 더미 데이터 67번입니다.','나미 포카','원피스','나미','포카',7000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (68,'[원피스] 상디 피규어 거래 #068','[원피스] 상디 피규어 거래글 더미 데이터 68번입니다.','상디 피규어','원피스','상디','피규어',18000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (69,'[진격의 거인] 아르민 포카 거래 #069','[진격의 거인] 아르민 포카 거래글 더미 데이터 69번입니다.','아르민 포카','진격의 거인','아르민','포카',8000,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (70,'[진격의 거인] 한지 피규어 거래 #070','[진격의 거인] 한지 피규어 거래글 더미 데이터 70번입니다.','한지 피규어','진격의 거인','한지','피규어',19000,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
+
+-- 71 ~ 80
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (71,'[귀멸의 칼날] 기유 포카 거래 #071','[귀멸의 칼날] 토미오카 기유 포카 거래글 더미 데이터 71번입니다.','토미오카 기유 포카','귀멸의 칼날','토미오카 기유','포카',9000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (72,'[귀멸의 칼날] 렌고쿠 피규어 거래 #072','[귀멸의 칼날] 렌고쿠 쿄쥬로 피규어 거래글 더미 데이터 72번입니다.','렌고쿠 피규어','귀멸의 칼날','렌고쿠 쿄쥬로','피규어',26000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (73,'[나루토] 가아라 포카 거래 #073','[나루토] 가아라 포카 거래글 더미 데이터 73번입니다.','가아라 포카','나루토','가아라','포카',7000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (74,'[나루토] 츠나데 피규어 거래 #074','[나루토] 츠나데 피규어 거래글 더미 데이터 74번입니다.','츠나데 피규어','나루토','츠나데','피규어',24000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (75,'[주술회전] 이누마키 토게 포카 거래 #075','[주술회전] 이누마키 토게 포카 거래글 더미 데이터 75번입니다.','이누마키 토게 포카','주술회전','이누마키 토게','포카',9500,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (76,'[주술회전] 판다 피규어 거래 #076','[주술회전] 판다 피규어 거래글 더미 데이터 76번입니다.','판다 피규어','주술회전','판다','피규어',17000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (77,'[원피스] 로빈 포카 거래 #077','[원피스] 니코 로빈 포카 거래글 더미 데이터 77번입니다.','니코 로빈 포카','원피스','니코 로빈','포카',8500,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (78,'[원피스] 프랑키 피규어 거래 #078','[원피스] 프랑키 피규어 거래글 더미 데이터 78번입니다.','프랑키 피규어','원피스','프랑키','피규어',21000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (79,'[진격의 거인] 미카사 포카 거래 #079','[진격의 거인] 미카사 포카 거래글 더미 데이터 79번입니다.','미카사 포카','진격의 거인','미카사','포카',10000,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (80,'[진격의 거인] 장 피규어 거래 #080','[진격의 거인] 장 피규어 거래글 더미 데이터 80번입니다.','장 피규어','진격의 거인','장','피규어',18500,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
+
+-- 81 ~ 90
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (81,'[귀멸의 칼날] 시노부 포카 거래 #081','[귀멸의 칼날] 코쵸 시노부 포카 거래글 더미 데이터 81번입니다.','코쵸 시노부 포카','귀멸의 칼날','코쵸 시노부','포카',11000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (82,'[귀멸의 칼날] 우즈이 텐겐 피규어 거래 #082','[귀멸의 칼날] 우즈이 텐겐 피규어 거래글 더미 데이터 82번입니다.','우즈이 텐겐 피규어','귀멸의 칼날','우즈이 텐겐','피규어',27000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (83,'[나루토] 히나타 포카 거래 #083','[나루토] 히나타 포카 거래글 더미 데이터 83번입니다.','히나타 포카','나루토','히나타','포카',9500,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (84,'[나루토] 미나토 피규어 거래 #084','[나루토] 미나토 피규어 거래글 더미 데이터 84번입니다.','미나토 피규어','나루토','미나토','피규어',25000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (85,'[주술회전] 츠쿠모 유키 포카 거래 #085','[주술회전] 츠쿠모 유키 포카 거래글 더미 데이터 85번입니다.','츠쿠모 유키 포카','주술회전','츠쿠모 유키','포카',12000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (86,'[주술회전] 스쿠나 피규어 거래 #086','[주술회전] 료멘 스쿠나 피규어 거래글 더미 데이터 86번입니다.','료멘 스쿠나 피규어','주술회전','료멘 스쿠나','피규어',28000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (87,'[원피스] 샹크스 포카 거래 #087','[원피스] 샹크스 포카 거래글 더미 데이터 87번입니다.','샹크스 포카','원피스','샹크스','포카',13000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (88,'[원피스] 에이스 피규어 거래 #088','[원피스] 에이스 피규어 거래글 더미 데이터 88번입니다.','에이스 피규어','원피스','에이스','피규어',26000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (89,'[진격의 거인] 코니 포카 거래 #089','[진격의 거인] 코니 포카 거래글 더미 데이터 89번입니다.','코니 포카','진격의 거인','코니','포카',8500,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (90,'[진격의 거인] 피크 피규어 거래 #090','[진격의 거인] 피크 피규어 거래글 더미 데이터 90번입니다.','피크 피규어','진격의 거인','피크','피규어',23000,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
+
+-- 91 ~ 100
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (91,'[귀멸의 칼날] 카나오 포카 거래 #091','[귀멸의 칼날] 카나오 포카 거래글 더미 데이터 91번입니다.','츠유리 카나오 포카','귀멸의 칼날','츠유리 카나오','포카',9500,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (92,'[귀멸의 칼날] 무잔 피규어 거래 #092','[귀멸의 칼날] 키부츠지 무잔 피규어 거래글 더미 데이터 92번입니다.','키부츠지 무잔 피규어','귀멸의 칼날','키부츠지 무잔','피규어',29000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (93,'[나루토] 시카마루 포카 거래 #093','[나루토] 시카마루 포카 거래글 더미 데이터 93번입니다.','시카마루 포카','나루토','시카마루','포카',9000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (94,'[나루토] 오로치마루 피규어 거래 #094','[나루토] 오로치마루 피규어 거래글 더미 데이터 94번입니다.','오로치마루 피규어','나루토','오로치마루','피규어',25000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (95,'[주술회전] 마키 포카 거래 #095','[주술회전] 젠인 마키 포카 거래글 더미 데이터 95번입니다.','젠인 마키 포카','주술회전','젠인 마키','포카',10000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (96,'[주술회전] 오코츠 유타 피규어 거래 #096','[주술회전] 오코츠 유타 피규어 거래글 더미 데이터 96번입니다.','오코츠 유타 피규어','주술회전','오코츠 유타','피규어',27000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (97,'[원피스] 브룩 포카 거래 #097','[원피스] 브룩 포카 거래글 더미 데이터 97번입니다.','브룩 포카','원피스','브룩','포카',9000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (98,'[원피스] 징베 피규어 거래 #098','[원피스] 징베 피규어 거래글 더미 데이터 98번입니다.','징베 피규어','원피스','징베','피규어',24000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (99,'[진격의 거인] 라이너 포카 거래 #099','[진격의 거인] 라이너 포카 거래글 더미 데이터 99번입니다.','라이너 포카','진격의 거인','라이너','포카',9500,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
+
+INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
+VALUES (100,'[진격의 거인] 베르톨트 피규어 거래 #100','[진격의 거인] 베르톨트 피규어 거래글 더미 데이터 100번입니다.','베르톨트 피규어','진격의 거인','베르톨트','피규어',25500,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
+
 
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(1,1,SYSDATE-10);
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(1,2,SYSDATE-9);
@@ -5123,349 +5295,523 @@ INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail
 VALUES (10, '블루록 뱀파이어 유니폼 스탠드', '뱀파이어 콘셉트 유니폼 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g099.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
 VALUES (10, '하이큐 호러 나이트 포스터 세트', '체육관을 배경으로 한 호러 컨셉 일러스트 포스터', '기타', 12000, 'g100.jpg');
+-- 채팅방 20개
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 1, 1, 21, SYSDATE - 20, SYSDATE - 19);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 2, 2, 22, SYSDATE - 19, SYSDATE - 18);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 3, 3, 23, SYSDATE - 18, SYSDATE - 17);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 4, 4, 24, SYSDATE - 17, SYSDATE - 16);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (5, 5, 25, SYSDATE - 16, SYSDATE - 15);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (6, 6, 26, SYSDATE - 15, SYSDATE - 14);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 7, 7, 27, SYSDATE - 14, SYSDATE - 13);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 8, 8, 28, SYSDATE - 13, SYSDATE - 12);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 9, 9, 29, SYSDATE - 12, SYSDATE - 11);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (10, 10, 30, SYSDATE - 11, SYSDATE - 10);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (11, 11, 31, SYSDATE - 10, SYSDATE - 9);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (12, 12, 32, SYSDATE - 9, SYSDATE - 8);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 13, 13, 33, SYSDATE - 8, SYSDATE - 7);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 14, 14, 34, SYSDATE - 7, SYSDATE - 6);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 15, 15, 35, SYSDATE - 6, SYSDATE - 5);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (16, 16, 36, SYSDATE - 5, SYSDATE - 4);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (17, 17, 37, SYSDATE - 4, SYSDATE - 3);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES (18, 18, 38, SYSDATE - 3, SYSDATE - 2);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 19, 19, 39, SYSDATE - 2, SYSDATE - 1);
+
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
+VALUES ( 20, 20, 40, SYSDATE - 1, SYSDATE);
+-- Room 1 (seller 1, buyer 21) - 10 messages
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 21, '안녕하세요, 아직 거래 가능할까요? (room 1-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 1, '네, 아직 가능해요. (room 1-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 21, '직거래 가능한가요? (room 1-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 1, '네, OO역 근처에서 만나면 될 것 같아요. (room 1-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 21, '토요일 오후 괜찮으세요? (room 1-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 1, '토요일 3시 괜찮습니다. (room 1-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 21, '네, 그때 뵙겠습니다! (room 1-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 1, '혹시 현금 결제 맞으실까요? (room 1-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 21, '네, 현금으로 준비하겠습니다. (room 1-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (1, 1, '알겠습니다, 감사합니다. (room 1-10)', 'N');
+
+
+-- Room 2 (seller 2, buyer 22) - 10 messages
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 22, '안녕하세요, 아직 거래 가능할까요? (room 2-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 2, '네, 가능해요. 어떤 방식 선호하시나요? (room 2-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 22, '직거래가 편해서요. (room 2-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 2, '그럼 홍대 입구역에서 만날까요? (room 2-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 22, '네, 홍대 입구역 좋아요. (room 2-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 2, '시간은 오후 2시 어떠세요? (room 2-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 22, '2시 괜찮습니다. (room 2-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 2, '혹시 포장 따로 필요하신가요? (room 2-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 22, '아니요, 그냥 그대로만 가져와 주세요. (room 2-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (2, 2, '넵 알겠습니다. (room 2-10)', 'N');
+
+
+-- Room 3 (seller 3, buyer 23)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 23, '안녕하세요, 사진이랑 동일한 상태인가요? (room 3-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 3, '네, 사용감 거의 없습니다. (room 3-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 23, '혹시 미개봉인가요? (room 3-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 3, '미개봉은 아니고 전시만 했어요. (room 3-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 23, '알겠습니다. 직거래 원합니다. (room 3-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 3, '강남역 근처 가능하신가요? (room 3-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 23, '네, 강남역으로 갈게요. (room 3-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 3, '좋아요. 자세한 출구는 다시 말씀드릴게요. (room 3-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 23, '네, 감사합니다! (room 3-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (3, 3, '그때 뵙겠습니다. (room 3-10)', 'N');
+
+
+-- Room 4 (seller 4, buyer 24)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 24, '안녕하세요, 가격 네고 가능할까요? (room 4-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 4, '소폭 네고 가능합니다. 어느 정도 생각하시나요? (room 4-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 24, '1만원 정도 가능할까요? (room 4-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 4, '그 정도면 괜찮습니다. (room 4-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 24, '감사합니다. 택배로 받고 싶어요. (room 4-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 4, '택배비는 포함해서 1만5천원 어떠세요? (room 4-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 24, '네 그렇게 할게요. (room 4-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 4, '입금 후 주소 알려주세요. (room 4-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 24, '계좌 알려주시면 바로 입금할게요. (room 4-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (4, 4, '네, 계좌 보내드렸습니다. (room 4-10)', 'N');
+
+
+-- Room 5 (seller 5, buyer 25)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 25, '안녕하세요, 상태가 궁금해서 연락드렸어요. (room 5-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 5, '박스까지 보관 중이고 훼손 없습니다. (room 5-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 25, '실물 사진 한 장 더 받을 수 있을까요? (room 5-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 5, '네, 조금 뒤에 찍어서 보내드릴게요. (room 5-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 25, '감사합니다! (room 5-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 5, '사진 첨부드렸습니다. (room 5-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 25, '상태 좋아 보여서 구매 원합니다. (room 5-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 5, '그럼 직거래/택배 중 어떤 게 좋으세요? (room 5-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 25, '직거래로 진행하고 싶어요. (room 5-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (5, 5, '네, 장소는 홍대 근처로 할게요. (room 5-10)', 'N');
+
+
+-- Room 6 (seller 6, buyer 26)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 26, '안녕하세요, 예약 가능 여부 문의드립니다. (room 6-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 6, '네, 오늘 기준으로 예약 가능해요. (room 6-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 26, '그럼 토요일까지 홀드 부탁드립니다. (room 6-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 6, '토요일까지 홀드해두겠습니다. (room 6-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 26, '감사합니다! (room 6-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 6, '시간 맞춰서 다시 연락 주세요. (room 6-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 26, '네, 그렇게 하겠습니다. (room 6-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 6, '좋은 하루 보내세요. (room 6-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 26, '네, 감사합니다 :) (room 6-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (6, 6, '네 :) (room 6-10)', 'N');
+
+
+-- Room 7 (seller 7, buyer 27)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 27, '안녕하세요, 혹시 구성품 누락된 거 있나요? (room 7-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 7, '구성품 모두 다 있습니다. (room 7-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 27, '설명서도 포함인가요? (room 7-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 7, '네, 설명서도 같이 드려요. (room 7-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 27, '그럼 구매하겠습니다. (room 7-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 7, '감사합니다. 거래 방식은 어떻게 하실까요? (room 7-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 27, '직거래 원합니다. (room 7-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 7, '그럼 신촌역 근처 어떠세요? (room 7-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 27, '좋습니다. 시간만 조율해요. (room 7-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (7, 7, '네, 오후 4시쯤 어떠세요? (room 7-10)', 'N');
+
+
+-- Room 8 (seller 8, buyer 28)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 28, '안녕하세요, 상품 아직 보유하고 계신가요? (room 8-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 8, '네, 아직 판매되지 않았습니다. (room 8-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 28, '그럼 구매 예약하고 싶어요. (room 8-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 8, '네, 닉네임 확인했습니다. (room 8-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 28, '계좌 알려주시면 입금할게요. (room 8-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 8, '계좌번호 보내드렸습니다. (room 8-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 28, '방금 입금 완료했습니다. (room 8-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 8, '입금 확인했습니다. 내일 발송할게요. (room 8-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 28, '감사합니다, 기다릴게요. (room 8-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (8, 8, '송장 나오면 다시 알려드릴게요. (room 8-10)', 'N');
+
+
+-- Room 9 (seller 9, buyer 29)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 29, '안녕하세요, 실사진 추가 부탁드려도 될까요? (room 9-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 9, '네, 지금 바로 찍어서 보내드릴게요. (room 9-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 29, '사진 잘 받았습니다. (room 9-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 9, '괜찮으신가요? (room 9-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 29, '네, 구매 원합니다. (room 9-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 9, '감사합니다. 직거래로 하실까요? (room 9-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 29, '네, 직거래가 좋아요. (room 9-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 9, '역 근처 카페에서 뵈어요. (room 9-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 29, '알겠습니다, 감사합니다. (room 9-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (9, 9, '네, 그날 뵙겠습니다. (room 9-10)', 'N');
+
+
+-- Room 10 (seller 10, buyer 30)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 30, '안녕하세요, 혹시 오늘 거래 가능하신가요? (room 10-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 10, '오늘 저녁은 가능합니다. (room 10-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 30, '그럼 7시쯤 어떠세요? (room 10-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 10, '7시 좋습니다. (room 10-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 30, '장소는 어디가 편하신가요? (room 10-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 10, '강남역 11번 출구 앞이 편합니다. (room 10-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 30, '그쪽으로 가겠습니다. (room 10-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 10, '도착하시면 채팅 한 번만 주세요. (room 10-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 30, '네, 도착하면 연락드릴게요. (room 10-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (10, 10, '네 알겠습니다. (room 10-10)', 'N');
+-- Room 11 (seller 11, buyer 31)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 31, '안녕하세요, 게시글 보고 연락드렸어요. (room 11-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 11, '안녕하세요, 문의 감사합니다. (room 11-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 31, '혹시 박스 모서리 찢어진 부분은 없나요? (room 11-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 11, '네, 박스 상태도 깨끗합니다. (room 11-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 31, '그럼 구매하고 싶습니다. (room 11-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 11, '감사합니다. 직거래 원하시나요, 택배 원하시나요? (room 11-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 31, '직거래가 좋아요. (room 11-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 11, '그럼 홍대입구역 8번 출구 근처 어떠세요? (room 11-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 31, '네, 그쪽으로 가겠습니다. (room 11-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (11, 11, '도착하시면 채팅 한번 남겨주세요. (room 11-10)', 'N');
+
+
+-- Room 12 (seller 12, buyer 32)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 32, '안녕하세요, 상품 상태 문의드립니다. (room 12-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 12, '사용감 거의 없는 상태입니다. (room 12-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 32, '혹시 하자 있는 부분이 있을까요? (room 12-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 12, '눈에 띄는 스크래치는 없습니다. (room 12-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 32, '그럼 택배 거래 가능할까요? (room 12-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 12, '네, 선불 택배로 보내드립니다. (room 12-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 32, '입금 후 주소 보내드릴게요. (room 12-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 12, '네, 계좌번호 먼저 보내드릴게요. (room 12-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 32, '입금 완료했습니다, 확인 부탁드려요. (room 12-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (12, 12, '확인했습니다. 내일 발송 후 송장 보내드릴게요. (room 12-10)', 'N');
+
+
+-- Room 13 (seller 13, buyer 33)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 33, '안녕하세요, 오늘 저녁 직거래 가능하신가요? (room 13-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 13, '오늘 7시 이후로는 가능합니다. (room 13-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 33, '그럼 7시 30분은 어떠세요? (room 13-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 13, '네, 7시 30분으로 맞추겠습니다. (room 13-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 33, '장소는 어디로 가면 될까요? (room 13-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 13, '신촌역 2번 출구 근처 카페 앞에서 뵐까요? (room 13-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 33, '좋습니다, 그 시간에 도착하겠습니다. (room 13-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 13, '도착하시면 프로필 닉네임 알려주세요. (room 13-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 33, '네, 도착 후 채팅 드릴게요. (room 13-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (13, 13, '넵, 그때 뵙겠습니다. (room 13-10)', 'N');
+
+
+-- Room 14 (seller 14, buyer 34)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 34, '안녕하세요, 사진상 박스 미개봉인가요? (room 14-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 14, '네, 완전 미개봉 상태입니다. (room 14-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 34, '그럼 판매가 확정가인가요? (room 14-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 14, '소폭 네고는 가능합니다. (room 14-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 34, '2천원 정도 네고 가능하실까요? (room 14-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 14, '네, 그 정도는 괜찮습니다. (room 14-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 34, '감사합니다. 택배 거래 원합니다. (room 14-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 14, '택배비 포함해서 금액 다시 안내드릴게요. (room 14-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 34, '네, 계좌 알려주시면 입금하겠습니다. (room 14-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (14, 14, '계좌번호 보내드렸어요, 확인 부탁드려요. (room 14-10)', 'N');
+
+
+-- Room 15 (seller 15, buyer 35)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 35, '안녕하세요, 교환도 가능하신가요? (room 15-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 15, '네, 동일 작품 굿즈라면 교환 가능해요. (room 15-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 35, '저는 다른 캐릭터 포카를 가지고 있습니다. (room 15-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 15, '사진 한 장 보내주실 수 있나요? (room 15-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 35, '네, 사진 올렸습니다. (room 15-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 15, '괜찮네요, 교환 진행해요. (room 15-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 35, '직거래로 교환하면 될까요? (room 15-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 15, '네, 홍대에서 만나서 교환하죠. (room 15-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 35, '시간은 토요일 오후 어떠세요? (room 15-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (15, 15, '네, 토요일 오후에 뵐게요. (room 15-10)', 'N');
+
+
+-- Room 16 (seller 16, buyer 36)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 36, '안녕하세요, 예약자 많나요? (room 16-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 16, '지금 한 분 정도 더 문의 중입니다. (room 16-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 36, '혹시 선입금 기준으로 우선인가요? (room 16-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 16, '네, 선입금 순으로 진행하고 있습니다. (room 16-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 36, '그럼 제가 먼저 입금하겠습니다. (room 16-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 16, '감사합니다. 계좌번호 보내드릴게요. (room 16-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 36, '방금 입금했습니다, 확인 부탁드려요. (room 16-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 16, '입금 확인됐습니다. 택배 내일 발송할게요. (room 16-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 36, '네, 송장 나오는 대로 알려주세요. (room 16-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (16, 16, '네, 송장번호 나오면 바로 공유드릴게요. (room 16-10)', 'N');
+
+
+-- Room 17 (seller 17, buyer 37)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 37, '안녕하세요, 혹시 오늘이 아닌 내일 거래도 가능하신가요? (room 17-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 17, '네, 내일 저녁도 가능합니다. (room 17-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 37, '그럼 내일 6시쯤 어떠세요? (room 17-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 17, '6시 괜찮습니다. (room 17-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 37, '장소는 홍대입구역 근처에서 뵐까요? (room 17-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 17, '네, 9번 출구 근처 카페 앞에서 뵈어요. (room 17-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 37, '알겠습니다, 내일 뵙겠습니다. (room 17-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 17, '네, 오실 때 조심해서 오세요. (room 17-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 37, '네 감사합니다! (room 17-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (17, 17, '그럼 내일 뵈어요. (room 17-10)', 'N');
+
+
+-- Room 18 (seller 18, buyer 38)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 38, '안녕하세요, 구성품 전체 사진 볼 수 있을까요? (room 18-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 18, '네, 지금 바로 여러 장 찍어서 보내드릴게요. (room 18-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 38, '사진 잘 봤습니다, 상태 아주 좋네요. (room 18-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 18, '감사합니다. 전시만 하고 보관했어요. (room 18-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 38, '그럼 택배로 구매하고 싶습니다. (room 18-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 18, '네, 충전재 넣어서 꼼꼼히 포장해서 보내드릴게요. (room 18-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 38, '입금 완료되면 알려드릴게요. (room 18-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 18, '네, 확인 후 답장 드리겠습니다. (room 18-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 38, '방금 입금했습니다, 확인 부탁드립니다. (room 18-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (18, 18, '확인했어요! 내일 발송 후 송장 보내드릴게요. (room 18-10)', 'N');
+
+
+-- Room 19 (seller 19, buyer 39)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 39, '안녕하세요, 거래 희망자입니다. (room 19-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 19, '안녕하세요, 문의 감사드립니다. (room 19-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 39, '혹시 오늘 저녁에 직거래 가능하신가요? (room 19-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 19, '오늘은 조금 어렵고, 내일 저녁은 가능합니다. (room 19-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 39, '그럼 내일로 진행해요. (room 19-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 19, '네, 시간은 7시쯤 어떠세요? (room 19-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 39, '7시 괜찮습니다. (room 19-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 19, '장소는 강남역 10번 출구 근처로 할게요. (room 19-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 39, '네, 그쪽으로 가겠습니다. (room 19-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (19, 19, '도착하시면 채팅 주세요. (room 19-10)', 'N');
+
+
+-- Room 20 (seller 20, buyer 40)
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 40, '안녕하세요, 상품 구매 희망합니다. (room 20-1)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 20, '안녕하세요, 아직 판매 중입니다. (room 20-2)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 40, '상세 설명보다 실사진이 보고 싶어요. (room 20-3)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 20, '지금 사진 몇 장 찍어서 올렸습니다. (room 20-4)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 40, '사진 봤는데 상태 좋아 보여요. (room 20-5)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 20, '감사합니다. 거래는 어떻게 진행해볼까요? (room 20-6)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 40, '저는 직거래 선호합니다. (room 20-7)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 20, '그럼 홍대입구역에서 만나죠. (room 20-8)', 'Y');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 40, '네, 시간만 정하면 될 것 같아요. (room 20-9)', 'N');
+INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+VALUES (20, 20, '토요일 오후 3시는 어떠세요? (room 20-10)', 'N');
 
-
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(1, 1, 'SELLER',SYSDATE-10,SYSDATE-9);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(2,1,'SELLER',SYSDATE-9,SYSDATE-8);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(3,1,'SELLER',SYSDATE-8,SYSDATE-7);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(4,1,'SELLER',SYSDATE-7,SYSDATE-6);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(5,1,'SELLER',SYSDATE-6,SYSDATE-5);
-
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(6,1,'SELLER',SYSDATE-5,SYSDATE-4);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(7,1,'SELLER',SYSDATE-4,SYSDATE-3);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(8,1,'SELLER',SYSDATE-3,SYSDATE-2);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(9,1,'SELLER',SYSDATE-2,SYSDATE-1);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(10,1,'SELLER',SYSDATE-1,SYSDATE);
-
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(11,1,'SELLER',SYSDATE-9,SYSDATE-8);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(12,1,'SELLER',SYSDATE-8,SYSDATE-7);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(13,1,'SELLER',SYSDATE-7,SYSDATE-6);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(14,1,'SELLER',SYSDATE-6,SYSDATE-5);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(15,1,'SELLER',SYSDATE-5,SYSDATE-4);
-
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(16,1,'SELLER',SYSDATE-4,SYSDATE-3);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(17,1,'SELLER',SYSDATE-3,SYSDATE-2);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(18,1,'SELLER',SYSDATE-2,SYSDATE-1);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(19,1,'SELLER',SYSDATE-1,SYSDATE);
-INSERT INTO trade_chat_room(trade_id,member_id,type,created_at,last_message_at) VALUES(20,1,'SELLER',SYSDATE-1,SYSDATE);
-commit ;
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 1번',  SYSDATE - 10, 'N'); -- 01
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 2번',  SYSDATE - 10, 'N'); -- 02
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 3번',  SYSDATE - 10, 'N'); -- 03
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 4번',  SYSDATE - 10, 'N'); -- 04
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 5번',  SYSDATE - 10, 'N'); -- 05
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 6번',  SYSDATE - 10, 'N'); -- 06
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 7번',  SYSDATE - 10, 'N'); -- 07
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 8번',  SYSDATE - 10, 'N'); -- 08
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 9번',  SYSDATE - 10, 'N'); -- 09
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 10번', SYSDATE - 10, 'N'); -- 10
-
--- SYSDATE - 9
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 11번', SYSDATE - 9, 'N'); -- 11
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 12번', SYSDATE - 9, 'N'); -- 12
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 13번', SYSDATE - 9, 'N'); -- 13
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 14번', SYSDATE - 9, 'N'); -- 14
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 15번', SYSDATE - 9, 'N'); -- 15
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 16번', SYSDATE - 9, 'N'); -- 16
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 17번', SYSDATE - 9, 'N'); -- 17
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 18번', SYSDATE - 9, 'N'); -- 18
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 19번', SYSDATE - 9, 'N'); -- 19
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 20번', SYSDATE - 9, 'N'); -- 20
-
--- SYSDATE - 8
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 21번', SYSDATE - 8, 'N'); -- 21
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 22번', SYSDATE - 8, 'N'); -- 22
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 23번', SYSDATE - 8, 'N'); -- 23
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 24번', SYSDATE - 8, 'N'); -- 24
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 25번', SYSDATE - 8, 'N'); -- 25
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 26번', SYSDATE - 8, 'N'); -- 26
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 27번', SYSDATE - 8, 'N'); -- 27
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 28번', SYSDATE - 8, 'N'); -- 28
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 29번', SYSDATE - 8, 'N'); -- 29
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 30번', SYSDATE - 8, 'N'); -- 30
-
--- SYSDATE - 7
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 31번', SYSDATE - 7, 'N'); -- 31
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 32번', SYSDATE - 7, 'N'); -- 32
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 33번', SYSDATE - 7, 'N'); -- 33
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 34번', SYSDATE - 7, 'N'); -- 34
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 35번', SYSDATE - 7, 'N'); -- 35
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 36번', SYSDATE - 7, 'N'); -- 36
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 37번', SYSDATE - 7, 'N'); -- 37
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 38번', SYSDATE - 7, 'N'); -- 38
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 39번', SYSDATE - 7, 'N'); -- 39
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 40번', SYSDATE - 7, 'N'); -- 40
-
--- SYSDATE - 6
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 41번', SYSDATE - 6, 'N'); -- 41
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 42번', SYSDATE - 6, 'N'); -- 42
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 43번', SYSDATE - 6, 'N'); -- 43
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 44번', SYSDATE - 6, 'N'); -- 44
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 45번', SYSDATE - 6, 'N'); -- 45
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 46번', SYSDATE - 6, 'N'); -- 46
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 47번', SYSDATE - 6, 'N'); -- 47
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 48번', SYSDATE - 6, 'N'); -- 48
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 49번', SYSDATE - 6, 'N'); -- 49
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 50번', SYSDATE - 6, 'N'); -- 50
-
--- SYSDATE - 5 (51~70은 아직 안 읽음 N, 71~100은 읽음 Y 로 설정)
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 51번', SYSDATE - 5, 'N'); -- 51
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 52번', SYSDATE - 5, 'N'); -- 52
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 53번', SYSDATE - 5, 'N'); -- 53
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 54번', SYSDATE - 5, 'N'); -- 54
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 55번', SYSDATE - 5, 'N'); -- 55
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 56번', SYSDATE - 5, 'N'); -- 56
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 57번', SYSDATE - 5, 'N'); -- 57
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 58번', SYSDATE - 5, 'N'); -- 58
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 59번', SYSDATE - 5, 'N'); -- 59
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 60번', SYSDATE - 5, 'N'); -- 60
-
--- SYSDATE - 4
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 61번', SYSDATE - 4, 'N'); -- 61
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 62번', SYSDATE - 4, 'N'); -- 62
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 63번', SYSDATE - 4, 'N'); -- 63
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 64번', SYSDATE - 4, 'N'); -- 64
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 65번', SYSDATE - 4, 'N'); -- 65
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 66번', SYSDATE - 4, 'N'); -- 66
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 67번', SYSDATE - 4, 'N'); -- 67
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 68번', SYSDATE - 4, 'N'); -- 68
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 69번', SYSDATE - 4, 'N'); -- 69
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 70번', SYSDATE - 4, 'N'); -- 70
-
--- SYSDATE - 3 (71~90: 읽음 Y)
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 71번', SYSDATE - 3, 'Y'); -- 71
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 72번', SYSDATE - 3, 'Y'); -- 72
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 73번', SYSDATE - 3, 'Y'); -- 73
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 74번', SYSDATE - 3, 'Y'); -- 74
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 75번', SYSDATE - 3, 'Y'); -- 75
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 76번', SYSDATE - 3, 'Y'); -- 76
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 77번', SYSDATE - 3, 'Y'); -- 77
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 78번', SYSDATE - 3, 'Y'); -- 78
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 79번', SYSDATE - 3, 'Y'); -- 79
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 80번', SYSDATE - 3, 'Y'); -- 80
-
--- SYSDATE - 2
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 81번', SYSDATE - 2, 'Y'); -- 81
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 82번', SYSDATE - 2, 'Y'); -- 82
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 83번', SYSDATE - 2, 'Y'); -- 83
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 84번', SYSDATE - 2, 'Y'); -- 84
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 85번', SYSDATE - 2, 'Y'); -- 85
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 86번', SYSDATE - 2, 'Y'); -- 86
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 87번', SYSDATE - 2, 'Y'); -- 87
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 88번', SYSDATE - 2, 'Y'); -- 88
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 89번', SYSDATE - 2, 'Y'); -- 89
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 90번', SYSDATE - 2, 'Y'); -- 90
-
--- SYSDATE - 1 (91~100 최신, 읽음 Y)
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (1, 2, '테스트 채팅 메시지 91번', SYSDATE - 1, 'Y'); -- 91
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (2, 3, '테스트 채팅 메시지 92번', SYSDATE - 1, 'Y'); -- 92
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (3, 4, '테스트 채팅 메시지 93번', SYSDATE - 1, 'Y'); -- 93
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (4, 5, '테스트 채팅 메시지 94번', SYSDATE - 1, 'Y'); -- 94
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (5, 1, '테스트 채팅 메시지 95번', SYSDATE - 1, 'Y'); -- 95
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (6, 2, '테스트 채팅 메시지 96번', SYSDATE - 1, 'Y'); -- 96
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (7, 3, '테스트 채팅 메시지 97번', SYSDATE - 1, 'Y'); -- 97
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (8, 4, '테스트 채팅 메시지 98번', SYSDATE - 1, 'Y'); -- 98
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (9, 5, '테스트 채팅 메시지 99번', SYSDATE - 1, 'Y'); -- 99
-
-INSERT INTO trade_chat_message (room_id, sender_id, message, created_at, read_yn)
-VALUES (10, 1, '테스트 채팅 메시지 100번', SYSDATE - 1, 'Y'); -- 100
 
 INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(1,'trade1_img1.jpg',1);
 INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(1,'trade1_img2.jpg',2);

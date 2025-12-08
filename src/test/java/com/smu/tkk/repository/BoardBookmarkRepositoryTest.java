@@ -48,7 +48,7 @@ class BoardBookmarkRepositoryTest {
         var bookmarks = boardBookmarkRepository.findByMemberId(1L, pageable);
 
         // 3) 확인
-        System.out.println("bookmark size = " + bookmarks.size());
+//        System.out.println("bookmark size = " + bookmarks.size());
         bookmarks.forEach(System.out::println);
     }
 
