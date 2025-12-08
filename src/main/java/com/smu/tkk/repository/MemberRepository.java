@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
+    @Modifying
+    @Query(value = "DELETE FROM MEMBER WHERE MEMBER_ID = :memberId", nativeQuery = true)
+    void deleteById(Long memberId);
     //아이디 중복 확인
     boolean existsByLoginId(String loginId);
     //닉네임중복확인

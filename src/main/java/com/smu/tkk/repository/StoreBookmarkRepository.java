@@ -16,4 +16,5 @@ public interface StoreBookmarkRepository extends JpaRepository<StoreBookmark,Int
 
     // 멤버별 매장 북마크 목록 */
     Page<StoreBookmark> findByMemberId(Long memberId, Pageable pageable);
+    void deleteByMemberId(Long memberId);
 }

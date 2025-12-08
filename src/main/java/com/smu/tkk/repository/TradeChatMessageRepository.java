@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface TradeChatMessageRepository extends JpaRepository<TradeChatMessage, Long> {
-
+    void   deleteBySenderId(Long memberId);
     // 1. 특정 채팅방의 메시지 목록 (페이징)
     Page<TradeChatMessage> findByRoomId(Long roomId, Pageable pageable);
 

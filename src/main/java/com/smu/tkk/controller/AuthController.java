@@ -3,6 +3,7 @@ package com.smu.tkk.controller;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.repository.MemberRepository;
 import com.smu.tkk.service.MemberService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -141,4 +142,29 @@ public class AuthController {
 
         return "redirect:/auth/login";
     }
+    /**
+     * 회원 탈퇴
+     * GET : /auth/delete
+     */
+    // 1) 세션 기반 - 추천 (setting.html은 이걸 호출)
+    @Transactional  // 💥 트랜잭션 필수!
+    @GetMapping("/delete-me")
+    public String deleteMe(HttpSession session) {
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember == null) {
+            return "redirect:/auth/login";
+        }
+
+        Long memberId = loginMember.getId();
+        System.out.println(">>> [DELETE-ME] memberId = " + memberId);
+
+        memberService.deleteMember(memberId);
+        System.out.println(">>> [DELETE-ME] memberRepository.deleteById() 실행됨");
+
+        session.invalidate();
+        System.out.println(">>> [DELETE-ME] 세션 만료 완료");
+
+        return "redirect:/";
+    }
+
 }

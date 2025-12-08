@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface BoardCommentRepository extends JpaRepository<BoardComment, Long> {
-
+    void deleteByMemberId(Long memberId);
     // 기존 코드들 그대로 유지
 //    // 3. 특정 게시글의 댓글 목록 조회
 //    List<BoardComment> readByPost(Long postId, Pageable pageable) throws SQLException;

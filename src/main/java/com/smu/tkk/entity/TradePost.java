@@ -29,7 +29,7 @@ public class TradePost {
     private Long sellerId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "SELLER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore

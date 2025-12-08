@@ -91,7 +91,7 @@ CREATE TABLE TKK.store_bookmark (
                                 CONSTRAINT fk_sb_member FOREIGN KEY (member_id)
                                     REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                                 CONSTRAINT fk_sb_store FOREIGN KEY (store_id)
-                                    REFERENCES TKK.store(store_id)
+                                    REFERENCES TKK.store(store_id) ON DELETE CASCADE
 );
 --
 -- -- 매장별 굿즈 (매장 상세 상품 리스트/재고)
@@ -108,7 +108,7 @@ CREATE TABLE TKK.store_goods (
                              created_at      DATE DEFAULT SYSDATE,                                -- 등록일
                              updated_at      DATE,                                                -- 수정일
                              CONSTRAINT fk_sg_store FOREIGN KEY (store_id)
-                                 REFERENCES TKK.store(store_id)
+                                 REFERENCES TKK.store(store_id) ON DELETE CASCADE
 );
 --
 -- -- 검색 로그 (실시간 검색 랭킹, 최근/인기 검색어)
@@ -162,7 +162,7 @@ CREATE TABLE TKK.popup_bookmark (
                                 CONSTRAINT fk_pb_member FOREIGN KEY (member_id)
                                     REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                                 CONSTRAINT fk_pb_popup FOREIGN KEY (popup_id)
-                                    REFERENCES TKK.popup_store(popup_id)
+                                    REFERENCES TKK.popup_store(popup_id) ON DELETE CASCADE
 );
 --
 --
@@ -177,7 +177,7 @@ CREATE TABLE TKK.popup_goods (
                              price           NUMBER,                                              -- 가격
                              thumbnail_url   VARCHAR2(255),                                       -- 이미지
                              CONSTRAINT fk_pg_popup FOREIGN KEY (popup_id)
-                                 REFERENCES TKK.popup_store(popup_id)
+                                 REFERENCES TKK.popup_store(popup_id) ON DELETE CASCADE
 );
 --
 -- -- 메인 배너 (팝업/이벤트 자동 슬라이드 배너)
@@ -218,7 +218,7 @@ CREATE TABLE TKK.board_post (
                             updated_at      DATE,                                                -- 수정일
                             deleted_yn      CHAR(1)      DEFAULT 'N',                            -- 삭제 여부
                             CONSTRAINT fk_bp_category FOREIGN KEY (category_id)
-                                REFERENCES TKK.board_category(category_id),
+                                REFERENCES TKK.board_category(category_id) ON DELETE CASCADE,
                             CONSTRAINT fk_bp_member FOREIGN KEY (member_id)
                                 REFERENCES TKK.member(member_id) ON DELETE CASCADE
 );
@@ -236,9 +236,9 @@ CREATE TABLE TKK.board_post_tag (
                                 tag_id      NUMBER NOT NULL,                   -- 태그 ID
                                 CONSTRAINT uk_board_post_tag UNIQUE (post_id, tag_id),
                                 CONSTRAINT fk_bpt_post FOREIGN KEY (post_id)
-                                    REFERENCES TKK.board_post(post_id),
+                                    REFERENCES TKK.board_post(post_id) ON DELETE CASCADE,
                                 CONSTRAINT fk_bpt_tag FOREIGN KEY (tag_id)
-                                    REFERENCES TKK.board_tag(tag_id)
+                                    REFERENCES TKK.board_tag(tag_id) ON DELETE CASCADE
 );
 --
 -- 게시글 이미지
@@ -248,7 +248,7 @@ CREATE TABLE TKK.board_post_image (
                                   image_url   VARCHAR2(255) NOT NULL,                              -- 이미지 URL
                                   sort_order  NUMBER DEFAULT 1,                                    -- 정렬 순서
                                   CONSTRAINT fk_bpi_post FOREIGN KEY (post_id)
-                                      REFERENCES TKK.board_post(post_id)
+                                      REFERENCES TKK.board_post(post_id) ON DELETE CASCADE
 );
 --
 -- -- 댓글 (대댓글 포함)
@@ -263,11 +263,11 @@ CREATE TABLE TKK.board_comment (
                                updated_at       DATE,                                                -- 수정일
                                deleted_yn       CHAR(1) DEFAULT 'N',                                 -- 삭제 여부
                                CONSTRAINT fk_bc_post FOREIGN KEY (post_id)
-                                   REFERENCES TKK.board_post(post_id),
+                                   REFERENCES TKK.board_post(post_id) ON DELETE CASCADE,
                                CONSTRAINT fk_bc_member FOREIGN KEY (member_id)
                                    REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                                CONSTRAINT fk_bc_parent FOREIGN KEY (parent_comment_id)
-                                   REFERENCES TKK.board_comment(comment_id)
+                                   REFERENCES TKK.board_comment(comment_id) ON DELETE CASCADE
 );
 -- 게시글 좋아요
 CREATE TABLE TKK.board_like (
@@ -279,7 +279,7 @@ CREATE TABLE TKK.board_like (
                             CONSTRAINT fk_bl_member FOREIGN KEY (member_id)
                                 REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                             CONSTRAINT fk_bl_post FOREIGN KEY (post_id)
-                                REFERENCES TKK.board_post(post_id)
+                                REFERENCES TKK.board_post(post_id) ON DELETE CASCADE
 );
 
 -- -- 게시글 북마크(찜)
@@ -292,7 +292,7 @@ CREATE TABLE TKK.board_bookmark (
                                 CONSTRAINT fk_bb_member FOREIGN KEY (member_id)
                                     REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                                 CONSTRAINT fk_bb_post FOREIGN KEY (post_id)
-                                    REFERENCES TKK.board_post(post_id)
+                                    REFERENCES TKK.board_post(post_id) ON DELETE CASCADE
 );
 --
 -- -- 게시글/댓글 신고 기능
@@ -305,9 +305,9 @@ CREATE TABLE TKK.board_report (
                               status      VARCHAR2(20) DEFAULT 'WAIT',                         -- 처리 상태 (WAIT/DONE 등)
                               created_at  DATE DEFAULT SYSDATE,                                -- 신고일
                               CONSTRAINT fk_br_post FOREIGN KEY (post_id)
-                                  REFERENCES TKK.board_post(post_id),
+                                  REFERENCES TKK.board_post(post_id) ON DELETE CASCADE,
                               CONSTRAINT fk_br_comment FOREIGN KEY (comment_id)
-                                  REFERENCES TKK.board_comment(comment_id),
+                                  REFERENCES TKK.board_comment(comment_id) ON DELETE CASCADE,
                               CONSTRAINT fk_br_member FOREIGN KEY (reporter_id)
                                   REFERENCES TKK.member(member_id) ON DELETE CASCADE
 );
@@ -347,7 +347,7 @@ CREATE TABLE TKK.trade_post_image (
                                   image_url   VARCHAR2(255) NOT NULL,                              -- 이미지 URL
                                   sort_order  NUMBER DEFAULT 1,                                    -- 정렬 순서
                                   CONSTRAINT fk_tpi_trade FOREIGN KEY (trade_id)
-                                      REFERENCES TKK.trade_post(trade_id)
+                                      REFERENCES TKK.trade_post(trade_id) ON DELETE CASCADE
 );
 
 -- 거래글 찜/관심
@@ -361,7 +361,7 @@ CREATE TABLE TKK.trade_bookmark (
                                 CONSTRAINT fk_tb_member FOREIGN KEY (member_id)
                                     REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                                 CONSTRAINT fk_tb_trade FOREIGN KEY (trade_id)
-                                    REFERENCES TKK.trade_post(trade_id)
+                                    REFERENCES TKK.trade_post(trade_id) ON DELETE CASCADE
 );
 --
 -- -- 거래 채팅방 (1:1)
@@ -373,7 +373,7 @@ CREATE TABLE TKK.trade_chat_room (
                                  created_at  DATE   DEFAULT SYSDATE,                              -- 생성일
                                  last_message_at DATE,                                            -- 마지막 메시지 시각
                                  CONSTRAINT fk_tcr_trade FOREIGN KEY (trade_id)
-                                     REFERENCES TKK.trade_post(trade_id),
+                                     REFERENCES TKK.trade_post(trade_id) ON DELETE CASCADE,
                                  CONSTRAINT fk_tcr_buyer FOREIGN KEY (buyer_id)
                                      REFERENCES TKK.member(member_id) ON DELETE CASCADE,
                                  CONSTRAINT fk_tcr_seller FOREIGN KEY (seller_id)
@@ -389,7 +389,7 @@ CREATE TABLE TKK.trade_chat_message (
                                     created_at  DATE   DEFAULT SYSDATE,                              -- 전송 시각
                                     read_yn     CHAR(1) DEFAULT 'N',                                 -- 읽음 여부
                                     CONSTRAINT fk_tcm_room FOREIGN KEY (room_id)
-                                        REFERENCES TKK.trade_chat_room(room_id),
+                                        REFERENCES TKK.trade_chat_room(room_id) ON DELETE CASCADE,
                                     CONSTRAINT fk_tcm_sender FOREIGN KEY (sender_id)
                                         REFERENCES TKK.member(member_id) ON DELETE CASCADE
 );
@@ -426,7 +426,7 @@ CREATE TABLE TKK.faq (
                      answer          CLOB          NOT NULL,                              -- 답변
                      sort_order      NUMBER        DEFAULT 1,                             -- 정렬 순서
                      CONSTRAINT fk_faq_category FOREIGN KEY (faq_category_id)
-                         REFERENCES TKK.faq_category(faq_category_id)
+                         REFERENCES TKK.faq_category(faq_category_id) ON DELETE CASCADE
 );
 
 -- 1:1 문의 (사람 상담 연결, 문의/버그/이벤트 관련)
@@ -494,9 +494,9 @@ CREATE TABLE TKK.ADMIN_USER_ROLE (
                                  CREATED_AT  DATE         DEFAULT SYSDATE NOT NULL,
                                  CONSTRAINT PK_ADMIN_USER_ROLE PRIMARY KEY (ADMIN_ID, ROLE_ID),
                                  CONSTRAINT FK_AUR_ADMIN
-                                     FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID),
+                                     FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID) ON DELETE CASCADE,
                                  CONSTRAINT FK_AUR_ROLE
-                                     FOREIGN KEY (ROLE_ID)  REFERENCES TKK.ADMIN_ROLE (ROLE_ID)
+                                     FOREIGN KEY (ROLE_ID)  REFERENCES TKK.ADMIN_ROLE (ROLE_ID) ON DELETE CASCADE
 );
 
 --------------------------------------------------------
@@ -512,7 +512,7 @@ CREATE TABLE TKK.ADMIN_LOG (
                            IP_ADDRESS      VARCHAR2(45),
                            CREATED_AT      DATE             DEFAULT SYSDATE NOT NULL,
                            CONSTRAINT FK_ADMIN_LOG_ADMIN
-                               FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID)
+                               FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID) ON DELETE CASCADE
 );
 
 ALTER TABLE TKK.STORE

@@ -21,14 +21,14 @@ public class BoardBookmark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOARD_BOOKMARK_ID", nullable = false)
     private Long id;
-    @Column(name = "MEMBER_ID", nullable = false)
-    private Long memberId;
     @Column(name = "POST_ID", nullable = false)
     private Long postId;
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID" ,insertable = false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
