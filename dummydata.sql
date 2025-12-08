@@ -5296,65 +5296,65 @@ VALUES (10, '블루록 뱀파이어 유니폼 스탠드', '뱀파이어 콘셉�
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
 VALUES (10, '하이큐 호러 나이트 포스터 세트', '체육관을 배경으로 한 호러 컨셉 일러스트 포스터', '기타', 12000, 'g100.jpg');
 -- 채팅방 20개
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 1, 1, 21, SYSDATE - 20, SYSDATE - 19);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 1, 1, 21, SYSDATE - 20, SYSDATE - 19,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 2, 2, 22, SYSDATE - 19, SYSDATE - 18);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 2, 2, 22, SYSDATE - 19, SYSDATE - 18,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 3, 3, 23, SYSDATE - 18, SYSDATE - 17);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 3, 3, 23, SYSDATE - 18, SYSDATE - 17,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 4, 4, 24, SYSDATE - 17, SYSDATE - 16);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 4, 4, 24, SYSDATE - 17, SYSDATE - 16,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (5, 5, 25, SYSDATE - 16, SYSDATE - 15);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (5, 5, 25, SYSDATE - 16, SYSDATE - 15,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (6, 6, 26, SYSDATE - 15, SYSDATE - 14);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (6, 6, 26, SYSDATE - 15, SYSDATE - 14,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 7, 7, 27, SYSDATE - 14, SYSDATE - 13);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 7, 7, 27, SYSDATE - 14, SYSDATE - 13,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 8, 8, 28, SYSDATE - 13, SYSDATE - 12);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 8, 8, 28, SYSDATE - 13, SYSDATE - 12,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 9, 9, 29, SYSDATE - 12, SYSDATE - 11);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 9, 9, 29, SYSDATE - 12, SYSDATE - 11,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (10, 10, 30, SYSDATE - 11, SYSDATE - 10);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (10, 10, 30, SYSDATE - 11, SYSDATE - 10,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (11, 11, 31, SYSDATE - 10, SYSDATE - 9);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (11, 11, 31, SYSDATE - 10, SYSDATE - 9,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (12, 12, 32, SYSDATE - 9, SYSDATE - 8);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (12, 12, 32, SYSDATE - 9, SYSDATE - 8,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 13, 13, 33, SYSDATE - 8, SYSDATE - 7);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 13, 13, 33, SYSDATE - 8, SYSDATE - 7,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 14, 14, 34, SYSDATE - 7, SYSDATE - 6);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 14, 14, 34, SYSDATE - 7, SYSDATE - 6,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 15, 15, 35, SYSDATE - 6, SYSDATE - 5);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 15, 15, 35, SYSDATE - 6, SYSDATE - 5,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (16, 16, 36, SYSDATE - 5, SYSDATE - 4);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (16, 16, 36, SYSDATE - 5, SYSDATE - 4,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (17, 17, 37, SYSDATE - 4, SYSDATE - 3);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (17, 17, 37, SYSDATE - 4, SYSDATE - 3,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES (18, 18, 38, SYSDATE - 3, SYSDATE - 2);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES (18, 18, 38, SYSDATE - 3, SYSDATE - 2,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 19, 19, 39, SYSDATE - 2, SYSDATE - 1);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 19, 19, 39, SYSDATE - 2, SYSDATE - 1,'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at)
-VALUES ( 20, 20, 40, SYSDATE - 1, SYSDATE);
+INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+VALUES ( 20, 20, 40, SYSDATE - 1, SYSDATE,'N','N');
 -- Room 1 (seller 1, buyer 21) - 10 messages
 INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 21, '안녕하세요, 아직 거래 가능할까요? (room 1-1)', 'Y');

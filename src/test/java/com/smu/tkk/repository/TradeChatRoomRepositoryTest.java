@@ -37,7 +37,7 @@ class TradeChatRoomRepositoryTest {
     void findBySellerIdOrBuyerId() {
         Sort sort= Sort.by("id").ascending();
         Pageable pageable = PageRequest.of(0,5,sort);
-        System.out.println(tradeChatRoomRepository.findBySellerIdOrBuyerId(1L,pageable));
+        System.out.println(tradeChatRoomRepository.findBySellerIdOrBuyerId(1L));
     }
 
     @Test
@@ -46,4 +46,13 @@ class TradeChatRoomRepositoryTest {
     }
 
 
+    @Test
+    void findByBuyerIdAndBuyerLeftYn() {
+        System.out.println(tradeChatRoomRepository.findByBuyerIdAndBuyerLeftYn(21L,"N"));
+    }
+
+    @Test
+    void findByTrade_SellerIdAndSellerLeftYn() {
+        System.out.println(tradeChatRoomRepository.findByTrade_SellerIdAndSellerLeftYn(1L,"N"));
+    }
 }

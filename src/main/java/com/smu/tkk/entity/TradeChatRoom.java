@@ -77,6 +77,12 @@ public class TradeChatRoom {
     @Column(name = "LAST_MESSAGE_AT",nullable = true)
     private LocalDateTime lastMessageAt;
 
+    @Column(name = "BUYER_LEFT_YN")
+    private String buyerLeftYn = "N";
+
+    @Column(name = "SELLER_LEFT_YN")
+    private String sellerLeftYn = "N";
+
     @OneToMany(mappedBy = "room")
     @ToString.Exclude
     @JsonIgnore

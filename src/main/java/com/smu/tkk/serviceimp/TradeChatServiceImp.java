@@ -107,11 +107,11 @@ public class TradeChatServiceImp implements TradeChatService {
      * 4. 내가 속한 채팅방 목록
      * ============================================================ */
     @Override
-    public Page<TradeChatRoom> myRooms(Long memberId) {
+    public List<TradeChatRoom> myRooms(Long memberId) {
 
 //        Pageable pageable = PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "lastMessageAt"));
 
-        Page<TradeChatRoom> buyerRooms = roomRepo.findBySellerIdOrBuyerId(memberId,Pageable.unpaged());
+        List<TradeChatRoom> buyerRooms = roomRepo.findBySellerIdOrBuyerId(memberId);
 
 
         return buyerRooms;
@@ -254,7 +254,7 @@ public class TradeChatServiceImp implements TradeChatService {
     @Transactional(readOnly = true)
     public List<ChatRoomListDTO> getChatRoomList(Long memberId) {
 
-        List<TradeChatRoom> rooms = myRooms(memberId).getContent();
+        List<TradeChatRoom> rooms = myRooms(memberId);
 
         List<ChatRoomListDTO> result = new java.util.ArrayList<>();
 
@@ -323,4 +323,41 @@ public class TradeChatServiceImp implements TradeChatService {
 
         return result;
     }
+
+    @Override
+    @Transactional
+    public void leaveRoom(Long roomId, Long memberId) {
+
+        TradeChatRoom room = roomRepo.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("채팅방 없음: " + roomId));
+
+        Long buyerId  = room.getBuyerId();              // 구매자
+        Long sellerId = room.getTrade().getSellerId();   // 판매자
+
+        boolean isBuyer  = buyerId != null  && buyerId.equals(memberId);
+        boolean isSeller = sellerId != null && sellerId.equals(memberId);
+
+        if (!isBuyer && !isSeller) {
+            throw new IllegalStateException("본인 채팅방만 나가기 가능합니다.");
+        }
+
+        // 🔹 내가 buyer라면 buyerLeftYn만 Y
+        if (isBuyer) {
+            room.setBuyerLeftYn("Y");
+        }
+
+        // 🔹 내가 seller라면 sellerLeftYn만 Y
+        if (isSeller) {
+            room.setSellerLeftYn("Y");
+        }
+
+        // (선택) 둘 다 나갔으면 방 자체를 delete
+         if ("Y".equals(room.getBuyerLeftYn()) && "Y".equals(room.getSellerLeftYn())) {
+             roomRepo.delete(room);
+             return;
+         }
+
+        roomRepo.save(room);
+    }
+
 }
