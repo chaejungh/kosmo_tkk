@@ -107,4 +107,5 @@ public class TradePost {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
+
 }
