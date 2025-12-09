@@ -230,7 +230,20 @@
             display: inline-flex;
         }
 
+        /* 🔹 날짜 구분선 스타일 */
+        .date-divider {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0 10px;
+        }
 
+        .date-pill {
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: #E5E7EB;
+            color: #4B5563;
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
@@ -259,7 +272,9 @@
         </div>
 
 
-        <div class="product-card">
+        <div class="product-card"
+             style="cursor:pointer;"
+             th:onclick="|location.href='@{/trade/{tradeId}/article/detail.do(tradeId=${tradeId})}'|">
             <div class="product-thumb">
                 <img th:src="${productThumbnailUrl}">
             </div>
@@ -272,11 +287,16 @@
             </div>
         </div>
     </div>
+
     <div id="chatBody" class="chat-body">
         <!-- 메시지 목록 -->
         <div th:each="msg : ${msgList}"
              th:class="'msg ' + (${msg.senderId} == ${currentMemberId} ? 'me' : 'other')"
-             th:attr="data-msg-id=${msg.id}">
+             th:attr="
+                data-msg-id=${msg.id},
+                data-date=${#temporals.format(msg.createdAt, 'yyyy-MM-dd')},
+                data-date-label=${#temporals.format(msg.createdAt, 'yyyy년 M월 d일 E요일')}
+             ">
             <!-- 🔼 여기 data-msg-id 추가 -->
 
             <!-- 시간 + 말풍선 한 줄 -->
@@ -334,10 +354,11 @@
     let editMode = false;
 
     let stompClient = null;
-
     let typingTimer = null;
     const TYPING_TIMEOUT = 2000;
     let typingIndicator = null;
+    // 🔹 마지막으로 표시한 날짜 키(yyyy-MM-dd)
+    let lastDateKey = null;
 
     function formatTime(date) {
         let hour = date.getHours();
@@ -347,17 +368,17 @@
         return `${ampm} ${hour}:${minute}`;
     }
 
-    function formatDate(date) {
-        const today = new Date();
-        const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        const t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const diff = (t - d) / 86400000;
-
-        if (diff === 0) return "오늘";
-        if (diff === 1) return "어제";
-
-        return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-    }
+    // function formatDate(date) {
+    //     const today = new Date();
+    //     const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    //     const t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    //     const diff = (t - d) / 86400000;
+    //
+    //     if (diff === 0) return "오늘";
+    //     if (diff === 1) return "어제";
+    //
+    //     return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    // }
 
     function formatDateTime(str) {
         if (!str) return "";
@@ -365,7 +386,52 @@
         if (isNaN(date.getTime())) return "";
         return formatTime(date);   // 위에 이미 있는 함수 재사용
     }
+    function formatDateLabelByKey(dateKey) {
+        const parts = dateKey.split("-");
+        if (parts.length !== 3) return dateKey;
 
+        const y = parseInt(parts[0], 10);
+        const m = parseInt(parts[1], 10) - 1;
+        const d = parseInt(parts[2], 10);
+
+        const date = new Date(y, m, d);
+        const weekday = ['일', '월', '화', '수', '목', '금', '토'][date.getDay()];
+
+        return `${y}년 ${m + 1}월 ${d}일 ${weekday}요일`;
+    }
+
+    // 🔹 초기 로딩된 메시지들을 기준으로 날짜 bar 삽입
+    function insertInitialDateDividers() {
+        const msgs = chatBody.querySelectorAll(".msg");
+        let prevKey = null;
+
+        msgs.forEach(msgEl => {
+            const dateKey = msgEl.dataset.date;
+            if (!dateKey) return;
+
+            if (!prevKey || prevKey !== dateKey) {
+                const label = msgEl.dataset.dateLabel || formatDateLabelByKey(dateKey);
+                const divider = document.createElement("div");
+                divider.className = "date-divider";
+                divider.innerHTML = `<div class="date-pill">${label}</div>`;
+                chatBody.insertBefore(divider, msgEl);
+                prevKey = dateKey;
+            }
+        });
+
+        lastDateKey = prevKey;
+    }
+
+    // 🔹 새 메시지 올 때 날짜가 바뀌면 bar 추가
+    function appendDateDividerIfNeeded(dateKey, dateLabel) {
+        if (!lastDateKey || lastDateKey !== dateKey) {
+            const divider = document.createElement("div");
+            divider.className = "date-divider";
+            divider.innerHTML = `<div class="date-pill">${dateLabel}</div>`;
+            chatBody.appendChild(divider);
+            lastDateKey = dateKey;
+        }
+    }
 
     function connectWebSocket() {
         const socket = new SockJS("/ws-chat");
@@ -519,6 +585,14 @@
 
         const isMe = String(msg.senderId) === currentMemberId;
 
+        // 🔹 날짜 키 계산 (yyyy-MM-dd)
+        const createdAtDate = msg.createdAt ? new Date(msg.createdAt) : new Date();
+        const dateKey = createdAtDate.toISOString().slice(0, 10);
+        const dateLabel = formatDateLabelByKey(dateKey);
+
+        // 🔹 날짜 bar 필요하면 먼저 추가
+        appendDateDividerIfNeeded(dateKey, dateLabel);
+
         if (isMe && lastMyMessageEl) {
             const prevStatus = lastMyMessageEl.querySelector(".status-row");
             if (prevStatus) prevStatus.remove();
@@ -668,7 +742,7 @@
     });
 
     window.onload = function () {
-        // 🔥 페이지 처음 열릴 때: 기존 메시지들 중 마지막 내 메시지 하나만 상태 남기기
+        // 기존 "내 메시지" 읽음표시 정리
         const myMsgs = chatBody.querySelectorAll(".msg.me");
         if (myMsgs.length > 0) {
             lastMyMessageEl = myMsgs[myMsgs.length - 1];
@@ -677,7 +751,7 @@
                 if (statusRow) statusRow.remove();
             }
         }
-
+        insertInitialDateDividers();
         connectWebSocket();
         setTimeout(() => {
             scrollToBottom(true); // instant=true

@@ -116,7 +116,7 @@ public class TradeChatController {
         model.addAttribute("productThumbnailUrl", productThumb);
         model.addAttribute("productStatusLabel", statusLabel);
         model.addAttribute("productStatusClass", statusClass);
-
+        model.addAttribute("tradeId", tradeId);
         return "trade/chat/chat_room";
     }
 
