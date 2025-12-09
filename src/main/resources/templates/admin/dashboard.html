@@ -131,6 +131,24 @@
             color: var(--admin-accent);
         }
 
+        /* 카드 안에서 여러 링크용 */
+        .dashboard-card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--admin-accent);
+        }
+
+        .dashboard-card-links a {
+            color: var(--admin-accent);
+            text-decoration: none;
+        }
+
+        .dashboard-card-links a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 640px) {
             .admin-main {
                 padding: 18px 14px 28px;
@@ -161,24 +179,31 @@
     </section>
 
     <section class="dashboard-grid">
-        <!-- 회원 관리 -->
-        <a class="dashboard-card" th:href="@{/admin/members}">
-            <h2 class="dashboard-card-title">회원 관리</h2>
-            <p class="dashboard-card-desc">회원 목록 조회, 정지/탈퇴 처리, 신고 회원 관리 등.</p>
-            <p class="dashboard-card-footer">회원 관리 화면으로 이동 &rarr;</p>
-        </a>
+        <!-- 회원 / 신고 통합 관리 -->
+        <div class="dashboard-card">
+            <h2 class="dashboard-card-title">회원 / 신고 관리</h2>
+            <p class="dashboard-card-desc">
+                회원 정보, 등급·상태(활성/비활성) 관리와<br>
+                게시판·거래·채팅 등 전체 신고 내역을 통합 관리합니다.
+            </p>
+            <div class="dashboard-card-links">
+                <a th:href="@{/admin/members}">회원 관리 화면으로 이동 &rarr;</a>
+                <span>·</span>
+                <a th:href="@{/admin/reports}">신고 관리 화면으로 이동 &rarr;</a>
+            </div>
+        </div>
 
         <!-- 게시판 관리 -->
         <a class="dashboard-card" th:href="@{/admin/boards}">
             <h2 class="dashboard-card-title">게시판 관리</h2>
-            <p class="dashboard-card-desc">게시글/댓글 목록, 삭제 및 복구, 신고 처리, 공지 고정 등.</p>
+            <p class="dashboard-card-desc">게시글/댓글 목록, 삭제 및 복구, 공지 고정 등.</p>
             <p class="dashboard-card-footer">게시판 관리 화면으로 이동 &rarr;</p>
         </a>
 
         <!-- 거래 관리 -->
         <a class="dashboard-card" th:href="@{/admin/trades}">
             <h2 class="dashboard-card-title">거래 관리</h2>
-            <p class="dashboard-card-desc">굿즈 거래글 목록, 거래 신고, 거래 채팅 신고 관리.</p>
+            <p class="dashboard-card-desc">굿즈 거래글 목록, 거래 상태 관리, 거래 채팅 모니터링.</p>
             <p class="dashboard-card-footer">거래 관리 화면으로 이동 &rarr;</p>
         </a>
 
@@ -190,7 +215,8 @@
         </a>
 
         <!-- 고객센터/공지 -->
-        <a class="dashboard-card" th:href="@{/admin/support}">
+        <!-- 🔽 여기 href만 /admin/inquiries 로 변경 -->
+        <a class="dashboard-card" th:href="@{/admin/inquiries}">
             <h2 class="dashboard-card-title">고객센터/공지</h2>
             <p class="dashboard-card-desc">문의(INQUIRY) 답변, FAQ, 서비스 공지 관리.</p>
             <p class="dashboard-card-footer">고객센터/공지 화면으로 이동 &rarr;</p>
