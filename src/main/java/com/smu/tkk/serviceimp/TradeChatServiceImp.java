@@ -1,5 +1,6 @@
 package com.smu.tkk.serviceimp;
 
+import com.smu.tkk.config.NotificationPublisher;
 import com.smu.tkk.dto.ChatMessage;
 import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.entity.TradeChatMessage;
@@ -31,6 +32,7 @@ public class TradeChatServiceImp implements TradeChatService {
     private final TradeChatMessageRepository messageRepo;
     private final TradePostRepository postRepo;
     private final TradePostImageRepository postImageRepo;
+    private final NotificationPublisher  notificationPublisher;
 
     /* ============================================================
      * 1. 채팅방 생성 or 기존방 재사용
@@ -82,7 +84,16 @@ public class TradeChatServiceImp implements TradeChatService {
         room.setLastMessageAt(LocalDateTime.now());
         roomRepo.save(room);
 
-        return messageRepo.save(msg);
+        TradeChatMessage saved = messageRepo.save(msg);
+
+        // 🔔 메시지 알림
+        Long receiverId = room.getBuyerId().equals(senderId)
+                ? room.getSellerId()
+                : room.getBuyerId();
+
+        notificationPublisher.send(receiverId, " 새로운 메시지가 도착했습니다!");
+
+        return saved;
     }
 
     /* ============================================================
