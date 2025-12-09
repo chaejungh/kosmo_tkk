@@ -143,7 +143,7 @@ public class BoardController {
             model.addAttribute("memberId", memberId);
             model.addAttribute("postId", postId);
             model.addAttribute("categoryId", categoryId);
-            return "board/board_edit";
+            return "board/board_write";
         }
 
         // 변경 값 세팅
@@ -163,7 +163,7 @@ public class BoardController {
             model.addAttribute("errorMessage", "게시글 수정에 실패했습니다.");
             model.addAttribute("memberId", memberId);
             model.addAttribute("postId", postId);
-            return "board/board_edit";
+            return "board/board_write";
         }
 
         // 수정 후 상세로 이동
@@ -174,7 +174,7 @@ public class BoardController {
 // 게시글 삭제
 // =============================
     @GetMapping("/board/{memberId}/article/{postId}/delete.do")
-    public String deletePost(@PathVariable Long memberId,
+    public String deletePost(@SessionAttribute(name = "memberId",required = false) Long memberId,
                              @PathVariable Long postId,
                              HttpSession session) throws Exception {
 
