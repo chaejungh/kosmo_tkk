@@ -1,5 +1,6 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.service.TradeChatService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +25,11 @@ public class TradeChatListController {
             @SessionAttribute(name = "memberId") Long memberId
     ) {
 
+        int unreadCount=0;
+        List<ChatRoomListDTO> rooms = chatService.getChatRoomList(memberId);
+        for (ChatRoomListDTO room : rooms){
+            unreadCount = room.getUnreadCount();
+        }
 
         // ⭐ 여기만 수정! (절대 다른 부분 변형 x)
         if (memberId == null) {
@@ -30,7 +38,7 @@ public class TradeChatListController {
 
         // 채팅방 리스트 가져오기
         model.addAttribute("rooms", chatService.getChatRoomList(memberId));
-
+        model.addAttribute("unreadCount",unreadCount);
         // templates/chat/chat_list.html 렌더링
         return "trade/chat/chat_list";
     }

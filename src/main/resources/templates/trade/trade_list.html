@@ -341,7 +341,13 @@
     <a href="/chat/list" class="nav-item" data-page="chat">
         <span class="icon">💬</span>
         채팅방
-        <span class="badge pulse" id="chatBadge">3</span>
+        <!-- 🔥 여기 부분만 수정 -->
+        <span class="badge pulse"
+              id="chatBadge"
+              th:if="${unreadCount > 0}"
+              th:text="${unreadCount}">
+            0
+        </span>
     </a>
 
     <a href="/mypage" class="nav-item" data-page="mypage">
@@ -370,13 +376,6 @@
         items.forEach(i => {
             if (i.dataset.page === active) i.classList.add("active");
         });
-
-        /* --- 뱃지 저장된 unread 여부 확인 --- */
-        const unread = localStorage.getItem(STORAGE_KEY);
-
-        if (unread === "0" && badge) {
-            badge.style.display = "none";
-        }
 
         /* --- 채팅 클릭하면 읽음 처리 --- */
         const chatItem = document.querySelector('.nav-item[data-page="chat"]');

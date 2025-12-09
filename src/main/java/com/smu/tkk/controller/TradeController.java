@@ -1,14 +1,13 @@
 package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.BoardWriteValid;
+import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.dto.TradePostListDto;
 import com.smu.tkk.dto.TradeWriteValid;
-import com.smu.tkk.entity.BoardCategory;
-import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.TradePost;
-import com.smu.tkk.entity.TradePostImage;
+import com.smu.tkk.entity.*;
 import com.smu.tkk.repository.TradeBookmarkRepository;  // 🔥 추가
 import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
+import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
 import jakarta.servlet.http.HttpSession;
@@ -36,7 +35,7 @@ public class TradeController {
 
     private final TradeService tradeService;
     private final TradePostImageService tradePostImageService;
-
+    private final TradeChatService tradeChatService;
     // ★ WebSocket으로 이벤트 쏘기 위해 추가
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -73,11 +72,16 @@ public class TradeController {
        ============================================================== */
     @GetMapping("/list.do")
     public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
+                            @SessionAttribute(name = "memberId") Long memberId,
                             Model model) {
-
+        int unreadCount=0;
+        List<ChatRoomListDTO> rooms = tradeChatService.getChatRoomList(memberId);
+        for (ChatRoomListDTO room : rooms){
+             unreadCount = room.getUnreadCount();
+        }
         Page<TradePostListDto> dtoPage = tradeService.readAllListDto(pageable);
         model.addAttribute("page", dtoPage);
-
+        model.addAttribute("unreadCount", unreadCount);
         return "trade/trade_list";
     }
 

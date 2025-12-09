@@ -368,7 +368,13 @@
     <a href="/chat/list" class="nav-item" data-page="chat">
         <span class="icon">💬</span>
         채팅방
-        <span class="badge pulse" id="chatBadge">3</span>
+        <!-- 🔥 여기 부분만 수정 -->
+        <span class="badge pulse"
+              id="chatBadge"
+              th:if="${unreadCount > 0}"
+              th:text="${unreadCount}">
+            0
+        </span>
     </a>
 
     <a href="/mypage" class="nav-item" data-page="mypage">
@@ -401,22 +407,22 @@
         });
 
         const roomBadges = document.querySelectorAll(".unread-badge");
-        let totalUnread = 0;
-        roomBadges.forEach(b => {
-            const n = parseInt(b.textContent || "0", 10);
-            if (!isNaN(n)) totalUnread += n;
-        });
-
-        if (badge) {
-            if (totalUnread > 0) {
-                badge.textContent = totalUnread;
-                badge.style.display = "inline-flex";
-                localStorage.setItem(STORAGE_KEY, String(totalUnread));
-            } else {
-                badge.style.display = "none";
-                localStorage.setItem(STORAGE_KEY, "0");
-            }
-        }
+        // let totalUnread = 0;
+        // roomBadges.forEach(b => {
+        //     const n = parseInt(b.textContent || "0", 10);
+        //     if (!isNaN(n)) totalUnread += n;
+        // });
+        //
+        // if (badge) {
+        //     if (totalUnread > 0) {
+        //         badge.textContent = totalUnread;
+        //         badge.style.display = "inline-flex";
+        //         localStorage.setItem(STORAGE_KEY, String(totalUnread));
+        //     } else {
+        //         badge.style.display = "none";
+        //         localStorage.setItem(STORAGE_KEY, "0");
+        //     }
+        // }
         /* --- 채팅 클릭하면 읽음 처리 --- */
         const chatItem = document.querySelector('.nav-item[data-page="chat"]');
         if (chatItem) {
