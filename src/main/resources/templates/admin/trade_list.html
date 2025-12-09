@@ -10,32 +10,24 @@
             --bg-body: #f5f7fb;
             --bg-card: #ffffff;
             --bg-header: #050816;
-            --bg-chip-active: #e5f8ec;
-            --bg-chip-inactive: #ffefef;
             --border-subtle: #e1e4f0;
             --border-strong: #c6cadb;
             --ink-strong: #111827;
             --ink-muted: #6b7280;
             --accent: #2563eb;
-            --accent-soft: #e0edff;
             --danger: #ef4444;
             --danger-soft: #ffe4e6;
         }
-
         * { box-sizing: border-box; }
-
         body {
             margin: 0;
             font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
             background: var(--bg-body);
             color: var(--ink-strong);
         }
-
         a { color: inherit; text-decoration: none; }
-
         button { font-family: inherit; }
 
-        /* 상단 헤더 */
         .admin-header {
             background: var(--bg-header);
             color: #f9fafb;
@@ -45,23 +37,9 @@
             align-items: center;
             justify-content: space-between;
         }
-
-        .admin-header-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .admin-logo {
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .admin-nav-tabs {
-            display: flex;
-            gap: 8px;
-        }
-
+        .admin-header-left { display:flex; align-items:center; gap:16px; }
+        .admin-logo { font-weight:700; font-size:18px; }
+        .admin-nav-tabs { display:flex; gap:8px; }
         .admin-nav-tab {
             padding: 6px 14px;
             border-radius: 999px;
@@ -70,294 +48,147 @@
             background: transparent;
             color: #e5e7eb;
         }
-
         .admin-nav-tab.active {
-            background: #ffffff;
-            color: var(--ink-strong);
-            border-color: var(--border-subtle);
+            background:#ffffff;
+            color:var(--ink-strong);
+            border-color:var(--border-subtle);
         }
-
         .admin-header-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 13px;
+            display:flex; align-items:center; gap:16px; font-size:13px;
         }
+        .admin-header-link { color:#e5e7eb; }
+        .admin-header-link:hover { text-decoration:underline; }
 
-        .admin-header-link {
-            color: #e5e7eb;
-        }
-
-        .admin-header-link:hover {
-            text-decoration: underline;
-        }
-
-        /* 메인 컨테이너 */
         .admin-main {
-            max-width: 1200px;
-            margin: 24px auto 40px;
-            padding: 0 24px;
+            max-width:1200px;
+            margin:24px auto 40px;
+            padding:0 24px;
         }
+        .admin-section-title { margin-bottom:16px; }
+        .admin-section-title h1 { margin:0; font-size:22px; font-weight:700; }
+        .admin-section-title p { margin:4px 0 0; font-size:13px; color:var(--ink-muted); }
 
-        .admin-section-title {
-            margin-bottom: 16px;
-        }
-
-        .admin-section-title h1 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .admin-section-title p {
-            margin: 4px 0 0;
-            font-size: 13px;
-            color: var(--ink-muted);
-        }
-
-        /* 검색 영역 */
         .search-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-subtle);
-            padding: 16px 20px;
-            margin-bottom: 16px;
+            background:var(--bg-card);
+            border-radius:12px;
+            border:1px solid var(--border-subtle);
+            padding:16px 20px;
+            margin-bottom:16px;
         }
-
         .search-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            align-items:center;
         }
-
-        .search-row input[type="text"] {
-            height: 34px;
-            padding: 0 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border-strong);
-            font-size: 13px;
-            flex: 1 1 260px;
+        .search-row input[type="text"]{
+            height:34px;
+            padding:0 10px;
+            border-radius:8px;
+            border:1px solid var(--border-strong);
+            font-size:13px;
+            flex:1 1 260px;
         }
-
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            padding: 0 14px;
-            height: 34px;
-            font-size: 13px;
-            border: 1px solid transparent;
-            cursor: pointer;
-            white-space: nowrap;
+            display:inline-flex; align-items:center; justify-content:center;
+            border-radius:8px; padding:0 14px; height:34px;
+            font-size:13px; border:1px solid transparent;
+            cursor:pointer; white-space:nowrap;
         }
+        .btn-primary { background:var(--accent); color:#fff; }
+        .btn-outline { background:#fff; color:var(--ink-strong); border-color:var(--border-strong); }
+        .btn-primary:hover { filter:brightness(0.96); }
+        .btn-outline:hover { background:#f9fafb; }
 
-        .btn-primary {
-            background: var(--accent);
-            color: #ffffff;
-        }
-
-        .btn-outline {
-            background: #ffffff;
-            color: var(--ink-strong);
-            border-color: var(--border-strong);
-        }
-
-        .btn-primary:hover {
-            filter: brightness(0.96);
-        }
-
-        .btn-outline:hover {
-            background: #f9fafb;
-        }
-
-        .btn-small {
-            height: 28px;
-            padding: 0 10px;
-            font-size: 12px;
-            border-radius: 999px;
-        }
-
-        .btn-small-secondary {
-            background: #ffffff;
-            border-color: var(--border-strong);
-            color: var(--ink-strong);
-        }
-
-        .btn-small-secondary:hover {
-            background: #f3f4ff;
-        }
-
-        .btn-small-danger {
-            background: var(--danger-soft);
-            border-color: #fecaca;
-            color: var(--danger);
-        }
-
-        .btn-small-danger:hover {
-            filter: brightness(0.97);
-        }
-
-        /* 카드 + 테이블 */
         .table-card {
-            margin-top: 8px;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-subtle);
-            padding: 16px 20px 12px;
+            margin-top:8px;
+            background:var(--bg-card);
+            border-radius:12px;
+            border:1px solid var(--border-subtle);
+            padding:16px 20px 12px;
         }
-
         .table-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-            font-size: 13px;
-            color: var(--ink-muted);
+            display:flex; justify-content:space-between; align-items:center;
+            margin-bottom:8px; font-size:13px; color:var(--ink-muted);
         }
+        .table-top-row strong { color:var(--ink-strong); }
 
-        .table-top-row strong {
-            color: var(--ink-strong);
-        }
-
-        table.admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-
-        .admin-table thead {
-            background: #f9fafb;
-        }
-
+        table.admin-table { width:100%; border-collapse:collapse; font-size:13px; }
+        .admin-table thead { background:#f9fafb; }
         .admin-table th,
         .admin-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid var(--border-subtle);
-            text-align: left;
+            padding:8px 10px;
+            border-bottom:1px solid var(--border-subtle);
+            text-align:left;
         }
+        .admin-table th { font-weight:600; color:var(--ink-muted); font-size:12px; }
+        .admin-table tbody tr:hover { background:#f8fafc; }
 
-        .admin-table th {
-            font-weight: 600;
-            color: var(--ink-muted);
-            font-size: 12px;
-        }
+        .col-number { width:60px; }
+        .col-seller { width:120px; }
+        .col-price { width:110px; }
+        .col-status { width:90px; }
+        .col-date { width:130px; }
+        .col-actions { width:150px; }
 
-        .admin-table tbody tr:hover {
-            background: #f8fafc;
-        }
-
-        .col-number { width: 60px; }
-        .col-seller { width: 120px; }
-        .col-price { width: 110px; }
-        .col-date { width: 130px; }
-        .col-status { width: 90px; }
-        .col-actions { width: 170px; }
-
-        .title-link {
-            color: var(--accent);
-        }
-        .title-link:hover { text-decoration: underline; }
+        .title-link { color:var(--accent); }
+        .title-link:hover { text-decoration:underline; }
 
         .status-chip {
-            display: inline-flex;
-            align-items: center;
-            padding: 3px 9px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 500;
+            display:inline-flex; align-items:center;
+            padding:3px 9px; border-radius:999px;
+            font-size:11px; font-weight:500;
         }
+        .status-chip.active { background:#e5f8ec; color:#166534; }
+        .status-chip.inactive { background:#ffefef; color:#b91c1c; }
 
-        .status-chip.active {
-            background: var(--bg-chip-active);
-            color: #166534;
+        .btn-small {
+            height:28px; padding:0 10px; font-size:12px;
+            border-radius:999px;
         }
-
-        .status-chip.inactive {
-            background: var(--bg-chip-inactive);
-            color: #b91c1c;
+        .btn-small-secondary {
+            background:#ffffff; border-color:var(--border-strong); color:var(--ink-strong);
         }
+        .btn-small-secondary:hover { background:#f3f4ff; }
 
         .empty-row {
-            text-align: center;
-            color: var(--ink-muted);
-            padding: 32px 0;
+            text-align:center; color:var(--ink-muted);
+            padding:32px 0;
         }
 
-        /* pagination */
         .pagination {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            font-size: 13px;
+            margin-top:10px; display:flex; justify-content:center;
+            gap:4px; font-size:13px;
         }
-
         .page-link {
-            min-width: 28px;
-            height: 28px;
-            padding: 0 8px;
-            border-radius: 999px;
-            border: 1px solid transparent;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--ink-muted);
-            background: transparent;
+            min-width:28px; height:28px; padding:0 8px;
+            border-radius:999px; border:1px solid transparent;
+            display:inline-flex; justify-content:center; align-items:center;
+            color:var(--ink-muted); background:transparent;
         }
+        .page-link:hover { border-color:var(--border-strong); background:#fff; }
+        .page-link.current { background:var(--accent); color:#fff; }
+        .page-link.disabled { opacity:.4; pointer-events:none; }
 
-        .page-link:hover {
-            border-color: var(--border-strong);
-            background: #ffffff;
-        }
-
-        .page-link.current {
-            background: var(--accent);
-            color: #ffffff;
-        }
-
-        .page-link.disabled {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        /* 반응형 */
-        @media (max-width: 768px) {
-            .admin-main { padding: 0 12px; }
-            .search-card { padding: 12px; }
-
-            .search-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-row input[type="text"] { width: 100%; }
-
-            .admin-table thead { display: none; }
-
+        @media (max-width:768px){
+            .admin-main { padding:0 12px; }
+            .search-card { padding:12px; }
+            .search-row { flex-direction:column; align-items:stretch; }
+            .admin-table thead { display:none; }
             .admin-table tr {
-                display: block;
-                border-bottom: 1px solid var(--border-subtle);
-                margin-bottom: 8px;
+                display:block; border-bottom:1px solid var(--border-subtle);
+                margin-bottom:8px;
             }
-
             .admin-table td {
-                display: flex;
-                justify-content: space-between;
-                border-bottom: none;
-                padding: 6px 4px;
+                display:flex; justify-content:space-between;
+                border-bottom:none; padding:6px 4px;
             }
-
             .admin-table td::before {
-                content: attr(data-label);
-                font-weight: 600;
-                color: var(--ink-muted);
-                margin-right: 10px;
-                font-size: 11px;
+                content:attr(data-label);
+                font-weight:600; color:var(--ink-muted);
+                margin-right:10px; font-size:11px;
             }
-
-            .col-actions { width: auto; }
+            .col-actions { width:auto; }
         }
     </style>
 </head>
@@ -370,6 +201,7 @@
             <a th:href="@{/admin/members}" class="admin-nav-tab">회원 관리</a>
             <a th:href="@{/admin/boards}" class="admin-nav-tab">게시판 관리</a>
             <a th:href="@{/admin/trades}" class="admin-nav-tab active">거래 관리</a>
+            <a th:href="@{/admin/stores}" class="admin-nav-tab">매장 관리</a>
         </nav>
     </div>
     <div class="admin-header-right">
@@ -386,11 +218,10 @@
             <p>굿즈 거래글 목록을 조회하고 상태를 관리합니다.</p>
         </div>
 
-        <!-- 검색 영역 -->
+        <!-- 검색 -->
         <form th:action="@{/admin/trades}" method="get" class="search-card">
             <div class="search-row">
-                <input type="text"
-                       name="keyword"
+                <input type="text" name="keyword"
                        placeholder="제목 또는 작성자 검색"
                        th:value="${keyword}">
                 <button type="submit" class="btn btn-primary">검색</button>
@@ -398,7 +229,7 @@
             </div>
         </form>
 
-        <!-- 목록 카드 -->
+        <!-- 목록 -->
         <div class="table-card">
             <div class="table-top-row" th:if="${tradePage != null}">
                 <div>
@@ -409,9 +240,6 @@
                     <span th:text="${tradePage.number + 1}">1</span> /
                     <span th:text="${tradePage.totalPages}">1</span> 페이지
                 </div>
-            </div>
-            <div class="table-top-row" th:if="${tradePage == null}">
-                <div>총 0건 / 0 페이지</div>
             </div>
 
             <table class="admin-table">
@@ -428,80 +256,43 @@
                 </thead>
                 <tbody>
                 <tr th:if="${tradePage == null or tradePage.empty}">
-                    <td class="empty-row" colspan="7">
-                        등록된 거래글이 없습니다.
-                    </td>
+                    <td class="empty-row" colspan="7">등록된 거래글이 없습니다.</td>
                 </tr>
 
                 <tr th:each="trade, stat : ${tradePage.content}">
-                    <td class="col-number"
-                        data-label="번호"
+                    <td class="col-number" data-label="번호"
                         th:text="${tradePage.totalElements - (tradePage.number * tradePage.size) - stat.index}">
                         1
                     </td>
-
-                    <!-- 제목 : 관리자 상세로 이동 -->
                     <td data-label="제목">
                         <a class="title-link"
-                           th:href="@{/admin/trades/{id}(id=${trade.id})}"
+                           th:href="@{/admin/trades/{id}(id=${trade.id}, page=${tradePage.number}, keyword=${keyword})}"
                            th:text="${trade.title}">
                             거래글 제목
                         </a>
                     </td>
-
-                    <!-- 판매자 (현재는 정보 없어서 대시 표시) -->
-                    <td class="col-seller" data-label="판매자">-</td>
-
-                    <!-- 가격 -->
+                    <td class="col-seller" data-label="판매자">
+                        <span th:text="${trade.seller != null ? trade.seller.nickname : '-'}">닉네임</span>
+                    </td>
                     <td class="col-price" data-label="가격">
                         <span th:if="${trade.price != null}"
-                              th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">
-                            10,000원
-                        </span>
+                              th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">10,000원</span>
                         <span th:if="${trade.price == null}">-</span>
                     </td>
-
-                    <!-- 상태 -->
                     <td class="col-status" data-label="상태">
-                        <span class="status-chip active"
-                              th:if="${trade.status == 'SALE'}">
-                            판매중
-                        </span>
-                        <span class="status-chip inactive"
-                              th:if="${trade.status == 'RESERVED'}">
-                            예약중
-                        </span>
-                        <span class="status-chip inactive"
-                              th:if="${trade.status == 'COMPLETED'}">
-                            판매완료
-                        </span>
-                        <span class="status-chip inactive"
-                              th:if="${trade.status == null}">
-                            미지정
-                        </span>
+                        <span class="status-chip active" th:if="${trade.status == 'ON_SALE'}">판매중</span>
+                        <span class="status-chip inactive" th:if="${trade.status == 'RESERVED'}">예약중</span>
+                        <span class="status-chip inactive" th:if="${trade.status == 'COMPLETED'}">판매완료</span>
                     </td>
-
-                    <!-- 작성일 -->
-                    <td class="col-date"
-                        data-label="작성일"
+                    <td class="col-date" data-label="작성일"
                         th:text="${#temporals.format(trade.createdAt, 'yyyy-MM-dd HH:mm')}">
                         2025-01-01 00:00
                     </td>
-
-                    <!-- 액션 -->
                     <td class="col-actions" data-label="액션">
                         <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                            <!-- 관리자 상세 -->
                             <a class="btn btn-small btn-small-secondary"
-                               th:href="@{/admin/trades/{id}(id=${trade.id})}">
+                               th:href="@{/admin/trades/{id}(id=${trade.id}, page=${tradePage.number}, keyword=${keyword})}">
                                 상세보기
-                            </a>
-
-                            <!-- 사용자 화면 보기 (새 창) -->
-                            <a class="btn btn-small btn-outline"
-                               th:href="@{'/trade/' + ${trade.id} + '/article/detail.do'}"
-                               target="_blank">
-                                사용자 화면
                             </a>
                         </div>
                     </td>
@@ -511,7 +302,7 @@
 
             <!-- 페이지네이션 -->
             <div class="pagination"
-                 th:if="${tradePage != null && tradePage.totalPages > 1}">
+                 th:if="${tradePage != null and tradePage.totalPages > 1}">
                 <a class="page-link"
                    th:classappend="${tradePage.first} ? ' disabled'"
                    th:href="${tradePage.first} ? '#' : @{/admin/trades(page=${tradePage.number - 1}, keyword=${keyword})}">

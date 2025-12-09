@@ -7,161 +7,286 @@
 
     <style>
         :root {
-            --admin-bg: #0b1120;
-            --admin-card-bg: #ffffff;
-            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
-            --admin-accent: #6366f1;
-            --admin-text: #111827;
-            --admin-text-soft: #6b7280;
-            --border-soft: #e5e7eb;
+            --bg-body: #f5f7fb;
+            --bg-card: #ffffff;
+            --bg-header: #050816;
+            --bg-chip-active: #e5f8ec;
+            --bg-chip-inactive: #ffefef;
+            --border-subtle: #e1e4f0;
+            --border-strong: #c6cadb;
+            --ink-strong: #111827;
+            --ink-muted: #6b7280;
+            --accent: #2563eb;
+            --accent-soft: #e0edff;
+            --success: #16a34a;
+            --danger: #ef4444;
         }
+
         * { box-sizing: border-box; }
+
         body {
             margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
-            background: #f3f4f6;
-            color: var(--admin-text);
+            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
+            background: var(--bg-body);
+            color: var(--ink-strong);
         }
 
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; }
+
+        /* 상단 헤더 */
         .admin-header {
-            background: var(--admin-bg);
-            color: #e5e7eb;
-            padding: 14px 32px;
+            background: var(--bg-header);
+            color: #f9fafb;
+            padding: 0 32px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .admin-header-left { display: flex; align-items: center; gap: 12px; }
-        .admin-logo { font-weight: 700; font-size: 18px; }
-        .admin-header-badge {
-            font-size: 11px;
-            padding: 2px 8px;
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .admin-nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        .admin-nav-tab {
+            padding: 6px 14px;
             border-radius: 999px;
-            background: rgba(148, 163, 184, .2);
+            font-size: 13px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #e5e7eb;
+        }
+        .admin-nav-tab.active {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-subtle);
         }
         .admin-header-right {
-            font-size: 13px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+            font-size: 13px;
         }
-        .admin-header-right a {
-            color: #cbd5f5;
-            text-decoration: none;
-        }
+        .admin-header-link { color: #e5e7eb; }
+        .admin-header-link:hover { text-decoration: underline; }
 
-        .admin-main { padding: 24px 32px 32px; }
-
-        .page-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-        .page-title h1 { margin: 0; font-size: 20px; }
-        .page-title p { margin: 2px 0 0; font-size: 13px; color: var(--admin-text-soft); }
-
-        .admin-card {
-            background: var(--admin-card-bg);
-            border-radius: 16px;
-            padding: 18px 20px 20px;
-            box-shadow: var(--admin-card-shadow);
-            border: 1px solid var(--border-soft);
+        /* 메인 컨테이너 */
+        .admin-main {
+            max-width: 1200px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
         }
 
-        .filter-row {
+        .admin-section-title {
+            margin-bottom: 16px;
+        }
+        .admin-section-title h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .admin-section-title p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        /* 검색 카드 */
+        .search-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+        .search-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 14px;
+            gap: 10px;
             align-items: center;
         }
-        input[type="text"] {
-            padding: 6px 10px;
-            font-size: 13px;
+        .search-row input[type="text"] {
+            flex: 1 1 260px;
+            height: 34px;
+            padding: 0 10px;
             border-radius: 8px;
-            border: 1px solid var(--border-soft);
-            min-width: 220px;
-        }
-        .btn {
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
+            border: 1px solid var(--border-strong);
             font-size: 13px;
-            padding: 6px 12px;
-        }
-        .btn-primary { background: var(--admin-accent); color: #fff; }
-        .btn-outline {
-            background: #fff;
-            color: var(--admin-text-soft);
-            border: 1px solid var(--border-soft);
         }
 
-        .table-wrap { overflow-x: auto; }
-        table {
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 0 14px;
+            height: 34px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #ffffff;
+        }
+        .btn-outline {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-strong);
+        }
+        .btn-primary:hover { filter: brightness(0.96); }
+        .btn-outline:hover { background: #f9fafb; }
+
+        /* 테이블 카드 */
+        .table-card {
+            margin-top: 8px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px 12px;
+        }
+        .table-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+        .table-top-row strong {
+            color: var(--ink-strong);
+        }
+
+        table.admin-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
         }
-        thead { background: #f9fafb; }
-        th, td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #e5e7eb;
-            text-align: left;
-            white-space: nowrap;
+        .admin-table thead {
+            background: #f9fafb;
         }
-        th { font-weight: 600; color: var(--admin-text-soft); }
-        tbody tr:hover { background: #f3f4ff; }
+        .admin-table th,
+        .admin-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: left;
+        }
+        .admin-table th {
+            font-weight: 600;
+            color: var(--ink-muted);
+            font-size: 12px;
+        }
+        .admin-table tbody tr:hover {
+            background: #f8fafc;
+        }
 
-        .tag {
+        .col-number { width: 60px; }
+        .col-level  { width: 70px; }
+        .col-status { width: 80px; }
+        .col-join   { width: 140px; }
+        .col-detail { width: 80px; }
+
+        .status-chip {
             display: inline-flex;
             align-items: center;
-            padding: 2px 7px;
+            padding: 3px 9px;
             border-radius: 999px;
             font-size: 11px;
+            font-weight: 500;
         }
-        .tag-deleted {
-            background: rgba(239, 68, 68, .08);
-            color: #b91c1c;
+        .status-chip.active {
+            background: var(--bg-chip-active);
+            color: #16a34a;
         }
-        .tag-active {
-            background: rgba(16, 185, 129, .1);
-            color: #047857;
+        .status-chip.inactive {
+            background: var(--bg-chip-inactive);
+            color: var(--danger);
         }
 
+        .detail-link {
+            font-size: 12px;
+            color: var(--accent);
+        }
+        .detail-link:hover { text-decoration: underline; }
+
+        .empty-row {
+            text-align: center;
+            color: var(--ink-muted);
+            padding: 32px 0;
+        }
+
+        /* 페이지네이션 */
         .pagination {
-            margin-top: 14px;
+            margin-top: 10px;
             display: flex;
             justify-content: center;
             gap: 4px;
-            font-size: 12px;
+            font-size: 13px;
         }
-        .pagination a, .pagination span {
-            min-width: 26px;
-            padding: 4px 8px;
-            text-align: center;
-            border-radius: 8px;
+        .page-link {
+            min-width: 28px;
+            height: 28px;
+            padding: 0 8px;
+            border-radius: 999px;
             border: 1px solid transparent;
-            text-decoration: none;
-            color: var(--admin-text-soft);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--ink-muted);
+            background: transparent;
         }
-        .pagination a:hover {
-            border-color: var(--border-soft);
-            background: #f9fafb;
+        .page-link:hover {
+            border-color: var(--border-strong);
+            background: #ffffff;
         }
-        .pagination .current {
-            background: var(--admin-accent);
-            border-color: var(--admin-accent);
-            color: #fff;
+        .page-link.current {
+            background: var(--accent);
+            color: #ffffff;
         }
-        .pagination .disabled {
-            opacity: .4;
-            cursor: default;
+        .page-link.disabled {
+            opacity: 0.4;
+            pointer-events: none;
         }
 
-        @media (max-width: 640px) {
-            .admin-main { padding: 18px 14px 28px; }
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .admin-main { padding: 0 12px; }
+            .search-card { padding: 12px; }
+            .search-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-row input[type="text"] { width: 100%; }
+
+            .admin-table thead { display: none; }
+            .admin-table tr {
+                display: block;
+                border-bottom: 1px solid var(--border-subtle);
+                margin-bottom: 8px;
+            }
+            .admin-table td {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: none;
+                padding: 6px 4px;
+            }
+            .admin-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--ink-muted);
+                margin-right: 10px;
+                font-size: 11px;
+            }
         }
     </style>
 </head>
@@ -170,127 +295,145 @@
 <header class="admin-header">
     <div class="admin-header-left">
         <div class="admin-logo">더쿠쿠 관리자</div>
-        <span class="admin-header-badge">회원 관리</span>
+        <nav class="admin-nav-tabs">
+            <a th:href="@{/admin/members}" class="admin-nav-tab active">회원 관리</a>
+            <a th:href="@{/admin/boards}" class="admin-nav-tab">게시판 관리</a>
+        </nav>
     </div>
     <div class="admin-header-right">
-        <a th:href="@{/admin}">대시보드</a>
+        <a th:href="@{/admin/dashboard}" class="admin-header-link">대시보드</a>
         <span>|</span>
-        <a th:href="@{/admin/logout}">로그아웃</a>
+        <a th:href="@{/logout}" class="admin-header-link">로그아웃</a>
     </div>
 </header>
 
 <main class="admin-main">
-    <div class="page-title">
-        <div>
+    <section>
+        <!-- 제목 -->
+        <div class="admin-section-title">
             <h1>회원 목록</h1>
             <p>회원 정보를 조회하고 상세 정보/상태를 관리합니다.</p>
         </div>
-        <div th:if="${members != null}">
-            <p th:text="|총 ${members.totalElements}명 / ${members.totalPages}페이지|"></p>
-        </div>
-    </div>
 
-    <section class="admin-card">
-
-        <!-- 검색 폼 -->
-        <form class="filter-row" th:action="@{/admin/members}" method="get">
-            <input type="text" name="keyword"
-                   placeholder="아이디/닉네임/이메일 검색"
-                   th:value="${keyword}">
-            <button type="submit" class="btn btn-primary">검색</button>
-            <a th:href="@{/admin/members}" class="btn btn-outline">초기화</a>
+        <!-- 검색 영역 -->
+        <form th:action="@{/admin/members}" method="get" class="search-card">
+            <div class="search-row">
+                <input type="text"
+                       name="keyword"
+                       placeholder="아이디/닉네임/이메일 검색"
+                       th:value="${keyword}">
+                <button type="submit" class="btn btn-primary">검색</button>
+                <a th:href="@{/admin/members}" class="btn btn-outline">초기화</a>
+            </div>
         </form>
 
-        <!-- 테이블 -->
-        <div class="table-wrap">
-            <table>
+        <!-- 목록 카드 -->
+        <div class="table-card">
+            <div class="table-top-row" th:if="${members != null}">
+                <div>
+                    총 <strong th:text="${members.totalElements}">0</strong>명 /
+                    <span th:text="${members.totalPages}">1</span> 페이지
+                </div>
+                <div th:if="${members.totalPages > 0}">
+                    <span th:text="${members.number + 1}">1</span> /
+                    <span th:text="${members.totalPages}">1</span> 페이지
+                </div>
+            </div>
+
+            <table class="admin-table">
                 <thead>
                 <tr>
-                    <th>번호</th>
-                    <th>회원ID</th>
+                    <th class="col-number">번호</th>
+                    <th>회원 ID</th>
                     <th>닉네임</th>
                     <th>이메일</th>
-                    <th>등급</th>
-                    <th>상태</th>
-                    <th>가입일</th>
-                    <th>상세</th>
+                    <th class="col-level">등급</th>
+                    <th class="col-status">상태</th>
+                    <th class="col-join">가입일</th>
+                    <th class="col-detail">상세</th>
                 </tr>
                 </thead>
                 <tbody>
-
                 <!-- 데이터 없을 때 -->
-                <tr th:if="${members == null or members.empty}">
-                    <td colspan="8">등록된 회원이 없습니다.</td>
+                <tr th:if="${members == null or #lists.isEmpty(members)}">
+                    <td class="empty-row" colspan="8">
+                        등록된 회원이 없습니다.
+                    </td>
                 </tr>
 
-                <!-- 데이터 있을 때 -->
-                <tr th:each="m, stat : ${members != null ? members.content : {}}">
-                    <!-- 번호: 전체 개수 기준 역순 -->
-                    <td th:text="${members.totalElements - (members.number * members.size + stat.index)}">1</td>
-
-                    <!-- 로그인 ID 기준 -->
-                    <td th:text="${m.loginId}">user001</td>
-                    <td th:text="${m.nickname}">닉네임</td>
-                    <td th:text="${m.email}">user@example.com</td>
-
-                    <!-- 등급 -->
-                    <td th:text="${m.userLevel}">1</td>
-
-                    <!-- 상태 태그 -->
-                    <td>
-                        <span th:if="${m.deletedYn == 'Y'}"
-                              class="tag tag-deleted">비활성</span>
-                        <span th:if="${m.deletedYn != 'Y'}"
-                              class="tag tag-active">활성</span>
+                <!-- 회원 행 -->
+                <tr th:each="member, stat : ${members}">
+                    <!-- 번호: 전체 카운트 기준 역순 -->
+                    <td class="col-number"
+                        data-label="번호"
+                        th:text="${members.totalElements - (members.number * members.size) - stat.index}">
+                        1
                     </td>
 
-                    <!-- 가입일 -->
-                    <td th:text="${#temporals.format(m.createdAt, 'yyyy-MM-dd HH:mm')}">
-                        2025-01-01 12:00
+                    <td data-label="회원 ID" th:text="${member.loginId}">user001</td>
+                    <td data-label="닉네임" th:text="${member.nickname}">닉네임001</td>
+                    <td data-label="이메일" th:text="${member.email}">user001@example.com</td>
+                    <td class="col-level" data-label="등급"
+                        th:text="${member.userLevel}">1</td>
+
+                    <!-- 🔥 여기서 Boolean deletedYn 으로 상태 표시 -->
+                    <td class="col-status" data-label="상태">
+                        <!-- deletedYn == true -> 비활성 -->
+                        <span class="status-chip inactive"
+                              th:if="${member.deletedYn}">
+                            비활성
+                        </span>
+                        <!-- deletedYn == false 또는 null -> 활성 -->
+                        <span class="status-chip active"
+                              th:unless="${member.deletedYn}">
+                            활성
+                        </span>
                     </td>
 
-                    <!-- 상세 버튼 -->
-                    <td>
-                        <a th:href="@{/admin/members/{memberId}(memberId=${m.id})}"
-                           style="font-size: 12px; color: var(--admin-accent); text-decoration: none;">
+                    <td class="col-join" data-label="가입일"
+                        th:text="${#temporals.format(member.createdAt, 'yyyy-MM-dd HH:mm')}">
+                        2025-12-04 00:00
+                    </td>
+
+                    <td class="col-detail" data-label="상세">
+                        <a class="detail-link"
+                           th:href="@{/admin/members/{id}(id=${member.id})}">
                             상세보기
                         </a>
                     </td>
                 </tr>
-
                 </tbody>
             </table>
+
+            <!-- 페이지네이션 -->
+            <div class="pagination"
+                 th:if="${members != null and members.totalPages > 1}">
+                <!-- 이전 -->
+                <a class="page-link"
+                   th:classappend="${members.first} ? ' disabled'"
+                   th:href="${members.first} ? '#' :
+                            @{/admin/members(page=${members.number - 1}, keyword=${keyword})}">
+                    ‹
+                </a>
+
+                <!-- 페이지 번호들 -->
+                <a class="page-link"
+                   th:each="pageNum : ${#numbers.sequence(0, members.totalPages - 1)}"
+                   th:text="${pageNum + 1}"
+                   th:classappend="${pageNum == members.number} ? ' current'"
+                   th:href="@{/admin/members(page=${pageNum}, keyword=${keyword})}">
+                    1
+                </a>
+
+                <!-- 다음 -->
+                <a class="page-link"
+                   th:classappend="${members.last} ? ' disabled'"
+                   th:href="${members.last} ? '#' :
+                            @{/admin/members(page=${members.number + 1}, keyword=${keyword})}">
+                    ›
+                </a>
+            </div>
         </div>
-
-        <!-- 페이지네이션 -->
-        <div class="pagination"
-             th:if="${members != null and members.totalPages > 1}">
-
-            <!-- 이전 페이지 -->
-            <span th:if="${members.first}" class="disabled">&laquo;</span>
-            <a th:if="${!members.first}"
-               th:href="@{/admin/members(page=${members.number - 1}, size=${members.size}, keyword=${keyword})}">
-                &laquo;
-            </a>
-
-            <!-- 페이지 번호들 -->
-            <span th:each="i : ${#numbers.sequence(0, members.totalPages - 1)}"
-                  th:classappend="${i == members.number} ? 'current'">
-                <a th:if="${i != members.number}"
-                   th:href="@{/admin/members(page=${i}, size=${members.size}, keyword=${keyword})}"
-                   th:text="${i + 1}">1</a>
-                <span th:if="${i == members.number}"
-                      th:text="${i + 1}">1</span>
-            </span>
-
-            <!-- 다음 페이지 -->
-            <span th:if="${members.last}" class="disabled">&raquo;</span>
-            <a th:if="${!members.last}"
-               th:href="@{/admin/members(page=${members.number + 1}, size=${members.size}, keyword=${keyword})}">
-                &raquo;
-            </a>
-        </div>
-
     </section>
 </main>
 

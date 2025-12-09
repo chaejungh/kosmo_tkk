@@ -2,14 +2,16 @@ package com.smu.tkk.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -77,18 +79,19 @@ public class TradePost {
     @Column(name = "LIKE_COUNT")
     private Long likeCount;
 
-    /** 🔥 LocalDate → LocalDateTime 변경 완료! */
     @CreationTimestamp
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT", updatable = false)
     private LocalDateTime createdAt;
+
     @UpdateTimestamp
     @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
 
+    /** 🔥 소프트 삭제 플래그 : 'Y' / 'N' 문자열 */
     @ColumnDefault("'N'")
-    @Column(name = "DELETED_YN")
-    private Boolean deletedYn;
+    @Column(name = "DELETED_YN", length = 1)
+    private String deletedYn;
 
     @OneToMany(mappedBy = "trade")
     @ToString.Exclude
@@ -104,5 +107,4 @@ public class TradePost {
     @ToString.Exclude
     @JsonIgnore
     private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
-
 }
