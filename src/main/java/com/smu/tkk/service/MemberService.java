@@ -56,4 +56,6 @@ public interface MemberService {
     
     // 11. member 이미지 수정(레파지토리 완료)
     boolean modifyImage(Long memberId,Member profileImage) throws SQLException, IllegalArgumentException;
+
+    void deleteMember(Long memberId);
 }

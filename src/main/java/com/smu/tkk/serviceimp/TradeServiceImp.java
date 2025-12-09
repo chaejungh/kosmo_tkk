@@ -3,12 +3,10 @@ package com.smu.tkk.serviceimp;
 import com.smu.tkk.dto.TradePostListDto;
 import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
-import com.smu.tkk.repository.TradeBookmarkRepository;
-import com.smu.tkk.repository.TradeChatRoomRepository;
-import com.smu.tkk.repository.TradePostImageRepository;
-import com.smu.tkk.repository.TradePostRepository;
+import com.smu.tkk.repository.*;
 import com.smu.tkk.service.S3StorageService;
 import com.smu.tkk.service.TradeService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -25,7 +23,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class TradeServiceImp implements TradeService {
-
+    private final TradeRepository tradeRepository;
     private final TradePostRepository tradePostRepository;
     private final TradePostImageRepository tradePostImageRepository;
     private final S3StorageService s3StorageService;
@@ -230,13 +228,30 @@ public class TradeServiceImp implements TradeService {
     /* ============================================================
        🔥 조회수 증가
        ============================================================ */
+    @Transactional
     @Override
     public void increaseViewCount(Long tradeId) {
         tradePostRepository.findById(tradeId).ifPresent(post -> {
-            Long current = post.getViewCount();
-            if (current == null) current = 0L;
+            long current = (post.getViewCount() == null ? 0 : post.getViewCount());
             post.setViewCount(current + 1);
-            tradePostRepository.save(post);
         });
     }
+    @Override
+    public Page<TradePostListDto> readAllOrderByLike(Pageable pageable) {
+        Page<TradePost> posts = tradeRepository.findAllByOrderByLikeCountDesc(pageable);
+        return posts.map(this::toListDTO);
+    }
+
+    @Override
+    public Page<TradePostListDto> readAllOrderByView(Pageable pageable) {
+        Page<TradePost> posts = tradeRepository.findAllByOrderByViewCountDesc(pageable);
+        return posts.map(this::toListDTO);
+    }
+
+    @Override
+    public Page<TradePostListDto> readAllOrderByLatest(Pageable pageable) {
+        Page<TradePost> posts = tradeRepository.findAllByOrderByCreatedAtDesc(pageable);
+        return posts.map(this::toListDTO);
+    }
+
 }

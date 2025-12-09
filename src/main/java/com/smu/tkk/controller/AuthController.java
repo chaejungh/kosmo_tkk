@@ -3,6 +3,7 @@ package com.smu.tkk.controller;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.repository.MemberRepository;
 import com.smu.tkk.service.MemberService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,16 +52,16 @@ public class AuthController {
             @RequestParam String loginId,
             @RequestParam String loginPw,
             HttpSession session,
+            Model model,
             RedirectAttributes rttr
     ) throws SQLException {
 
         // MEMBER 테이블에 아이디+비밀번호 조합이 존재하는지 검사
-        boolean exists = memberService.existsByLoginId(loginId);
+
         Member member = memberService.login(loginId, loginPw);
-        if (!exists) {
-            rttr.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            rttr.addFlashAttribute("loginId", loginId);   // 입력했던 아이디 유지
-            return "redirect:/auth/login";
+        if (member == null) {
+            model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
+            return "auth/login"; // 로그인 실패 시 다시 로그인 페이지로
         }
 
         // 로그인 성공 → 세션에 로그인 아이디만 저장 (레포 수정 안 하려고 간단 버전)
@@ -141,4 +142,29 @@ public class AuthController {
 
         return "redirect:/auth/login";
     }
+    /**
+     * 회원 탈퇴
+     * GET : /auth/delete
+     */
+    // 1) 세션 기반 - 추천 (setting.html은 이걸 호출)
+    @Transactional  // 💥 트랜잭션 필수!
+    @GetMapping("/delete-me")
+    public String deleteMe(HttpSession session) {
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember == null) {
+            return "redirect:/auth/login";
+        }
+
+        Long memberId = loginMember.getId();
+        System.out.println(">>> [DELETE-ME] memberId = " + memberId);
+
+        memberService.deleteMember(memberId);
+        System.out.println(">>> [DELETE-ME] memberRepository.deleteById() 실행됨");
+
+        session.invalidate();
+        System.out.println(">>> [DELETE-ME] 세션 만료 완료");
+
+        return "redirect:/";
+    }
+
 }

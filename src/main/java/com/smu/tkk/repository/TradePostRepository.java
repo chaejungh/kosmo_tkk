@@ -11,28 +11,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface TradePostRepository extends JpaRepository<TradePost, Long> {
 
-    // ==========================================================
     // 🔥 거래 상태(status) 변경
-    // ==========================================================
     @Modifying
     @Transactional
     @Query("UPDATE TradePost t SET t.status = :status WHERE t.id = :postId")
     int modify(@Param("status") String status, @Param("postId") Long postId);
 
+    // 🔥 삭제되지 않은 글만 (deletedYn IS NULL OR 'N')
+    Page<TradePost> findByDeletedYnIsNullOrDeletedYn(String deletedYn, Pageable pageable);
 
-    // ==========================================================
-    // 🔍 검색 기능 (제목 + 내용 + 지역 + 굿즈명)
-    // ※ content는 CLOB이라 LOWER() 적용하면 오류 → LOWER 제거 (중요)
-    // ==========================================================
+    // 🔍 검색 (삭제된 글 제외)
     @Query("""
-            SELECT t
-            FROM TradePost t
-            WHERE LOWER(t.title)      LIKE LOWER(CONCAT('%', :keyword, '%'))
-               OR t.content           LIKE CONCAT('%', :keyword, '%')
-               OR LOWER(t.region)     LIKE LOWER(CONCAT('%', :keyword, '%'))
-               OR LOWER(t.goodsName)  LIKE LOWER(CONCAT('%', :keyword, '%'))
-            """)
+           SELECT t
+           FROM TradePost t
+           WHERE (t.deletedYn IS NULL OR t.deletedYn = 'N')
+             AND (
+                    LOWER(t.title)     LIKE LOWER(CONCAT('%', :keyword, '%'))
+                 OR t.content          LIKE CONCAT('%', :keyword, '%')
+                 OR LOWER(t.region)    LIKE LOWER(CONCAT('%', :keyword, '%'))
+                 OR LOWER(t.goodsName) LIKE LOWER(CONCAT('%', :keyword, '%'))
+             )
+           """)
     Page<TradePost> search(@Param("keyword") String keyword, Pageable pageable);
 
+    // 마이페이지용
     Page<TradePost> findBySellerId(Long sellerId, Pageable pageable);
 }

@@ -416,7 +416,14 @@
             <!-- 생년월일 -->
             <div class="form-group">
                 <label class="form-label">생년월일</label>
-                <input type="text" class="input-field" name="birth" placeholder="YYYYMMDD">
+                <div class="form-row-inline" style="grid-template-columns: 1fr 1fr 1fr;">
+                    <select id="birthYear" class="select-field"></select>
+                    <select id="birthMonth" class="select-field"></select>
+                    <select id="birthDay" class="select-field"></select>
+                </div>
+
+                <input type="hidden" name="birth" id="birth">
+
                 <p class="form-msg" id="msgBirth"></p>
             </div>
 
@@ -518,15 +525,64 @@
     const emailId = document.querySelector("input[name='emailId']");
     const emailDomain = document.querySelector("select[name='emailDomain']");
     const name = document.querySelector("input[name='nickname']");
-    const birth = document.querySelector("input[name='birth']");
     const phone = document.querySelector("input[name='phone']");
     const termsAll = document.getElementById("termsAll");
     const termsChecks = document.querySelectorAll(".terms-check");
 
 
-    /* ===============================
-       🔥 성별 · 국적 토글 기능 추가
-       =============================== */
+        /* ===============================
+       🔥 생년월일 셀렉트 박스 자동 생성
+    ================================ */
+
+        const birthYear = document.getElementById("birthYear");
+        const birthMonth = document.getElementById("birthMonth");
+        const birthDay = document.getElementById("birthDay");
+        const birthHidden = document.getElementById("birth");
+
+// 연도: 1950 ~ 2050
+        for (let y = 1950; y <= 2050; y++) {
+            birthYear.innerHTML += `<option value="${y}">${y}</option>`;
+        }
+
+// 월: 1~12
+        for (let m = 1; m <= 12; m++) {
+            birthMonth.innerHTML += `<option value="${String(m).padStart(2, "0")}">${m}</option>`;
+        }
+
+// 일은 월 선택 시 자동 업데이트
+        function updateDays() {
+            const year = parseInt(birthYear.value);
+            const month = parseInt(birthMonth.value);
+
+            const lastDay = new Date(year, month, 0).getDate(); // 마지막 날 계산
+
+            birthDay.innerHTML = ""; // 초기화
+            for (let d = 1; d <= lastDay; d++) {
+                const val = String(d).padStart(2, "0");
+                birthDay.innerHTML += `<option value="${val}">${d}</option>`;
+            }
+
+            updateBirthValue();
+        }
+
+        birthYear.addEventListener("change", updateDays);
+        birthMonth.addEventListener("change", updateDays);
+        birthDay.addEventListener("change", updateBirthValue);
+
+// YYYYMMDD 자동 조합
+        function updateBirthValue() {
+            if (birthYear.value && birthMonth.value && birthDay.value) {
+                birthHidden.value =
+                    birthYear.value +
+                    birthMonth.value +
+                    birthDay.value;
+            }
+        }
+
+
+        /* ===============================
+           🔥 성별 · 국적 토글 기능 추가
+           =============================== */
 
     const toggleButtons = document.querySelectorAll(".toggle-btn");
 
@@ -704,10 +760,10 @@
             msgBirth.classList.add("show");
             isValid = false;
         }
-        if (phone.value.trim() === "") {
-            msgPhone.style.color = "#dc2626";
-            msgPhone.textContent = "휴대전화번호를 입력해주세요.";
-            msgPhone.classList.add("show");
+        if (birthHidden.value.trim() === "") {
+            msgBirth.style.color = "#dc2626";
+            msgBirth.textContent = "생년월일을 선택해주세요.";
+            msgBirth.classList.add("show");
             isValid = false;
         }
         if (!termsAll.checked) {

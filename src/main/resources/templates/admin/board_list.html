@@ -472,9 +472,6 @@
                     <span th:text="${boards.totalPages}">1</span> 페이지
                 </div>
             </div>
-            <div class="table-top-row" th:if="${boards == null}">
-                <div>총 0건 / 0 페이지</div>
-            </div>
 
             <table class="admin-table">
                 <thead>
@@ -490,14 +487,14 @@
                 </thead>
                 <tbody>
                 <!-- 데이터 없을 때 -->
-                <tr th:if="${boards == null or #lists.isEmpty(boards)}">
+                <tr th:if="${boards == null or boards.totalElements == 0}">
                     <td class="empty-row" colspan="7">
                         등록된 게시글이 없습니다.
                     </td>
                 </tr>
 
                 <!-- 게시글 행 -->
-                <tr th:each="post, stat : ${boards}">
+                <tr th:each="post, stat : ${boards.content}">
                     <td class="col-number"
                         data-label="번호"
                         th:text="${boards.totalElements - (boards.number * boards.size) - stat.index}">
@@ -511,7 +508,7 @@
                     </td>
 
                     <td data-label="제목">
-                        <!-- 관리자에서 상세 보기 (예: 프론트 게시글 상세로 이동) -->
+                        <!-- 프론트 게시글 상세로 이동 (필요한 URL로 수정해서 사용) -->
                         <a class="title-link"
                            th:href="@{/mcboard/{postId}/detail.do(postId=${post.id})}"
                            th:text="${post.title}">
@@ -544,10 +541,27 @@
 
                     <td class="col-actions" data-label="액션">
                         <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                            <!-- 상태 토글 (백엔드에서 매핑만 맞춰주면 됨) -->
-                            <form th:action="@{/admin/boards/{id}/toggle(id=${post.id})}"
+
+                            <!-- 상태 토글 -->
+                            <form th:action="@{/admin/boards/{postId}/status(postId=${post.id})}"
                                   method="post"
                                   style="margin:0;">
+
+                                <!-- 바꿀 deletedYn 값 (N -> Y / Y -> N) -->
+                                <input type="hidden"
+                                       name="deletedYn"
+                                       th:value="${post.deletedYn == 'N'} ? 'Y' : 'N'"/>
+
+                                <!-- 현재 검색/페이지 상태 유지 -->
+                                <input type="hidden" name="page" th:value="${boards.number}"/>
+                                <input type="hidden" name="size" th:value="${boards.size}"/>
+                                <input type="hidden" name="categoryId"
+                                       th:value="${categoryId}"
+                                       th:if="${categoryId != null}"/>
+                                <input type="hidden" name="keyword"
+                                       th:value="${keyword}"
+                                       th:if="${keyword != null}"/>
+
                                 <button type="submit"
                                         class="btn btn-small"
                                         th:classappend="${post.deletedYn == 'N'} ? ' btn-small-danger' : ' btn-small-secondary'"
@@ -556,9 +570,9 @@
                                 </button>
                             </form>
 
-                            <!-- 상세 보기 (관리자용) -->
+                            <!-- 관리자 상세 보기 -->
                             <a class="btn btn-small btn-small-secondary"
-                               th:href="@{/admin/boards/{id}(id=${post.id})}">
+                               th:href="@{/admin/boards/{postId}(postId=${post.id})}">
                                 상세보기
                             </a>
                         </div>

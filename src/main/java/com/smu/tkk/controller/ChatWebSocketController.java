@@ -1,5 +1,6 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.config.NotificationPublisher;
 import com.smu.tkk.dto.ChatMessage;
 import com.smu.tkk.service.TradeChatService;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +14,28 @@ public class ChatWebSocketController {
 
     private final TradeChatService chatService;
     private final SimpMessagingTemplate template;
+    private final NotificationPublisher notificationPublisher;
 
     // 텍스트/이미지 공통 처리
     @MessageMapping("/chat.send")
     public void send(ChatMessage msg) {
 
         ChatMessage saved = chatService.saveWebSocketMessage(msg);
+
+        /* SSE 토스트 알림 보내기 */
+        // room 조회 → 상대방 ID 구하기
+        Long roomId = saved.getRoomId();
+        Long senderId = saved.getSenderId();
+
+        var room = chatService.getRoom(roomId);
+
+        Long receiverId = room.getBuyerId().equals(senderId)
+                ? room.getSellerId()
+                : room.getBuyerId();
+
+        // 알림 발송
+        notificationPublisher.send(receiverId, " 새로운 메시지가 도착했습니다! ");
+
 
         template.convertAndSend("/sub/chat.room." + saved.getRoomId(), saved);
     }

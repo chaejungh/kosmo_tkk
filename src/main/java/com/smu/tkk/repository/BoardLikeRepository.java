@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BoardLikeRepository extends JpaRepository<BoardLike, Long> {
+    void deleteByMemberId(Long memberId);
 
     //SELECT * FROM BOARD_POST WHERE POST_ID IN (SELECT POST_ID FROM BOARD_POST_LIKE WHERE MEMBER_ID=?)
     //SELECT * FROM BoardPost b Join Fetch b.boardLikes l WHERE l.member.id=?

@@ -296,13 +296,18 @@
             border-radius: 999px;
             background: #f3f4f6;
         }
+        .detail-header-actions {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
 
 <header class="top-bar">
     <div class="top-bar-inner">
-        <button class="back-btn" type="button" onclick="history.back()">←</button>
+        <a class="back-btn" type="button" th:href="@{/trade/list.do}">←</a>
         <div class="top-title">굿즈거래</div>
     </div>
 </header>
@@ -338,6 +343,17 @@
 
                     <div class="seller-region"
                          th:text="${trade.region != null ? trade.region : '지역 미등록'}"></div>
+                </div>
+                <div class="detail-header-actions"
+                     th:if="${currentMemberId != null and currentMemberId == trade.sellerId}">
+                    <a class="detail-action-btn"
+                       th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/edit.do'}">
+                        수정
+                    </a>
+                    <a class="detail-action-btn detail-action-delete"
+                       th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/delete.do'}">
+                        삭제
+                    </a>
                 </div>
             </div>
 

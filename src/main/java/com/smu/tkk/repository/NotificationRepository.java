@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface NotificationRepository extends JpaRepository<Notification,Long> {
+
     //Long countUnreadMessages(Long memberId); //앱 안에서 나에게 온 채팅의 읽지 않은 채팅의 개수
     List<Notification> findByMemberIdAndReadYn(Long memberId, String readYn , Pageable pageable);
 

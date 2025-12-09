@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TradeBookmarkRepository extends JpaRepository<TradeBookmark, Long> {
+    void deleteByMemberId(Long memberId);
 
     boolean existsByMemberIdAndTradeId(Long memberId, Long tradeId);
 

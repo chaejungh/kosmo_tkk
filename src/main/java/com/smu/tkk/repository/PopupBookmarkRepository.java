@@ -14,4 +14,5 @@ public interface PopupBookmarkRepository extends JpaRepository<PopupBookmark,Int
 
     /** 북마크 존재 여부 확인 */
     boolean existsByMemberIdAndPopupId(Long memberId, Long popupId);
+    void deleteByMemberId(Long memberId);
 }

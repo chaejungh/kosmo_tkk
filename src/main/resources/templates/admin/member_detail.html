@@ -7,149 +7,223 @@
 
     <style>
         :root {
-            --admin-bg: #0b1120;
-            --admin-card-bg: #ffffff;
-            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
-            --admin-accent: #6366f1;
-            --admin-text: #111827;
-            --admin-text-soft: #6b7280;
-            --border-soft: #e5e7eb;
+            --bg-body: #f5f7fb;
+            --bg-card: #ffffff;
+            --bg-header: #050816;
+            --border-subtle: #e1e4f0;
+            --border-strong: #c6cadb;
+            --ink-strong: #111827;
+            --ink-muted: #6b7280;
+            --accent: #2563eb;
+            --accent-soft: #e0edff;
             --danger: #ef4444;
-            --success: #10b981;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
-            background: #f3f4f6;
-            color: var(--admin-text);
+            --danger-soft: #ffe4e6;
+            --success: #16a34a;
+            --success-soft: #dcfce7;
         }
 
-        .admin-header {
-            background: var(--admin-bg);
-            color: #e5e7eb;
-            padding: 14px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
+            background: var(--bg-body);
+            color: var(--ink-strong);
         }
-        .admin-header-left { display: flex; align-items: center; gap: 12px; }
-        .admin-logo { font-weight: 700; font-size: 18px; }
-        .admin-header-badge {
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 999px;
-            background: rgba(148, 163, 184, .2);
-        }
-        .admin-header-right {
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .admin-header-right a {
-            color: #cbd5f5;
+
+        a {
+            color: inherit;
             text-decoration: none;
         }
 
-        .admin-main { padding: 24px 32px 32px; }
+        button, select {
+            font-family: inherit;
+        }
 
-        .page-title {
+        /* 상단 헤더 */
+        .admin-header {
+            background: var(--bg-header);
+            color: #f9fafb;
+            padding: 0 32px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .admin-nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        .admin-nav-tab {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #e5e7eb;
+        }
+        .admin-nav-tab.active {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-subtle);
+        }
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+        }
+        .admin-header-link {
+            color: #e5e7eb;
+        }
+        .admin-header-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 메인 */
+        .admin-main {
+            max-width: 960px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        .page-title-row {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            gap: 12px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
-        .page-title h1 { margin: 0; font-size: 20px; }
-        .page-title p { margin: 2px 0 0; font-size: 13px; color: var(--admin-text-soft); }
+        .page-title-row h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .page-title-row p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
 
-        .admin-card {
-            background: var(--admin-card-bg);
-            border-radius: 16px;
-            padding: 18px 20px 20px;
-            box-shadow: var(--admin-card-shadow);
-            border: 1px solid var(--border-soft);
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 0 14px;
+            height: 32px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-strong);
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+        .btn-danger {
+            background: var(--danger-soft);
+            color: var(--danger);
+            border-color: #fecaca;
+        }
+        .btn-outline {
+            background: #ffffff;
+            color: var(--ink-strong);
+            border-color: var(--border-strong);
+        }
+        .btn:hover {
+            filter: brightness(0.97);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px;
             margin-bottom: 16px;
         }
 
-        .field-grid {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            row-gap: 10px;
-            column-gap: 12px;
-            font-size: 14px;
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
         }
-        .field-label {
+        .info-table th,
+        .info-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .info-table th {
+            width: 120px;
+            background: #f9fafb;
             font-weight: 600;
-            color: var(--admin-text-soft);
+            color: var(--ink-muted);
         }
 
-        .tag {
+        .status-badge {
             display: inline-flex;
             align-items: center;
-            padding: 2px 8px;
+            padding: 3px 9px;
             border-radius: 999px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .status-badge.success {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        .status-badge.danger {
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+        .section-desc {
+            margin: 0 0 12px;
             font-size: 12px;
-        }
-        .tag-active {
-            background: rgba(16, 185, 129, .1);
-            color: #047857;
-        }
-        .tag-deleted {
-            background: rgba(239, 68, 68, .08);
-            color: #b91c1c;
+            color: var(--ink-muted);
         }
 
-        .btn-row {
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-row {
             display: flex;
             gap: 8px;
-            margin-top: 12px;
-        }
-        .btn {
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 13px;
-            padding: 6px 12px;
-        }
-        .btn-primary { background: var(--admin-accent); color: #fff; }
-        .btn-outline {
-            background: #fff;
-            color: var(--admin-text-soft);
-            border: 1px solid var(--border-soft);
-        }
-        .btn-danger {
-            background: var(--danger);
-            color: #fff;
-        }
-
-        .form-inline {
-            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 6px;
         }
-        .form-inline select,
-        .form-inline input[type="number"] {
-            padding: 6px 10px;
-            font-size: 13px;
+        .form-row select {
+            height: 32px;
+            padding: 0 10px;
             border-radius: 8px;
-            border: 1px solid var(--border-soft);
+            border: 1px solid var(--border-strong);
+            font-size: 13px;
+            min-width: 140px;
         }
 
-        .message {
-            margin-bottom: 12px;
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            background: rgba(16, 185, 129, .07);
-            color: #047857;
-        }
-
-        @media (max-width: 640px) {
-            .admin-main { padding: 18px 14px 28px; }
-            .field-grid {
+        @media (max-width: 768px) {
+            .admin-main {
+                padding: 0 12px;
+            }
+            .two-column {
                 grid-template-columns: 1fr;
             }
         }
@@ -160,100 +234,135 @@
 <header class="admin-header">
     <div class="admin-header-left">
         <div class="admin-logo">더쿠쿠 관리자</div>
-        <span class="admin-header-badge">회원 상세</span>
+        <nav class="admin-nav-tabs">
+            <a th:href="@{/admin/members}" class="admin-nav-tab active">회원 관리</a>
+            <a th:href="@{/admin/boards}" class="admin-nav-tab">게시판 관리</a>
+        </nav>
     </div>
     <div class="admin-header-right">
-        <a th:href="@{/admin}">대시보드</a>
+        <a th:href="@{/admin/dashboard}" class="admin-header-link">대시보드</a>
         <span>|</span>
-        <a th:href="@{/admin/logout}">로그아웃</a>
+        <a th:href="@{/logout}" class="admin-header-link">로그아웃</a>
     </div>
 </header>
 
 <main class="admin-main">
 
-    <div class="page-title">
+    <div class="page-title-row">
         <div>
-            <h1 th:text="|회원 상세 - ${member.nickname}|">회원 상세</h1>
-            <p th:text="|회원 ID ${member.id}|">회원 ID</p>
+            <h1 th:text="${member.nickname}">닉네임</h1>
+            <p>
+                <span th:text="${member.loginId}">user001</span>
+                · 회원 ID
+                <span th:text="${member.id}">1</span>
+            </p>
         </div>
-        <div class="btn-row">
-            <a th:href="@{/admin/members}" class="btn btn-outline">← 목록으로</a>
+        <div>
+            <a th:href="@{/admin/members}" class="btn btn-outline">목록으로</a>
         </div>
     </div>
 
-    <!-- 플래시 메시지 -->
-    <div th:if="${message != null}" class="message" th:text="${message}"></div>
+    <!-- 회원 기본 정보 -->
+    <section class="card">
+        <table class="info-table">
+            <tbody>
+            <tr>
+                <th>회원 ID</th>
+                <td th:text="${member.id}">1</td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td th:text="${member.email}">user001@example.com</td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td th:text="${member.gender}">여자</td>
+            </tr>
+            <tr>
+                <th>국적</th>
+                <td th:text="${member.nationality}">외국인</td>
+            </tr>
+            <tr>
+                <th>소개</th>
+                <td th:text="${member.intro}">안녕하세요, 유저입니다.</td>
+            </tr>
+            <tr>
+                <th>상태</th>
+                <td>
+                    <!-- deletedYn == true -> 비활성(차단) -->
+                    <span class="status-badge danger"
+                          th:if="${member.deletedYn}">
+                        비활성(차단)
+                    </span>
+                    <!-- deletedYn == false 또는 null -> 정상 -->
+                    <span class="status-badge success"
+                          th:unless="${member.deletedYn}">
+                        정상
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>현재 등급</th>
+                <td th:text="${member.userLevel}">1</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 
-    <!-- 기본 정보 카드 -->
-    <section class="admin-card">
-        <h2 style="margin:0 0 12px;font-size:16px;">기본 정보</h2>
-        <div class="field-grid">
-            <div class="field-label">회원 번호</div>
-            <div th:text="${member.id}">1</div>
+    <!-- 상태/등급 관리 -->
+    <section class="two-column">
 
-            <div class="field-label">로그인 ID</div>
-            <div th:text="${member.loginId}">user001</div>
+        <!-- 회원 상태 관리 -->
+        <div class="card">
+            <h2 class="section-title">회원 상태 관리</h2>
+            <p class="section-desc">
+                활성/비활성 전환을 통해 회원을 차단하거나 다시 복구할 수 있습니다.
+            </p>
 
-            <div class="field-label">닉네임</div>
-            <div th:text="${member.nickname}">닉네임</div>
+            <!-- 비활성 상태일 때: 활성으로 복구 버튼 -->
+            <form th:if="${member.deletedYn}"
+                  th:action="@{/admin/members/{id}/status(id=${member.id})}"
+                  method="post">
+                <input type="hidden" name="deletedYn" value="N"/>
+                <button type="submit" class="btn btn-primary">
+                    활성으로 복구
+                </button>
+            </form>
 
-            <div class="field-label">이메일</div>
-            <div th:text="${member.email}">user@example.com</div>
-
-            <div class="field-label">회원 등급</div>
-            <div th:text="${member.userLevel}">1</div>
-
-            <div class="field-label">상태</div>
-            <div>
-                <span th:if="${member.deletedYn == 'Y'}" class="tag tag-deleted">비활성</span>
-                <span th:if="${member.deletedYn != 'Y'}" class="tag tag-active">활성</span>
-            </div>
-
-            <div class="field-label">가입일</div>
-            <div th:text="${#temporals.format(member.createdAt, 'yyyy-MM-dd HH:mm')}">
-                2025-01-01 12:00
-            </div>
+            <!-- 정상 상태일 때: 비활성(차단) 버튼 -->
+            <form th:unless="${member.deletedYn}"
+                  th:action="@{/admin/members/{id}/status(id=${member.id})}"
+                  method="post">
+                <input type="hidden" name="deletedYn" value="Y"/>
+                <button type="submit" class="btn btn-danger">
+                    비활성(차단)
+                </button>
+            </form>
         </div>
-    </section>
 
-    <!-- 상태 변경 카드 -->
-    <section class="admin-card">
-        <h2 style="margin:0 0 8px;font-size:16px;">회원 상태 관리</h2>
-        <p style="margin:0 0 10px;font-size:13px;color:var(--admin-text-soft);">
-            회원을 비활성화하면 로그인 및 서비스 이용이 제한됩니다.
-        </p>
+        <!-- 회원 등급 관리 -->
+        <div class="card">
+            <h2 class="section-title">회원 등급 관리</h2>
+            <p class="section-desc">
+                회원 등급을 변경하여 권한 수준을 조정할 수 있습니다.
+            </p>
 
-        <form class="form-inline"
-              th:action="@{/admin/members/{memberId}/status(memberId=${member.id})}"
-              method="post">
-            <select name="deletedYn">
-                <option value="N"
-                        th:selected="${member.deletedYn != 'Y'}">활성 (N)</option>
-                <option value="Y"
-                        th:selected="${member.deletedYn == 'Y'}">비활성 (Y)</option>
-            </select>
-            <button type="submit" class="btn btn-danger">상태 변경</button>
-        </form>
-    </section>
+            <form th:action="@{/admin/members/{id}/level(id=${member.id})}"
+                  method="post" class="form-row">
+                <select name="userLevel">
+                    <!-- userLevel 값은 프로젝트에서 실제로 사용하는 값에 맞춰 수정 -->
+                    <option value="1" th:selected="${member.userLevel == 1}">1 - 일반 회원</option>
+                    <option value="2" th:selected="${member.userLevel == 2}">2 - 우수 회원</option>
+                    <option value="9" th:selected="${member.userLevel == 9}">9 - 관리자</option>
+                </select>
+                <button type="submit" class="btn btn-outline">
+                    등급 변경
+                </button>
+            </form>
+        </div>
 
-    <!-- 등급 변경 카드 -->
-    <section class="admin-card">
-        <h2 style="margin:0 0 8px;font-size:16px;">회원 등급 관리</h2>
-        <p style="margin:0 0 10px;font-size:13px;color:var(--admin-text-soft);">
-            숫자가 클수록 상위 등급으로 사용한다고 가정합니다.
-        </p>
-
-        <form class="form-inline"
-              th:action="@{/admin/members/{memberId}/level(memberId=${member.id})}"
-              method="post">
-            <input type="number" name="userLevel"
-                   min="0" max="10"
-                   th:value="${member.userLevel}">
-            <button type="submit" class="btn btn-primary">등급 변경</button>
-        </form>
     </section>
 
 </main>
-
 </body>
 </html>

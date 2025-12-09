@@ -100,7 +100,39 @@
                 </div>
             </div>
         </div>
+        <!--회원탈퇴 모달 추가-->
+        <div id="deleteModal"
+             style="
+                display:none;
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                background:rgba(0,0,0,0.45);
+                justify-content:center;
+                align-items:center;
+                z-index:9999;   /* 🔥 모달을 최상위로 올림 */
+             ">
 
+            <div style="
+                width:260px;
+                background:white;
+                padding:20px;
+                border-radius:10px;
+                text-align:center;
+                z-index:10000;  /* 🔥 내부 박스도 위로 */
+            ">
+                <h5 style="font-size:15px;">정말로 회원 탈퇴를 하시겠습니까?</h5>
+                <p style="font-size:12px; color:gray;">계정과 모든 활동 내역이 삭제됩니다.</p>
+
+                <button onclick="confirmDelete()" class="btn btn-danger btn-sm"
+                        style="width:100%; margin-top:10px;">회원 탈퇴</button>
+
+                <button onclick="closeDeleteModal()" class="btn btn-secondary btn-sm"
+                        style="width:100%; margin-top:10px;">취소</button>
+            </div>
+        </div>
         <!-- 이메일 변경 모달 -->
         <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
@@ -199,7 +231,7 @@
             <ul class="simple-list link-list">
                 <li><a href="/mypage/service/terms">약관 보기</a></li>
                 <li><a href="/mypage/service/privacy">개인정보 처리방침</a></li>
-                <li>회원 탈퇴</li>
+                <li><a href="javascript:void(0)" onclick="openDeleteModal()">회원 탈퇴</a></li>
             </ul>
         </section>
 
@@ -211,8 +243,21 @@
 
 <script layout:fragment="script" th:inline="javascript">
 
+    function openDeleteModal() {
+        document.getElementById("deleteModal").style.display = "flex";
+    }
 
-        //const memberId = [[${memberId}]];
+    function closeDeleteModal() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+
+    function confirmDelete() {
+        // JS에 member.id 주입 없이, 세션에서 가져와 삭제
+        window.location.href = "/auth/delete-me";
+    }
+
+
+    //const memberId = [[${memberId}]];
 
     function showToast(message) {
         const toastEl = document.getElementById('tkkToast');

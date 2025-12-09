@@ -47,7 +47,7 @@ public class TradeChatController {
         messagingTemplate.convertAndSend("/sub/trade.stats." + tradeId, chatCount);
 
         // 3) 생성된 채팅방으로 이동
-        return "redirect:/trade/" + memberId + "/chat/" + room.getId();
+        return "redirect:/trade/" + tradeId + "/chat/" + room.getId();
     }
 
     /* ======================================================
@@ -116,7 +116,7 @@ public class TradeChatController {
         model.addAttribute("productThumbnailUrl", productThumb);
         model.addAttribute("productStatusLabel", statusLabel);
         model.addAttribute("productStatusClass", statusClass);
-
+        model.addAttribute("tradeId", tradeId);
         return "trade/chat/chat_room";
     }
 

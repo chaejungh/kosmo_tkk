@@ -7,6 +7,14 @@
 
     <style>
         /* ==== CSS는 그대로 사용 ==== */
+        :root {
+            --purple: #6366f1;
+            --purple-deep: #4f46e5;
+            --border: #e5e7eb;
+            --bg: #fafafa;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+        }
         * { box-sizing: border-box; }
         html, body {
             margin: 0; padding: 0; height: 100%;
@@ -35,27 +43,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.04);
             flex: 1; display: flex; flex-direction: column;
         }
-        .write-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
-        .photo-row {
-            display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
-        }
-        .photo-upload-box {
-            width: 96px; height: 96px; border-radius: 14px;
-            border: 2px dashed #d4c9ff; background: #f8f6ff;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            cursor: pointer; position: relative;
-        }
-        .photo-upload-box:hover { background: #f1ecff; }
-        .camera-icon { font-size: 26px; margin-bottom: 6px; }
-        .photo-count { font-size: 11px; color: #7d73b8; }
-        .photo-help-text { flex: 1; font-size: 13px; color: #444; }
-        .photo-help-text .main { font-weight: 600; margin-bottom: 4px; }
-        .photo-help-text .sub { font-size: 12px; color: #9b96c6; }
-        .form-label {
-            display: block; font-size: 13px; font-weight: 600;
-            margin: 6px 0 4px;
-        }
+
         .input-title,
         .textarea-content {
             width: 100%; border-radius: 12px;
@@ -90,6 +78,56 @@
                 padding: 16px 14px 18px;
             }
         }
+
+        .img-upload-box {
+            background: #ffffff;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .img-upload-box:hover {
+            border-color: var(--purple);
+        }
+        .img-preview-wrap {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .preview-item {
+            position: relative;
+        }
+
+        .preview-img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .remove-btn {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .form-select{
+            width: 10em;
+        }
     </style>
 </head>
 <body>
@@ -121,25 +159,38 @@
             <option value="3">자유</option>
         </select>
 
-        <!-- 사진 업로드 -->
-        <div class="photo-row">
-            <label class="photo-upload-box">
-                <span class="camera-icon">📷</span>
-                <span class="photo-count"><span id="photoCount">0</span>/10</span>
+<!--        &lt;!&ndash; 사진 업로드 &ndash;&gt;-->
+<!--        <div class="photo-row">-->
+<!--            <label class="photo-upload-box">-->
+<!--                <span class="camera-icon">📷</span>-->
+<!--                <span class="photo-count"><span id="photoCount">0</span>/10</span>-->
 
-                <!-- ✅ name 추가 (컨트롤러 @RequestParam("images") 와 맞추기) -->
-                <input id="photoInput"
-                       name="images"
-                       type="file"
-                       accept="image/*"
-                       style="display:none">
-            </label>
+<!--                &lt;!&ndash; ✅ name 추가 (컨트롤러 @RequestParam("images") 와 맞추기) &ndash;&gt;-->
+<!--                <input id="photoInput"-->
+<!--                       name="images"-->
+<!--                       type="file"-->
+<!--                       accept="image/*"-->
+<!--                       style="display:none">-->
+<!--            </label>-->
 
-            <div class="photo-help-text">
-                <div class="main">내 새끼 사진 업로드</div>
-                <div class="sub">최대 10장까지 올릴 수 있어요. 제일 자랑하고 싶은 사진부터!</div>
-            </div>
+<!--            <div class="photo-help-text">-->
+<!--                <div class="main">내 새끼 사진 업로드</div>-->
+<!--                <div class="sub">최대 10장까지 올릴 수 있어요. 제일 자랑하고 싶은 사진부터!</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <!-- 이미지 업로드 -->
+        <div class="img-upload-box" onclick="document.getElementById('imgInput').click()">
+            📷 클릭해서 이미지 업로드 (여러 장 가능)
         </div>
+
+        <input type="file"
+               id="imgInput"
+               name="images"
+               accept="image/*"
+               multiple
+               style="display:none">
+        <div class="img-preview-wrap" id="previewArea"></div>
 
         <!-- 제목 -->
         <label class="form-label" for="title" >제목</label>
@@ -173,17 +224,44 @@
 </div>
 
 <script>
-    const photoInput = document.getElementById("photoInput");
-    const photoCount = document.getElementById("photoCount");
+    const imgInput = document.getElementById("imgInput");
+    const previewArea = document.getElementById("previewArea");
 
-    photoInput.addEventListener("change", () => {
-        const count = photoInput.files ? photoInput.files.length : 0;
-        photoCount.textContent = count;
+    let selectedFiles = [];
+
+    imgInput.addEventListener("change", (e) => {
+        const files = Array.from(e.target.files);
+        selectedFiles = files;
+        renderPreview();
     });
 
-    document.querySelector(".photo-upload-box").addEventListener("click", () => {
-        photoInput.click();
-    });
+    function renderPreview() {
+        previewArea.innerHTML = "";
+
+        selectedFiles.forEach((file, idx) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const div = document.createElement("div");
+                div.className = "preview-item";
+                div.innerHTML = `
+                    <img src="${e.target.result}" class="preview-img">
+                    <div class="remove-btn" onclick="removeImg(${idx})">×</div>
+                `;
+                previewArea.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function removeImg(index) {
+        selectedFiles.splice(index, 1);
+
+        const dt = new DataTransfer();
+        selectedFiles.forEach(f => dt.items.add(f));
+        imgInput.files = dt.files;
+
+        renderPreview();
+    }
 </script>
 
 </body>

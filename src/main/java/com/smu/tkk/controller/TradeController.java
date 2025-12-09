@@ -1,12 +1,17 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.dto.BoardWriteValid;
+import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.dto.TradePostListDto;
-import com.smu.tkk.entity.TradePost;
-import com.smu.tkk.entity.TradePostImage;
+import com.smu.tkk.dto.TradeWriteValid;
+import com.smu.tkk.entity.*;
 import com.smu.tkk.repository.TradeBookmarkRepository;  // 🔥 추가
 import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
+import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +19,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.messaging.simp.SimpMessagingTemplate;   // ★ WebSocket
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,7 +35,7 @@ public class TradeController {
 
     private final TradeService tradeService;
     private final TradePostImageService tradePostImageService;
-
+    private final TradeChatService tradeChatService;
     // ★ WebSocket으로 이벤트 쏘기 위해 추가
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -65,12 +71,38 @@ public class TradeController {
        🔥 전체 목록
        ============================================================== */
     @GetMapping("/list.do")
-    public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
-                            Model model) {
+    public String tradeList(
+            @RequestParam(required = false) String sort,
+            Pageable pageable,
+            Model model) {
 
-        Page<TradePostListDto> dtoPage = tradeService.readAllListDto(pageable);
-        model.addAttribute("page", dtoPage);
+//        int unreadCount=0;
+//        List<ChatRoomListDTO> rooms = tradeChatService.getChatRoomList(memberId);
+//        for (ChatRoomListDTO room : rooms){
+//            unreadCount = room.getUnreadCount();
+//        }
 
+
+
+        // 🔥 pageable 의 정렬 정보 제거
+        pageable = Pageable.ofSize(pageable.getPageSize())
+                .withPage(pageable.getPageNumber());
+
+        Page<TradePostListDto> result;
+
+        if ("like".equals(sort)) {
+            result = tradeService.readAllOrderByLike(pageable);
+
+        } else if ("view".equals(sort)) {
+            result = tradeService.readAllOrderByView(pageable);
+
+        } else {
+            result = tradeService.readAllOrderByLatest(pageable);
+        }
+
+        model.addAttribute("page", result);
+        model.addAttribute("sort", sort);
+//        model.addAttribute("unreadCount", unreadCount);
         return "trade/trade_list";
     }
 
@@ -111,7 +143,9 @@ public class TradeController {
        🔥 거래 상세
        ============================================================== */
     @GetMapping("/{tradeId}/article/detail.do")
-    public String tradeDetail(@PathVariable Long tradeId, Model model) {
+    public String tradeDetail(@PathVariable Long tradeId,
+                              Model model,
+                              @SessionAttribute(name = "memberId",required = false) Long memberId) {
 
         // 🔥 상세 진입할 때 조회수 +1
         tradeService.increaseViewCount(tradeId);
@@ -129,8 +163,6 @@ public class TradeController {
         Long coverImageId = coverOpt.map(TradePostImage::getId).orElse(0L);
         model.addAttribute("coverImageId", coverImageId);
 
-        // 로그인 user (임시)
-        Long memberId = 1L;
         model.addAttribute("currentMemberId", memberId);
 
         Long sellerId =
@@ -208,14 +240,17 @@ public class TradeController {
        🔥 글쓰기 페이지
        ============================================================== */
     @GetMapping("/{memberId}/write")
-    public String writeForm(@PathVariable Long memberId,
+    public String writeForm(
+                            @Valid TradeWriteValid tradeWriteValid,
+                            BindingResult bindingResult,
+                            @SessionAttribute(name = "memberId",required = false) Long memberId,
                             @RequestParam(name = "t", required = false) String t,
                             Model model) {
 
         TradePost post = new TradePost();
         post.setSellerId(memberId);
         if (t != null) post.setTradeType(t);
-
+        model.addAttribute("tradeWriteValid",tradeWriteValid);
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
 
@@ -226,9 +261,12 @@ public class TradeController {
        🔥 이미지 포함 글 등록
        ============================================================== */
     @PostMapping("/{memberId}/write")
-    public String writeSubmit(@PathVariable Long memberId,
-                              TradePost post,
-                              @RequestParam("images") List<MultipartFile> images) {
+    public String writeSubmit(
+                                @Valid TradeWriteValid tradeWriteValid,
+                                BindingResult bindingResult,
+                                @SessionAttribute(name = "memberId",required = false) Long memberId,
+                                TradePost post,
+                                @RequestParam("images") List<MultipartFile> images) {
 
         System.out.println("📩 [writeSubmit] memberId=" + memberId
                 + ", 이미지 수=" + (images != null ? images.size() : 0));
@@ -255,4 +293,108 @@ public class TradeController {
 
         return "redirect:/trade/list.do";
     }
+
+
+    @GetMapping("/{memberId}/article/{postId}/edit.do")
+    public String editForm(
+                            @SessionAttribute(name = "memberId",required = false) Long memberId,
+                            @PathVariable Long postId,
+                            Model model) throws Exception {
+
+
+        // 게시글 조회
+        TradePost post = tradeService.readOneTradePostById(postId);
+        if (post == null) {
+            return "redirect:/trade/list.do"; // 없으면 대략 리스트로
+        }
+
+        //  작성자 본인인지 한 번 더 확인
+        if (!post.getSellerId().equals(memberId)) {
+            return "redirect:/board/not-allowed";
+        }
+
+        // 폼 바인딩용 DTO 세팅 (BoardWriteValid 기준)
+        TradeWriteValid form = new TradeWriteValid();
+        form.setTitle(post.getTitle());
+        form.setPrice(post.getPrice());
+        form.setCategory(post.getCategory());
+        form.setRegion(post.getRegion());
+        form.setTradeMethod(post.getTradeMethod());
+        form.setContent(post.getContent());
+        form.setStatus(post.getStatus());
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("postId", postId);
+        model.addAttribute("tradeWriteValid", form);
+        model.addAttribute("mode", "edit");
+
+        // 👉 별도 템플릿을 쓰면 "board/board_edit",
+        //    기존 작성 폼 재사용이면 "board/board_write" 로 맞춰서 사용
+        return "trade/trade_write";
+    }
+    // 게시글 수정 처리
+// =============================
+    @PostMapping("/{memberId}/article/{postId}/edit.do")
+    public String editSubmit(@SessionAttribute(name = "memberId",required = false) Long memberId,
+                             @PathVariable Long postId,
+                             @Valid TradeWriteValid tradeWriteValid,
+                             BindingResult bindingResult,
+                             Model model) throws Exception {
+
+
+        TradePost post = tradeService.readOneTradePostById(postId);
+        if (post == null || !post.getSellerId().equals(memberId)) {
+            return "redirect:/board/not-allowed";
+        }
+
+        // 유효성 에러 있으면 다시 폼으로
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberId", memberId);
+            model.addAttribute("postId", postId);
+            return "trade/trade_write";
+        }
+
+        // 변경 값 세팅
+        post.setTitle(tradeWriteValid.getTitle());
+        post.setPrice(tradeWriteValid.getPrice());
+        post.setCategory(tradeWriteValid.getCategory());
+        post.setRegion(tradeWriteValid.getRegion());
+        post.setTradeMethod(tradeWriteValid.getTradeMethod());
+        post.setContent(tradeWriteValid.getContent());
+        post.setStatus(tradeWriteValid.getStatus());
+        post.setDeletedYn("N");
+        try {
+            TradePost success = tradeService.modifyTradePost(post);
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "게시글 수정에 실패했습니다.");
+            model.addAttribute("memberId", memberId);
+            model.addAttribute("postId", postId);
+            return "trade/trade_write";
+        }
+
+        // 수정 후 상세로 이동
+        return "redirect:/trade/" + postId +"/article/detail.do";
+    }
+
+
+
+    @GetMapping("/{memberId}/article/{postId}/delete.do")
+    public String deletePost(@SessionAttribute(name = "memberId",required = false) Long memberId,
+                             @PathVariable Long postId,
+                             HttpSession session) throws Exception {
+
+
+        TradePost post = tradeService.readOneTradePostById(postId);
+        if (post == null || !post.getSellerId().equals(memberId)) {
+            return "redirect:/board/not-allowed";
+        }
+
+        tradeService.removeTradePost(post);  // 내부에서 deleted_yn = 'Y' 소프트 삭제라고 가정
+
+        // 삭제 후 해당 카테고리 리스트로 이동
+        return "redirect:/trade/list.do";
+    }
+
+
+
 }

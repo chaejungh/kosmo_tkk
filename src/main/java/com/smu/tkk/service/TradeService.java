@@ -80,4 +80,13 @@ public interface TradeService {
        ⭐ 12) 조회수 증가
        ============================================================ */
     void increaseViewCount(Long tradeId);
+
+    // 13) 찜순
+    Page<TradePostListDto> readAllOrderByLike(Pageable pageable);
+
+    // 14) 조회순
+    Page<TradePostListDto> readAllOrderByView(Pageable pageable);
+
+    // 15) 최신순
+    Page<TradePostListDto> readAllOrderByLatest(Pageable pageable);
 }
