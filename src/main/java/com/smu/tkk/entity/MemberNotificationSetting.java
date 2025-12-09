@@ -23,7 +23,7 @@ public class MemberNotificationSetting {
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     @ToString.Exclude
     @JsonIgnore

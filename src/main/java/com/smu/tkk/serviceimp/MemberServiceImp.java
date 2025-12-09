@@ -3,8 +3,7 @@ package com.smu.tkk.serviceimp;
 
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.MemberNotificationSetting;
-import com.smu.tkk.repository.MemberNotificationSettingRepository;
-import com.smu.tkk.repository.MemberRepository;
+import com.smu.tkk.repository.*;
 import com.smu.tkk.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
@@ -24,6 +23,19 @@ public class MemberServiceImp implements MemberService {
 
     private final MemberRepository memberRepository;
     private final MemberNotificationSettingRepository memberNotificationSettingRepository;
+    private final BoardPostRepository boardPostRepository;
+    private final BoardCommentRepository boardCommentRepository;
+    private final BoardLikeRepository boardLikeRepository;
+    private final BoardPostTagRepository boardPostTagRepository;
+    private final BoardReportRepository boardReportRepository;
+    private final InquiryRepository inquiryRepository;
+    private final NotificationRepository notificationRepository;
+    private final PopupStoreRepository popupStoreRepository;
+    private final StoreBookmarkRepository storeBookmarkRepository;
+    private final TradeBookmarkRepository tradeBookmarkRepository;
+    private final TradeChatMessageRepository tradeChatMessageRepository;
+    private final BoardBookmarkRepository boardBookmarkRepository;
+    private final PopupBookmarkRepository popupBookmarkRepository;
 
     /**
      * 1. 회원 가입
@@ -202,6 +214,22 @@ public class MemberServiceImp implements MemberService {
         // updateImg 쿼리 호출
         int result = memberRepository.updateImg(profileImage.getProfileImageUrl(), memberId);
         return result > 0;
+    }
+    @Override
+    @Transactional
+    public void deleteMember(Long memberId) {
+//        boardCommentRepository.deleteByMemberId(memberId);
+//        boardLikeRepository.deleteByMemberId(memberId);
+//        boardPostRepository.deleteByMemberId(memberId);
+//        boardBookmarkRepository.deleteByMemberId(memberId);
+//        boardReportRepository.deleteByReporterId(memberId);
+//        inquiryRepository.deleteByMemberId(memberId);
+//        notificationRepository.deleteByMemberId(memberId);
+//        popupBookmarkRepository.deleteByMemberId(memberId);
+//        storeBookmarkRepository.deleteByMemberId(memberId);
+//        tradeBookmarkRepository.deleteByMemberId(memberId);
+//        tradeChatMessageRepository.deleteBySenderId(memberId);
+        memberRepository.deleteById(memberId);  // ⭐ Hard Delete 실행
     }
 }
 

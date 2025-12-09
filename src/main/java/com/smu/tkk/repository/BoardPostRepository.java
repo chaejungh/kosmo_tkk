@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
-
+    void deleteByMemberId(Long memberId);
     /**
      * 삭제 여부로 전체 게시글 조회 (최신순)
      */

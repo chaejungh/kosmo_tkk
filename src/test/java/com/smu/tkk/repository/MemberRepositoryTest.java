@@ -56,4 +56,10 @@ class MemberRepositoryTest {
     void findByLoginIdAndLoginPw() {
         System.out.println(memberRepository.findByLoginIdAndLoginPw("user001","pw001"));
     }
+
+    @Test
+    @Transactional
+    void deleteById() {
+        memberRepository.deleteById(30L);
+    }
 }

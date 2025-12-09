@@ -4,7 +4,7 @@ import com.smu.tkk.entity.BoardReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardReportRepository extends JpaRepository<BoardReport,Integer> {
-
+    void deleteByReporterId(Long memberId);
     boolean existsById(Long id);
 
     void deleteById(Long id);

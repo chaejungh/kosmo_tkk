@@ -36,9 +36,12 @@ public class BoardReport {
     @JsonIgnore
     private BoardComment comment;
 
+    @Column(name = "REPORTER_ID", nullable = false)
+    private Long reporterId;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "REPORTER_ID", referencedColumnName = "MEMBER_ID", nullable = false)
+    @JoinColumn(name = "REPORTER_ID", referencedColumnName = "MEMBER_ID", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member reporter;

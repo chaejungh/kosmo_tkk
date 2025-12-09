@@ -13,4 +13,6 @@ public interface BoardPostTagRepository extends JpaRepository<BoardPostTag, Long
     boolean existsByPostIdAndTagId(Long postId, Long tagId);
 
     Optional<Object> findByPostIdAndTagId(Long postId, Long tagId);
+
+    void deleteById(Long id);
 }
