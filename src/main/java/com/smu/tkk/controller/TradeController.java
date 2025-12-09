@@ -71,16 +71,38 @@ public class TradeController {
        🔥 전체 목록
        ============================================================== */
     @GetMapping("/list.do")
-    public String tradeList(@PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
-                            @SessionAttribute(name = "memberId") Long memberId,
-                            Model model) {
+    public String tradeList(
+            @RequestParam(required = false) String sort,
+            Pageable pageable,
+            @SessionAttribute(name = "memberId") Long memberId,
+            Model model) {
+
         int unreadCount=0;
         List<ChatRoomListDTO> rooms = tradeChatService.getChatRoomList(memberId);
         for (ChatRoomListDTO room : rooms){
-             unreadCount = room.getUnreadCount();
+            unreadCount = room.getUnreadCount();
         }
-        Page<TradePostListDto> dtoPage = tradeService.readAllListDto(pageable);
-        model.addAttribute("page", dtoPage);
+
+
+
+        // 🔥 pageable 의 정렬 정보 제거
+        pageable = Pageable.ofSize(pageable.getPageSize())
+                .withPage(pageable.getPageNumber());
+
+        Page<TradePostListDto> result;
+
+        if ("like".equals(sort)) {
+            result = tradeService.readAllOrderByLike(pageable);
+
+        } else if ("view".equals(sort)) {
+            result = tradeService.readAllOrderByView(pageable);
+
+        } else {
+            result = tradeService.readAllOrderByLatest(pageable);
+        }
+
+        model.addAttribute("page", result);
+        model.addAttribute("sort", sort);
         model.addAttribute("unreadCount", unreadCount);
         return "trade/trade_list";
     }
