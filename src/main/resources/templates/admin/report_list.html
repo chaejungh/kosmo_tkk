@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>더쿠쿠 관리자 | 신고 관리</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --admin-bg: #0b1120;
+            --admin-card-bg: #ffffff;
+            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
+            --admin-accent: #6366f1;
+            --admin-text: #111827;
+            --admin-text-soft: #6b7280;
+            --border-soft: #e5e7eb;
+            --danger: #ef4444;
+            --success: #16a34a;
+            --warning: #f97316;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+            background: #f3f4f6;
+            color: var(--admin-text);
+        }
+
+        /* 헤더 */
+        .admin-header {
+            background: var(--admin-bg);
+            color: #e5e7eb;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .admin-header-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, .2);
+        }
+
+        .admin-header-right {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header-right a {
+            color: #cbd5f5;
+            text-decoration: none;
+        }
+
+        .admin-header-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* 메인 */
+        .admin-main {
+            padding: 24px 32px 32px;
+        }
+
+        .page-title {
+            margin-bottom: 16px;
+        }
+
+        .page-title h1 {
+            margin: 0 0 6px;
+            font-size: 22px;
+        }
+
+        .page-title p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--admin-text-soft);
+        }
+
+        .card {
+            background: var(--admin-card-bg);
+            border-radius: 16px;
+            padding: 18px 20px;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid var(--border-soft);
+        }
+
+        /* 필터 영역 */
+        .filter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .filter-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .filter-left select {
+            padding: 6px 8px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+            font-size: 13px;
+        }
+
+        .btn {
+            border: 1px solid var(--border-soft);
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-primary {
+            background: var(--admin-accent);
+            color: #ffffff;
+            border-color: var(--admin-accent);
+        }
+
+        .btn-ghost {
+            background: #ffffff;
+        }
+
+        .btn-xs {
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+
+        .btn-danger {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .btn-warning {
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        .btn-success {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .btn:disabled {
+            opacity: .4;
+            cursor: default;
+        }
+
+        /* 테이블 */
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead {
+            background: #f9fafb;
+        }
+
+        th, td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .text-soft {
+            color: var(--admin-text-soft);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+        }
+
+        .badge-wait {
+            background: rgba(249, 115, 22, .08);
+            color: var(--warning);
+        }
+
+        .badge-done {
+            background: rgba(22, 163, 74, .08);
+            color: var(--success);
+        }
+
+        .badge-type {
+            background: rgba(148, 163, 184, .14);
+            color: #4b5563;
+        }
+
+        .reason-text {
+            max-width: 260px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 페이징 */
+        .pagination {
+            margin-top: 14px;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+
+        .page-link {
+            min-width: 26px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: #4b5563;
+        }
+
+        .page-link.active {
+            background: var(--admin-accent);
+            color: #ffffff;
+        }
+
+        .page-link:hover {
+            background: #e5e7eb;
+        }
+
+        @media (max-width: 768px) {
+            .admin-main {
+                padding: 18px 14px 24px;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <span class="admin-header-badge">신고 관리</span>
+    </div>
+    <div class="admin-header-right">
+        <span th:text="${session.adminName != null ? session.adminName + '님 안녕하세요' : '관리자님 안녕하세요'}">
+            관리자님 안녕하세요
+        </span>
+        <span>|</span>
+        <a th:href="@{/admin/logout}">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+
+    <section class="page-title">
+        <h1>신고 관리</h1>
+        <p>게시글/댓글 신고 내역을 조회하고, 처리 상태를 변경할 수 있습니다.</p>
+    </section>
+
+    <section class="card">
+        <!-- 필터 -->
+        <div class="filter-row">
+            <form class="filter-left" method="get" th:action="@{/admin/reports}">
+                <span>상태</span>
+                <select name="status">
+                    <option value="ALL"
+                            th:selected="${status == 'ALL'}">전체</option>
+                    <option value="WAIT"
+                            th:selected="${status == 'WAIT'}">대기(WAIT)</option>
+                    <option value="DONE"
+                            th:selected="${status == 'DONE'}">처리 완료(DONE)</option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-xs">조회</button>
+            </form>
+
+            <div class="text-soft" th:if="${reports != null}">
+                총 <strong th:text="${reports.totalElements}">0</strong>건
+            </div>
+        </div>
+
+        <!-- 테이블 -->
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th style="width: 60px;">번호</th>
+                    <th style="width: 80px;">유형</th>
+                    <th style="width: 90px;">대상 ID</th>
+                    <th>사유</th>
+                    <th style="width: 120px;">신고자</th>
+                    <th style="width: 110px;">상태</th>
+                    <th style="width: 90px;">신고일</th>
+                    <th style="width: 220px;">관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${reports == null or reports.totalElements == 0}">
+                    <td colspan="8" class="text-soft">등록된 신고 내역이 없습니다.</td>
+                </tr>
+
+                <tr th:each="report, stat : ${reports}">
+                    <!-- 번호 (페이지 기준 역순 표시) -->
+                    <td th:text="${reports.totalElements - (reports.number * reports.size) - stat.index}">
+                        1
+                    </td>
+
+                    <!-- 유형(게시글/댓글) -->
+                    <td>
+                        <span class="badge badge-type"
+                              th:text="${report.targetType}">게시글</span>
+                    </td>
+
+                    <!-- 대상 ID -->
+                    <td th:text="${report.targetId != null ? report.targetId : '-'}">1</td>
+
+                    <!-- 신고 사유 -->
+                    <td>
+                        <div class="reason-text"
+                             th:text="${report.reason != null ? report.reason : '-'}">
+                            신고 사유
+                        </div>
+                    </td>
+
+                    <!-- 신고자 -->
+                    <td>
+                        <span th:text="${report.reporter != null ? report.reporter.nickname : report.reporterId}">
+                            신고자닉네임
+                        </span>
+                    </td>
+
+                    <!-- 상태 -->
+                    <td>
+                        <span class="badge"
+                              th:classappend="${report.status} == 'WAIT' ? ' badge-wait' : ' badge-done'"
+                              th:text="${report.status}">
+                            WAIT
+                        </span>
+                    </td>
+
+                    <!-- 신고일 -->
+                    <td th:text="${report.createdAt}">2025-12-09</td>
+
+                    <!-- 액션 -->
+                    <td>
+                        <button type="button"
+                                class="btn btn-xs btn-success js-btn-resolve"
+                                th:data-id="${report.id}"
+                                th:disabled="${report.status == 'DONE'}">
+                            신고만 처리
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-xs btn-warning js-btn-hide"
+                                th:data-id="${report.id}"
+                                th:disabled="${report.status == 'DONE'}">
+                            숨김 + 처리
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-xs btn-danger js-btn-delete"
+                                th:data-id="${report.id}">
+                            신고 삭제
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="pagination" th:if="${reports != null and reports.totalPages > 1}">
+            <a th:each="p : ${#numbers.sequence(0, reports.totalPages - 1)}"
+               th:href="@{/admin/reports(page=${p}, status=${status})}"
+               th:text="${p + 1}"
+               th:class="'page-link' + (${p} == ${reports.number} ? ' active' : '')">
+                1
+            </a>
+        </div>
+    </section>
+</main>
+
+<script>
+    // 신고만 처리
+    document.querySelectorAll(".js-btn-resolve").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const id = btn.dataset.id;
+            if (!confirm("해당 신고를 '처리 완료' 상태로 변경하시겠습니까?")) return;
+
+            fetch(`/admin/reports/${id}/resolve`, {
+                method: "POST",
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            }).then(res => {
+                if (res.ok) {
+                    location.reload();
+                } else {
+                    alert("신고 처리 중 오류가 발생했습니다.");
+                }
+            }).catch(() => alert("서버 통신 오류가 발생했습니다."));
+        });
+    });
+
+    // 숨김 + 처리
+    document.querySelectorAll(".js-btn-hide").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const id = btn.dataset.id;
+            if (!confirm("대상 게시글/댓글을 숨기고 신고를 처리 완료로 변경하시겠습니까?")) return;
+
+            fetch(`/admin/reports/${id}/hide`, {
+                method: "POST",
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            }).then(res => {
+                if (res.ok) {
+                    location.reload();
+                } else {
+                    alert("숨김 처리 중 오류가 발생했습니다.");
+                }
+            }).catch(() => alert("서버 통신 오류가 발생했습니다."));
+        });
+    });
+
+    // 신고 레코드 삭제
+    document.querySelectorAll(".js-btn-delete").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const id = btn.dataset.id;
+            if (!confirm("해당 신고 기록을 삭제하시겠습니까? (게시글/댓글은 그대로 유지됩니다)")) return;
+
+            fetch(`/admin/reports/${id}`, {
+                method: "DELETE",
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            }).then(res => {
+                if (res.ok) {
+                    location.reload();
+                } else {
+                    alert("신고 삭제 중 오류가 발생했습니다.");
+                }
+            }).catch(() => alert("서버 통신 오류가 발생했습니다."));
+        });
+    });
+</script>
+
+</body>
+</html>
