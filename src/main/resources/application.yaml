@@ -8,14 +8,16 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
 
+  # 필요하면 application-api.yml 따로 써서 키 분리할 수 있게 남겨둠
   config:
-    import: optional:application-api.yml   # 🔥 여기 주의: .yml 로 통일
+    import: optional:application-api.yml
 
-  datasource:
-    url: jdbc:mysql://localhost:3307/tkk
-    username: tkk
-    password: kosmo1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  # ⚠️ 여기! config 밑이 아니라 spring 밑에 datasource!
+    datasource:
+      url: jdbc:mysql://localhost:3306/tkk?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: tkk
+      password: kosmo1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
@@ -34,6 +36,9 @@ spring:
 server:
   port: 8080
 
+# ==============================
+# 네이버 / 오픈AI 연동 설정
+# ==============================
 naver:
   search:
     client-id: ${keys.naver.search.client-id}
@@ -51,7 +56,6 @@ file:
 cloud:
   aws:
     credentials:
-      # 🔹 환경변수 말고, 우리가 따로 정의한 aws.* 키 참조
       access-key: ${aws.access-key}
       secret-key: ${aws.secret-key}
     s3:
@@ -60,3 +64,18 @@ cloud:
       static: ap-northeast-2
     stack:
       auto: false
+
+keys:
+  naver:
+    search:
+      client-id: your-real-naver-search-client-id
+      client-secret: your-real-naver-search-client-secret
+    key-id: your-real-naver-key-id
+    key: your-real-naver-key
+  openai:
+    api-key: your-real-openai-api-key
+
+aws:
+  access-key: your-aws-access-key
+  secret-key: your-aws-secret-key
+  s3-bucket: tkuku-bucket
