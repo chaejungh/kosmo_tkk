@@ -272,6 +272,7 @@ public class BoardController {
             boardPost.setDeletedYn("N");
 //            boardPost.setBoardPostImages();
             // 1) 게시글 저장
+            boardService.createPostWithImages(boardPost, images);
             boolean execute =  boardService.register(boardPost);
             if (!execute){
                 return "board/board_write";

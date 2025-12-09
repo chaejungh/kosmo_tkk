@@ -52,16 +52,16 @@ public class AuthController {
             @RequestParam String loginId,
             @RequestParam String loginPw,
             HttpSession session,
+            Model model,
             RedirectAttributes rttr
     ) throws SQLException {
 
         // MEMBER 테이블에 아이디+비밀번호 조합이 존재하는지 검사
-        boolean exists = memberService.existsByLoginId(loginId);
+
         Member member = memberService.login(loginId, loginPw);
-        if (!exists) {
-            rttr.addFlashAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            rttr.addFlashAttribute("loginId", loginId);   // 입력했던 아이디 유지
-            return "redirect:/auth/login";
+        if (member == null) {
+            model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
+            return "auth/login"; // 로그인 실패 시 다시 로그인 페이지로
         }
 
         // 로그인 성공 → 세션에 로그인 아이디만 저장 (레포 수정 안 하려고 간단 버전)

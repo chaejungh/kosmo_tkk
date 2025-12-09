@@ -1,19 +1,15 @@
 package com.smu.tkk.serviceimp;
 
-import com.smu.tkk.entity.BoardLike;
-import com.smu.tkk.entity.BoardPostTag;
+import com.smu.tkk.entity.*;
 import com.smu.tkk.service.BoardService;
+import com.smu.tkk.service.S3StorageService;
 import jakarta.transaction.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
-import com.smu.tkk.entity.BoardCategory;
+
 import com.smu.tkk.entity.BoardLike;
-import com.smu.tkk.entity.BoardPost;
-import com.smu.tkk.entity.BoardPostImage;
 import com.smu.tkk.entity.BoardPostTag;
-import com.smu.tkk.entity.BoardReport;
-import com.smu.tkk.entity.BoardTag;
 import com.smu.tkk.repository.BoardCategoryRepository;
 import com.smu.tkk.repository.BoardLikeRepository;
 import com.smu.tkk.repository.BoardPostImageRepository;
@@ -26,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -42,6 +39,7 @@ import java.util.Optional;
         private final BoardCategoryRepository boardCategoryRepository;
         private final BoardLikeRepository boardLikeRepository;
         private final BoardReportRepository boardReportRepository;
+        private final S3StorageService s3StorageService;
 
         @Override
         @Transactional
@@ -49,6 +47,43 @@ import java.util.Optional;
             if (post == null) throw new IllegalArgumentException("post is null");
             boardPostRepository.save(post);
             return true;
+        }
+
+        @Override
+        public void createPostWithImages(BoardPost post, List<MultipartFile> images) {
+            BoardPost savedPost = boardPostRepository.save(post);
+
+            if (images == null || images.isEmpty()) {
+                System.out.println("⚠ createPostWithImages: 전달된 이미지가 없습니다.");
+                return;
+            }
+
+            System.out.println("✅ createPostWithImages: 이미지 개수 = " + images.size());
+
+            int sortOrder = 1;
+
+            for (MultipartFile file : images) {
+                if (file.isEmpty()) {
+                    System.out.println("⚠ 비어있는 파일 하나 건너뜀");
+                    continue;
+                }
+
+                try {
+                    String imageUrl = s3StorageService.upload(file);
+
+                    BoardPostImage img = new BoardPostImage();
+                    img.setPostId(savedPost.getId());
+                    img.setImageUrl(imageUrl);
+                    img.setSortOrder((long) sortOrder++);
+
+                    boardPostImageRepository.save(img);
+                    System.out.println("✅ BoardPostImage 저장 완료: " + imageUrl);
+
+                } catch (Exception e) {
+                    System.out.println("❌ createPostWithImages 내부 에러: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
         }
 
         @Override

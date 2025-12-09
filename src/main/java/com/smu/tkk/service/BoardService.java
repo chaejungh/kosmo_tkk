@@ -3,6 +3,7 @@ package com.smu.tkk.service;
 import com.smu.tkk.entity.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface BoardService {
 
     // 1. 게시글 등록(레파지토리 완료)
     boolean register(BoardPost post) throws SQLException, IllegalArgumentException;
-
+    void createPostWithImages(BoardPost post, List<MultipartFile> images);
     // 2. 게시글 수정(레파지토리 완료)
     boolean modify(BoardPost post) throws SQLException, IllegalArgumentException;
 
