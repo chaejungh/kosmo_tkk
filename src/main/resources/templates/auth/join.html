@@ -394,6 +394,9 @@
                 <div class="form-row-inline">
                     <input type="text" class="input-field" name="emailId" placeholder="이메일 아이디 (예: banana123)">
                     <select class="email-domain-select" name="emailDomain">
+
+
+
                         <option value="@naver.com">@naver.com</option>
                         <option value="@gmail.com">@gmail.com</option>
                         <option value="@daum.net">@daum.net</option>
@@ -401,9 +404,12 @@
                         <option value="@outlook.com">@outlook.com</option>
                         <option value="custom">직접 입력</option>
                     </select>
+                <!-- 직접입력 도메인 input (초기 숨김) -->
+                    <input type="text" class="input-field" id="customEmailInput"
+                               placeholder="이메일 입력 (예: mymail.com)"
+                               style="display:none; margin-top:8px;">
                 </div>
-                <p class="form-msg" id="msgEmail"></p>
-                <p class="form-help">이메일을 정확하게 입력해주세요.</p>
+                    <p class="form-msg" id="msgEmail"></p>
             </div>
 
             <!-- 이름 -->
@@ -524,7 +530,27 @@
     const pwConfirm = document.getElementById("pwConfirm");
     const emailId = document.querySelector("input[name='emailId']");
     const emailDomain = document.querySelector("select[name='emailDomain']");
-    const name = document.querySelector("input[name='nickname']");
+
+        // =========================
+// 이메일 도메인 custom 입력 처리
+// =========================
+        const customDomainInput = document.getElementById("customDomainInput");
+
+        emailDomain.addEventListener("change", function () {
+            if (this.value === "custom") {
+                emailDomain.style.display = "none";       // select 숨김
+                customDomainInput.style.display = "block"; // input 표시
+                customDomainInput.value = "";             // 초기화
+                customDomainInput.focus();
+            } else {
+                emailDomain.style.display = "block";      // select 다시 표시
+                customDomainInput.style.display = "none"; // input 숨김
+                customDomainInput.value = "";
+            }
+        });
+
+
+        const name = document.querySelector("input[name='nickname']");
     const phone = document.querySelector("input[name='phone']");
     const termsAll = document.getElementById("termsAll");
     const termsChecks = document.querySelectorAll(".terms-check");
@@ -710,7 +736,12 @@
         const emailIdVal = emailId.value.trim();
         const emailDomainVal = emailDomain.value;
         if (emailIdVal && emailDomainVal) {
-            document.getElementById("emailFull").value = emailIdVal + emailDomainVal;
+            if (emailDomainVal === "custom") {
+                document.getElementById("emailFull").value = emailIdVal + "@" + customDomainInput.value;
+            } else {
+                document.getElementById("emailFull").value = emailIdVal + emailDomainVal;
+            }
+
         }
 
         if (id.value.trim() === "") {
@@ -777,6 +808,26 @@
             event.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" }); // UX 좋게!
         }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const emailId = document.querySelector("input[name='emailId']");
+        const emailDomain = document.querySelector("select[name='emailDomain']");
+
+        document.querySelector(".btn-inline").addEventListener("click", () => {
+
+            const email = emailId.value + emailDomain.value;
+
+            if (!emailId.value) {
+                alert("이메일 아이디를 입력해주세요.");
+                return;
+            }
+
+            fetch(`/auth/send-code?email=${email}`)
+                .then(res => res.text())
+                .then(msg => alert(msg));
         });
     });
 

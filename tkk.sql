@@ -37,9 +37,11 @@ CREATE TABLE TKK.MEMBER (
                             email             VARCHAR2(100),
                             gender            VARCHAR2(10)   NOT NULL,
                             nationality       VARCHAR2(10)   NOT NULL,
+                            verify_code       VARCHAR2(10),
                             created_at        DATE            DEFAULT SYSDATE,
                             updated_at        DATE,
                             deleted_yn        CHAR(1)         DEFAULT 'N',
+
 
     /* ENUM처럼 동작하게 제약조건 추가 */
                             CONSTRAINT chk_member_gender
@@ -508,3 +510,5 @@ CREATE TABLE TKK.ADMIN_LOG (
                                CONSTRAINT FK_ADMIN_LOG_ADMIN
                                    FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID) ON DELETE CASCADE
 );
+
+-- alter table TKK.MEMBER   add verify_code VARCHAR2(10);
