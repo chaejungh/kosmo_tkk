@@ -128,11 +128,15 @@
 
 <div class="find-container">
 
-    <div class="title">아이디 찾기</div>
+    <div class="title">비밀번호 찾기</div>
 
     <!-- 아이디 찾기 Form -->
-    <form th:action="@{/auth/find_id}" method="post">
+    <form th:action="@{/auth/find_pw}" method="post">
 
+        <div class="form-box">
+            <label class="form-label">아이디</label>
+            <input type="text" name="loginId" class="form-input" placeholder="가입 시 입력한 아이디">
+        </div>
         <div class="form-box">
             <label class="form-label">이름</label>
             <input type="text" name="nickname" class="form-input" placeholder="가입 시 입력한 이름">
@@ -147,8 +151,8 @@
     </form>
 
     <!-- 검색 결과 성공 -->
-    <div th:if="${foundId}" class="result-box result-success">
-         아이디 : <span th:text="${foundId}"></span>
+    <div th:if="${foundPw}" class="result-box result-success">
+        비밀번호 : <span th:text="${foundPw}"></span>
 
         <a th:href="@{/auth/login}" class="login-btn">
             <span>로그인 하러 가기</span>
@@ -157,7 +161,7 @@
 
     <!-- 검색 결과 실패 -->
     <div th:if="${notFound}" class="result-box result-fail">
-         일치하는 회원 정보가 존재하지 않습니다.
+        일치하는 회원 정보가 존재하지 않습니다.
     </div>
 
 </div>
