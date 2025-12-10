@@ -152,32 +152,14 @@
                 aria-label="Default select example"
                 name="categoryId"
                 th:value="*{categoryId}"
+                required
             >
-            <option selected>게시판 선택</option>
+            <option value="" disabled selected>게시판 선택</option>
             <option value="1">내 새끼 자랑</option>
             <option value="2">코스프레</option>
             <option value="3">자유</option>
         </select>
 
-<!--        &lt;!&ndash; 사진 업로드 &ndash;&gt;-->
-<!--        <div class="photo-row">-->
-<!--            <label class="photo-upload-box">-->
-<!--                <span class="camera-icon">📷</span>-->
-<!--                <span class="photo-count"><span id="photoCount">0</span>/10</span>-->
-
-<!--                &lt;!&ndash; ✅ name 추가 (컨트롤러 @RequestParam("images") 와 맞추기) &ndash;&gt;-->
-<!--                <input id="photoInput"-->
-<!--                       name="images"-->
-<!--                       type="file"-->
-<!--                       accept="image/*"-->
-<!--                       style="display:none">-->
-<!--            </label>-->
-
-<!--            <div class="photo-help-text">-->
-<!--                <div class="main">내 새끼 사진 업로드</div>-->
-<!--                <div class="sub">최대 10장까지 올릴 수 있어요. 제일 자랑하고 싶은 사진부터!</div>-->
-<!--            </div>-->
-<!--        </div>-->
 
         <!-- 이미지 업로드 -->
         <div class="img-upload-box" onclick="document.getElementById('imgInput').click()">
@@ -200,14 +182,18 @@
                 name="title"
                 type="text"
                 class="input-title"
-                placeholder="제목을 입력하세요">
+                placeholder="제목을 입력하세요"
+                required>
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></span>
+
+
         <!-- 내용 -->
         <label class="form-label" for="content">게시글 내용</label>
         <textarea id="content"
                   name="content"
-        class="textarea-content"
-        placeholder="게시글 내용을 작성해주세요 😊" th:text="*{content}"></textarea>
+                  class="textarea-content"
+                  placeholder="게시글 내용을 작성해주세요 😊" th:text="*{content}"
+                  required></textarea>
         <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red"></span>
 
         <div class="bottom-space"></div>

@@ -65,6 +65,9 @@ public class BoardController {
     public String boardDetail(@PathVariable Long memberId,
                                 @PathVariable Long postId,
                                 Model model) throws Exception {
+        if (memberId==null){
+            return "redirect:/auth/login";
+        }
         BoardPost post = boardService.readOne(postId);
         boardService.increaseViewCount(postId);
         BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);

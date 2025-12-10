@@ -418,12 +418,11 @@
     <a href="/chat/list" class="nav-item" data-page="chat">
         <span class="icon">💬</span>
         채팅방
-        <!-- 🔥 여기 부분만 수정 -->
         <span class="badge pulse"
               id="chatBadge"
-              th:if="${unreadCount > 0}"
+              th:if="${unreadCount != null and unreadCount > 0}"
               th:text="${unreadCount}">
-            0
+        0
         </span>
     </a>
 
