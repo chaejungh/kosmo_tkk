@@ -73,6 +73,7 @@ import java.util.Optional;
 
                     BoardPostImage img = new BoardPostImage();
                     img.setPostId(savedPost.getId());
+                    savedPost.setThumbnailUrl(imageUrl);
                     img.setImageUrl(imageUrl);
                     img.setSortOrder((long) sortOrder++);
 

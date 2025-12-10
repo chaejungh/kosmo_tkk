@@ -26,6 +26,7 @@ import com.smu.tkk.entity.BoardComment;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Controller
@@ -46,7 +47,6 @@ public class BoardController {
             HttpSession session,
             @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable
     ) throws SQLException {
-
 
         return renderBoardList(
                 categoryId,
@@ -93,6 +93,44 @@ public class BoardController {
         post.setCommentCount(commentService.countByPostId(post.getId()));
 
         return "board/board_detail"; // 상세 템플릿 이름
+    }
+
+    /* ===============================================================
+      🔥 이미지 상세
+      ============================================================== */
+    @GetMapping("/board/{postId}/img/{imageId}/detail.do")
+    public String imageDetail(@PathVariable Long postId,
+                              @PathVariable Long imageId,
+                              Model model) throws SQLException {
+
+        List<BoardPostImage> imageList = boardService.readImages(postId);
+
+        if (imageList == null || imageList.isEmpty()) {
+            BoardPostImage dummy = new BoardPostImage();
+            dummy.setId(0L);
+            dummy.setImageUrl("/images/dummy/noimg.png");
+            imageList = List.of(dummy);
+        }
+
+        final Long targetImageId = imageId;
+
+        boolean exists = imageList.stream()
+                .anyMatch(i -> i.getId().equals(targetImageId));
+
+        Long validImageId = exists ? imageId : imageList.get(0).getId();
+
+        int activeIndex = 0;
+        for (int i = 0; i < imageList.size(); i++) {
+            if (imageList.get(i).getId().equals(validImageId)) {
+                activeIndex = i;
+                break;
+            }
+        }
+
+        model.addAttribute("imageList", imageList);
+        model.addAttribute("activeIndex", activeIndex);
+
+        return "trade/trade_image_detail";
     }
     // =============================
 // 게시글 수정 폼
@@ -281,9 +319,10 @@ public class BoardController {
             boardPost.setTitle(boardWriteValid.getTitle());
             boardPost.setContent(boardWriteValid.getContent());
             boardPost.setDeletedYn("N");
-//            boardPost.setBoardPostImages();
+
             // 1) 게시글 저장
             boardService.createPostWithImages(boardPost, images);
+
             boolean execute =  boardService.register(boardPost);
             if (!execute){
                 return "board/board_write";
