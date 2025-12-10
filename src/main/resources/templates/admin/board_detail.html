@@ -6,55 +6,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+        :root {
+            --admin-bg: #0b1120;
+            --admin-card-bg: #ffffff;
+            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
+            --admin-accent: #6366f1;
+            --admin-text: #111827;
+            --admin-text-soft: #6b7280;
+            --border-soft: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
-            padding: 24px;
             font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
             background: #f3f4f6;
+            color: var(--admin-text);
         }
 
-        .wrap {
-            max-width: 1000px;
-            margin: 0 auto;
+        /* 헤더 - 대시보드와 동일 */
+        .admin-header {
+            background: var(--admin-bg);
+            color: #e5e7eb;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        h1 {
-            margin: 0 0 16px;
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .admin-header-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, .2);
+        }
+
+        .admin-header-right {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header-right a {
+            color: #cbd5f5;
+            text-decoration: none;
+        }
+
+        .admin-header-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* 메인 영역 */
+        .admin-main {
+            padding: 24px 32px 32px;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            margin: 0 0 6px;
             font-size: 22px;
         }
 
-        .msg {
-            margin-bottom: 12px;
-            padding: 8px 10px;
-            background: #ecfdf5;
-            border: 1px solid #bbf7d0;
+        .page-title p {
+            margin: 0;
             font-size: 13px;
+            color: var(--admin-text-soft);
         }
 
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
+        /* 카드 공통 */
+        .admin-card {
+            background: var(--admin-card-bg);
+            border-radius: 16px;
             padding: 16px 18px;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid var(--border-soft);
             margin-bottom: 16px;
         }
 
-        .card-header {
+        .admin-card-header {
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 15px;
         }
 
-        .meta {
+        .meta-row {
             font-size: 13px;
-            color: #6b7280;
+            color: var(--admin-text-soft);
             margin-bottom: 8px;
+        }
+
+        .meta-row span + span::before {
+            content: "·";
+            margin: 0 6px;
+            color: #d1d5db;
         }
 
         .title {
             font-size: 18px;
             font-weight: 600;
-            margin: 0 0 10px;
+            margin: 8px 0 10px;
         }
 
         .content {
@@ -79,16 +145,24 @@
             color: #b91c1c;
         }
 
+        .msg {
+            margin-bottom: 12px;
+            padding: 8px 10px;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            font-size: 13px;
+        }
+
         .btn-row {
             margin-top: 12px;
             display: flex;
-            gap: 8px;
             flex-wrap: wrap;
+            gap: 8px;
         }
 
         button {
             padding: 6px 12px;
-            border-radius: 4px;
+            border-radius: 999px;
             border: 1px solid #d1d5db;
             cursor: pointer;
             font-size: 14px;
@@ -137,7 +211,7 @@
             display: flex;
             gap: 4px;
             flex-wrap: wrap;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .pagination a,
@@ -145,6 +219,8 @@
             padding: 3px 7px;
             border-radius: 4px;
             border: 1px solid #e5e7eb;
+            text-decoration: none;
+            color: #374151;
         }
 
         .pagination .active {
@@ -152,38 +228,80 @@
             color: #ffffff;
             border-color: #111827;
         }
+
+        .pagination a:hover {
+            border-color: #9ca3af;
+        }
+
+        @media (max-width: 640px) {
+            .admin-main {
+                padding: 18px 14px 28px;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="wrap">
 
-    <h1>게시글 상세</h1>
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <span class="admin-header-badge">게시판 관리</span>
+    </div>
+    <div class="admin-header-right">
+        <span th:text="${session.adminName != null ? session.adminName + '님 안녕하세요' : '관리자님 안녕하세요'}">
+            관리자님 안녕하세요
+        </span>
+        <span>|</span>
+        <a th:href="@{/admin/logout}">로그아웃</a>
+    </div>
+</header>
 
-    <!-- 플래시 메시지 (상태 변경 후 리다이렉트 시 사용) -->
+<main class="admin-main">
+    <section class="page-title">
+        <h1>게시글 상세</h1>
+        <p>게시글 내용을 확인하고, 상태 및 댓글을 관리합니다.</p>
+    </section>
+
+    <!-- 플래시 메시지 (삭제/복구/댓글삭제 등) -->
     <div th:if="${message != null}"
          class="msg"
          th:text="${message}">
         메시지
     </div>
 
-    <!-- 게시글 정보 -->
-    <section class="card">
-        <div class="card-header">
-            게시글 정보
+    <!-- 게시글 정보 카드 -->
+    <section class="admin-card">
+        <div class="admin-card-header">게시글 정보</div>
+
+        <div class="meta-row">
+            <span>
+                번호:
+                <span th:text="${post.id}">1</span>
+            </span>
+            <span>
+                카테고리 ID:
+                <span th:text="${post.categoryId}">1</span>
+            </span>
+            <span>
+                작성일:
+                <span th:text="${post.createdAt}">2025-12-10</span>
+            </span>
         </div>
-        <div class="meta">
-            번호:
-            <span th:text="${post.id}">1</span>
-            &nbsp;|&nbsp;
-            카테고리 ID:
-            <span th:text="${post.categoryId}">1</span>
-            &nbsp;|&nbsp;
-            작성일:
-            <span th:text="${post.createdAt}">2025-12-10</span>
-            &nbsp;|&nbsp;
-            상태:
-            <span th:if="${post.deletedYn == 'N'}" class="badge badge-active">활성</span>
-            <span th:if="${post.deletedYn == 'Y'}" class="badge badge-deleted">비활성</span>
+
+        <div class="meta-row">
+            <span>
+                조회수:
+                <span th:text="${post.viewCount}">0</span>
+            </span>
+            <span>
+                좋아요:
+                <span th:text="${post.likeCount}">0</span>
+            </span>
+            <span>
+                상태:
+                <span th:if="${post.deletedYn == 'N'}" class="badge badge-active">활성</span>
+                <span th:if="${post.deletedYn == 'Y'}" class="badge badge-deleted">비활성</span>
+            </span>
         </div>
 
         <h2 class="title" th:text="${post.title}">
@@ -200,7 +318,7 @@
                 <button type="button" class="btn-secondary">목록으로</button>
             </a>
 
-            <!-- 비활성/삭제 -->
+            <!-- 비활성(삭제) -->
             <form th:if="${post.deletedYn == 'N'}"
                   th:action="@{/admin/boards/{postId}/delete(postId=${post.id})}"
                   method="post"
@@ -218,16 +336,16 @@
         </div>
     </section>
 
-    <!-- 댓글 목록 -->
-    <section class="card">
-        <div class="card-header">
-            댓글 목록
-        </div>
+    <!-- 댓글 목록 카드 -->
+    <section class="admin-card">
+        <div class="admin-card-header">댓글 목록</div>
 
+        <!-- 댓글이 없을 때 -->
         <div th:if="${comments.content.isEmpty()}">
             등록된 댓글이 없습니다.
         </div>
 
+        <!-- 댓글 리스트 -->
         <div th:each="c : ${comments.content}" class="comment-item">
             <div class="comment-meta">
                 <span>
@@ -245,6 +363,7 @@
                     <span th:if="${c.deletedYn == 'Y'}" class="badge badge-deleted">비활성</span>
                 </span>
             </div>
+
             <div th:text="${c.content}">
                 댓글 내용
             </div>
@@ -270,7 +389,7 @@
 
             <!-- 번호 -->
             <span th:each="pageNum : ${#numbers.sequence(0, comments.totalPages - 1)}"
-                  th:classappend="${pageNum} == ${comments.number} ? 'active'">
+                  th:classappend="${pageNum} == ${comments.number} ? ' active'">
                 <a th:if="${pageNum} != ${comments.number}"
                    th:text="${pageNum + 1}"
                    th:href="@{/admin/boards/{postId}(postId=${post.id}, page=${pageNum}, size=${comments.size})}">
@@ -289,7 +408,7 @@
             </a>
         </div>
     </section>
+</main>
 
-</div>
 </body>
 </html>
