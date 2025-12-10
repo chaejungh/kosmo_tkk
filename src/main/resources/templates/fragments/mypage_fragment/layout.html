@@ -73,7 +73,7 @@
         </a>
     </nav>
 <script>
-    console.log(memberId)
+    console.log(memberId);
     if (memberId) {
         const connectSSE = () => {
 
@@ -91,6 +91,8 @@
                 if (setting === "N") return;  // 메시지 알림 OFF면 막기
                 showToast(event.data);
             });
+
+
 
             es.onerror = () => {
                 console.log("SSE 연결 끊김 → 재연결 중...");

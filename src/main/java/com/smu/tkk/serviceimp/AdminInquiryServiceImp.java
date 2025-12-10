@@ -77,7 +77,8 @@ public class AdminInquiryServiceImp implements AdminInquiryService {
 
     @Override
     @Transactional
-    public void answerInquiry(Long id, String answerText) {
+    public Inquiry answerInquiry(Long id, String answerText) {
+
         Inquiry inquiry = getInquiry(id);  // 위에서 이미 변환해서 가져옴
 
         // Inquiry 엔티티에 실제 있는 필드 사용 (ANSWER_CONTENT / STATUS / ANSWERED_AT)
@@ -85,7 +86,7 @@ public class AdminInquiryServiceImp implements AdminInquiryService {
         inquiry.setStatus("DONE");                 // WAIT -> DONE
         inquiry.setAnsweredAt(LocalDate.now());
 
-        inquiryRepository.save(inquiry);
+        return inquiryRepository.save(inquiry);
     }
 
     @Override

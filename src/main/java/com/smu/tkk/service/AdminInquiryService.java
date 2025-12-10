@@ -12,7 +12,7 @@ public interface AdminInquiryService {
     Inquiry getInquiry(Long id);
 
     // 관리자 답변 작성/수정
-    void answerInquiry(Long id, String answerText);
+    Inquiry answerInquiry(Long id, String answerText);
 
     // 문의 삭제
     void deleteInquiry(Long id);

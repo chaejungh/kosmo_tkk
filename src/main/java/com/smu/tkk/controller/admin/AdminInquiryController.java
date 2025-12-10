@@ -1,5 +1,6 @@
 package com.smu.tkk.controller.admin;
 
+import com.smu.tkk.config.NotificationPublisher;
 import com.smu.tkk.entity.Inquiry;
 import com.smu.tkk.service.AdminInquiryService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminInquiryController {
 
     private final AdminInquiryService adminInquiryService;
+    private final NotificationPublisher notificationPublisher;
 
     /**
      * 관리자 문의 목록
@@ -65,7 +67,16 @@ public class AdminInquiryController {
                          @RequestParam("answer") String answer,
                          RedirectAttributes redirectAttributes) {
 
-        adminInquiryService.answerInquiry(id, answer);
+        Inquiry inquiry = adminInquiryService.answerInquiry(id, answer);
+
+        Long userId = inquiry.getMemberId();
+
+        notificationPublisher.send(
+                userId,
+                "📢 문의에 대한 답변이 등록되었습니다."
+        );
+
+
         redirectAttributes.addFlashAttribute("msg", "답변을 저장했습니다.");
 
         return "redirect:/admin/inquiries/" + id;
