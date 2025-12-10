@@ -510,5 +510,3 @@ CREATE TABLE TKK.ADMIN_LOG (
                                CONSTRAINT FK_ADMIN_LOG_ADMIN
                                    FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID) ON DELETE CASCADE
 );
-
--- alter table TKK.MEMBER   add verify_code VARCHAR2(10);

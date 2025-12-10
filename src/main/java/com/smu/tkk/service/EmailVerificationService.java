@@ -28,7 +28,7 @@ public class EmailVerificationService {
         member.setNickname(member.getNickname());
         member.setGender(member.getGender());
         member.setCreatedAt(LocalDate.now());
-        member.setDeletedYn(false);
+        member.setDeletedYn('N');
         // 2) 인증코드 생성
         String code = createVerifyCode();
         member.setVerifyCode(code);
