@@ -48,9 +48,10 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>로그인 이메일</strong><br>
-                        <small class="text-muted">현재: user001@example.com</small>
+                        <small class="text-muted">
+                            현재: <span th:text="${member.email}">이메일</span>
+                        </small>
                     </div>
-                    <!-- 🧩 모달 연결 속성 추가 -->
                     <button type="button"
                             class="btn btn-outline-secondary btn-sm"
                             data-bs-toggle="modal"
@@ -59,13 +60,13 @@
                     </button>
                 </li>
 
+
                 <!-- 비밀번호 변경 -->
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>비밀번호</strong><br>
-                        <small class="text-muted">최근 변경일: 2025-11-01</small>
                     </div>
-                    <!-- 🧩 모달 연결 속성 추가 -->
+
                     <button type="button"
                             class="btn btn-outline-primary btn-sm"
                             data-bs-toggle="modal"
@@ -73,9 +74,11 @@
                         변경
                     </button>
                 </li>
+
             </ul>
         </section>
 
+        <!-- 비밀번호 변경 모달 -->
         <!-- 비밀번호 변경 모달 -->
         <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
@@ -84,13 +87,33 @@
                         <h5 class="modal-title" id="passwordModalLabel">비밀번호 변경</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
                     </div>
-                    <div class="modal-body text-center">
-                        <form th:action="@{/mypage/service/updatePassword}" method="post">
-                            <!-- 나중에 세션으로 교체 -->
-                            <input type="hidden" name="memberId" value="1" />
 
-                            <input type="password" name="loginPw" class="form-control mb-3"
-                                   placeholder="새 비밀번호 입력" required style="width: 200px; margin: 0 auto;">
+                    <div class="modal-body">
+
+                        <!-- 🔥 에러 메시지 박스 -->
+                        <div id="pwErrorMsg"
+                             style="display:none; background:#fee2e2; color:#b91c1c;
+                            padding:8px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+                        </div>
+
+                        <!-- 🔥 안내문 추가 -->
+                        <p style="font-size:12px; color:#6b7280; margin-bottom:10px;">
+                            비밀번호는 <b>특수문자 1개 이상</b> 포함해야 합니다.
+                        </p>
+
+                        <form id="pwForm" th:action="@{/mypage/service/updatePassword}" method="post">
+
+                            <input type="hidden" name="memberId" th:value="${member.id}" />
+
+                            <!-- 새 비밀번호 -->
+                            <input type="password" id="newPw" name="loginPw" class="form-control mb-2"
+                                   placeholder="새 비밀번호 입력" required
+                                   style="height:40px; border-radius:8px;">
+
+                            <!-- 비밀번호 확인 -->
+                            <input type="password" id="newPwConfirm" class="form-control mb-3"
+                                   placeholder="비밀번호 재입력" required
+                                   style="height:40px; border-radius:8px;">
 
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary btn-sm">변경</button>
@@ -100,6 +123,20 @@
                 </div>
             </div>
         </div>
+        <!-- 변경 성공 토스트 -->
+        <div class="toast-container position-fixed p-3" style="top: 20px; right: 20px; z-index: 2000;">
+            <div id="changeSuccessToast" class="toast align-items-center text-white bg-success border-0"
+                 role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        변경이 성공적으로 완료되었습니다.
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
         <!--회원탈퇴 모달 추가-->
         <div id="deleteModal"
              style="
@@ -324,7 +361,52 @@
             }
         });
 
-        // 토글 변경 시 저장 + 토스트
+    // 비밀번호 변경 검증
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const form = document.getElementById("pwForm");
+        const pw = document.getElementById("newPw");
+        const pwConfirm = document.getElementById("newPwConfirm");
+        const errorBox = document.getElementById("pwErrorMsg");
+
+        const specialChar = /[!@#$%^&*(),.?":{}|<>]/;
+
+        form.addEventListener("submit", function (e) {
+
+            // 1) 비밀번호 일치 여부 확인
+            if (pw.value !== pwConfirm.value) {
+                e.preventDefault();
+                errorBox.style.display = "block";
+                errorBox.innerText = "비밀번호가 일치하지 않습니다.";
+                return;
+            }
+
+            // 2) 특수문자 포함 여부 확인
+            if (!specialChar.test(pw.value)) {
+                e.preventDefault();
+                errorBox.style.display = "block";
+                errorBox.innerText = "비밀번호에는 최소 1개 이상의 특수문자가 포함되어야 합니다.";
+                return;
+            }
+
+            // 검증 통과 → 제출
+            errorBox.style.display = "none";
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        let msg = /*[[${msg}]]*/ null;
+
+        if (msg) {
+            const toastEl = document.getElementById("changeSuccessToast");
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    });
+
+
+    // 토글 변경 시 저장 + 토스트
         messageToggle.addEventListener("change", () => {
             const isOn = messageToggle.checked;
 
