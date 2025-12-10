@@ -351,7 +351,8 @@
                         수정
                     </a>
                     <a class="detail-action-btn detail-action-delete"
-                       th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/delete.do'}">
+                       th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/delete.do'}"
+                       onclick="return confirm('게시물을 삭제하시겠습니까?');">
                         삭제
                     </a>
                 </div>

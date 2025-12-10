@@ -6,6 +6,7 @@ src/main/resources/application-api.yaml
 # src/main/resources/application.yaml  ← 이건 주석 처리!
 
 ### === Gradle === ###
+src/main/resources/application.yaml
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

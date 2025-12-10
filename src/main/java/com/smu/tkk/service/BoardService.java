@@ -86,6 +86,6 @@ public interface BoardService {
 
     List<BoardPost> getHotPostsAll();
 
-
+    boolean isLiked(Long postId, Long memberId);
 
 }

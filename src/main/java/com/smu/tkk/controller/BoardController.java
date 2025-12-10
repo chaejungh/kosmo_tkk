@@ -68,6 +68,11 @@ public class BoardController {
         BoardPost post = boardService.readOne(postId);
         boardService.increaseViewCount(postId);
         BoardLike likeInfo = boardLikeService.readlikecount(postId, memberId);
+
+        boolean isLiked = boardService.isLiked(memberId,postId);
+        if (isLiked){
+            model.addAttribute("isLiked",isLiked);
+        }
         boolean bookmarked = boardBookmarkService.toggle(postId,memberId);
 
         List<BoardComment> commentList =

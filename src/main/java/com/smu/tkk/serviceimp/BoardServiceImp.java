@@ -253,6 +253,11 @@ import java.util.Optional;
         }
 
         @Override
+        public boolean isLiked(Long postId, Long memberId) {
+            return boardLikeRepository.existsByPostIdAndMemberId(postId,memberId);
+        }
+
+        @Override
         @Transactional
         public void increaseViewCount(Long postId) throws SQLException {
             BoardPost post = boardPostRepository.findById(postId)
