@@ -49,7 +49,7 @@ public class InquiryController {
 
         inquiry.setMemberId(memberId);
         inquiry.setStatus("WAIT");    // 기본 상태
-        inquiry.setCreatedAt(LocalDate.now());
+        inquiry.setCreatedAt(LocalDateTime.now());
         inquiryRepository.save(inquiry);
 
         return "redirect:/help/list.do";
