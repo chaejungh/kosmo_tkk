@@ -34,6 +34,19 @@ if (memberId) {
             showToast(event.data);
         });
 
+        es.addEventListener("inquiry-alert", (event) => {
+            const setting = localStorage.getItem("inquiry_alert_on");
+            if (setting === "N") return;  // 문의 알림 OFF면 무시
+            showToast(event.data);
+        });
+
+        // 거래 상태 변경 알림
+        es.addEventListener("trade-alert", (event) => {
+            const setting = localStorage.getItem("trade_alert_on");
+            if (setting === "N") return;
+            showToast(event.data);
+        });
+
         es.onerror = () => {
             console.log("SSE 연결 끊김 → 재연결 중...");
             setTimeout(connectSSE, 3000);
