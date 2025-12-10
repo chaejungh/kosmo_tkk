@@ -51,4 +51,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Page<Member> findByLoginIdContainingIgnoreCaseOrNicknameContainingIgnoreCase(
             String loginId, String nickname, Pageable pageable
     );
+
+    Optional<Member> findByEmail(String email);
+    Optional<Member> findByEmailAndVerifyCode(String email, String verifyCode);
+
 }

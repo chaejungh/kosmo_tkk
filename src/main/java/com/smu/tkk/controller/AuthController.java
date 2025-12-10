@@ -97,51 +97,51 @@ public class AuthController {
      * 회원가입 처리
      * POST : /auth/join  또는 /auth/join.do
      */
-    @PostMapping({"/join", "/join.do"})
-    public String join(
-            @RequestParam String loginId,
-            @RequestParam String loginPw,
-            @RequestParam String nickname,
-            @RequestParam(required = false) String email,
-            @RequestParam String gender,
-            @RequestParam String nationality,
-            RedirectAttributes rttr
-    ) throws SQLException {
-
-   /*     // 아이디 / 닉네임 중복 체크 (기존 레포 그대로 사용)
-        if (memberRepository.existsByLoginId(loginId)) {
-            rttr.addFlashAttribute("joinError", "이미 사용 중인 아이디입니다.");
-            rttr.addFlashAttribute("loginId", loginId);
-            rttr.addFlashAttribute("nickname", nickname);
-            rttr.addFlashAttribute("email", email);
-            return "redirect:/auth/join";
-        }*/
-
-        /*if (memberRepository.existsByNickname(nickname)) {
-            rttr.addFlashAttribute("joinError", "이미 사용 중인 닉네임입니다.");
-            rttr.addFlashAttribute("loginId", loginId);
-            rttr.addFlashAttribute("nickname", nickname);
-            rttr.addFlashAttribute("email", email);
-            return "redirect:/auth/join";
-        }*/
-
-        // 새 회원 엔티티 생성 (비번 평문 저장 - 더미데이터랑 맞춤)
-        Member member = new Member();
-        member.setLoginId(loginId);
-        member.setLoginPw(loginPw);
-        member.setNickname(nickname);
-        member.setEmail(email);
-        member.setGender(gender);
-        member.setNationality(nationality);
-
-        // 나머지 필드는 null / default 값 그대로 두면 됨 > gender,nationlity 없어서 12월 5일 수정함
-
-        memberService.register(member);
-
-        rttr.addFlashAttribute("joinSuccess", "회원가입이 완료되었습니다. 로그인해 주세요.");
-
-        return "redirect:/auth/login";
-    }
+//    @PostMapping({"/join", "/join.do"})
+//    public String join(
+//            @RequestParam String loginId,
+//            @RequestParam String loginPw,
+//            @RequestParam String nickname,
+//            @RequestParam(required = false) String email,
+//            @RequestParam String gender,
+//            @RequestParam String nationality,
+//            RedirectAttributes rttr
+//    ) throws SQLException {
+//
+//   /*     // 아이디 / 닉네임 중복 체크 (기존 레포 그대로 사용)
+//        if (memberRepository.existsByLoginId(loginId)) {
+//            rttr.addFlashAttribute("joinError", "이미 사용 중인 아이디입니다.");
+//            rttr.addFlashAttribute("loginId", loginId);
+//            rttr.addFlashAttribute("nickname", nickname);
+//            rttr.addFlashAttribute("email", email);
+//            return "redirect:/auth/join";
+//        }*/
+//
+//        /*if (memberRepository.existsByNickname(nickname)) {
+//            rttr.addFlashAttribute("joinError", "이미 사용 중인 닉네임입니다.");
+//            rttr.addFlashAttribute("loginId", loginId);
+//            rttr.addFlashAttribute("nickname", nickname);
+//            rttr.addFlashAttribute("email", email);
+//            return "redirect:/auth/join";
+//        }*/
+//
+//        // 새 회원 엔티티 생성 (비번 평문 저장 - 더미데이터랑 맞춤)
+//        Member member = new Member();
+//        member.setLoginId(loginId);
+//        member.setLoginPw(loginPw);
+//        member.setNickname(nickname);
+//        member.setEmail(email);
+//        member.setGender(gender);
+//        member.setNationality(nationality);
+//
+//        // 나머지 필드는 null / default 값 그대로 두면 됨 > gender,nationlity 없어서 12월 5일 수정함
+//
+//        memberService.register(member);
+//
+//        rttr.addFlashAttribute("joinSuccess", "회원가입이 완료되었습니다. 로그인해 주세요.");
+//
+//        return "redirect:/auth/login";
+//    }
     /**
      * 회원 탈퇴
      * GET : /auth/delete
