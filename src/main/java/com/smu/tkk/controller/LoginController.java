@@ -44,16 +44,21 @@ public class LoginController {
         Member member = memberService.login(loginId, loginPw);
 
         if (member == null) {
-            model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            return "auth/login"; // 로그인 실패 시 다시 로그인 페이지로
+            model.addAttribute("errorMessage", "아이디 또는 비밀번호가 올바르지 않습니다.");
+            return "auth/login";
         }
-        System.out.println(member);
 
-        // ✅ 로그인 성공 시 세션 저장
+        // LEVEL 0 → 이메일 인증 미완료
+        if (member.getUserLevel() == 0L) {
+            model.addAttribute("errorMessage", "이메일 인증을 완료해야 로그인할 수 있습니다.");
+            return "auth/login";
+        }
+
+        // 성공
         session.setAttribute("loginMember", member);
         session.setAttribute("memberId", member.getId());
 
-        // ✅ 로그인 후 메인 페이지로 이동
         return "redirect:/";
     }
+
 }
