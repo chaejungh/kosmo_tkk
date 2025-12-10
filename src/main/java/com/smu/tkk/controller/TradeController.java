@@ -1,5 +1,6 @@
 package com.smu.tkk.controller;
 
+import com.smu.tkk.config.NotificationPublisher;
 import com.smu.tkk.dto.BoardWriteValid;
 import com.smu.tkk.dto.ChatRoomListDTO;
 import com.smu.tkk.dto.TradePostListDto;
@@ -7,6 +8,7 @@ import com.smu.tkk.dto.TradeWriteValid;
 import com.smu.tkk.entity.*;
 import com.smu.tkk.repository.TradeBookmarkRepository;  // 🔥 추가
 import com.smu.tkk.repository.TradeChatRoomRepository;   // 🔥 추가
+import com.smu.tkk.service.TradeBookmarkService;
 import com.smu.tkk.service.TradeChatService;
 import com.smu.tkk.service.TradePostImageService;
 import com.smu.tkk.service.TradeService;
@@ -38,10 +40,12 @@ public class TradeController {
     private final TradeChatService tradeChatService;
     // ★ WebSocket으로 이벤트 쏘기 위해 추가
     private final SimpMessagingTemplate messagingTemplate;
+    private final NotificationPublisher notificationPublisher;
 
     // 🔥 채팅방 / 북마크 개수 조회용 레포지토리
     private final TradeChatRoomRepository tradeChatRoomRepository;
     private final TradeBookmarkRepository tradeBookmarkRepository;
+    private final TradeBookmarkService tradeBookmarkService;
 
     @GetMapping
     public String tradeRoot() {
@@ -334,48 +338,72 @@ public class TradeController {
     }
     // 게시글 수정 처리
 // =============================
-    @PostMapping("/{memberId}/article/{postId}/edit.do")
-    public String editSubmit(@SessionAttribute(name = "memberId",required = false) Long memberId,
-                             @PathVariable Long postId,
-                             @Valid TradeWriteValid tradeWriteValid,
-                             BindingResult bindingResult,
-                             Model model) throws Exception {
 
+    @PostMapping("/{memberId}/article/{postId}/edit.do")
+    public String editSubmit(
+            @SessionAttribute(name = "memberId", required = false) Long memberId,
+            @PathVariable Long postId,
+            @Valid TradeWriteValid tradeWriteValid,
+            BindingResult bindingResult,
+            Model model) throws Exception {
 
         TradePost post = tradeService.readOneTradePostById(postId);
         if (post == null || !post.getSellerId().equals(memberId)) {
             return "redirect:/board/not-allowed";
         }
 
-        // 유효성 에러 있으면 다시 폼으로
         if (bindingResult.hasErrors()) {
             model.addAttribute("memberId", memberId);
             model.addAttribute("postId", postId);
+            model.addAttribute("mode", "edit");
             return "trade/trade_write";
         }
 
-        // 변경 값 세팅
+        // 🔥 기존 상태 저장
+        String oldStatus = post.getStatus();
+        String newStatus = tradeWriteValid.getStatus();
+
+        // 변경 값 적용
         post.setTitle(tradeWriteValid.getTitle());
         post.setPrice(tradeWriteValid.getPrice());
         post.setCategory(tradeWriteValid.getCategory());
         post.setRegion(tradeWriteValid.getRegion());
         post.setTradeMethod(tradeWriteValid.getTradeMethod());
         post.setContent(tradeWriteValid.getContent());
-        post.setStatus(tradeWriteValid.getStatus());
+        post.setStatus(newStatus);
         post.setDeletedYn("N");
+
         try {
-            TradePost success = tradeService.modifyTradePost(post);
+            tradeService.modifyTradePost(post);
+
+            // 🚨 상태가 바뀐 경우에만 알림 날림
+            if (!oldStatus.equals(newStatus)) {
+
+                List<TradeBookmark> tradeBookmarks = tradeBookmarkService.getBookmarksByTradId(postId);
+
+                for (TradeBookmark tradeBookmark : tradeBookmarks) {
+                    Long userId = tradeBookmark.getMemberId();
+                    System.out.println(userId);
+                    notificationPublisher.sendToMemberWithEvent(
+                            userId,
+                            "📢 찜한 거래글의 상태가 '" + newStatus + "' 로 변경되었습니다.",
+                            "trade-alert"
+                    );
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "게시글 수정에 실패했습니다.");
             model.addAttribute("memberId", memberId);
             model.addAttribute("postId", postId);
+            model.addAttribute("mode", "edit");
             return "trade/trade_write";
         }
 
-        // 수정 후 상세로 이동
-        return "redirect:/trade/" + postId +"/article/detail.do";
+        return "redirect:/trade/" + postId + "/article/detail.do";
     }
+
 
 
 
