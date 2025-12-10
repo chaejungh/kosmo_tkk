@@ -231,5 +231,16 @@ public class MemberServiceImp implements MemberService {
 //        tradeChatMessageRepository.deleteBySenderId(memberId);
         memberRepository.deleteById(memberId);  // ⭐ Hard Delete 실행
     }
+    @Override
+    public void updateEmail(Long memberId, String email) throws SQLException {
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+        member.setEmail(email);
+
+        memberRepository.save(member);
+
+    }
 }
 

@@ -88,5 +88,4 @@ public class EmailVerificationService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이메일입니다."));
     }
 
-
 }

@@ -1,6 +1,5 @@
 package com.smu.tkk.service;
 
-import com.smu.tkk.entity.BoardPostImage;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.MemberNotificationSetting;
 import org.springframework.data.domain.Pageable;
@@ -58,4 +57,8 @@ public interface MemberService {
     boolean modifyImage(Long memberId,Member profileImage) throws SQLException, IllegalArgumentException;
 
     void deleteMember(Long memberId);
+
+    // 12. 이메일 변경
+    void updateEmail(Long memberId, String email) throws SQLException, IllegalArgumentException;
+
 }
