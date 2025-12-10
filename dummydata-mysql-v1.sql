@@ -1,103 +1,103 @@
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user001','pw001','닉네임001','https://example.com/profile/sample1.png','안녕하세요, 유저001입니다.',2,'user001@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user002','pw002','닉네임002','https://example.com/profile/sample1.png','안녕하세요, 유저002입니다.',2,'user002@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user003','pw003','닉네임003','https://example.com/profile/sample1.png','안녕하세요, 유저003입니다.',2,'user003@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user004','pw004','닉네임004','https://example.com/profile/sample1.png','안녕하세요, 유저004입니다.',2,'user004@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user005','pw005','닉네임005','https://example.com/profile/sample1.png','안녕하세요, 유저005입니다.',2,'user005@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user006','pw006','닉네임006','https://example.com/profile/sample1.png','안녕하세요, 유저006입니다.',2,'user006@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user007','pw007','닉네임007','https://example.com/profile/sample1.png','안녕하세요, 유저007입니다.',2,'user007@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user008','pw008','닉네임008','https://example.com/profile/sample1.png','안녕하세요, 유저008입니다.',2,'user008@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user009','pw009','닉네임009','https://example.com/profile/sample1.png','안녕하세요, 유저009입니다.',2,'user009@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user010','pw010','닉네임010','https://example.com/profile/sample1.png','안녕하세요, 유저010입니다.',2,'user010@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user011','pw011','닉네임011','https://example.com/profile/sample2.png','안녕하세요, 유저011입니다.',2,'user011@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user012','pw012','닉네임012','https://example.com/profile/sample2.png','안녕하세요, 유저012입니다.',2,'user012@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user013','pw013','닉네임013','https://example.com/profile/sample2.png','안녕하세요, 유저013입니다.',2,'user013@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user014','pw014','닉네임014','https://example.com/profile/sample2.png','안녕하세요, 유저014입니다.',2,'user014@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user015','pw015','닉네임015','https://example.com/profile/sample2.png','안녕하세요, 유저015입니다.',2,'user015@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user016','pw016','닉네임016','https://example.com/profile/sample2.png','안녕하세요, 유저016입니다.',2,'user016@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user017','pw017','닉네임017','https://example.com/profile/sample2.png','안녕하세요, 유저017입니다.',2,'user017@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user018','pw018','닉네임018','https://example.com/profile/sample2.png','안녕하세요, 유저018입니다.',2,'user018@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user019','pw019','닉네임019','https://example.com/profile/sample2.png','안녕하세요, 유저019입니다.',2,'user019@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user020','pw020','닉네임020','https://example.com/profile/sample2.png','안녕하세요, 유저020입니다.',2,'user020@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user021','pw021','닉네임021','https://example.com/profile/sample3.png','안녕하세요, 유저021입니다.',2,'user021@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user022','pw022','닉네임022','https://example.com/profile/sample3.png','안녕하세요, 유저022입니다.',2,'user022@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user023','pw023','닉네임023','https://example.com/profile/sample3.png','안녕하세요, 유저023입니다.',2,'user023@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user024','pw024','닉네임024','https://example.com/profile/sample3.png','안녕하세요, 유저024입니다.',2,'user024@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user025','pw025','닉네임025','https://example.com/profile/sample3.png','안녕하세요, 유저025입니다.',2,'user025@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user026','pw026','닉네임026','https://example.com/profile/sample3.png','안녕하세요, 유저026입니다.',2,'user026@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user027','pw027','닉네임027','https://example.com/profile/sample3.png','안녕하세요, 유저027입니다.',2,'user027@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user028','pw028','닉네임028','https://example.com/profile/sample3.png','안녕하세요, 유저028입니다.',2,'user028@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user029','pw029','닉네임029','https://example.com/profile/sample3.png','안녕하세요, 유저029입니다.',2,'user029@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user030','pw030','닉네임030','https://example.com/profile/sample3.png','안녕하세요, 유저030입니다.',2,'user030@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user031','pw031','닉네임031',NULL,'안녕하세요, 유저031입니다.',2,'user031@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user032','pw032','닉네임032',NULL,'안녕하세요, 유저032입니다.',2,'user032@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user033','pw033','닉네임033',NULL,'안녕하세요, 유저033입니다.',2,'user033@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user034','pw034','닉네임034',NULL,'안녕하세요, 유저034입니다.',2,'user034@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user035','pw035','닉네임035',NULL,'안녕하세요, 유저035입니다.',2,'user035@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user036','pw036','닉네임036',NULL,'안녕하세요, 유저036입니다.',2,'user036@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user037','pw037','닉네임037',NULL,'안녕하세요, 유저037입니다.',2,'user037@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user038','pw038','닉네임038',NULL,'안녕하세요, 유저038입니다.',2,'user038@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user039','pw039','닉네임039',NULL,'안녕하세요, 유저039입니다.',2,'user039@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user040','pw040','닉네임040',NULL,'안녕하세요, 유저040입니다.',2,'user040@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user041','pw041','닉네임041',NULL,'안녕하세요, 유저041입니다.',2,'user041@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user042','pw042','닉네임042',NULL,'안녕하세요, 유저042입니다.',2,'user042@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user043','pw043','닉네임043',NULL,'안녕하세요, 유저043입니다.',2,'user043@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user044','pw044','닉네임044',NULL,'안녕하세요, 유저044입니다.',2,'user044@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user045','pw045','닉네임045',NULL,'안녕하세요, 유저045입니다.',2,'user045@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user046','pw046','닉네임046',NULL,'안녕하세요, 유저046입니다.',2,'user046@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user047','pw047','닉네임047',NULL,'안녕하세요, 유저047입니다.',2,'user047@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user048','pw048','닉네임048',NULL,'안녕하세요, 유저048입니다.',2,'user048@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user049','pw049','닉네임049',NULL,'안녕하세요, 유저049입니다.',2,'user049@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user050','pw050','닉네임050',NULL,'안녕하세요, 유저050입니다.',2,'user050@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user051','pw051','닉네임051',NULL,'안녕하세요, 유저051입니다.',2,'user051@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user052','pw052','닉네임052',NULL,'안녕하세요, 유저052입니다.',2,'user052@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user053','pw053','닉네임053',NULL,'안녕하세요, 유저053입니다.',2,'user053@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user054','pw054','닉네임054',NULL,'안녕하세요, 유저054입니다.',2,'user054@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user055','pw055','닉네임055',NULL,'안녕하세요, 유저055입니다.',2,'user055@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user056','pw056','닉네임056',NULL,'안녕하세요, 유저056입니다.',2,'user056@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user057','pw057','닉네임057',NULL,'안녕하세요, 유저057입니다.',2,'user057@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user058','pw058','닉네임058',NULL,'안녕하세요, 유저058입니다.',2,'user058@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user059','pw059','닉네임059',NULL,'안녕하세요, 유저059입니다.',2,'user059@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user060','pw060','닉네임060',NULL,'안녕하세요, 유저060입니다.',2,'user060@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user061','pw061','닉네임061',NULL,'안녕하세요, 유저061입니다.',2,'user061@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user062','pw062','닉네임062',NULL,'안녕하세요, 유저062입니다.',2,'user062@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user063','pw063','닉네임063',NULL,'안녕하세요, 유저063입니다.',2,'user063@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user064','pw064','닉네임064',NULL,'안녕하세요, 유저064입니다.',2,'user064@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user065','pw065','닉네임065',NULL,'안녕하세요, 유저065입니다.',2,'user065@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user066','pw066','닉네임066',NULL,'안녕하세요, 유저066입니다.',2,'user066@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user067','pw067','닉네임067',NULL,'안녕하세요, 유저067입니다.',2,'user067@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user068','pw068','닉네임068',NULL,'안녕하세요, 유저068입니다.',2,'user068@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user069','pw069','닉네임069',NULL,'안녕하세요, 유저069입니다.',2,'user069@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user070','pw070','닉네임070',NULL,'안녕하세요, 유저070입니다.',2,'user070@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user071','pw071','닉네임071',NULL,'안녕하세요, 유저071입니다.',2,'user071@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user072','pw072','닉네임072',NULL,'안녕하세요, 유저072입니다.',2,'user072@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user073','pw073','닉네임073',NULL,'안녕하세요, 유저073입니다.',2,'user073@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user074','pw074','닉네임074',NULL,'안녕하세요, 유저074입니다.',2,'user074@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user075','pw075','닉네임075',NULL,'안녕하세요, 유저075입니다.',2,'user075@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user076','pw076','닉네임076',NULL,'안녕하세요, 유저076입니다.',2,'user076@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user077','pw077','닉네임077',NULL,'안녕하세요, 유저077입니다.',2,'user077@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user078','pw078','닉네임078',NULL,'안녕하세요, 유저078입니다.',2,'user078@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user079','pw079','닉네임079',NULL,'안녕하세요, 유저079입니다.',2,'user079@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user080','pw080','닉네임080',NULL,'안녕하세요, 유저080입니다.',2,'user080@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user081','pw081','닉네임081',NULL,'안녕하세요, 유저081입니다.',2,'user081@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user082','pw082','닉네임082',NULL,'안녕하세요, 유저082입니다.',2,'user082@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user083','pw083','닉네임083',NULL,'안녕하세요, 유저083입니다.',2,'user083@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user084','pw084','닉네임084',NULL,'안녕하세요, 유저084입니다.',2,'user084@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user085','pw085','닉네임085',NULL,'안녕하세요, 유저085입니다.',2,'user085@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user086','pw086','닉네임086',NULL,'안녕하세요, 유저086입니다.',2,'user086@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user087','pw087','닉네임087',NULL,'안녕하세요, 유저087입니다.',2,'user087@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user088','pw088','닉네임088',NULL,'안녕하세요, 유저088입니다.',2,'user088@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user089','pw089','닉네임089',NULL,'안녕하세요, 유저089입니다.',2,'user089@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user090','pw090','닉네임090',NULL,'안녕하세요, 유저090입니다.',2,'user090@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user091','pw091','닉네임091',NULL,'안녕하세요, 유저091입니다.',2,'user091@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user092','pw092','닉네임092',NULL,'안녕하세요, 유저092입니다.',2,'user092@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user093','pw093','닉네임093',NULL,'안녕하세요, 유저093입니다.',2,'user093@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user094','pw094','닉네임094',NULL,'안녕하세요, 유저094입니다.',2,'user094@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user095','pw095','닉네임095',NULL,'안녕하세요, 유저095입니다.',2,'user095@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user096','pw096','닉네임096',NULL,'안녕하세요, 유저096입니다.',2,'user096@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user097','pw097','닉네임097',NULL,'안녕하세요, 유저097입니다.',2,'user097@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user098','pw098','닉네임098',NULL,'안녕하세요, 유저098입니다.',2,'user098@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user099','pw099','닉네임099',NULL,'안녕하세요, 유저099입니다.',2,'user099@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user100','pw100','닉네임100',NULL,'안녕하세요, 유저100입니다.',2,'user100@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user001','pw001','닉네임001','https://example.com/profile/sample1.png','안녕하세요, 유저001입니다.',2,'user001@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user002','pw002','닉네임002','https://example.com/profile/sample1.png','안녕하세요, 유저002입니다.',2,'user002@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user003','pw003','닉네임003','https://example.com/profile/sample1.png','안녕하세요, 유저003입니다.',2,'user003@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user004','pw004','닉네임004','https://example.com/profile/sample1.png','안녕하세요, 유저004입니다.',2,'user004@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user005','pw005','닉네임005','https://example.com/profile/sample1.png','안녕하세요, 유저005입니다.',2,'user005@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user006','pw006','닉네임006','https://example.com/profile/sample1.png','안녕하세요, 유저006입니다.',2,'user006@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user007','pw007','닉네임007','https://example.com/profile/sample1.png','안녕하세요, 유저007입니다.',2,'user007@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user008','pw008','닉네임008','https://example.com/profile/sample1.png','안녕하세요, 유저008입니다.',2,'user008@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user009','pw009','닉네임009','https://example.com/profile/sample1.png','안녕하세요, 유저009입니다.',2,'user009@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user010','pw010','닉네임010','https://example.com/profile/sample1.png','안녕하세요, 유저010입니다.',2,'user010@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user011','pw011','닉네임011','https://example.com/profile/sample2.png','안녕하세요, 유저011입니다.',2,'user011@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user012','pw012','닉네임012','https://example.com/profile/sample2.png','안녕하세요, 유저012입니다.',2,'user012@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user013','pw013','닉네임013','https://example.com/profile/sample2.png','안녕하세요, 유저013입니다.',2,'user013@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user014','pw014','닉네임014','https://example.com/profile/sample2.png','안녕하세요, 유저014입니다.',2,'user014@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user015','pw015','닉네임015','https://example.com/profile/sample2.png','안녕하세요, 유저015입니다.',2,'user015@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user016','pw016','닉네임016','https://example.com/profile/sample2.png','안녕하세요, 유저016입니다.',2,'user016@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user017','pw017','닉네임017','https://example.com/profile/sample2.png','안녕하세요, 유저017입니다.',2,'user017@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user018','pw018','닉네임018','https://example.com/profile/sample2.png','안녕하세요, 유저018입니다.',2,'user018@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user019','pw019','닉네임019','https://example.com/profile/sample2.png','안녕하세요, 유저019입니다.',2,'user019@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user020','pw020','닉네임020','https://example.com/profile/sample2.png','안녕하세요, 유저020입니다.',2,'user020@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user021','pw021','닉네임021','https://example.com/profile/sample3.png','안녕하세요, 유저021입니다.',2,'user021@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user022','pw022','닉네임022','https://example.com/profile/sample3.png','안녕하세요, 유저022입니다.',2,'user022@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user023','pw023','닉네임023','https://example.com/profile/sample3.png','안녕하세요, 유저023입니다.',2,'user023@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user024','pw024','닉네임024','https://example.com/profile/sample3.png','안녕하세요, 유저024입니다.',2,'user024@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user025','pw025','닉네임025','https://example.com/profile/sample3.png','안녕하세요, 유저025입니다.',2,'user025@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user026','pw026','닉네임026','https://example.com/profile/sample3.png','안녕하세요, 유저026입니다.',2,'user026@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user027','pw027','닉네임027','https://example.com/profile/sample3.png','안녕하세요, 유저027입니다.',2,'user027@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user028','pw028','닉네임028','https://example.com/profile/sample3.png','안녕하세요, 유저028입니다.',2,'user028@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user029','pw029','닉네임029','https://example.com/profile/sample3.png','안녕하세요, 유저029입니다.',2,'user029@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user030','pw030','닉네임030','https://example.com/profile/sample3.png','안녕하세요, 유저030입니다.',2,'user030@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user031','pw031','닉네임031',NULL,'안녕하세요, 유저031입니다.',2,'user031@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user032','pw032','닉네임032',NULL,'안녕하세요, 유저032입니다.',2,'user032@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user033','pw033','닉네임033',NULL,'안녕하세요, 유저033입니다.',2,'user033@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user034','pw034','닉네임034',NULL,'안녕하세요, 유저034입니다.',2,'user034@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user035','pw035','닉네임035',NULL,'안녕하세요, 유저035입니다.',2,'user035@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user036','pw036','닉네임036',NULL,'안녕하세요, 유저036입니다.',2,'user036@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user037','pw037','닉네임037',NULL,'안녕하세요, 유저037입니다.',2,'user037@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user038','pw038','닉네임038',NULL,'안녕하세요, 유저038입니다.',2,'user038@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user039','pw039','닉네임039',NULL,'안녕하세요, 유저039입니다.',2,'user039@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user040','pw040','닉네임040',NULL,'안녕하세요, 유저040입니다.',2,'user040@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user041','pw041','닉네임041',NULL,'안녕하세요, 유저041입니다.',2,'user041@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user042','pw042','닉네임042',NULL,'안녕하세요, 유저042입니다.',2,'user042@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user043','pw043','닉네임043',NULL,'안녕하세요, 유저043입니다.',2,'user043@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user044','pw044','닉네임044',NULL,'안녕하세요, 유저044입니다.',2,'user044@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user045','pw045','닉네임045',NULL,'안녕하세요, 유저045입니다.',2,'user045@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user046','pw046','닉네임046',NULL,'안녕하세요, 유저046입니다.',2,'user046@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user047','pw047','닉네임047',NULL,'안녕하세요, 유저047입니다.',2,'user047@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user048','pw048','닉네임048',NULL,'안녕하세요, 유저048입니다.',2,'user048@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user049','pw049','닉네임049',NULL,'안녕하세요, 유저049입니다.',2,'user049@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user050','pw050','닉네임050',NULL,'안녕하세요, 유저050입니다.',2,'user050@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user051','pw051','닉네임051',NULL,'안녕하세요, 유저051입니다.',2,'user051@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user052','pw052','닉네임052',NULL,'안녕하세요, 유저052입니다.',2,'user052@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user053','pw053','닉네임053',NULL,'안녕하세요, 유저053입니다.',2,'user053@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user054','pw054','닉네임054',NULL,'안녕하세요, 유저054입니다.',2,'user054@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user055','pw055','닉네임055',NULL,'안녕하세요, 유저055입니다.',2,'user055@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user056','pw056','닉네임056',NULL,'안녕하세요, 유저056입니다.',2,'user056@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user057','pw057','닉네임057',NULL,'안녕하세요, 유저057입니다.',2,'user057@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user058','pw058','닉네임058',NULL,'안녕하세요, 유저058입니다.',2,'user058@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user059','pw059','닉네임059',NULL,'안녕하세요, 유저059입니다.',2,'user059@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user060','pw060','닉네임060',NULL,'안녕하세요, 유저060입니다.',2,'user060@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user061','pw061','닉네임061',NULL,'안녕하세요, 유저061입니다.',2,'user061@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user062','pw062','닉네임062',NULL,'안녕하세요, 유저062입니다.',2,'user062@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user063','pw063','닉네임063',NULL,'안녕하세요, 유저063입니다.',2,'user063@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user064','pw064','닉네임064',NULL,'안녕하세요, 유저064입니다.',2,'user064@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user065','pw065','닉네임065',NULL,'안녕하세요, 유저065입니다.',2,'user065@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user066','pw066','닉네임066',NULL,'안녕하세요, 유저066입니다.',2,'user066@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user067','pw067','닉네임067',NULL,'안녕하세요, 유저067입니다.',2,'user067@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user068','pw068','닉네임068',NULL,'안녕하세요, 유저068입니다.',2,'user068@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user069','pw069','닉네임069',NULL,'안녕하세요, 유저069입니다.',2,'user069@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user070','pw070','닉네임070',NULL,'안녕하세요, 유저070입니다.',2,'user070@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user071','pw071','닉네임071',NULL,'안녕하세요, 유저071입니다.',2,'user071@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user072','pw072','닉네임072',NULL,'안녕하세요, 유저072입니다.',2,'user072@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user073','pw073','닉네임073',NULL,'안녕하세요, 유저073입니다.',2,'user073@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user074','pw074','닉네임074',NULL,'안녕하세요, 유저074입니다.',2,'user074@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user075','pw075','닉네임075',NULL,'안녕하세요, 유저075입니다.',2,'user075@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user076','pw076','닉네임076',NULL,'안녕하세요, 유저076입니다.',2,'user076@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user077','pw077','닉네임077',NULL,'안녕하세요, 유저077입니다.',2,'user077@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user078','pw078','닉네임078',NULL,'안녕하세요, 유저078입니다.',2,'user078@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user079','pw079','닉네임079',NULL,'안녕하세요, 유저079입니다.',2,'user079@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user080','pw080','닉네임080',NULL,'안녕하세요, 유저080입니다.',2,'user080@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user081','pw081','닉네임081',NULL,'안녕하세요, 유저081입니다.',2,'user081@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user082','pw082','닉네임082',NULL,'안녕하세요, 유저082입니다.',2,'user082@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user083','pw083','닉네임083',NULL,'안녕하세요, 유저083입니다.',2,'user083@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user084','pw084','닉네임084',NULL,'안녕하세요, 유저084입니다.',2,'user084@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user085','pw085','닉네임085',NULL,'안녕하세요, 유저085입니다.',2,'user085@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user086','pw086','닉네임086',NULL,'안녕하세요, 유저086입니다.',2,'user086@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user087','pw087','닉네임087',NULL,'안녕하세요, 유저087입니다.',2,'user087@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user088','pw088','닉네임088',NULL,'안녕하세요, 유저088입니다.',2,'user088@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user089','pw089','닉네임089',NULL,'안녕하세요, 유저089입니다.',2,'user089@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user090','pw090','닉네임090',NULL,'안녕하세요, 유저090입니다.',2,'user090@example.com','여자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user091','pw091','닉네임091',NULL,'안녕하세요, 유저091입니다.',2,'user091@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user092','pw092','닉네임092',NULL,'안녕하세요, 유저092입니다.',2,'user092@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user093','pw093','닉네임093',NULL,'안녕하세요, 유저093입니다.',2,'user093@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user094','pw094','닉네임094',NULL,'안녕하세요, 유저094입니다.',2,'user094@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user095','pw095','닉네임095',NULL,'안녕하세요, 유저095입니다.',2,'user095@example.com','남자','외국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user096','pw096','닉네임096',NULL,'안녕하세요, 유저096입니다.',2,'user096@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user097','pw097','닉네임097',NULL,'안녕하세요, 유저097입니다.',2,'user097@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user098','pw098','닉네임098',NULL,'안녕하세요, 유저098입니다.',2,'user098@example.com','여자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user099','pw099','닉네임099',NULL,'안녕하세요, 유저099입니다.',2,'user099@example.com','남자','내국인','N');
+INSERT INTO member(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user100','pw100','닉네임100',NULL,'안녕하세요, 유저100입니다.',2,'user100@example.com','여자','외국인','N');
 
 commit ;
 
@@ -746,8 +746,6 @@ INSERT INTO store_goods (store_id, name, work_name, character_name, category, pr
 VALUES (8, '진격의거인 한지 아크릴스탠드', '진격의거인', '한지', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_25.jpg');
 
 COMMIT;
-
-
 
 
 
@@ -5296,520 +5294,520 @@ VALUES (10, '블루록 뱀파이어 유니폼 스탠드', '뱀파이어 콘셉�
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
 VALUES (10, '하이큐 호러 나이트 포스터 세트', '체육관을 배경으로 한 호러 컨셉 일러스트 포스터', '기타', 12000, 'g100.jpg');
 -- 채팅방 20개
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 1, 1, 21, DATE_SUB(NOW(), INTERVAL 20 DAY), DATE_SUB(NOW(), INTERVAL 19 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 2, 2, 22, DATE_SUB(NOW(), INTERVAL 19 DAY), DATE_SUB(NOW(), INTERVAL 18 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 3, 3, 23, DATE_SUB(NOW(), INTERVAL 18 DAY), DATE_SUB(NOW(), INTERVAL 17 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 4, 4, 24, DATE_SUB(NOW(), INTERVAL 17 DAY), DATE_SUB(NOW(), INTERVAL 16 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (5, 5, 25, DATE_SUB(NOW(), INTERVAL 16 DAY), DATE_SUB(NOW(), INTERVAL 15 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (6, 6, 26, DATE_SUB(NOW(), INTERVAL 15 DAY), DATE_SUB(NOW(), INTERVAL 14 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 7, 7, 27, DATE_SUB(NOW(), INTERVAL 14 DAY), DATE_SUB(NOW(), INTERVAL 13 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 8, 8, 28, DATE_SUB(NOW(), INTERVAL 13 DAY), DATE_SUB(NOW(), INTERVAL 12 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 9, 9, 29, DATE_SUB(NOW(), INTERVAL 12 DAY), DATE_SUB(NOW(), INTERVAL 11 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (10, 10, 30, DATE_SUB(NOW(), INTERVAL 11 DAY), DATE_SUB(NOW(), INTERVAL 10 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (11, 11, 31, DATE_SUB(NOW(), INTERVAL 10 DAY), DATE_SUB(NOW(), INTERVAL 9 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (12, 12, 32, DATE_SUB(NOW(), INTERVAL 9 DAY), DATE_SUB(NOW(), INTERVAL 8 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 13, 13, 33, DATE_SUB(NOW(), INTERVAL 8 DAY), DATE_SUB(NOW(), INTERVAL 7 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 14, 14, 34, DATE_SUB(NOW(), INTERVAL 7 DAY), DATE_SUB(NOW(), INTERVAL 6 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 15, 15, 35, DATE_SUB(NOW(), INTERVAL 6 DAY), DATE_SUB(NOW(), INTERVAL 5 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (16, 16, 36, DATE_SUB(NOW(), INTERVAL 5 DAY), DATE_SUB(NOW(), INTERVAL 4 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (17, 17, 37, DATE_SUB(NOW(), INTERVAL 4 DAY), DATE_SUB(NOW(), INTERVAL 3 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES (18, 18, 38, DATE_SUB(NOW(), INTERVAL 3 DAY), DATE_SUB(NOW(), INTERVAL 2 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 19, 19, 39, DATE_SUB(NOW(), INTERVAL 2 DAY), DATE_SUB(NOW(), INTERVAL 1 DAY),'N','N');
 
-INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
+INSERT INTO tkk.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 20, 20, 40, DATE_SUB(NOW(), INTERVAL 1 DAY), NOW(),'N','N');
 -- Room 1 (seller 1, buyer 21) - 10 messages
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 21, '안녕하세요, 아직 거래 가능할까요? (room 1-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 1, '네, 아직 가능해요. (room 1-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 21, '직거래 가능한가요? (room 1-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 1, '네, OO역 근처에서 만나면 될 것 같아요. (room 1-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 21, '토요일 오후 괜찮으세요? (room 1-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 1, '토요일 3시 괜찮습니다. (room 1-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 21, '네, 그때 뵙겠습니다! (room 1-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 1, '혹시 현금 결제 맞으실까요? (room 1-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 21, '네, 현금으로 준비하겠습니다. (room 1-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (1, 1, '알겠습니다, 감사합니다. (room 1-10)', 'N');
 
 
 -- Room 2 (seller 2, buyer 22) - 10 messages
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 22, '안녕하세요, 아직 거래 가능할까요? (room 2-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 2, '네, 가능해요. 어떤 방식 선호하시나요? (room 2-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 22, '직거래가 편해서요. (room 2-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 2, '그럼 홍대 입구역에서 만날까요? (room 2-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 22, '네, 홍대 입구역 좋아요. (room 2-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 2, '시간은 오후 2시 어떠세요? (room 2-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 22, '2시 괜찮습니다. (room 2-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 2, '혹시 포장 따로 필요하신가요? (room 2-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 22, '아니요, 그냥 그대로만 가져와 주세요. (room 2-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (2, 2, '넵 알겠습니다. (room 2-10)', 'N');
 
 
 -- Room 3 (seller 3, buyer 23)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 23, '안녕하세요, 사진이랑 동일한 상태인가요? (room 3-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 3, '네, 사용감 거의 없습니다. (room 3-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 23, '혹시 미개봉인가요? (room 3-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 3, '미개봉은 아니고 전시만 했어요. (room 3-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 23, '알겠습니다. 직거래 원합니다. (room 3-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 3, '강남역 근처 가능하신가요? (room 3-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 23, '네, 강남역으로 갈게요. (room 3-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 3, '좋아요. 자세한 출구는 다시 말씀드릴게요. (room 3-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 23, '네, 감사합니다! (room 3-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (3, 3, '그때 뵙겠습니다. (room 3-10)', 'N');
 
 
 -- Room 4 (seller 4, buyer 24)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 24, '안녕하세요, 가격 네고 가능할까요? (room 4-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 4, '소폭 네고 가능합니다. 어느 정도 생각하시나요? (room 4-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 24, '1만원 정도 가능할까요? (room 4-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 4, '그 정도면 괜찮습니다. (room 4-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 24, '감사합니다. 택배로 받고 싶어요. (room 4-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 4, '택배비는 포함해서 1만5천원 어떠세요? (room 4-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 24, '네 그렇게 할게요. (room 4-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 4, '입금 후 주소 알려주세요. (room 4-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 24, '계좌 알려주시면 바로 입금할게요. (room 4-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (4, 4, '네, 계좌 보내드렸습니다. (room 4-10)', 'N');
 
 
 -- Room 5 (seller 5, buyer 25)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 25, '안녕하세요, 상태가 궁금해서 연락드렸어요. (room 5-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 5, '박스까지 보관 중이고 훼손 없습니다. (room 5-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 25, '실물 사진 한 장 더 받을 수 있을까요? (room 5-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 5, '네, 조금 뒤에 찍어서 보내드릴게요. (room 5-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 25, '감사합니다! (room 5-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 5, '사진 첨부드렸습니다. (room 5-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 25, '상태 좋아 보여서 구매 원합니다. (room 5-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 5, '그럼 직거래/택배 중 어떤 게 좋으세요? (room 5-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 25, '직거래로 진행하고 싶어요. (room 5-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (5, 5, '네, 장소는 홍대 근처로 할게요. (room 5-10)', 'N');
 
 
 -- Room 6 (seller 6, buyer 26)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 26, '안녕하세요, 예약 가능 여부 문의드립니다. (room 6-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 6, '네, 오늘 기준으로 예약 가능해요. (room 6-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 26, '그럼 토요일까지 홀드 부탁드립니다. (room 6-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 6, '토요일까지 홀드해두겠습니다. (room 6-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 26, '감사합니다! (room 6-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 6, '시간 맞춰서 다시 연락 주세요. (room 6-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 26, '네, 그렇게 하겠습니다. (room 6-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 6, '좋은 하루 보내세요. (room 6-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 26, '네, 감사합니다 :) (room 6-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (6, 6, '네 :) (room 6-10)', 'N');
 
 
 -- Room 7 (seller 7, buyer 27)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 27, '안녕하세요, 혹시 구성품 누락된 거 있나요? (room 7-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 7, '구성품 모두 다 있습니다. (room 7-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 27, '설명서도 포함인가요? (room 7-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 7, '네, 설명서도 같이 드려요. (room 7-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 27, '그럼 구매하겠습니다. (room 7-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 7, '감사합니다. 거래 방식은 어떻게 하실까요? (room 7-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 27, '직거래 원합니다. (room 7-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 7, '그럼 신촌역 근처 어떠세요? (room 7-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 27, '좋습니다. 시간만 조율해요. (room 7-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (7, 7, '네, 오후 4시쯤 어떠세요? (room 7-10)', 'N');
 
 
 -- Room 8 (seller 8, buyer 28)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 28, '안녕하세요, 상품 아직 보유하고 계신가요? (room 8-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 8, '네, 아직 판매되지 않았습니다. (room 8-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 28, '그럼 구매 예약하고 싶어요. (room 8-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 8, '네, 닉네임 확인했습니다. (room 8-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 28, '계좌 알려주시면 입금할게요. (room 8-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 8, '계좌번호 보내드렸습니다. (room 8-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 28, '방금 입금 완료했습니다. (room 8-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 8, '입금 확인했습니다. 내일 발송할게요. (room 8-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 28, '감사합니다, 기다릴게요. (room 8-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (8, 8, '송장 나오면 다시 알려드릴게요. (room 8-10)', 'N');
 
 
 -- Room 9 (seller 9, buyer 29)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 29, '안녕하세요, 실사진 추가 부탁드려도 될까요? (room 9-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 9, '네, 지금 바로 찍어서 보내드릴게요. (room 9-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 29, '사진 잘 받았습니다. (room 9-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 9, '괜찮으신가요? (room 9-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 29, '네, 구매 원합니다. (room 9-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 9, '감사합니다. 직거래로 하실까요? (room 9-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 29, '네, 직거래가 좋아요. (room 9-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 9, '역 근처 카페에서 뵈어요. (room 9-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 29, '알겠습니다, 감사합니다. (room 9-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (9, 9, '네, 그날 뵙겠습니다. (room 9-10)', 'N');
 
 
 -- Room 10 (seller 10, buyer 30)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 30, '안녕하세요, 혹시 오늘 거래 가능하신가요? (room 10-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 10, '오늘 저녁은 가능합니다. (room 10-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 30, '그럼 7시쯤 어떠세요? (room 10-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 10, '7시 좋습니다. (room 10-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 30, '장소는 어디가 편하신가요? (room 10-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 10, '강남역 11번 출구 앞이 편합니다. (room 10-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 30, '그쪽으로 가겠습니다. (room 10-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 10, '도착하시면 채팅 한 번만 주세요. (room 10-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 30, '네, 도착하면 연락드릴게요. (room 10-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (10, 10, '네 알겠습니다. (room 10-10)', 'N');
 -- Room 11 (seller 11, buyer 31)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 31, '안녕하세요, 게시글 보고 연락드렸어요. (room 11-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 11, '안녕하세요, 문의 감사합니다. (room 11-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 31, '혹시 박스 모서리 찢어진 부분은 없나요? (room 11-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 11, '네, 박스 상태도 깨끗합니다. (room 11-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 31, '그럼 구매하고 싶습니다. (room 11-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 11, '감사합니다. 직거래 원하시나요, 택배 원하시나요? (room 11-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 31, '직거래가 좋아요. (room 11-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 11, '그럼 홍대입구역 8번 출구 근처 어떠세요? (room 11-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 31, '네, 그쪽으로 가겠습니다. (room 11-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (11, 11, '도착하시면 채팅 한번 남겨주세요. (room 11-10)', 'N');
 
 
 -- Room 12 (seller 12, buyer 32)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 32, '안녕하세요, 상품 상태 문의드립니다. (room 12-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 12, '사용감 거의 없는 상태입니다. (room 12-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 32, '혹시 하자 있는 부분이 있을까요? (room 12-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 12, '눈에 띄는 스크래치는 없습니다. (room 12-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 32, '그럼 택배 거래 가능할까요? (room 12-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 12, '네, 선불 택배로 보내드립니다. (room 12-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 32, '입금 후 주소 보내드릴게요. (room 12-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 12, '네, 계좌번호 먼저 보내드릴게요. (room 12-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 32, '입금 완료했습니다, 확인 부탁드려요. (room 12-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (12, 12, '확인했습니다. 내일 발송 후 송장 보내드릴게요. (room 12-10)', 'N');
 
 
 -- Room 13 (seller 13, buyer 33)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 33, '안녕하세요, 오늘 저녁 직거래 가능하신가요? (room 13-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 13, '오늘 7시 이후로는 가능합니다. (room 13-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 33, '그럼 7시 30분은 어떠세요? (room 13-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 13, '네, 7시 30분으로 맞추겠습니다. (room 13-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 33, '장소는 어디로 가면 될까요? (room 13-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 13, '신촌역 2번 출구 근처 카페 앞에서 뵐까요? (room 13-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 33, '좋습니다, 그 시간에 도착하겠습니다. (room 13-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 13, '도착하시면 프로필 닉네임 알려주세요. (room 13-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 33, '네, 도착 후 채팅 드릴게요. (room 13-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (13, 13, '넵, 그때 뵙겠습니다. (room 13-10)', 'N');
 
 
 -- Room 14 (seller 14, buyer 34)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 34, '안녕하세요, 사진상 박스 미개봉인가요? (room 14-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 14, '네, 완전 미개봉 상태입니다. (room 14-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 34, '그럼 판매가 확정가인가요? (room 14-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 14, '소폭 네고는 가능합니다. (room 14-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 34, '2천원 정도 네고 가능하실까요? (room 14-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 14, '네, 그 정도는 괜찮습니다. (room 14-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 34, '감사합니다. 택배 거래 원합니다. (room 14-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 14, '택배비 포함해서 금액 다시 안내드릴게요. (room 14-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 34, '네, 계좌 알려주시면 입금하겠습니다. (room 14-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (14, 14, '계좌번호 보내드렸어요, 확인 부탁드려요. (room 14-10)', 'N');
 
 
 -- Room 15 (seller 15, buyer 35)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 35, '안녕하세요, 교환도 가능하신가요? (room 15-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 15, '네, 동일 작품 굿즈라면 교환 가능해요. (room 15-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 35, '저는 다른 캐릭터 포카를 가지고 있습니다. (room 15-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 15, '사진 한 장 보내주실 수 있나요? (room 15-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 35, '네, 사진 올렸습니다. (room 15-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 15, '괜찮네요, 교환 진행해요. (room 15-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 35, '직거래로 교환하면 될까요? (room 15-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 15, '네, 홍대에서 만나서 교환하죠. (room 15-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 35, '시간은 토요일 오후 어떠세요? (room 15-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (15, 15, '네, 토요일 오후에 뵐게요. (room 15-10)', 'N');
 
 
 -- Room 16 (seller 16, buyer 36)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 36, '안녕하세요, 예약자 많나요? (room 16-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 16, '지금 한 분 정도 더 문의 중입니다. (room 16-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 36, '혹시 선입금 기준으로 우선인가요? (room 16-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 16, '네, 선입금 순으로 진행하고 있습니다. (room 16-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 36, '그럼 제가 먼저 입금하겠습니다. (room 16-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 16, '감사합니다. 계좌번호 보내드릴게요. (room 16-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 36, '방금 입금했습니다, 확인 부탁드려요. (room 16-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 16, '입금 확인됐습니다. 택배 내일 발송할게요. (room 16-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 36, '네, 송장 나오는 대로 알려주세요. (room 16-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (16, 16, '네, 송장번호 나오면 바로 공유드릴게요. (room 16-10)', 'N');
 
 
 -- Room 17 (seller 17, buyer 37)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 37, '안녕하세요, 혹시 오늘이 아닌 내일 거래도 가능하신가요? (room 17-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 17, '네, 내일 저녁도 가능합니다. (room 17-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 37, '그럼 내일 6시쯤 어떠세요? (room 17-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 17, '6시 괜찮습니다. (room 17-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 37, '장소는 홍대입구역 근처에서 뵐까요? (room 17-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 17, '네, 9번 출구 근처 카페 앞에서 뵈어요. (room 17-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 37, '알겠습니다, 내일 뵙겠습니다. (room 17-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 17, '네, 오실 때 조심해서 오세요. (room 17-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 37, '네 감사합니다! (room 17-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (17, 17, '그럼 내일 뵈어요. (room 17-10)', 'N');
 
 
 -- Room 18 (seller 18, buyer 38)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 38, '안녕하세요, 구성품 전체 사진 볼 수 있을까요? (room 18-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 18, '네, 지금 바로 여러 장 찍어서 보내드릴게요. (room 18-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 38, '사진 잘 봤습니다, 상태 아주 좋네요. (room 18-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 18, '감사합니다. 전시만 하고 보관했어요. (room 18-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 38, '그럼 택배로 구매하고 싶습니다. (room 18-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 18, '네, 충전재 넣어서 꼼꼼히 포장해서 보내드릴게요. (room 18-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 38, '입금 완료되면 알려드릴게요. (room 18-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 18, '네, 확인 후 답장 드리겠습니다. (room 18-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 38, '방금 입금했습니다, 확인 부탁드립니다. (room 18-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (18, 18, '확인했어요! 내일 발송 후 송장 보내드릴게요. (room 18-10)', 'N');
 
 
 -- Room 19 (seller 19, buyer 39)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 39, '안녕하세요, 거래 희망자입니다. (room 19-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 19, '안녕하세요, 문의 감사드립니다. (room 19-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 39, '혹시 오늘 저녁에 직거래 가능하신가요? (room 19-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 19, '오늘은 조금 어렵고, 내일 저녁은 가능합니다. (room 19-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 39, '그럼 내일로 진행해요. (room 19-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 19, '네, 시간은 7시쯤 어떠세요? (room 19-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 39, '7시 괜찮습니다. (room 19-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 19, '장소는 강남역 10번 출구 근처로 할게요. (room 19-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 39, '네, 그쪽으로 가겠습니다. (room 19-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (19, 19, '도착하시면 채팅 주세요. (room 19-10)', 'N');
 
 
 -- Room 20 (seller 20, buyer 40)
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 40, '안녕하세요, 상품 구매 희망합니다. (room 20-1)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 20, '안녕하세요, 아직 판매 중입니다. (room 20-2)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 40, '상세 설명보다 실사진이 보고 싶어요. (room 20-3)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 20, '지금 사진 몇 장 찍어서 올렸습니다. (room 20-4)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 40, '사진 봤는데 상태 좋아 보여요. (room 20-5)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 20, '감사합니다. 거래는 어떻게 진행해볼까요? (room 20-6)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 40, '저는 직거래 선호합니다. (room 20-7)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 20, '그럼 홍대입구역에서 만나죠. (room 20-8)', 'Y');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 40, '네, 시간만 정하면 될 것 같아요. (room 20-9)', 'N');
-INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
+INSERT INTO tkk.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 20, '토요일 오후 3시는 어떠세요? (room 20-10)', 'N');
 
 
@@ -5989,54 +5987,38 @@ VALUES(20,NULL,16,'과도한 비방 표현이 포함된 게시글입니다.','WA
 commit ;
 
 
--- 5. 기본 역할 데이터 4개(SUPER, MANAGER, CS, CONTENT)
+-- 5. 기본 역할 데이터 4개 (SUPER, MANAGER, CS, CONTENT)
+INSERT IGNORE INTO admin_role (role_code, role_name, description)
+VALUES
+    ('SUPER',   '최고관리자',      '모든 기능 사용 가능'),
+    ('MANAGER', '운영자',          '회원/게시판/거래 관리'),
+    ('CS',      '고객센터',        '문의/FAQ/공지 관리'),
+    ('CONTENT', '콘텐츠관리자',    '메인 배너/추천 검색어 관리');
 
-INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
-VALUES ( 'SUPER',   '최고관리자',      '모든 기능 사용 가능');
-
-INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
-VALUES ( 'MANAGER', '운영자',          '회원/게시판/거래 관리');
-
-INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
-VALUES ( 'CS',      '고객센터',        '문의/FAQ/공지 관리');
-
-INSERT INTO ADMIN_ROLE ( ROLE_CODE, ROLE_NAME, DESCRIPTION)
-VALUES ( 'CONTENT', '콘텐츠관리자',    '메인 배너/추천 검색어 관리');
-
-
--- 6. 관리자 계정 1개 생성 (ID: admin / PW: admin1234)
-
-INSERT INTO ADMIN_USER (
-    LOGIN_ID, LOGIN_PW, NAME, EMAIL, PHONE, STATUS
+-- 6. 관리자 계정 생성
+INSERT IGNORE INTO admin_user (
+    login_id, login_pw, name, email, phone, status
 ) VALUES (
-
              'admin',
-             'admin1234',           -- 학습/과제용: 평문, 실서비스이면 반드시 암호화
+             'admin1234',
              '관리자',
              'admin@tkk.com',
              '010-0000-0000',
              'Y'
          );
 
-COMMIT;
-
-
 -- 7. admin 계정에 SUPER 권한 매핑
---    (숫자를 직접 안 쓰고, 서브쿼리로 안전하게 매핑)
-
-INSERT INTO ADMIN_USER_ROLE (ADMIN_ID, ROLE_ID)
-SELECT u.ADMIN_ID, r.ROLE_ID
-FROM   ADMIN_USER u
-           JOIN ADMIN_ROLE r ON r.ROLE_CODE = 'SUPER'
-WHERE  u.LOGIN_ID = 'admin'
-  AND  NOT EXISTS (
+INSERT INTO admin_user_role (admin_id, role_id)
+SELECT u.admin_id, r.role_id
+FROM admin_user u
+         JOIN admin_role r ON r.role_code = 'SUPER'
+WHERE u.login_id = 'admin'
+  AND NOT EXISTS (
     SELECT 1
-    FROM   ADMIN_USER_ROLE ur
-    WHERE  ur.ADMIN_ID = u.ADMIN_ID
-      AND    ur.ROLE_ID  = r.ROLE_ID
+    FROM admin_user_role ur
+    WHERE ur.admin_id = u.admin_id
+      AND ur.role_id  = r.role_id
 );
-
-COMMIT;
 
 
 -- 8. 최종 확인용 쿼리 (필요할 때만 실행)

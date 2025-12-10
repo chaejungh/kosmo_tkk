@@ -59,11 +59,6 @@ public class PopupStore {
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
 
-    // 🔥 소프트 삭제용 플래그 (Store / TradePost와 동일하게 사용)
-    @ColumnDefault("'N'")
-    @Column(name = "DELETED_YN", length = 1, nullable = false)
-    private String deletedYn = "N";   // N = 노출, Y = 숨김/삭제
-
     @OneToMany(mappedBy = "popup")
     @ToString.Exclude
     @JsonIgnore
@@ -73,4 +68,9 @@ public class PopupStore {
     @ToString.Exclude
     @JsonIgnore
     private Set<PopupGood> popupGoods = new LinkedHashSet<>();
+
+    // 🔥 소프트 삭제용 플래그 (Store / TradePost와 동일하게 사용)
+    @ColumnDefault("'N'")
+    @Column(name = "DELETED_YN", length = 1, nullable = false)
+    private String deletedYn = "N";   // N = 노출, Y = 숨김/삭제
 }
