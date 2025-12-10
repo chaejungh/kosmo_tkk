@@ -39,7 +39,7 @@ class BoardLikeRepositoryTest {
 //    }
     @Test
     void countByPostId() {
-        int countPost1 = boardLikeRepository.countByPostId(10L);
+        int countPost1 = boardLikeRepository.countByPostId(1L);
         System.out.println(countPost1);
     }
 }

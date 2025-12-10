@@ -77,8 +77,8 @@
             <!-- 대표 사진 -->
             <div class="detail-main-image">
                 <!-- thumbnailUrl이 있으면 대표사진으로 사용 -->
-                <img th:if="${post.thumbnailUrl} != null"
-                     th:src="${post.thumbnailUrl}"
+                <img th:if="${coverUrl} != null"
+                     th:src="${coverUrl}"
                      alt="대표 사진"
                      style="width:100%; height:100%; object-fit:cover;">
                 <div th:if="${post.thumbnailUrl} == null">
@@ -103,7 +103,7 @@
                         th:data-liked="${likeInfo.id != null}">
                             ❤️
                         </button>
-                        <span id="like-count" th:text="${post.likeCount}">0</span>
+                        <span id="like-count" th:text="${likeInfo.getLikeCount()}">0</span>
 
                     </div>
                     <div class="detail-stat-item">

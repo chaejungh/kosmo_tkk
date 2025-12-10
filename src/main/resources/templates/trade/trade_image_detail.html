@@ -122,10 +122,11 @@
 
             <img th:each="img, iter : ${imageList}"
                  th:id="'img' + ${iter.index}"
-                 th:if="${iter.index} == ${activeIndex}"
                  th:src="${img.imageUrl}"
                  class="main-img"
+                 th:style="${iter.index} == ${activeIndex} ? 'display:block' : 'display:none'"
                  alt="이미지"/>
+
         </div>
 
         <!-- 우측 화살표 -->
@@ -149,8 +150,8 @@
 
 
 <script>
-    let currentIndex = /*[[${activeIndex}]]*/ 0;
-    const total = /*[[${imageList.size()}]]*/ 1;
+    let currentIndex = [[${activeIndex}]];
+    const total = [[${#lists.size(imageList)}]];
 
     const zoomBox = document.getElementById("zoomBox");
 
@@ -192,17 +193,12 @@
     /* 초기 active 설정 */
     updateThumb();
 
-    /* 🔥 클릭 확대 기능 */
-    document.addEventListener("click", (e) => {
+    // 확대는 메인 박스 클릭할 때만 작동하게
+    zoomBox.addEventListener("click", (e) => {
         const img = document.getElementById("img" + currentIndex);
-
         if (!img) return;
 
-        if (img.classList.contains("zoomed")) {
-            img.classList.remove("zoomed");
-        } else {
-            img.classList.add("zoomed");
-        }
+        img.classList.toggle("zoomed");
     });
 </script>
 

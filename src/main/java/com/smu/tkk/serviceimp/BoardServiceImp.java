@@ -148,6 +148,11 @@ import java.util.Optional;
         }
 
         @Override
+        public Optional<BoardPostImage> readOneImg(Long postId) throws SQLException {
+            return boardPostImageRepository.findFirstByPostIdOrderBySortOrderAscIdAsc(postId);
+        }
+
+        @Override
         @Transactional
         public boolean addImage(Long postId, BoardPostImage image) throws SQLException, IllegalArgumentException {
             if (postId == null || image == null) throw new IllegalArgumentException("invalid params");

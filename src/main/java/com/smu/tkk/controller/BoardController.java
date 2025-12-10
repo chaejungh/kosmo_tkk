@@ -2,6 +2,7 @@ package com.smu.tkk.controller;
 
 import com.smu.tkk.dto.BoardWriteValid;
 import com.smu.tkk.entity.*;
+import com.smu.tkk.repository.BoardPostImageRepository;
 import com.smu.tkk.service.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -24,6 +25,8 @@ import com.smu.tkk.entity.BoardComment;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -31,6 +34,7 @@ public class BoardController {
     private final BoardLikeService boardLikeService;
     private final BoardBookmarkService boardBookmarkService;
     private final CommentService commentService;
+
 
 
     // 리스트 컨트롤러 ---------------------------------------------
@@ -69,10 +73,17 @@ public class BoardController {
         List<BoardComment> commentList =
                 commentService.readByPost(postId, PageRequest.of(0, 100));
 
+        // 표지 이미지
+        Optional<BoardPostImage> coverOpt = boardService.readOneImg(postId);
+        String coverUrl = coverOpt.map(BoardPostImage::getImageUrl)
+                .orElse("/images/dummy/noimg.png");
+        Long coverImageId = coverOpt.map(BoardPostImage::getId).orElse(0L);
+        model.addAttribute("coverImageId", coverImageId);
+
         // 🔥 댓글 개수 조회 추가
         long commentCount = commentService.countByPostId(postId);
         model.addAttribute("commentCount", commentCount);
-
+        model.addAttribute("coverUrl", coverUrl);
         model.addAttribute("memberId", memberId);
         model.addAttribute("post", post);
         model.addAttribute("likeInfo", likeInfo);  // ← html 에서 사용
