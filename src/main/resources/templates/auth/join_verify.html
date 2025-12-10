@@ -1,24 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>이메일 인증 | 더쿠쿠</title>
+
+    <style>
+        :root {
+            --purple: #6366f1;
+            --purple-deep: #4f46e5;
+            --bg: #f5f3ff;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .verify-card {
+            width: 420px;
+            background: var(--card-bg);
+            padding: 32px 28px;
+            border-radius: 28px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--purple);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-sub);
+            margin-bottom: 24px;
+        }
+
+        .input-code {
+            width: 100%;
+            max-width: 260px;   /* 🔥 추가: input이 부모 너비를 넘지 않도록 제한 */
+            height: 52px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 0 16px;
+            font-size: 22px;   /* 조금 더 선명하게 */
+            letter-spacing: 8px;   /* 🔥 숫자 간격을 더 넓혀도 튀어나오지 않음 */
+            text-align: center;
+            outline: none;
+            margin: 0 auto;    /* 🔥 수평 중앙 정렬 */
+        }
+
+
+        .input-code:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 1px rgba(99,102,241,0.2);
+        }
+
+        .btn-submit {
+            margin-top: 18px;
+            width: 100%;
+            height: 50px;
+            border-radius: 14px;
+            border: none;
+            background: var(--purple);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background: var(--purple-deep);
+        }
+
+        .resend-area {
+            margin-top: 14px;
+        }
+
+        .resend-btn {
+            color: var(--purple);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px 0;
+        }
+
+        .timer {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 6px;
+        }
+    </style>
 </head>
+
 <body>
+<div class="verify-card">
+    <div class="title">이메일 인증</div>
+    <div class="subtitle">이메일로 전송된 인증코드를 입력해주세요.</div>
 
-<h2>이메일 인증</h2>
-<p>이메일로 전송된 인증코드를 입력해주세요.</p>
+    <form action="/auth/verify" method="post">
+        <input type="hidden" name="email" id="email" th:value="${email}">
 
-<form action="/auth/verify" method="post">
-    <input type="hidden" name="email" th:value="${email}">
+        <input class="input-code" type="text" name="code" maxlength="6"
+               placeholder="000000" required>
 
-    <input type="text" name="code" placeholder="인증코드 6자리" required>
+        <button class="btn-submit" type="submit">인증하기</button>
+    </form>
 
-    <button type="submit">인증하기</button>
-</form>
+    <div class="resend-area">
+        <button class="resend-btn" onclick="resendCode()">인증코드 재전송</button>
+        <div class="timer" id="timerText">남은 시간: 03:00</div>
+    </div>
+</div>
 
-
-</body>
 <script>
     async function resendCode() {
         const email = document.getElementById("email").value;
@@ -32,10 +141,40 @@
         const result = await res.text();
 
         if (result === "OK") {
-            showToast("인증코드가 재전송되었습니다!");
+            alert("인증코드가 재전송되었습니다.");
+            resetTimer();
         }
     }
 
+    // 3분 타이머
+    let time = 180;
+    let timerInterval;
 
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (time <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById("timerText").innerText = "인증 시간이 만료되었습니다.";
+                return;
+            }
+
+            const min = String(Math.floor(time / 60)).padStart(2, "0");
+            const sec = String(time % 60).padStart(2, "0");
+
+            document.getElementById("timerText").innerText = `남은 시간: ${min}:${sec}`;
+
+            time--;
+        }, 1000);
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        time = 180;
+        startTimer();
+    }
+
+    startTimer();
 </script>
+
+</body>
 </html>
