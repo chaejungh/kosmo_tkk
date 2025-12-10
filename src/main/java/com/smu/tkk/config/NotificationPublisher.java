@@ -44,4 +44,18 @@ public class NotificationPublisher {
             log.info("알림을 보낼 SSE 연결이 없습니다. memberId={}", memberId);
         }
     }
+
+    public void sendToMemberWithEvent(Long memberId, String message, String eventName) {
+        SseEmitter emitter = emitters.get(memberId);
+        if (emitter != null) {
+            try {
+                emitter.send(SseEmitter.event()
+                        .name(eventName)
+                        .data(message));
+            } catch (Exception e) {
+                emitters.remove(memberId);
+            }
+        }
+    }
+
 }

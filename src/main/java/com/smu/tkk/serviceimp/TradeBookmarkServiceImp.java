@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -42,5 +44,10 @@ public class TradeBookmarkServiceImp implements TradeBookmarkService {
     @Override
     public Page<TradeBookmark> getBookmarks(Long memberId, Pageable pageable) {
         return tradeBookmarkRepository.findByMemberId(memberId, pageable);
+    }
+
+    @Override
+    public List<TradeBookmark> getBookmarksByTradId(Long tradeId) {
+        return tradeBookmarkRepository.findByTradeId(tradeId);
     }
 }
