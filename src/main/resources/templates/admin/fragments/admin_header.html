@@ -1,0 +1,42 @@
+<!-- templates/admin/fragments/admin_header.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+<!-- 🔥 관리자 공통 헤더 fragment -->
+<div th:fragment="adminHeader" class="admin-header"
+     style="background:#0b1120; color:#e5e7eb; padding:14px 32px;
+            display:flex; align-items:center; justify-content:space-between;">
+
+  <!-- 왼쪽 영역: 로고 + 뱃지 -->
+  <div class="admin-header-left" style="display:flex; align-items:center; gap:12px;">
+    <a th:href="@{/admin}" class="admin-logo"
+       style="font-weight:700; font-size:18px; color:white; text-decoration:none;">
+      더쿠쿠 관리자
+    </a>
+
+    <!-- 각 화면에서 동적으로 전달할 뱃지 (예: 대시보드 / 회원관리 / 게시판관리 등) -->
+    <span class="admin-header-badge"
+          th:text="${badge}"
+          style="font-size:11px; padding:2px 8px; border-radius:999px;
+                     background:rgba(148,163,184,.2);">
+            대시보드
+        </span>
+  </div>
+
+  <!-- 오른쪽 영역: 관리자 이름 + 로그아웃 -->
+  <div class="admin-header-right" style="font-size:13px; display:flex; align-items:center; gap:12px;">
+        <span th:text="${session.adminName != null ? session.adminName + '님 안녕하세요' : '관리자님 안녕하세요'}">
+            관리자님 안녕하세요
+        </span>
+    <span>|</span>
+    <a th:href="@{/admin/logout}" style="color:#cbd5f5; text-decoration:none;">로그아웃</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -115,12 +115,12 @@
                 showToast(event.data);
             });
 
-            /*// 공지/이벤트 알림
+            // 공지/이벤트 알림
             es.addEventListener("notice-alert", (event) => {
                 const setting = localStorage.getItem("notice_alert_on");
                 if (setting === "N") return;
                 showToast(event.data);
-            });*/
+            });
 
 
             es.onerror = () => {

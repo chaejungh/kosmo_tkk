@@ -470,7 +470,16 @@
 
                     </div>
 
-                </div>
+                    <div style="text-align:center; margin-top: 12px;">
+                        <label style="font-size: 14px; cursor:pointer;">
+                            <input type="checkbox" id="hidePopupToday">
+                            오늘 하루 보지 않기
+                        </label>
+                    </div>
+
+                </div> <!-- /.modal-body -->
+
+            </div>
 
             </div>
         </div>
@@ -586,13 +595,47 @@
         })();
     </script>
 
-    <!-- 🔥 진행 중 팝업스토어 자동 모달 실행 -->
+    <!-- 🔥 진행 중 팝업스토어 자동 모달 실행 + 오늘 하루 보지 않기 -->
     <script th:if="${activePopupList != null and activePopupList.size() > 0}">
         document.addEventListener("DOMContentLoaded", function () {
-            const modal = new bootstrap.Modal(document.getElementById("popupStoreModal"));
+
+            const modalEl = document.getElementById("popupStoreModal");
+            if (!modalEl) return;
+
+            const HIDE_KEY = "tkk_popup_hide_today";
+            const todayStr = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+
+            // 🔹 1) localStorage 에 오늘 날짜가 저장되어 있으면 모달 아예 안 띄움
+            try {
+                const hideDate = localStorage.getItem(HIDE_KEY);
+                if (hideDate === todayStr) {
+                    console.log("오늘 하루 보지 않기 설정됨 → 모달 표시 안 함");
+                    return;
+                }
+            } catch (e) {
+                console.warn("localStorage 사용 불가", e);
+            }
+
+            // 🔹 2) 숨기지 말아야 하면 실제 모달 띄우기
+            const modal = new bootstrap.Modal(modalEl);
             modal.show();
+
+            const hideCheckbox = document.getElementById("hidePopupToday");
+
+            // 🔹 3) 모달이 닫힐 때, 체크박스 체크되어 있으면 오늘 날짜 저장
+            modalEl.addEventListener("hide.bs.modal", function () {
+                try {
+                    if (hideCheckbox && hideCheckbox.checked) {
+                        localStorage.setItem(HIDE_KEY, todayStr);
+                        console.log("오늘 하루 보지 않기 저장:", todayStr);
+                    }
+                } catch (e) {
+                    console.warn("localStorage 저장 실패", e);
+                }
+            });
         });
     </script>
+
 
 </th:block>
 

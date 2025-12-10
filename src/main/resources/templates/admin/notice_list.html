@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 관리 | 더쿠쿠 관리자</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* 공통 디자인 inquiry_list와 동일 */
+        :root {
+            --admin-bg: #0b1120;
+            --admin-card-bg: #ffffff;
+            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
+            --admin-accent: #6366f1;
+            --admin-text: #111827;
+            --admin-text-soft: #6b7280;
+            --border-soft: #e5e7eb;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
+            background: #f3f4f6;
+            color: var(--admin-text);
+        }
+        .admin-main {
+            padding: 24px 32px 32px;
+        }
+        .page-title {
+            margin-bottom: 20px;
+        }
+        .page-title h1 { margin: 0 0 6px; font-size: 22px; }
+        .page-title p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--admin-text-soft);
+        }
+
+        .admin-card {
+            background: var(--admin-card-bg);
+            border-radius: 16px;
+            padding: 16px 18px;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid var(--border-soft);
+        }
+
+        /* 툴바 */
+        .toolbar {
+            display:flex; justify-content:space-between; align-items:center;
+            margin-bottom:12px;
+            font-size:13px; color:var(--admin-text-soft);
+        }
+        .toolbar-right input {
+            padding:6px 8px;
+            border-radius:999px;
+            border:1px solid var(--border-soft);
+            font-size:13px;
+        }
+        .toolbar-right button {
+            padding:6px 10px; border-radius:999px;
+            background:#111827; color:white; font-size:12px;
+            border:1px solid #111827;
+        }
+
+        /* 테이블 */
+        table { width:100%; border-collapse:collapse; font-size:13px; }
+        th, td {
+            padding:8px 10px;
+            border-bottom:1px solid #e5e7eb;
+            white-space:nowrap; text-align:left;
+        }
+        th { background:#f9fafb; font-weight:600; color:#4b5563; }
+
+        tr:nth-child(even) td { background:#f9fafb; }
+
+        a.link { color:#2563eb; text-decoration:none; }
+        a.link:hover { text-decoration:underline; }
+
+        /* badge */
+        .badge {
+            padding:2px 8px; border-radius:999px; font-size:11px;
+            display:inline-block;
+        }
+        .badge-show { background:#dcfce7; color:#166534; }
+        .badge-hide { background:#fee2e2; color:#b91c1c; }
+
+        /* pagination */
+        .pagination { margin-top:14px; display:flex; flex-wrap:wrap; gap:4px; }
+        .pagination a, .pagination span {
+            padding:4px 8px; border-radius:6px;
+            border:1px solid #e5e7eb; text-decoration:none;
+            color:#374151;
+        }
+        .pagination .active {
+            background:#111827; color:#fff; border-color:#111827;
+        }
+    </style>
+</head>
+<body>
+
+<header th:replace="admin/fragments/admin_header :: adminHeader"></header>
+
+<main class="admin-main">
+    <section class="page-title">
+        <h1>공지사항 / 이벤트 관리</h1>
+        <p>서비스 공지, 업데이트 안내, 이벤트 내용을 등록·관리합니다.</p>
+    </section>
+
+    <section class="admin-card">
+
+        <!-- 상단 툴바 -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <span th:text="|총 ${noticePage.totalElements}건|">총 0건</span>
+            </div>
+
+            <div class="toolbar-right">
+                <form th:action="@{/admin/notices}" method="get">
+                    <input type="hidden" name="page" value="0"/>
+                    <input type="text" name="keyword" placeholder="제목 검색" th:value="${keyword}">
+                    <button type="submit">검색</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 테이블 -->
+        <table>
+            <thead>
+            <tr>
+                <th style="width:60px;">번호</th>
+                <th style="width:120px;">유형</th>
+                <th>제목</th>
+                <th style="width:150px;">작성일</th>
+                <th style="width:100px;">상태</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:if="${noticePage.content.isEmpty()}">
+                <td colspan="5" style="text-align:center; padding:16px 0;">등록된 공지사항이 없습니다.</td>
+            </tr>
+
+            <tr th:each="n : ${noticePage.content}">
+                <td th:text="${n.id}">1</td>
+                <td th:text="${n.type}">공지</td>
+                <td>
+                    <a class="link" th:href="@{/admin/notices/{id}(id=${n.id})}" th:text="${n.title}">
+                        공지 제목
+                    </a>
+                </td>
+                <td th:text="${n.createdAt}">2025-01-01</td>
+                <td>
+                    <span th:if="${n.visible}" class="badge badge-show">노출</span>
+                    <span th:if="${!n.visible}" class="badge badge-hide">비노출</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination" th:if="${noticePage.totalPages > 1}">
+            <a th:if="${!noticePage.first}"
+               th:href="@{/admin/notices(page=${currentPage - 1}, size=${size}, keyword=${keyword})}">
+                &laquo;
+            </a>
+
+            <span th:each="p : ${#numbers.sequence(0, noticePage.totalPages - 1)}"
+                  th:classappend="${p} == ${currentPage} ? 'active'">
+
+                <a th:if="${p != currentPage}"
+                   th:href="@{/admin/notices(page=${p}, size=${size}, keyword=${keyword})}"
+                   th:text="${p + 1}"></a>
+
+                <span th:if="${p == currentPage}"
+                      th:text="${p + 1}"></span>
+            </span>
+
+            <a th:if="${!noticePage.last}"
+               th:href="@{/admin/notices(page=${currentPage + 1}, size=${size}, keyword=${keyword})}">
+                &raquo;
+            </a>
+        </div>
+
+    </section>
+</main>
+</body>
+</html>
