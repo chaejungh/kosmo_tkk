@@ -64,7 +64,7 @@ public class Member {
 
     @ColumnDefault("'N'")
     @Column(name = "DELETED_YN")
-    private Boolean deletedYn;
+    private char deletedYn;
 
     /* ----------------------------- 연관관계 ----------------------------- */
 

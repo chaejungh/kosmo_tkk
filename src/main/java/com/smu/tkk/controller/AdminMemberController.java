@@ -21,7 +21,7 @@ public class AdminMemberController {
 
     /**
      * 회원 리스트
-     *   /admin/members?page=0&size=20&keyword=user
+     *   /admin/members?page=0&size=20&keyword=jihyeong
      */
     @GetMapping
     public String list(@RequestParam(defaultValue = "0") int page,
@@ -32,15 +32,13 @@ public class AdminMemberController {
         Pageable pageable = PageRequest.of(
                 page,
                 size,
-                Sort.by(Sort.Direction.DESC, "id") // 필요하면 createdAt 으로 변경
+                Sort.by(Sort.Direction.DESC, "createdAt")
         );
 
         Page<Member> members = adminMemberService.readMembers(pageable, keyword);
 
-        // member_list.html 에서 쓰라고 넉넉하게 넣어줌
-        model.addAttribute("members", members);  // 리스트
-        model.addAttribute("page", members);     // 페이지 정보
-        model.addAttribute("keyword", keyword);  // 검색어
+        model.addAttribute("members", members);
+        model.addAttribute("keyword", keyword);
 
         return "admin/member_list";
     }
@@ -50,15 +48,18 @@ public class AdminMemberController {
      *   /admin/members/{memberId}
      */
     @GetMapping("/{memberId}")
-    public String detail(@PathVariable Long memberId, Model model) {
+    public String detail(@PathVariable Long memberId,
+                         Model model) {
+
         Member member = adminMemberService.readMember(memberId);
         model.addAttribute("member", member);
+
         return "admin/member_detail";
     }
 
     /**
-     * 회원 상태 변경 (활성 / 비활성)
-     *   /admin/members/{memberId}/status
+     * 회원 상태 변경 (정상/탈퇴)
+     *   deletedYn = Y / N
      */
     @PostMapping("/{memberId}/status")
     public String changeStatus(@PathVariable Long memberId,
@@ -73,11 +74,11 @@ public class AdminMemberController {
 
     /**
      * 회원 등급 변경
-     *   /admin/members/{memberId}/level
+     *   userLevel : 0(일반), 1(운영진), 2(관리자) ... 이런 식으로 사용한다고 가정
      */
     @PostMapping("/{memberId}/level")
     public String changeLevel(@PathVariable Long memberId,
-                              @RequestParam Integer userLevel,
+                              @RequestParam Long userLevel,   // 🔥 Integer → Long
                               RedirectAttributes redirectAttributes) {
 
         adminMemberService.changeMemberLevel(memberId, userLevel);
