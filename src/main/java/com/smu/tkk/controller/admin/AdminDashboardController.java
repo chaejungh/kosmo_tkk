@@ -1,4 +1,4 @@
-package com.smu.tkk.controller;
+package com.smu.tkk.controller.admin;
 
 import com.smu.tkk.service.AdminDashboardService;
 import lombok.RequiredArgsConstructor;

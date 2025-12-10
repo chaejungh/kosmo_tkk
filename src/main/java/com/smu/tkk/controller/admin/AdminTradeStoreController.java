@@ -1,4 +1,4 @@
-package com.smu.tkk.controller;
+package com.smu.tkk.controller.admin;
 
 import com.smu.tkk.entity.PopupStore;
 import com.smu.tkk.entity.Store;
