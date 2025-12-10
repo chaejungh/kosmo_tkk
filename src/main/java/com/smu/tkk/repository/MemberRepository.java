@@ -19,12 +19,21 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // 닉네임 중복확인
     boolean existsByNickname(String nickname);
 
-    // 로그인
+    // 로그인 여부 확인(기존 코드 – 다른 곳에서 쓰고 있을 수 있어서 유지)
     boolean existsByLoginIdAndLoginPw(String loginId, String loginPw);
 
+    // 아이디 + 비밀번호로 단건 조회(기존 코드)
     Member findByLoginIdAndLoginPw(String loginId, String loginPw);
 
-    // 회원정보수정
+    // 소셜 로그인용 – loginId만으로 조회
+    Optional<Member> findByLoginId(String loginId);
+
+    // ✅ 일반 로그인용 – 삭제되지 않은 회원만
+    Optional<Member> findByLoginIdAndLoginPwAndDeletedYn(String loginId,
+                                                         String loginPw,
+                                                         Character deletedYn);
+
+    // 회원정보 수정
     @Modifying
     @Query("UPDATE Member m " +
             "SET m.loginId = :loginId, " +
