@@ -242,5 +242,19 @@ public class MemberServiceImp implements MemberService {
         memberRepository.save(member);
 
     }
+
+    @Override
+    public Member readByNicknameAndEmail(String nickname, String email) {
+        return memberRepository.findByNicknameAndEmail(nickname, email)
+                .orElse(null);
+
+    }
+
+    @Override
+    public Member readByLoginIdAndNicknameAndEmail(String loginId, String nickname, String email) {
+        return memberRepository
+                .findByLoginIdAndNicknameAndEmail(loginId, nickname, email)
+                .orElse(null);
+    }
 }
 

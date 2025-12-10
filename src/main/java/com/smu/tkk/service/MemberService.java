@@ -61,4 +61,8 @@ public interface MemberService {
     // 12. 이메일 변경
     void updateEmail(Long memberId, String email) throws SQLException, IllegalArgumentException;
 
+    Member readByNicknameAndEmail(String nickname, String email);
+
+    Member readByLoginIdAndNicknameAndEmail(String loginId, String nickname, String email);
+
 }
