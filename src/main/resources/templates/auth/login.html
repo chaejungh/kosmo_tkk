@@ -131,6 +131,30 @@
             border: none;
             border-top: 1px solid #e5e7eb;
         }
+        /* ⬇️ 이메일 인증 콜아웃 스타일 추가 */
+        .verify-callout{
+            display:flex; align-items:center; gap:14px;
+            padding:14px 16px; border:1px solid #fde2e2;
+            background:#fff5f5; border-radius:12px; color:#b42318;
+            box-shadow:0 4px 14px rgba(0,0,0,.04); margin-bottom:18px;
+        }
+        .verify-icon{
+            width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center;
+            border-radius:50%; background:#fee3e3; color:#b42318; font-weight:700; flex:0 0 28px;
+        }
+        .verify-text{flex:1; line-height:1.45; font-size:14px; color:#7a271a;}
+        .btn-verify{
+            appearance:none; border:none; cursor:pointer;
+            padding:8px 12px; border-radius:10px; font-weight:700; font-size:13px;
+            background:#4f46e5; color:#fff; transition:transform .02s ease, filter .2s ease;
+            white-space:nowrap;
+        }
+        .btn-verify:hover{filter:brightness(0.95)}
+        .btn-verify:active{transform:translateY(1px)}
+        .link-resend{
+            background:transparent; border:none; color:#6b7280; font-size:12px; cursor:pointer; padding:0 2px;
+            text-decoration:underline;
+        }
     </style>
 </head>
 
@@ -143,7 +167,17 @@
                 text-align:center; margin-bottom:15px; font-size:14px; font-weight:600;">
         <span th:text="${errorMessage}"></span>
     </div>
+    <!-- 🔥 이메일 미인증 경고가 있을 때만 버튼 표시 -->
+    <div th:if="${emailNotVerified}">
+        <div class="alert alert-danger text-center">
+            이메일 인증을 완료해야 로그인할 수 있습니다.
+        </div>
 
+        <!-- 🔥 이메일 인증 페이지 이동 버튼 -->
+        <div class="text-center mt-2">
+            <a th:href="@{/auth/verify(email=${email})}">이메일 인증하기</a>
+        </div>
+    </div>
     <!-- 🔥 회원가입 성공 메시지 출력 -->
     <div th:if="${joinSuccess}"
          style="background:#d1fae5; color:#065f46; padding:12px; border-radius:10px;
