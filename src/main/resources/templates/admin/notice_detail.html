@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>공지 상세 | 더쿠쿠 관리자</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     :root {
       --admin-bg:#0b1120; --admin-card-bg:#fff;
@@ -57,11 +58,8 @@
 
     <div style="font-size:13px; color:var(--admin-text-soft); margin-bottom:8px;">
       <span th:text="|번호: ${notice.id}|">번호: 1</span> ·
-      <span th:text="|유형: ${notice.type}|">유형: 공지</span> ·
-      <span th:text="|작성일: ${notice.createdAt}|">작성일: 2025</span> ·
-      <span th:text="|노출 여부: ${notice.visible ? '노출' : '비노출'}|">
-                노출 여부: 노출
-            </span>
+      <span th:text="|유형: ${notice.noticeType}|">유형: 공지</span> ·
+      <span th:text="|작성일: ${notice.createdAt}|">작성일: 2025</span>
     </div>
 
     <h2 style="font-size:18px; margin:10px 0;"
@@ -92,13 +90,6 @@
 
       <textarea name="content" placeholder="내용 입력"
                 th:text="${notice.content}"></textarea>
-
-      <div style="margin-top:8px;">
-        <label>
-          <input type="checkbox" name="visible" th:checked="${notice.visible}"/>
-          노출 여부
-        </label>
-      </div>
 
       <div class="btn-row">
         <button type="submit" class="btn-primary">저장</button>

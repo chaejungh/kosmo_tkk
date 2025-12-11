@@ -142,7 +142,7 @@
 
             <tr th:each="n : ${noticePage.content}">
                 <td th:text="${n.id}">1</td>
-                <td th:text="${n.type}">공지</td>
+                <td th:text="${n.noticeType}">공지</td>
                 <td>
                     <a class="link" th:href="@{/admin/notices/{id}(id=${n.id})}" th:text="${n.title}">
                         공지 제목
@@ -150,8 +150,11 @@
                 </td>
                 <td th:text="${n.createdAt}">2025-01-01</td>
                 <td>
-                    <span th:if="${n.visible}" class="badge badge-show">노출</span>
-                    <span th:if="${!n.visible}" class="badge badge-hide">비노출</span>
+                    <span class="badge"
+                          th:classappend="${n.noticeType == 'EVENT'} ? ' badge-show' : ' badge-hide'"
+                         th:text="${n.noticeType}">
+                            NOTICE
+                    </span>
                 </td>
             </tr>
             </tbody>
