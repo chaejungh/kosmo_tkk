@@ -91,6 +91,8 @@
       <textarea name="content" placeholder="내용 입력"
                 th:text="${notice.content}"></textarea>
 
+      <input type="hidden" name="noticeType" th:value="${notice.noticeType}">
+
       <div class="btn-row">
         <button type="submit" class="btn-primary">저장</button>
         <a th:href="@{/admin/notices}">

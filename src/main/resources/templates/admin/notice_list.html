@@ -110,18 +110,31 @@
 
         <!-- 상단 툴바 -->
         <div class="toolbar">
+
+            <!-- 왼쪽: 총 건수 -->
             <div class="toolbar-left">
                 <span th:text="|총 ${noticePage.totalElements}건|">총 0건</span>
             </div>
 
-            <div class="toolbar-right">
-                <form th:action="@{/admin/notices}" method="get">
+            <!-- 오른쪽: 검색 + 새 공지 작성 -->
+            <div class="toolbar-right" style="display:flex; align-items:center; gap:10px;">
+
+                <form th:action="@{/admin/notices}" method="get" style="display:flex; gap:6px;">
                     <input type="hidden" name="page" value="0"/>
                     <input type="text" name="keyword" placeholder="제목 검색" th:value="${keyword}">
                     <button type="submit">검색</button>
                 </form>
+
+                <a href="/admin/notices/write"
+                   style="padding:6px 12px; background:#6366f1; color:white;
+                  border-radius:10px; text-decoration:none; font-size:12px;">
+                    + 새 공지 작성
+                </a>
+
             </div>
+
         </div>
+
 
         <!-- 테이블 -->
         <table>
