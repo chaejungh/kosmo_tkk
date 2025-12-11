@@ -511,10 +511,9 @@ CREATE TABLE TKK.ADMIN_LOG (
                                    FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID) ON DELETE CASCADE
 );
 
--- deleted_yn 이 NULL 이거나 공백인 애들은 전부 'N' 으로 맞춰버리기
-UPDATE MEMBER
-SET deleted_yn = 'N'
-WHERE deleted_yn IS NULL
-   OR deleted_yn = ' ';
+SELECT constraint_name, search_condition
+FROM USER_CONSTRAINTS
+WHERE table_name = 'MEMBER'
+  AND constraint_name = 'CHK_MEMBER_GENDER';
 
-COMMIT;
+
