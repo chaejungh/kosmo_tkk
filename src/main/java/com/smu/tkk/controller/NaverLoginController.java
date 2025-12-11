@@ -54,6 +54,8 @@ public class NaverLoginController {
                 .queryParam("client_id", naverClientId)
                 .queryParam("redirect_uri", naverRedirectUri)
                 .queryParam("state", state)
+                // 🔥 여기 한 줄 추가: 매번 로그인/동의 화면 다시 띄우기
+                .queryParam("auth_type", "reprompt")
                 .build(true)
                 .toUriString();
 
@@ -87,6 +89,8 @@ public class NaverLoginController {
                 model.addAttribute("error", "잘못된 네이버 로그인 요청입니다.(state 불일치)");
                 return "auth/login";
             }
+            // ✅ 한 번 쓴 state는 지워주자 (혹시 꼬이는 것 방지)
+            session.removeAttribute("NAVER_LOGIN_STATE");
 
             // 3) code 로 Access Token 발급
             String tokenUrl = UriComponentsBuilder
@@ -144,13 +148,17 @@ public class NaverLoginController {
 
             NaverProfileResponse.NaverProfile p = profileResponse.getResponse();
 
-// 5) 우리 서비스 회원 로그인/가입 처리
+            // 5) 우리 서비스 회원 로그인/가입 처리
             Member member = memberService.loginByNaver(p);
 
+            // 6) 기존 로그인 세션 정리 후 저장 (겹치는 것 방지용)
+            session.removeAttribute("loginMember");
+            session.removeAttribute("memberId");
 
-            // 6) 세션 저장 (기존 로그인과 동일)
             session.setAttribute("loginMember", member);
             session.setAttribute("memberId", member.getId());
+            // 선택: 로그인 타입 구분하고 싶으면
+            // session.setAttribute("loginType", "NAVER");
 
             return "redirect:/";
 

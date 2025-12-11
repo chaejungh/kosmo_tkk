@@ -22,7 +22,7 @@ public class MemberNotificationSettingServiceImp implements MemberNotificationSe
         if (memberId == null) {
             return Optional.empty();
         }
-        // Repository PK 타입이 Integer라서 변환
+        // ✅ Repository PK 타입이 Integer 라서 변환
         return memberNotificationSettingRepository.findById(memberId.intValue());
     }
 
@@ -36,23 +36,15 @@ public class MemberNotificationSettingServiceImp implements MemberNotificationSe
         MemberNotificationSetting setting = get(memberId)
                 .orElseGet(() -> {
                     MemberNotificationSetting s = new MemberNotificationSetting();
-                    // PK = memberId 전략이면 필요 시 열어 쓰기
-                    // s.setId(memberId);
+                    // ⚠ 엔티티 PK = id(Integer) 라고 가정, MEMBER_ID 컬럼에 매핑
+                    s.setId((long) memberId.intValue());
                     return s;
                 });
 
-        if (commentYn != null) {
-            setting.setCommentYn(commentYn);
-        }
-        if (likeYn != null) {
-            setting.setLikeYn(likeYn);
-        }
-        if (tradeYn != null) {
-            setting.setTradeYn(tradeYn);
-        }
-        if (eventYn != null) {
-            setting.setEventYn(eventYn);
-        }
+        if (commentYn != null) setting.setCommentYn(commentYn);
+        if (likeYn != null)   setting.setLikeYn(likeYn);
+        if (tradeYn != null)  setting.setTradeYn(tradeYn);
+        if (eventYn != null)  setting.setEventYn(eventYn);
 
         return memberNotificationSettingRepository.save(setting);
     }

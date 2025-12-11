@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+    // 하드 삭제 (기존에 쓰던 거 그대로 유지)
     @Modifying
     @Query(value = "DELETE FROM MEMBER WHERE MEMBER_ID = :memberId", nativeQuery = true)
     void deleteById(Long memberId);
@@ -21,19 +22,19 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // 닉네임 중복 확인
     boolean existsByNickname(String nickname);
 
-    // 로그인 여부 확인(기존 코드 – 다른 곳에서 쓰고 있을 수 있어서 유지)
+    // 로그인 존재 여부 (필요하면 계속 사용)
     boolean existsByLoginIdAndLoginPw(String loginId, String loginPw);
 
-    // 아이디 + 비밀번호로 단건 조회(기존 코드)
-    Member findByLoginIdAndLoginPw(String loginId, String loginPw);
-
-    // 소셜 로그인용 – loginId만으로 조회
-    Optional<Member> findByLoginId(String loginId);
-
-    // ✅ 일반 로그인용 – 삭제되지 않은 회원만
+    // ✅ 실제 로그인용: 삭제 여부까지 함께 체크
     Optional<Member> findByLoginIdAndLoginPwAndDeletedYn(String loginId,
                                                          String loginPw,
                                                          Character deletedYn);
+
+    // 다른 곳에서 쓸 수도 있는 기본 로그인 조회
+    Member findByLoginIdAndLoginPw(String loginId, String loginPw);
+
+    // ✅ 소셜 로그인용 (네이버)
+    Optional<Member> findByLoginId(String loginId);
 
     // 회원정보 수정
     @Modifying
