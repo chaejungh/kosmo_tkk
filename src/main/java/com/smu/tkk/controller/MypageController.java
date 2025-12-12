@@ -67,7 +67,7 @@ public class MypageController {
     @GetMapping("/{memberId}/posts")
     public String myPosts(
             Model model,
-            @PathVariable Long memberId,
+            @SessionAttribute Long memberId,
             @PageableDefault(size = 10, page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
     ) throws SQLException {
 

@@ -569,7 +569,7 @@
                             e.stopPropagation();
                             const id = detailBtn.dataset.storeId;
                             if (id) {
-                                const url = '/goods/store/${id}';
+                                const url = `/goods/store/${encodeURIComponent(id)}`;
                                 window.location.href = url;
                             }
                         });
