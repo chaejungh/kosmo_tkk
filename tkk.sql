@@ -511,9 +511,4 @@ CREATE TABLE TKK.ADMIN_LOG (
                                    FOREIGN KEY (ADMIN_ID) REFERENCES TKK.ADMIN_USER (ADMIN_ID) ON DELETE CASCADE
 );
 
-SELECT constraint_name, search_condition
-FROM USER_CONSTRAINTS
-WHERE table_name = 'MEMBER'
-  AND constraint_name = 'CHK_MEMBER_GENDER';
-
-
+-- alter table TKK.MEMBER   add verify_code VARCHAR2(10);

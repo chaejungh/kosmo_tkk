@@ -1,48 +1,50 @@
+# USE tkk;
+#
+# -- 순서 중요해서 FK 안 꼬이게 위에서부터 차례대로 만들게.
+# -- 전부 utf8mb4 기준
+#
+# SET NAMES utf8mb4;
+# SET FOREIGN_KEY_CHECKS = 0;
+#
+# -- 기존 테이블 있으면 지우고 새로 만드는게 깔끔함
+# DROP TABLE IF EXISTS admin_log;
+# DROP TABLE IF EXISTS admin_user_role;
+# DROP TABLE IF EXISTS admin_role;
+# DROP TABLE IF EXISTS admin_user;
+# DROP TABLE IF EXISTS service_notice;
+# DROP TABLE IF EXISTS inquiry;
+# DROP TABLE IF EXISTS faq;
+# DROP TABLE IF EXISTS faq_category;
+# DROP TABLE IF EXISTS notification;
+# DROP TABLE IF EXISTS trade_chat_message;
+# DROP TABLE IF EXISTS trade_chat_room;
+# DROP TABLE IF EXISTS trade_bookmark;
+# DROP TABLE IF EXISTS trade_post_image;
+# DROP TABLE IF EXISTS trade_post;
+# DROP TABLE IF EXISTS board_report;
+# DROP TABLE IF EXISTS board_bookmark;
+# DROP TABLE IF EXISTS board_like;
+# DROP TABLE IF EXISTS board_comment;
+# DROP TABLE IF EXISTS board_post_image;
+# DROP TABLE IF EXISTS board_post_tag;
+# DROP TABLE IF EXISTS board_tag;
+# DROP TABLE IF EXISTS board_post;
+# DROP TABLE IF EXISTS board_category;
+# DROP TABLE IF EXISTS main_banner;
+# DROP TABLE IF EXISTS popup_goods;
+# DROP TABLE IF EXISTS popup_bookmark;
+# DROP TABLE IF EXISTS popup_store;
+# DROP TABLE IF EXISTS recommended_search;
+# DROP TABLE IF EXISTS search_log;
+# DROP TABLE IF EXISTS store_goods;
+# DROP TABLE IF EXISTS store_bookmark;
+# DROP TABLE IF EXISTS store;
+# DROP TABLE IF EXISTS member_notification_setting;
+# DROP TABLE IF EXISTS member;
+
+# SET FOREIGN_KEY_CHECKS = 1;
+CREATE DATABASE IF NOT EXISTS tkk DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE tkk;
-
--- 순서 중요해서 FK 안 꼬이게 위에서부터 차례대로 만들게.
--- 전부 utf8mb4 기준
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- 기존 테이블 있으면 지우고 새로 만드는게 깔끔함
-DROP TABLE IF EXISTS admin_log;
-DROP TABLE IF EXISTS admin_user_role;
-DROP TABLE IF EXISTS admin_role;
-DROP TABLE IF EXISTS admin_user;
-DROP TABLE IF EXISTS service_notice;
-DROP TABLE IF EXISTS inquiry;
-DROP TABLE IF EXISTS faq;
-DROP TABLE IF EXISTS faq_category;
-DROP TABLE IF EXISTS notification;
-DROP TABLE IF EXISTS trade_chat_message;
-DROP TABLE IF EXISTS trade_chat_room;
-DROP TABLE IF EXISTS trade_bookmark;
-DROP TABLE IF EXISTS trade_post_image;
-DROP TABLE IF EXISTS trade_post;
-DROP TABLE IF EXISTS board_report;
-DROP TABLE IF EXISTS board_bookmark;
-DROP TABLE IF EXISTS board_like;
-DROP TABLE IF EXISTS board_comment;
-DROP TABLE IF EXISTS board_post_image;
-DROP TABLE IF EXISTS board_post_tag;
-DROP TABLE IF EXISTS board_tag;
-DROP TABLE IF EXISTS board_post;
-DROP TABLE IF EXISTS board_category;
-DROP TABLE IF EXISTS main_banner;
-DROP TABLE IF EXISTS popup_goods;
-DROP TABLE IF EXISTS popup_bookmark;
-DROP TABLE IF EXISTS popup_store;
-DROP TABLE IF EXISTS recommended_search;
-DROP TABLE IF EXISTS search_log;
-DROP TABLE IF EXISTS store_goods;
-DROP TABLE IF EXISTS store_bookmark;
-DROP TABLE IF EXISTS store;
-DROP TABLE IF EXISTS member_notification_setting;
-DROP TABLE IF EXISTS member;
-
-SET FOREIGN_KEY_CHECKS = 1;
 
 -- 0. 회원
 CREATE TABLE member (
