@@ -464,7 +464,6 @@
                 <label class="form-label">휴대전화번호</label>
                 <div class="form-row-inline">
                     <input type="text" class="input-field" name="phone" placeholder="01012345678">
-                    <button type="button" class="btn-inline">인증요청</button>
                 </div>
             </div>
 
@@ -799,7 +798,7 @@
         }
         if (!termsAll.checked) {
             msgTerms.style.color = "#dc2626";
-            msgTerms.textContent = "필수 약관에 동의해야 가입할 수 있습니다.";
+            msgTerms.textContent = "필수 약관을 확인하고 동의해주시면 가입이 완료됩니다.";
             msgTerms.classList.add("show");
             isValid = false;
         }
@@ -816,19 +815,6 @@
         const emailId = document.querySelector("input[name='emailId']");
         const emailDomain = document.querySelector("select[name='emailDomain']");
 
-        document.querySelector(".btn-inline").addEventListener("click", () => {
-
-            const email = emailId.value + emailDomain.value;
-
-            if (!emailId.value) {
-                alert("이메일 아이디를 입력해주세요.");
-                return;
-            }
-
-            fetch(`/auth/send-code?email=${email}`)
-                .then(res => res.text())
-                .then(msg => alert(msg));
-        });
     });
 
 </script>

@@ -1,12 +1,12 @@
 
 package com.smu.tkk.serviceimp;
 
+import com.smu.tkk.dto.NaverProfileResponse;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.MemberNotificationSetting;
 import com.smu.tkk.repository.*;
 import com.smu.tkk.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -37,9 +38,7 @@ public class MemberServiceImp implements MemberService {
     private final BoardBookmarkRepository boardBookmarkRepository;
     private final PopupBookmarkRepository popupBookmarkRepository;
 
-    /**
-     * 1. 회원 가입
-     */
+    // 1. 회원 가입
     @Override
     public boolean register(Member member) throws SQLException, IllegalArgumentException {
         if (member == null) {
@@ -52,77 +51,70 @@ public class MemberServiceImp implements MemberService {
             throw new IllegalArgumentException("이미 존재하는 닉네임입니다.");
         }
 
-        // 회원 저장
+        // deletedYn이 primitive char 라고 가정하고 기본값 강제 세팅
+        member.setDeletedYn('N');
+
+        // userLevel(래퍼) null이면 기본값
+        if (member.getUserLevel() == null) {
+            member.setUserLevel(1L);
+        }
+
         Member savedMember = memberRepository.save(member);
 
-        // 회원가입 시 기본 알림 설정 생성 (선택 사항이지만 비즈니스 로직상 필요할 수 있음)
-        // 엔티티 생성자나 빌더 패턴에 따라 달라질 수 있으나, 기본 객체 생성 후 저장 로직 예시
-        MemberNotificationSetting defaultSetting = new MemberNotificationSetting();
-        defaultSetting.setId(savedMember.getId()); // ID 매핑 가정
-        defaultSetting.setCommentYn("Y");
-        defaultSetting.setLikeYn("Y");
-        defaultSetting.setTradeYn("Y");
-        defaultSetting.setEventYn("Y");
-        memberNotificationSettingRepository.save(defaultSetting);
+        // ✅ 알림 설정: 없으면 한 번만 INSERT (native MERGE 사용)
+        memberNotificationSettingRepository.insertDefaultIfNotExists(savedMember.getId());
 
         return true;
     }
 
-    /**
-     * 2. 로그인
-     */
+    // 2. 로그인 (일반 로그인 / 더미데이터)
     @Override
     @Transactional(readOnly = true)
     public Member login(String loginId, String loginPw) throws SQLException, IllegalArgumentException {
-        if (loginId == null || loginPw == null) {
+        if (loginId == null || loginPw == null ||
+                loginId.isBlank() || loginPw.isBlank()) {
             throw new IllegalArgumentException("아이디와 비밀번호를 입력해주세요.");
         }
 
-        // 1차 검증: Repository의 exists 메서드 활용
-        boolean exists = memberRepository.existsByLoginIdAndLoginPw(loginId, loginPw);
-        if (!exists) {
-            return null; // 또는 throw new IllegalArgumentException("아이디 또는 비밀번호가 일치하지 않습니다.");
+        // 단순 조회 (기존 더미데이터 방식 유지)
+        Member member = memberRepository.findByLoginIdAndLoginPw(loginId, loginPw);
+
+        if (member == null) {
+            // 아이디 또는 비밀번호 불일치
+            return null;
         }
 
-        // Member 객체 반환을 위해 조회 (Repository에 findByLoginId가 없으므로 Example 활용)
-        Member probe = new Member();
-        probe.setLoginId(loginId);
+        // deletedYn 이 primitive char 라고 가정
+        char deletedYn = member.getDeletedYn();
+        if (deletedYn == 'Y') {
+            // 탈퇴 회원이면 로그인 막기
+            return null;
+        }
 
-        // 비밀번호까지 일치하는지 확인된 상태이므로 ID로 조회
-        Optional<Member> memberOptional = memberRepository.findOne(Example.of(probe));
-
-        return memberOptional.orElse(null);
+        return member;
     }
 
-    /**
-     * 3. 아이디 중복 확인
-     */
+    // 3. 아이디 중복 확인
     @Override
     @Transactional(readOnly = true)
     public boolean existsByLoginId(String loginId) throws SQLException {
         return memberRepository.existsByLoginId(loginId);
     }
 
-    /**
-     * 4. 닉네임 중복 확인
-     */
+    // 4. 닉네임 중복 확인
     @Override
     @Transactional(readOnly = true)
     public boolean existsByNickname(String nickname) throws SQLException {
         return memberRepository.existsByNickname(nickname);
     }
 
-    /**
-     * 5. 회원 정보 수정
-     */
+    // 5. 회원 정보 수정
     @Override
     public boolean modify(Member member) throws SQLException, IllegalArgumentException {
         if (member == null || member.getId() == null) {
             throw new IllegalArgumentException("회원 정보가 올바르지 않습니다.");
         }
 
-        // Repository의 JPQL update 메서드 호출
-        // 순서: loginId, loginPw, nickname, imgUrl, intro, email, id
         int updateCount = memberRepository.update(
                 member.getLoginId(),
                 member.getLoginPw(),
@@ -136,18 +128,14 @@ public class MemberServiceImp implements MemberService {
         return updateCount > 0;
     }
 
-    /**
-     * 6. 단일 회원 조회
-     */
+    // 6. 단일 회원 조회
     @Override
     @Transactional(readOnly = true)
     public Member readOne(Long memberId) throws SQLException {
         return memberRepository.findById(memberId).orElse(null);
     }
 
-    /**
-     * 7. 전체 회원 조회
-     */
+    // 7. 전체 회원 조회
     @Override
     @Transactional(readOnly = true)
     public List<Member> readAll(Pageable pageable) throws SQLException {
@@ -155,29 +143,30 @@ public class MemberServiceImp implements MemberService {
         return memberPage.getContent();
     }
 
-    /**
-     * 8. 회원 알림 설정 조회
-     */
+    // 8. 회원 알림 설정 조회
     @Override
     @Transactional(readOnly = true)
     public MemberNotificationSetting readNotificationSetting(Long memberId) throws SQLException {
-        // ID 타입 불일치(Long vs Integer) 주의: Repository 정의에 맞춰 형변환
-        return memberNotificationSettingRepository.findById(memberId.intValue()).orElse(null);
+        if (memberId == null) {
+            return null;
+        }
+        // Repository PK 타입이 Integer 라서 intValue() 사용
+        return memberNotificationSettingRepository.findById(memberId.intValue())
+                .orElse(null);
     }
 
-    /**
-     * 9. 회원 알림 설정 수정
-     */
+    // 9. 회원 알림 설정 수정
     @Override
-    public boolean updateNotificationSetting(MemberNotificationSetting setting) throws SQLException, IllegalArgumentException {
+    public boolean updateNotificationSetting(MemberNotificationSetting setting)
+            throws SQLException, IllegalArgumentException {
+
+        // 엔티티에 memberId 필드 없고, PK = id(Integer) 라고 가정
         if (setting == null || setting.getId() == null) {
             throw new IllegalArgumentException("설정 정보가 올바르지 않습니다.");
         }
 
-        // Repository의 JPQL update 메서드 호출
-        // 순서: memberId, commentYn, likeYn, tradeYn, eventYn
         int updateCount = memberNotificationSettingRepository.update(
-                setting.getId(), // ID 타입 매칭
+                setting.getId().longValue(),          // MEMBER_ID = PK
                 setting.getCommentYn(),
                 setting.getLikeYn(),
                 setting.getTradeYn(),
@@ -187,60 +176,129 @@ public class MemberServiceImp implements MemberService {
         return updateCount > 0;
     }
 
-    /**
-     * 10. Member 이미지 추가
-     * (기존 updateImg 활용)
-     */
+    // 10. Member 이미지 추가
     @Override
-    public boolean addImage(Long memberId, Member profileImage) throws SQLException, IllegalArgumentException {
+    public boolean addImage(Long memberId, Member profileImage)
+            throws SQLException, IllegalArgumentException {
+
         if (memberId == null || profileImage == null) {
             throw new IllegalArgumentException("입력값이 올바르지 않습니다.");
         }
 
-        // updateImg 쿼리 호출
         int result = memberRepository.updateImg(profileImage.getProfileImageUrl(), memberId);
         return result > 0;
     }
 
-    /**
-     * 11. Member 이미지 수정
-     */
+    // 11. Member 이미지 수정
     @Override
-    public boolean modifyImage(Long memberId, Member profileImage) throws SQLException, IllegalArgumentException {
+    public boolean modifyImage(Long memberId, Member profileImage)
+            throws SQLException, IllegalArgumentException {
+
         if (memberId == null || profileImage == null) {
             throw new IllegalArgumentException("입력값이 올바르지 않습니다.");
         }
 
-        // updateImg 쿼리 호출
         int result = memberRepository.updateImg(profileImage.getProfileImageUrl(), memberId);
         return result > 0;
     }
+
+    // 12. 회원 삭제
     @Override
     @Transactional
     public void deleteMember(Long memberId) {
-//        boardCommentRepository.deleteByMemberId(memberId);
-//        boardLikeRepository.deleteByMemberId(memberId);
-//        boardPostRepository.deleteByMemberId(memberId);
-//        boardBookmarkRepository.deleteByMemberId(memberId);
-//        boardReportRepository.deleteByReporterId(memberId);
-//        inquiryRepository.deleteByMemberId(memberId);
-//        notificationRepository.deleteByMemberId(memberId);
-//        popupBookmarkRepository.deleteByMemberId(memberId);
-//        storeBookmarkRepository.deleteByMemberId(memberId);
-//        tradeBookmarkRepository.deleteByMemberId(memberId);
-//        tradeChatMessageRepository.deleteBySenderId(memberId);
-        memberRepository.deleteById(memberId);  // ⭐ Hard Delete 실행
+        memberRepository.deleteById(memberId);
     }
+
+    // 13. ✅ 네이버 간편 로그인 (자동 회원가입 + 로그인)
+    @Override
+    @Transactional
+    public Member loginByNaver(NaverProfileResponse.NaverProfile profile) throws SQLException {
+
+        if (profile == null || profile.getId() == null) {
+            throw new IllegalArgumentException("네이버 프로필 정보가 올바르지 않습니다.");
+        }
+
+        String naverId = profile.getId();
+        String loginId = "NAVER_" + naverId;
+
+        // 1) 이미 네이버 계정으로 가입된 회원이면 그 회원 그대로 사용
+        Optional<Member> existingOpt = memberRepository.findByLoginId(loginId);
+        if (existingOpt.isPresent()) {
+            return existingOpt.get();
+        }
+
+        // 2) 신규 회원 생성
+        Member member = new Member();
+        member.setLoginId(loginId);
+        member.setLoginPw("NAVER_" + UUID.randomUUID());   // 랜덤 패스워드
+
+        // 닉네임
+        String nickname = profile.getNickname();
+        if (nickname == null || nickname.isBlank()) {
+            nickname = "네이버사용자";
+        }
+        member.setNickname(nickname);
+
+        member.setEmail(profile.getEmail());
+        member.setProfileImageUrl(profile.getProfileImage());
+
+        // ✅ gender: DB 제약조건 -> gender IN ('남자', '여자')
+        String g = profile.getGender();   // 네이버 값: "M", "F", "U", null ...
+
+        String dbGender;
+        if ("M".equalsIgnoreCase(g)
+                || "male".equalsIgnoreCase(g)
+                || "남".equals(g)) {
+            dbGender = "남자";
+        } else if ("F".equalsIgnoreCase(g)
+                || "female".equalsIgnoreCase(g)
+                || "여".equals(g)) {
+            dbGender = "여자";
+        } else {
+            // 값이 없거나 동의 안 한 경우 → 임의 기본값
+            dbGender = "남자";   // 필요하면 "여자"로 바꿔도 됨
+        }
+        member.setGender(dbGender);
+
+        // nationality 체크 제약: ('내국인','외국인')라고 가정
+        member.setNationality("내국인");
+
+        member.setDeletedYn('N');
+        if (member.getUserLevel() == null) {
+            member.setUserLevel(1L);
+        }
+
+        // 3) 저장
+        Member saved = memberRepository.save(member);
+
+        // 4) 기본 알림 설정 (없으면 한 번만 생성)
+        memberNotificationSettingRepository.insertDefaultIfNotExists(saved.getId());
+
+        return saved;
+    }
+
+    // 14. 이메일 변경
     @Override
     public void updateEmail(Long memberId, String email) throws SQLException {
-
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         member.setEmail(email);
-
         memberRepository.save(member);
+    }
 
+    // 15. 닉네임 + 이메일로 회원 조회
+    @Override
+    public Member readByNicknameAndEmail(String nickname, String email) {
+        return memberRepository.findByNicknameAndEmail(nickname, email)
+                .orElse(null);
+    }
+
+    // 16. 아이디 + 닉네임 + 이메일로 회원 조회
+    @Override
+    public Member readByLoginIdAndNicknameAndEmail(String loginId, String nickname, String email) {
+        return memberRepository
+                .findByLoginIdAndNicknameAndEmail(loginId, nickname, email)
+                .orElse(null);
     }
 }
-

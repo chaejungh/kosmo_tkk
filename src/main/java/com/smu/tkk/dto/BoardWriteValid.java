@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 public class BoardWriteValid {
-    @NotBlank(message = "제목은 꼭 입력해야합니다.")
+    @NotBlank
     private String title;
-    @NotBlank(message = "내용은 꼭 입력해야합니다.")
+    @NotBlank
     private String content;
     @Min(1) @Max(3)
     private Long categoryId;

@@ -7,6 +7,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class EmailVerificationService {
@@ -19,7 +22,13 @@ public class EmailVerificationService {
 
         // 1) LEVEL 0으로 저장
         member.setUserLevel(0L);
-
+        member.setLoginId(member.getLoginId());
+        member.setLoginPw(member.getLoginPw());
+        member.setEmail(member.getEmail());
+        member.setNickname(member.getNickname());
+        member.setGender(member.getGender());
+        member.setCreatedAt(LocalDate.now());
+        member.setDeletedYn('N');
         // 2) 인증코드 생성
         String code = createVerifyCode();
         member.setVerifyCode(code);

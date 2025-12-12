@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -77,15 +78,16 @@ public class AdminInquiryServiceImp implements AdminInquiryService {
 
     @Override
     @Transactional
-    public void answerInquiry(Long id, String answerText) {
+    public Inquiry answerInquiry(Long id, String answerText) {
+
         Inquiry inquiry = getInquiry(id);  // 위에서 이미 변환해서 가져옴
 
         // Inquiry 엔티티에 실제 있는 필드 사용 (ANSWER_CONTENT / STATUS / ANSWERED_AT)
         inquiry.setAnswerContent(answerText);
         inquiry.setStatus("DONE");                 // WAIT -> DONE
-        inquiry.setAnsweredAt(LocalDate.now());
+        inquiry.setAnsweredAt(LocalDateTime.now());
 
-        inquiryRepository.save(inquiry);
+        return inquiryRepository.save(inquiry);
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,9 +23,13 @@ public class Inquiry {
     @Column(name = "INQUIRY_ID", nullable = false)
     private Long id;
 
+
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long memberId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID",insertable = false,updatable = false)
     @ToString.Exclude
     @JsonIgnore
     private Member member;
@@ -49,9 +54,9 @@ public class Inquiry {
 
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "ANSWERED_AT")
-    private LocalDate answeredAt;
+    private LocalDateTime answeredAt;
 
 }

@@ -1,22 +1,149 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>문의 상세 | 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>문의 상세 | 더쿠쿠 관리자</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+        :root {
+            --admin-bg: #0b1120;
+            --admin-card-bg: #ffffff;
+            --admin-card-shadow: 0 10px 30px rgba(15, 23, 42, .16);
+            --admin-accent: #6366f1;
+            --admin-text: #111827;
+            --admin-text-soft: #6b7280;
+            --border-soft: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             margin: 0;
-            padding: 24px;
-            background: #f9fafb;
+            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
+            background: #f3f4f6;
+            color: var(--admin-text);
         }
-        .wrap {
-            max-width: 800px;
-            margin: 0 auto;
+
+        /* 헤더 - 대시보드와 동일 스타일 */
+        .admin-header {
+            background: var(--admin-bg);
+            color: #e5e7eb;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        h1 { margin-bottom: 16px; }
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .admin-header-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, .2);
+        }
+
+        .admin-header-right {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header-right a {
+            color: #cbd5f5;
+            text-decoration: none;
+        }
+
+        .admin-header-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* 메인 영역 */
+        .admin-main {
+            padding: 24px 32px 32px;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            margin: 0 0 6px;
+            font-size: 22px;
+        }
+
+        .page-title p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--admin-text-soft);
+        }
+
+        /* 카드 공통 */
+        .admin-card {
+            background: var(--admin-card-bg);
+            border-radius: 16px;
+            padding: 16px 18px;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid var(--border-soft);
+            margin-bottom: 16px;
+        }
+
+        .admin-card-header {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .meta-row {
+            font-size: 13px;
+            color: var(--admin-text-soft);
+            margin-bottom: 8px;
+        }
+
+        .meta-row span + span::before {
+            content: "·";
+            margin: 0 6px;
+            color: #d1d5db;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 8px 0 10px;
+        }
+
+        .content {
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+        }
+
+        .badge-wait {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .badge-done {
+            background: #dcfce7;
+            color: #166534;
+        }
 
         .msg {
             margin-bottom: 12px;
@@ -26,66 +153,82 @@
             font-size: 13px;
         }
 
-        .card {
-            background: #ffffff;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        .card-header {
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .card-body pre {
-            white-space: pre-wrap;
-            font-family: inherit;
-            font-size: 14px;
-        }
-
         textarea {
             width: 100%;
-            min-height: 160px;
-            padding: 8px 10px;
-            resize: vertical;
+            min-height: 180px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
             font-family: inherit;
             font-size: 14px;
+            resize: vertical;
         }
+
         .btn-row {
             margin-top: 12px;
             display: flex;
+            flex-wrap: wrap;
             gap: 8px;
         }
+
         button {
             padding: 6px 12px;
-            border-radius: 4px;
+            border-radius: 999px;
             border: 1px solid #d1d5db;
             cursor: pointer;
             font-size: 14px;
         }
+
         .btn-primary {
             background: #111827;
             color: #ffffff;
             border-color: #111827;
         }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
         .btn-danger {
             background: #fee2e2;
             color: #b91c1c;
             border-color: #fecaca;
         }
-        .btn-secondary {
-            background: #e5e7eb;
-        }
+
         a {
             text-decoration: none;
             color: inherit;
         }
+
+        @media (max-width: 640px) {
+            .admin-main {
+                padding: 18px 14px 28px;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="wrap">
 
-    <h1>문의 상세</h1>
+<header class="admin-header">
+    <div class="admin-header-left">
+        <div class="admin-logo">더쿠쿠 관리자</div>
+        <span class="admin-header-badge">고객센터 · 문의</span>
+    </div>
+    <div class="admin-header-right">
+        <span th:text="${session.adminName != null ? session.adminName + '님 안녕하세요' : '관리자님 안녕하세요'}">
+            관리자님 안녕하세요
+        </span>
+        <span>|</span>
+        <a th:href="@{/admin/logout}">로그아웃</a>
+    </div>
+</header>
+
+<main class="admin-main">
+    <section class="page-title">
+        <h1>문의 상세</h1>
+        <p>사용자가 남긴 문의 내용을 확인하고, 답변을 작성할 수 있습니다.</p>
+    </section>
 
     <!-- 플래시 메시지 -->
     <div th:if="${msg != null and !#strings.isEmpty(msg)}"
@@ -94,58 +237,70 @@
         메시지
     </div>
 
-    <!-- 문의 내용 -->
-    <section class="card">
-        <div class="card-header">
+    <!-- 문의 내용 카드 -->
+    <section class="admin-card">
+        <div class="admin-card-header">문의 정보</div>
+
+        <div class="meta-row">
             <span th:text="|번호: ${inquiry.id}|">번호: 1</span>
-            &nbsp;|&nbsp;
-            <span th:text="|카테고리: ${inquiry.category}|">카테고리</span>
-            &nbsp;|&nbsp;
-            <span th:text="|상태: ${inquiry.status}|">STATUS</span>
+            <span th:text="|카테고리: ${inquiry.category}|">카테고리: 기타</span>
+            <span>
+                상태:
+                <span th:if="${inquiry.answerContent == null or #strings.isEmpty(inquiry.answerContent)}"
+                      class="badge badge-wait">답변 대기</span>
+                <span th:if="${inquiry.answerContent != null and !#strings.isEmpty(inquiry.answerContent)}"
+                      class="badge badge-done">답변 완료</span>
+            </span>
+        </div>
+        <div class="meta-row">
+            <span th:text="|작성일: ${inquiry.createdAt}|">작성일: 2025-12-10</span>
+            <span th:text="|답변일: ${inquiry.answeredAt}|">답변일: -</span>
         </div>
 
-        <div class="card-body">
-            <h2 th:text="${inquiry.title}"
-                style="margin: 0 0 12px 0; font-size: 18px;">
-                문의 제목
-            </h2>
+        <h2 class="title" th:text="${inquiry.title}">문의 제목</h2>
 
-            <pre th:text="${inquiry.content}">
-문의 내용
-            </pre>
+        <div class="content" th:text="${inquiry.content}">
+            문의 내용이 이곳에 표시됩니다.
         </div>
-    </section>
 
-    <!-- 관리자 답변 -->
-    <section class="card">
-        <div class="card-header">관리자 답변</div>
-        <div class="card-body">
-            <form th:action="@{/admin/inquiries/{id}/answer(id=${inquiry.id})}"
-                  method="post">
-                <textarea name="answer"
-                          placeholder="여기에 답변을 입력하세요"
-                          th:text="${inquiry.answerContent}"></textarea>
-
-                <div class="btn-row">
-                    <button type="submit" class="btn-primary">답변 저장</button>
-                    <a th:href="@{/admin/inquiries}" class="btn-secondary">목록으로</a>
-                </div>
-            </form>
+        <div class="btn-row" style="margin-top: 14px;">
+            <a th:href="@{/admin/inquiries}">
+                <button type="button" class="btn-secondary">목록으로</button>
+            </a>
         </div>
     </section>
 
-    <!-- 삭제 버튼 -->
-    <section class="card">
-        <div class="card-header">기타 작업</div>
-        <div class="card-body">
-            <form th:action="@{/admin/inquiries/{id}/delete(id=${inquiry.id})}"
-                  method="post"
-                  onsubmit="return confirm('이 문의를 삭제하시겠습니까? 되돌릴 수 없습니다.');">
+    <!-- 관리자 답변 카드 -->
+    <section class="admin-card">
+        <div class="admin-card-header">관리자 답변</div>
+
+        <form th:action="@{/admin/inquiries/{id}/answer(id=${inquiry.id})}"
+              method="post">
+            <textarea name="answer"
+                      placeholder="여기에 답변을 입력하세요"
+                      th:text="${inquiry.answerContent}"></textarea>
+
+            <div class="btn-row">
+                <button type="submit" class="btn-primary">답변 저장</button>
+                <a th:href="@{/admin/inquiries}">
+                    <button type="button" class="btn-secondary">목록으로</button>
+                </a>
+            </div>
+        </form>
+    </section>
+
+    <!-- 삭제 카드 -->
+    <section class="admin-card">
+        <div class="admin-card-header">기타 작업</div>
+        <form th:action="@{/admin/inquiries/{id}/delete(id=${inquiry.id})}"
+              method="post"
+              onsubmit="return confirm('이 문의를 삭제하시겠습니까? 되돌릴 수 없습니다.');">
+            <div class="btn-row">
                 <button type="submit" class="btn-danger">문의 삭제</button>
-            </form>
-        </div>
+            </div>
+        </form>
     </section>
+</main>
 
-</div>
 </body>
 </html>

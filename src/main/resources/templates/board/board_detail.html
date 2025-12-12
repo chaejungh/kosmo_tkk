@@ -10,24 +10,6 @@
 
 <div class="page board-page" layout:fragment="content">
     <div class="page-inner">
-
-<!--        &lt;!&ndash; 상단 로고 + 뒤로가기 &ndash;&gt;-->
-<!--        <header class="header">-->
-<!--            <div class="detail-header-bar">-->
-<!--                <button type="button"-->
-<!--                        class="detail-back-btn"-->
-<!--                        onclick="history.back()">-->
-<!--                    ←-->
-<!--                </button>-->
-<!--                <div class="detail-logo">더쿠쿠</div>-->
-<!--            </div>-->
-<!--        </header>-->
-<!--        <div id="share-popup" class="share-popup">-->
-<!--            <div class="share-popup-inner">-->
-<!--                <span id="share-url"></span>-->
-<!--                <button id="copy-url-btn">복사</button>-->
-<!--            </div>-->
-<!--        </div>-->
         <!-- ============ 상세 카드 ============ -->
         <section class="card post-detail-card">
             <div class="post-detail-header">
@@ -67,7 +49,9 @@
                         수정
                     </a>
                     <a class="detail-action-btn detail-action-delete"
-                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/delete.do'}">
+                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/delete.do'}"
+                       onclick="return confirm('게시물을 삭제하시겠습니까?');">
+
                         삭제
                     </a>
                 </div>
@@ -77,18 +61,18 @@
             <!-- 대표 사진 -->
             <div class="detail-main-image">
                 <!-- thumbnailUrl이 있으면 대표사진으로 사용 -->
-                <img th:if="${post.thumbnailUrl} != null"
-                     th:src="${post.thumbnailUrl}"
-                     alt="대표 사진"
-                     style="width:100%; height:100%; object-fit:cover;">
-                <div th:if="${post.thumbnailUrl} == null">
+                <img th:if="${coverUrl} != null"
+                     th:src="${coverUrl}"
+                     th:onclick="'location.href=\'/board/' + ${post.id} + '/img/' + ${coverImageId} + '/detail.do\''"
+                     alt="대표 사진">
+                <div th:if="${coverUrl} == null">
                     대표 사진 영역
                 </div>
 
                 <!-- 이미지 개수는 일단 1 / 1 -->
-                <div class="detail-image-count">
-                    <span>1 / 1</span>
-                </div>
+<!--                <div class="detail-image-count">-->
+<!--                    <span>1 / 1</span>-->
+<!--                </div>-->
             </div>
 
             <!-- 좋아요 / 댓글 / 저장 / 조회수 + 공유 -->
@@ -96,15 +80,15 @@
                 <div class="detail-stats-left">
                     <div class="detail-stat-item">
                         <button type="button"
-                        id="like-btn"
-                        class="like-btn"
-                        th:data-post-id="${post.id}"
-                        th:data-member-id="${memberId}"
-                        th:data-liked="${likeInfo.id != null}">
-                            ❤️
+                                id="like-btn"
+                                class="like-btn"
+                                th:data-post-id="${post.id}"
+                                th:data-member-id="${memberId}"
+                                th:data-liked="${likeInfo.id != null}"
+                                th:text="${likeInfo.id != null} ? '❤️' : '🤍'">
+                            🤍
                         </button>
-                        <span id="like-count" th:text="${post.likeCount}">0</span>
-
+                        <span id="like-count" th:text="${likeInfo.getLikeCount()}">0</span>
                     </div>
                     <div class="detail-stat-item">
                         💬 <span th:text="${commentCount}"></span>
@@ -193,6 +177,7 @@
 
                         <a th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} +
                         '/comment/' + ${c.id} + '/delete.do'}"
+                           onclick="return confirm('댓글을 삭제하시겠습니까?');"
                            class="comment-delete-btn">
                             삭제
                         </a>
@@ -239,6 +224,13 @@
         if (!likeBtn || !likeCountSpan) {
             return;
         }
+        if (likeBtn.dataset.liked === "true") {
+            likeBtn.classList.add("active");
+            likeBtn.textContent = "❤️";
+        } else {
+            likeBtn.textContent = "🤍";
+        }
+
 
         likeBtn.addEventListener("click", async () => {
             const postId = likeBtn.dataset.postId;
@@ -260,9 +252,11 @@
                 const data = await res.json();   // { likeCount: 숫자, liked: boolean }
 
                 // 화면 갱신
+                // 하트 모양 + 상태 갱신
                 likeCountSpan.textContent = data.likeCount;
                 likeBtn.dataset.liked = data.liked;
                 likeBtn.classList.toggle("active", data.liked);
+                likeBtn.textContent = data.liked ? "❤️" : "🤍";
 
             } catch (e) {
                 console.error("like toggle error", e);

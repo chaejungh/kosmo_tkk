@@ -36,8 +36,12 @@ public class TradeChatController {
     @PostMapping("/{tradeId}/chat/start")
     public String startChat(
             @PathVariable Long tradeId,
-            @SessionAttribute Long memberId
+            @SessionAttribute(name = "memberId",required = false) Long memberId
     ) {
+
+        if (memberId==null){
+            return "redirect:/auth/login";
+        }
         // 1) 채팅방 생성 또는 기존방 재사용
         TradeChatRoom room = chatService.getOrCreateRoom(tradeId, memberId);
 

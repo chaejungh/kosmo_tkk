@@ -1,4 +1,4 @@
-package com.smu.tkk.controller;
+package com.smu.tkk.controller.admin;
 
 import com.smu.tkk.entity.BoardComment;
 import com.smu.tkk.entity.BoardPost;

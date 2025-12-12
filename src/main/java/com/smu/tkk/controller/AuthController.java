@@ -37,6 +37,63 @@ public class AuthController {
 
         return exists ? "duplicate" : "ok";
     }
+    @GetMapping("/find_id")
+    public String showFindIdForm() {
+        // 그냥 화면만 열어줌
+        return "auth/find_id";
+    }
+
+    /** 아이디 찾기 처리 */
+    @PostMapping("/find_id")
+    public String findId(@RequestParam String nickname,
+                         @RequestParam String email,
+                         Model model) {
+
+        // 닉네임 + 이메일로 회원 찾기 (서비스/레포지토리는 아래 참고)
+        Member member = memberService.readByNicknameAndEmail(nickname, email);
+
+        if (member != null) {
+            // 찾음 → 아이디 내려주기
+            model.addAttribute("foundId", member.getLoginId());
+        } else {
+            // 못 찾음 → 실패 플래그
+            model.addAttribute("notFound", true);
+        }
+
+        // 필요하면 사용자가 입력했던 값 다시 채워주기
+        model.addAttribute("nickname", nickname);
+        model.addAttribute("email", email);
+
+        // 같은 페이지로 다시 렌더링
+        return "auth/find_id";
+    }
+
+    @GetMapping("/find_pw")
+    public String showFindPwForm() {
+        return "auth/find_pw";   // 위에 올린 템플릿 파일 이름
+    }
+
+    /** 비밀번호 찾기 처리 */
+    @PostMapping("/find_pw")
+    public String findPassword(@RequestParam("loginId") String loginId,
+                               @RequestParam("nickname") String nickname,
+                               @RequestParam("email") String email,
+                               Model model) {
+
+        // 🔎 아이디 + 이름 + 이메일이 모두 일치하는 회원 찾기
+        Member member = memberService
+                .readByLoginIdAndNicknameAndEmail(loginId, nickname, email);
+
+        if (member != null) {
+            // ⚠️ 실서비스에서는 비밀번호를 그대로 보여주면 안 되고,
+            //     임시 비밀번호 발급 + 이메일 전송 등으로 처리해야 함.
+            model.addAttribute("foundPw", member.getLoginPw());
+        } else {
+            model.addAttribute("notFound", true);
+        }
+
+        return "auth/find_pw";
+    }
 
     @GetMapping({"/login", "/login.do"})
     public String loginForm() {

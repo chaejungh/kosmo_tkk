@@ -226,7 +226,7 @@
                 <li class="toggle-item">
                     <span>거래 상태 변경 알림</span>
                     <label class="tkk-switch">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked id="tradeToggle">
                         <span class="tkk-slider"></span>
                     </label>
                 </li>
@@ -242,7 +242,7 @@
                 <li class="toggle-item">
                     <span>문의 답변 알림</span>
                     <label class="tkk-switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="inquiryToggle">
                         <span class="tkk-slider"></span>
                     </label>
                 </li>
@@ -250,7 +250,7 @@
                 <li class="toggle-item">
                     <span>공지/이벤트 알림</span>
                     <label class="tkk-switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="noticeToggle">
                         <span class="tkk-slider"></span>
                     </label>
                 </li>
@@ -418,6 +418,99 @@
                 showToast("📢 메시지 알림이 꺼졌어요");
             }
         });
+
+    // ===== 문의 답변 알림 토글 =====
+    const inquiryToggle = document.getElementById("inquiryToggle");
+
+    // 로컬 저장된 상태 불러오기
+    window.addEventListener("load", () => {
+        const saved = localStorage.getItem("inquiry_alert_on");
+
+        if (saved === "Y") {
+            inquiryToggle.checked = true;
+        } else if (saved === "N") {
+            inquiryToggle.checked = false;
+        } else {
+            // 기본값 ON
+            inquiryToggle.checked = true;
+            localStorage.setItem("inquiry_alert_on", "Y");
+        }
+    });
+
+    // 토글 ON/OFF 시 토스트 띄우기
+    inquiryToggle.addEventListener("change", () => {
+        const isOn = inquiryToggle.checked;
+
+        // 로컬 저장
+        localStorage.setItem("inquiry_alert_on", isOn ? "Y" : "N");
+
+        // 토스트 출력
+        if (isOn) {
+            showToast("📢 문의 답변 알림이 켜졌어요");
+        } else {
+            showToast("📢 문의 답변 알림이 꺼졌어요");
+        }
+    });
+
+    // ===== 거래 상태 변경 알림 토글 =====
+    const tradeToggle = document.getElementById("tradeToggle");
+
+    // 저장된 설정 불러오기
+    window.addEventListener("load", () => {
+        const saved = localStorage.getItem("trade_alert_on");
+
+        if (saved === "Y") {
+            tradeToggle.checked = true;
+        } else if (saved === "N") {
+            tradeToggle.checked = false;
+        } else {
+            tradeToggle.checked = true; // 기본값 ON
+            localStorage.setItem("trade_alert_on", "Y");
+        }
+    });
+
+    // ON/OFF 시 토스트
+    tradeToggle.addEventListener("change", () => {
+        const isOn = tradeToggle.checked;
+
+        localStorage.setItem("trade_alert_on", isOn ? "Y" : "N");
+
+        if (isOn) {
+            showToast("📢 거래 상태 변경 알림이 켜졌어요");
+        } else {
+            showToast("📢 거래 상태 변경 알림이 꺼졌어요");
+        }
+    });
+
+    // ===== 공지/이벤트 알림 토글 =====
+    const noticeToggle = document.getElementById("noticeToggle");
+
+    // 저장된 설정 불러오기
+    window.addEventListener("load", () => {
+        const saved = localStorage.getItem("notice_alert_on");
+
+        if (saved === "Y") {
+            noticeToggle.checked = true;
+        } else if (saved === "N") {
+            noticeToggle.checked = false;
+        } else {
+            noticeToggle.checked = true; // 기본값 ON
+            localStorage.setItem("notice_alert_on", "Y");
+        }
+    });
+
+    // ON/OFF 시 토스트
+    noticeToggle.addEventListener("change", () => {
+        const isOn = noticeToggle.checked;
+
+        localStorage.setItem("notice_alert_on", isOn ? "Y" : "N");
+
+        if (isOn) {
+            showToast("📢 공지/이벤트 알림이 켜졌어요");
+        } else {
+            showToast("📢 공지/이벤트 알림이 꺼졌어요");
+        }
+    });
 
 </script>
 </body>

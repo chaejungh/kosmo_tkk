@@ -73,6 +73,7 @@ import java.util.Optional;
 
                     BoardPostImage img = new BoardPostImage();
                     img.setPostId(savedPost.getId());
+                    savedPost.setThumbnailUrl(imageUrl);
                     img.setImageUrl(imageUrl);
                     img.setSortOrder((long) sortOrder++);
 
@@ -145,6 +146,11 @@ import java.util.Optional;
         public List<BoardPostImage> readImages(Long postId) throws SQLException {
             if (postId == null) return List.of();
             return boardPostImageRepository.findAllByPostId(postId);
+        }
+
+        @Override
+        public Optional<BoardPostImage> readOneImg(Long postId) throws SQLException {
+            return boardPostImageRepository.findFirstByPostIdOrderBySortOrderAscIdAsc(postId);
         }
 
         @Override
@@ -244,6 +250,11 @@ import java.util.Optional;
         public List<BoardPost> getHotPostsAll() {
             return boardPostRepository
                     .findTop5ByDeletedYnOrderByLikeCountDesc("N");
+        }
+
+        @Override
+        public boolean isLiked(Long postId, Long memberId) {
+            return boardLikeRepository.existsByPostIdAndMemberId(postId,memberId);
         }
 
         @Override

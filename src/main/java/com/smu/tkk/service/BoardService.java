@@ -4,9 +4,11 @@ import com.smu.tkk.entity.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
+import software.amazon.awssdk.services.s3.model.ObjectPart;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 덕질 게시판 서비스
@@ -50,6 +52,7 @@ public interface BoardService {
     // 9. 특정 게시글 이미지 전체 조회(레파지토리 완료)
     List<BoardPostImage> readImages(Long postId) throws SQLException;
 
+    Optional<BoardPostImage> readOneImg(Long postId) throws SQLException;
     // 10. 게시글에 이미지 추가(레파지토리 완료)
     boolean addImage(Long postId, BoardPostImage image)
             throws SQLException, IllegalArgumentException;
@@ -83,6 +86,6 @@ public interface BoardService {
 
     List<BoardPost> getHotPostsAll();
 
-
+    boolean isLiked(Long postId, Long memberId);
 
 }
