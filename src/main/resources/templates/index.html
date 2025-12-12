@@ -528,16 +528,28 @@
                         ? p.storeId
                         : p.id;
 
-                    li.innerHTML =
-                        <div class="map-search-line1">
-                            <button type="button" class="map-search-name js-focus">${p.name || '이름 없음'}</button>
-                            ${p.source ? <span class="map-search-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span> : ''}
-                            ${p.source === 'STORE' && storeId != null
-                            ? <button type="button" class="map-search-detail" data-store-id="${storeId}">상세보기</button>
-                            : ''}
-                        </div>
-                    <div class="map-search-meta">${p.address || ''}</div>
-                    ;
+                    li.innerHTML = `
+                              <div class="map-search-line1">
+                                <button type="button" class="map-search-name js-focus">
+                                  ${p.name || '이름 없음'}
+                                </button>
+
+                                ${p.source
+                                                    ? `<span class="map-search-badge">
+                                      ${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}
+                                    </span>`
+                                                    : ''}
+
+                                ${(p.source === 'STORE' && storeId != null)
+                                                    ? `<button type="button" class="map-search-detail" data-store-id="${storeId}">
+                                      상세보기
+                                    </button>`
+                                                    : ''}
+                              </div>
+
+                              <div class="map-search-meta">${p.address || ''}</div>
+                            `;
+
 
                     const focusBtn = li.querySelector('.js-focus');
                     focusBtn.addEventListener('click', () => {
@@ -557,7 +569,8 @@
                             e.stopPropagation();
                             const id = detailBtn.dataset.storeId;
                             if (id) {
-                                window.location.href = /goods/store/${id};
+                                const url = '/goods/store/${id}';
+                                window.location.href = url;
                             }
                         });
                     }
