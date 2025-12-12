@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: deploy
+
+  datasource:
+    # 🔥 Docker Oracle XE가 host 3000 포트로 열려있던 예전 설정으로 복귀
+    url: jdbc:mysql://thekuku.czmmuc4g8era.ap-northeast-2.rds.amazonaws.com:3306/tkk
+    username: thekuku
+    password: thekukupw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 80
