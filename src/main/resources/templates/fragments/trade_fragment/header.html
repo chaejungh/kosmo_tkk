@@ -13,10 +13,11 @@
         </div>
 
         <!-- ✅ 비로그인 상태: 로그인 / 회원가입 버튼 -->
-        <div th:if="${nickname == null}">
+        <div th:if="${session.loginMember == null}">
             <a th:href="@{/auth/login}" class="btn-auth">로그인</a>
             <a th:href="@{/auth/join}" class="btn-auth btn-auth-primary">회원가입</a>
         </div>
+
         <!-- ✅ 로그인 상태: 닉네임 + 로그아웃 -->
         <div class="logged-in-box"
              th:if="${session.loginMember != null or nickname != null}">
