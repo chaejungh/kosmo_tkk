@@ -50,17 +50,17 @@ public class MemberServiceImp implements MemberService {
             throw new IllegalArgumentException("이미 존재하는 닉네임입니다.");
         }
 
-        // ⚠ deletedYn 이 primitive char 라고 보고, 그냥 기본값 강제 세팅
+        // deletedYn이 primitive char 라고 가정하고 기본값 강제 세팅
         member.setDeletedYn('N');
 
-        // userLevel 은 Long(래퍼)일 확률이 높으니 null 체크만
+        // userLevel(래퍼) null이면 기본값
         if (member.getUserLevel() == null) {
             member.setUserLevel(1L);
         }
 
         Member savedMember = memberRepository.save(member);
 
-        // ✅ 알림 설정: 없으면 한 번만 INSERT (native MERGE)
+        // ✅ 알림 설정: 없으면 한 번만 INSERT (native MERGE 사용)
         memberNotificationSettingRepository.insertDefaultIfNotExists(savedMember.getId());
 
         return true;
@@ -149,7 +149,7 @@ public class MemberServiceImp implements MemberService {
         if (memberId == null) {
             return null;
         }
-        // ✅ Repository PK 타입이 Integer 라서 intValue() 사용
+        // Repository PK 타입이 Integer 라서 intValue() 사용
         return memberNotificationSettingRepository.findById(memberId.intValue())
                 .orElse(null);
     }
@@ -159,7 +159,7 @@ public class MemberServiceImp implements MemberService {
     public boolean updateNotificationSetting(MemberNotificationSetting setting)
             throws SQLException, IllegalArgumentException {
 
-        // ⚠ 엔티티에 memberId 필드 없고, PK = id(Integer) 라고 가정
+        // 엔티티에 memberId 필드 없고, PK = id(Integer) 라고 가정
         if (setting == null || setting.getId() == null) {
             throw new IllegalArgumentException("설정 정보가 올바르지 않습니다.");
         }
@@ -231,30 +231,41 @@ public class MemberServiceImp implements MemberService {
         member.setLoginId(loginId);
         member.setLoginPw("NAVER_" + UUID.randomUUID());   // 랜덤 패스워드
 
-        member.setNickname(
-                profile.getNickname() != null && !profile.getNickname().isBlank()
-                        ? profile.getNickname()
-                        : "네이버사용자"
-        );
+        // 닉네임
+        String nickname = profile.getNickname();
+        if (nickname == null || nickname.isBlank()) {
+            nickname = "네이버사용자";
+        }
+        member.setNickname(nickname);
+
         member.setEmail(profile.getEmail());
         member.setProfileImageUrl(profile.getProfileImage());
 
-        // gender 체크 (M/F/N)
-        String g = profile.getGender();
-        if ("M".equalsIgnoreCase(g)) {
-            member.setGender("M");
-        } else if ("F".equalsIgnoreCase(g)) {
-            member.setGender("F");
-        } else {
-            member.setGender("N");
-        }
+        // ✅ gender: DB 제약조건 -> gender IN ('남자', '여자')
+        String g = profile.getGender();   // 네이버 값: "M", "F", "U", null ...
 
-        // nationality 체크 제약: ('내국인','외국인')
+        String dbGender;
+        if ("M".equalsIgnoreCase(g)
+                || "male".equalsIgnoreCase(g)
+                || "남".equals(g)) {
+            dbGender = "남자";
+        } else if ("F".equalsIgnoreCase(g)
+                || "female".equalsIgnoreCase(g)
+                || "여".equals(g)) {
+            dbGender = "여자";
+        } else {
+            // 값이 없거나 동의 안 한 경우 → 임의 기본값
+            dbGender = "남자";   // 필요하면 "여자"로 바꿔도 됨
+        }
+        member.setGender(dbGender);
+
+        // nationality 체크 제약: ('내국인','외국인')라고 가정
         member.setNationality("내국인");
 
-        // ⚠ 여기서도 그냥 기본값 강제
         member.setDeletedYn('N');
-        member.setUserLevel(1L);
+        if (member.getUserLevel() == null) {
+            member.setUserLevel(1L);
+        }
 
         // 3) 저장
         Member saved = memberRepository.save(member);
@@ -264,25 +275,25 @@ public class MemberServiceImp implements MemberService {
 
         return saved;
     }
+
+    // 14. 이메일 변경
     @Override
     public void updateEmail(Long memberId, String email) throws SQLException {
-
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         member.setEmail(email);
-
         memberRepository.save(member);
-
     }
 
+    // 15. 닉네임 + 이메일로 회원 조회
     @Override
     public Member readByNicknameAndEmail(String nickname, String email) {
         return memberRepository.findByNicknameAndEmail(nickname, email)
                 .orElse(null);
-
     }
 
+    // 16. 아이디 + 닉네임 + 이메일로 회원 조회
     @Override
     public Member readByLoginIdAndNicknameAndEmail(String loginId, String nickname, String email) {
         return memberRepository
