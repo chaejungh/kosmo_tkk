@@ -17,7 +17,7 @@ spring:
       hibernate:
         format_sql: true
         use_sql_comments: true
-        dialect: org.hibernate.dialect.OracleDialect
+        dialect: org.hibernate.dialect.MySQLDialect
         highlight_sql: true
 logging:
   level:
