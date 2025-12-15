@@ -16,4 +16,4 @@ EXPOSE 80
 ENTRYPOINT ["java", "-jar", "/app.jar", "--logging.level.root=ERROR", "--logging.file.name=/tmp/app.log"]
 
 #docker buildx build --platform linux/amd64 -t yhsmam0817/thekuku-spring:0.0.1 --push .
-#sudo docker run -d --name tkk-app -p 443:443 yhsmam0817/thekuku-spring:0.0.3
+#sudo docker run -d --name app -p 443:443 yhsmam0817/thekuku-spring:0.0.3
