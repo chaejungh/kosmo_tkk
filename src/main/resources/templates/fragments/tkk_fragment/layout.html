@@ -2,13 +2,16 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8"/>
+    <!-- ✅ 중요: 뷰포트 통일 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <title>더쿠쿠</title>
 
-    <!-- ✅ 공통 CSS -->
-    <link rel="stylesheet" th:href="@{/css/tkk.css}"/>
+    <!-- ✅ 공통 CSS (캐시 갱신용 v 파라미터: 배포 후에도 CSS가 갱신되게) -->
+    <link rel="stylesheet" th:href="@{/css/tkk.css(v=${#dates.createNow().time})}"/>
 
     <!-- ✅ Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -49,11 +52,12 @@
     </div>
 </header>
 
+<!-- ✅ 핵심: 전체 크기(체감) 통일용 컨테이너 -->
 <div class="tkk-container">
     <main layout:fragment="content"></main>
 </div>
 
-<!-- ✅ footer는 여기서 “한 번만” -->
+<!-- ✅ footer는 여기서 한 번만 -->
 <th:block th:replace="fragments/tkk_fragment/footer :: footer"></th:block>
 
 <!-- ✅ Swiper JS -->

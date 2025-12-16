@@ -56,10 +56,8 @@
         </div>
     </section>
 
-
     <!-- =============================
          진행중인 팝업스토어
-         (하얀 배경 / 블록감 제거)
     ============================== -->
     <section class="card popup-section">
         <div class="card-header">
@@ -74,7 +72,6 @@
             </a>
         </div>
 
-        <!-- Swiper -->
         <div class="swiper popupSwiper">
             <div class="swiper-wrapper">
 
@@ -84,24 +81,22 @@
 
                     <div class="popup-card">
 
-                        <!-- 이미지 -->
                         <div class="popup-img"
                              th:style="${popup.bannerImageUrl != null}
                                 ? |background-image:url(${popup.bannerImageUrl});|
                                 : ''">
 
-                            <!-- 상태 뱃지 -->
                             <div class="popup-badge"
                                  th:with="
-        today=${T(java.time.LocalDate).now()},
-        start=${popup.startDate},
-        end=${popup.endDate},
-        isActive=${start != null and end != null and (not today.isBefore(start)) and (not today.isAfter(end))},
-        isUpcoming=${start != null and today.isBefore(start)}
-     ">
+                      today=${T(java.time.LocalDate).now()},
+                      start=${popup.startDate},
+                      end=${popup.endDate},
+                      isActive=${start != null and end != null and (not today.isBefore(start)) and (not today.isAfter(end))},
+                      isUpcoming=${start != null and today.isBefore(start)}
+                   ">
 
-                                <span class="popup-dot"
-                                      th:classappend="${isUpcoming} ? ' upcoming' : (${isActive} ? '' : ' ended')"></span>
+                <span class="popup-dot"
+                      th:classappend="${isUpcoming} ? ' upcoming' : (${isActive} ? '' : ' ended')"></span>
 
                                 <span th:if="${isUpcoming}">예정</span>
                                 <span th:if="${!isUpcoming and isActive}">진행중</span>
@@ -109,45 +104,36 @@
                             </div>
                         </div>
 
-                        <!-- 정보 -->
                         <div class="popup-info">
-                            <p class="popup-title"
-                               th:text="${popup.title}">
-                                팝업 제목
-                            </p>
-
+                            <p class="popup-title" th:text="${popup.title}">팝업 제목</p>
                             <p class="popup-place"
                                th:text="${popup.placeName != null ? popup.placeName : popup.regionName}">
                                 장소명
                             </p>
-
                             <p class="popup-date"
                                th:text="|${popup.startDate} ~ ${popup.endDate}|">
                                 기간
                             </p>
 
-                            <!-- 검정 버튼 -->
                             <a class="popup-cta"
                                th:href="@{|/popupstore/${popup.id}/detail.do|}"
                                onclick="event.stopPropagation();">
                                 자세히 보기
                             </a>
                         </div>
+
                     </div>
                 </div>
 
             </div>
 
-            <!-- 네비게이션 -->
             <div class="swiper-button-prev popup-nav"></div>
             <div class="swiper-button-next popup-nav"></div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
 
-    <!-- =============================
-         문의 · AI 상담
-    ============================== -->
+    <!-- 문의 · AI 상담 -->
     <a th:href="@{/help}" class="fab">
         <span class="fab-icon">💬</span>
         <span class="fab-text">문의 · AI 상담</span>
@@ -155,19 +141,15 @@
 
 </div>
 
-<!-- =============================
-     Script
-============================== -->
 <th:block layout:fragment="script">
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
             // ✅ 팝업 스와이퍼
-            const popupSwiper = new Swiper(".popupSwiper", {
+            new Swiper(".popupSwiper", {
                 slidesPerView: 3,
                 slidesPerGroup: 1,
                 spaceBetween: 24,
-                centeredSlides: false,
                 loop: true,
                 speed: 650,
                 grabCursor: true,
@@ -183,19 +165,16 @@
                 },
 
                 breakpoints: {
-                    0:   { slidesPerView: 1.1, slidesPerGroup: 1, spaceBetween: 14 },
-                    720: { slidesPerView: 2,   slidesPerGroup: 1, spaceBetween: 18 },
-                    900: { slidesPerView: 3,   slidesPerGroup: 1, spaceBetween: 24 }
+                    0:   { slidesPerView: 1.1, spaceBetween: 14 },
+                    720: { slidesPerView: 2,   spaceBetween: 18 },
+                    900: { slidesPerView: 3,   spaceBetween: 24 }
                 }
             });
 
-            // ======================================================
-            // ✅ 지도 iframe ↔ 오른쪽 "매장 목록" 연동 (이게 빠져있던 부분)
-            // ======================================================
+            // ✅ 지도 iframe ↔ 오른쪽 목록
             (function () {
                 const sideList = document.getElementById('mapSideList');
                 const iframe = document.querySelector('.home-map iframe');
-
                 const qPlace = document.getElementById('qPlace');
                 const qGoods = document.getElementById('qGoods');
                 const btnMyPos = document.getElementById('btnMyPos');
@@ -215,7 +194,7 @@
                         type: 'MAP_SEARCH',
                         place: (qPlace?.value || '').trim(),
                         goods: (qGoods?.value || '').trim()
-                    }, '*'); // ✅ 혼용(도메인/IP) 대비: iframe에서 다시 origin 체크 가능
+                    }, '*');
                 }
 
                 function sendMyPos(){
@@ -223,9 +202,9 @@
                     iframe.contentWindow.postMessage({ type:'MAP_MY_POSITION' }, '*');
                 }
 
-                if (qPlace) qPlace.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendSearch(); });
-                if (qGoods) qGoods.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendSearch(); });
-                if (btnMyPos) btnMyPos.addEventListener('click', sendMyPos);
+                qPlace?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendSearch(); });
+                qGoods?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendSearch(); });
+                btnMyPos?.addEventListener('click', sendMyPos);
 
                 function renderPlaces(places){
                     if (!sideList) return;
@@ -247,24 +226,20 @@
                         const storeId = (p.storeId !== undefined && p.storeId !== null) ? p.storeId : p.id;
 
                         li.innerHTML = `
-                            <div class="home-store-line1">
-                              <button type="button" class="home-store-name js-focus">${p.name || '이름 없음'}</button>
-                              ${p.source ? `<span class="home-store-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
-                              ${(p.source === 'STORE' && storeId != null)
+              <div class="home-store-line1">
+                <button type="button" class="home-store-name js-focus">${p.name || '이름 없음'}</button>
+                ${p.source ? `<span class="home-store-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
+                ${(p.source === 'STORE' && storeId != null)
                             ? `<button type="button" class="home-store-detail" data-store-id="${storeId}">상세보기</button>`
                             : ''}
-                            </div>
-                            <div class="home-store-meta">${p.roadAddress || p.address || ''}</div>
-                        `;
+              </div>
+              <div class="home-store-meta">${p.roadAddress || p.address || ''}</div>
+            `;
 
-                        // ✅ 목록 클릭 → 지도 포커스
                         li.querySelector('.js-focus').addEventListener('click', ()=>{
-                            if (iframe && iframe.contentWindow){
-                                iframe.contentWindow.postMessage({ type:'MAP_FOCUS_PLACE', idx }, '*');
-                            }
+                            iframe?.contentWindow?.postMessage({ type:'MAP_FOCUS_PLACE', idx }, '*');
                         });
 
-                        // ✅ 우리 DB 매장 상세보기 이동
                         const detailBtn = li.querySelector('.home-store-detail');
                         if(detailBtn){
                             detailBtn.addEventListener('click', (e)=>{
@@ -280,18 +255,15 @@
                     sideList.appendChild(ul);
                 }
 
-                // ✅ iframe → 부모 결과 받기 (origin은 iframe src 기준으로 검사)
                 window.addEventListener('message', (event)=>{
                     const iframeOrigin = getIframeOrigin();
-
-                    // iframeOrigin을 얻을 수 있으면 그 기준으로만 허용
                     if(iframeOrigin && event.origin !== iframeOrigin) return;
 
                     const data = event.data;
                     if(!data || data.type !== 'MAP_SEARCH_RESULTS') return;
-
                     renderPlaces(data.places || []);
                 });
+
             })();
         });
     </script>
