@@ -54,6 +54,7 @@ public class StoreController {
         view.put("id",        getString(store, storeId.toString(), "getStoreId", "getId"));
         view.put("name",      getString(store, "", "getStoreName", "getName"));
         view.put("brand",     getString(store, "", "getBrandName", "getBrand"));
+        view.put("description", getString(store, "", "getDescription"));
         view.put("address",   getString(store, "", "getAddress"));
         view.put("tel",       getString(store, "", "getTel", "getPhone"));
         view.put("openTime",  getString(store, "", "getOpenTime", "getBusinessHours"));
