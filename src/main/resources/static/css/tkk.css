@@ -1,0 +1,540 @@
+/* =========================
+   Base
+========================= */
+:root{
+    --bg:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --card:#ffffff;
+    --shadow2:0 6px 18px rgba(15,23,42,0.08);
+
+    --blackBtn:#0b0f17;
+    --blackBtn2:#111827;
+
+    --pink:#ff6b81;
+    --radius:18px;
+    --radius2:14px;
+
+    /* ✅ 전체 “밀도/크기” 조절용 */
+    --container: 1020px;
+    --pagePad: 22px;
+    --cardPad: 16px;
+}
+
+*{ box-sizing:border-box; }
+html, body{ height:100%; }
+
+/* ✅ 전체 크기 줄이기: transform/zoom 금지 */
+html{ font-size: 14px; }
+
+body.tkk-body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR","Apple SD Gothic Neo","Helvetica Neue",Arial,sans-serif;
+}
+
+/* ✅ 밑줄 제거 */
+a, a:visited, a:hover, a:active{
+    color:inherit;
+    text-decoration:none !important;
+}
+
+/* =========================
+   Layout Container
+========================= */
+.tkk-container{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: var(--pagePad) 18px 32px; /* 하단 길이 줄임 */
+}
+
+/* =========================
+   Header
+========================= */
+.tkk-header{
+    position: sticky;
+    top:0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(229,231,235,0.8);
+}
+.tkk-header-inner{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 10px 18px;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+}
+.tkk-brand{ display:flex; align-items:center; gap:10px; min-width:120px; }
+.tkk-brand-logo{ width:44px; height:44px; object-fit:cover; border-radius:10px; }
+.tkk-brand-title{ font-weight:900; letter-spacing:-0.2px; }
+
+.tkk-nav{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    gap: 14px;
+}
+.tkk-nav-item{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    padding: 9px 13px;
+    border-radius:999px;
+    color: var(--muted);
+    font-size: 13px;
+}
+.tkk-nav-item:hover{ background:#f3f4f6; color:#111827; }
+
+.tkk-actions{ display:flex; align-items:center; gap:10px; }
+.tkk-btn{
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid transparent;
+}
+.tkk-btn-outline{
+    border-color: var(--line);
+    background:#fff;
+    color:#111827;
+}
+.tkk-btn-outline:hover{ background:#f9fafb; }
+.tkk-btn-primary{
+    background: var(--pink);
+    color:#fff;
+}
+.tkk-btn-primary:hover{ filter:brightness(0.98); }
+
+/* =========================
+   Card / Section  ✅(카드 유지해야 시작점 맞음)
+========================= */
+.card{
+    background: var(--card);
+    border: 1px solid rgba(229,231,235,0.8);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow2);
+    padding: var(--cardPad);
+    margin-bottom: 22px;
+}
+
+/* ✅ “섹션 나뉨” 느낌만 줄이기 (카드는 유지) */
+.card.soft{
+    border-color: rgba(229,231,235,0.55);
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+}
+
+.card-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.card-title{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.pill{
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(229,231,235,0.9);
+    background: #f9fafb;
+    color: #374151;
+}
+.pill-blue{ background:#eef2ff; border-color:#e0e7ff; color:#3730a3; }
+.pill-purple{ background:#f5f3ff; border-color:#ede9fe; color:#5b21b6; }
+
+/* =========================
+   Home Map
+========================= */
+.home-map-grid{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+}
+.home-map{
+    height: 410px;
+    border-radius: 18px;
+    overflow:hidden;
+    border: 1px solid rgba(229,231,235,0.9);
+    background:#fff;
+}
+.home-store-panel{
+    height: 410px;
+    border-radius: 18px;
+    overflow:hidden;
+    border: 1px solid rgba(229,231,235,0.9);
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+}
+.home-store-head{
+    background:#0b0f17;
+    color:#fff;
+    font-weight: 900;
+    font-size: 13px;
+    padding: 12px 14px;
+}
+.home-store-body{
+    flex:1;
+    overflow-y:auto;
+    padding: 12px;
+}
+.home-store-empty{ font-size:13px; color:#6b7280; }
+
+.home-search-row{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr auto;
+    gap: 12px;
+    align-items:center;
+    margin-top: 10px;
+}
+.home-input{
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    padding: 0 12px;
+}
+.home-input .ico{ width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:#9ca3af; }
+.home-input input{ border:none; outline:none; width:100%; font-size:13px; color:#111827; }
+
+.home-loc-btn{
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border:none;
+    background:#0b0f17;
+    color:#fff;
+    font-weight:900;
+    font-size:13px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+}
+
+.home-store-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.home-store-item{
+    border: 1px solid rgba(229,231,235,0.9);
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 10px rgba(15,23,42,0.04);
+    background:#fff;
+}
+.home-store-line1{ display:flex; align-items:center; gap:8px; }
+.home-store-name{
+    border:none; background:none; padding:0; margin:0;
+    font-size:13px; font-weight:900; color:#111827;
+    cursor:pointer; text-align:left;
+}
+.home-store-badge{
+    font-size:11px; padding:2px 8px; border-radius:999px;
+    border:1px solid rgba(229,231,235,0.9); background:#f9fafb; color:#4b5563; font-weight:800;
+}
+.home-store-meta{ margin-top:6px; font-size:12px; color:#6b7280; }
+.home-store-detail{
+    margin-left:auto;
+    border:none;
+    background:#111827;
+    color:#fff;
+    font-size:11px;
+    font-weight:900;
+    padding: 6px 10px;
+    border-radius:999px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+/* =========================
+   “전체보기” 버튼
+========================= */
+.btn-allview{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: #0b0f17;
+    color:#fff !important;
+    font-weight: 900;
+    font-size: 13px;
+    box-shadow: 0 10px 24px rgba(15,23,42,0.14);
+    position: relative;
+    top: -1px;
+}
+
+/* =========================
+   POPUP SWIPER  ✅피그마처럼 고정
+========================= */
+
+/* ✅ 여기서 “지도 카드 시작점”이랑 동일하게 맞추는 핵심:
+   card 안 padding은 그대로 두고 swiper에만 좌우 버튼 공간 확보 */
+.popupSwiper{
+    position: relative;
+    width: 100%;
+    padding: 0 78px 56px; /* ✅ 좌우=버튼 공간, 아래=도트 공간 */
+    overflow: hidden;
+}
+
+/* ✅ 3장 시작선/높이 통일 */
+.popupSwiper .swiper-wrapper{ align-items: stretch; }
+.popupSwiper .swiper-slide{
+    height: auto;
+    display:flex;
+}
+
+/* 카드 */
+.popup-card{
+    width: 100%;
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(17, 24, 39, 0.10);
+    display:flex;
+    flex-direction:column;
+    height: 100%;
+}
+
+/* 이미지: 모두 같은 높이 + 시작점 상단 */
+.popup-img{
+    position: relative;
+    height: 260px;
+    background-color: #f3f4f6;
+    background-size: cover;
+    background-position: center top;
+}
+
+/* 상태 뱃지 */
+.popup-badge{
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(17,24,39,0.60);
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.popup-dot{
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: #22c55e; /* 진행중 */
+}
+.popup-dot.upcoming{ background:#f59e0b; }
+.popup-dot.ended{ background:#9ca3af; }
+
+/* info: 텍스트 길이 달라도 동일 */
+.popup-info{
+    padding: 16px 16px 18px;
+    display:flex;
+    flex-direction:column;
+    gap: 6px;
+    min-height: 132px;
+}
+
+.popup-title{ font-weight: 900; font-size: 16px; margin:0; }
+.popup-place,.popup-date,.popup-sub{ margin:0; color:#6b7280; font-size: 13px; }
+
+/* ✅ 화살표: 카드 안 안가리고 양옆 */
+.popupSwiper .swiper-button-prev,
+.popupSwiper .swiper-button-next{
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+    top: 50%;
+    transform: translateY(-50%);
+}
+.popupSwiper .swiper-button-prev:after,
+.popupSwiper .swiper-button-next:after{
+    font-size: 16px;
+    font-weight: 900;
+    color: #111827;
+}
+.popupSwiper .swiper-button-prev{ left: 20px; }
+.popupSwiper .swiper-button-next{ right: 20px; }
+
+/* ✅ 도트: 카드 밑으로 내려가서 절대 안가림 */
+.popupSwiper .swiper-pagination{
+    bottom: 16px !important;
+}
+.popupSwiper .swiper-pagination-bullet{
+    width: 8px; height: 8px;
+    opacity: 0.35;
+}
+.popupSwiper .swiper-pagination-bullet-active{ opacity: 1; }
+
+/* 모바일 */
+@media (max-width: 768px){
+    .popupSwiper{ padding: 0 56px 52px; }
+    .popup-img{ height: 220px; }
+    .popupSwiper .swiper-button-prev{ left: 12px; }
+    .popupSwiper .swiper-button-next{ right: 12px; }
+}
+
+/* =========================
+   Floating “문의 · AI 상담”
+========================= */
+.fab{
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 3000;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    background: #0b0f17;
+    color:#fff !important;
+    box-shadow: 0 14px 30px rgba(15,23,42,0.25);
+}
+.fab:hover{ filter: brightness(1.03); }
+.fab-icon{ font-size: 16px; }
+.fab-text{ font-size: 13px; font-weight: 900; }
+
+/* =========================
+   Footer
+========================= */
+.tkk-footer{
+    background: #0b0f17;
+    color: rgba(255,255,255,0.85);
+    margin-top: 18px;
+}
+.tkk-footer-inner{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 26px 18px 0;
+}
+.tkk-footer-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 0.9fr 1fr;
+    gap: 26px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.tkk-footer-logoBox{
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+    margin-bottom: 10px;
+}
+.tkk-footer-desc{
+    margin: 0 0 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+}
+.tkk-footer-social{ display:flex; gap: 10px; }
+.tkk-social{
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.9);
+}
+.tkk-social:hover{ background: rgba(255,255,255,0.14); }
+
+.tkk-footer-title{
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.92);
+}
+.tkk-footer-link{
+    display:block;
+    padding: 6px 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.68);
+}
+.tkk-footer-link:hover{ color: rgba(255,255,255,0.9); }
+
+.tkk-footer-contactCard{
+    border-radius: 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 14px;
+}
+.tkk-contact-row{ display:flex; gap: 10px; align-items:flex-start; }
+.tkk-contact-icon{
+    width: 34px; height: 34px;
+    border-radius: 12px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background: rgba(255,255,255,0.08);
+}
+.tkk-contact-label{ font-size: 12px; color: rgba(255,255,255,0.55); }
+.tkk-contact-value{ font-size: 13px; font-weight: 900; color: rgba(255,255,255,0.9); margin-top: 2px; }
+.tkk-footer-hours{ margin-top: 10px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.55); }
+
+.tkk-footer-bottom{ padding: 12px 0 16px; }
+.tkk-footer-bottom-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+}
+.tkk-footer-bottom-links{ display:flex; gap: 14px; flex-wrap: wrap; }
+.tkk-footer-bottom-link{ color: rgba(255,255,255,0.55); }
+.tkk-footer-bottom-link:hover{ color: rgba(255,255,255,0.85); }
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 900px){
+    .tkk-nav{ display:none; }
+    .tkk-footer-grid{ grid-template-columns: 1fr; }
+    .home-map-grid{ grid-template-columns: 1fr; }
+    .home-map, .home-store-panel{ height: 360px; }
+    .home-search-row{ grid-template-columns: 1fr; }
+    .home-loc-btn{ justify-content:center; }
+}
+@media (max-width: 480px){
+    html{ font-size: 13px; }
+    .popup-img{ height: 170px; }
+    .card{ padding: 14px; }
+    .fab{ right: 14px; bottom: 14px; }
+}
+body.tkk-body{ zoom: 0.69; }
+
+.tkk-footer{
+    zoom: 1.1;              /* 1 / 0.69 ≈ 1.45 */
+    transform-origin: top center;
+}
+
+.tkk-footer-inner,
+.tkk-footer-bottom-inner{
+    max-width: 1180px;
+}
