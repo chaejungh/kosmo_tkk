@@ -4689,55 +4689,56 @@ VALUES (9, '부산 애니 굿즈샵 099', 'POST', 19, SYSDATE - 1);
 INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
 VALUES (10, '서울 팝업 일정 100', 'STORE', 20, SYSDATE - 1);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(1,'굿즈로드 서비스 오픈 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('굿즈로드 서비스 오픈 안내',
        '굿즈로드 서비스를 이용해 주셔서 감사합니다. 정식 오픈과 함께 다양한 팝업스토어 및 굿즈 정보를 제공해 드립니다.',
        'NOTICE',SYSDATE-30,NULL,SYSDATE-30);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(2,'개인정보 처리방침 개정 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('개인정보 처리방침 개정 안내',
        '서비스 이용 약관 및 개인정보 처리방침이 개정되었습니다. 자세한 내용은 공지 상세 페이지를 통해 확인해 주세요.',
        'UPDATE',SYSDATE-20,NULL,SYSDATE-20);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(3,'서버 점검 안내(00:00~04:00)',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('서버 점검 안내(00:00~04:00)',
        '더 안정적인 서비스 제공을 위해 새벽 시간대 서버 점검을 진행합니다. 점검 시간 동안 일부 기능 이용이 제한될 수 있습니다.',
        'NOTICE',SYSDATE-10,SYSDATE-9,SYSDATE-10);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(4,'굿즈로드 앱 업데이트 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('굿즈로드 앱 업데이트 안내',
        '새로운 버전의 앱이 출시되었습니다. 검색 속도 개선 및 버그 수정이 포함되어 있으니 업데이트 후 이용을 권장드립니다.',
        'UPDATE',SYSDATE-7,NULL,SYSDATE-7);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(5,'오픈 기념 포인트 2배 적립 이벤트',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('오픈 기념 포인트 2배 적립 이벤트',
        '이벤트 기간 동안 매장 및 온라인에서 결제 시 기본 적립 포인트가 2배로 제공됩니다. 자세한 조건은 이벤트 상세를 확인해 주세요.',
        'EVENT',SYSDATE-5,SYSDATE+5,SYSDATE-5);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(6,'팝업스토어 방문 인증 이벤트 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('팝업스토어 방문 인증 이벤트 안내',
        '지정된 팝업스토어 방문 후 인증샷을 업로드하면 추첨을 통해 한정 굿즈를 드립니다. 참여 방법은 이벤트 상세 페이지에서 확인 가능합니다.',
        'EVENT',SYSDATE-3,SYSDATE+7,SYSDATE-3);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(7,'고객센터 운영 시간 변경 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('고객센터 운영 시간 변경 안내',
        '내부 사정으로 인해 고객센터 상담 가능 시간이 평일 10:00~18:00으로 변경됩니다. 챗봇 상담은 24시간 이용 가능합니다.',
        'NOTICE',SYSDATE-2,NULL,SYSDATE-2);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(8,'검색 기능 개선 업데이트',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('검색 기능 개선 업데이트',
        '검색 랭킹 및 추천 검색어 기능이 개선되었습니다. 자주 찾는 팝업과 굿즈를 더 빠르게 찾을 수 있습니다.',
        'UPDATE',SYSDATE-1,NULL,SYSDATE-1);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(9,'시스템 점검 완료 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('시스템 점검 완료 안내',
        '예정되었던 시스템 점검이 정상적으로 완료되었습니다. 현재 모든 서비스를 안정적으로 이용하실 수 있습니다.',
        'NOTICE',SYSDATE-1,SYSDATE-1,SYSDATE-1);
 
-INSERT INTO service_notice(notice_id,title,content,notice_type,start_date,end_date,created_at)
-VALUES(10,'연말 굿즈 페스티벌 사전 안내',
+INSERT INTO service_notice(title,content,notice_type,start_date,end_date,created_at)
+VALUES('연말 굿즈 페스티벌 사전 안내',
        '연말을 맞아 대규모 굿즈 페스티벌을 준비 중입니다. 참여 브랜드와 상세 일정은 추후 별도 공지를 통해 안내해 드리겠습니다.',
        'EVENT',SYSDATE+7,SYSDATE+30,SYSDATE);
+commit;
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(1,1,SYSDATE-10);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(1,2,SYSDATE-9);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(2,3,SYSDATE-8);

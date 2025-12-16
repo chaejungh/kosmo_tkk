@@ -241,20 +241,7 @@
     </style>
 </head>
 <body>
-
-<header class="admin-header">
-    <div class="admin-header-left">
-        <div class="admin-logo">더쿠쿠 관리자</div>
-        <span class="admin-header-badge">게시판 관리</span>
-    </div>
-    <div class="admin-header-right">
-        <span th:text="${session.adminName != null ? session.adminName + '님 안녕하세요' : '관리자님 안녕하세요'}">
-            관리자님 안녕하세요
-        </span>
-        <span>|</span>
-        <a th:href="@{/admin/logout}">로그아웃</a>
-    </div>
-</header>
+<header th:replace="admin/fragments/admin_header :: adminHeader"></header>
 
 <main class="admin-main">
     <section class="page-title">

@@ -157,20 +157,7 @@
     </style>
 </head>
 <body>
-
-<header class="admin-header">
-    <div class="admin-header-left">
-        <div class="admin-logo">더쿠쿠 관리자</div>
-        <span class="admin-header-badge">대시보드</span>
-    </div>
-    <div class="admin-header-right">
-        <span th:text="${session.adminName != null ? session.adminName + '님 안녕하세요' : '관리자님 안녕하세요'}">
-            관리자님 안녕하세요
-        </span>
-        <span>|</span>
-        <a th:href="@{/admin/logout}">로그아웃</a>
-    </div>
-</header>
+<header th:replace="admin/fragments/admin_header :: adminHeader"></header>
 
 <main class="admin-main">
     <section class="page-title">
@@ -217,9 +204,18 @@
         <!-- 고객센터/공지 -->
         <!-- 🔽 여기 href만 /admin/inquiries 로 변경 -->
         <a class="dashboard-card" th:href="@{/admin/inquiries}">
-            <h2 class="dashboard-card-title">고객센터/공지</h2>
+            <h2 class="dashboard-card-title">고객센터</h2>
             <p class="dashboard-card-desc">문의(INQUIRY) 답변, FAQ, 서비스 공지 관리.</p>
-            <p class="dashboard-card-footer">고객센터/공지 화면으로 이동 &rarr;</p>
+            <p class="dashboard-card-footer">고객센터 화면으로 이동 &rarr;</p>
+        </a>
+
+        <!-- 공지 / 이벤트 -->
+        <a class="dashboard-card" th:href="@{/admin/notices}">
+            <h2 class="dashboard-card-title">공지 / 이벤트</h2>
+            <p class="dashboard-card-desc">
+                서비스 공지사항, 이벤트 게시물 등록 및 관리 기능을 제공합니다.
+            </p>
+            <p class="dashboard-card-footer">공지 / 이벤트 관리 화면으로 이동 &rarr;</p>
         </a>
     </section>
 </main>
