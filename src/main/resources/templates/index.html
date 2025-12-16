@@ -5,6 +5,7 @@
       layout:decorate="~{fragments/tkk_fragment/layout}">
 <head>
     <style>
+
         /* ===== 지도 검색창 (기존 유지, 반응형만 살짝) ===== */
         .map-search-inline {
             display: flex;
@@ -316,7 +317,6 @@
     <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
     <main>
 
-
         <!-- ===== 지도 섹션 ===== -->
         <section class="card map-section">
             <div class="card-header" style="display:flex; align-items:center; gap:16px;">
@@ -454,8 +454,6 @@
                                     자세히 보기
                                 </a>
 
-
-
                             </div>
 
                         </div>
@@ -484,8 +482,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- 문의 floating 버튼 -->
     <a th:href="@{/help}" class="fab" style="z-index: 998">
@@ -542,15 +538,27 @@
                         : p.id;
 
                     li.innerHTML = `
-                      <div class="map-search-line1">
-                        <button type="button" class="map-search-name js-focus">${p.name || '이름 없음'}</button>
-                        ${p.source ? `<span class="map-search-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
-                        ${p.source === 'STORE' && storeId != null
-                        ? `<button type="button" class="map-search-detail" data-store-id="${storeId}">상세보기</button>`
-                        : ''}
-                      </div>
-                      <div class="map-search-meta">${p.address || ''}</div>
-                    `;
+                              <div class="map-search-line1">
+                                <button type="button" class="map-search-name js-focus">
+                                  ${p.name || '이름 없음'}
+                                </button>
+
+                                ${p.source
+                                                    ? `<span class="map-search-badge">
+                                      ${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}
+                                    </span>`
+                                                    : ''}
+
+                                ${(p.source === 'STORE' && storeId != null)
+                                                    ? `<button type="button" class="map-search-detail" data-store-id="${storeId}">
+                                      상세보기
+                                    </button>`
+                                                    : ''}
+                              </div>
+
+                              <div class="map-search-meta">${p.address || ''}</div>
+                            `;
+
 
                     const focusBtn = li.querySelector('.js-focus');
                     focusBtn.addEventListener('click', () => {
@@ -570,7 +578,8 @@
                             e.stopPropagation();
                             const id = detailBtn.dataset.storeId;
                             if (id) {
-                                window.location.href = `/goods/store/${id}`;
+                                const url = `/goods/store/${encodeURIComponent(id)}`;
+                                window.location.href = url;
                             }
                         });
                     }
@@ -641,8 +650,3 @@
 
 </body>
 </html>
-
-
-
-
-

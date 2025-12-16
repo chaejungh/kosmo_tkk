@@ -10,21 +10,33 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
+
+    // 하드 삭제 (기존에 쓰던 거 그대로 유지)
     @Modifying
     @Query(value = "DELETE FROM MEMBER WHERE MEMBER_ID = :memberId", nativeQuery = true)
     void deleteById(Long memberId);
-    //아이디 중복 확인
+
+    // 아이디 중복 확인
     boolean existsByLoginId(String loginId);
 
-    // 닉네임 중복확인
+    // 닉네임 중복 확인
     boolean existsByNickname(String nickname);
 
-    // 로그인
+    // 로그인 존재 여부 (필요하면 계속 사용)
     boolean existsByLoginIdAndLoginPw(String loginId, String loginPw);
 
+    // ✅ 실제 로그인용: 삭제 여부까지 함께 체크
+    Optional<Member> findByLoginIdAndLoginPwAndDeletedYn(String loginId,
+                                                         String loginPw,
+                                                         Character deletedYn);
+
+    // 다른 곳에서 쓸 수도 있는 기본 로그인 조회
     Member findByLoginIdAndLoginPw(String loginId, String loginPw);
 
-    // 회원정보수정
+    // ✅ 소셜 로그인용 (네이버)
+    Optional<Member> findByLoginId(String loginId);
+
+    // 회원정보 수정
     @Modifying
     @Query("UPDATE Member m " +
             "SET m.loginId = :loginId, " +
@@ -55,4 +67,11 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByEmail(String email);
     Optional<Member> findByEmailAndVerifyCode(String email, String verifyCode);
 
+    Optional<Member> findByNicknameAndEmail(String nickname, String email);
+
+    Optional<Member> findByLoginIdAndNicknameAndEmail(
+            String loginId,
+            String nickname,
+            String email
+    );
 }

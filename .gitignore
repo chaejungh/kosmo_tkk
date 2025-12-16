@@ -1,12 +1,13 @@
 ### === Application Config === ###
 # 개인 API 키와 비밀 설정 파일은 무조건 제외
+src/main/resources/application.yaml
 src/main/resources/application-api.yaml
+src/main/resources/application-deploy.yaml
 
 # 공통 설정(application.yaml)은 Git에 포함해야 하므로 제외하지 않음
 # src/main/resources/application.yaml  ← 이건 주석 처리!
 
 ### === Gradle === ###
-src/main/resources/application.yaml
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

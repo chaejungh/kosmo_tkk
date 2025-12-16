@@ -62,4 +62,9 @@ class MemberRepositoryTest {
     void deleteById() {
         memberRepository.deleteById(30L);
     }
+
+    @Test
+    void findByNicknameAndEmail() {
+        System.out.println(memberRepository.findByNicknameAndEmail("닉네임001","user001@example.com"));
+    }
 }

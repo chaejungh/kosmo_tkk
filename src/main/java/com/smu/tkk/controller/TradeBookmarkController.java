@@ -18,10 +18,14 @@ public class TradeBookmarkController {
      *  param : tradeId
      * --------------------------------------------- */
     @PostMapping("/{memberId}/BookMark")
-    public String addBookmark(@PathVariable Long memberId,
+    public String addBookmark(
                               @RequestParam Long tradeId,
-                              @RequestHeader(value = "Referer", required = false) String referer) {
+                              @RequestHeader(value = "Referer", required = false) String referer,
+                              @SessionAttribute(name = "memberId",required = false) Long memberId) {
 
+        if (memberId==null){
+            return "redirect:/auth/login";
+        }
         bookmarkService.addBookmark(memberId, tradeId);
 
         // 원래 페이지로 돌려보내기 (없으면 리스트)

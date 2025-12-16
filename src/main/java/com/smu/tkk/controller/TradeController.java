@@ -78,13 +78,14 @@ public class TradeController {
     public String tradeList(
             @RequestParam(required = false) String sort,
             Pageable pageable,
+            @SessionAttribute(name = "memberId",required = false) Long memberId,
             Model model) {
 
-//        int unreadCount=0;
-//        List<ChatRoomListDTO> rooms = tradeChatService.getChatRoomList(memberId);
-//        for (ChatRoomListDTO room : rooms){
-//            unreadCount = room.getUnreadCount();
-//        }
+        int unreadCount=0;
+        List<ChatRoomListDTO> rooms = tradeChatService.getChatRoomList(memberId);
+        for (ChatRoomListDTO room : rooms){
+            unreadCount = room.getUnreadCount();
+        }
 
 
 
@@ -106,7 +107,7 @@ public class TradeController {
 
         model.addAttribute("page", result);
         model.addAttribute("sort", sort);
-//        model.addAttribute("unreadCount", unreadCount);
+        model.addAttribute("unreadCount", unreadCount);
         return "trade/trade_list";
     }
 

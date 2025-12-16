@@ -42,14 +42,14 @@ public class InquiryController {
 
     /** 문의 작성 처리 */
     @PostMapping("/write.do")
-    public String writeSubmit(@ModelAttribute Inquiry inquiry,@SessionAttribute Long memberId ) {
+    public String writeSubmit(@ModelAttribute Inquiry inquiry,@SessionAttribute(name = "memberId",required = false) Long memberId ) {
         if (memberId==null){
-            return "redirect:/board/not-allowed";
+            return "redirect:/auth/login";
         }
 
         inquiry.setMemberId(memberId);
         inquiry.setStatus("WAIT");    // 기본 상태
-        inquiry.setCreatedAt(LocalDate.now());
+        inquiry.setCreatedAt(LocalDateTime.now());
         inquiryRepository.save(inquiry);
 
         return "redirect:/help/list.do";

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,6 +36,7 @@ public class MypageController {
     private final StoreService storeService;
     private final MemberService memberService;
     private final BoardBookmarkService boardBookmarkService;
+
 
 //    @Autowired
 //    public MypageController(BoardService boardService) {
@@ -65,7 +67,7 @@ public class MypageController {
     @GetMapping("/{memberId}/posts")
     public String myPosts(
             Model model,
-            @PathVariable Long memberId,
+            @SessionAttribute Long memberId,
             @PageableDefault(size = 10, page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
     ) throws SQLException {
 
@@ -136,4 +138,27 @@ public class MypageController {
 
         return "mypage/service/setting_alarm";
     }
+    @Controller
+    @RequiredArgsConstructor
+    @RequestMapping("/mypage/service")   // 🔥 클래스 레벨 매핑
+    public class MyPageServiceController {
+
+        private final MemberService memberService;
+
+        @PostMapping("/updateEmail")      // 🔥 절대로 /mypage/service 붙이면 안됨
+        public String updateEmail(@RequestParam Long memberId,
+                                  @RequestParam String email,
+                                  RedirectAttributes redirectAttributes) {
+
+            try {
+                memberService.updateEmail(memberId, email);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            redirectAttributes.addFlashAttribute("msg", "이메일이 변경되었습니다.");
+            return "redirect:/mypage/service/setting";
+        }
+    }
+
 }

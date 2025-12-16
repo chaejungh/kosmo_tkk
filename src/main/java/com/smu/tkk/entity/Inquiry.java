@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -53,9 +54,9 @@ public class Inquiry {
 
     @ColumnDefault("SYSDATE")
     @Column(name = "CREATED_AT")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "ANSWERED_AT")
-    private LocalDate answeredAt;
+    private LocalDateTime answeredAt;
 
 }

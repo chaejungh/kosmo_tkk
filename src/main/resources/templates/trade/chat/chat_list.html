@@ -1,393 +1,64 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/trade_fragment/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>채팅방 목록 | 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        /*body {*/
-        /*    margin: 0;*/
-        /*    background: #111;*/
-        /*    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;*/
-        /*    color: white;*/
-        /*}*/
-
-        /*.chat-list {*/
-        /*    max-width: 600px;*/
-        /*    margin: 0 auto;*/
-        /*    padding: 16px;*/
-        /*}*/
-
-        /*.room-item {*/
-        /*    display: flex;*/
-        /*    padding: 14px 8px;*/
-        /*    border-bottom: 1px solid #222;*/
-        /*    gap: 12px;*/
-        /*    cursor: pointer;*/
-        /*}*/
-
-        /*.thumb {*/
-        /*    width: 50px;*/
-        /*    height: 50px;*/
-        /*    border-radius: 10px;*/
-        /*    overflow: hidden;*/
-        /*    flex-shrink: 0;*/
-        /*}*/
-
-        /*.thumb img {*/
-        /*    width: 100%;*/
-        /*    height: 100%;*/
-        /*    object-fit: cover;*/
-        /*}*/
-
-        /*.info {*/
-        /*    flex: 1;*/
-        /*    display: flex;*/
-        /*    flex-direction: column;*/
-        /*    justify-content: center;*/
-        /*}*/
-
-        /*.top-row {*/
-        /*    display: flex;*/
-        /*    justify-content: space-between;*/
-        /*    align-items: center;*/
-        /*}*/
-
-        /*.nickname {*/
-        /*    font-size: 16px;*/
-        /*    font-weight: bold;*/
-        /*}*/
-
-        /*.time {*/
-        /*    font-size: 12px;*/
-        /*    color: #888;*/
-        /*}*/
-
-        /*.last-message {*/
-        /*    margin-top: 4px;*/
-        /*    font-size: 14px;*/
-        /*    color: #aaa;*/
-        /*    white-space: nowrap;*/
-        /*    overflow: hidden;*/
-        /*    text-overflow: ellipsis;*/
-        /*}*/
-
-        /*.badge {*/
-        /*    background: #ff6f61;*/
-        /*    padding: 3px 8px;*/
-        /*    color: white;*/
-        /*    border-radius: 12px;*/
-        /*    font-size: 11px;*/
-        /*}*/
-
-        :root {
-            --purple: #6366f1;
-            --purple-deep: #4f46e5;
-            --bg-soft: #f5f3ff;
-            --card-bg: #ffffff;
-            --border: #e5e7eb;
-            --text-main: #111827;
-            --text-sub: #6b7280;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--bg-soft);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-main);
-        }
-
-        /* ===== 상단 헤더 (굿즈거래와 공통) ===== */
-        .trade-header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: white;
-            padding: 16px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--purple);
-            text-decoration: none;
-        }
-
-        .header-title {
-            font-size: 15px;
-            font-weight: 700;
-            margin-left: 6px;
-            color: var(--text-main);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* ===== 채팅방 리스트 ===== */
-        .chat-list {
-            padding: 12px 18px 80px;
-        }
-
-        .room-item {
-            background: var(--card-bg);
-            border-radius: 14px;
-            display: flex;
-            gap: 12px;
-            padding: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            cursor: pointer;
-            align-items: center;
-        }
-
-        .room-item + .room-item {
-            margin-top: 10px;
-        }
-
-        .thumb {
-            width: 54px;
-            height: 54px;
-            border-radius: 12px;
-            overflow: hidden;
-            flex-shrink: 0;
-            background: #eee;
-        }
-
-        .thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nickname {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .time {
-            font-size: 12px;
-            color: var(--text-sub);
-            margin-left: 8px;
-            white-space: nowrap;
-        }
-
-        .last-message {
-            margin-top: 4px;
-            font-size: 13px;
-            color: var(--text-sub);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* 채팅방별 안 읽은 메시지 개수 배지 */
-        .unread-badge {
-            align-self: flex-start;
-            background: #ff4e4e;
-            padding: 3px 8px;
-            color: white;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-left: 4px;
-        }
-
-        /* ===== 하단 네비게이션 (굿즈거래와 동일 스타일) ===== */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background: #ffffff;
-            box-shadow: 0 -2px 12px rgba(0,0,0,0.12);
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            z-index: 50;
-        }
-
-        .nav-item {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            text-decoration: none;
-            color: var(--text-sub);
-            border-right: 1px solid var(--border);
-        }
-
-        .nav-item:last-child {
-            border-right: none;
-        }
-
-        .nav-item .icon {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-
-        .nav-item.active {
-            color: var(--purple);
-            font-weight: 700;
-        }
-
-        /* 네비용 뱃지 (채팅 알림) */
-        .badge {
-            position: absolute;
-            top: 7px;
-            right: 28px;
-            background: #ff4e4e;
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 999px;
-        }
-
-        .badge.pulse {
-            animation: pulseBadge 1.4s infinite;
-        }
-
-        @keyframes pulseBadge {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,78,78,0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(255,78,78,0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,78,78,0); }
-        }
-    </style>
-
 </head>
 
 <body>
-
-<!--<div class="chat-list">-->
-
-<!--    &lt;!&ndash; rooms : List<ChatRoomListDTO> &ndash;&gt;-->
-<!--    <div th:each="room : ${rooms}"-->
-<!--         th:onclick="|location.href='/trade/' + ${room.tradeId} + '/chat/' + ${room.roomId}|"-->
-<!--         class="room-item">-->
-
-<!--        &lt;!&ndash; 썸네일 &ndash;&gt;-->
-<!--        <div class="thumb">-->
-<!--            <img th:src="${room.tradeThumb}">-->
-<!--        </div>-->
-
-<!--        <div class="info">-->
-
-<!--            <div class="top-row">-->
-<!--                <span class="nickname" th:text="${room.opponentName}"></span>-->
-<!--                <span class="time" th:text="${room.lastTime}"></span>-->
-<!--            </div>-->
-
-<!--            <div class="last-message" th:text="${room.lastMessage}"></div>-->
-
-<!--        </div>-->
-
-<!--        &lt;!&ndash; 안 읽은 메시지 개수 배지 &ndash;&gt;-->
-<!--        <div th:if="${room.unreadCount > 0}" class="badge"-->
-<!--             th:text="${room.unreadCount}"></div>-->
-
-<!--    </div>-->
-
-<!--</div>-->
-
-<!-- ===== 헤더 ===== -->
-<div class="trade-header">
-    <div class="header-left">
-        <a th:href="@{/trade/list.do}" class="logo" style="margin-right: 10px;">굿즈거래</a>
-        <span class="header-title">채팅방</span>
-    </div>
-</div>
-
-<!-- ===== 채팅방 리스트 ===== -->
-<div class="chat-list">
-
-    <!-- rooms : List<ChatRoomListDTO> -->
-    <div th:each="room : ${rooms}"
-         th:onclick="|location.href='/trade/' + ${room.tradeId} + '/chat/' + ${room.roomId}|"
-         class="room-item">
-
-        <!-- 썸네일 -->
-        <div class="thumb">
-            <img th:src="${room.tradeThumb}">
+<div layout:fragment="content">
+    <!-- ===== 헤더 ===== -->
+    <div class="trade-header">
+        <div class="header-left">
+            <a class="back-btn" type="button" th:href="@{/trade/chat/list.do}">←</a>
+            <span class="header-title">채팅방</span>
         </div>
+    </div>
 
-        <!-- 상대 닉네임 / 마지막 메시지 / 시간 -->
-        <div class="info">
+    <!-- ===== 채팅방 리스트 ===== -->
+    <div class="chat-list" style="min-height: 70vh">
 
-            <div class="top-row">
-                <span class="nickname" th:text="${room.opponentName}">상대 닉네임</span>
-                <span class="time" th:text="${room.lastTime}">방금 전</span>
+        <!-- rooms : List<ChatRoomListDTO> -->
+        <div th:each="room : ${rooms}"
+             th:onclick="|location.href='/trade/' + ${room.tradeId} + '/chat/' + ${room.roomId}|"
+             class="room-item">
+
+            <!-- 썸네일 -->
+            <div class="thumb">
+                <img th:src="${room.tradeThumb}">
             </div>
 
-            <div class="last-message" th:text="${room.lastMessage}">
-                마지막 메시지 내용이 한 줄로 잘립니다.
+            <!-- 상대 닉네임 / 마지막 메시지 / 시간 -->
+            <div class="info">
+
+                <div class="top-row">
+                    <span class="nickname" th:text="${room.opponentName}">상대 닉네임</span>
+                    <span class="time" th:text="${room.lastTime}">방금 전</span>
+                </div>
+
+                <div class="last-message" th:text="${room.lastMessage}">
+                    마지막 메시지 내용이 한 줄로 잘립니다.
+                </div>
+
             </div>
+
+            <!-- 안 읽은 메시지 개수 배지 -->
+            <div th:if="${room.unreadCount > 0}"
+                 class="unread-badge"
+                 th:text="${room.unreadCount}">1</div>
 
         </div>
 
-        <!-- 안 읽은 메시지 개수 배지 -->
-        <div th:if="${room.unreadCount > 0}"
-             class="unread-badge"
-             th:text="${room.unreadCount}">1</div>
-
     </div>
-
-</div>
 
 <!-- ===== 하단 네비 ===== -->
-<nav class="bottom-nav">
 
-    <a href="/trade/list.do" class="nav-item" data-page="home">
-        <span class="icon">🏠</span>
-        홈
-    </a>
-
-    <a href="/chat/list" class="nav-item" data-page="chat">
-        <span class="icon">💬</span>
-        채팅방
-        <!-- 🔥 여기 부분만 수정 -->
-        <span class="badge pulse"
-              id="chatBadge"
-              th:if="${unreadCount > 0}"
-              th:text="${unreadCount}">
-            0
-        </span>
-    </a>
-
-    <a href="/mypage" class="nav-item" data-page="mypage">
-        <span class="icon">👤</span>
-        내정보
-    </a>
-
-</nav>
-
+</div>
 </body>
 
 <!-- ===== 네비 활성화 + 뱃지 상태 JS (굿즈거래와 동일 로직) ===== -->
-<script>
+<script layout:fragment="script">
     (function () {
 
         const nav = document.querySelector(".bottom-nav");
@@ -407,22 +78,6 @@
         });
 
         const roomBadges = document.querySelectorAll(".unread-badge");
-        // let totalUnread = 0;
-        // roomBadges.forEach(b => {
-        //     const n = parseInt(b.textContent || "0", 10);
-        //     if (!isNaN(n)) totalUnread += n;
-        // });
-        //
-        // if (badge) {
-        //     if (totalUnread > 0) {
-        //         badge.textContent = totalUnread;
-        //         badge.style.display = "inline-flex";
-        //         localStorage.setItem(STORAGE_KEY, String(totalUnread));
-        //     } else {
-        //         badge.style.display = "none";
-        //         localStorage.setItem(STORAGE_KEY, "0");
-        //     }
-        // }
         /* --- 채팅 클릭하면 읽음 처리 --- */
         const chatItem = document.querySelector('.nav-item[data-page="chat"]');
         if (chatItem) {
