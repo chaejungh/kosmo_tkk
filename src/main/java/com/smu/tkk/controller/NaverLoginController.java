@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.sql.SQLException;
@@ -33,20 +34,26 @@ public class NaverLoginController {
 
     @Value("${naver.login.client-secret}")
     private String naverClientSecret;
-
     @Value("${naver.login.redirect-uri}")
     private String naverRedirectUri;
 
-    /**
-     * 네이버 로그인 시작
-     *  - /oauth2/authorization/naver
-     *  - 로그인 페이지에서 네이버 버튼이 이 URL을 호출
-     */
+
+
+
+    /** 네이버 로그인 시작 */
     @GetMapping("/oauth2/authorization/naver")
     public String redirectToNaver(HttpSession session) {
 
         String state = UUID.randomUUID().toString();
         session.setAttribute("NAVER_LOGIN_STATE", state);
+
+        // ✅ 현재 접속한 주소(IP/localhost) 기준으로 redirect_uri 자동 생성
+//        String redirectUri = ServletUriComponentsBuilder
+//                .fromCurrentContextPath()
+//                .path("/login/oauth2/naver")
+//                .build()
+//                .toUriString();
+
 
         String authorizeUrl = UriComponentsBuilder
                 .fromHttpUrl("https://nid.naver.com/oauth2.0/authorize")
@@ -54,7 +61,6 @@ public class NaverLoginController {
                 .queryParam("client_id", naverClientId)
                 .queryParam("redirect_uri", naverRedirectUri)
                 .queryParam("state", state)
-                // 🔥 여기 한 줄 추가: 매번 로그인/동의 화면 다시 띄우기
                 .queryParam("auth_type", "reprompt")
                 .build(true)
                 .toUriString();
@@ -62,11 +68,7 @@ public class NaverLoginController {
         return "redirect:" + authorizeUrl;
     }
 
-    /**
-     * 네이버 로그인 콜백
-     *  - 네이버 개발자센터 Callback URL:
-     *      http://localhost:8080/login/oauth2/naver
-     */
+    /** 네이버 로그인 콜백 */
     @GetMapping("/login/oauth2/naver")
     public String naverCallback(@RequestParam(required = false) String code,
                                 @RequestParam(required = false) String state,
@@ -89,7 +91,6 @@ public class NaverLoginController {
                 model.addAttribute("error", "잘못된 네이버 로그인 요청입니다.(state 불일치)");
                 return "auth/login";
             }
-            // ✅ 한 번 쓴 state는 지워주자 (혹시 꼬이는 것 방지)
             session.removeAttribute("NAVER_LOGIN_STATE");
 
             // 3) code 로 Access Token 발급
@@ -123,12 +124,10 @@ public class NaverLoginController {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", "Bearer " + tokenResponse.getAccessToken());
 
-            HttpEntity<Void> profileRequest = new HttpEntity<>(headers);
-
             ResponseEntity<String> profileResponseEntity = restTemplate.exchange(
                     "https://openapi.naver.com/v1/nid/me",
                     HttpMethod.GET,
-                    profileRequest,
+                    new HttpEntity<>(headers),
                     String.class
             );
 
@@ -146,28 +145,19 @@ public class NaverLoginController {
                 return "auth/login";
             }
 
-            NaverProfileResponse.NaverProfile p = profileResponse.getResponse();
-
             // 5) 우리 서비스 회원 로그인/가입 처리
-            Member member = memberService.loginByNaver(p);
+            Member member = memberService.loginByNaver(profileResponse.getResponse());
 
-            // 6) 기존 로그인 세션 정리 후 저장 (겹치는 것 방지용)
-            session.removeAttribute("loginMember");
-            session.removeAttribute("memberId");
-
+            // 6) 세션 저장
             session.setAttribute("loginMember", member);
             session.setAttribute("memberId", member.getId());
-            // 선택: 로그인 타입 구분하고 싶으면
-            // session.setAttribute("loginType", "NAVER");
 
             return "redirect:/";
 
         } catch (SQLException e) {
-            e.printStackTrace();
             model.addAttribute("error", "네이버 로그인 처리 중 DB 오류가 발생했습니다.");
             return "auth/login";
         } catch (Exception e) {
-            e.printStackTrace();
             model.addAttribute("error", "네이버 로그인 처리 중 오류가 발생했습니다.");
             return "auth/login";
         }

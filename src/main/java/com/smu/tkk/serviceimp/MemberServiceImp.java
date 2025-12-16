@@ -1,4 +1,3 @@
-
 package com.smu.tkk.serviceimp;
 
 import com.smu.tkk.dto.NaverProfileResponse;
@@ -38,6 +37,15 @@ public class MemberServiceImp implements MemberService {
     private final BoardBookmarkRepository boardBookmarkRepository;
     private final PopupBookmarkRepository popupBookmarkRepository;
 
+    /** ✅ MySQL/Oracle 상관없이: 알림설정 없으면 생성 */
+    private void ensureDefaultNotificationSetting(Long memberId) {
+        memberNotificationSettingRepository.findById(memberId).orElseGet(() -> {
+            MemberNotificationSetting s = new MemberNotificationSetting();
+            s.setMember(memberRepository.getReferenceById(memberId)); // @MapsId 필수
+            return memberNotificationSettingRepository.save(s);
+        });
+    }
+
     // 1. 회원 가입
     @Override
     public boolean register(Member member) throws SQLException, IllegalArgumentException {
@@ -51,18 +59,16 @@ public class MemberServiceImp implements MemberService {
             throw new IllegalArgumentException("이미 존재하는 닉네임입니다.");
         }
 
-        // deletedYn이 primitive char 라고 가정하고 기본값 강제 세팅
         member.setDeletedYn('N');
 
-        // userLevel(래퍼) null이면 기본값
         if (member.getUserLevel() == null) {
             member.setUserLevel(1L);
         }
 
         Member savedMember = memberRepository.save(member);
 
-        // ✅ 알림 설정: 없으면 한 번만 INSERT (native MERGE 사용)
-        memberNotificationSettingRepository.insertDefaultIfNotExists(savedMember.getId());
+        // ✅ (기존 MERGE 제거) 알림 기본값 보장
+        ensureDefaultNotificationSetting(savedMember.getId());
 
         return true;
     }
@@ -76,18 +82,14 @@ public class MemberServiceImp implements MemberService {
             throw new IllegalArgumentException("아이디와 비밀번호를 입력해주세요.");
         }
 
-        // 단순 조회 (기존 더미데이터 방식 유지)
         Member member = memberRepository.findByLoginIdAndLoginPw(loginId, loginPw);
 
         if (member == null) {
-            // 아이디 또는 비밀번호 불일치
             return null;
         }
 
-        // deletedYn 이 primitive char 라고 가정
         char deletedYn = member.getDeletedYn();
         if (deletedYn == 'Y') {
-            // 탈퇴 회원이면 로그인 막기
             return null;
         }
 
@@ -150,9 +152,8 @@ public class MemberServiceImp implements MemberService {
         if (memberId == null) {
             return null;
         }
-        // Repository PK 타입이 Integer 라서 intValue() 사용
-        return memberNotificationSettingRepository.findById(memberId.intValue())
-                .orElse(null);
+        // ✅ (기존 intValue 제거)
+        return memberNotificationSettingRepository.findById(memberId).orElse(null);
     }
 
     // 9. 회원 알림 설정 수정
@@ -160,20 +161,21 @@ public class MemberServiceImp implements MemberService {
     public boolean updateNotificationSetting(MemberNotificationSetting setting)
             throws SQLException, IllegalArgumentException {
 
-        // 엔티티에 memberId 필드 없고, PK = id(Integer) 라고 가정
         if (setting == null || setting.getId() == null) {
             throw new IllegalArgumentException("설정 정보가 올바르지 않습니다.");
         }
 
-        int updateCount = memberNotificationSettingRepository.update(
-                setting.getId().longValue(),          // MEMBER_ID = PK
-                setting.getCommentYn(),
-                setting.getLikeYn(),
-                setting.getTradeYn(),
-                setting.getEventYn()
-        );
+        // ✅ (기존 native update 제거) 조회 후 수정 + save
+        MemberNotificationSetting existing = memberNotificationSettingRepository.findById(setting.getId())
+                .orElseThrow(() -> new IllegalArgumentException("설정 정보가 올바르지 않습니다."));
 
-        return updateCount > 0;
+        existing.setCommentYn(setting.getCommentYn());
+        existing.setLikeYn(setting.getLikeYn());
+        existing.setTradeYn(setting.getTradeYn());
+        existing.setEventYn(setting.getEventYn());
+
+        memberNotificationSettingRepository.save(existing);
+        return true;
     }
 
     // 10. Member 이미지 추가
@@ -221,18 +223,15 @@ public class MemberServiceImp implements MemberService {
         String naverId = profile.getId();
         String loginId = "NAVER_" + naverId;
 
-        // 1) 이미 네이버 계정으로 가입된 회원이면 그 회원 그대로 사용
         Optional<Member> existingOpt = memberRepository.findByLoginId(loginId);
         if (existingOpt.isPresent()) {
             return existingOpt.get();
         }
 
-        // 2) 신규 회원 생성
         Member member = new Member();
         member.setLoginId(loginId);
-        member.setLoginPw("NAVER_" + UUID.randomUUID());   // 랜덤 패스워드
+        member.setLoginPw("NAVER_" + UUID.randomUUID());
 
-        // 닉네임
         String nickname = profile.getNickname();
         if (nickname == null || nickname.isBlank()) {
             nickname = "네이버사용자";
@@ -242,25 +241,17 @@ public class MemberServiceImp implements MemberService {
         member.setEmail(profile.getEmail());
         member.setProfileImageUrl(profile.getProfileImage());
 
-        // ✅ gender: DB 제약조건 -> gender IN ('남자', '여자')
-        String g = profile.getGender();   // 네이버 값: "M", "F", "U", null ...
-
+        String g = profile.getGender();
         String dbGender;
-        if ("M".equalsIgnoreCase(g)
-                || "male".equalsIgnoreCase(g)
-                || "남".equals(g)) {
+        if ("M".equalsIgnoreCase(g) || "male".equalsIgnoreCase(g) || "남".equals(g)) {
             dbGender = "남자";
-        } else if ("F".equalsIgnoreCase(g)
-                || "female".equalsIgnoreCase(g)
-                || "여".equals(g)) {
+        } else if ("F".equalsIgnoreCase(g) || "female".equalsIgnoreCase(g) || "여".equals(g)) {
             dbGender = "여자";
         } else {
-            // 값이 없거나 동의 안 한 경우 → 임의 기본값
-            dbGender = "남자";   // 필요하면 "여자"로 바꿔도 됨
+            dbGender = "남자";
         }
         member.setGender(dbGender);
 
-        // nationality 체크 제약: ('내국인','외국인')라고 가정
         member.setNationality("내국인");
 
         member.setDeletedYn('N');
@@ -268,11 +259,10 @@ public class MemberServiceImp implements MemberService {
             member.setUserLevel(1L);
         }
 
-        // 3) 저장
         Member saved = memberRepository.save(member);
 
-        // 4) 기본 알림 설정 (없으면 한 번만 생성)
-        memberNotificationSettingRepository.insertDefaultIfNotExists(saved.getId());
+        // ✅ (기존 MERGE 제거) 알림 기본값 보장
+        ensureDefaultNotificationSetting(saved.getId());
 
         return saved;
     }

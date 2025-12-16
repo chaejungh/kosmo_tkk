@@ -17,3 +17,13 @@ ENTRYPOINT ["java", "-jar", "/app.jar", "--logging.level.root=ERROR", "--logging
 
 #docker buildx build --platform linux/amd64 -t yhsmam0817/thekuku-spring:0.0.1 --push .
 #sudo docker run -d --name app -p 443:443 yhsmam0817/thekuku-spring:0.0.3
+#sudo docker stop app
+#sudo docker rm app
+
+
+#sudo docker stop app
+#sudo docker rm app
+
+#docker buildx build --platform linux/amd64 -t leejihyeong1/thekuku-spring:0.0.1 --push .
+#sudo docker run -d --name app -p 443:443 leejihyeong1/thekuku-spring:0.0.1
+
