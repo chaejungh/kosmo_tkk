@@ -4,443 +4,629 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/tkk_fragment/layout}">
 <head>
+    <th:block layout:fragment="head">
+        <style>
+            /* =========================
+               Store Detail (Figma-like)
+               (기존 모델: store(Map), goodsList(List), storeId, keyword)
+            ========================= */
 
-
-    <style>
-        /* ===== 매장 상세 전용 스타일 ===== */
-
-        .store-hero {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .store-hero-main {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .store-hero-text {
-            flex: 2;
-            min-width: 0;
-        }
-
-        .store-brand {
-            display: inline-block;
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 999px;
-            background: #f3f4ff;
-            color: #4f46e5;
-            margin-bottom: 6px;
-        }
-
-        .store-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-        }
-
-        .store-address {
-            font-size: 13px;
-            color: #4b5563;
-            margin-bottom: 4px;
-        }
-
-        .store-tel,
-        .store-open {
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        .store-hero-meta {
-            flex: 1.3;
-            font-size: 13px;
-            border-radius: 12px;
-            background: #f9fafb;
-            padding: 10px 12px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .store-meta-row {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-
-        .store-meta-label {
-            width: 56px;
-            flex-shrink: 0;
-            font-weight: 600;
-            color: #4b5563;
-        }
-
-        .store-meta-value {
-            flex: 1;
-            color: #111827;
-            word-break: keep-all;
-        }
-
-        .store-meta-link a {
-            color: #2563eb;
-            text-decoration: none;
-            word-break: break-all;
-        }
-
-        .store-meta-link a:hover {
-            text-decoration: underline;
-        }
-
-        .store-map-card p {
-            font-size: 13px;
-            color: #4b5563;
-            margin: 0 0 8px 0;
-        }
-
-        .btn-map-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            border: 1px solid #e5e7eb;
-            background: #111827;
-            color: #ffffff;
-            font-size: 13px;
-            text-decoration: none;
-        }
-
-        .btn-map-link span.icon {
-            font-size: 14px;
-        }
-
-        /* ===== 굿즈 재고 조회 전용 스타일 ===== */
-
-        .goods-section {
-            margin-top: 16px;
-        }
-
-        .goods-search-form {
-            margin-bottom: 10px;
-        }
-
-        .goods-search-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .goods-search-input-wrap {
-            position: relative;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .goods-search-input-wrap input {
-            width: 100%;
-            padding: 8px 10px 8px 30px;
-            border-radius: 999px;
-            border: 1px solid #e5e7eb;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .goods-search-input-wrap input:focus {
-            border-color: #4f46e5;
-        }
-
-        .goods-search-input-wrap .search-icon {
-            position: absolute;
-            left: 9px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 13px;
-            color: #9ca3af;
-        }
-
-        .goods-search-hint {
-            font-size: 11px;
-            color: #9ca3af;
-        }
-
-        .goods-result-info {
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 6px;
-        }
-
-        .goods-table-wrap {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        .goods-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            min-width: 640px;
-        }
-
-        .goods-table th,
-        .goods-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #e5e7eb;
-            white-space: nowrap;
-        }
-
-        .goods-table th {
-            background: #f9fafb;
-            text-align: left;
-            color: #4b5563;
-            font-weight: 600;
-        }
-
-        .goods-table td {
-            color: #111827;
-        }
-
-        .goods-thumb {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid #e5e7eb;
-        }
-
-        .goods-empty {
-            padding: 16px 0;
-            text-align: center;
-            font-size: 13px;
-            color: #9ca3af;
-        }
-
-        @media (max-width: 768px) {
-            .store-hero-main {
-                flex-direction: column;
+            .sd-page{
+                width: min(1200px, 92%);
+                margin: 0 auto;
+                padding: 18px 0 60px;
             }
 
-            .store-hero-meta {
-                width: 100%;
+            .sd-topbar{
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                margin-bottom: 12px;
+            }
+            .sd-back{
+                display:inline-flex;
+                align-items:center;
+                gap:8px;
+                font-weight:800;
+                font-size:14px;
+                color: rgba(0,0,0,.65);
+                text-decoration:none;
+            }
+            .sd-back:hover{ color: rgba(0,0,0,.85); }
+
+            /* HERO (큰 이미지) */
+            .sd-hero{
+                border-radius: 18px;
+                overflow: hidden;
+                border: 1px solid #e5e7eb;
+                box-shadow: 0 14px 40px rgba(0,0,0,.10);
+                background: #f3f4f6;
+                height: 420px;
+                position: relative;
+            }
+            .sd-hero-bg{
+                position:absolute;
+                inset:0;
+                background-size: cover;
+                background-position: center;
+                filter: none;
+            }
+            .sd-hero-fallback{
+                position:absolute;
+                inset:0;
+                display:grid;
+                place-items:center;
+                background:
+                        radial-gradient(1200px 480px at 20% 10%, rgba(236,72,153,.18), transparent 60%),
+                        radial-gradient(900px 380px at 70% 30%, rgba(99,102,241,.12), transparent 55%),
+                        linear-gradient(180deg, #f7f7fb, #eef0f8);
+                color: rgba(0,0,0,.55);
+            }
+            .sd-hero-fallback .icon{ font-size: 34px; margin-bottom: 6px; }
+            .sd-hero-fallback .text{ font-weight: 900; }
+
+            /* 메인 2컬럼 */
+            .sd-grid{
+                margin-top: 22px;
+                display:grid;
+                grid-template-columns: 1fr 360px;
+                gap: 24px;
+                align-items:start;
             }
 
-            .store-name {
-                font-size: 19px;
+            /* LEFT: 타이틀/태그 */
+            .sd-titleBox{
+                margin-bottom: 14px;
             }
-
-            .goods-table {
+            .sd-brandPill{
+                display:inline-block;
+                font-size:12px;
+                padding: 4px 10px;
+                border-radius: 999px;
+                background: #f3f4ff;
+                color: #4f46e5;
+                font-weight: 900;
+                margin-bottom: 8px;
+            }
+            .sd-name{
+                font-size: 22px;
+                font-weight: 900;
+                letter-spacing: -0.2px;
+                margin: 0 0 8px 0;
+                color: #0f172a;
+            }
+            .sd-sub{
+                font-size: 13px;
+                color: rgba(15,23,42,.65);
+                line-height: 1.7;
+                margin: 0;
+            }
+            .sd-tags{
+                margin-top: 10px;
+                display:flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .sd-tag{
+                padding: 6px 10px;
+                border-radius: 999px;
+                background: rgba(15,23,42,.05);
+                color: rgba(15,23,42,.70);
+                font-weight: 900;
                 font-size: 12px;
-                min-width: 520px;
             }
-        }
-    </style>
+
+            /* 카드(기존 프로젝트 card 느낌 유지하면서) */
+            .sd-card{
+                border-radius: 16px;
+                border: 1px solid #e5e7eb;
+                background: #fff;
+                box-shadow: 0 10px 26px rgba(0,0,0,.06);
+                padding: 18px;
+                margin-bottom: 18px;
+            }
+            .sd-card-title{
+                font-weight: 900;
+                color:#0f172a;
+                font-size: 14px;
+                margin: 0 0 14px 0;
+                display:flex;
+                align-items:center;
+                gap: 10px;
+            }
+            .sd-pill{
+                display:inline-block;
+                font-size: 11px;
+                padding: 2px 10px;
+                border-radius: 999px;
+                font-weight: 900;
+                background: #f3f4f6;
+                color: rgba(15,23,42,.75);
+            }
+
+            /* 매장정보 row */
+            .sd-infoRow{
+                display:flex;
+                gap: 12px;
+                align-items:flex-start;
+                padding: 10px 0;
+            }
+            .sd-ico{ opacity:.85; }
+            .sd-label{
+                font-size: 12px;
+                color: rgba(15,23,42,.55);
+                font-weight: 900;
+                margin-bottom: 2px;
+            }
+            .sd-value{
+                font-size: 13px;
+                color: rgba(15,23,42,.82);
+                font-weight: 800;
+                word-break: break-word;
+            }
+
+            /* 액션 버튼 */
+            .sd-actions{
+                margin-top: 14px;
+                display:grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .sd-btn{
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                height: 44px;
+                border-radius: 12px;
+                font-weight: 900;
+                text-decoration:none;
+                cursor:pointer;
+                border: none;
+            }
+            .sd-btn-pink{ background:#ec4899; color:#fff; }
+            .sd-btn-black{ background:#111827; color:#fff; }
+            .sd-btn-line{
+                background:#fff;
+                color:#111827;
+                border: 1px solid rgba(15,23,42,.14);
+            }
+
+            /* 검색 */
+            .sd-search{
+                display:flex;
+                gap: 10px;
+                align-items:center;
+            }
+            .sd-input{
+                flex: 1;
+                height: 44px;
+                border-radius: 12px;
+                border: 1px solid rgba(15,23,42,.12);
+                padding: 0 14px;
+                font-weight: 800;
+                outline: none;
+                font-size: 13px;
+            }
+            .sd-input:focus{
+                border-color: rgba(236,72,153,.55);
+                box-shadow: 0 0 0 4px rgba(236,72,153,.12);
+            }
+            .sd-searchBtn{
+                height: 44px;
+                padding: 0 16px;
+                border-radius: 12px;
+                border: none;
+                background: #111827;
+                color:#fff;
+                font-weight: 900;
+                cursor:pointer;
+                font-size: 13px;
+            }
+            .sd-hint{
+                margin-top: 8px;
+                font-size: 12px;
+                color: rgba(15,23,42,.55);
+                font-weight: 800;
+            }
+
+            /* 굿즈 테이블(기존 기능 유지) */
+            .goods-table-wrap{ width:100%; overflow-x:auto; margin-top: 12px; }
+            .goods-table{
+                width:100%;
+                border-collapse: collapse;
+                font-size: 13px;
+                min-width: 680px;
+            }
+            .goods-table th, .goods-table td{
+                padding: 10px 10px;
+                border-bottom: 1px solid #e5e7eb;
+                white-space: nowrap;
+            }
+            .goods-table th{
+                background:#f9fafb;
+                text-align:left;
+                color:#4b5563;
+                font-weight: 900;
+            }
+            .goods-table td{ color:#0f172a; font-weight: 800; }
+            .goods-thumb{
+                width: 52px;
+                height: 52px;
+                border-radius: 12px;
+                object-fit: cover;
+                border: 1px solid #e5e7eb;
+                background:#f3f4f6;
+            }
+            .goods-empty{
+                padding: 16px 0;
+                text-align:center;
+                font-size: 13px;
+                color: rgba(15,23,42,.55);
+                font-weight: 800;
+            }
+
+            /* RIGHT: 실시간 재고 카드 */
+            .sd-right{
+                position: relative;
+            }
+            .sd-stockCard{
+                position: sticky;
+                top: 86px;
+                border-radius: 16px;
+                overflow:hidden;
+                border: 1px solid rgba(15,23,42,.10);
+                box-shadow: 0 14px 40px rgba(0,0,0,.10);
+                background: #fff;
+            }
+            .sd-stockHead{
+                background: #0b0f17;
+                color:#fff;
+                padding: 14px 14px;
+                display:flex;
+                align-items:center;
+                gap: 10px;
+            }
+            .sd-stockTitle{ font-weight: 900; }
+            .sd-stockBody{
+                padding: 14px;
+                background: #fff;
+            }
+            .sd-stockItem{
+                padding: 12px;
+                border-radius: 14px;
+                border: 1px solid rgba(15,23,42,.08);
+                background: rgba(15,23,42,.02);
+                margin-bottom: 10px;
+            }
+            .sd-stockTop{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap: 10px;
+            }
+            .sd-stockName{
+                font-weight: 900;
+                font-size: 13px;
+                color:#0f172a;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+            }
+            .sd-stockCount{
+                font-weight: 900;
+                color:#ec4899;
+                font-size: 12px;
+                flex-shrink:0;
+            }
+            .sd-stockBar{
+                height: 6px;
+                border-radius: 999px;
+                background: rgba(15,23,42,.10);
+                overflow:hidden;
+                margin-top: 10px;
+            }
+            .sd-stockFill{
+                display:block;
+                height:100%;
+                width: 40%;
+                border-radius: 999px;
+                background: #ec4899;
+            }
+            .sd-stockHint{
+                margin-top: 8px;
+                color: rgba(15,23,42,.45);
+                font-weight: 800;
+                font-size: 12px;
+            }
+
+            /* 사진 그리드(현재는 goodsList thumbnail로 구성) */
+            .sd-photoTitle{
+                margin: 6px 0 10px;
+                font-weight: 900;
+                color:#0f172a;
+            }
+            .sd-photos{
+                display:grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .sd-photo{
+                border-radius: 16px;
+                overflow:hidden;
+                border: 1px solid rgba(15,23,42,.08);
+                box-shadow: 0 10px 26px rgba(0,0,0,.06);
+                background:#fff;
+                aspect-ratio: 1 / 1;
+            }
+            .sd-photo img{
+                width:100%;
+                height:100%;
+                object-fit: cover;
+                display:block;
+            }
+
+            @media (max-width: 980px){
+                .sd-hero{ height: 320px; }
+                .sd-grid{ grid-template-columns: 1fr; }
+                .sd-stockCard{ position: static; }
+                .sd-photos{ grid-template-columns: 1fr; }
+            }
+        </style>
+    </th:block>
 </head>
+
 <body>
 <div layout:fragment="content">
-    <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
-    <main>
+    <main class="sd-page">
 
-        <!-- 매장 기본 정보 -->
-        <section class="card store-hero">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>매장 상세 정보</span>
-                    <span class="pill pill-purple">STORE</span>
-                </div>
+        <!-- 상단 -->
+        <div class="sd-topbar">
+            <a class="sd-back" href="javascript:history.back()">← 돌아가기</a>
+        </div>
+
+        <!-- HERO (큰 이미지) -->
+        <section class="sd-hero">
+            <!-- 우선순위: store.imageUrl 있으면 / 없으면 첫 굿즈 썸네일 / 없으면 fallback -->
+            <div class="sd-hero-bg"
+                 th:if="${store.imageUrl != null and !#strings.isEmpty(store.imageUrl)}"
+                 th:style="|background-image:url('${store.imageUrl}');|">
             </div>
 
-            <div class="store-hero-main">
-                <!-- 왼쪽 : 매장 제목/주소 -->
-                <div class="store-hero-text">
-                    <span class="store-brand"
+            <div class="sd-hero-bg"
+                 th:if="${(store.imageUrl == null or #strings.isEmpty(store.imageUrl)) and goodsList != null and !#lists.isEmpty(goodsList) and goodsList[0].thumbnailUrl != null}"
+                 th:style="|background-image:url('${goodsList[0].thumbnailUrl}');|">
+            </div>
+
+            <div class="sd-hero-fallback"
+                 th:if="${(store.imageUrl == null or #strings.isEmpty(store.imageUrl)) and (goodsList == null or #lists.isEmpty(goodsList) or goodsList[0].thumbnailUrl == null)}">
+                <div>
+                    <div class="icon">🏬</div>
+                    <div class="text">매장 대표 이미지 준비중</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2컬럼 -->
+        <section class="sd-grid">
+
+            <!-- LEFT -->
+            <div class="sd-left">
+
+                <!-- 타이틀/태그 -->
+                <div class="sd-titleBox">
+                    <span class="sd-brandPill"
                           th:text="${store.brand != null and !#strings.isEmpty(store.brand) ? store.brand : '브랜드'}">
                         브랜드
                     </span>
 
-                    <h1 class="store-name"
+                    <h1 class="sd-name"
                         th:text="${store.name != null and !#strings.isEmpty(store.name) ? store.name : '매장 이름'}">
                         매장 이름
                     </h1>
 
-                    <p class="store-address"
-                       th:text="${store.address != null and !#strings.isEmpty(store.address) ? store.address : '주소 정보가 없습니다.'}">
-                        서울 어딘가 00로 00
+                    <p class="sd-sub" th:text="${store.address != null && !#strings.isEmpty(store.address) ? store.address : '주소 정보가 없습니다.'}">
+                        주소
                     </p>
 
-                    <p class="store-tel"
-                       th:text="${store.tel != null and !#strings.isEmpty(store.tel) ? '전화번호 · ' + store.tel : '전화번호 정보 없음'}">
-                        전화번호 · 02-000-0000
-                    </p>
-
-                    <p class="store-open"
-                       th:text="${store.openTime != null and !#strings.isEmpty(store.openTime) ? '영업시간 · ' + store.openTime : '영업시간 정보 없음'}">
-                        영업시간 · 11:00 ~ 21:00
-                    </p>
+                    <div class="sd-tags">
+                        <span class="sd-tag">#공식굿즈</span>
+                        <span class="sd-tag">#한정판</span>
+                        <span class="sd-tag">#테마매장</span>
+                        <span class="sd-tag">#굿즈재고</span>
+                    </div>
                 </div>
 
-                <!-- 오른쪽 : 요약 메타 박스 -->
-                <aside class="store-hero-meta">
-                    <div class="store-meta-row">
-                        <span class="store-meta-label">매장ID</span>
-                        <span class="store-meta-value" th:text="${store.id}">172</span>
+                <!-- 매장 정보 카드 + 액션 -->
+                <div class="sd-card">
+                    <div class="sd-card-title">
+                        <span>매장 정보</span>
+                        <span class="sd-pill">INFO</span>
                     </div>
 
-                    <div class="store-meta-row">
-                        <span class="store-meta-label">주소</span>
-                        <span class="store-meta-value"
-                              th:text="${store.address != null && !#strings.isEmpty(store.address) ? store.address : '정보 없음'}">
-                            서울 어딘가 00로 00
-                        </span>
-                    </div>
-
-                    <div class="store-meta-row">
-                        <span class="store-meta-label">연락처</span>
-                        <span class="store-meta-value"
-                              th:text="${store.tel != null && !#strings.isEmpty(store.tel) ? store.tel : '정보 없음'}">
-                            02-000-0000
-                        </span>
-                    </div>
-
-                    <div class="store-meta-row">
-                        <span class="store-meta-label">영업시간</span>
-                        <span class="store-meta-value"
-                              th:text="${store.openTime != null && !#strings.isEmpty(store.openTime) ? store.openTime : '정보 없음'}">
-                            11:00 ~ 21:00
-                        </span>
-                    </div>
-
-                    <div class="store-meta-row store-meta-link">
-                        <span class="store-meta-label">홈페이지</span>
-                        <span class="store-meta-value">
-                            <a th:if="${store.homepage != null && !#strings.isEmpty(store.homepage)}"
-                               th:href="${store.homepage}" target="_blank"
-                               th:text="${store.homepage}">https://example.com</a>
-                            <span th:if="${store.homepage == null || #strings.isEmpty(store.homepage)}">
-                                정보 없음
-                            </span>
-                        </span>
-                    </div>
-                </aside>
-            </div>
-        </section>
-
-        <!-- 네이버 지도 / 길찾기 안내 -->
-        <section class="card store-map-card">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>네이버 지도에서 보기</span>
-                    <span class="pill pill-blue">MAP</span>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <p>
-                    정확한 위치 안내는 네이버 지도를 사용합니다.
-                    아래 버튼을 누르면
-                    <span th:text="${store.name != null && !#strings.isEmpty(store.name) ? store.name : '매장'}">매장</span>
-                    을(를) 네이버 지도에서 바로 확인할 수 있어요.
-                </p>
-
-                <!-- 매장 이름 기준 검색 딥링크 -->
-                <a class="btn-map-link"
-                   th:href="@{|https://map.naver.com/p/search/${store.name}|}"
-                   target="_blank">
-                    <span class="icon">🗺️</span>
-                    <span>네이버 지도에서 길찾기</span>
-                </a>
-
-                <p style="margin-top:8px;font-size:12px;color:#9ca3af;">
-                    * 좌표(latitude/longitude)가 준비되면, 이 영역에 실제 지도를 직접 띄우는 것도 가능해요.
-                </p>
-            </div>
-        </section>
-
-        <!-- 🔥 매장 굿즈 재고 조회 섹션 -->
-        <section class="card goods-section" th:if="${goodsList != null}">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>매장 내 굿즈 재고 조회</span>
-                    <span class="pill pill-green">GOODS</span>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <!-- 검색 폼 -->
-                <form class="goods-search-form"
-                      th:action="@{/goods/store/{storeId}(storeId=${storeId})}"
-                      method="get">
-                    <div class="goods-search-bar">
-                        <div class="goods-search-input-wrap">
-                            <span class="search-icon">🔍</span>
-                            <input type="text"
-                                   name="keyword"
-                                   placeholder="작품명 / 캐릭터명 / 상품명으로 검색 (예: 주술회전, 루피, 아크릴스탠드)"
-                                   th:value="${keyword}">
+                    <div class="sd-infoRow">
+                        <div class="sd-ico">📍</div>
+                        <div>
+                            <div class="sd-label">주소</div>
+                            <div class="sd-value" th:text="${store.address != null && !#strings.isEmpty(store.address) ? store.address : '정보 없음'}">-</div>
                         </div>
-                        <button type="submit" class="btn-primary btn-sm">
-                            검색
-                        </button>
                     </div>
-                </form>
 
-                <div class="goods-search-hint">
-                    * 예시 : <b>원피스</b>, <b>나루토</b>, <b>주술회전</b>, <b>루피</b>, <b>탄지로</b>, <b>아크릴스탠드</b> 등
+                    <div class="sd-infoRow">
+                        <div class="sd-ico">🕒</div>
+                        <div>
+                            <div class="sd-label">영업시간</div>
+                            <div class="sd-value" th:text="${store.openTime != null && !#strings.isEmpty(store.openTime) ? store.openTime : '정보 없음'}">-</div>
+                        </div>
+                    </div>
+
+                    <div class="sd-infoRow">
+                        <div class="sd-ico">📞</div>
+                        <div>
+                            <div class="sd-label">전화번호</div>
+                            <div class="sd-value" th:text="${store.tel != null && !#strings.isEmpty(store.tel) ? store.tel : '정보 없음'}">-</div>
+                        </div>
+                    </div>
+
+                    <div class="sd-infoRow">
+                        <div class="sd-ico">🔗</div>
+                        <div>
+                            <div class="sd-label">홈페이지</div>
+                            <div class="sd-value">
+                                <a th:if="${store.homepage != null && !#strings.isEmpty(store.homepage)}"
+                                   th:href="${store.homepage}" target="_blank"
+                                   th:text="${store.homepage}"
+                                   style="color:#2563eb; text-decoration:none; font-weight:900;">
+                                    link
+                                </a>
+                                <span th:if="${store.homepage == null || #strings.isEmpty(store.homepage)}">정보 없음</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sd-actions">
+                        <!-- ✅ 네이버 지도 길찾기 (기존 기능) -->
+                        <a class="sd-btn sd-btn-pink"
+                           th:href="@{|https://map.naver.com/p/search/${store.name}|}"
+                           target="_blank">
+                            길찾기
+                        </a>
+
+                        <!-- ✅ 전화하기 -->
+                        <a class="sd-btn sd-btn-black"
+                           th:if="${store.tel != null && !#strings.isEmpty(store.tel)}"
+                           th:href="|tel:${store.tel}|">
+                            전화하기
+                        </a>
+
+                        <!-- 전화번호 없을 때 버튼 대체 -->
+                        <a class="sd-btn sd-btn-line"
+                           th:if="${store.tel == null || #strings.isEmpty(store.tel)}"
+                           href="javascript:void(0)">
+                            전화번호 없음
+                        </a>
+                    </div>
                 </div>
 
-                <div class="goods-result-info"
-                     th:if="${goodsList != null}">
-                    <span th:if="${#lists.isEmpty(goodsList)}">
-                        검색 결과가 없습니다.
-                    </span>
-                    <span th:if="${!#lists.isEmpty(goodsList)}">
-                        총 <b th:text="${#lists.size(goodsList)}">0</b>개의 상품이 있습니다.
-                    </span>
+                <!-- 굿즈 재고 검색/테이블(기존 기능 유지) -->
+                <div class="sd-card" th:if="${goodsList != null}">
+                    <div class="sd-card-title">
+                        <span>매장 내 굿즈 재고 조회</span>
+                        <span class="sd-pill">GOODS</span>
+                    </div>
+
+                    <form class="sd-search"
+                          th:action="@{/goods/store/{storeId}(storeId=${storeId})}"
+                          method="get">
+                        <input class="sd-input"
+                               type="text"
+                               name="keyword"
+                               placeholder="작품명 / 캐릭터명 / 상품명으로 검색 (예: 주술회전, 루피, 아크릴스탠드)"
+                               th:value="${keyword}">
+                        <button class="sd-searchBtn" type="submit">검색</button>
+                    </form>
+
+                    <div class="sd-hint">
+                        * 예시 : <b>원피스</b>, <b>나루토</b>, <b>주술회전</b>, <b>루피</b>, <b>탄지로</b>, <b>아크릴스탠드</b> 등
+                    </div>
+
+                    <div style="margin-top:10px; font-size:12px; color:rgba(15,23,42,.60); font-weight:900;">
+                        <span th:if="${#lists.isEmpty(goodsList)}">검색 결과가 없습니다.</span>
+                        <span th:if="${!#lists.isEmpty(goodsList)}">
+                            총 <b th:text="${#lists.size(goodsList)}">0</b>개의 상품이 있습니다.
+                        </span>
+                    </div>
+
+                    <div class="goods-table-wrap" th:if="${!#lists.isEmpty(goodsList)}">
+                        <table class="goods-table">
+                            <thead>
+                            <tr>
+                                <th>이미지</th>
+                                <th>작품명</th>
+                                <th>캐릭터</th>
+                                <th>상품명</th>
+                                <th>카테고리</th>
+                                <th>가격</th>
+                                <th>재고</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="g : ${goodsList}">
+                                <td>
+                                    <img th:if="${g.thumbnailUrl != null}"
+                                         th:src="${g.thumbnailUrl}"
+                                         alt="굿즈 썸네일"
+                                         class="goods-thumb">
+                                    <span th:if="${g.thumbnailUrl == null}"
+                                          style="font-size:11px;color:#9ca3af;font-weight:900;">
+                                        이미지 없음
+                                    </span>
+                                </td>
+                                <td th:text="${g.workName}">-</td>
+                                <td th:text="${g.characterName}">-</td>
+                                <td th:text="${g.name}">-</td>
+                                <td th:text="${g.category}">-</td>
+                                <td th:text="${g.price != null ? g.price + '원' : '-'}">-</td>
+                                <td th:text="${g.stockQty != null ? g.stockQty + '개' : '-'}">-</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="goods-empty" th:if="${#lists.isEmpty(goodsList)}">
+                        이 매장에 등록된 굿즈가 없거나, 검색 조건에 해당하는 상품이 없습니다.
+                    </div>
                 </div>
 
-                <!-- 굿즈 테이블 -->
-                <div class="goods-table-wrap" th:if="${!#lists.isEmpty(goodsList)}">
-                    <table class="goods-table">
-                        <thead>
-                        <tr>
-                            <th>이미지</th>
-                            <th>작품명</th>
-                            <th>캐릭터</th>
-                            <th>상품명</th>
-                            <th>카테고리</th>
-                            <th>가격</th>
-                            <th>재고</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="g : ${goodsList}">
-                            <td>
-                                <img th:if="${g.thumbnailUrl != null}"
-                                     th:src="${g.thumbnailUrl}"
-                                     alt="굿즈 썸네일"
-                                     class="goods-thumb">
-                                <span th:if="${g.thumbnailUrl == null}"
-                                      style="font-size:11px;color:#9ca3af;">
-                                    이미지 없음
-                                </span>
-                            </td>
-                            <td th:text="${g.workName}">주술회전</td>
-                            <td th:text="${g.characterName}">이타도리 유우지</td>
-                            <td th:text="${g.name}">굿즈 상품명</td>
-                            <td th:text="${g.category}">아크릴스탠드</td>
-                            <td th:text="${g.price != null ? g.price + '원' : '-'}">10,000원</td>
-                            <td th:text="${g.stockQty != null ? g.stockQty + '개' : '-'}">5개</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <!-- 사진 그리드(현재 goods 썸네일 재활용) -->
+                <div class="sd-photoTitle">매장 사진</div>
+                <div class="sd-photos">
+                    <div class="sd-photo"
+                         th:each="g, stat : ${goodsList}"
+                         th:if="${goodsList != null and !#lists.isEmpty(goodsList) and g.thumbnailUrl != null and stat.index < 4}">
+                        <img th:src="${g.thumbnailUrl}" alt="store photo"/>
+                    </div>
+
+                    <div class="goods-empty"
+                         th:if="${goodsList == null or #lists.isEmpty(goodsList)}"
+                         style="grid-column:1/-1;">
+                        표시할 이미지가 없습니다.
+                    </div>
                 </div>
 
-                <div class="goods-empty"
-                     th:if="${#lists.isEmpty(goodsList)}">
-                    이 매장에 등록된 굿즈가 없거나, 검색 조건에 해당하는 상품이 없습니다.
-                </div>
             </div>
+
+            <!-- RIGHT -->
+            <aside class="sd-right">
+                <div class="sd-stockCard">
+                    <div class="sd-stockHead">
+                        <div style="opacity:.9;">⬣</div>
+                        <div class="sd-stockTitle">실시간 재고 현황</div>
+                    </div>
+
+                    <div class="sd-stockBody">
+                        <div class="sd-stockItem"
+                             th:each="g, stat : ${goodsList}"
+                             th:if="${goodsList != null and stat.index < 6}">
+                            <div class="sd-stockTop">
+                                <div class="sd-stockName" th:text="${g.name}">상품명</div>
+                                <div class="sd-stockCount" th:text="${g.stockQty != null ? g.stockQty + '개' : '-'}">-</div>
+                            </div>
+                            <div class="sd-stockBar">
+                                <!-- stockQty 기반 bar (0~20개를 0~100%로) -->
+                                <span class="sd-stockFill"
+                                      th:style="|width:${g.stockQty != null ? (g.stockQty > 20 ? 100 : g.stockQty * 5) : 0}%;|"></span>
+                            </div>
+                        </div>
+
+                        <div class="sd-stockHint">* 재고는 실시간으로 변동될 수 있습니다.</div>
+
+                        <div class="goods-empty" th:if="${goodsList == null or #lists.isEmpty(goodsList)}">
+                            재고 데이터가 없습니다.
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
         </section>
 
     </main>
