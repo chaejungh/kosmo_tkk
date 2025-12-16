@@ -274,34 +274,139 @@ INSERT INTO board_report (
     (1, 3, NULL, 1, '광고성 스팸 같아요.', 'WAIT', NOW());
 
 -- 2-21. TRADE_POST (쿠쿠마켓 거래글) - 5개
-INSERT INTO trade_post (
-    trade_id, seller_id, title, content, goods_name, work_name,
-    character_name, category, price, trade_type, trade_method,
-    region, status, view_count, like_count, created_at, deleted_yn
-) VALUES
-      (1, 2, '주술회전 포카 세트 팝니다', '중복 포카 정리해요.', '주술회전 포카 세트',
-       '주술회전', '고죠 사토루', '포카', 12000, 'SELL', 'DIRECT', '홍대', 'ON_SALE',
-       50, 3, NOW(), 'N'),
-      (2, 1, '블루록 포스터 교환 구해요', '포스터 교환만 합니다.', '블루록 포스터',
-       '블루록', NULL, '포스터', NULL, 'EXCHANGE', 'DIRECT', '강남', 'ON_SALE',
-       20, 1, NOW(), 'N'),
-      (3, 3, '귀멸 피규어 구매 원해요', '렌고쿠 피규어 구해요.', '렌고쿠 피규어',
-       '귀멸의 칼날', '렌고쿠 쿄쥬로', '피규어', 90000, 'BUY', 'DIRECT', '부산', 'ON_SALE',
-       15, 0, NOW(), 'N'),
-      (4, 4, '체인소맨 키링 팝니다', '중복 키링 처분합니다.', '체인소맨 키링',
-       '체인소맨', NULL, '키링', 8000, 'SELL', 'DIRECT', '대구', 'ON_SALE',
-       18, 2, NOW(), 'N'),
-      (5, 5, '랜덤 박스 교환/판매', '랜덤 굿즈 박스입니다.', '애니 굿즈 랜덤박스',
-       NULL, NULL, '박스', 20000, 'SELL', 'DIRECT', '신촌', 'ON_SALE',
-       10, 1, NOW(), 'N');
+INSERT INTO trade_post (seller_id, title, content, goods_name, work_name, character_name, category, price, trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+            (2,'[귀멸의 칼날] 도우마 AGF 2025 담요','AGF 2025 한정 도우마 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','도우마','담요',35000,'SELL','DIRECT','홍대','ON_SALE',50,3,NOW(),'N'),
+            (2,'[귀멸의 칼날] 아카자 AGF 2025 담요','AGF 2025 한정 아카자 담요입니다.','AGF 2025 담요','귀멸의 칼날','아카자','담요',35000,'SELL','DIRECT','홍대','ON_SALE',42,2,NOW(),'N'),
+            (3,'[귀멸의 칼날] 코쿠시보 AGF 2025 담요','코쿠시보 AGF 한정 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','코쿠시보','담요',38000,'SELL','DIRECT','합정','ON_SALE',61,6,NOW(),'N'),
+            (3,'[귀멸의 칼날] 키부츠지 무잔 AGF 2025 담요','무잔 AGF 한정 담요 미개봉 상품입니다.','AGF 2025 담요','귀멸의 칼날','키부츠지 무잔','담요',38000,'SELL','DIRECT','합정','ON_SALE',55,4,NOW(),'N'),
+            (4,'[귀멸의 칼날] 코쵸우 시노부 쿄마후 아크릴 스탠드','쿄마후 한정 시노부 아크릴 스탠드입니다.','아크릴 스탠드','귀멸의 칼날','코쵸우 시노부','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',37,5,NOW(),'N'),
+            (4,'[귀멸의 칼날] 토미오카 기유 쿄마후 아크릴 스탠드','쿄마후 한정 기유 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','토미오카 기유','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',40,6,NOW(),'N'),
+            (5,'[귀멸의 칼날] 아가츠마 젠이츠 무한성편 아크릴 참','무한성편 젠이츠 아크릴 참입니다.','아크릴 참','귀멸의 칼날','아가츠마 젠이츠','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',28,2,NOW(),'N'),
+            (5,'[귀멸의 칼날] 코쵸우 시노부 무한성편 아크릴 참','무한성편 시노부 아크릴 참 판매합니다.','아크릴 참','귀멸의 칼날','코쵸우 시노부','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',25,1,NOW(),'N'),
+            (6,'[귀멸의 칼날] 토미오카 기유 무한성편 아크릴 참','무한성편 기유 아크릴 참입니다.','아크릴 참','귀멸의 칼날','토미오카 기유','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',31,3,NOW(),'N'),
+            (6,'[귀멸의 칼날] 아카자 무한성편 아크릴 스탠드','무한성편 아카자 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','아카자','아크릴',25000,'SELL','DIRECT','홍대','ON_SALE',48,7,NOW(),'N'),
+            --11~20--
+            (2,'[나루토 질풍전] 하루노 사쿠라 걸즈 시리즈','걸즈 시리즈 사쿠라 피규어 판매합니다.','걸즈 시리즈 피규어','나루토 질풍전','하루노 사쿠라','피규어',98000,'SELL','DELIVERY','홍대','ON_SALE',34,4,NOW(),'N'),
+            (3,'[나루토 질풍전] 휴우가 히나타 넨도로이드 No.879','히나타 넨도로이드 상태 양호합니다.','넨도로이드','나루토 질풍전','휴우가 히나타','피규어',72000,'SELL','DELIVERY','강남','ON_SALE',41,6,NOW(),'N'),
+            (2,'[나루토 질풍전] 우치하 사스케 룩업 피규어','룩업 시리즈 사스케 피규어입니다.','룩업 피규어','나루토 질풍전','우치하 사스케','피규어',38000,'SELL','DIRECT','홍대','ON_SALE',29,3,NOW(),'N'),
+            (4,'[나루토 질풍전] 우치하 이타치 룩업 피규어','이타치 룩업 피규어 판매합니다.','룩업 피규어','나루토 질풍전','우치하 이타치','피규어',42000,'SELL','DIRECT','합정','ON_SALE',52,8,NOW(),'N'),
+            (5,'[진격의 거인] 라이너 브라운 POP UP PARADE','POP UP PARADE 라이너 브라운 피규어입니다.','POP UP PARADE','진격의 거인','라이너 브라운','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',46,5,NOW(),'N'),
+            (5,'[진격의 거인] 엘런 예거 POP UP PARADE','엘런 예거 월드 와이드 에프터 파티 버전입니다.','POP UP PARADE','진격의 거인','엘런 예거','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',63,9,NOW(),'N'),
+            (6,'[진격의 거인] 리바이 넨도로이드 돌','넨도로이드 돌 리바이 판매합니다.','넨도로이드 돌','진격의 거인','리바이','피규어',89000,'SELL','DELIVERY','건대','ON_SALE',71,11,NOW(),'N'),
+            (3,'[진격의 거인] 리바이 룩업 피규어','룩업 리바이 피규어입니다.','룩업 피규어','진격의 거인','리바이','피규어',39000,'SELL','DIRECT','강남','ON_SALE',58,7,NOW(),'N'),
+            (4,'[진격의 거인] 엘런 예거 룩업 피규어','엘런 룩업 피규어 판매합니다.','룩업 피규어','진격의 거인','엘런 예거','피규어',39000,'SELL','DIRECT','강남','ON_SALE',44,6,NOW(),'N'),
+            (6,'[진격의 거인] 아르민 알레르토 넨도로이드 조사병단','아르민 넨도로이드 조사병단 버전입니다.','넨도로이드','진격의 거인','아르민 알레르토','피규어',76000,'SELL','DELIVERY','홍대','ON_SALE',67,10,NOW(),'N'),
+            --21~31--
 
+            -- 21
+            (2,'[블루록] 바치라 메구루 아크릴 스탠드','블루록 2기 콜라보 바치라 메구루 아크릴 스탠드입니다.','아크릴 스탠드','블루록','바치라 메구루','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',33,4,NOW(),'N'),
+
+            -- 22
+            (2,'[블루록] 치기리 효마 아크릴 스탠드','블루록 2기 콜라보 치기리 효마 아크릴 스탠드입니다.','아크릴 스탠드','블루록','치기리 효마','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',29,3,NOW(),'N'),
+
+            -- 23
+            (3,'[블루록] 이사기 요이치 아크릴 키홀더','블루록 2기 이사기 요이치 아크릴 스탠드 키홀더입니다.','아크릴 키홀더','블루록','이사기 요이치','키링',15000,'SELL','DELIVERY','강남','ON_SALE',41,6,NOW(),'N'),
+
+            -- 24
+            (3,'[블루록] 나기 세이시로 아크릴 키홀더','블루록 2기 나기 세이시로 아크릴 키홀더입니다.','아크릴 키홀더','블루록','나기 세이시로','키링',15000,'SELL','DELIVERY','강남','ON_SALE',38,5,NOW(),'N'),
+
+            -- 25
+            (4,'[블루록] 바치라 메구루 아크릴 키홀더','블루록 2기 바치라 메구루 아크릴 키홀더입니다.','아크릴 키홀더','블루록','바치라 메구루','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',36,4,NOW(),'N'),
+
+            -- 26
+            (4,'[블루록] 치기리 효마 아크릴 키홀더','블루록 2기 치기리 효마 아크릴 키홀더입니다.','아크릴 키홀더','블루록','치기리 효마','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',34,3,NOW(),'N'),
+
+            -- 27
+            (5,'[블루록] 트레이딩 은박 원형 캔뱃지','블루록 트레이딩 은박 원형 캔뱃지 (랜덤) 입니다.','원형 캔뱃지','블루록',NULL,'뱃지',6000,'SELL','DELIVERY','건대','ON_SALE',52,7,NOW(),'N'),
+
+            -- 28
+            (5,'[블루록] 나기 세이시로 룩업 피규어','룩업 시리즈 나기 세이시로 피규어입니다.','룩업 피규어','블루록','나기 세이시로','피규어',39000,'SELL','DIRECT','건대','ON_SALE',47,6,NOW(),'N'),
+
+            -- 29
+            (6,'[블루록] 이사기 요이치 더블 아크릴 키홀더','데포르메 버전 이사기 요이치 더블 아크릴 키홀더입니다.','더블 아크릴 키홀더','블루록','이사기 요이치','키링',17000,'SELL','DELIVERY','합정','ON_SALE',44,5,NOW(),'N'),
+
+            -- 30
+            (6,'[블루록] 나기 세이시로 액션 피규어','블루록 나기 세이시로 슈팅 포즈 액션 피규어입니다.','액션 피규어','블루록','나기 세이시로','피규어',89000,'SELL','DIRECT','홍대','ON_SALE',73,12,NOW(),'N'),
+            --31-40--
+            (2,'[주술회전] MEGA CAT PROJECT BIG 고죠 사토루','MEGA CAT PROJECT BIG 고죠 사토루 피규어입니다.','MEGA CAT BIG','주술회전','고죠 사토루','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',36,5,NOW(),'N'),
+            (2,'[주술회전] MEGA CAT PROJECT BIG 후시구로 토우지','MEGA CAT PROJECT BIG 후시구로 토우지 피규어입니다.','MEGA CAT BIG','주술회전','후시구로 토우지','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',31,4,NOW(),'N'),
+            (3,'[주술회전] 고죠 사토루 슈트 Ver. 피규어','슈트 버전 고죠 사토루 피규어 판매합니다.','슈트 Ver. 피규어','주술회전','고죠 사토루','피규어',98000,'SELL','DIRECT','강남','ON_SALE',54,8,NOW(),'N'),
+            (3,'[주술회전] 넨도로이드 돌 고죠 사토루 (고전)','넨도로이드 돌 고죠 사토루 고전 버전입니다.','넨도로이드 돌','주술회전','고죠 사토루','피규어',89000,'SELL','DELIVERY','강남','ON_SALE',49,7,NOW(),'N'),
+            (4,'[주술회전] 룩업 고죠 사토루','룩업 시리즈 고죠 사토루 피규어입니다.','룩업 피규어','주술회전','고죠 사토루','피규어',39000,'SELL','DIRECT','합정','ON_SALE',45,6,NOW(),'N'),
+            (5,'[하이큐!!] GEM 시리즈 손바닥 미야 아츠무','GEM 시리즈 손바닥 미야 아츠무 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','미야 아츠무','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',52,7,NOW(),'N'),
+            (5,'[하이큐!!] GEM 시리즈 손바닥 츠키시마 케이','GEM 시리즈 손바닥 츠키시마 케이 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','츠키시마 케이','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',48,6,NOW(),'N'),
+            (6,'[하이큐!!] GEM 시리즈 손바닥 카게야마 토비오','카게야마 토비오 세컨드 유니폼 버전입니다.','GEM 손바닥 시리즈','하이큐!!','카게야마 토비오','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',61,9,NOW(),'N'),
+            (6,'[하이큐!!] GEM 시리즈 손바닥 히나타 쇼요','히나타 쇼요 세컨드 유니폼 버전 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','히나타 쇼요','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',67,11,NOW(),'N'),
+            (6,'[하이큐!!] 룩업 츠키시마 케이','룩업 시리즈 츠키시마 케이 피규어입니다.','룩업 피규어','하이큐!!','츠키시마 케이','피규어',39000,'SELL','DIRECT','홍대','ON_SALE',43,5,NOW(),'N'),
+            --41~50--
+            (2,'[원피스] NEO-MAXIMUM 루피 & 에이스 형제의 연 20TH LIMITED','루피 & 에이스 형제의 연 20주년 한정 피규어입니다.','NEO-MAXIMUM','원피스','몽키 D 루피 / 포트거스 D 에이스','피규어',520000,'SELL','DIRECT','홍대','ON_SALE',84,12,NOW(),'N'),
+            (3,'[원피스] P.O.P Evolutionary History 주얼리 보니','Portrait.Of.Pirates 주얼리 보니 피규어입니다.','P.O.P 피규어','원피스','주얼리 보니','피규어',165000,'SELL','DELIVERY','강남','ON_SALE',57,8,NOW(),'N'),
+            (3,'[원피스] P.O.P K×MAXIMUM 상디','K×MAXIMUM 상디 한정 피규어 판매합니다.','P.O.P MAXIMUM','원피스','상디','피규어',298000,'SELL','DIRECT','강남','ON_SALE',73,11,NOW(),'N'),
+            (4,'[원피스] P.O.P WA.MAXIMUM 백수의 카이도','WA.MAXIMUM 카이도 초한정 복각판입니다.','P.O.P WA.MAXIMUM','원피스','카이도','피규어',480000,'SELL','DIRECT','합정','ON_SALE',96,18,NOW(),'N'),
+            (4,'[원피스] P.O.P WA-MAXIMUM 화재의 킹','백수해적단 대간판 화재의 킹 피규어입니다.','P.O.P WA-MAXIMUM','원피스','킹','피규어',330000,'SELL','DIRECT','합정','ON_SALE',69,10,NOW(),'N'),
+            (5,'[원피스] 룩업 몽키 D 루피 기어 5','기어 5 루피 룩업 피규어입니다.','룩업 피규어','원피스','몽키 D 루피','피규어',42000,'SELL','DELIVERY','신촌','ON_SALE',61,9,NOW(),'N'),
+            (5,'[원피스] 베리어블 액션 히어로즈 롤로노아 조로','베리어블 액션 히어로즈 조로 피규어입니다.','베리어블 액션 히어로즈','원피스','롤로노아 조로','피규어',185000,'SELL','DIRECT','신촌','ON_SALE',67,10,NOW(),'N'),
+            (6,'[원피스] 세계의 디바 우타','극장판 등장 세계의 디바 우타 피규어입니다.','스케일 피규어','원피스','우타','피규어',158000,'SELL','DELIVERY','홍대','ON_SALE',72,13,NOW(),'N'),
+            (6,'[원피스] P.O.P SA-MAXIMUM 돈키호테 도플라밍고','SA-MAXIMUM 도플라밍고 피규어입니다.','P.O.P SA-MAXIMUM','원피스','돈키호테 도플라밍고','피규어',410000,'SELL','DIRECT','홍대','ON_SALE',88,16,NOW(),'N'),
+            (6,'[원피스] 흰수염 에드워드 뉴게이트','전설의 해적 흰수염 에드워드 뉴게이트 피규어입니다.','대형 피규어','원피스','에드워드 뉴게이트','피규어',460000,'SELL','DIRECT','홍대','ON_SALE',91,17,NOW(),'N');
 -- 2-22. TRADE_POST_IMAGE
-INSERT INTO trade_post_image (image_id, trade_id, image_url, sort_order) VALUES
-                                                                             (1, 1, '/images/trade/trade1_img1.png', 1),
-                                                                             (2, 2, '/images/trade/trade2_img1.png', 1),
-                                                                             (3, 3, '/images/trade/trade3_img1.png', 1);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+             (1,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%EB%8F%84%EC%9A%B0%EB%A7%88.PNG',  1),
+             (2,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%EC%95%84%EC%B9%B4%EC%9E%90.PNG',  1),
+             (3,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%EC%BD%94%EC%BF%A0%EC%8B%9C%EB%B3%B4.PNG',  1),
+             (4,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%ED%82%A4%EB%B6%80%EC%B8%A0%EC%A7%80+%EB%AC%B4%EC%9E%94.PNG',  1),
+             (5,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+%EC%BF%84%EB%A7%88%ED%9B%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%BD%94%EC%B5%B8%EC%9A%B0+%EC%8B%9C%EB%85%B8%EB%B6%80.PNG',  1),
+             (6,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+%EC%BF%84%EB%A7%88%ED%9B%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%ED%86%A0%EB%AF%B8%EC%98%A4%EC%B9%B4+%EA%B8%B0%EC%9C%A0.PNG',  1),
+             (7,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B2%A9%ED%88%AC+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%B0%B8+%EC%95%84%EA%B0%80%EC%B8%A0%EB%A7%88+%EC%A0%A0%EC%9D%B4%EC%B8%A0.PNG',  1),
+             (8,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B2%A9%ED%88%AC+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%B0%B8+%EC%BD%94%EC%B5%B8%EC%9A%B0+%EC%8B%9C%EB%85%B8%EB%B6%80.PNG',  1),
+             (9,  'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B2%A9%ED%88%AC+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%B0%B8+%ED%86%A0%EB%AF%B8%EC%98%A4%EC%B9%B4+%EA%B8%B0%EC%9C%A0.PNG',  1),
+             (10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%EC%95%84%EC%B9%B4%EC%9E%90.PNG', 1),
+             (11, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%5B%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84%5D+%EA%B1%B8%EC%A6%88+%EC%8B%9C%EB%A6%AC%EC%A6%88+%ED%95%98%EB%A3%A8%EB%85%B8+%EC%82%AC%EC%BF%A0%EB%9D%BC.PNG', 1),
+             (12, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%5B%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84%5D+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+No.879+%ED%9C%B4%EC%9A%B0%EA%B0%80+%ED%9E%88%EB%82%98%ED%83%80.PNG', 1),
+             (13, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%EB%A3%A9%EC%97%85+%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84+-+%EC%9A%B0%EC%B9%98%ED%95%98+%EC%82%AC%EC%8A%A4%EC%BC%80.PNG', 1),
+             (14, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%EB%A3%A9%EC%97%85+%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84+-+%EC%9A%B0%EC%B9%98%ED%95%98+%EC%9D%B4%ED%83%80%EC%B9%98.PNG', 1),
+             (15, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+POP+UP+PARADE+%EB%9D%BC%EC%9D%B4%EB%84%88+%EB%B8%8C%EB%9D%BC%EC%9A%B4+%EC%9B%94%EB%93%9C+%EC%99%80%EC%9D%B4%EB%93%9C+%EC%97%90%ED%94%84%ED%84%B0+%ED%8C%8C%ED%8B%B0.PNG', 1),
+             (16, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+POP+UP+PARADE+%EC%97%98%EB%9F%B0+%EC%98%88%EA%B1%B0+%EC%9B%94%EB%93%9C+%EC%99%80%EC%9D%B4%EB%93%9C+%EC%97%90%ED%94%84%ED%84%B0+%ED%8C%8C%ED%8B%B0.PNG', 1),
+             (17, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+%EB%8F%8C+%EB%A6%AC%EB%B0%94%EC%9D%B4.PNG', 1),
+             (18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+%EB%A3%A9%EC%97%85+%EB%A6%AC%EB%B0%94%EC%9D%B4.PNG', 1),
+             (19, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+%EB%A3%A9%EC%97%85+%EC%97%98%EB%9F%B0+%EC%98%88%EA%B1%B0.PNG', 1),
+             (20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8+%EC%95%84%EB%A5%B4%EB%AF%BC+%EC%95%8C%EB%A0%88%EB%A5%B4%ED%86%A0+%EC%A1%B0%EC%82%AC%EB%B3%91%EB%8B%A8.PNG', 1),
+             (21, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+05+%EB%B0%94%EC%B9%98%EB%9D%BC+%EB%A9%94%EA%B5%AC%EB%A3%A8.PNG', 1),
+             (22, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+06+%EC%B9%98%EA%B8%B0%EB%A6%AC+%ED%9A%A8%EB%A7%88.PNG', 1),
+             (23, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+01+%EC%9D%B4%EC%82%AC%EA%B8%B0+%EC%9A%94%EC%9D%B4%EC%B9%98.PNG', 1),
+             (24, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+03+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.PNG', 1),
+             (25, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+05+%EB%B0%94%EC%B9%98%EB%9D%BC+%EB%A9%94%EA%B5%AC%EB%A3%A8.PNG', 1),
+             (26, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+06+%EC%B9%98%EA%B8%B0%EB%A6%AC+%ED%9A%A8%EB%A7%88.PNG', 1),
+             (27, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9+%EC%9D%80%EB%B0%95+%EC%9B%90%ED%98%95+%EC%BA%94%EB%B1%83%EC%A7%80+(%EC%A0%84+8%EC%A2%85).PNG', 1),
+             (28, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/%5B%EB%B8%94%EB%A3%A8%EB%A1%9D%5D+%EB%A3%A9%EC%97%85+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.PNG', 1),
+             (29, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0+%EB%8D%94%EB%B8%94+%EC%95%84%ED%81%AC%EB%A6%B4+%ED%82%A4%ED%99%80%EB%8D%94+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%EC%9D%B4%EC%82%AC%EA%B8%B0+%EC%9A%94%EC%9D%B4%EC%B9%98.PNG', 1),
+             (30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.PNG', 1),
+             (31, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+MEGA+CAT+PROJECT+BIG+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8.PNG', 1),
+             (32, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+MEGA+CAT+PROJECT+BIG+%ED%9B%84%EC%8B%9C%EA%B5%AC%EB%A1%9C+%ED%86%A0%EC%9A%B0%EC%A7%80.PNG', 1),
+             (33, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8+%EC%8A%88%ED%8A%B8Ver..PNG', 1),
+             (34, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+%EB%8F%8C+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8+%EA%B3%A0%EC%A0%84.PNG', 1),
+             (35, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+%EB%A3%A9%EC%97%85+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8.PNG', 1),
+             (36, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%EB%AF%B8%EC%95%BC+%EC%95%84%EC%B8%A0%EB%AC%B4.PNG', 1),
+             (37, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%EC%B8%A0%ED%82%A4%EC%8B%9C%EB%A7%88+%EC%BC%80%EC%9D%B4.PNG', 1),
+             (38, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%EC%B9%B4%EA%B2%8C%EC%95%BC%EB%A7%88+%ED%86%A0%EB%B9%84%EC%98%A4+%EC%84%B8%EC%BB%A8%EB%93%9C+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..PNG', 1),
+             (39, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%ED%9E%88%EB%82%98%ED%83%80+%EC%86%8C%EC%9A%94+%EC%84%B8%EC%BB%A8%EB%93%9C+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..PNG', 1),
+             (40, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+%EB%A3%A9%EC%97%85+%EC%B8%A0%ED%82%A4%EC%8B%9C%EB%A7%88+%EC%BC%80%EC%9D%B4.PNG', 1),
+             (41, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+NEO-MAXIMUM+%EB%A3%A8%ED%94%BC+%26+%EC%97%90%EC%9D%B4%EC%8A%A4+%ED%98%95%EC%A0%9C%EC%9D%98+%EC%97%B0+20TH+LIMITED.PNG', 1),
+             (42, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+POP+Evolutionary+History+%EC%A3%BC%EC%96%BC%EB%A6%AC+%EB%B3%B4%EB%8B%88.PNG', 1),
+             (43, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+POP+K%C3%97MAXIMUM+%EC%83%81%EB%94%94.PNG', 1),
+             (44, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+WA.MAXIMUM+%EB%B0%B1%EC%88%98%EC%9D%98+%EC%B9%B4%EC%9D%B4%EB%8F%84+%EC%B4%88%ED%95%9C%EC%A0%95+%EB%B3%B5%EA%B0%81%ED%8C%90.PNG', 1),
+             (45, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+WA-MAXIMUM+%EB%B0%B1%EC%88%98%ED%95%B4%EC%A0%81%EB%8B%A8+%EB%8C%80%EA%B0%84%ED%8C%90+%ED%99%94%EC%9E%AC%EC%9D%98+%ED%82%B9.PNG', 1),
+             (46, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+%EB%A3%A9%EC%97%85+%EB%AA%BD%ED%82%A4+D+%EB%A3%A8%ED%94%BC+%EA%B8%B0%EC%96%B4+5.PNG', 1),
+             (47, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+%EB%B2%A0%EB%A6%AC%EC%96%B4%EB%B8%94+%EC%95%A1%EC%85%98+%ED%9E%88%EC%96%B4%EB%A1%9C%EC%A6%88+%EB%A1%A4%EB%A1%9C%EB%85%B8%EC%95%84+%EC%A1%B0%EB%A1%9C.PNG', 1),
+             (48, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+%EC%84%B8%EA%B3%84%EC%9D%98+%EB%94%94%EB%B0%94+%EC%9A%B0%ED%83%80.PNG', 1),
+             (49, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+P.O.P+SA-MAXIMUM+%EB%8F%88%ED%82%A4%ED%98%B8%ED%85%8C+%EB%8F%84%ED%94%8C%EB%9D%BC%EB%B0%8D%EA%B3%A0.PNG', 1),
+             (50, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%ED%9D%B0+%EC%88%98%EC%97%BC+%EC%97%90%EB%93%9C%EC%9B%8C%EB%93%9C+%EB%89%B4%EA%B2%8C%EC%9D%B4%ED%8A%B8.PNG', 1),
 
--- 2-23. TRADE_BOOKMARK
+
+
+
+-- 2-23. TRADE_BOOKMARKfffffffffffffffffffff
 INSERT INTO trade_bookmark (trade_bookmark_id, member_id, trade_id, created_at) VALUES
                                                                                     (1, 1, 1, NOW()),
                                                                                     (2, 3, 1, NOW()),
