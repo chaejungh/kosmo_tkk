@@ -192,7 +192,7 @@ public class TradeController {
         if ("RESERVED".equalsIgnoreCase(status)) {
             statusLabel = "예약중";
             statusClass = "badge-reserved";
-        } else if ("DONE".equalsIgnoreCase(status) || "SOLD_OUT".equalsIgnoreCase(status)) {
+        } else if ("SOLD".equalsIgnoreCase(status) || "SOLD_OUT".equalsIgnoreCase(status)) {
             statusLabel = "판매완료";
             statusClass = "badge-sold";
         }
