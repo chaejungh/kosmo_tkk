@@ -298,8 +298,12 @@ INSERT INTO store_goods (
 
 -- 25. 모치코로링 누이 봉제인형 7탄 랜덤
 (1, '모치코로링 누이 봉제인형 7탄 랜덤', '귀멸의 칼날', '랜덤', '봉제인형',
- 14000, 18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%EB%AA%A8%EC%B9%98%EC%BD%94%EB%A1%9C%EB%A7%81+%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+7%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88jpg.jpg', NOW()),
+ 14000, 18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%EB%AA%A8%EC%B9%98%EC%BD%94%EB%A1%9C%EB%A7%81+%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+7%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88jpg.jpg', NOW());
 
+INSERT INTO store_goods (
+    store_id, name, work_name, character_name, category,
+    price, stock_qty, thumbnail_url, created_at
+) VALUES
 -- 26. 피탄코 러버 스트랩 A 랜덤
 (1, '피탄코 러버 스트랩 A 랜덤', '귀멸의 칼날', '랜덤', '러버스트랩',
  8000, 25, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%ED%94%BC%ED%83%84%EC%BD%94+%EB%9F%AC%EB%B2%84+%EC%8A%A4%ED%8A%B8%EB%9E%A9+A+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', NOW()),
@@ -330,8 +334,12 @@ INSERT INTO store_goods (
 
 -- 33. 푸리누이타치 드림 미니 봉제인형 이타도리 유지
 (1, '푸리누이타치 드림 미니 봉제인형', '주술회전', '이타도리 유지', '봉제인형',
- 22000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', NOW()),
+ 22000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', NOW());
 
+INSERT INTO store_goods (
+    store_id, name, work_name, character_name, category,
+    price, stock_qty, thumbnail_url, created_at
+) VALUES
 -- 34. 트레이딩 글리터 캔 뱃지 할로윈 Ver. 랜덤
 (1, '트레이딩 글리터 캔 뱃지 할로윈 Ver. 랜덤', '주술회전', '랜덤', '캔뱃지',
  7000, 30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9+%EA%B8%80%EB%A6%AC%ED%84%B0+%EC%BA%94+%EB%B1%83%EC%A7%80+%ED%95%A0%EB%A1%9C%EC%9C%88+Ver.+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', NOW()),
@@ -342,7 +350,7 @@ INSERT INTO store_goods (
 
 -- 36. 후와푸치 데포르메 피규어 이타도리 유지
 (1, '후와푸치 데포르메 피규어', '주술회전', '이타도리 유지', '피규어',
- 36000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EA%B5%BF%EC%A6%88+%EC%84%B8%EA%B0%80+%ED%8E%98%EC%9D%B4%EB%B8%8C+%ED%9B%84%EC%99%80%ED%91%B8%EC%B9%98+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', NOW()),
+ 36000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80+.jpg', NOW()),
 
 -- 37. 룩업 피규어 이누마키 토게
 (1, '룩업 피규어 이누마키 토게', '주술회전', '이누마키 토게', '피규어',
@@ -900,7 +908,7 @@ VALUES
             (5,'[귀멸의 칼날] 코쵸우 시노부 무한성편 아크릴 참','무한성편 시노부 아크릴 참 판매합니다.','아크릴 참','귀멸의 칼날','코쵸우 시노부','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',25,1,NOW(),'N'),
             (6,'[귀멸의 칼날] 토미오카 기유 무한성편 아크릴 참','무한성편 기유 아크릴 참입니다.','아크릴 참','귀멸의 칼날','토미오카 기유','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',31,3,NOW(),'N'),
             (6,'[귀멸의 칼날] 아카자 무한성편 아크릴 스탠드','무한성편 아카자 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','아카자','아크릴',25000,'SELL','DIRECT','홍대','ON_SALE',48,7,NOW(),'N'),
-            --11~20--
+#             --11~20--
             (2,'[나루토 질풍전] 하루노 사쿠라 걸즈 시리즈','걸즈 시리즈 사쿠라 피규어 판매합니다.','걸즈 시리즈 피규어','나루토 질풍전','하루노 사쿠라','피규어',98000,'SELL','DELIVERY','홍대','ON_SALE',34,4,NOW(),'N'),
             (3,'[나루토 질풍전] 휴우가 히나타 넨도로이드 No.879','히나타 넨도로이드 상태 양호합니다.','넨도로이드','나루토 질풍전','휴우가 히나타','피규어',72000,'SELL','DELIVERY','강남','ON_SALE',41,6,NOW(),'N'),
             (2,'[나루토 질풍전] 우치하 사스케 룩업 피규어','룩업 시리즈 사스케 피규어입니다.','룩업 피규어','나루토 질풍전','우치하 사스케','피규어',38000,'SELL','DIRECT','홍대','ON_SALE',29,3,NOW(),'N'),
@@ -911,7 +919,7 @@ VALUES
             (3,'[진격의 거인] 리바이 룩업 피규어','룩업 리바이 피규어입니다.','룩업 피규어','진격의 거인','리바이','피규어',39000,'SELL','DIRECT','강남','ON_SALE',58,7,NOW(),'N'),
             (4,'[진격의 거인] 엘런 예거 룩업 피규어','엘런 룩업 피규어 판매합니다.','룩업 피규어','진격의 거인','엘런 예거','피규어',39000,'SELL','DIRECT','강남','ON_SALE',44,6,NOW(),'N'),
             (6,'[진격의 거인] 아르민 알레르토 넨도로이드 조사병단','아르민 넨도로이드 조사병단 버전입니다.','넨도로이드','진격의 거인','아르민 알레르토','피규어',76000,'SELL','DELIVERY','홍대','ON_SALE',67,10,NOW(),'N'),
-            --21~31--
+#             --21~31--
 
             -- 21
             (2,'[블루록] 바치라 메구루 아크릴 스탠드','블루록 2기 콜라보 바치라 메구루 아크릴 스탠드입니다.','아크릴 스탠드','블루록','바치라 메구루','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',33,4,NOW(),'N'),
@@ -942,7 +950,7 @@ VALUES
 
             -- 30
             (6,'[블루록] 나기 세이시로 액션 피규어','블루록 나기 세이시로 슈팅 포즈 액션 피규어입니다.','액션 피규어','블루록','나기 세이시로','피규어',89000,'SELL','DIRECT','홍대','ON_SALE',73,12,NOW(),'N'),
-            --31-40--
+#             --31-40--
             (2,'[주술회전] MEGA CAT PROJECT BIG 고죠 사토루','MEGA CAT PROJECT BIG 고죠 사토루 피규어입니다.','MEGA CAT BIG','주술회전','고죠 사토루','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',36,5,NOW(),'N'),
             (2,'[주술회전] MEGA CAT PROJECT BIG 후시구로 토우지','MEGA CAT PROJECT BIG 후시구로 토우지 피규어입니다.','MEGA CAT BIG','주술회전','후시구로 토우지','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',31,4,NOW(),'N'),
             (3,'[주술회전] 고죠 사토루 슈트 Ver. 피규어','슈트 버전 고죠 사토루 피규어 판매합니다.','슈트 Ver. 피규어','주술회전','고죠 사토루','피규어',98000,'SELL','DIRECT','강남','ON_SALE',54,8,NOW(),'N'),
@@ -953,7 +961,7 @@ VALUES
             (6,'[하이큐!!] GEM 시리즈 손바닥 카게야마 토비오','카게야마 토비오 세컨드 유니폼 버전입니다.','GEM 손바닥 시리즈','하이큐!!','카게야마 토비오','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',61,9,NOW(),'N'),
             (6,'[하이큐!!] GEM 시리즈 손바닥 히나타 쇼요','히나타 쇼요 세컨드 유니폼 버전 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','히나타 쇼요','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',67,11,NOW(),'N'),
             (6,'[하이큐!!] 룩업 츠키시마 케이','룩업 시리즈 츠키시마 케이 피규어입니다.','룩업 피규어','하이큐!!','츠키시마 케이','피규어',39000,'SELL','DIRECT','홍대','ON_SALE',43,5,NOW(),'N'),
-            --41~50--
+#             --41~50--
             (2,'[원피스] NEO-MAXIMUM 루피 & 에이스 형제의 연 20TH LIMITED','루피 & 에이스 형제의 연 20주년 한정 피규어입니다.','NEO-MAXIMUM','원피스','몽키 D 루피 / 포트거스 D 에이스','피규어',520000,'SELL','DIRECT','홍대','ON_SALE',84,12,NOW(),'N'),
             (3,'[원피스] P.O.P Evolutionary History 주얼리 보니','Portrait.Of.Pirates 주얼리 보니 피규어입니다.','P.O.P 피규어','원피스','주얼리 보니','피규어',165000,'SELL','DELIVERY','강남','ON_SALE',57,8,NOW(),'N'),
             (3,'[원피스] P.O.P K×MAXIMUM 상디','K×MAXIMUM 상디 한정 피규어 판매합니다.','P.O.P MAXIMUM','원피스','상디','피규어',298000,'SELL','DIRECT','강남','ON_SALE',73,11,NOW(),'N'),

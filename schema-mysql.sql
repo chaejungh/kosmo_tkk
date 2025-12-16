@@ -18,7 +18,7 @@ CREATE TABLE member (
                         login_id          VARCHAR(50)   NOT NULL UNIQUE,
                         login_pw          VARCHAR(255)  NOT NULL,
                         nickname          VARCHAR(50)   NOT NULL UNIQUE,
-                        profile_image_url VARCHAR(255),
+                        profile_image_url VARCHAR(511),
                         intro             VARCHAR(255),
                         user_level        INT           DEFAULT 1,
                         email             VARCHAR(100),
@@ -53,6 +53,7 @@ CREATE TABLE store (
                        avg_rating      DECIMAL(3,2) DEFAULT 0,
                        bookmark_count  INT          DEFAULT 0,
                        phone           VARCHAR(30),
+                       image_url   VARCHAR(511),
                        created_at      DATETIME     DEFAULT CURRENT_TIMESTAMP,
                        deleted_yn      CHAR(1)      DEFAULT 'N' NOT NULL
 );
@@ -78,7 +79,7 @@ CREATE TABLE store_goods (
                              category        VARCHAR(30),
                              price           INT,
                              stock_qty       INT,
-                             thumbnail_url   VARCHAR(255),
+                             thumbnail_url   VARCHAR(511),
                              created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
                              updated_at      DATETIME DEFAULT NULL,
                              CONSTRAINT fk_sg_store FOREIGN KEY (store_id)
@@ -114,7 +115,7 @@ CREATE TABLE popup_store (
                              longitude        DECIMAL(11,8),
                              start_date       DATE        NOT NULL,
                              end_date         DATE        NOT NULL,
-                             banner_image_url VARCHAR(255),
+                             banner_image_url VARCHAR(511),
                              description      TEXT,
                              created_at       DATETIME    DEFAULT CURRENT_TIMESTAMP,
                              deleted_yn       CHAR(1)     DEFAULT 'N' NOT NULL
@@ -139,7 +140,7 @@ CREATE TABLE popup_goods (
                              description     VARCHAR(255),
                              category        VARCHAR(30),
                              price           INT,
-                             thumbnail_url   VARCHAR(255),
+                             thumbnail_url   VARCHAR(511),
                              CONSTRAINT fk_pg_popup FOREIGN KEY (popup_id)
                                  REFERENCES popup_store(popup_id) ON DELETE CASCADE
 );
@@ -147,10 +148,10 @@ CREATE TABLE popup_goods (
 CREATE TABLE main_banner (
                              banner_id       BIGINT AUTO_INCREMENT PRIMARY KEY,
                              title           VARCHAR(150) NOT NULL,
-                             image_url       VARCHAR(255) NOT NULL,
+                             image_url       VARCHAR(511) NOT NULL,
                              link_type       VARCHAR(20),
                              link_target_id  BIGINT,
-                             link_url        VARCHAR(255),
+                             link_url        VARCHAR(511),
                              start_date      DATE,
                              end_date        DATE,
                              sort_order      INT        DEFAULT 1,
@@ -169,7 +170,7 @@ CREATE TABLE board_post (
                             member_id       BIGINT       NOT NULL,
                             title           VARCHAR(200) NOT NULL,
                             content         TEXT         NOT NULL,
-                            thumbnail_url   VARCHAR(255),
+                            thumbnail_url   VARCHAR(511),
                             view_count      INT          DEFAULT 0,
                             like_count      INT          DEFAULT 0,
                             comment_count   INT          DEFAULT 0,
@@ -201,7 +202,7 @@ CREATE TABLE board_post_tag (
 CREATE TABLE board_post_image (
                                   image_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
                                   post_id     BIGINT NOT NULL,
-                                  image_url   VARCHAR(255) NOT NULL,
+                                  image_url   VARCHAR(511) NOT NULL,
                                   sort_order  INT DEFAULT 1,
                                   CONSTRAINT fk_bpi_post FOREIGN KEY (post_id)
                                       REFERENCES board_post(post_id) ON DELETE CASCADE
@@ -291,7 +292,7 @@ CREATE TABLE trade_post (
 CREATE TABLE trade_post_image (
                                   image_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
                                   trade_id    BIGINT NOT NULL,
-                                  image_url   VARCHAR(255) NOT NULL,
+                                  image_url   VARCHAR(511) NOT NULL,
                                   sort_order  INT DEFAULT 1,
                                   CONSTRAINT fk_tpi_trade FOREIGN KEY (trade_id)
                                       REFERENCES trade_post(trade_id) ON DELETE CASCADE
