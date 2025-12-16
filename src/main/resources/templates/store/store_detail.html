@@ -5,128 +5,129 @@
       layout:decorate="~{fragments/tkk_fragment/layout}">
 
 <head>
+    <!-- 이 페이지 전용 head (필요하면 추가) -->
     <th:block layout:fragment="head">
-        <style>
-            .sd-page{width:min(1200px,92%);margin:0 auto;padding:20px 0 60px}
-            .sd-hero{height:420px;border-radius:18px;overflow:hidden;position:relative;
-                border:1px solid #e5e7eb;box-shadow:0 14px 40px rgba(0,0,0,.12)}
-            .sd-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-            .sd-hero-fallback{position:absolute;inset:0;display:grid;place-items:center;
-                background:#f3f4f6;font-weight:900;color:#64748b}
-
-            .sd-grid{margin-top:24px;display:grid;grid-template-columns:1fr 360px;gap:24px}
-            .sd-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;
-                box-shadow:0 10px 26px rgba(0,0,0,.06);padding:18px;margin-bottom:18px}
-
-            .sd-name{font-size:22px;font-weight:900;margin-bottom:6px}
-            .sd-sub{font-size:13px;color:#475569}
-
-            .sd-infoRow{display:flex;gap:10px;margin-bottom:10px}
-            .sd-label{font-size:12px;color:#64748b;font-weight:800}
-            .sd-value{font-size:13px;font-weight:900;color:#0f172a}
-
-            .goods-table{width:100%;border-collapse:collapse;font-size:13px}
-            .goods-table th,.goods-table td{padding:10px;border-bottom:1px solid #e5e7eb}
-            .goods-thumb{width:48px;height:48px;border-radius:10px;object-fit:cover}
-        </style>
+        <!-- CSS는 tkk.css에 이미 들어가 있으므로 여기엔 안 넣음 -->
     </th:block>
 </head>
 
 <body>
+
+<!-- ===============================
+     CONTENT
+================================ -->
 <div layout:fragment="content">
-    <main class="sd-page">
 
-        <!-- HERO -->
-        <section class="sd-hero">
-            <div class="sd-hero-bg"
-                 th:if="${store['imageUrl'] != null and !#strings.isEmpty(store['imageUrl'])}"
-                 th:style="|background-image:url('${store['imageUrl']}');|"></div>
+    <div class="store-wrap">
 
-            <div class="sd-hero-bg"
-                 th:if="${(store['imageUrl'] == null or #strings.isEmpty(store['imageUrl']))
-                         and goodsList != null and !#lists.isEmpty(goodsList)
-                         and goodsList[0].thumbnailUrl != null}"
-                 th:style="|background-image:url('${goodsList[0].thumbnailUrl}');|"></div>
+        <!-- 상단 배너 -->
+        <div class="store-cover"
+             th:if="${store.imageUrl != null}"
+             th:style="|background-image:url('${store.imageUrl}')|">
+        </div>
 
-            <div class="sd-hero-fallback"
-                 th:if="${store['imageUrl'] == null or #strings.isEmpty(store['imageUrl'])}">
-                매장 대표 이미지
-            </div>
-        </section>
+        <div class="store-cover"
+             th:if="${store.imageUrl == null}"
+             style="background:#f1f5f9;display:flex;align-items:center;justify-content:center;
+                    font-weight:800;color:#64748b;">
+            매장 대표 이미지
+        </div>
 
-        <section class="sd-grid">
+        <!-- 본문 -->
+        <div class="store-body">
 
-            <!-- LEFT -->
-            <div>
+            <!-- ================= LEFT ================= -->
+            <div class="store-left">
 
-                <div class="sd-card">
-                    <h1 class="sd-name" th:text="${store['name']}">매장명</h1>
-                    <p class="sd-sub" th:text="${store['address']}">주소</p>
-                </div>
-
-                <div class="sd-card">
-                    <div class="sd-infoRow">
-                        <div>📞</div>
-                        <div>
-                            <div class="sd-label">전화번호</div>
-                            <div class="sd-value" th:text="${store['tel']}">-</div>
+                <!-- 헤더 -->
+                <div class="store-header">
+                    <div>
+                        <h1 th:text="${store.name}">매장명</h1>
+                        <div class="store-rating">
+                            ⭐ 4.8 <span>(234)</span>
                         </div>
                     </div>
 
-                    <div class="sd-infoRow">
-                        <div>🕒</div>
-                        <div>
-                            <div class="sd-label">영업시간</div>
-                            <div class="sd-value" th:text="${store['openTime']}">-</div>
-                        </div>
-                    </div>
+                    <!-- 찜 -->
+                    <button class="heart-btn"
+                            th:classappend="${liked} ? 'active' : ''"
+                            th:data-store-id="${store.id}">
+                        ❤
+                    </button>
                 </div>
 
-                <!-- GOODS -->
-                <div class="sd-card">
-                    <h3>굿즈 재고</h3>
+                <!-- 설명 -->
+                <p class="store-desc"
+                   th:text="${store.description}">
+                    애니메이션 공식 굿즈를 취급하는 전문 매장입니다.
+                </p>
 
-                    <table class="goods-table" th:if="${!#lists.isEmpty(goodsList)}">
-                        <thead>
-                        <tr>
-                            <th>이미지</th>
-                            <th>상품명</th>
-                            <th>가격</th>
-                            <th>재고</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="g : ${goodsList}">
-                            <td>
-                                <img class="goods-thumb"
-                                     th:if="${g.thumbnailUrl != null}"
-                                     th:src="${g.thumbnailUrl}">
-                            </td>
-                            <td th:text="${g.name}">상품</td>
-                            <td th:text="${g.price}">0</td>
-                            <td th:text="${g.stockQty}">0</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <!-- 매장 정보 -->
+                <div class="store-info-box">
+                    <div>📍 <span th:text="${store.address}"></span></div>
+                    <div>🕒 <span th:text="${store.openTime}"></span></div>
+                    <div>📞 <span th:text="${store.tel}"></span></div>
+                </div>
 
-                    <div th:if="${#lists.isEmpty(goodsList)}">굿즈 없음</div>
+                <!-- 액션 버튼 -->
+                <div class="store-actions">
+                    <!-- 네이버 지도 route 페이지로 이동 -->
+                    <a class="btn-primary"
+                       th:href="@{/map/route(storeId=${store.id})}">
+                        길찾기
+                    </a>
+
+                    <a class="btn-secondary"
+                       th:href="'tel:' + ${store.tel}">
+                        전화하기
+                    </a>
                 </div>
 
             </div>
 
-            <!-- RIGHT -->
-            <aside>
-                <div class="sd-card">
-                    <h3>실시간 재고 요약</h3>
-                    <div th:each="g,stat : ${goodsList}" th:if="${stat.index < 5}">
-                        <b th:text="${g.name}">상품</b> :
-                        <span th:text="${g.stockQty}">0</span>개
+            <!-- ================= RIGHT ================= -->
+            <aside class="store-right">
+                <h3>실시간 재고 현황</h3>
+
+                <div th:if="${#lists.isEmpty(goodsList)}"
+                     style="color:#cbd5f5;font-size:13px;">
+                    등록된 굿즈가 없습니다.
+                </div>
+
+                <div class="stock-row"
+                     th:each="g : ${goodsList}">
+                    <div class="stock-name" th:text="${g.name}">상품명</div>
+
+                    <div class="stock-bar">
+                        <span th:style="'width:' + ${g.stockQty * 2} + '%'"></span>
                     </div>
+
+                    <div class="stock-qty"
+                         th:text="${g.stockQty + '개'}">0개</div>
                 </div>
             </aside>
 
-        </section>
-    </main>
+        </div>
+    </div>
+
 </div>
+
+<!-- ===============================
+     SCRIPT
+================================ -->
+<th:block layout:fragment="script">
+    <script>
+        document.querySelectorAll('.heart-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                fetch(`/store/${btn.dataset.storeId}/like`, {
+                    method: 'POST'
+                }).then(() => {
+                    btn.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</th:block>
+
 </body>
 </html>
