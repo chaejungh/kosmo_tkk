@@ -12,6 +12,27 @@ body {
     padding: 0;
 }
 
+/* ✅ footer 아래 흰 여백 제거 + 짧은 페이지에서도 footer를 바닥에 고정 */
+html, body {
+    height: 100%;
+}
+
+body.tkk-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 본문이 남는 높이를 먹도록 */
+.tkk-container {
+    flex: 1 0 auto;
+}
+
+/* footer는 항상 아래로 */
+.tkk-footer {
+    margin-top: auto; /* 기존 margin-top:60px이 있어도 이게 우선 밀어줌 */
+}
+
 /* =========================
    기본 레이아웃
 ========================= */

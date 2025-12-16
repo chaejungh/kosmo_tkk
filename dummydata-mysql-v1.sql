@@ -440,7 +440,7 @@ INSERT INTO popup_store (
     latitude, longitude, start_date, end_date,
     banner_image_url, description, created_at, deleted_yn
 ) VALUES
-      ( '주술회전 팝업스토어', '더쿠쿠 팝업존', '서울 마포구 어딘가 123', '홍대',
+      ( '하이큐 팝업', '하이큐 팝업존', 'AK PLAZA 홍대 3층 BOX', '홍대',
        37.55750000, 126.92400000, '2025-12-01', '2025-12-31',
        NULL, '주술회전 공식 팝업. 포카, 굿즈, 포토존 준비.', NOW(), 'N'),
       ( '블루록 페스티벌', '블루록 존', '서울 강남구 어딘가 456', '강남',
@@ -1102,3 +1102,93 @@ INSERT INTO admin_log (
      admin_id, action_type, target_table, target_id, description, ip_address, created_at
 ) VALUES
     ( 1, 'LOGIN', NULL, NULL, '관리자 로그인', '127.0.0.1', NOW());
+
+
+START TRANSACTION;
+
+-- 1) 자식 테이블 먼저 삭제 (있을 때만)
+DELETE pb
+FROM popup_bookmark pb
+         JOIN popup_store ps ON ps.popup_id = pb.popup_id
+WHERE ps.title IN (
+                   '나혼자만레벨업팝업',
+                   '외모지상주의 팝업',
+                   '주술회전 팝업',
+                   '하이큐 10주년 기념전'
+    );
+
+-- (다른 자식 테이블이 있으면 같은 방식으로 추가로 삭제)
+-- DELETE pl FROM popup_like pl JOIN popup_store ps ON ps.popup_id=pl.popup_id WHERE ps.title IN (...);
+
+-- 2) 기존 더미 팝업 삭제
+DELETE FROM popup_store
+WHERE title IN (
+                '나혼자만레벨업팝업',
+                '외모지상주의 팝업',
+                '주술회전 팝업',
+                '하이큐 10주년 기념전'
+    );
+
+-- 3) 진짜 팝업 4개 다시 넣기
+INSERT INTO popup_store
+(
+    title, place_name, address, region_name,
+    latitude, longitude,
+    start_date, end_date,
+    banner_image_url, description,
+    created_at, deleted_yn
+)
+VALUES
+-- 나혼자만레벨업팝업
+(
+    '나혼자만레벨업팝업',
+    '애니플러스 합정',                     -- 원하면 수정 가능
+    '서울 마포구 양화로 186',
+    '홍대',
+    NULL, NULL,
+    '2025-12-19', '2026-01-11',
+    'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%82%E1%85%A1%E1%84%92%E1%85%A9%E1%86%AB%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%AB+%E1%84%85%E1%85%A6%E1%84%87%E1%85%A6%E1%86%AF%E1%84%8B%E1%85%A5%E1%86%B8+%E1%84%91%E1%85%A1%E1%86%B8%E1%84%8B%E1%85%A5%E1%86%B8.png',
+    '나 혼자만 레벨업 팝업스토어',
+    NOW(), 'N'
+),
+
+-- 외모지상주의 팝업
+(
+    '외모지상주의 팝업',
+    '레조네 홍대',
+    '<<여기에_외모지상주의_새주소>>',       -- ✅ 너가 주소 다시 준 걸로 교체
+    '홍대',
+    NULL, NULL,
+    '2025-12-19', '2026-01-11',
+    'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%8B%E1%85%AC%E1%84%86%E1%85%AE%E1%84%8C%E1%85%B5%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4+%E1%84%91%E1%85%A1%E1%86%B8%E1%84%8B%E1%85%A5%E1%86%B8.png',
+    '외모지상주의 팝업스토어',
+    NOW(), 'N'
+),
+
+-- 주술회전 팝업
+(
+    '주술회전 팝업',
+    '롯데월드타워 서울스카이',
+    '롯데월드타워 서울스카이',
+    '잠실',
+    NULL, NULL,
+    '2025-12-12', '2026-02-28',
+    'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%8C%E1%85%AE%E1%84%89%E1%85%AE%E1%86%AF%E1%84%92%E1%85%AC%E1%84%8C%E1%85%A5%E1%86%AB+%E1%84%91%E1%85%A1%E1%86%B8%E1%84%8B%E1%85%A5%E1%86%B8.png',
+    '주술회전 팝업스토어',
+    NOW(), 'N'
+),
+
+-- 하이큐 10주년 기념전
+(
+    '하이큐 10주년 기념전',
+    'AK PLAZA 홍대 3층 BOX',
+    'AK PLAZA 홍대 3층 BOX',
+    '홍대',
+    NULL, NULL,
+    '2025-12-02', '2025-12-28',
+    'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%92%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B2+10%E1%84%8C%E1%85%AE%E1%84%82%E1%85%A7%E1%86%AB+%E1%84%80%E1%85%B5%E1%84%82%E1%85%A7%E1%86%B7%E1%84%8C%E1%85%A5%E1%86%AB.png',
+    '하이큐 10주년 기념전',
+    NOW(), 'N'
+);
+
+COMMIT;
