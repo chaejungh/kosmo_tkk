@@ -25,7 +25,6 @@ public class StoreController {
     private final StoreRepository storeRepository;
     private final StoreGoodRepository storeGoodRepository;
 
-    // /goods/store/172  /store/172/detail.do 등 여러 패턴을 한 번에 처리
     @GetMapping({
             "/store/{storeId}/detail",
             "/store/{storeId}/detail.do",
@@ -55,10 +54,13 @@ public class StoreController {
         view.put("latitude", getString(store, "", "getLatitude", "getLat"));
         view.put("longitude",getString(store, "", "getLongitude", "getLng", "getLon"));
 
-        model.addAttribute("store", view);
-        model.addAttribute("storeId", storeId);   // 🔥 템플릿에서 액션 URL 만들 때 쓰기 편하게
+        // ✅🔥 이 줄만 추가됨 (store_detail.html에서 사용)
+        view.put("imageUrl", getString(store, "", "getImageUrl"));
 
-        // 2) 굿즈 재고 조회 (keyword 있으면 검색, 없으면 전체)
+        model.addAttribute("store", view);
+        model.addAttribute("storeId", storeId);
+
+        // 2) 굿즈 재고 조회
         List<StoreGood> goodsList;
         if (keyword == null || keyword.isBlank()) {
             goodsList = storeGoodRepository
@@ -71,7 +73,6 @@ public class StoreController {
         model.addAttribute("goodsList", goodsList);
         model.addAttribute("keyword", keyword);
 
-        // templates/store/store_detail.html
         return "store/store_detail";
     }
 
@@ -84,9 +85,9 @@ public class StoreController {
                 Object v = m.invoke(store);
                 if (v != null) return v.toString();
             } catch (NoSuchMethodException e) {
-                // 이 이름의 getter 가 없으면 패스
+                // getter 없음 → 무시
             } catch (Exception e) {
-                // 다른 오류도 패스 (로그 남기고 싶으면 여기서 처리)
+                // 기타 오류 → 무시
             }
         }
         return defaultValue;
