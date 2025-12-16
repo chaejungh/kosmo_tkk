@@ -560,4 +560,38 @@ body {
     .tkk-footer-grid {
         grid-template-columns: 1fr;
     }
+    /* =========================
+   Store Detail (매장 상세)
+========================= */
+
+    .store-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* 상단 배너 */
+    .store-cover {
+        height: 360px;
+        border-radius: 18px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 32px;
+    }
+
+    /* 본문 */
+    .store-body {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 28px;
+    }
+
+    /* 왼쪽 */
+    .store-left {
+        background: #fff;
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+
+    /* … 이하 전부 동일하게 */
 }
