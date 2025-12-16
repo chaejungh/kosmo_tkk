@@ -196,7 +196,7 @@ INSERT INTO store_bookmark ( member_id, store_id, created_at) VALUES
                                                                                     (9, 1, NOW());
 
 -- 2-5. STORE_GOODS (매장 굿즈) - 예시 10개
-INSERT INTO store_good (
+INSERT INTO store_goods (
     store_id, name, work_name, character_name, category,
     price, stock_qty, thumbnail_url, created_at
 ) VALUES
@@ -300,7 +300,7 @@ INSERT INTO store_good (
 (1, '모치코로링 누이 봉제인형 7탄 랜덤', '귀멸의 칼날', '랜덤', '봉제인형',
  14000, 18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%EB%AA%A8%EC%B9%98%EC%BD%94%EB%A1%9C%EB%A7%81+%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+7%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88jpg.jpg', NOW());
 
-INSERT INTO store_good (
+INSERT INTO store_goods (
     store_id, name, work_name, character_name, category,
     price, stock_qty, thumbnail_url, created_at
 ) VALUES
@@ -336,7 +336,7 @@ INSERT INTO store_good (
 (1, '푸리누이타치 드림 미니 봉제인형', '주술회전', '이타도리 유지', '봉제인형',
  22000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', NOW());
 
-INSERT INTO store_good (
+INSERT INTO store_goods (
     store_id, name, work_name, character_name, category,
     price, stock_qty, thumbnail_url, created_at
 ) VALUES
