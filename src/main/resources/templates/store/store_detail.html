@@ -5,29 +5,25 @@
       layout:decorate="~{fragments/tkk_fragment/layout}">
 
 <head>
-    <!-- 이 페이지 전용 head (필요하면 추가) -->
     <th:block layout:fragment="head">
-        <!-- CSS는 tkk.css에 이미 들어가 있으므로 여기엔 안 넣음 -->
+        <!-- 공용 CSS 사용 -->
     </th:block>
 </head>
 
 <body>
 
-<!-- ===============================
-     CONTENT
-================================ -->
 <div layout:fragment="content">
 
     <div class="store-wrap">
 
         <!-- 상단 배너 -->
         <div class="store-cover"
-             th:if="${store.imageUrl != null}"
-             th:style="|background-image:url('${store.imageUrl}')|">
+             th:if="${store['imageUrl'] != null and !#strings.isEmpty(store['imageUrl'])}"
+             th:style="|background-image:url('${store['imageUrl']}')|">
         </div>
 
         <div class="store-cover"
-             th:if="${store.imageUrl == null}"
+             th:if="${store['imageUrl'] == null or #strings.isEmpty(store['imageUrl'])}"
              style="background:#f1f5f9;display:flex;align-items:center;justify-content:center;
                     font-weight:800;color:#64748b;">
             매장 대표 이미지
@@ -42,7 +38,7 @@
                 <!-- 헤더 -->
                 <div class="store-header">
                     <div>
-                        <h1 th:text="${store.name}">매장명</h1>
+                        <h1 th:text="${store['name']}">매장명</h1>
                         <div class="store-rating">
                             ⭐ 4.8 <span>(234)</span>
                         </div>
@@ -51,34 +47,32 @@
                     <!-- 찜 -->
                     <button class="heart-btn"
                             th:classappend="${liked} ? 'active' : ''"
-                            th:data-store-id="${store.id}">
+                            th:data-store-id="${store['id']}">
                         ❤
                     </button>
                 </div>
 
-                <!-- 설명 -->
-                <p class="store-desc"
-                   th:text="${store.description}">
+                <!-- 설명 (model에 없으므로 안전 처리) -->
+                <p class="store-desc">
                     애니메이션 공식 굿즈를 취급하는 전문 매장입니다.
                 </p>
 
                 <!-- 매장 정보 -->
                 <div class="store-info-box">
-                    <div>📍 <span th:text="${store.address}"></span></div>
-                    <div>🕒 <span th:text="${store.openTime}"></span></div>
-                    <div>📞 <span th:text="${store.tel}"></span></div>
+                    <div>📍 <span th:text="${store['address']}"></span></div>
+                    <div>🕒 <span th:text="${store['openTime']}"></span></div>
+                    <div>📞 <span th:text="${store['tel']}"></span></div>
                 </div>
 
                 <!-- 액션 버튼 -->
                 <div class="store-actions">
-                    <!-- 네이버 지도 route 페이지로 이동 -->
                     <a class="btn-primary"
-                       th:href="@{/map/route(storeId=${store.id})}">
+                       th:href="@{/map/route(storeId=${store['id']})}">
                         길찾기
                     </a>
 
                     <a class="btn-secondary"
-                       th:href="'tel:' + ${store.tel}">
+                       th:href="'tel:' + ${store['tel']}">
                         전화하기
                     </a>
                 </div>
@@ -112,9 +106,7 @@
 
 </div>
 
-<!-- ===============================
-     SCRIPT
-================================ -->
+<!-- SCRIPT -->
 <th:block layout:fragment="script">
     <script>
         document.querySelectorAll('.heart-btn').forEach(btn => {
