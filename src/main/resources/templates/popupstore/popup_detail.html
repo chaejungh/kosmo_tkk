@@ -9,37 +9,41 @@
 </head>
 
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content"
+     th:with="
+        today=${T(java.time.LocalDate).now()},
+        s=${popup.startDate},
+        e=${popup.endDate},
+        stateKey=${(s != null and today.isBefore(s)) ? 'UPCOMING' : ((e != null and today.isAfter(e)) ? 'ENDED' : 'ONGOING')},
+        stateLabel=${stateKey == 'UPCOMING' ? '예정' : (stateKey == 'ENDED' ? '종료' : '진행중')},
+        query=${(popup.placeName != null ? popup.placeName : '') + ' ' + (popup.address != null ? popup.address : '')}
+     ">
 
-    <a class="popup-back" th:href="@{/popup/list}">← 돌아가기</a>
+    <a class="popup-back" th:href="@{/popupstore/list.do}">← 돌아가기</a>
 
     <section class="popup-detail">
 
         <!-- 상단 메인 이미지 -->
         <div class="popup-hero"
-             th:style="|background-image:url('${popup.bannerImageUrl}');|">
+             th:style="${popup.bannerImageUrl != null}
+                ? |background-image:url('${popup.bannerImageUrl}');|
+                : ''">
         </div>
 
-        <!-- 타이틀/메타 -->
         <div class="popup-head">
             <div class="popup-head-left">
-        <span class="popup-status-pill"
-              th:classappend="${popup.status} == 'ONGOING' ? ' ongoing' : (${popup.status} == 'UPCOMING' ? ' upcoming' : ' ended')">
-          <span class="popup-dot"></span>
-          <span th:text="${popup.statusLabel}">진행중</span>
-        </span>
+
+                <!-- ✅ status 필드 없이 날짜로 계산 -->
+                <span class="popup-status-pill"
+                      th:classappend="${stateKey} == 'ONGOING' ? ' ongoing' : (${stateKey} == 'UPCOMING' ? ' upcoming' : ' ended')">
+                    <span class="popup-dot"></span>
+                    <span th:text="${stateLabel}">진행중</span>
+                </span>
 
                 <h1 class="popup-title" th:text="${popup.title}">팝업 제목</h1>
 
-                <div class="popup-mini">
-                    <span>👥 <b th:text="${popup.viewCount}">0</b>명 방문</span>
-                </div>
-
-                <div class="popup-tags" th:if="${popup.tags != null and !#lists.isEmpty(popup.tags)}">
-                    <span class="popup-tag" th:each="t : ${popup.tags}" th:text="|#${t}|">#태그</span>
-                </div>
-
-                <p class="popup-desc" th:text="${popup.description}">
+                <p class="popup-desc"
+                   th:text="${popup.description != null ? popup.description : '소개글이 준비중입니다.'}">
                     소개글이 들어옵니다.
                 </p>
             </div>
@@ -49,59 +53,66 @@
             </div>
         </div>
 
-        <!-- 본문 2컬럼 -->
         <div class="popup-grid-2">
 
             <!-- LEFT -->
             <div class="popup-left">
 
-                <div class="card popup-box" th:if="${highlights != null and !#lists.isEmpty(highlights)}">
-                    <div class="popup-box-title">주요 하이라이트</div>
-                    <ul class="popup-bullets">
-                        <li th:each="h : ${highlights}" th:text="${h}">하이라이트</li>
-                    </ul>
-                </div>
-
-                <!-- 기본정보 카드 4개 -->
                 <div class="popup-info-grid">
                     <div class="popup-info-card">
                         <div class="label">운영 기간</div>
                         <div class="value"
-                             th:text="|${#temporals.format(popup.startDate,'yyyy.MM.dd')} - ${#temporals.format(popup.endDate,'yyyy.MM.dd')}|">
+                             th:text="|${popup.startDate != null ? #temporals.format(popup.startDate,'yyyy.MM.dd') : '미정'} - ${popup.endDate != null ? #temporals.format(popup.endDate,'yyyy.MM.dd') : '미정'}|">
                             2025.01.01 - 2025.02.01
                         </div>
                     </div>
 
                     <div class="popup-info-card">
-                        <div class="label">운영 시간</div>
-                        <div class="value" th:text="${popup.openHours}">매일 10:00 - 20:00</div>
+                        <div class="label">장소명</div>
+                        <div class="value" th:text="${popup.placeName != null ? popup.placeName : '-'}">장소명</div>
                     </div>
 
                     <div class="popup-info-card">
-                        <div class="label">위치</div>
-                        <div class="value" th:text="${popup.address}">서울 어딘가</div>
+                        <div class="label">주소</div>
+                        <div class="value" th:text="${popup.address != null ? popup.address : '-'}">서울 어딘가</div>
                     </div>
 
                     <div class="popup-info-card">
-                        <div class="label">입장료</div>
-                        <div class="value" th:text="${popup.feeInfo}">무료</div>
+                        <div class="label">지역</div>
+                        <div class="value" th:text="${popup.regionName != null ? popup.regionName : '-'}">지역</div>
                     </div>
                 </div>
 
                 <!-- CTA -->
                 <div class="popup-cta-row">
-                    <!-- ✅ 길찾기: 일단 “네이버 지도 검색”으로 안전하게 연결 -->
+                    <!-- ✅ urlEncode 없이 안전하게: 검색 쿼리 그대로 -->
                     <a class="popup-cta pink"
                        target="_blank" rel="noopener"
-                       th:href="'https://map.naver.com/v5/search/' + ${#urls.urlEncode(popup.placeName + ' ' + popup.address)}">
+                       th:href="|https://map.naver.com/v5/search/${query}|">
                         길찾기
                     </a>
 
-                    <!-- 캘린더: 너희가 나중에 엔드포인트 붙이면 됨 -->
                     <a class="popup-cta dark"
-                       th:href="@{/popup/{id}/calendar(id=${popup.popupId})}">
-                        캘린더 추가
+                       th:href="@{/popupstore/list.do}">
+                        목록으로
                     </a>
+                </div>
+
+                <!-- 굿즈 목록 -->
+                <div class="card popup-box" style="margin-top:16px;">
+                    <div class="popup-box-title">굿즈 목록</div>
+
+                    <div th:if="${goodsList == null or #lists.isEmpty(goodsList)}"
+                         style="color:#6b7280; font-weight:800; padding:8px 0;">
+                        등록된 굿즈가 아직 없어요.
+                    </div>
+
+                    <ul class="popup-bullets" th:if="${goodsList != null and !#lists.isEmpty(goodsList)}">
+                        <li th:each="g : ${goodsList}">
+                            <span th:text="${g.name}">굿즈명</span>
+                            <span th:if="${g.price != null}" th:text="| · ${g.price}원|"></span>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -111,13 +122,7 @@
 
                 <div class="card popup-notice">
                     <div class="popup-notice-head">⚠ 방문 전 확인사항</div>
-
-                    <ul class="popup-bullets" th:if="${notices != null and !#lists.isEmpty(notices)}">
-                        <li th:each="n : ${notices}" th:text="${n}">공지</li>
-                    </ul>
-
-                    <!-- 공지 없을 때 임시 -->
-                    <ul class="popup-bullets" th:if="${notices == null or #lists.isEmpty(notices)}">
+                    <ul class="popup-bullets">
                         <li>현장 대기 시간이 길 수 있어요. 평일 방문 추천!</li>
                         <li>일부 현장 상품은 조기 품절될 수 있어요.</li>
                         <li>촬영 가능/불가 규정은 현장 안내를 확인해 주세요.</li>
@@ -127,15 +132,15 @@
                 <div class="card popup-map">
                     <div class="popup-map-ico">📍</div>
                     <div class="popup-map-title">지도 미리보기</div>
+
                     <div class="popup-map-box"
                          id="popupMapPreview"
                          th:attr="data-lat=${popup.latitude},data-lng=${popup.longitude}">
-                        <!-- 나중에 네이버 지도 API 붙이면 여기 렌더링 -->
                     </div>
 
                     <a class="popup-map-link"
                        target="_blank" rel="noopener"
-                       th:href="'https://map.naver.com/v5/search/' + ${#urls.urlEncode(popup.placeName + ' ' + popup.address)}">
+                       th:href="|https://map.naver.com/v5/search/${query}|">
                         네이버 지도에서 보기
                     </a>
                 </div>
@@ -150,7 +155,6 @@
 
 <th:block layout:fragment="script">
     <script>
-        // 공유(임시)
         document.getElementById('shareBtn')?.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(location.href);

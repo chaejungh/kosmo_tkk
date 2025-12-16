@@ -6,75 +6,79 @@
 
 <head>
     <th:block layout:fragment="head"></th:block>
+    <link rel="stylesheet" th:href="@{/css/popupstore.css}">
 </head>
 
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content"
+     th:with="today=${T(java.time.LocalDate).now()}">
 
     <section class="card popup-page">
         <div class="popup-page-head">
             <div>
-                <h2 class="popup-page-title">진행중인 팝업스토어</h2>
-                <p class="popup-page-sub">지금 방문할 수 있는 팝업스토어를 확인하세요! 🎉</p>
+                <h2 class="popup-page-title">팝업스토어</h2>
+                <p class="popup-page-sub">진행중/예정/종료 팝업을 한 번에 확인하세요 </p>
             </div>
         </div>
 
-        <!-- 검색/정렬 -->
-        <form class="popup-toolbar" method="get" th:action="@{/popup/list}">
+        <!-- 검색 (UI만, 기능은 나중에 붙여도 됨) -->
+        <form class="popup-toolbar" method="get" th:action="@{/popupstore/list.do}">
             <div class="popup-search">
                 <span class="popup-search-ico">🔎</span>
                 <input class="popup-search-input"
                        type="text"
                        name="q"
-                       placeholder="팝업스토어 검색 (제목, 위치)"
+                       placeholder="팝업스토어 검색 (제목/장소)"
                        th:value="${param.q}">
-            </div>
-
-            <input type="hidden" id="sort" name="sort" th:value="${param.sort ?: 'recent'}"/>
-
-            <div class="popup-sort">
-                <button type="button" class="popup-sort-btn" data-sort="recent">최신순</button>
-                <button type="button" class="popup-sort-btn" data-sort="popular">인기순</button>
             </div>
         </form>
 
-        <!-- 카운트(있으면 표시) -->
-        <div class="popup-count" th:if="${total != null}">
-            총 <b th:text="${total}">0</b>개의 팝업스토어가 진행중입니다
+        <!-- ✅ 여기서 모델은 controller가 넣는 popupList(Page) 기준 -->
+        <div class="popup-count" th:if="${popupList != null}">
+            총 <b th:text="${popupList.totalElements}">0</b>개
         </div>
 
         <!-- 카드 그리드 -->
-        <div class="popup-grid" th:if="${popups != null and !#lists.isEmpty(popups)}">
-            <article class="popup-card" th:each="p : ${popups}">
-                <a class="popup-card-link" th:href="@{/popup/{id}(id=${p.popupId})}">
+        <div class="popup-grid" th:if="${popupList != null and !popupList.isEmpty()}">
+            <article class="popup-card" th:each="p : ${popupList.content}"
+                     th:with="
+                        s=${p.startDate},
+                        e=${p.endDate},
+                        stateKey=${(s != null and today.isBefore(s)) ? 'UPCOMING' : ((e != null and today.isAfter(e)) ? 'ENDED' : 'ONGOING')},
+                        stateLabel=${stateKey == 'UPCOMING' ? '예정' : (stateKey == 'ENDED' ? '종료' : '진행중')}
+                     ">
+
+                <!-- ✅ 핵심: p.popupId ❌ -> p.id ✅ (PK 필드명에 맞춰야 함)
+                     컨트롤러: /popupstore/{popupId}/detail.do -->
+                <a class="popup-card-link"
+                   th:href="@{/popupstore/{id}/detail.do(id=${p.id})}">
 
                     <div class="popup-card-img"
-                         th:style="|background-image:url('${p.bannerImageUrl}');|">
+                         th:style="${p.bannerImageUrl != null}
+                            ? |background-image:url('${p.bannerImageUrl}');|
+                            : ''">
+
                         <span class="popup-card-badge-left">POP-UP</span>
 
-                        <!-- status: ongoing/upcoming/ended -->
                         <span class="popup-card-badge-right"
-                              th:classappend="${p.status} == 'ONGOING' ? ' ongoing' : (${p.status} == 'UPCOMING' ? ' upcoming' : ' ended')">
-              <span class="popup-dot"></span>
-              <span th:text="${p.statusLabel}">진행중</span>
-            </span>
+                              th:classappend="${stateKey} == 'ONGOING' ? ' ongoing' : (${stateKey} == 'UPCOMING' ? ' upcoming' : ' ended')">
+                            <span class="popup-dot"></span>
+                            <span th:text="${stateLabel}">진행중</span>
+                        </span>
                     </div>
 
                     <div class="popup-card-body">
                         <h3 class="popup-card-title" th:text="${p.title}">팝업 제목</h3>
 
                         <div class="popup-card-meta">
-                            <div class="meta-row">📍 <span th:text="${p.placeName}">장소명</span></div>
-                            <div class="meta-row">📅
-                                <span th:text="${#temporals.format(p.startDate,'yyyy.MM.dd')}">2025.01.01</span>
-                                -
-                                <span th:text="${#temporals.format(p.endDate,'yyyy.MM.dd')}">2025.02.01</span>
+                            <div class="meta-row">📍
+                                <span th:text="${p.placeName != null ? p.placeName : '-'}">장소명</span>
                             </div>
-                        </div>
-
-                        <div class="popup-card-stats">
-                            <span>조회 <b th:text="${p.viewCount}">0</b></span>
-                            <span>❤ <b th:text="${p.likeCount}">0</b></span>
+                            <div class="meta-row">📅
+                                <span th:text="${p.startDate != null ? #temporals.format(p.startDate,'yyyy.MM.dd') : '미정'}">2025.01.01</span>
+                                -
+                                <span th:text="${p.endDate != null ? #temporals.format(p.endDate,'yyyy.MM.dd') : '미정'}">2025.02.01</span>
+                            </div>
                         </div>
 
                         <div class="popup-card-btn">자세히 보기</div>
@@ -85,32 +89,33 @@
         </div>
 
         <!-- 비었을 때 -->
-        <div class="popup-empty" th:if="${popups == null or #lists.isEmpty(popups)}">
+        <div class="popup-empty" th:if="${popupList == null or popupList.isEmpty()}">
+            <p style="margin:0; color:#6b7280; font-weight:800;">등록된 팝업스토어가 아직 없어요.</p>
+        </div>
 
+        <!-- 페이지네이션 (Page 객체 기준) -->
+        <div style="display:flex; gap:10px; justify-content:center; margin-top:18px;"
+             th:if="${popupList != null and popupList.totalPages > 1}">
+            <a class="tkk-btn tkk-btn-outline"
+               th:if="${popupList.hasPrevious()}"
+               th:href="@{/popupstore/list.do(page=${popupList.number - 1}, size=${popupList.size})}">
+                이전
+            </a>
+
+            <span style="font-weight:900; color:#111827; padding:10px 0;"
+                  th:text="|${popupList.number + 1} / ${popupList.totalPages}|">1 / 1</span>
+
+            <a class="tkk-btn tkk-btn-outline"
+               th:if="${popupList.hasNext()}"
+               th:href="@{/popupstore/list.do(page=${popupList.number + 1}, size=${popupList.size})}">
+                다음
+            </a>
         </div>
 
     </section>
 
 </div>
 
-<th:block layout:fragment="script">
-    <script>
-        (function () {
-            const sortInput = document.getElementById('sort');
-            const form = document.querySelector('.popup-toolbar');
-            const current = (sortInput && sortInput.value) ? sortInput.value : 'recent';
-
-            document.querySelectorAll('.popup-sort-btn').forEach(btn => {
-                if (btn.dataset.sort === current) btn.classList.add('active');
-
-                btn.addEventListener('click', () => {
-                    sortInput.value = btn.dataset.sort;
-                    form.submit();
-                });
-            });
-        })();
-    </script>
-</th:block>
-
+<th:block layout:fragment="script"></th:block>
 </body>
 </html>

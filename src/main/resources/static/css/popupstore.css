@@ -1,0 +1,251 @@
+/* =========================================================
+   팝업스토어 리스트 전용 (popupstore/popup_list.html)
+   - 가로폭: 1440px (아주 조금 더)
+   - 버튼: 더 작게 + 글씨 안 잘리게 정렬/라인하이트 보정
+========================================================= */
+
+/* ✅ 공통 컨테이너(헤더 폭이랑 최대한 맞추고 싶으면 같이 적용) */
+.tkk-container{
+    max-width: 1440px;     /* 🔥 1380 -> 1440 : 아주 조금 더 */
+    margin: 0 auto;
+    padding: 22px 16px 60px;
+}
+
+/* ✅ 리스트 페이지 래퍼 */
+.popup-page{
+    width: 100%;
+    max-width: 1440px;     /* 🔥 핵심 */
+    margin: 0 auto;
+    padding: 22px 16px 60px;
+    box-sizing: border-box;
+}
+
+.popup-page-head{ margin-bottom: 16px; }
+
+.popup-page-title{
+    margin: 0 0 6px 0;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.popup-page-sub{
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* ✅ 검색/정렬 툴바 */
+.popup-toolbar{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 14px 0 16px;
+}
+
+.popup-search{
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+}
+
+.popup-search-ico{
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .6;
+}
+
+.popup-search-input{
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 40px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    outline: none;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.popup-search-input:focus{ border-color: #cbd5e1; }
+
+.popup-sort{
+    display: flex;
+    gap: 10px;
+}
+
+.popup-sort-btn{
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;  /* ✅ 버튼 글씨 수직정렬 안정 */
+}
+
+.popup-sort-btn.active{
+    border-color: #111827;
+    font-weight: 700;
+}
+
+/* ✅ 카운트 */
+.popup-count{
+    margin: 6px 0 14px;
+    font-size: 14px;
+    color: #111827;
+}
+
+/* ✅ 카드 그리드: PC 4열 */
+.popup-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* 카드 */
+.popup-card{
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #eef2f7;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+}
+
+.popup-card-link{
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ✅ 카드 이미지 */
+.popup-card-img{
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+    margin: 12px 12px 0;
+}
+
+/* 뱃지 */
+.popup-card-badge-left{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(17, 24, 39, 0.85);
+    color: #fff;
+}
+
+.popup-card-badge-right{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(229,231,235,0.95);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.popup-dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+}
+
+.popup-card-badge-right.upcoming .popup-dot{ background: #3b82f6; }
+.popup-card-badge-right.ended .popup-dot{ background: #9ca3af; }
+
+/* 카드 바디 */
+.popup-card-body{
+    padding: 14px 14px 14px;
+}
+
+.popup-card-title{
+    margin: 8px 0 10px;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.popup-card-meta{
+    color: #4b5563;
+    font-size: 13px;
+    display: grid;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.meta-row{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.popup-card-stats{
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    color: #111827;
+    margin: 10px 0 12px;
+}
+
+/* ✅ 자세히 보기 버튼: 더 작게 + 글씨 안 잘리게 */
+.popup-card-btn{
+    width: 100%;
+    height: 38px;              /* ✅ 42 -> 38 (조금 더 작게) */
+    padding: 0 12px;           /* ✅ 혹시 좁을 때 대비 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    background: #0f172a;
+    color: #fff;
+
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1;            /* ✅ 글씨 잘림 방지 */
+    letter-spacing: -0.2px;
+    white-space: nowrap;       /* ✅ 줄바꿈 방지 */
+    box-sizing: border-box;
+}
+
+/* 비었을 때 */
+.popup-empty{
+    padding: 40px 0;
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* ✅ 반응형 */
+@media (max-width: 1200px){
+    .popup-page{ max-width: 1140px; }
+    .popup-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 992px){
+    .popup-page{ max-width: 900px; }
+    .popup-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .popup-toolbar{ flex-wrap: wrap; }
+    .popup-search{ max-width: 100%; }
+}
+
+@media (max-width: 576px){
+    .popup-page{ padding: 16px; }
+    .popup-grid{ grid-template-columns: 1fr; }
+}
