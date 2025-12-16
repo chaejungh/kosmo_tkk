@@ -141,8 +141,6 @@
         <div id="btnFullscreen" class="ctrl" title="전체화면">⛶</div>
     </div>
 
-    <!-- 왼쪽 상단 chip(초기화/길찾기) 완전 제거 -->
-
     <!-- 지도 안 검색 UI -->
     <div class="map-search-wrap">
         <div class="map-search-row">
@@ -209,6 +207,7 @@
             const run = () => {
                 const q = si.value.trim();
                 if(!q) return toast('검색어를 입력하세요.');
+                // ✅ 기본은 장소 검색
                 searchPlacesOnMap(q);
             };
             sb.onclick = run;
@@ -388,11 +387,17 @@
                 position: ll,
                 title: p.name
             });
+
+            const goodsLine = (p.goodsName)
+                ? `<div style="font-size:12px;color:#444;margin-top:4px">📦 ${p.goodsName}${(p.stockQty!=null?` (재고 ${p.stockQty})`:``)}</div>`
+                : '';
+
             infoWin.setContent(
                 `<div style="padding:6px 8px;font-size:13px">
-               <div style="font-weight:600;margin-bottom:4px">${p.name || ''}</div>
-               <div style="font-size:12px;color:#666">${p.roadAddress || p.address || ''}</div>
-             </div>`
+                   <div style="font-weight:600;margin-bottom:4px">${p.name || ''}</div>
+                   <div style="font-size:12px;color:#666">${p.roadAddress || p.address || ''}</div>
+                   ${goodsLine}
+                 </div>`
             );
             infoWin.open(map, endMarker);
         };
@@ -421,6 +426,7 @@
         });
     }
 
+    // ✅ 기존: 장소 검색 (매장/네이버)
     async function searchPlacesOnMap(query){
         try{
             const res = await fetch(`/api/map/places?query=${encodeURIComponent(query)}&limit=20`);
@@ -443,6 +449,48 @@
             console.error(e);
             toast('검색 중 오류');
         }
+    }
+
+    // ✅✅ 추가: 재고 검색 (store_goods 기반)
+    async function searchGoodsOnMap(place, goods){
+        const kw = (goods || '').trim();
+        if(!kw) return [];
+
+        const res = await fetch(`/goods/search-map?kw=${encodeURIComponent(kw)}&page=0&size=50`);
+        if(!res.ok) throw new Error('재고검색 실패');
+
+        const page = await res.json();
+        const rows = Array.isArray(page?.content) ? page.content : [];
+
+        // place(지역) 같이 들어오면 프론트에서 1차 필터 (주소/매장명에 포함)
+        const pkw = (place || '').trim();
+        const filtered = pkw
+            ? rows.filter(r => {
+                const addr = (r.storeAddress || '').toLowerCase();
+                const name = (r.storeName || '').toLowerCase();
+                const pk = pkw.toLowerCase();
+                return addr.includes(pk) || name.includes(pk);
+            })
+            : rows;
+
+        // renderPlaceResults가 기대하는 형태로 변환
+        // source: GOODS 로 넣어서 뱃지 표시
+        const places = filtered.map(r => ({
+            source: 'GOODS',
+            name: r.storeName,
+            roadAddress: r.storeAddress,
+            address: r.storeAddress,
+            lat: r.latitude,
+            lng: r.longitude,
+            storeId: r.storeId,
+
+            goodsName: r.goodsName,
+            stockQty: r.stockQty,
+            price: r.price,
+            thumbnailUrl: r.thumbnailUrl
+        }));
+
+        return places;
     }
 
     function renderPlaceResults(places){
@@ -485,15 +533,23 @@
                 else bounds.extend(ll);
             }
 
+            const badgeText = (p.source === 'STORE') ? '굿즈샵(더쿠쿠)'
+                : (p.source === 'GOODS') ? '재고'
+                    : '네이버';
+
+            const goodsMeta = (p.goodsName)
+                ? ` · 📦 ${p.goodsName}${(p.stockQty!=null?` (재고 ${p.stockQty})`:``)}`
+                : '';
+
             const btn = document.createElement('button');
             btn.type='button';
             btn.className='map-result-item';
             btn.innerHTML = `
               <div class="map-result-title">
                 <span>${p.name || '이름 없음'}</span>
-                ${p.source ? `<span class="map-result-badge">${p.source==='STORE'?'굿즈샵(더쿠쿠)':'네이버'}</span>`:''}
+                <span class="map-result-badge">${badgeText}</span>
               </div>
-              <div class="map-result-meta">${p.roadAddress || p.address || ''}</div>
+              <div class="map-result-meta">${(p.roadAddress || p.address || '')}${goodsMeta}</div>
             `;
             btn.addEventListener('click',()=>focusPlace(p));
             panel.appendChild(btn);
@@ -541,7 +597,7 @@
         focusPlace(place);
     });
 
-    // ✅✅ 추가: 부모(index.html)에서 검색/현재위치 명령 받기
+    // ✅✅ 핵심: 부모(index.html)에서 검색/현재위치 명령 받기
     window.addEventListener('message', async (event) => {
         if (event.origin !== window.location.origin) return;
         const data = event.data;
@@ -551,8 +607,31 @@
         if (data.type === 'MAP_SEARCH') {
             const place = (data.place || '').trim();
             const goods = (data.goods || '').trim();
-            const query = (place + ' ' + goods).trim();
 
+            // ✅ goods가 있으면 재고검색 API를 먼저 탄다
+            if (goods) {
+                try {
+                    const goodsPlaces = await searchGoodsOnMap(place, goods);
+                    renderPlaceResults(goodsPlaces);
+
+                    // 부모에게도 동일 포맷으로 전달
+                    try{
+                        if (window.parent && window.parent !== window) {
+                            window.parent.postMessage(
+                                { type: 'MAP_SEARCH_RESULTS', places: goodsPlaces },
+                                window.location.origin
+                            );
+                        }
+                    }catch(e){}
+                } catch (e) {
+                    console.error(e);
+                    toast('재고 검색 실패');
+                }
+                return;
+            }
+
+            // ✅ goods 없으면 기존 장소검색
+            const query = (place).trim();
             if (!query) {
                 window.searchPlaces = [];
                 try {
@@ -565,7 +644,6 @@
                 } catch (e) {}
                 return;
             }
-
             await searchPlacesOnMap(query);
             return;
         }

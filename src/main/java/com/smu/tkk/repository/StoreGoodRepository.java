@@ -37,41 +37,46 @@ public interface StoreGoodRepository extends JpaRepository<StoreGood, Long> {
     //    - kw가 null/빈값이면 전체
     //    - store.name, store.address + goods 이름/작품/캐릭 검색
     // ============================================================
+    // ✅ 지도용 재고검색 (매장 좌표 포함)
     @Query(
             value = """
-            SELECT
-              s.store_id      AS storeId,
-              s.name          AS storeName,
-              s.address       AS storeAddress,
-              g.goods_id      AS goodsId,
-              g.name          AS goodsName,
-              g.price         AS price,
-              g.stock_qty     AS stockQty,
-              g.thumbnail_url AS thumbnailUrl
-            FROM store_goods g
-            JOIN store s ON s.store_id = g.store_id
-            WHERE
-              (:kw IS NULL OR :kw = '' OR
-               g.name LIKE CONCAT('%', :kw, '%') OR
-               g.work_name LIKE CONCAT('%', :kw, '%') OR
-               g.character_name LIKE CONCAT('%', :kw, '%') OR
-               s.name LIKE CONCAT('%', :kw, '%') OR
-               s.address LIKE CONCAT('%', :kw, '%'))
-            ORDER BY g.goods_id DESC
-            """,
+        SELECT
+          s.store_id  AS storeId,
+          s.name      AS storeName,
+          s.address   AS storeAddress,
+          s.latitude  AS latitude,
+          s.longitude AS longitude,
+          g.goods_id  AS goodsId,
+          g.name      AS goodsName,
+          g.stock_qty AS stockQty,
+          g.price     AS price,
+          g.thumbnail_url AS thumbnailUrl
+        FROM store_goods g
+        JOIN store s ON s.store_id = g.store_id
+        WHERE
+          (:kw IS NULL OR :kw = '' OR
+           g.name LIKE CONCAT('%', :kw, '%') OR
+           g.work_name LIKE CONCAT('%', :kw, '%') OR
+           g.character_name LIKE CONCAT('%', :kw, '%') OR
+           s.name LIKE CONCAT('%', :kw, '%') OR
+           s.address LIKE CONCAT('%', :kw, '%'))
+        ORDER BY g.goods_id DESC
+        """,
             countQuery = """
-            SELECT COUNT(*)
-            FROM store_goods g
-            JOIN store s ON s.store_id = g.store_id
-            WHERE
-              (:kw IS NULL OR :kw = '' OR
-               g.name LIKE CONCAT('%', :kw, '%') OR
-               g.work_name LIKE CONCAT('%', :kw, '%') OR
-               g.character_name LIKE CONCAT('%', :kw, '%') OR
-               s.name LIKE CONCAT('%', :kw, '%') OR
-               s.address LIKE CONCAT('%', :kw, '%'))
-            """,
+        SELECT COUNT(*)
+        FROM store_goods g
+        JOIN store s ON s.store_id = g.store_id
+        WHERE
+          (:kw IS NULL OR :kw = '' OR
+           g.name LIKE CONCAT('%', :kw, '%') OR
+           g.work_name LIKE CONCAT('%', :kw, '%') OR
+           g.character_name LIKE CONCAT('%', :kw, '%') OR
+           s.name LIKE CONCAT('%', :kw, '%') OR
+           s.address LIKE CONCAT('%', :kw, '%'))
+        """,
             nativeQuery = true
     )
-    Page<GoodsSearchRow> searchGoods(@Param("kw") String kw, Pageable pageable);
-}
+    org.springframework.data.domain.Page<com.smu.tkk.dto.GoodsMapRow> searchGoodsForMap(
+            @Param("kw") String kw,
+            org.springframework.data.domain.Pageable pageable
+    );}

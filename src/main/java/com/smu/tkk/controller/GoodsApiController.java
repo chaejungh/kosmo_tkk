@@ -1,6 +1,6 @@
 package com.smu.tkk.controller;
 
-import com.smu.tkk.dto.GoodsSearchRow;
+import com.smu.tkk.dto.GoodsMapRow;
 import com.smu.tkk.repository.StoreGoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,15 +15,15 @@ public class GoodsApiController {
     private final StoreGoodRepository storeGoodRepository;
 
     /**
-     * ✅ 재고 통합 검색 API
-     * 예) /goods/search?kw=진격&page=0&size=20
+     * ✅ 지도용 재고 검색
+     * /goods/search-map?kw=주술회전&page=0&size=30
      */
-    @GetMapping("/search")
-    public Page<GoodsSearchRow> searchGoods(
+    @GetMapping("/search-map")
+    public Page<GoodsMapRow> searchMap(
             @RequestParam(required = false) String kw,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size
+            @RequestParam(defaultValue = "30") int size
     ) {
-        return storeGoodRepository.searchGoods(kw, PageRequest.of(page, size));
+        return storeGoodRepository.searchGoodsForMap(kw, PageRequest.of(page, size));
     }
 }
