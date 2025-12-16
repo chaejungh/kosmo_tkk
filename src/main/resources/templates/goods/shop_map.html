@@ -541,6 +541,42 @@
         focusPlace(place);
     });
 
+    // ✅✅ 추가: 부모(index.html)에서 검색/현재위치 명령 받기
+    window.addEventListener('message', async (event) => {
+        if (event.origin !== window.location.origin) return;
+        const data = event.data;
+        if (!data || !data.type) return;
+
+        // index.html 검색창 → 지도 검색
+        if (data.type === 'MAP_SEARCH') {
+            const place = (data.place || '').trim();
+            const goods = (data.goods || '').trim();
+            const query = (place + ' ' + goods).trim();
+
+            if (!query) {
+                window.searchPlaces = [];
+                try {
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage(
+                            { type: 'MAP_SEARCH_RESULTS', places: [] },
+                            window.location.origin
+                        );
+                    }
+                } catch (e) {}
+                return;
+            }
+
+            await searchPlacesOnMap(query);
+            return;
+        }
+
+        // "현재 위치" 버튼
+        if (data.type === 'MAP_MY_POSITION') {
+            locateMeOnce();
+            return;
+        }
+    });
+
     (function wait(){
         if(window.naver?.maps?.Map) boot();
         else setTimeout(wait,60);
