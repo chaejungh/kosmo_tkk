@@ -1,206 +1,116 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/tkk_fragment/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>팝업스토어 목록 - 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 홈이랑 스타일 통일 -->
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <link rel="stylesheet" th:href="@{/css/borad.css}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-          crossorigin="anonymous">
-
-    <style>
-        .popup-list-page {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 16px;
-        }
-
-        .popup-list-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .popup-list-title {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .popup-list-sub {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .popup-card {
-            border-radius: 16px;
-            background: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            overflow: hidden;
-            margin-bottom: 14px;
-            cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .popup-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
-        }
-
-        .popup-thumb-wrap {
-            width: 100%;
-            height: 160px;
-            background: #e5e7eb;
-            overflow: hidden;
-        }
-
-        .popup-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .popup-info {
-            padding: 12px 14px 14px;
-        }
-
-        .popup-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: #111827;
-        }
-
-        .popup-place {
-            font-size: 13px;
-            color: #6b7280;
-            margin-bottom: 4px;
-        }
-
-        .popup-date {
-            font-size: 13px;
-            color: #4b5563;
-            margin-bottom: 2px;
-        }
-
-        .popup-region {
-            font-size: 11px;
-            color: #9ca3af;
-        }
-
-        .popup-empty {
-            text-align: center;
-            padding: 24px 0;
-            color: #9ca3af;
-            font-size: 13px;
-        }
-    </style>
+    <th:block layout:fragment="head"></th:block>
 </head>
 
 <body>
-<div class="popup-list-page">
+<div layout:fragment="content">
 
-
-    <div class="popup-list-header">
-        <div>
-            <div class="popup-list-title">팝업스토어 목록</div>
-            <div class="popup-list-sub">더쿠쿠에 등록된 팝업 정보를 한 눈에 볼 수 있어요.</div>
-        </div>
-        <a th:href="@{/}" style="font-size:12px; color:#4f46e5; text-decoration:none;">
-            홈으로 →
-        </a>
-    </div>
-
-    <!-- 데이터 없을 때 -->
-    <div class="popup-empty" th:if="${#lists.isEmpty(popupList)}">
-        등록된 팝업스토어가 없습니다.
-    </div>
-
-    <!-- 리스트 반복 -->
-    <div th:each="item : ${popupList}"
-         class="popup-card"
-         th:onclick="'location.href=\'/popupstore/' + ${item.id} + '/detail.do\''">
-
-        <!-- 배너 이미지 영역 -->
-        <div class="popup-thumb-wrap">
-            <img class="popup-thumb"
-                 th:src="${item.bannerImageUrl != null} ? ${item.bannerImageUrl} : @{/images/default-popup.jpg}"
-                 alt="팝업 썸네일">
-        </div>
-
-        <!-- 텍스트 정보 -->
-        <div class="popup-info">
-            <!-- 제목 -->
-            <div class="popup-title" th:text="${item.title}">팝업 제목</div>
-
-            <!-- 장소명 (없으면 지역명으로 대체) -->
-            <div class="popup-place"
-                 th:text="${item.placeName != null && !#strings.isEmpty(item.placeName)}
-                          ? ${item.placeName}
-                          : (${item.regionName} != null ? ${item.regionName} : '장소 미정')">
-                장소명
-            </div>
-
-            <!-- 기간 -->
-            <div class="popup-date"
-                 th:text="|${item.startDate} ~ ${item.endDate}|">
-                2025-01-01 ~ 2025-01-31
-            </div>
-
-            <!-- 지역 태그 -->
-            <div class="popup-region"
-                 th:if="${item.regionName != null}">
-                #<span th:text="${item.regionName}">지역</span>
+    <section class="card popup-page">
+        <div class="popup-page-head">
+            <div>
+                <h2 class="popup-page-title">진행중인 팝업스토어</h2>
+                <p class="popup-page-sub">지금 방문할 수 있는 팝업스토어를 확인하세요! 🎉</p>
             </div>
         </div>
-    </div>
-    <nav class="d-flex justify-content-end align-items-center gap-2 mt-3">
-        <select class="form-select form-select-sm w-auto"
-                onchange="location.href='?page=0&size=' + this.value;">
-            <option disabled selected>보기</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="40">40</option>
-        </select>
-        <a class="btn btn-sm btn-outline-dark d-none"
-           th:href="@{'?'(page=0, size=5)}">5</a>
-        <a class="btn btn-sm btn-outline-dark d-none"
-           th:href="@{'?'(page=0, size=10)}">10</a>
-        <a class="btn btn-sm btn-outline-dark d-none"
-           th:href="@{'?'(page=0, size=20)}">20</a>
-        <a class="btn btn-sm btn-outline-dark d-none"
-           th:href="@{'?'(page=0, size=40)}">40</a>
-    </nav>
-    <div th:with="
-        page=${popupList.number},
-        last=${popupList.totalPages},
-        sort=${popupList.sort},
-        size=${param.size}"
-         class="my-4 d-flex justify-content-center">
-        <nav>
-            <ul class="pagination">
-                <li class="page-item"
-                    th:classappend="${page}==0 ? 'disabled':''">
-                    <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
-                </li>
-                <li  th:each="i : ${#numbers.sequence(1,last)}"
-                     th:classappend="( (${i}-1)==${page}?'active' )"
-                     class="page-item">
-                    <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
-                </li>
-                <li class="page-item"
-                    th:classappend="${page}==(${last}-1) ? 'disabled':''">
-                    <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+
+        <!-- 검색/정렬 -->
+        <form class="popup-toolbar" method="get" th:action="@{/popup/list}">
+            <div class="popup-search">
+                <span class="popup-search-ico">🔎</span>
+                <input class="popup-search-input"
+                       type="text"
+                       name="q"
+                       placeholder="팝업스토어 검색 (제목, 위치)"
+                       th:value="${param.q}">
+            </div>
+
+            <input type="hidden" id="sort" name="sort" th:value="${param.sort ?: 'recent'}"/>
+
+            <div class="popup-sort">
+                <button type="button" class="popup-sort-btn" data-sort="recent">최신순</button>
+                <button type="button" class="popup-sort-btn" data-sort="popular">인기순</button>
+            </div>
+        </form>
+
+        <!-- 카운트(있으면 표시) -->
+        <div class="popup-count" th:if="${total != null}">
+            총 <b th:text="${total}">0</b>개의 팝업스토어가 진행중입니다
+        </div>
+
+        <!-- 카드 그리드 -->
+        <div class="popup-grid" th:if="${popups != null and !#lists.isEmpty(popups)}">
+            <article class="popup-card" th:each="p : ${popups}">
+                <a class="popup-card-link" th:href="@{/popup/{id}(id=${p.popupId})}">
+
+                    <div class="popup-card-img"
+                         th:style="|background-image:url('${p.bannerImageUrl}');|">
+                        <span class="popup-card-badge-left">POP-UP</span>
+
+                        <!-- status: ongoing/upcoming/ended -->
+                        <span class="popup-card-badge-right"
+                              th:classappend="${p.status} == 'ONGOING' ? ' ongoing' : (${p.status} == 'UPCOMING' ? ' upcoming' : ' ended')">
+              <span class="popup-dot"></span>
+              <span th:text="${p.statusLabel}">진행중</span>
+            </span>
+                    </div>
+
+                    <div class="popup-card-body">
+                        <h3 class="popup-card-title" th:text="${p.title}">팝업 제목</h3>
+
+                        <div class="popup-card-meta">
+                            <div class="meta-row">📍 <span th:text="${p.placeName}">장소명</span></div>
+                            <div class="meta-row">📅
+                                <span th:text="${#temporals.format(p.startDate,'yyyy.MM.dd')}">2025.01.01</span>
+                                -
+                                <span th:text="${#temporals.format(p.endDate,'yyyy.MM.dd')}">2025.02.01</span>
+                            </div>
+                        </div>
+
+                        <div class="popup-card-stats">
+                            <span>조회 <b th:text="${p.viewCount}">0</b></span>
+                            <span>❤ <b th:text="${p.likeCount}">0</b></span>
+                        </div>
+
+                        <div class="popup-card-btn">자세히 보기</div>
+                    </div>
+
+                </a>
+            </article>
+        </div>
+
+        <!-- 비었을 때 -->
+        <div class="popup-empty" th:if="${popups == null or #lists.isEmpty(popups)}">
+            아직 등록된 팝업스토어가 없어요. (이미지 URL만 넣으면 바로 예쁘게 나와요!)
+        </div>
+
+    </section>
+
 </div>
+
+<th:block layout:fragment="script">
+    <script>
+        (function () {
+            const sortInput = document.getElementById('sort');
+            const form = document.querySelector('.popup-toolbar');
+            const current = (sortInput && sortInput.value) ? sortInput.value : 'recent';
+
+            document.querySelectorAll('.popup-sort-btn').forEach(btn => {
+                if (btn.dataset.sort === current) btn.classList.add('active');
+
+                btn.addEventListener('click', () => {
+                    sortInput.value = btn.dataset.sort;
+                    form.submit();
+                });
+            });
+        })();
+    </script>
+</th:block>
+
 </body>
 </html>

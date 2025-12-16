@@ -1,360 +1,166 @@
 <!DOCTYPE html>
 <html lang="ko"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/tkk_fragment/layout}">
+
 <head>
-    <!-- ✅ 네이버 지도 SDK (지오코더 포함) -->
-    <script
-            src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8ehod4l0bq&submodules=geocoder">
-    </script>
-    <script>
-        window.navermap_authFailure = function () {
-            alert('네이버 지도 인증 실패: NCP 콘솔 URL/Key 확인');
-        };
-    </script>
-
-    <style>
-        .page {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 16px;
-        }
-
-        .back-link {
-            font-size: 12px;
-            color: #6b7280;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 10px;
-        }
-
-        .popup-detail-card {
-            border-radius: 18px;
-            background: #ffffff;
-            box-shadow: 0 4px 16px rgba(15,23,42,0.06);
-            padding: 16px 18px 20px;
-        }
-
-        .popup-banner {
-            width: 100%;
-            height: 220px;
-            border-radius: 16px;
-            background: #e5e7eb;
-            object-fit: cover;
-            margin-bottom: 14px;
-        }
-
-        .popup-detail-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .popup-detail-location,
-        .popup-detail-date {
-            font-size: 14px;
-            color: #4b5563;
-            margin-bottom: 4px;
-        }
-
-        .popup-detail-subtitle {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 20px;
-            margin-bottom: 6px;
-        }
-
-        .popup-detail-text {
-            font-size: 14px;
-            color: #4b5563;
-            line-height: 1.6;
-        }
-
-        .popup-detail-map {
-            width: 100%;
-            height: 240px;
-            background: #d1d5db;
-            border-radius: 12px;
-            margin-top: 8px;
-        }
-
-        /* ===== 굿즈 카드 ===== */
-        .popup-goods-card {
-            margin-top: 18px;
-            border-radius: 18px;
-            background: #ffffff;
-            box-shadow: 0 4px 16px rgba(15,23,42,0.06);
-            padding: 16px 18px 20px;
-        }
-
-        .goods-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            gap: 8px;
-        }
-
-        .goods-title {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .goods-search {
-            flex: 0 0 230px;
-        }
-
-        .goods-search input {
-            width: 100%;
-            border-radius: 999px;
-            border: 1px solid #d1d5db;
-            padding: 6px 10px;
-            font-size: 13px;
-        }
-
-        .goods-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 6px;
-        }
-
-        .goods-item {
-            display: flex;
-            gap: 10px;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-            padding: 8px 10px;
-            align-items: center;
-        }
-
-        .goods-thumb {
-            width: 56px;
-            height: 56px;
-            border-radius: 8px;
-            object-fit: cover;
-            background: #f3f4f6;
-            flex-shrink: 0;
-        }
-
-        .goods-main {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .goods-name {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .goods-desc {
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 4px;
-        }
-
-        .goods-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-        }
-
-        .goods-category {
-            padding: 2px 8px;
-            border-radius: 999px;
-            background: #eff6ff;
-            color: #1d4ed8;
-        }
-
-        .goods-price {
-            font-weight: 600;
-            color: #111827;
-        }
-
-        .goods-empty {
-            font-size: 13px;
-            color: #9ca3af;
-            margin-top: 4px;
-        }
-
-        @media (max-width: 640px) {
-            .goods-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .goods-search {
-                width: 100%;
-                flex: 1;
-            }
-        }
-    </style>
+    <th:block layout:fragment="head"></th:block>
 </head>
 
 <body>
 <div layout:fragment="content">
 
-    <!-- 뒤로가기 -->
-    <a th:href="@{/popupstore/list.do}" class="back-link">
-        ← 팝업스토어 목록
-    </a>
+    <a class="popup-back" th:href="@{/popup/list}">← 돌아가기</a>
 
-    <!-- ================= 팝업 기본 정보 카드 ================= -->
-    <article class="popup-detail-card">
+    <section class="popup-detail">
 
-        <!-- 배너 이미지 -->
-        <img class="popup-banner"
-             th:src="${popup.bannerImageUrl} ?: @{/images/default-popup.jpg}"
-             alt="팝업 배너 이미지">
-
-
-        <!-- 제목 -->
-        <h1 class="popup-detail-title" th:text="${popup.title}">팝업 제목</h1>
-
-        <!-- 장소 -->
-        <div class="popup-detail-location"
-             th:text="${popup.placeName != null ? popup.placeName : popup.regionName}">
-            장소명
+        <!-- 상단 메인 이미지 -->
+        <div class="popup-hero"
+             th:style="|background-image:url('${popup.bannerImageUrl}');|">
         </div>
 
-        <!-- 주소 -->
-        <div class="popup-detail-location" th:text="${popup.address}">
-            주소
-        </div>
+        <!-- 타이틀/메타 -->
+        <div class="popup-head">
+            <div class="popup-head-left">
+        <span class="popup-status-pill"
+              th:classappend="${popup.status} == 'ONGOING' ? ' ongoing' : (${popup.status} == 'UPCOMING' ? ' upcoming' : ' ended')">
+          <span class="popup-dot"></span>
+          <span th:text="${popup.statusLabel}">진행중</span>
+        </span>
 
-        <!-- 기간 -->
-        <div class="popup-detail-date"
-             th:text="|${popup.startDate} ~ ${popup.endDate}|">
-        </div>
+                <h1 class="popup-title" th:text="${popup.title}">팝업 제목</h1>
 
-        <!-- 설명 -->
-        <h2 class="popup-detail-subtitle">팝업 소개</h2>
-        <p class="popup-detail-text" th:text="${popup.description}">
-            설명 텍스트
-        </p>
+                <div class="popup-mini">
+                    <span>👥 <b th:text="${popup.viewCount}">0</b>명 방문</span>
+                </div>
 
-        <!-- 위치 + 지도 -->
-        <h2 class="popup-detail-subtitle">위치</h2>
-        <p class="popup-detail-text" th:text="${popup.address}"></p>
+                <div class="popup-tags" th:if="${popup.tags != null and !#lists.isEmpty(popup.tags)}">
+                    <span class="popup-tag" th:each="t : ${popup.tags}" th:text="|#${t}|">#태그</span>
+                </div>
 
-        <!-- ✅ 네이버 지도: 지도는 그대로 두고, 여기에 렌더링 -->
-        <div id="popupMap" class="popup-detail-map"></div>
-
-    </article>
-
-    <!-- ================= 굿즈 목록 카드 ================= -->
-    <section class="popup-goods-card">
-        <div class="goods-header">
-            <div class="goods-title">
-                이 팝업에서 판매하는 굿즈
+                <p class="popup-desc" th:text="${popup.description}">
+                    소개글이 들어옵니다.
+                </p>
             </div>
-            <div class="goods-search">
-                <input id="goodsSearchInput"
-                       type="text"
-                       placeholder="작품명·굿즈명·카테고리 검색 (예: 포카, 피규어, 키링)">
+
+            <div class="popup-head-right">
+                <button class="popup-icon-btn" type="button" id="shareBtn" title="공유">⤴</button>
             </div>
         </div>
 
-        <div class="goods-list" id="goodsList">
-            <div class="goods-item"
-                 th:each="g : ${goodsList}"
-                 th:data-name="${g.name}"
-                 th:data-desc="${g.description}"
-                 th:data-cat="${g.category}">
-                <img class="goods-thumb"
-                     th:src="${g.thumbnailUrl != null} ? ${g.thumbnailUrl} : @{/images/default-goods.jpg}"
-                     alt="굿즈 썸네일">
+        <!-- 본문 2컬럼 -->
+        <div class="popup-grid-2">
 
-                <div class="goods-main">
-                    <div class="goods-name" th:text="${g.name}">굿즈 이름</div>
-                    <div class="goods-desc"
-                         th:text="${g.description}">굿즈 설명</div>
-                    <div class="goods-meta">
-                        <span class="goods-category"
-                              th:text="${g.category}">카테고리</span>
-                        <span class="goods-price"
-                              th:text="${#numbers.formatInteger(g.price, 0, 'COMMA')} + '원'">10,000원</span>
+            <!-- LEFT -->
+            <div class="popup-left">
+
+                <div class="card popup-box" th:if="${highlights != null and !#lists.isEmpty(highlights)}">
+                    <div class="popup-box-title">주요 하이라이트</div>
+                    <ul class="popup-bullets">
+                        <li th:each="h : ${highlights}" th:text="${h}">하이라이트</li>
+                    </ul>
+                </div>
+
+                <!-- 기본정보 카드 4개 -->
+                <div class="popup-info-grid">
+                    <div class="popup-info-card">
+                        <div class="label">운영 기간</div>
+                        <div class="value"
+                             th:text="|${#temporals.format(popup.startDate,'yyyy.MM.dd')} - ${#temporals.format(popup.endDate,'yyyy.MM.dd')}|">
+                            2025.01.01 - 2025.02.01
+                        </div>
+                    </div>
+
+                    <div class="popup-info-card">
+                        <div class="label">운영 시간</div>
+                        <div class="value" th:text="${popup.openHours}">매일 10:00 - 20:00</div>
+                    </div>
+
+                    <div class="popup-info-card">
+                        <div class="label">위치</div>
+                        <div class="value" th:text="${popup.address}">서울 어딘가</div>
+                    </div>
+
+                    <div class="popup-info-card">
+                        <div class="label">입장료</div>
+                        <div class="value" th:text="${popup.feeInfo}">무료</div>
                     </div>
                 </div>
+
+                <!-- CTA -->
+                <div class="popup-cta-row">
+                    <!-- ✅ 길찾기: 일단 “네이버 지도 검색”으로 안전하게 연결 -->
+                    <a class="popup-cta pink"
+                       target="_blank" rel="noopener"
+                       th:href="'https://map.naver.com/v5/search/' + ${#urls.urlEncode(popup.placeName + ' ' + popup.address)}">
+                        길찾기
+                    </a>
+
+                    <!-- 캘린더: 너희가 나중에 엔드포인트 붙이면 됨 -->
+                    <a class="popup-cta dark"
+                       th:href="@{/popup/{id}/calendar(id=${popup.popupId})}">
+                        캘린더 추가
+                    </a>
+                </div>
+
             </div>
+
+            <!-- RIGHT -->
+            <aside class="popup-right">
+
+                <div class="card popup-notice">
+                    <div class="popup-notice-head">⚠ 방문 전 확인사항</div>
+
+                    <ul class="popup-bullets" th:if="${notices != null and !#lists.isEmpty(notices)}">
+                        <li th:each="n : ${notices}" th:text="${n}">공지</li>
+                    </ul>
+
+                    <!-- 공지 없을 때 임시 -->
+                    <ul class="popup-bullets" th:if="${notices == null or #lists.isEmpty(notices)}">
+                        <li>현장 대기 시간이 길 수 있어요. 평일 방문 추천!</li>
+                        <li>일부 현장 상품은 조기 품절될 수 있어요.</li>
+                        <li>촬영 가능/불가 규정은 현장 안내를 확인해 주세요.</li>
+                    </ul>
+                </div>
+
+                <div class="card popup-map">
+                    <div class="popup-map-ico">📍</div>
+                    <div class="popup-map-title">지도 미리보기</div>
+                    <div class="popup-map-box"
+                         id="popupMapPreview"
+                         th:attr="data-lat=${popup.latitude},data-lng=${popup.longitude}">
+                        <!-- 나중에 네이버 지도 API 붙이면 여기 렌더링 -->
+                    </div>
+
+                    <a class="popup-map-link"
+                       target="_blank" rel="noopener"
+                       th:href="'https://map.naver.com/v5/search/' + ${#urls.urlEncode(popup.placeName + ' ' + popup.address)}">
+                        네이버 지도에서 보기
+                    </a>
+                </div>
+
+            </aside>
+
         </div>
 
-        <p id="goodsEmpty" class="goods-empty" style="display:none;">
-            조건에 맞는 굿즈가 없습니다.
-        </p>
     </section>
 
 </div>
 
-<!-- ================= JS: 지도 + 굿즈 검색 ================= -->
-<script th:inline="javascript" layout:fragment="script">
-    const popupAddress = /*[[${popup.address}]]*/ '';
-    const popupTitle = /*[[${popup.title}]]*/ '';
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // --- 1) 네이버 지도 ---
-        try {
-            if (popupAddress && window.naver && document.getElementById('popupMap')) {
-                const map = new naver.maps.Map('popupMap', {
-                    center: new naver.maps.LatLng(37.5665, 126.9780), // 기본: 서울 시청 근처
-                    zoom: 15
-                });
-
-                naver.maps.Service.geocode({query: popupAddress}, function (status, response) {
-                    if (status !== naver.maps.Service.Status.OK) return;
-                    const result = response.v2.addresses[0];
-                    if (!result) return;
-
-                    const latLng = new naver.maps.LatLng(
-                        parseFloat(result.y),
-                        parseFloat(result.x)
-                    );
-                    map.setCenter(latLng);
-                    new naver.maps.Marker({
-                        position: latLng,
-                        map: map,
-                        title: popupTitle
-                    });
-                });
+<th:block layout:fragment="script">
+    <script>
+        // 공유(임시)
+        document.getElementById('shareBtn')?.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(location.href);
+                alert('링크가 복사됐어요!');
+            } catch (e) {
+                prompt('링크 복사:', location.href);
             }
-        } catch (e) {
-            console.error(e);
-        }
+        });
+    </script>
+</th:block>
 
-        // --- 2) 굿즈 검색(프론트 필터) ---
-        const searchInput = document.getElementById('goodsSearchInput');
-        const items = document.querySelectorAll('#goodsList .goods-item');
-        const emptyMessage = document.getElementById('goodsEmpty');
-
-        function applyFilter() {
-            const q = (searchInput.value || '').toLowerCase().trim();
-            let visible = 0;
-
-            items.forEach(item => {
-                const text = (item.dataset.name + ' ' +
-                    item.dataset.desc + ' ' +
-                    item.dataset.cat).toLowerCase();
-
-                if (!q || text.includes(q)) {
-                    item.style.display = 'flex';
-                    visible++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            emptyMessage.style.display = visible === 0 ? 'block' : 'none';
-        }
-
-        if (searchInput) {
-            searchInput.addEventListener('input', applyFilter);
-        }
-    });
-</script>
 </body>
 </html>
