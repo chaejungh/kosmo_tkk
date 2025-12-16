@@ -8,26 +8,53 @@
     <th:block layout:fragment="head">
         <style>
             .sd-page{width:min(1200px,92%);margin:0 auto;padding:20px 0 60px}
+
+            /* HERO */
             .sd-hero{height:420px;border-radius:18px;overflow:hidden;position:relative;
                 border:1px solid #e5e7eb;box-shadow:0 14px 40px rgba(0,0,0,.12)}
             .sd-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
             .sd-hero-fallback{position:absolute;inset:0;display:grid;place-items:center;
                 background:#f3f4f6;font-weight:900;color:#64748b}
 
+            /* GRID */
             .sd-grid{margin-top:24px;display:grid;grid-template-columns:1fr 360px;gap:24px}
-            .sd-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;
-                box-shadow:0 10px 26px rgba(0,0,0,.06);padding:18px;margin-bottom:18px}
+            .sd-card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;
+                box-shadow:0 10px 26px rgba(0,0,0,.06);padding:20px;margin-bottom:18px}
 
-            .sd-name{font-size:22px;font-weight:900;margin-bottom:6px}
-            .sd-sub{font-size:13px;color:#475569}
+            /* STORE INFO */
+            .sd-titleRow{display:flex;justify-content:space-between;align-items:center}
+            .sd-name{font-size:24px;font-weight:900}
+            .sd-sub{font-size:13px;color:#475569;margin-top:4px}
 
-            .sd-infoRow{display:flex;gap:10px;margin-bottom:10px}
+            .like-btn{
+                font-size:22px;background:none;border:none;cursor:pointer;
+                transition:.2s;opacity:.4
+            }
+            .like-btn.active{opacity:1;color:#ff4d88;transform:scale(1.1)}
+
+            .sd-infoRow{display:flex;gap:10px;margin-bottom:14px}
             .sd-label{font-size:12px;color:#64748b;font-weight:800}
-            .sd-value{font-size:13px;font-weight:900;color:#0f172a}
+            .sd-value{font-size:14px;font-weight:900;color:#0f172a}
 
+            /* ACTION */
+            .sd-actions{display:flex;gap:12px;margin-top:14px}
+            .sd-btn{
+                flex:1;padding:14px;border-radius:14px;
+                font-weight:900;text-align:center
+            }
+            .sd-btn.pink{background:#ff4d88;color:#fff}
+            .sd-btn.black{background:#111;color:#fff}
+
+            /* GOODS */
             .goods-table{width:100%;border-collapse:collapse;font-size:13px}
             .goods-table th,.goods-table td{padding:10px;border-bottom:1px solid #e5e7eb}
             .goods-thumb{width:48px;height:48px;border-radius:10px;object-fit:cover}
+
+            /* STOCK */
+            .stock-item{margin-top:14px}
+            .stock-bar{height:6px;background:#e5e7eb;border-radius:999px;overflow:hidden}
+            .stock-bar span{display:block;height:100%;
+                background:linear-gradient(90deg,#ff4d88,#ff9ec5)}
         </style>
     </th:block>
 </head>
@@ -39,17 +66,15 @@
         <!-- HERO -->
         <section class="sd-hero">
             <div class="sd-hero-bg"
-                 th:if="${store['imageUrl'] != null and !#strings.isEmpty(store['imageUrl'])}"
-                 th:style="|background-image:url('${store['imageUrl']}');|"></div>
+                 th:if="${store.imageUrl != null}"
+                 th:style="|background-image:url('${store.imageUrl}')|"></div>
 
             <div class="sd-hero-bg"
-                 th:if="${(store['imageUrl'] == null or #strings.isEmpty(store['imageUrl']))
-                         and goodsList != null and !#lists.isEmpty(goodsList)
-                         and goodsList[0].thumbnailUrl != null}"
-                 th:style="|background-image:url('${goodsList[0].thumbnailUrl}');|"></div>
+                 th:if="${store.imageUrl == null and !#lists.isEmpty(goodsList)}"
+                 th:style="|background-image:url('${goodsList[0].thumbnailUrl}')|"></div>
 
             <div class="sd-hero-fallback"
-                 th:if="${store['imageUrl'] == null or #strings.isEmpty(store['imageUrl'])}">
+                 th:if="${store.imageUrl == null and #lists.isEmpty(goodsList)}">
                 매장 대표 이미지
             </div>
         </section>
@@ -59,17 +84,30 @@
             <!-- LEFT -->
             <div>
 
+                <!-- STORE -->
                 <div class="sd-card">
-                    <h1 class="sd-name" th:text="${store['name']}">매장명</h1>
-                    <p class="sd-sub" th:text="${store['address']}">주소</p>
+                    <div class="sd-titleRow">
+                        <div>
+                            <h1 class="sd-name" th:text="${store.name}">매장명</h1>
+                            <p class="sd-sub" th:text="${store.address}">주소</p>
+                        </div>
+
+                        <!-- ❤️ 찜 -->
+                        <button class="like-btn"
+                                th:classappend="${liked} ? 'active' : ''"
+                                th:data-store-id="${store.id}">
+                            ❤️
+                        </button>
+                    </div>
                 </div>
 
+                <!-- INFO -->
                 <div class="sd-card">
                     <div class="sd-infoRow">
                         <div>📞</div>
                         <div>
                             <div class="sd-label">전화번호</div>
-                            <div class="sd-value" th:text="${store['tel']}">-</div>
+                            <div class="sd-value" th:text="${store.tel}">-</div>
                         </div>
                     </div>
 
@@ -77,8 +115,20 @@
                         <div>🕒</div>
                         <div>
                             <div class="sd-label">영업시간</div>
-                            <div class="sd-value" th:text="${store['openTime']}">-</div>
+                            <div class="sd-value" th:text="${store.openTime}">-</div>
                         </div>
+                    </div>
+
+                    <!-- ACTION -->
+                    <div class="sd-actions">
+                        <a class="sd-btn pink"
+                           th:href="@{/map/route(storeId=${store.id})}">
+                            🧭 길찾기
+                        </a>
+                        <a class="sd-btn black"
+                           th:href="'tel:' + ${store.tel}">
+                            📞 전화하기
+                        </a>
                     </div>
                 </div>
 
@@ -89,22 +139,15 @@
                     <table class="goods-table" th:if="${!#lists.isEmpty(goodsList)}">
                         <thead>
                         <tr>
-                            <th>이미지</th>
-                            <th>상품명</th>
-                            <th>가격</th>
-                            <th>재고</th>
+                            <th></th><th>상품명</th><th>가격</th><th>재고</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="g : ${goodsList}">
-                            <td>
-                                <img class="goods-thumb"
-                                     th:if="${g.thumbnailUrl != null}"
-                                     th:src="${g.thumbnailUrl}">
-                            </td>
-                            <td th:text="${g.name}">상품</td>
-                            <td th:text="${g.price}">0</td>
-                            <td th:text="${g.stockQty}">0</td>
+                            <td><img class="goods-thumb" th:src="${g.thumbnailUrl}"></td>
+                            <td th:text="${g.name}"></td>
+                            <td th:text="${g.price}"></td>
+                            <td th:text="${g.stockQty}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -117,16 +160,32 @@
             <!-- RIGHT -->
             <aside>
                 <div class="sd-card">
-                    <h3>실시간 재고 요약</h3>
-                    <div th:each="g,stat : ${goodsList}" th:if="${stat.index < 5}">
-                        <b th:text="${g.name}">상품</b> :
-                        <span th:text="${g.stockQty}">0</span>개
+                    <h3>📦 실시간 재고 현황</h3>
+
+                    <div class="stock-item"
+                         th:each="g,stat : ${goodsList}"
+                         th:if="${stat.index < 6}">
+                        <b th:text="${g.name}"></b>
+                        <div class="stock-bar">
+                            <span th:style="'width:' + ${g.stockQty * 2} + '%'"></span>
+                        </div>
+                        <small th:text="${g.stockQty + '개'}"></small>
                     </div>
                 </div>
             </aside>
 
         </section>
     </main>
+
+    <script>
+        document.querySelectorAll('.like-btn').forEach(btn=>{
+            btn.onclick=()=>{
+                fetch(`/store/${btn.dataset.storeId}/like`,{method:'POST'})
+                    .then(()=>btn.classList.toggle('active'))
+            }
+        })
+    </script>
+
 </div>
 </body>
 </html>
