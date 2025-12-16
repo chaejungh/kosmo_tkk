@@ -701,9 +701,7 @@ body {
     /* ===============================
        STORE DETAIL - MOBILE
     ================================ */
-    @media (max-width: 980px) {
-        .store-body {
-            grid-template-columns: 1fr;
-        }
+    .store-body {
+        grid-template-columns: 1fr;
     }
 }
