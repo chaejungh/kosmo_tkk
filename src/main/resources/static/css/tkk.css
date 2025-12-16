@@ -527,6 +527,7 @@ a, a:visited, a:hover, a:active{
     .card{ padding: 14px; }
     .fab{ right: 14px; bottom: 14px; }
 }
+
 body.tkk-body{ zoom: 0.69; }
 
 .tkk-footer{
@@ -537,4 +538,39 @@ body.tkk-body{ zoom: 0.69; }
 .tkk-footer-inner,
 .tkk-footer-bottom-inner{
     max-width: 1180px;
+}
+
+/* =========================================================
+   ✅✅ 추가분 (여기만 “추가”됨) — 다른 건 안 건드림
+   1) 버튼이 카드/이미지 가리는 문제 해결
+   2) 팝업 섹션을 하얀 배경에 자연스럽게(블록감 제거)
+========================================================= */
+
+/* ✅ [FIX] 팝업 Swiper 버튼이 카드/이미지 안 가리게: 버튼용 좌우 여백 더 확보 */
+.popupSwiper{
+    padding-left: 110px !important;
+    padding-right: 110px !important;
+    padding-bottom: 70px !important;
+    overflow: hidden !important;
+}
+
+/* ✅ 버튼은 padding 영역(빈공간)에만 위치 */
+.popupSwiper .swiper-button-prev{ left: 34px !important; }
+.popupSwiper .swiper-button-next{ right: 34px !important; }
+.popupSwiper .swiper-button-prev,
+.popupSwiper .swiper-button-next{ z-index: 30 !important; }
+
+/* ✅ 도트도 아래로 내려서 카드 안 가리게 */
+.popupSwiper .swiper-pagination{ bottom: 10px !important; }
+
+/* ✅ 팝업 섹션은 “카드 박스” 느낌 제거 (HTML에서 section에 popup-section 클래스 붙일 것) */
+.popup-section{
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+.popup-section .card-header{
+    padding: 0 6px !important;
+    margin-bottom: 14px !important;
 }
