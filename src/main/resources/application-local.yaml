@@ -4,7 +4,7 @@ spring:
       on-profile: local
   datasource:
     # 🔥 Docker Oracle XE가 host 3000 포트로 열려있던 예전 설정으로 복귀
-    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+    url: jdbc:oracle:thin:@//localhost:3000/XEPDB1
     username: tkk
     password: kosmo1234
     driver-class-name: oracle.jdbc.OracleDriver

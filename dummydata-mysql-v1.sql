@@ -84,19 +84,208 @@ INSERT INTO store_bookmark (store_bookmark_id, member_id, store_id, created_at) 
 
 -- 2-5. STORE_GOODS (매장 굿즈) - 예시 10개
 INSERT INTO store_goods (
-    goods_id, store_id, name, work_name, character_name, category,
+    store_id, name, work_name, character_name, category,
     price, stock_qty, thumbnail_url, created_at
 ) VALUES
-      (1, 1, '블루록 포카 세트', '블루록', '이사기 요이치', '포카', 8000, 12, NULL, NOW()),
-      (2, 1, '주술회전 아크릴 키링', '주술회전', '고죠 사토루', '키링', 12000, 5, NULL, NOW()),
-      (3, 2, '귀멸의 칼날 1/7 피규어', '귀멸의 칼날', '렌고쿠 쿄쥬로', '피규어', 98000, 2, NULL, NOW()),
-      (4, 2, '체인소맨 포스터', '체인소맨', '덴지', '포스터', 5000, 20, NULL, NOW()),
-      (5, 3, '주술회전 클리어 파일', '주술회전', '이타도리', '잡화', 3000, 30, NULL, NOW()),
-      (6, 4, '블루록 머플러', '블루록', NULL, '의류', 22000, 7, NULL, NOW()),
-      (7, 5, '귀멸 포카 랜덤팩', '귀멸의 칼날', NULL, '포카', 6000, 15, NULL, NOW()),
-      (8, 6, '체인소맨 키링 세트', '체인소맨', NULL, '키링', 15000, 8, NULL, NOW()),
-      (9, 7, '원피스 피규어 세트', '원피스', '루피', '피규어', 150000, 1, NULL, NOW()),
-      (10,8, '마호소녀 포카', '마호소녀', NULL, '포카', 7000, 10, NULL, NOW());
+-- 1. 루피 BIG SOFVIMATES
+( 1, 'BIG SOFVIMATES 루피 피규어', '원피스', '몽키 D. 루피', '피규어',
+ 28000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+BIG+SOFVIMATES+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC.png', NOW()),
+
+-- 2. 쵸파 드럼왕국 Ver.
+( 1, 'BIG SOFVIMATES 쵸파 드럼왕국 Ver.', '원피스', '토니토니 쵸파', '피규어',
+ 26000, 10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+BIG+SOFVIMATES+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B5%B8%ED%8C%8C+%EB%93%9C%EB%9F%BC+%EC%99%95%EA%B5%AD+Ver..png', NOW()),
+
+-- 3. 트라팔가 로우 DXF
+(1, 'DXF 그랜드라인 스페셜 트라팔가 로우', '원피스', '트라팔가 로우', '피규어',
+ 32000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+DXF+%EA%B7%B8%EB%9E%9C%EB%93%9C%EB%9D%BC%EC%9D%B8+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%8A%A4%ED%8E%98%EC%85%9C+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%ED%8A%B8%EB%9D%BC%ED%8C%94%EA%B0%80+%EB%A1%9C%EC%9A%B0.png', NOW()),
+
+-- 4. 루피 GRANDISTA 스페셜
+(1, 'GRANDISTA 루피 스페셜 에디션', '원피스', '몽키 D. 루피', '피규어',
+ 35000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+GRANDISTA+%EA%B7%B8%EB%9E%9C%EB%94%94%EC%8A%A4%ED%83%80+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC+%EC%8A%A4%ED%8E%98%EC%85%9C+%EC%97%90%EB%94%94%EC%85%98.png', NOW()),
+
+-- 5. 샹크스 THEORAMA SOUL
+(1, 'THEORAMA SOUL 샹크스', '원피스', '샹크스', '피규어',
+ 68000, 3, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+THEORAMA+SOUL+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%83%B9%ED%81%AC%EC%8A%A4.png', NOW()),
+
+-- 6. 루피 VS 키자루 메가 WCF
+(1, '메가 월드 콜렉터블 루피 VS 키자루', '원피스', '몽키 D. 루피', '피규어',
+ 55000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80+%EC%9B%94%EB%93%9C+%EC%BD%9C%EB%A0%89%ED%84%B0%EB%B8%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC+VS+%EB%B3%BC%EC%82%AC%EB%A6%AC%EB%85%B8++%ED%82%A4%EC%9E%90%EB%A3%A8.png', NOW()),
+
+-- 7. 상디 POP KxMAXIMUM
+(1, 'POP KxMAXIMUM 상디', '원피스', '상디', '포스터',
+ 198000, 2, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+PoP+Portrait.Of.Pirates+KxMAXIMUM+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%83%81%EB%94%94.jpg', NOW()),
+
+-- 8. 흰 수염 POP NEO-MAXIMUM
+(1, 'POP NEO-MAXIMUM 흰 수염', '원피스', '에드워드 뉴게이트', '포스터',
+ 298000, 1, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+POP+Portrait.Of.Pirates+NEO-MAXIMUM+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%97%90%EB%93%9C%EC%9B%8C%EB%93%9C+%EB%89%B4%EA%B2%8C%EC%9D%B4%ED%8A%B8++%ED%9D%B0+%EC%88%98%EC%97%BC.jpg', NOW()),
+
+-- 9. 징베 POP WA-MAXIMUM
+(1, 'POP WA-MAXIMUM 바다의 협객 징베', '원피스', '징베', '포스터',
+ 210000, 2, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+PoP+Portrait.Of.Pirates+WA-MAXIMUM+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%B0%94%EB%8B%A4%EC%9D%98+%ED%98%91%EA%B0%9D+%EC%A7%95%EB%B2%A0.jpg', NOW()),
+
+-- 10. 루피 기어5 스타일 피규어
+(1, '기어5 루피 스페셜 액션 피규어', '원피스', '몽키 D. 루피', '피규어',
+ 72000, 3, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC+%EA%B8%B0%EC%96%B4+5.jpg', NOW()),
+
+-- 11. 하이큐 Yummy 마스코트 A5 엽서 세트
+(1, '하이큐 Yummy 마스코트 A5 엽서 세트', '하이큐', '히나타 쇼요', '엽서',
+    12000, 15, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+Yummy+%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EA%B3%B5%EC%8B%9D+A5+%EC%97%BD%EC%84%9C+%EC%84%B8%ED%8A%B8.png', NOW()),
+
+-- 12. 보쿠토 코타로 푸리누이타치 미니 봉제인형
+(1, '푸리누이타치 드림 미니 봉제인형', '하이큐', '보쿠토 코타로', '봉제인형',
+    22000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+-+%EB%B3%B4%EC%BF%A0%ED%86%A0+%EC%BD%94%ED%83%80%EB%A1%9C.jpg', NOW()),
+
+-- 13. 쿠로오 테츠로 Mocho 아크릴 스탠드
+(1, 'Mocho 시리즈 아크릴 스탠드 3탄', '하이큐', '쿠로오 테츠로', '아크릴스탠드',
+    18000, 10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%8B%B1%ED%81%AC+%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98+Mocho+%EC%8B%9C%EB%A6%AC%EC%A6%88+3%ED%83%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%BF%A0%EB%A1%9C%EC%98%A4+%ED%85%8C%EC%B8%A0%EB%A1%9C.jpg', NOW()),
+
+-- 14. 코모리 모토야 Mocho 아크릴 키체인
+(1, 'Mocho 시리즈 아크릴 키체인 4탄', '하이큐', '코모리 모토야', '아크릴키링',
+    9000, 20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%8B%B1%ED%81%AC+%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98+Mocho+%EC%8B%9C%EB%A6%AC%EC%A6%88+4%ED%83%84+%EC%95%84%ED%81%AC%EB%A6%B4+%ED%82%A4%EC%B2%B4%EC%9D%B8+-+%EC%BD%94%EB%AA%A8%EB%A6%AC+%EB%AA%A8%ED%86%A0%EC%95%BC.jpg', NOW()),
+
+-- 15. 쿠로오 테츠로 치미케모 마스코트 봉제인형
+(1, '치미케모 마스코트 봉제인형 JF2026', '하이큐', '쿠로오 테츠로', '봉제인형',
+    32000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%97%94%EC%8A%A4%EC%B9%B4%EC%9D%B4+JF+2026+%EC%B4%88%ED%8A%B9%EB%8C%80+%EC%B9%98%EB%AF%B8%EC%BC%80%EB%AA%A8+%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%BF%A0%EB%A1%9C%EC%98%A4+%ED%85%8C%EC%B8%A0%EB%A1%9C.png', NOW()),
+
+-- 16. 히나타 쇼요 치미케모 마스코트 봉제인형
+(1, '치미케모 마스코트 봉제인형 JF2026', '하이큐', '히나타 쇼요', '봉제인형',
+    32000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%97%94%EC%8A%A4%EC%B9%B4%EC%9D%B4+JF+2026+%EC%B4%88%ED%8A%B9%EB%8C%80+%EC%B9%98%EB%AF%B8%EC%BC%80%EB%AA%A8+%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%ED%9E%88%EB%82%98%ED%83%80+%EC%87%BC%EC%9A%94.png', NOW()),
+
+-- 17. 아카아시 케이지 점프 아크릴 기가 피규어 스탠드
+(1, '점프 아크릴 기가 피규어 스탠드', '하이큐', '아카아시 케이지', '아크릴스탠드',
+    29000, 7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%A0%90%ED%94%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EA%B8%B0%EA%B0%80+%ED%94%BC%EA%B7%9C%EC%96%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%95%84%EC%B9%B4%EC%95%84%EC%8B%9C+%EC%BC%80%EC%9D%B4%EC%A7%80.png', NOW()),
+
+-- 18. 코즈메 켄마 JF2026 아크릴 스탠드
+(1, 'JF2026 아크릴 스탠드', '하이큐', '코즈메 켄마', '아크릴스탠드',
+    25000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%ED%83%80%EC%B9%B4%EB%9D%BC%ED%86%A0%EB%AF%B8+%EC%95%84%EC%B8%A0+JF+2026+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%BD%94%EC%A6%88%EB%A9%94+%EC%BC%84%EB%A7%88.png', NOW()),
+
+-- 19. 카게야마 토비오 룩업 피규어 유니폼 Ver.
+(1, '룩업 피규어 유니폼 Ver.', '하이큐', '카게야마 토비오', '피규어',
+    42000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B9%B4%EA%B2%8C%EC%95%BC%EB%A7%88+%ED%86%A0%EB%B9%84%EC%98%A4+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..png', NOW()),
+
+-- 20. 히나타 쇼요 룩업 피규어 유니폼 Ver.
+(1, '룩업 피규어 유니폼 Ver.', '하이큐', '히나타 쇼요', '피규어',
+    42000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%ED%9E%88%EB%82%98%ED%83%80+%EC%87%BC%EC%9A%94+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..png', NOW()),
+
+-- 21. 넨도로이드 카마도 네즈코
+(1, '넨도로이드 1194 카마도 네즈코', '귀멸의 칼날', '카마도 네즈코', '피규어',
+ 62000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B5%BF%EC%8A%A4%EB%A7%88%EC%9D%BC+%EC%BB%B4%ED%8D%BC%EB%8B%88+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+1194+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B9%B4%EB%A7%88%EB%8F%84+%EB%84%A4%EC%A6%88%EC%BD%94.png', NOW()),
+
+-- 22. 넨도로이드 아가츠마 젠이츠
+(1, '넨도로이드 1334 아가츠마 젠이츠', '귀멸의 칼날', '아가츠마 젠이츠', '피규어',
+ 62000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B5%BF%EC%8A%A4%EB%A7%88%EC%9D%BC+%EC%BB%B4%ED%8D%BC%EB%8B%88+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+1334+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%95%84%EA%B0%80%EC%B8%A0%EB%A7%88+%EC%A0%A0%EC%9D%B4%EC%B8%A0.png', NOW()),
+
+-- 23. Fluffy Puffy 챠챠마루
+(1, 'Fluffy Puffy 챠챠마루 피규어', '귀멸의 칼날', '챠챠마루', '피규어',
+ 28000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+Fluffy+Puffy+%ED%94%8C%EB%9F%AC%ED%94%BC+%ED%8D%BC%ED%94%BC+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B1%A0%EC%B1%A0%EB%A7%88%EB%A3%A8.jpg', NOW()),
+
+-- 24. PalVerse 피규어 1탄 랜덤
+(1, 'PalVerse 피규어 1탄 랜덤', '귀멸의 칼날', '랜덤', '피규어',
+ 12000, 20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EB%B6%80%EC%8B%9C%EB%A1%9C%EB%93%9C+%ED%81%AC%EB%A6%AC%EC%97%90%EC%9D%B4%ED%8B%B0%EB%B8%8C+PalVerse+%ED%94%BC%EA%B7%9C%EC%96%B4+1%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', NOW()),
+
+-- 25. 모치코로링 누이 봉제인형 7탄 랜덤
+(1, '모치코로링 누이 봉제인형 7탄 랜덤', '귀멸의 칼날', '랜덤', '봉제인형',
+ 14000, 18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%EB%AA%A8%EC%B9%98%EC%BD%94%EB%A1%9C%EB%A7%81+%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+7%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88jpg.jpg', NOW()),
+
+-- 26. 피탄코 러버 스트랩 A 랜덤
+(1, '피탄코 러버 스트랩 A 랜덤', '귀멸의 칼날', '랜덤', '러버스트랩',
+ 8000, 25, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%ED%94%BC%ED%83%84%EC%BD%94+%EB%9F%AC%EB%B2%84+%EC%8A%A4%ED%8A%B8%EB%9E%A9+A+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', NOW()),
+
+-- 27. 룩업 피규어 아가츠마 젠이츠
+(1, '룩업 피규어 아가츠마 젠이츠', '귀멸의 칼날', '아가츠마 젠이츠', '피규어',
+ 42000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%95%84%EA%B0%80%EC%B8%A0%EB%A7%88+%EC%A0%A0%EC%9D%B4%EC%B8%A0.png', NOW()),
+
+-- 28. 극장판 무한성편 키 비주얼 A3 포스터
+(1, '극장판 무한성편 키 비주얼 A3 포스터', '귀멸의 칼날', '카마도 탄지로', '포스터',
+ 18000, 10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%ED%82%A4+%EB%B9%84%EC%A3%BC%EC%96%BC+%ED%8A%B9%EC%88%98+%EC%9D%B8%EC%87%84+A3+%ED%8F%AC%EC%8A%A4%ED%84%B0.png', NOW()),
+
+-- 29. 룩업 피규어 도우마
+(1, '룩업 피규어 도우마', '귀멸의 칼날', '도우마', '피규어',
+ 44000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%8F%84%EC%9A%B0%EB%A7%88.png', NOW()),
+
+-- 30. 룩업 피규어 코쵸우 시노부 스마일 Ver.
+(1, '룩업 피규어 코쵸우 시노부 스마일 Ver.', '귀멸의 칼날', '코쵸우 시노부', '피규어',
+ 44000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%BD%94%EC%B5%B8%EC%9A%B0+%EC%8B%9C%EB%85%B8%EB%B6%80+%EC%8A%A4%EB%A7%88%EC%9D%BC+Ver..png', NOW()),
+
+-- 31. JF2026 아크릴 스탠드 쵸소우
+(1, 'JF2026 아크릴 스탠드 쵸소우', '주술회전', '쵸소우', '아크릴스탠드',
+ 24000, 7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EA%B5%BF%EC%A6%88+%EB%8F%84%ED%98%B8+JF+2026+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%B5%B8%EC%86%8C%EC%9A%B0.png', NOW()),
+
+-- 32. 푸리누이타치 드림 미니 봉제인형 옷코츠 유타
+(1, '푸리누이타치 드림 미니 봉제인형', '주술회전', '옷코츠 유타', '봉제인형',
+ 22000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%98%B7%EC%BD%94%EC%B8%A0+%EC%9C%A0%ED%83%80.jpg', NOW()),
+
+-- 33. 푸리누이타치 드림 미니 봉제인형 이타도리 유지
+(1, '푸리누이타치 드림 미니 봉제인형', '주술회전', '이타도리 유지', '봉제인형',
+ 22000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', NOW()),
+
+-- 34. 트레이딩 글리터 캔 뱃지 할로윈 Ver. 랜덤
+(1, '트레이딩 글리터 캔 뱃지 할로윈 Ver. 랜덤', '주술회전', '랜덤', '캔뱃지',
+ 7000, 30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9+%EA%B8%80%EB%A6%AC%ED%84%B0+%EC%BA%94+%EB%B1%83%EC%A7%80+%ED%95%A0%EB%A1%9C%EC%9C%88+Ver.+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', NOW()),
+
+-- 35. JF2026 아크릴 스탠드 옷코츠 유타
+(1, 'JF2026 아크릴 스탠드 옷코츠 유타', '주술회전', '옷코츠 유타', '아크릴스탠드',
+ 24000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EA%B5%BF%EC%A6%88+%EB%8F%84%ED%98%B8+JF+2026+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%98%B7%EC%BD%94%EC%B8%A0+%EC%9C%A0%ED%83%80.png', NOW()),
+
+-- 36. 후와푸치 데포르메 피규어 이타도리 유지
+(1, '후와푸치 데포르메 피규어', '주술회전', '이타도리 유지', '피규어',
+ 36000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EA%B5%BF%EC%A6%88+%EC%84%B8%EA%B0%80+%ED%8E%98%EC%9D%B4%EB%B8%8C+%ED%9B%84%EC%99%80%ED%91%B8%EC%B9%98+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', NOW()),
+
+-- 37. 룩업 피규어 이누마키 토게
+(1, '룩업 피규어 이누마키 토게', '주술회전', '이누마키 토게', '피규어',
+ 42000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%EB%88%84%EB%A7%88%ED%82%A4+%ED%86%A0%EA%B2%8C.png', NOW()),
+
+-- 38. 아쿠누이 봉제인형 후시구로 메구미
+(1, '아쿠누이 봉제인형', '주술회전', '후시구로 메구미', '봉제인형',
+ 26000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EC%95%84%EC%BF%A0%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+-+%ED%9B%84%EC%8B%9C%EA%B5%AC%EB%A1%9C+%EB%A9%94%EA%B5%AC%EB%AF%B8.png', NOW()),
+
+-- 39. 후와푸치 데포르메 피규어 게토 스구루
+(1, '후와푸치 데포르메 피규어', '주술회전', '게토 스구루', '피규어',
+ 38000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%ED%9A%8C%EC%98%A5+%EC%98%A5%EC%A0%88+%ED%9B%84%EC%99%80%ED%91%B8%EC%B9%98+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EA%B2%8C%ED%86%A0+%EC%8A%A4%EA%B5%AC%EB%A3%A8.png', NOW()),
+
+-- 40. 후와푸치 데포르메 피규어 고죠 사토루
+(1, '후와푸치 데포르메 피규어', '주술회전', '고죠 사토루', '피규어',
+ 38000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%ED%9A%8C%EC%98%A5+%EC%98%A5%EC%A0%88+%ED%9B%84%EC%99%80%ED%91%B8%EC%B9%98+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8.png', NOW()),
+
+-- 41. Crux 트래블 시리즈 미니 아크릴 스탠드 시도 류세이
+(1, 'Crux 트래블 시리즈 미니 아크릴 스탠드', '블루 록', '시도 류세이', '아크릴스탠드',
+ 19000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EA%B5%BF%EC%A6%88+Crux+%ED%8A%B8%EB%9E%98%EB%B8%94+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EB%AF%B8%EB%8B%88+%EC%BA%90%EB%A6%AD%ED%84%B0+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%8B%9C%EB%8F%84+%EB%A5%98%EC%84%B8%EC%9D%B4.jpg', NOW()),
+
+-- 42. PalVerse Palé 피규어 나기 세이시로
+(1, 'PalVerse Palé 피규어', '블루 록', '나기 세이시로', '피규어',
+ 32000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EA%B5%BF%EC%A6%88+%EB%B6%80%EC%8B%9C%EB%A1%9C%EB%93%9C+PalVerse+Pal%C3%A9+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.jpg', NOW()),
+
+-- 43. 메가하우스 룩업 피규어 이사기 요이치
+(1, '룩업 피규어 이사기 요이치', '블루 록', '이사기 요이치', '피규어',
+ 42000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%EC%82%AC%EA%B8%B0+%EC%9A%94%EC%9D%B4%EC%B9%98.png', NOW()),
+
+-- 44. 반다이 공식 솜누이 나기 세이시로
+(1, '반다이 공식 솜누이', '블루 록', '나기 세이시로', '봉제인형',
+ 26000, 7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EA%B3%B5%EC%8B%9D+%EC%86%9C%EB%88%84%EC%9D%B4+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.png', NOW()),
+
+-- 45. 벨하우스 아크릴 미니 스탠드 백귀야행 Ver. 나기 세이시로
+(1, '아크릴 미니 스탠드 백귀야행 Ver.', '블루 록', '나기 세이시로', '아크릴스탠드',
+ 17000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%B2%A8%ED%95%98%EC%9A%B0%EC%8A%A4+%EC%95%84%ED%81%AC%EB%A6%B4+%EB%AF%B8%EB%8B%88+%EC%8A%A4%ED%83%A0%EB%93%9C+%EB%B0%B1%EA%B7%80%EC%95%BC%ED%96%89+Ver.+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.png', NOW()),
+
+-- 46. 블루 록 아크릴 스탠드 랜덤
+(1, '아크릴 스탠드 랜덤 단품', '블루 록', '랜덤', '아크릴스탠드',
+ 12000, 20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.png', NOW()),
+
+-- 47. 하네스 Style 미니 아크릴 스탠드 나기 세이시로
+(1, '하네스 Style 미니 아크릴 스탠드', '블루 록', '나기 세이시로', '아크릴스탠드',
+ 18000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%8C%80+%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8+%EB%AF%B8%EB%8B%88+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%95%98%EB%84%A4%EC%8A%A4+Style+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C+.png', NOW()),
+
+-- 48. 파샤코레 랜덤
+(1, '파샤코레 랜덤 단품', '블루 록', '랜덤', '포토카드',
+ 6000, 30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%8C%8C%EC%83%A4%EC%BD%94%EB%A0%88+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.png', NOW()),
+
+-- 49. 푸니토푸 봉제인형 3탄 바치라 메구루
+(1, '푸니토푸 봉제인형 3탄', '블루 록', '바치라 메구루', '봉제인형',
+ 24000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%91%B8%EB%8B%88%ED%86%A0%ED%91%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+3%ED%83%84+-+%EB%B0%94%EC%B9%98%EB%9D%BC+%EB%A9%94%EA%B5%AC%EB%A3%A8.jpg', NOW()),
+
+-- 50. 푸니토푸 봉제인형 3탄 치기리 효마
+(1, '푸니토푸 봉제인형 3탄', '블루 록', '치기리 효마', '봉제인형',
+ 24000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%91%B8%EB%8B%88%ED%86%A0%ED%91%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+3%ED%83%84+-+%EC%B9%98%EA%B8%B0%EB%A6%AC+%ED%9A%A8%EB%A7%88.jpg', NOW());
 
 -- 2-6. SEARCH_LOG (검색 로그)
 INSERT INTO search_log (search_id, member_id, keyword, target_type, target_id, created_at) VALUES
