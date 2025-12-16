@@ -371,81 +371,181 @@ body {
 .fab-icon { font-size: 16px; }
 
 /* =========================
-   Footer
+   Footer (Figma-like)
 ========================= */
-.tkk-footer {
-    margin-top: 40px;
-    background: #0b1220;
-    color: #e5e7eb;
+.tkk-footer{
+    margin-top: 60px;
+    background: #0b0f17;
+    color: #e8e8ea;
 }
 
-.tkk-footer-inner {
-    max-width: 1200px;
+.tkk-footer-inner{
+    width: min(1200px, 92%);
     margin: 0 auto;
-    padding: 26px 16px;
+    padding: 48px 0 18px;
 }
 
-.tkk-footer-grid {
+.tkk-footer-grid{
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 18px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr; /* ✅ 4컬럼 */
+    gap: 48px;
+    align-items: start;
 }
 
-.tkk-footer-title {
-    font-weight: 1000;
-    margin: 0 0 10px;
-}
-
-.tkk-footer-link {
-    display: block;
-    text-decoration: none;
-    color: #e5e7eb;
-    opacity: 0.85;
-    margin: 8px 0;
+.tkk-footer-title{
     font-weight: 800;
-}
-.tkk-footer-link:hover { opacity: 1; }
-
-.tkk-footer-contactCard {
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 16px;
-    padding: 14px;
-    background: rgba(255,255,255,0.03);
+    font-size: 14px;
+    margin: 0 0 14px;
+    color: #ffffff;
 }
 
-.tkk-contact-row {
+.tkk-footer-link{
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,.72);
+    text-decoration: none;
+    margin: 10px 0;
+}
+.tkk-footer-link:hover{ color: rgba(255,255,255,.92); }
+
+.tkk-footer-left{ max-width: 320px; }
+
+.tkk-footer-logoBox{
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #ffffff;         /* ✅ 피그마처럼 흰 박스 */
+    box-shadow: 0 8px 22px rgba(0,0,0,.25);
+    margin-bottom: 14px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+
+/* 로고 이미지 넣을 때 */
+.tkk-footer-logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tkk-footer-desc{
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.70);
+    margin: 0 0 14px;
+}
+
+/* footer 소셜 아이콘 버튼 */
+.tkk-footer-social{
+    display:flex;
+    gap:14px;
+    margin-top:18px;
+}
+
+.tkk-social{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 12px 28px rgba(0,0,0,.25);
+    color: rgba(255,255,255,.92);
+    text-decoration:none;
+    transition: transform .15s ease, background .15s ease;
+}
+
+.tkk-social:hover{
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.10);
+}
+
+/* SVG 아이콘 공통 */
+.tkk-social svg{
+    width:24px;
+    height:24px;
+    fill:none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: .95;
+}
+
+.tkk-footer-contactCard{
+    padding: 14px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.tkk-contact-row{
     display: flex;
     gap: 10px;
-    align-items: center;
+    align-items: flex-start;
+    margin-bottom: 10px;
 }
 
-.tkk-footer-bottom {
-    padding-top: 14px;
-    opacity: 0.85;
+.tkk-contact-icon{ opacity: .9; }
+
+.tkk-contact-label{
+    font-size: 12px;
+    color: rgba(255,255,255,.60);
+}
+
+.tkk-contact-value{
+    font-size: 13px;
     font-weight: 700;
+    color: rgba(255,255,255,.90);
 }
 
-.tkk-footer-bottom-inner {
+.tkk-footer-hours{
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255,255,255,.60);
+}
+
+.tkk-footer-bottom{
+    margin-top: 26px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 16px;
+}
+
+.tkk-footer-bottom-inner{
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: rgba(255,255,255,.55);
+}
+
+.tkk-footer-bottom-links{
+    display: flex;
+    gap: 14px;
     flex-wrap: wrap;
 }
 
-.tkk-footer-bottom-links {
-    display: flex;
-    gap: 12px;
-}
-
-.tkk-footer-bottom-link {
-    color: #e5e7eb;
+.tkk-footer-bottom-link{
+    color: rgba(255,255,255,.60);
     text-decoration: none;
-    opacity: 0.85;
 }
-.tkk-footer-bottom-link:hover { opacity: 1; }
+.tkk-footer-bottom-link:hover{ color: rgba(255,255,255,.85); }
 
+/* ✅ 반응형: 좁아지면 2열 -> 1열 */
+@media (max-width: 900px){
+    .tkk-footer-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+}
+@media (max-width: 560px){
+    .tkk-footer-grid{
+        grid-template-columns: 1fr;
+    }
+}
 /* =========================
    반응형
 ========================= */
