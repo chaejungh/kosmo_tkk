@@ -100,8 +100,8 @@
         isUpcoming=${start != null and today.isBefore(start)}
      ">
 
-    <span class="popup-dot"
-          th:classappend="${isUpcoming} ? ' upcoming' : (${isActive} ? '' : ' ended')"></span>
+                                <span class="popup-dot"
+                                      th:classappend="${isUpcoming} ? ' upcoming' : (${isActive} ? '' : ' ended')"></span>
 
                                 <span th:if="${isUpcoming}">예정</span>
                                 <span th:if="${!isUpcoming and isActive}">진행중</span>
@@ -138,7 +138,7 @@
 
             </div>
 
-            <!-- 네비게이션 (이미지 안 가리지 않음, CSS로 해결) -->
+            <!-- 네비게이션 -->
             <div class="swiper-button-prev popup-nav"></div>
             <div class="swiper-button-next popup-nav"></div>
             <div class="swiper-pagination"></div>
@@ -162,6 +162,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
+            // ✅ 팝업 스와이퍼
             const popupSwiper = new Swiper(".popupSwiper", {
                 slidesPerView: 3,
                 slidesPerGroup: 1,
@@ -182,12 +183,116 @@
                 },
 
                 breakpoints: {
-                    0:   { slidesPerView: 1.1, spaceBetween: 14 },
-                    720: { slidesPerView: 2,   spaceBetween: 18 },
-                    900: { slidesPerView: 3,   spaceBetween: 24 }
+                    0:   { slidesPerView: 1.1, slidesPerGroup: 1, spaceBetween: 14 },
+                    720: { slidesPerView: 2,   slidesPerGroup: 1, spaceBetween: 18 },
+                    900: { slidesPerView: 3,   slidesPerGroup: 1, spaceBetween: 24 }
                 }
             });
 
+            // ======================================================
+            // ✅ 지도 iframe ↔ 오른쪽 "매장 목록" 연동 (이게 빠져있던 부분)
+            // ======================================================
+            (function () {
+                const sideList = document.getElementById('mapSideList');
+                const iframe = document.querySelector('.home-map iframe');
+
+                const qPlace = document.getElementById('qPlace');
+                const qGoods = document.getElementById('qGoods');
+                const btnMyPos = document.getElementById('btnMyPos');
+
+                function getIframeOrigin(){
+                    try{
+                        if(!iframe) return null;
+                        return new URL(iframe.getAttribute('src') || iframe.src, window.location.href).origin;
+                    }catch(e){
+                        return null;
+                    }
+                }
+
+                function sendSearch(){
+                    if (!iframe || !iframe.contentWindow) return;
+                    iframe.contentWindow.postMessage({
+                        type: 'MAP_SEARCH',
+                        place: (qPlace?.value || '').trim(),
+                        goods: (qGoods?.value || '').trim()
+                    }, '*'); // ✅ 혼용(도메인/IP) 대비: iframe에서 다시 origin 체크 가능
+                }
+
+                function sendMyPos(){
+                    if (!iframe || !iframe.contentWindow) return;
+                    iframe.contentWindow.postMessage({ type:'MAP_MY_POSITION' }, '*');
+                }
+
+                if (qPlace) qPlace.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendSearch(); });
+                if (qGoods) qGoods.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendSearch(); });
+                if (btnMyPos) btnMyPos.addEventListener('click', sendMyPos);
+
+                function renderPlaces(places){
+                    if (!sideList) return;
+                    const list = Array.isArray(places) ? places : [];
+                    sideList.innerHTML = '';
+
+                    if(!list.length){
+                        sideList.innerHTML = '<div class="home-store-empty">검색 결과가 없습니다.</div>';
+                        return;
+                    }
+
+                    const ul = document.createElement('ul');
+                    ul.className = 'home-store-list';
+
+                    list.forEach((p, idx)=>{
+                        const li = document.createElement('li');
+                        li.className = 'home-store-item';
+
+                        const storeId = (p.storeId !== undefined && p.storeId !== null) ? p.storeId : p.id;
+
+                        li.innerHTML = `
+                            <div class="home-store-line1">
+                              <button type="button" class="home-store-name js-focus">${p.name || '이름 없음'}</button>
+                              ${p.source ? `<span class="home-store-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
+                              ${(p.source === 'STORE' && storeId != null)
+                            ? `<button type="button" class="home-store-detail" data-store-id="${storeId}">상세보기</button>`
+                            : ''}
+                            </div>
+                            <div class="home-store-meta">${p.roadAddress || p.address || ''}</div>
+                        `;
+
+                        // ✅ 목록 클릭 → 지도 포커스
+                        li.querySelector('.js-focus').addEventListener('click', ()=>{
+                            if (iframe && iframe.contentWindow){
+                                iframe.contentWindow.postMessage({ type:'MAP_FOCUS_PLACE', idx }, '*');
+                            }
+                        });
+
+                        // ✅ 우리 DB 매장 상세보기 이동
+                        const detailBtn = li.querySelector('.home-store-detail');
+                        if(detailBtn){
+                            detailBtn.addEventListener('click', (e)=>{
+                                e.stopPropagation();
+                                const id = detailBtn.dataset.storeId;
+                                if(id) window.location.href = `/goods/store/${encodeURIComponent(id)}`;
+                            });
+                        }
+
+                        ul.appendChild(li);
+                    });
+
+                    sideList.appendChild(ul);
+                }
+
+                // ✅ iframe → 부모 결과 받기 (origin은 iframe src 기준으로 검사)
+                window.addEventListener('message', (event)=>{
+                    const iframeOrigin = getIframeOrigin();
+
+                    // iframeOrigin을 얻을 수 있으면 그 기준으로만 허용
+                    if(iframeOrigin && event.origin !== iframeOrigin) return;
+
+                    const data = event.data;
+                    if(!data || data.type !== 'MAP_SEARCH_RESULTS') return;
+
+                    renderPlaces(data.places || []);
+                });
+            })();
         });
     </script>
 </th:block>
