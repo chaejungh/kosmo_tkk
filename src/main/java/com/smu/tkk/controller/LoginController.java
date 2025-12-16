@@ -38,27 +38,28 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam String loginId,
                         @RequestParam String loginPw,
-                        HttpSession session,
-                        Model model) throws SQLException {
+                        Model model,
+                        HttpSession session) throws SQLException {
 
         Member member = memberService.login(loginId, loginPw);
 
+        // ❌ 로그인 실패
         if (member == null) {
-            model.addAttribute("errorMessage", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            return "auth/login";
+            model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
+            return "auth/login";   // ✔ 반드시 auth/login
         }
 
-        // LEVEL 0 → 이메일 인증 미완료
-        if (member.getUserLevel() == 0L) {
-            model.addAttribute("errorMessage", "이메일 인증을 완료해야 로그인할 수 있습니다.");
-            return "auth/login";
+        // ❌ 이메일 미인증 (LEVEL 0)
+        if (member.getUserLevel() == 0) {
+            model.addAttribute("emailNotVerified", true);
+            model.addAttribute("email", member.getEmail());
+            return "auth/login";   // ✔ 이메일 인증안됨 안내 표시
         }
 
-        // 성공
-        session.setAttribute("loginMember", member);
+        // ✅ 정상 로그인
         session.setAttribute("memberId", member.getId());
+        session.setAttribute("loginMember", member);
 
         return "redirect:/";
     }
-
 }
