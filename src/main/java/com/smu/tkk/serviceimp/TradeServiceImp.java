@@ -249,6 +249,16 @@ public class TradeServiceImp implements TradeService {
     }
 
     @Override
+    public Page<TradePostListDto> searchDto(String keyword, Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public Page<TradePostListDto> readBySellerIdDto(Long sellerId, Pageable pageable) {
+        return null;
+    }
+
+    @Override
     public Page<TradePostListDto> readAllOrderByLatest(Pageable pageable) {
         Page<TradePost> posts = tradeRepository.findAllByOrderByCreatedAtDesc(pageable);
         return posts.map(this::toListDTO);

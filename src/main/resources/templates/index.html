@@ -5,7 +5,347 @@
       layout:decorate="~{fragments/tkk_fragment/layout}">
 
 <head>
-    <th:block layout:fragment="head"></th:block>
+    <!-- ✅ 이 페이지에서만 쓰는 head -->
+    <th:block layout:fragment="head">
+        <!-- Swiper (레이아웃에서 이미 로드 중이면 2줄은 빼도 됨) -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+        <style>
+            /* =========================
+               ✅ 홈 화면 폭/크기 고정 (서버처럼 보이게)
+               ========================= */
+            *, *::before, *::after { box-sizing: border-box; }
+            html { font-size: 16px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+            body { margin: 0; padding: 0; }
+
+            /* ✅ "전체 폭"이 이상해졌을 때 가장 흔한 원인: 다른 CSS가 max-width를 덮어씀
+               -> 홈에서만 확실하게 1200 기준으로 다시 고정 */
+            .tkk-container{
+                width: min(1200px, 92vw) !important;
+                max-width: 1200px !important;
+                margin: 0 auto !important;
+                padding: 22px 16px 60px !important;
+            }
+
+            /* =========================
+               공통 카드
+               ========================= */
+            .card {
+                background: #fff;
+                border: 1px solid #eef2f7;
+                border-radius: 18px;
+                box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+                padding: 18px;
+            }
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 14px;
+            }
+            .card-title {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 18px;
+                font-weight: 900;
+            }
+
+            .pill {
+                display: inline-flex;
+                align-items: center;
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-size: 12px;
+                font-weight: 800;
+            }
+            .pill-blue { background: #e6f0ff; color: #2557d6; }
+            .pill-purple { background: #f1e8ff; color: #6d28d9; }
+
+            /* =========================
+               홈 검색 줄
+               ========================= */
+            .home-search-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr auto;
+                gap: 12px;
+                margin-bottom: 14px;
+            }
+            .home-input {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 14px;
+                border: 1px solid #e5e7eb;
+                border-radius: 14px;
+                background: #fff;
+                min-width: 0;
+            }
+            .home-input input {
+                width: 100%;
+                min-width: 0;
+                border: none;
+                outline: none;
+                font-size: 14px;
+            }
+            .home-loc-btn {
+                border: none;
+                background: #111827;
+                color: #fff;
+                border-radius: 14px;
+                padding: 12px 16px;
+                font-weight: 800;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+
+            /* =========================
+               지도 + 목록
+               ========================= */
+            .home-map-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+                gap: 16px;
+                align-items: stretch;
+            }
+            .home-map {
+                border-radius: 16px;
+                overflow: hidden;
+                min-height: 420px;
+                background: #f3f4f6;
+            }
+            .home-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+            .home-store-panel {
+                border-radius: 16px;
+                border: 1px solid #e5e7eb;
+                overflow: hidden;
+                background: #fff;
+            }
+            .home-store-head {
+                background: #111827;
+                color: #fff;
+                padding: 12px 14px;
+                font-weight: 900;
+            }
+            .home-store-body {
+                padding: 12px 14px;
+                max-height: 420px;
+                overflow: auto;
+            }
+            .home-store-empty { color: #6b7280; font-weight: 700; }
+
+            .home-store-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                gap: 10px;
+            }
+            .home-store-item {
+                border: 1px solid #eef2f7;
+                border-radius: 14px;
+                padding: 10px 12px;
+            }
+            .home-store-line1 {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                min-width: 0;
+            }
+            .home-store-name {
+                border: none;
+                background: transparent;
+                font-weight: 900;
+                cursor: pointer;
+                padding: 0;
+                text-align: left;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .home-store-badge {
+                font-size: 12px;
+                font-weight: 900;
+                padding: 4px 8px;
+                border-radius: 999px;
+                background: #f3f4f6;
+                color: #111827;
+                white-space: nowrap;
+            }
+            .home-store-detail {
+                margin-left: auto;
+                border: none;
+                background: #111827;
+                color: #fff;
+                font-weight: 900;
+                padding: 6px 10px;
+                border-radius: 999px;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+            .home-store-meta {
+                margin-top: 6px;
+                font-size: 13px;
+                color: #6b7280;
+                font-weight: 700;
+            }
+
+            /* =========================
+               홈 팝업 섹션
+               ========================= */
+            .popup-section { margin-top: 18px; }
+
+            .btn-allview {
+                text-decoration: none;
+                font-weight: 900;
+                color: #111827;
+                padding: 10px 14px;
+                border-radius: 999px;
+                border: 1px solid #e5e7eb;
+            }
+            .btn-allview:hover { background: #f3f4f6; }
+
+            /* ✅ Swiper: 3개씩 + 버튼이 카드 안 가리지 않게 "양쪽 패딩 확보" */
+            .popupSwiper{
+                position: relative;
+                overflow: hidden;
+                padding: 6px 56px 30px; /* ← 양끝 버튼 자리 확보 */
+            }
+            .popupSwiper .swiper-wrapper{ align-items: stretch; }
+            .popupSwiper .swiper-slide{ height: auto; }
+
+            /* ✅ 버튼: 양 끝, 카드 안 가리게 */
+            .popupSwiper .swiper-button-prev,
+            .popupSwiper .swiper-button-next{
+                width: 42px;
+                height: 42px;
+                border-radius: 999px;
+                background: rgba(255,255,255,0.95);
+                border: 1px solid #e5e7eb;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+                top: 50%;
+                transform: translateY(-55%);
+            }
+            .popupSwiper .swiper-button-prev{ left: 10px; }
+            .popupSwiper .swiper-button-next{ right: 10px; }
+
+            .popupSwiper .swiper-button-prev::after,
+            .popupSwiper .swiper-button-next::after{
+                font-size: 16px;
+                font-weight: 900;
+                color: #111827;
+            }
+
+            .popupSwiper .swiper-pagination{
+                bottom: 6px !important;
+            }
+
+            /* ✅ 홈 팝업 카드 (다른 페이지랑 충돌 방지 위해 home- prefix) */
+            .home-popup-card{
+                border-radius: 18px;
+                overflow: hidden;
+                border: 1px solid #eef2f7;
+                box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+                background: #fff;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .home-popup-img{
+                height: 240px;
+                background: #f3f4f6;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+            }
+            .home-popup-badge{
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                background: rgba(255,255,255,0.92);
+                border: 1px solid #e5e7eb;
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-weight: 900;
+                display: inline-flex;
+                gap: 8px;
+                align-items: center;
+            }
+            .home-popup-dot{
+                width: 8px; height: 8px; border-radius: 50%;
+                background: #22c55e;
+            }
+            .home-popup-dot.upcoming { background: #3b82f6; }
+            .home-popup-dot.ended { background: #9ca3af; }
+
+            .home-popup-info{
+                padding: 14px 14px 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                flex: 1;
+            }
+            .home-popup-title{
+                margin: 0;
+                font-weight: 1000;
+                font-size: 16px;
+            }
+            .home-popup-place,
+            .home-popup-date{
+                margin: 0;
+                color: #6b7280;
+                font-weight: 800;
+                font-size: 13px;
+            }
+            .home-popup-cta{
+                display: inline-flex;
+                margin-top: 10px;
+                width: fit-content;
+                text-decoration: none;
+                background: #111827;
+                color: #fff;
+                font-weight: 900;
+                padding: 10px 12px;
+                border-radius: 12px;
+            }
+
+            /* =========================
+               문의 FAB
+               ========================= */
+            .fab {
+                position: fixed;
+                right: 22px;
+                bottom: 22px;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                background: #111827;
+                color: #fff;
+                padding: 12px 14px;
+                border-radius: 999px;
+                font-weight: 900;
+                box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+                z-index: 9999;
+            }
+            .fab-icon { font-size: 16px; }
+
+            /* =========================
+               반응형
+               ========================= */
+            @media (max-width: 980px) {
+                .home-search-row { grid-template-columns: 1fr; }
+                .home-map-grid { grid-template-columns: 1fr; }
+                .home-store-body { max-height: 320px; }
+
+                .popupSwiper{ padding: 6px 44px 28px; }
+                .home-popup-img{ height: 220px; }
+            }
+        </style>
+    </th:block>
 </head>
 
 <body>
@@ -40,9 +380,7 @@
             <div class="home-map">
                 <iframe th:src="@{/goods/map}"
                         title="매장 지도"
-                        loading="lazy"
-                        style="width:100%; height:100%; border:none;">
-                </iframe>
+                        loading="lazy"></iframe>
             </div>
 
             <aside class="home-store-panel">
@@ -79,24 +417,24 @@
                      th:each="popup : ${popupList}"
                      th:onclick="'location.href=\'/popupstore/' + ${popup.id} + '/detail.do\''">
 
-                    <div class="popup-card">
+                    <div class="home-popup-card">
 
-                        <div class="popup-img"
+                        <div class="home-popup-img"
                              th:style="${popup.bannerImageUrl != null}
                                 ? |background-image:url(${popup.bannerImageUrl});|
                                 : ''">
 
-                            <div class="popup-badge"
+                            <div class="home-popup-badge"
                                  th:with="
-                      today=${T(java.time.LocalDate).now()},
-                      start=${popup.startDate},
-                      end=${popup.endDate},
-                      isActive=${start != null and end != null and (not today.isBefore(start)) and (not today.isAfter(end))},
-                      isUpcoming=${start != null and today.isBefore(start)}
-                   ">
+                                    today=${T(java.time.LocalDate).now()},
+                                    start=${popup.startDate},
+                                    end=${popup.endDate},
+                                    isActive=${start != null and end != null and (not today.isBefore(start)) and (not today.isAfter(end))},
+                                    isUpcoming=${start != null and today.isBefore(start)}
+                                 ">
 
-                <span class="popup-dot"
-                      th:classappend="${isUpcoming} ? ' upcoming' : (${isActive} ? '' : ' ended')"></span>
+                                <span class="home-popup-dot"
+                                      th:classappend="${isUpcoming} ? ' upcoming' : (${isActive} ? '' : ' ended')"></span>
 
                                 <span th:if="${isUpcoming}">예정</span>
                                 <span th:if="${!isUpcoming and isActive}">진행중</span>
@@ -104,18 +442,18 @@
                             </div>
                         </div>
 
-                        <div class="popup-info">
-                            <p class="popup-title" th:text="${popup.title}">팝업 제목</p>
-                            <p class="popup-place"
+                        <div class="home-popup-info">
+                            <p class="home-popup-title" th:text="${popup.title}">팝업 제목</p>
+                            <p class="home-popup-place"
                                th:text="${popup.placeName != null ? popup.placeName : popup.regionName}">
                                 장소명
                             </p>
-                            <p class="popup-date"
+                            <p class="home-popup-date"
                                th:text="|${popup.startDate} ~ ${popup.endDate}|">
                                 기간
                             </p>
 
-                            <a class="popup-cta"
+                            <a class="home-popup-cta"
                                th:href="@{|/popupstore/${popup.id}/detail.do|}"
                                onclick="event.stopPropagation();">
                                 자세히 보기
@@ -127,8 +465,10 @@
 
             </div>
 
-            <div class="swiper-button-prev popup-nav"></div>
-            <div class="swiper-button-next popup-nav"></div>
+            <!-- ✅ 버튼은 팝업 카드 안 가리게 양끝 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
             <div class="swiper-pagination"></div>
         </div>
     </section>
@@ -142,18 +482,35 @@
 </div>
 
 <th:block layout:fragment="script">
+    <!-- Swiper JS (레이아웃에서 이미 로드 중이면 이 줄은 빼도 됨) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
-            // ✅ 팝업 스와이퍼
+            // ✅ 팝업 스와이퍼 (슬라이드 개수에 맞춰 자동)
+            const slideCount = document.querySelectorAll(".popupSwiper .swiper-slide").length;
+
             new Swiper(".popupSwiper", {
-                slidesPerView: 3,
+                slidesPerView: Math.min(3, slideCount),
                 slidesPerGroup: 1,
                 spaceBetween: 24,
-                loop: true,
+
+                // ✅ 왼쪽으로 자동 슬라이스 (자동으로 넘어가며 화면이 왼쪽으로 밀림)
+                autoplay: {
+                    delay: 2500,              // 2.5초마다 이동 (원하면 바꿔)
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+
+                loop: slideCount > 3,
                 speed: 650,
                 grabCursor: true,
-                loopAdditionalSlides: 6,
+                watchOverflow: true,
+                simulateTouch: true,
+
+                // ✅ 마우스 휠로도 좌우 이동(원하면 유지)
+                mousewheel: { forceToAxis: true },
 
                 navigation: {
                     nextEl: ".popupSwiper .swiper-button-next",
@@ -165,12 +522,11 @@
                 },
 
                 breakpoints: {
-                    0:   { slidesPerView: 1.1, spaceBetween: 14 },
-                    720: { slidesPerView: 2,   spaceBetween: 18 },
-                    900: { slidesPerView: 3,   spaceBetween: 24 }
+                    0:   { slidesPerView: Math.min(1.1, slideCount), spaceBetween: 14 },
+                    680: { slidesPerView: Math.min(2,   slideCount), spaceBetween: 18 },
+                    840: { slidesPerView: Math.min(3,   slideCount), spaceBetween: 24 }
                 }
             });
-
             // ✅ 지도 iframe ↔ 오른쪽 목록
             (function () {
                 const sideList = document.getElementById('mapSideList');
@@ -226,15 +582,15 @@
                         const storeId = (p.storeId !== undefined && p.storeId !== null) ? p.storeId : p.id;
 
                         li.innerHTML = `
-              <div class="home-store-line1">
-                <button type="button" class="home-store-name js-focus">${p.name || '이름 없음'}</button>
-                ${p.source ? `<span class="home-store-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
-                ${(p.source === 'STORE' && storeId != null)
+                          <div class="home-store-line1">
+                            <button type="button" class="home-store-name js-focus">${p.name || '이름 없음'}</button>
+                            ${p.source ? `<span class="home-store-badge">${p.source === 'STORE' ? '굿즈샵(더쿠쿠)' : '네이버'}</span>` : ''}
+                            ${(p.source === 'STORE' && storeId != null)
                             ? `<button type="button" class="home-store-detail" data-store-id="${storeId}">상세보기</button>`
                             : ''}
-              </div>
-              <div class="home-store-meta">${p.roadAddress || p.address || ''}</div>
-            `;
+                          </div>
+                          <div class="home-store-meta">${p.roadAddress || p.address || ''}</div>
+                        `;
 
                         li.querySelector('.js-focus').addEventListener('click', ()=>{
                             iframe?.contentWindow?.postMessage({ type:'MAP_FOCUS_PLACE', idx }, '*');

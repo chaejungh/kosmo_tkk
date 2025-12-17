@@ -1,315 +1,389 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/tkk_fragment/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>더쿠쿠 관리자 - 거래 관리</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block layout:fragment="head"></th:block>
 
     <style>
-        :root {
-            --bg-body: #f5f7fb;
-            --bg-card: #ffffff;
-            --bg-header: #050816;
-            --border-subtle: #e1e4f0;
-            --border-strong: #c6cadb;
-            --ink-strong: #111827;
-            --ink-muted: #6b7280;
-            --accent: #2563eb;
-            --danger: #ef4444;
-            --danger-soft: #ffe4e6;
+        /* ===== 컨테이너 ===== */
+        .market-wrap{
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 22px 18px 80px;
         }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, "Malgun Gothic", sans-serif;
-            background: var(--bg-body);
-            color: var(--ink-strong);
+        .market-title{
+            font-size: 26px;
+            font-weight: 800;
+            margin: 8px 0 2px;
         }
-        a { color: inherit; text-decoration: none; }
-        button { font-family: inherit; }
-
-        .admin-header {
-            background: var(--bg-header);
-            color: #f9fafb;
-            padding: 0 32px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .admin-header-left { display:flex; align-items:center; gap:16px; }
-        .admin-logo { font-weight:700; font-size:18px; }
-        .admin-nav-tabs { display:flex; gap:8px; }
-        .admin-nav-tab {
-            padding: 6px 14px;
-            border-radius: 999px;
+        .market-sub{
             font-size: 13px;
-            border: 1px solid transparent;
-            background: transparent;
-            color: #e5e7eb;
+            color: var(--text-sub, #6b7280);
+            margin-bottom: 16px;
         }
-        .admin-nav-tab.active {
-            background:#ffffff;
-            color:var(--ink-strong);
-            border-color:var(--border-subtle);
-        }
-        .admin-header-right {
-            display:flex; align-items:center; gap:16px; font-size:13px;
-        }
-        .admin-header-link { color:#e5e7eb; }
-        .admin-header-link:hover { text-decoration:underline; }
 
-        .admin-main {
-            max-width:1200px;
-            margin:24px auto 40px;
-            padding:0 24px;
+        /* ===== 상단 탭 + 검색바 ===== */
+        .market-top{
+            background: #fff;
+            border: 1px solid var(--border, #e5e7eb);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
         }
-        .admin-section-title { margin-bottom:16px; }
-        .admin-section-title h1 { margin:0; font-size:22px; font-weight:700; }
-        .admin-section-title p { margin:4px 0 0; font-size:13px; color:var(--ink-muted); }
-
-        .search-card {
-            background:var(--bg-card);
-            border-radius:12px;
-            border:1px solid var(--border-subtle);
-            padding:16px 20px;
-            margin-bottom:16px;
-        }
-        .search-row {
+        .market-tabs{
             display:flex;
-            flex-wrap:wrap;
-            gap:10px;
+            gap:8px;
+            flex: none;
+        }
+        .tab-btn{
+            border: 1px solid var(--border, #e5e7eb);
+            background: #fff;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            white-space: nowrap;
+        }
+        .tab-btn.active{
+            border-color: rgba(236,72,153,.35);
+            background: rgba(236,72,153,.10);
+        }
+
+        .market-search{
+            flex: 1;
+            display:flex;
+            align-items:center;
+            gap: 10px;
+            background: #fff;
+            border: 1px solid var(--border, #e5e7eb);
+            border-radius: 999px;
+            padding: 10px 12px;
+            min-width: 280px;
+        }
+        .market-search .ico{opacity:.65}
+        .market-search input{
+            border: none;
+            outline:none;
+            width:100%;
+            font-size: 13px;
+            background: transparent;
+        }
+        .search-btn{
+            border: none;
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6aa2, #ff3d7a);
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .market-actions{
+            position: relative;
+            display:flex;
+            gap: 8px;
+            flex: none;
             align-items:center;
         }
-        .search-row input[type="text"]{
-            height:34px;
-            padding:0 10px;
-            border-radius:8px;
-            border:1px solid var(--border-strong);
-            font-size:13px;
-            flex:1 1 260px;
+        .icon-btn{
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            border: 1px solid var(--border, #e5e7eb);
+            background: #fff;
+            cursor:pointer;
+            font-weight:900;
         }
-        .btn {
-            display:inline-flex; align-items:center; justify-content:center;
-            border-radius:8px; padding:0 14px; height:34px;
-            font-size:13px; border:1px solid transparent;
-            cursor:pointer; white-space:nowrap;
-        }
-        .btn-primary { background:var(--accent); color:#fff; }
-        .btn-outline { background:#fff; color:var(--ink-strong); border-color:var(--border-strong); }
-        .btn-primary:hover { filter:brightness(0.96); }
-        .btn-outline:hover { background:#f9fafb; }
-
-        .table-card {
-            margin-top:8px;
-            background:var(--bg-card);
-            border-radius:12px;
-            border:1px solid var(--border-subtle);
-            padding:16px 20px 12px;
-        }
-        .table-top-row {
-            display:flex; justify-content:space-between; align-items:center;
-            margin-bottom:8px; font-size:13px; color:var(--ink-muted);
-        }
-        .table-top-row strong { color:var(--ink-strong); }
-
-        table.admin-table { width:100%; border-collapse:collapse; font-size:13px; }
-        .admin-table thead { background:#f9fafb; }
-        .admin-table th,
-        .admin-table td {
-            padding:8px 10px;
-            border-bottom:1px solid var(--border-subtle);
-            text-align:left;
-        }
-        .admin-table th { font-weight:600; color:var(--ink-muted); font-size:12px; }
-        .admin-table tbody tr:hover { background:#f8fafc; }
-
-        .col-number { width:60px; }
-        .col-seller { width:120px; }
-        .col-price { width:110px; }
-        .col-status { width:90px; }
-        .col-date { width:130px; }
-        .col-actions { width:150px; }
-
-        .title-link { color:var(--accent); }
-        .title-link:hover { text-decoration:underline; }
-
-        .status-chip {
-            display:inline-flex; align-items:center;
-            padding:3px 9px; border-radius:999px;
-            font-size:11px; font-weight:500;
-        }
-        .status-chip.active { background:#e5f8ec; color:#166534; }
-        .status-chip.inactive { background:#ffefef; color:#b91c1c; }
-
-        .btn-small {
-            height:28px; padding:0 10px; font-size:12px;
-            border-radius:999px;
-        }
-        .btn-small-secondary {
-            background:#ffffff; border-color:var(--border-strong); color:var(--ink-strong);
-        }
-        .btn-small-secondary:hover { background:#f3f4ff; }
-
-        .empty-row {
-            text-align:center; color:var(--ink-muted);
-            padding:32px 0;
+        .icon-btn.active{
+            border-color: rgba(17,24,39,.25);
+            box-shadow: 0 6px 16px rgba(0,0,0,.06);
         }
 
-        .pagination {
-            margin-top:10px; display:flex; justify-content:center;
-            gap:4px; font-size:13px;
+        .sort-menu{
+            position:absolute;
+            right:0;
+            top: 46px;
+            width: 160px;
+            background:#fff;
+            border:1px solid var(--border, #e5e7eb);
+            border-radius: 14px;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+            overflow:hidden;
+            display:none;
+            z-index: 50;
         }
-        .page-link {
-            min-width:28px; height:28px; padding:0 8px;
-            border-radius:999px; border:1px solid transparent;
-            display:inline-flex; justify-content:center; align-items:center;
-            color:var(--ink-muted); background:transparent;
+        .sort-menu a{
+            display:block;
+            padding: 10px 12px;
+            font-size: 13px;
+            color:#111827;
+            text-decoration:none;
         }
-        .page-link:hover { border-color:var(--border-strong); background:#fff; }
-        .page-link.current { background:var(--accent); color:#fff; }
-        .page-link.disabled { opacity:.4; pointer-events:none; }
+        .sort-menu a:hover{ background:#f9fafb; }
 
-        @media (max-width:768px){
-            .admin-main { padding:0 12px; }
-            .search-card { padding:12px; }
-            .search-row { flex-direction:column; align-items:stretch; }
-            .admin-table thead { display:none; }
-            .admin-table tr {
-                display:block; border-bottom:1px solid var(--border-subtle);
-                margin-bottom:8px;
-            }
-            .admin-table td {
-                display:flex; justify-content:space-between;
-                border-bottom:none; padding:6px 4px;
-            }
-            .admin-table td::before {
-                content:attr(data-label);
-                font-weight:600; color:var(--ink-muted);
-                margin-right:10px; font-size:11px;
-            }
-            .col-actions { width:auto; }
+        /* ===== 리스트 영역 ===== */
+        .trade-grid{
+            margin-top: 16px;
+            display:grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        /* grid 카드 */
+        .trade-card{
+            background:#fff;
+            border:1px solid var(--border, #e5e7eb);
+            border-radius: 18px;
+            overflow:hidden;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+            cursor:pointer;
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+        .trade-card:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 16px 34px rgba(0,0,0,0.08);
+        }
+        .thumb-wrap{
+            position:relative;
+            width:100%;
+            aspect-ratio: 1 / 0.75;
+            background: #0b1220;
+        }
+        .trade-thumb{
+            width:100%;
+            height:100%;
+            object-fit: cover;
+            display:block;
+        }
+        .heart-chip{
+            position:absolute;
+            right: 10px;
+            top: 10px;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.92);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:900;
+        }
+
+        .trade-body{
+            padding: 12px 12px 14px;
+            display:flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .trade-title{
+            font-weight: 800;
+            font-size: 13px;
+            line-height: 1.25;
+            display:-webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow:hidden;
+        }
+        .trade-meta{
+            font-size: 12px;
+            color: var(--text-sub, #6b7280);
+        }
+        .trade-bottom{
+            margin-top: 6px;
+            display:flex;
+            align-items:center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .trade-stats{
+            font-size: 12px;
+            color: #6b7280;
+            white-space: nowrap;
+        }
+        .trade-price{
+            font-weight: 900;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        /* ===== list-mode (가로 리스트) ===== */
+        .list-mode .trade-grid{
+            grid-template-columns: 1fr;
+        }
+        .list-mode .trade-card{
+            display:flex;
+            align-items: stretch;
+        }
+        .list-mode .thumb-wrap{
+            width: 220px;
+            aspect-ratio: auto;
+            height: 140px;
+            flex: none;
+        }
+        .list-mode .trade-body{
+            flex: 1;
+            padding: 14px;
+        }
+        .list-mode .trade-title{-webkit-line-clamp: 2;}
+
+        /* ===== 반응형 ===== */
+        @media (max-width: 1100px){
+            .trade-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (max-width: 820px){
+            .market-top{ flex-wrap: wrap; }
+            .market-search{ flex: 1 1 100%; }
+            .trade-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .list-mode .thumb-wrap{ width: 160px; height: 120px; }
+        }
+        @media (max-width: 520px){
+            .trade-grid{ grid-template-columns: 1fr; }
+        }
+
+        /* 글쓰기 버튼 (기존 유지 느낌) */
+        .write-btn{
+            position: fixed;
+            right: 24px;
+            bottom: 28px;
+            background: linear-gradient(135deg, #ff6aa2, #ff3d7a);
+            color:#fff;
+            padding: 14px 18px;
+            border-radius: 999px;
+            font-weight: 900;
+            text-decoration:none;
+            box-shadow: 0 16px 30px rgba(255,61,122,0.25);
         }
     </style>
 </head>
+
 <body>
-<header th:replace="admin/fragments/admin_header :: adminHeader"></header>
+<div layout:fragment="content">
+    <div class="market-wrap" id="marketRoot">
 
-<main class="admin-main">
-    <section>
-        <div class="admin-section-title">
-            <h1>거래 관리</h1>
-            <p>굿즈 거래글 목록을 조회하고 상태를 관리합니다.</p>
+        <div class="market-title">쿠쿠마켓</div>
+        <div class="market-sub">애니 굿즈 중고거래 전문 마켓</div>
+
+        <!-- 상단 (탭 + 검색 + 버튼들) -->
+        <div class="market-top">
+
+            <div class="market-tabs">
+                <button type="button" class="tab-btn active">
+                    🧺 거래 상품
+                </button>
+                <button type="button" class="tab-btn" onclick="location.href='/chat/list'">
+                    💬 채팅
+                    <span th:if="${unreadCount != null && unreadCount > 0}"
+                          style="margin-left:6px; background:#ff3d7a; color:#fff; border-radius:999px; padding:2px 8px; font-size:11px;"
+                          th:text="${unreadCount}">0</span>
+                </button>
+            </div>
+
+            <form class="market-search" th:action="@{/trade/list.do}" method="get">
+                <span class="ico">🔎</span>
+                <input type="text" name="keyword" placeholder="굿즈명, 제목, 지역 검색" th:value="${keyword}">
+                <button class="search-btn" type="submit">검색</button>
+
+                <!-- sort 유지 -->
+                <input type="hidden" name="sort" th:value="${sort}">
+            </form>
+
+            <div class="market-actions">
+                <button class="icon-btn active" id="gridViewBtn" type="button" title="그리드">▢</button>
+                <button class="icon-btn" id="listViewBtn" type="button" title="리스트">≡</button>
+                <button class="icon-btn" id="sortBtn" type="button" title="정렬">⇅</button>
+
+                <div id="sortMenu" class="sort-menu">
+                    <a th:href="@{/trade/list.do(sort='like', keyword=${keyword})}">❤️ 찜 많은 순</a>
+                    <a th:href="@{/trade/list.do(sort='view', keyword=${keyword})}">👀 조회 많은 순</a>
+                    <a th:href="@{/trade/list.do(sort='latest', keyword=${keyword})}">🕒 최신순</a>
+                </div>
+            </div>
         </div>
 
-        <!-- 검색 -->
-        <form th:action="@{/admin/trades}" method="get" class="search-card">
-            <div class="search-row">
-                <input type="text" name="keyword"
-                       placeholder="제목 또는 작성자 검색"
-                       th:value="${keyword}">
-                <button type="submit" class="btn btn-primary">검색</button>
-                <a th:href="@{/admin/trades}" class="btn btn-outline">초기화</a>
-            </div>
-        </form>
+        <!-- 리스트 -->
+        <div class="trade-grid">
+            <div class="trade-card"
+                 th:each="post : ${page.content}"
+                 th:onclick="|location.href='/trade/${post.id}/article/detail.do'|">
 
-        <!-- 목록 -->
-        <div class="table-card">
-            <div class="table-top-row" th:if="${tradePage != null}">
-                <div>
-                    총 <strong th:text="${tradePage.totalElements}">0</strong>건 /
-                    <span th:text="${tradePage.totalPages}">1</span> 페이지
+                <div class="thumb-wrap">
+                    <img class="trade-thumb"
+                         th:src="${post.thumbnailUrl != null ? post.thumbnailUrl : '/images/dummy/noimg.png'}"
+                         alt="thumb">
+                    <div class="heart-chip">♡</div>
                 </div>
-                <div th:if="${tradePage.totalPages > 0}">
-                    <span th:text="${tradePage.number + 1}">1</span> /
-                    <span th:text="${tradePage.totalPages}">1</span> 페이지
-                </div>
-            </div>
 
-            <table class="admin-table">
-                <thead>
-                <tr>
-                    <th class="col-number">번호</th>
-                    <th>제목</th>
-                    <th class="col-seller">판매자</th>
-                    <th class="col-price">가격</th>
-                    <th class="col-status">상태</th>
-                    <th class="col-date">작성일</th>
-                    <th class="col-actions">액션</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:if="${tradePage == null or tradePage.empty}">
-                    <td class="empty-row" colspan="7">등록된 거래글이 없습니다.</td>
-                </tr>
+                <div class="trade-body">
+                    <div class="trade-title" th:text="${post.title}">제목</div>
+                    <div class="trade-meta">
+                        <span th:text="${post.region}">지역</span>
+                        ·
+                        <span th:text="${post.timeAgo}">방금 전</span>
+                    </div>
 
-                <tr th:each="trade, stat : ${tradePage.content}">
-                    <td class="col-number" data-label="번호"
-                        th:text="${tradePage.totalElements - (tradePage.number * tradePage.size) - stat.index}">
-                        1
-                    </td>
-                    <td data-label="제목">
-                        <a class="title-link"
-                           th:href="@{/admin/trades/{id}(id=${trade.id}, page=${tradePage.number}, keyword=${keyword})}"
-                           th:text="${trade.title}">
-                            거래글 제목
-                        </a>
-                    </td>
-                    <td class="col-seller" data-label="판매자">
-                        <span th:text="${trade.seller != null ? trade.seller.nickname : '-'}">닉네임</span>
-                    </td>
-                    <td class="col-price" data-label="가격">
-                        <span th:if="${trade.price != null}"
-                              th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'">10,000원</span>
-                        <span th:if="${trade.price == null}">-</span>
-                    </td>
-                    <td class="col-status" data-label="상태">
-                        <span class="status-chip active" th:if="${trade.status == 'ON_SALE'}">판매중</span>
-                        <span class="status-chip inactive" th:if="${trade.status == 'RESERVED'}">예약중</span>
-                        <span class="status-chip inactive" th:if="${trade.status == 'COMPLETED'}">판매완료</span>
-                    </td>
-                    <td class="col-date" data-label="작성일"
-                        th:text="${#temporals.format(trade.createdAt, 'yyyy-MM-dd HH:mm')}">
-                        2025-01-01 00:00
-                    </td>
-                    <td class="col-actions" data-label="액션">
-                        <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                            <a class="btn btn-small btn-small-secondary"
-                               th:href="@{/admin/trades/{id}(id=${trade.id}, page=${tradePage.number}, keyword=${keyword})}">
-                                상세보기
-                            </a>
+                    <div class="trade-bottom">
+                        <div class="trade-stats">
+                            ❤️ <span th:text="${post.likeCount}">0</span>
+                            · 💬 <span th:text="${post.chatCount}">0</span>
+                            · 👀 <span th:text="${post.viewCount}">0</span>
                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!-- 페이지네이션 -->
-            <div class="pagination"
-                 th:if="${tradePage != null and tradePage.totalPages > 1}">
-                <a class="page-link"
-                   th:classappend="${tradePage.first} ? ' disabled'"
-                   th:href="${tradePage.first} ? '#' : @{/admin/trades(page=${tradePage.number - 1}, keyword=${keyword})}">
-                    ‹
-                </a>
-
-                <a class="page-link"
-                   th:each="pageNum : ${#numbers.sequence(0, tradePage.totalPages - 1)}"
-                   th:text="${pageNum + 1}"
-                   th:classappend="${pageNum == tradePage.number} ? ' current'"
-                   th:href="@{/admin/trades(page=${pageNum}, keyword=${keyword})}">
-                    1
-                </a>
-
-                <a class="page-link"
-                   th:classappend="${tradePage.last} ? ' disabled'"
-                   th:href="${tradePage.last} ? '#' : @{/admin/trades(page=${tradePage.number + 1}, keyword=${keyword})}">
-                    ›
-                </a>
+                        <div class="trade-price" th:text="${post.priceText}">0원</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-</main>
+
+        <a href="/trade/1/write" class="write-btn">+ 글쓰기</a>
+    </div>
+</div>
+
+<script layout:fragment="script">
+    const root = document.getElementById('marketRoot');
+    const gridBtn = document.getElementById('gridViewBtn');
+    const listBtn = document.getElementById('listViewBtn');
+
+    // 기본: 그리드
+    gridBtn.addEventListener('click', () => {
+        root.classList.remove('list-mode');
+        gridBtn.classList.add('active');
+        listBtn.classList.remove('active');
+    });
+
+    listBtn.addEventListener('click', () => {
+        root.classList.add('list-mode');
+        listBtn.classList.add('active');
+        gridBtn.classList.remove('active');
+    });
+
+    // 정렬 메뉴 토글
+    document.getElementById('sortBtn').addEventListener('click', () => {
+        const menu = document.getElementById('sortMenu');
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    });
+
+    // 바깥 클릭하면 정렬 닫기
+    document.addEventListener('click', (e) => {
+        const menu = document.getElementById('sortMenu');
+        const btn = document.getElementById('sortBtn');
+        if (!menu.contains(e.target) && e.target !== btn) {
+            menu.style.display = 'none';
+        }
+    });
+
+    // (너희 기존 WebSocket 새글/채팅방 리로드 로직이 있으면 그대로 붙여도 됨)
+</script>
 
 </body>
 </html>

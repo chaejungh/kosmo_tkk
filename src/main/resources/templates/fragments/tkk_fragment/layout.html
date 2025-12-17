@@ -5,16 +5,16 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <!-- ✅ 중요: 뷰포트 통일 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>더쿠쿠</title>
 
-    <!-- ✅ 공통 CSS (캐시 갱신용 v 파라미터: 배포 후에도 CSS가 갱신되게) -->
+    <!-- ✅ 공통 CSS (캐시 갱신용) -->
     <link rel="stylesheet" th:href="@{/css/tkk.css(v=${#dates.createNow().time})}"/>
 
     <!-- ✅ Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/pagination.css}">
 
     <th:block layout:fragment="head"></th:block>
 </head>
@@ -24,44 +24,60 @@
 <header class="tkk-header">
     <div class="tkk-header-inner">
 
+        <!-- ✅ 로고 -->
         <a class="tkk-brand" th:href="@{/}">
-            <img class="tkk-brand-logo" th:src="@{/images/tkk_logo.png}" alt="THE KUKU"
+            <img class="tkk-brand-logo"
+                 th:src="@{/images/tkk_logo.png}"
+                 alt="THE KUKU"
                  onerror="this.style.display='none'">
-            <div class="tkk-brand-text">
-                <div class="tkk-brand-title">THE KUKU</div>
-            </div>
         </a>
 
+        <!-- ✅ 메뉴 -->
         <nav class="tkk-nav">
-            <a class="tkk-nav-item" th:href="@{/}">
-                <span class="tkk-nav-icon">🏠</span><span class="tkk-nav-text">홈</span>
-            </a>
-            <a class="tkk-nav-item" th:href="@{/board/list}">
-                <span class="tkk-nav-icon">💬</span><span class="tkk-nav-text">속닥속닥</span>
-            </a>
-            <a class="tkk-nav-item" th:href="@{/market}">
-                <span class="tkk-nav-icon">🛒</span><span class="tkk-nav-text">쿠쿠마켓</span>
-            </a>
+            <a class="tkk-nav-item" th:href="@{/}">홈</a>
+
+            <!-- ✅ 실제 주소: /board → 컨트롤러에서 /board/1/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/board}">속닥속닥</a>
+
+            <!-- ✅ 실제 주소: /trade → 컨트롤러에서 /trade/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/trade}">쿠쿠마켓</a>
         </nav>
 
+        <!-- ✅ 로그인/회원가입 -->
         <div class="tkk-actions">
-            <a class="tkk-btn tkk-btn-outline" th:href="@{/login}">로그인</a>
-            <a class="tkk-btn tkk-btn-primary" th:href="@{/join}">회원가입</a>
+            <!-- 너 프로젝트 로그인 URL이 다르면 여기만 바꿔 -->
+            <a class="tkk-btn tkk-btn-outline" th:href="@{/member/login}">로그인</a>
+            <a class="tkk-btn tkk-btn-primary" th:href="@{/member/join}">회원가입</a>
         </div>
 
     </div>
 </header>
 
-<!-- ✅ 핵심: 전체 크기(체감) 통일용 컨테이너 -->
+<!-- ✅ 본문 컨테이너(기존 그대로) -->
 <div class="tkk-container">
     <main layout:fragment="content"></main>
 </div>
 
-<!-- ✅ footer는 여기서 한 번만 -->
 <th:block th:replace="fragments/tkk_fragment/footer :: footer"></th:block>
 
-<!-- ✅ Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- ✅ 현재 페이지 메뉴 활성화(서버 SpEL 안 씀) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const path = location.pathname.replace(/\/+$/, '') || '/';
+
+        document.querySelectorAll('.tkk-nav a.tkk-nav-item').forEach(a => {
+            const linkPath = (new URL(a.href, location.origin)).pathname.replace(/\/+$/, '') || '/';
+
+            const active = (linkPath === '/')
+                ? (path === '/')
+                : (path === linkPath || path.startsWith(linkPath + '/'));
+
+            if (active) a.classList.add('is-active');
+        });
+    });
+</script>
 
 <th:block layout:fragment="script"></th:block>
 </body>

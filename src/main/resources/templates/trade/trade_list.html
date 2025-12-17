@@ -1,163 +1,477 @@
 <!DOCTYPE html>
 <html lang="ko"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/trade_fragment/layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/tkk_fragment/layout}">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>굿즈거래 | 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block layout:fragment="head">
+        <style>
+            :root{
+                --bg:#f4f5f7;
+                --card:#ffffff;
+                --text:#111827;
+                --sub:#6b7280;
+                --border:#e5e7eb;
 
+                --purple:#ff6b86;      /* ✅ 쿠쿠마켓 핑크 톤으로 맞춤 */
+                --purple-deep:#ff4d6d;
 
-    <style>
-        /* ===== 검색 영역 (예전 카테고리 자리에) ===== */
-        .trade-filter {
-            background: white;
-            padding: 12px 18px;
-            border-bottom: 1px solid var(--border);
-        }
+                --shadow: 0 10px 28px rgba(17,24,39,.08);
+                --radius:18px;
+            }
+            *{box-sizing:border-box}
 
-        .trade-search-form {
-            display: flex;
-            gap: 8px;
-            width: 100%;
-        }
+            /* ✅ 홈이랑 비슷하게 넓게 */
+            .trade-shell{
+                max-width: 1320px;
+                margin: 0 auto;
+                padding: 18px 16px 60px;
+            }
 
-        .trade-search-input {
-            flex: 1;
-            border-radius: 999px;
-            border: 1px solid var(--border);
-            padding: 9px 14px;
-            font-size: 13px;
-            outline: none;
-        }
+            /* ===== 상단 타이틀 ===== */
+            .trade-title{
+                font-size: 26px;
+                font-weight: 900;
+                color: var(--text);
+                margin: 4px 0 4px;
+                letter-spacing: -.4px;
+            }
+            .trade-sub{
+                color: var(--sub);
+                font-size: 13px;
+                margin: 0 0 14px;
+            }
 
-        .trade-search-input:focus {
-            border-color: var(--purple);
-            box-shadow: 0 0 0 1px rgba(99,102,241,0.18);
-        }
+            /* ===== 상단 툴바(버튼/검색) ===== */
+            .trade-toolbar{
+                background: #fff;
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                box-shadow: var(--shadow);
+                padding: 14px;
+                display:flex;
+                gap: 12px;
+                align-items:center;
+                flex-wrap:wrap;
+            }
 
-        .trade-search-button {
-            border-radius: 999px;
-            border: none;
-            background: var(--purple);
-            color: white;
-            padding: 0 16px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-        }
+            .trade-tabs{
+                display:flex;
+                gap:10px;
+                align-items:center;
+                flex-wrap:wrap;
+            }
+            .trade-tab{
+                border: 1px solid var(--border);
+                background:#fff;
+                border-radius: 14px;
+                padding: 10px 14px;
+                font-size: 13px;
+                font-weight: 800;
+                cursor:pointer;
+                display:flex;
+                gap:8px;
+                align-items:center;
+                box-shadow: 0 2px 10px rgba(17,24,39,.03);
+            }
+            .trade-tab.active{
+                background: var(--purple);
+                border-color: var(--purple);
+                color:#fff;
+            }
 
-        .trade-search-button:hover {
-            background: var(--purple-deep);
-        }
+            .trade-search-form{
+                flex: 1;
+                min-width: 320px;
+                display:flex;
+                gap: 10px;
+                align-items:center;
+            }
+            .trade-search{
+                flex: 1;
+                display:flex;
+                align-items:center;
+                gap: 10px;
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                padding: 10px 14px;
+                background:#fff;
+            }
+            .trade-search .ico{opacity:.6}
+            .trade-search input{
+                border:none;
+                outline:none;
+                width:100%;
+                font-size: 13px;
+                color: var(--text);
+                background: transparent;
+            }
+            .trade-search input:focus{
+                outline:none;
+            }
 
-    </style>
+            .trade-search-button{
+                border:none;
+                border-radius: 999px;
+                background: var(--purple);
+                color:#fff;
+                font-weight: 800;
+                font-size: 13px;
+                padding: 10px 16px;
+                cursor:pointer;
+                box-shadow: 0 10px 18px rgba(255,107,134,.25);
+                white-space: nowrap;
+            }
+            .trade-search-button:hover{background: var(--purple-deep);}
+
+            .trade-actions{
+                display:flex;
+                gap:8px;
+                align-items:center;
+                margin-left:auto;
+                position: relative;
+            }
+            .view-btn{
+                width: 38px;
+                height: 38px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background:#fff;
+                cursor:pointer;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-weight: 900;
+                color: var(--text);
+            }
+            .view-btn.active{
+                background:#111827;
+                border-color:#111827;
+                color:#fff;
+            }
+
+            /* 정렬 메뉴 */
+            .sort-menu{
+                position:absolute;
+                right:0;
+                top: 46px;
+                min-width: 160px;
+                background:#fff;
+                border:1px solid var(--border);
+                border-radius: 14px;
+                box-shadow: var(--shadow);
+                padding: 8px;
+                display:none;
+                z-index: 50;
+            }
+            .sort-menu a{
+                display:block;
+                padding: 10px 12px;
+                border-radius: 10px;
+                color: var(--text);
+                text-decoration:none;
+                font-size: 13px;
+                font-weight: 700;
+            }
+            .sort-menu a:hover{background:#f3f4f6}
+
+            /* 판매자 안내 */
+            .seller-hint{
+                padding: 10px 4px 0;
+                font-size: 13px;
+                color: var(--sub);
+            }
+
+            /* ===== 리스트 래퍼 ===== */
+            .trade-list{
+                margin-top: 16px;
+            }
+
+            /* ✅ GRID 기본(참고 이미지처럼 4열 느낌) */
+            .trade-list-inner{
+                display:grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 16px;
+            }
+            @media (max-width: 1200px){
+                .trade-list-inner{grid-template-columns: repeat(3, minmax(0,1fr));}
+            }
+            @media (max-width: 900px){
+                .trade-list-inner{grid-template-columns: repeat(2, minmax(0,1fr));}
+            }
+            @media (max-width: 600px){
+                .trade-list-inner{grid-template-columns: 1fr;}
+            }
+
+            /* ✅ LIST 모드(가로 카드) */
+            body.list-mode .trade-list-inner{
+                grid-template-columns: 1fr;
+            }
+
+            .trade-card{
+                background:#fff;
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                box-shadow: var(--shadow);
+                overflow:hidden;
+                cursor:pointer;
+                display:flex;
+                flex-direction: column;
+                transition: transform .08s ease;
+            }
+            .trade-card:hover{transform: translateY(-1px);}
+
+            /* 리스트 모드일 때는 가로 배치 */
+            body.list-mode .trade-card{
+                flex-direction: row;
+                align-items: stretch;
+            }
+
+            .trade-thumb{
+                width:100%;
+                height: 240px;
+                object-fit: cover;
+                background:#111827;
+                display:block;
+            }
+            body.list-mode .trade-thumb{
+                width: 220px;
+                height: 160px;
+                flex: 0 0 auto;
+            }
+
+            .trade-info{
+                padding: 12px 14px 14px;
+                display:flex;
+                justify-content: space-between;
+                gap: 14px;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .trade-title-text{
+                font-size: 14px;
+                font-weight: 900;
+                color: var(--text);
+                line-height: 1.25;
+                margin-bottom: 8px;
+                white-space: nowrap;
+                overflow:hidden;
+                text-overflow: ellipsis;
+            }
+            body.list-mode .trade-title-text{
+                font-size: 15px;
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow:hidden;
+            }
+
+            .trade-meta{
+                color: var(--sub);
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+            .trade-stats{
+                color: var(--sub);
+                font-size: 12px;
+                display:flex;
+                gap: 10px;
+                flex-wrap:wrap;
+            }
+
+            .trade-price{
+                font-weight: 900;
+                color: var(--text);
+                font-size: 16px;
+                white-space: nowrap;
+                align-self: flex-end;
+            }
+            body.list-mode .trade-price{
+                align-self: center;
+                font-size: 18px;
+            }
+
+            /* ✅ 우상단 찜 아이콘 느낌(원하면 실제 버튼으로 교체 가능) */
+            .trade-like-chip{
+                position:absolute;
+                top:10px;
+                right:10px;
+                width: 34px;
+                height: 34px;
+                border-radius: 999px;
+                border: 1px solid rgba(255,255,255,.65);
+                background: rgba(255,255,255,.85);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-weight: 900;
+                box-shadow: 0 8px 18px rgba(17,24,39,.10);
+            }
+
+            .trade-media{
+                position: relative;
+            }
+
+            /* ===== 글쓰기 버튼 ===== */
+            .write-btn{
+                position: fixed;
+                right: 18px;
+                bottom: 18px;
+                background: var(--purple);
+                color:#fff;
+                border:none;
+                border-radius: 999px;
+                padding: 14px 18px;
+                font-weight: 900;
+                text-decoration:none;
+                box-shadow: 0 14px 28px rgba(255,107,134,.35);
+            }
+            .write-btn:hover{background: var(--purple-deep);}
+        </style>
+    </th:block>
 </head>
+
 <body>
 <div layout:fragment="content">
 
-    <!-- ===== 검색 (예전 카테고리 자리) ===== -->
-    <div class="trade-filter">
-        <form class="trade-search-form" th:action="@{/trade}" method="get">
-            <input type="text"
-                   name="keyword"
-                   class="trade-search-input"
-                   placeholder="굿즈명, 제목, 지역 검색"
-                   th:value="${keyword}">
-            <button type="submit" class="trade-search-button">검색</button>
-        </form>
-        <div class="view-buttons">
-            <button class="view-btn" id="listViewBtn">≡</button>
-            <button class="view-btn" id="gridViewBtn">▢</button>
-            <button class="view-btn" id="sortBtn">⇅</button>
+    <div class="trade-shell">
+
+        <div class="trade-title">쿠쿠마켓</div>
+        <div class="trade-sub">애니 굿즈 중고거래 전문 마켓</div>
+
+        <!-- ===== 툴바 (탭 + 검색 + 보기/정렬) ===== -->
+        <div class="trade-toolbar">
+
+            <!-- (옵션) 탭 UI: 필요 없으면 삭제 가능 -->
+            <div class="trade-tabs">
+                <button class="trade-tab active" type="button" onclick="location.href='/trade'">🛍️ 거래 상품</button>
+                <button class="trade-tab" type="button" onclick="location.href='/chat'">💬 채팅</button>
+            </div>
+
+            <!-- 검색 (기존 기능 유지) -->
+            <form class="trade-search-form" th:action="@{/trade}" method="get">
+                <div class="trade-search">
+                    <span class="ico">🔍</span>
+                    <input type="text"
+                           name="keyword"
+                           placeholder="굿즈명, 제목, 지역 검색"
+                           th:value="${keyword}">
+                </div>
+                <button type="submit" class="trade-search-button">검색</button>
+            </form>
+
+            <!-- 보기/정렬 (기존 기능 유지) -->
+            <div class="trade-actions">
+                <button class="view-btn" id="listViewBtn" type="button" title="리스트">≡</button>
+                <button class="view-btn active" id="gridViewBtn" type="button" title="그리드">▢</button>
+                <button class="view-btn" id="sortBtn" type="button" title="정렬">⇅</button>
+
+                <div id="sortMenu" class="sort-menu">
+                    <a th:href="@{/trade(sort='like', keyword=${keyword})}">❤️ 찜 많은 순</a>
+                    <a th:href="@{/trade(sort='view', keyword=${keyword})}">👀 조회 많은 순</a>
+                    <a th:href="@{/trade(sort='latest', keyword=${keyword})}">🕒 최신순</a>
+                </div>
+            </div>
         </div>
-        <div id="sortMenu" class="sort-menu">
-            <a href="?sort=like">❤️ 찜 많은 순</a>
-            <a href="?sort=view">👀 조회 많은 순</a>
-            <a href="?sort=latest">🕒 최신순</a>
+
+        <!-- 🔥 판매자 전용 리스트일 때만 안내 문구 표시 -->
+        <div class="seller-hint" th:if="${sellerName != null}">
+            <b th:text="${sellerName}">판매자</b> 님의 판매 상품
         </div>
-    </div>
 
-    <!-- 🔥 판매자 전용 리스트일 때만 안내 문구 표시 -->
-    <div th:if="${sellerName != null}"
-         style="padding: 8px 18px 0; font-size: 13px; color: var(--text-sub);">
-        <span th:text="${sellerName}">판매자</span> 님의 판매 상품
-    </div>
+        <!-- ===== LIST ===== -->
+        <div class="trade-list">
 
-    <!-- ===== LIST ===== -->
-    <div class="trade-list">
+            <div class="trade-list-inner">
 
-        <div class="trade-card"
-             th:each="post : ${page.content}"
-             th:onclick="|location.href='/trade/${post.id}/article/detail.do'|">
+                <div class="trade-card"
+                     th:each="post : ${page.content}"
+                     th:onclick="|location.href='/trade/${post.id}/article/detail.do'|">
 
-            <!-- 썸네일 -->
-            <img class="trade-thumb"
-                 th:src="${post.thumbnailUrl != null ? post.thumbnailUrl : '/images/dummy/noimg.png'}" />
+                    <div class="trade-media">
+                        <!-- 썸네일 -->
+                        <img class="trade-thumb"
+                             th:src="${#strings.isEmpty(post.thumbnailUrl) ? '/images/dummy/noimg.png' : post.thumbnailUrl}"
+                             alt="thumb">
 
-            <!-- 내용 -->
-            <div class="trade-info">
-                <div>
-                    <div class="trade-title" th:text="${post.title}">상품 제목</div>
-
-                    <div class="trade-meta">
-                        <span th:text="${post.region}"></span> ·
-                        <span th:text="${post.timeAgo}"></span>
+                        <!-- (UI) 찜 아이콘 느낌 -->
+                        <div class="trade-like-chip">♡</div>
                     </div>
 
-                    <!-- ❤️ 찜 · 💬 채팅 · 👀 조회 순서 -->
-                    <div class="trade-stats">
-                        ♥ <span th:text="${post.likeCount}">0</span> 찜 ·
-                        💬 <span th:text="${post.chatCount}">0</span> 채팅 ·
-                        👀 <span th:text="${post.viewCount}">0</span> 조회
+                    <!-- 내용 -->
+                    <div class="trade-info">
+                        <div style="min-width:0;">
+                            <div class="trade-title-text" th:text="${post.title}">상품 제목</div>
+
+                            <div class="trade-meta">
+                                <span th:text="${post.region}">지역</span>
+                                ·
+                                <span th:text="${post.timeAgo}">n분 전</span>
+                            </div>
+
+                            <div class="trade-stats">
+                                <span>❤️ <b th:text="${post.likeCount}">0</b></span>
+                                <span>💬 <b th:text="${post.chatCount}">0</b></span>
+                                <span>👀 <b th:text="${post.viewCount}">0</b></span>
+                            </div>
+                        </div>
+
+                        <div class="trade-price" th:text="${post.priceText}">가격</div>
                     </div>
                 </div>
 
-                <div class="trade-price"
-                     th:text="${post.priceText}">
-                    가격
-                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- ===== 글쓰기 버튼 ===== -->
+    <!-- ===== 글쓰기 버튼(기존 유지) ===== -->
     <a href="/trade/1/write" class="write-btn">+ 글쓰기</a>
 
 </div>
 
-<!-- ================= 하단 JS (기존 네비/뱃지 + 새 글 실시간) ================= -->
+<!-- ================= 하단 JS (기존 기능 유지) ================= -->
 <script layout:fragment="script">
     const listBtn = document.getElementById("listViewBtn");
     const gridBtn = document.getElementById("gridViewBtn");
 
+    // ✅ 기본은 그리드
+    document.body.classList.remove("list-mode");
+
     listBtn.addEventListener("click", () => {
-        document.body.classList.remove("grid-mode");
+        document.body.classList.add("list-mode");
         listBtn.classList.add("active");
         gridBtn.classList.remove("active");
     });
 
     gridBtn.addEventListener("click", () => {
-        document.body.classList.add("grid-mode");
+        document.body.classList.remove("list-mode");
         gridBtn.classList.add("active");
         listBtn.classList.remove("active");
     });
-    document.getElementById("sortBtn").addEventListener("click", () => {
+
+    document.getElementById("sortBtn").addEventListener("click", (e) => {
+        e.stopPropagation();
         const menu = document.getElementById("sortMenu");
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
+        menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    });
+
+    document.addEventListener("click", () => {
+        const menu = document.getElementById("sortMenu");
+        if(menu) menu.style.display = "none";
     });
 
     (function () {
-
         const nav = document.querySelector(".bottom-nav");
+        if(!nav) return;
+
         const items = nav.querySelectorAll(".nav-item");
         const badge = document.getElementById("chatBadge");
         const STORAGE_KEY = "duckuku_unread_msg";
 
-        /* --- 활성화 페이지 자동 감지 --- */
         const pathname = window.location.pathname;
 
         let active = "home";
@@ -168,7 +482,6 @@
             if (i.dataset.page === active) i.classList.add("active");
         });
 
-        /* --- 채팅 클릭하면 읽음 처리 --- */
         const chatItem = document.querySelector('.nav-item[data-page="chat"]');
         if (chatItem) {
             chatItem.addEventListener("click", () => {
@@ -176,28 +489,25 @@
                 localStorage.setItem(STORAGE_KEY, "0");
             });
         }
-
     })();
 
-
-<!-- 🔥 새 게시글 / 새 채팅방 실시간 반영용 WebSocket 구독 -->
-
+    /* 🔥 새 게시글 / 새 채팅방 실시간 반영용 WebSocket 구독 (기존 유지) */
     (function () {
-        const socket = new SockJS("/ws-chat");      // WebSocketConfig endpoint
+        if (typeof SockJS === "undefined" || typeof Stomp === "undefined") return;
+
+        const socket = new SockJS("/ws-chat");
         const stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function () {
 
-            /* 📌 1) 새 게시글 올라왔을 때 (이미 있던 기능) */
             stompClient.subscribe("/sub/trade.list", function (msg) {
                 console.log("📢 새 게시글 알림 도착:", msg.body);
-                location.reload();   // 새 글 보려고 전체 리로드
+                location.reload();
             });
 
-            /* 📌 2) 새 채팅방 생겼을 때 (채팅 수 실시간 반영) */
             stompClient.subscribe("/sub/trade.chat", function (msg) {
                 console.log("💬 새 채팅방 알림 도착:", msg.body);
-                location.reload();   // 채팅 수, 찜 수, 조회수 다시 불러오기
+                location.reload();
             });
         });
     })();

@@ -62,4 +62,8 @@ public class LoginController {
 
         return "redirect:/";
     }
+    @GetMapping({"/member/login", "/member/login.do"})
+    public String memberLoginAlias() {
+        return "redirect:/login";
+    }
 }

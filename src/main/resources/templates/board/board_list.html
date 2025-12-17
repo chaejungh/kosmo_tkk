@@ -3,421 +3,578 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/tkk_fragment/layout}">
-<head></head>
+
+<head>
+    <th:block layout:fragment="head">
+        <style>
+            :root{
+                --bg:#f4f5f7;
+                --card:#ffffff;
+                --text:#111827;
+                --sub:#6b7280;
+                --border:#e5e7eb;
+
+                --chip:#111827;
+                --chipText:#fff;
+
+                --hot:#ff5b7a;
+                --hotText:#fff;
+
+                --accent:#ff6b86;
+                --accentDeep:#ff4d6d;
+
+                --shadow: 0 6px 20px rgba(17,24,39,.06);
+                --radius:18px;
+            }
+
+            *{box-sizing:border-box}
+
+            .board-page-wrap{padding:18px 0 40px}
+            /* ✅ 홈처럼 더 넓게(원하면 1200/1400으로 조절 가능) */
+            .board-shell{max-width:1320px;margin:0 auto;padding:0 16px}
+
+            /* ===== 상단 타이틀 ===== */
+            .board-title{font-size:28px;font-weight:800;color:var(--text);margin:0 0 6px}
+            .board-subtitle{color:var(--sub);font-size:13px;margin:0 0 14px}
+
+            /* ===== 카테고리 Segmented ===== */
+            .board-seg{
+                display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+                margin-bottom:12px;
+            }
+            .board-seg-btn{
+                border:1px solid var(--border);
+                background:#fff;
+                color:var(--text);
+                font-size:13px;
+                padding:10px 14px;
+                border-radius:999px;
+                cursor:pointer;
+                display:flex;gap:8px;align-items:center;
+                box-shadow:0 2px 10px rgba(17,24,39,.03);
+            }
+            .board-seg-btn.active{
+                background:#111827;
+                color:#fff;
+                border-color:#111827;
+            }
+
+            /* ===============================
+               ✅ 전체 2열: (왼쪽=검색+글 / 오른쪽=인기글)
+               -> 인기글이 빨간 동그라미 자리로 감
+            =============================== */
+            .board-grid{
+                display:grid;
+                grid-template-columns: 1fr 280px;
+                gap:18px;
+                align-items:start;
+            }
+            @media (max-width: 1100px){
+                .board-grid{grid-template-columns:1fr}
+            }
+
+            /* ===== 검색/액션 바 ===== */
+            .board-toolbar{
+                background:#fff;
+                border:1px solid var(--border);
+                border-radius:20px;
+                padding:14px;
+                box-shadow:var(--shadow);
+                margin-bottom:16px;
+            }
+            .board-toolbar-row{
+                display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+            }
+            .board-search{
+                flex:1;
+                display:flex;align-items:center;gap:10px;
+                border:1px solid var(--border);
+                border-radius:999px;
+                padding:10px 14px;
+                min-width:260px;
+            }
+            .board-search .icon{color:var(--sub);font-size:14px}
+            .board-search input{
+                border:none;outline:none;background:transparent;
+                width:100%;font-size:13px;color:var(--text);
+            }
+
+            .board-mini-actions{
+                display:flex;align-items:center;gap:8px;margin-left:auto;
+            }
+            .icon-btn{
+                width:38px;height:38px;border-radius:12px;
+                border:1px solid var(--border);
+                background:#fff;
+                cursor:pointer;
+                display:flex;align-items:center;justify-content:center;
+                color:#111827;
+            }
+            .icon-btn.active{background:#111827;color:#fff;border-color:#111827}
+
+            .sort-wrap{position:relative}
+            .sort-menu{
+                position:absolute;right:0;top:44px;
+                background:#fff;border:1px solid var(--border);
+                border-radius:14px;box-shadow:var(--shadow);
+                padding:8px;min-width:140px;z-index:50;
+            }
+            .sort-menu.hidden{display:none}
+            .sort-option{
+                padding:10px 12px;border-radius:10px;
+                cursor:pointer;font-size:13px;color:var(--text);
+            }
+            .sort-option:hover{background:#f3f4f6}
+            .sort-option.active{background:#111827;color:#fff}
+
+            .board-write-btn{
+                border:none;
+                border-radius:12px;
+                padding:10px 14px;
+                background:var(--accent);
+                color:#fff;
+                font-weight:700;
+                cursor:pointer;
+                box-shadow:0 8px 18px rgba(255,107,134,.25);
+                white-space:nowrap;
+            }
+            .board-write-btn:hover{background:var(--accentDeep)}
+
+            /* ===== 게시글 카드(그리드) ===== */
+            .post-grid{
+                display:grid;
+                grid-template-columns:repeat(3, minmax(0,1fr)); /* ✅ 3개 */
+                gap:16px;
+            }
+            @media (max-width: 1100px){
+                .post-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+            }
+            @media (max-width: 700px){
+                .post-grid{grid-template-columns:1fr}
+            }
+            .post-grid.view-list{grid-template-columns:1fr}
+
+            .post-card{
+                background:#fff;border:1px solid var(--border);
+                border-radius:18px;
+                box-shadow:var(--shadow);
+                overflow:hidden;
+                text-decoration:none;
+                color:inherit;
+                display:flex;flex-direction:column;
+                cursor:pointer;
+            }
+            .post-card:hover{transform:translateY(-1px)}
+            .post-thumb{height:210px;background:#111827;display:block}
+            .post-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+            .post-body{padding:14px 14px 12px}
+
+            .post-chip-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+            .chip{
+                background:var(--chip);
+                color:var(--chipText);
+                font-size:11px;
+                padding:6px 10px;
+                border-radius:999px;
+                display:inline-flex;align-items:center;gap:6px;
+            }
+            .chip.hot{background:var(--hot);color:var(--hotText)}
+
+            .post-title{
+                font-weight:800;
+                font-size:15px;
+                line-height:1.25;
+                margin:0 0 8px;
+                color:var(--text);
+            }
+            .post-meta{
+                display:flex;justify-content:space-between;gap:10px;
+                color:var(--sub);
+                font-size:12px;
+                margin-bottom:10px;
+            }
+            .post-stats{
+                display:flex;gap:12px;align-items:center;
+                color:var(--sub);font-size:12px;
+            }
+
+            /* ===============================
+               ✅ 오른쪽 사이드 인기글(빨간 동그라미 자리)
+            =============================== */
+            .hot-mini{
+                width:100%;
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                position: sticky;
+                top: 110px; /* 헤더 아래로 살짝 */
+            }
+            @media (max-width: 1100px){
+                .hot-mini{position:static; top:auto}
+            }
+
+            .hot-mini-head{
+                background:#111;
+                color:#fff;
+                padding: 10px 12px;
+                font-weight: 900;
+                font-size: 13px;
+                display:flex;
+                align-items:center;
+                gap:8px;
+            }
+            .hot-mini-list{list-style:none;margin:0;padding:0;}
+            .hot-mini-list > li{border-top:1px solid var(--border);}
+
+            .hot-mini-link{
+                display:flex;
+                gap:8px;
+                padding:10px 12px;
+                text-decoration:none;
+                color:inherit;
+            }
+            .hot-mini-link:hover{background:#f3f4f6}
+
+            .hot-mini-rank{
+                width:22px;height:22px;border-radius:999px;
+                background: var(--hot);
+                color:#fff;
+                font-weight:900;
+                display:flex;align-items:center;justify-content:center;
+                font-size:11px;
+                flex:none;
+            }
+            .hot-mini-title{
+                font-size:12px;
+                font-weight:800;
+                color:var(--text);
+                white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+                margin-bottom:4px;
+                max-width: 190px;
+            }
+            .hot-mini-stats{
+                font-size:11px;color:var(--sub);
+                display:flex;gap:8px;
+            }
+
+            /* ===== 페이징 ===== */
+            .pager-wrap{margin-top:18px;display:flex;justify-content:center}
+            .tkk-paging{list-style:none;margin:0;padding:0;display:flex;gap:10px;align-items:center}
+            .tkk-paging .page-link{
+                display:inline-flex;align-items:center;justify-content:center;
+                min-width:40px;height:40px;padding:0 14px;border-radius:999px;
+                border:1px solid var(--border);background:#fff;color:var(--text);
+                text-decoration:none;font-weight:700;box-shadow:var(--shadow);
+            }
+            .tkk-paging .page-item.active .page-link{
+                background:var(--accent);
+                border-color:var(--accent);
+                color:#fff;
+            }
+            .tkk-paging .page-item.disabled .page-link{
+                opacity:.4;pointer-events:none;box-shadow:none
+            }
+
+            /* ===== 모바일 플로팅 글쓰기 ===== */
+            .floating-write-btn{
+                position:fixed;
+                right:18px; bottom:18px;
+                width:52px;height:52px;
+                border-radius:999px;
+                border:none;
+                background:var(--accent);
+                color:#fff;font-size:28px;
+                display:flex;align-items:center;justify-content:center;
+                box-shadow:0 14px 28px rgba(255,107,134,.35);
+                cursor:pointer;
+            }
+            @media (min-width: 981px){
+                .floating-write-btn{display:none}
+            }
+        </style>
+    </th:block>
+</head>
+
 <body>
-
 <div layout:fragment="content">
-    <main>
 
-        <section class="card board-header-card">
-            <div class="segmented-control">
-                <button class="seg-btn"
+    <section class="board-page-wrap">
+        <div class="board-shell">
+
+            <div class="board-title">속닥속닥 게시판</div>
+            <div class="board-subtitle">애니를 사랑하는 우리들의 이야기</div>
+
+            <!-- 카테고리 -->
+            <div class="board-seg">
+                <button class="board-seg-btn"
                         type="button"
                         th:onclick="|location.href='@{/board/1/list.do}'|"
-                        th:classappend="${categoryId} == 1 ? ' active' : ''">내 새끼 자랑</button>
-                <button class="seg-btn"
+                        th:classappend="${categoryId} == 1 ? ' active' : ''">✨ 내새끼자랑</button>
+
+                <button class="board-seg-btn"
                         type="button"
                         th:onclick="|location.href='@{/board/2/list.do}'|"
-                        th:classappend="${categoryId} == 2 ? ' active' : ''">
-                    코스프레
-                </button>
-                <button class="seg-btn"
+                        th:classappend="${categoryId} == 2 ? ' active' : ''">🧸 코스프레</button>
+
+                <button class="board-seg-btn"
                         type="button"
                         th:onclick="|location.href='@{/board/3/list.do}'|"
-                        th:classappend="${categoryId} == 3 ? ' active' : ''">자유게시판</button>
+                        th:classappend="${categoryId} == 3 ? ' active' : ''">💬 자유게시판</button>
             </div>
 
-            <div class="board-search-row">
-                <form method="post" th:action="@{/board/list.do}">
-                    <div class="board-search-box">
-                        <input class="col-7 form-control"
-                               name="search"
-                               type="text"
-                               placeholder="통합 검색 (제목, 닉네임)"
-                               th:value="${search}"
-                                >
-                        <button class="col-1 btn btn-outline-primary d-flex align-items-center justify-content-center" type="submit">
-                            <span class="board-search-icon me-1">🔍</span>
-                        </button>
-                    </div>
-                </form>
+            <!-- ✅ 왼쪽(검색+글) / 오른쪽(인기글) -->
+            <div class="board-grid">
 
-                <!-- ▶▶ 아이콘 기능 추가된 부분 ◀◀ -->
-                <div class="search-actions">
-                    <button id="viewListBtn" class="icon-btn active">☰</button>
-                    <button id="viewPhotoBtn" class="icon-btn">▢</button>
-                    <button id="sortBtn" class="icon-btn">⇅</button>
+                <!-- =======================
+                     LEFT: 검색 + 글목록
+                ======================== -->
+                <div>
 
-                    <!-- 🔥 정렬 메뉴를 search-actions 안으로 이동 -->
-                    <div id="sortMenu" class="sort-menu hidden">
-                        <div class="sort-option"
-                             data-sort="latest"
-                             th:classappend="${sortType} == 'latest'? 'active': ''">
-                            최신순</div>
-                        <div class="sort-option"
-                             data-sort="popular"
-                             th:classappend="${sortType} == 'popular'? 'active': ''"
-                        >인기순</div>
-                    </div>
-                </div>
+                    <div class="board-toolbar">
+                        <div class="board-toolbar-row">
 
+                            <form th:action="@{/board/list.do}" method="post" style="flex:1; min-width:260px;">
+                                <div class="board-search">
+                                    <span class="icon">🔍</span>
+                                    <input name="search" type="text" placeholder="게시글 검색" th:value="${search}">
+                                </div>
+                            </form>
 
+                            <div class="board-mini-actions">
+                                <button id="viewListBtn" class="icon-btn" type="button" title="리스트">≡</button>
+                                <button id="viewPhotoBtn" class="icon-btn active" type="button" title="그리드">▢</button>
 
-
-                <!-- PC에서는 오른쪽 끝에 -->
-                <div class="desktop-write-btn">
-
-                    <!-- ✅ 로그인 상태: 내 memberId 로 글쓰기 페이지 -->
-                    <button class="btn-primary btn-sm"
-                            th:if="${session.loginMember != null}"
-                            th:onclick="|location.href='@{/board/{memberId}/write(memberId=${memberId})}'|">
-                        + 글쓰기
-                    </button>
-
-                    <!-- ✅ 비로그인 상태: 권한 없음 안내 페이지로 이동 -->
-                    <button class="btn-primary btn-sm"
-                            th:if="${session.loginMember == null}"
-                            th:onclick="|location.href='@{/auth/login}'|">
-                        + 글쓰기
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🔥 인기글 TOP5 -->
-        <section class="card hot-posts-card"
-                 th:if="${not #lists.isEmpty(hotCurrentBoard) or not #lists.isEmpty(hotAllBoard)}">
-
-            <div class="hot-posts-grid">
-
-                <!-- 왼쪽: 현재 게시판 인기글 -->
-                <div class="hot-posts-col">
-                    <div class="hot-posts-col-header">
-                        <div class="hot-posts-title">이 게시판 인기글</div>
-                        <div class="hot-posts-subtabs">
-                            <span class="hot-subtab active">오늘 BEST</span>
-                        </div>
-                    </div>
-
-                    <ul class="hot-posts-list">
-                        <li class="hot-post-item"
-                            th:each="post : ${hotCurrentBoard}">
-                                <span class="hot-post-label d-inline d-md-none"
-                                      th:text="${#strings.length(post.category.name) > 4
-                                            ? #strings.substring(post.category.name, 0, 4) + '...'
-                                            : post.category.name}">
-                                </span>
-                                <span class="hot-post-label d-none d-md-inline"
-                                        th:text="${post.category.name}">
-
-                                </span>
-
-
-                            <a class="hot-post-link"
-                                th:href="${memberId} == null ? @{/auth/login} :
-                                        @{/board/{memberId}/article/{postId}/detail.do(
-                                        memberId=${memberId},
-                                        postId=${post.id})}">
-                                <span class="hot-post-title d-inline d-md-none"
-                                      th:text="${#strings.length(post.title) > 10
-                                                ? #strings.substring(post.title, 0, 10) + '...'
-                                                : post.title}">
-                                </span>
-                                <span class="hot-post-title d-none d-md-inline"
-                                            th:text="${post.title}">
-                                </span>
-                                <span class="hot-post-comments"
-                                      th:text="'['  +2+ ']'">[0]</span>
-                            </a>
-                        </li>
-
-                        <li class="hot-post-empty"
-                            th:if="${#lists.isEmpty(hotCurrentBoard)}">
-                            이 게시판의 인기글이 없습니다.
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- 오른쪽: 전체 게시판 인기글 -->
-                <div class="hot-posts-col">
-                    <div class="hot-posts-col-header">
-                        <div class="hot-posts-title">전체 게시판 인기글</div>
-                        <div class="hot-posts-subtabs">
-                            <span class="hot-subtab active">오늘 BEST</span>
-                        </div>
-                    </div>
-
-                    <ul class="hot-posts-list">
-                        <li class="hot-post-item"
-                            th:each="post : ${hotAllBoard}">
-                            <span class="hot-post-label d-inline d-md-none"
-                                  th:text="${#strings.length(post.category.name) > 4
-                                            ? #strings.substring(post.category.name, 0, 4) + '...'
-                                            : post.category.name}">
-                                </span>
-                            <span class="hot-post-label  d-none d-md-inline"
-                                  th:text="${post.category.name}">
-
-                                </span>
-
-                            <a class="hot-post-link"
-                               th:href="${memberId} == null ? @{/auth/login} :
-                                        @{/board/{memberId}/article/{postId}/detail.do(
-                                        memberId=${memberId},
-                                        postId=${post.id})}">
-                                <span class="hot-post-title d-inline d-md-none"
-                                      th:text="${#strings.length(post.title) > 10
-                                                ? #strings.substring(post.title, 0, 10) + '...'
-                                                : post.title}">
-                                </span>
-                                <span class="hot-post-title d-none d-md-inline"
-                                      th:text="${post.title}">
-                                </span>
-                                <span class="hot-post-comments"
-                                      th:text="'[' + 2 + ']'">[0]</span>
-                            </a>
-                        </li>
-
-                        <li class="hot-post-empty"
-                            th:if="${#lists.isEmpty(hotAllBoard)}">
-                            전체 게시판 인기글이 없습니다.
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-        <!-- 게시글 리스트 (원본 그대로) -->
-        <!-- 절대 수정 안 했음 -->
-<!--        <ul>-->
-<!--            <li>현재페이지<b th:text="${posts.number}"></b></li>-->
-<!--            <li>전체페이지<b th:text="${posts.totalPages}"></b></li>-->
-<!--            <li>1?<b th:text="${posts.isFirst()}"></b></li>-->
-<!--            <li>마지막?<b th:text="${posts.isLast()}"></b></li>-->
-<!--            <li>한페이지에 출력되는 로우<b th:text="${posts.size}"></b></li>-->
-<!--            <li>정렬<b th:text="${posts.sort}"></b></li>-->
-<!--        </ul>-->
-        <!-- ===== 게시글 리스트 카드 ===== -->
-        <section class="card">
-
-            <!-- 게시글 리스트 -->
-            <ul id="postList" class="post-list" th:if="${not #lists.isEmpty(posts)}">
-                <li class="post-card"
-                    th:each="post : ${posts.content}"
-                    th:attr="data-post-id=${post.id}">
-                    <!-- 썸네일 -->
-                    <div class="post-thumb-box">
-                        <span th:if="${post.thumbnailUrl == null}">IMAGE</span>
-                        <img th:if="${post.thumbnailUrl != null}"
-                             th:src="@{${post.thumbnailUrl}}"
-                             alt="썸네일"
-                             style="width:100%; height:100%; object-fit:cover;">
-                    </div>
-
-                    <div class="post-main">
-                        <div>
-                            <!-- 제목 -->
-                            <h3 class="post-title"
-                                th:text="${post.title}">
-                                오늘 영업당한 내 최애 포카 자랑합니다 🥹
-                            </h3>
-
-                            <!-- 내용 요약 (content 앞부분 자르기) -->
-                            <p class="post-excerpt"
-                               th:text="${#strings.abbreviate(post.content, 40)}">
-                                오늘 영업당한 내 최애 포카 자랑 글이에요...
-                            </p>
-
-                            <!-- 태그는 나중에 DTO로 합쳐도 되고, 일단은 임시 -->
-                            <p class="post-tag">
-                                <!-- 예시: 나중에 post.tagSummary 같은 필드 만들면 그걸 쓰면 됨 -->
-                                <span th:text="${post.category.name}">#카테고리</span>
-                            </p>
-
-                            <!-- 닉네임 · 작성일 -->
-                            <p class="post-meta-top">
-                                <span th:text="${post.member.nickname}">닉네임</span>
-                                ·
-                                <span th:text="${#temporals.format(post.createdAt,'yyyy.MM.dd')}">
-                            3분 전
-                        </span>
-                            </p>
-                        </div>
-
-                        <div class="post-meta-bottom">
-                            <!-- ❤️좋아요 · 💬댓글수 · 👀조회수 -->
-                            <div class="post-stats">
-                                ❤️<span th:text="${post.likeCount}">108</span>
-                                ·💬
-                                <span th:text="${post.commentCount}">0</span>
-                                · 👀<span th:text="${post.viewCount}">1,024</span>
+                                <div class="sort-wrap">
+                                    <button id="sortBtn" class="icon-btn" type="button" title="정렬">⇅</button>
+                                    <div id="sortMenu" class="sort-menu hidden">
+                                        <div class="sort-option" data-sort="latest"
+                                             th:classappend="${sortType} == 'latest'? 'active': ''">최신순</div>
+                                        <div class="sort-option" data-sort="popular"
+                                             th:classappend="${sortType} == 'popular'? 'active': ''">인기순</div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- 카테고리명 -->
-                            <div th:text="${post.category.name}">
-                                내 새끼 자랑
+
+                            <!-- 글쓰기 -->
+                            <button class="board-write-btn"
+                                    th:if="${session.loginMember != null}"
+                                    th:onclick="|location.href='@{/board/{memberId}/write(memberId=${memberId})}'|"
+                                    type="button">글쓰기</button>
+
+                            <button class="board-write-btn"
+                                    th:if="${session.loginMember == null}"
+                                    th:onclick="|location.href='@{/auth/login}'|"
+                                    type="button">글쓰기</button>
+                        </div>
+                    </div>
+
+                    <!-- ✅ 검색 밑에 바로 3개 게시글 -->
+                    <div id="boardRoot">
+
+                        <div class="post-grid" id="postList" th:if="${not #lists.isEmpty(posts)}">
+                            <div class="post-card"
+                                 th:each="post : ${posts.content}"
+                                 th:attr="data-post-id=${post.id}">
+
+                                <a class="post-thumb" href="javascript:void(0)">
+                                    <img th:src="${post.thumbnailUrl != null ? post.thumbnailUrl : '/images/dummy/noimg.png'}"
+                                         alt="썸네일">
+                                </a>
+
+                                <div class="post-body">
+                                    <div class="post-chip-row">
+                                        <span class="chip" th:text="${post.category.name}">카테고리</span>
+                                        <span class="chip hot">HOT</span>
+                                    </div>
+
+                                    <div class="post-title" th:text="${post.title}">제목</div>
+
+                                    <div class="post-meta">
+                    <span>
+                      <b th:text="${post.member.nickname}">닉네임</b>
+                      ·
+                      <span th:text="${#temporals.format(post.createdAt,'yyyy.MM.dd')}">2025.01.01</span>
+                    </span>
+                                        <span th:text="${post.category.name}">카테고리</span>
+                                    </div>
+
+                                    <div class="post-stats">
+                                        <span>👀 <b th:text="${post.viewCount}">0</b></span>
+                                        <span>❤️ <b th:text="${post.likeCount}">0</b></span>
+                                        <span>💬 <b th:text="${post.commentCount}">0</b></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
 
-            <!-- 글이 하나도 없을 때 -->
-            <p th:if="${#lists.isEmpty(posts)}" style="text-align:center; margin-top:40px;">
-                등록된 게시글이 없습니다.
-            </p>
-        </section>
-        <nav class="d-flex justify-content-end align-items-center gap-2 mt-3">
-            <select class="form-select form-select-sm w-auto"
-                    onchange="location.href='?page=0&size=' + this.value;">
-                <option disabled selected>보기</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="40">40</option>
-            </select>
-            <a class="btn btn-sm btn-outline-dark d-none"
-               th:href="@{'?'(page=0, size=5)}">5</a>
-            <a class="btn btn-sm btn-outline-dark d-none"
-               th:href="@{'?'(page=0, size=10)}">10</a>
-            <a class="btn btn-sm btn-outline-dark d-none"
-               th:href="@{'?'(page=0, size=20)}">20</a>
-            <a class="btn btn-sm btn-outline-dark d-none"
-               th:href="@{'?'(page=0, size=40)}">40</a>
-        </nav>
-        <div th:with="
-        page=${posts.number},
-        last=${posts.totalPages},
-        sort=${posts.sort},
-        size=${param.size}"
-             class="my-4 d-flex justify-content-center">
-            <nav
-                    th:with="  start=${ page - 2 < 0 ? 0 : page - 2 },
-                                end=${ page + 3 > last ? last : page + 3 }"
-            >
-                <ul class="pagination">
-                    <li class="page-item"
-                        th:classappend="${page}==0 ? 'disabled' : '' ">
-                        <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
-                    </li>
-                    <li  th:each="i : ${#numbers.sequence(start+1,end)}"
-                         th:classappend="( (${i}-1)==${page}?'active' )"
-                         class="page-item">
-                        <a th:href="@{'?'(page=(${i}-1), size=${size})}" class="page-link" th:text="${i}" > </a>
-                    </li>
-                    <li class="page-item"
-                        th:classappend="${page}==(${last}-1) ? 'disabled' : '' ">
-                        <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
-                    </li>
-                </ul>
-            </nav>
+                        <div th:if="${#lists.isEmpty(posts)}" style="padding:30px;color:var(--sub);text-align:center;">
+                            등록된 게시글이 없습니다.
+                        </div>
+
+                        <!-- 페이징(기존 로직 유지) -->
+                        <div class="pager-wrap"
+                             th:with="page=${posts.number}, last=${posts.totalPages}, size=${param.size}">
+                            <nav th:with="start=${ page - 2 < 0 ? 0 : page - 2 }, end=${ page + 3 > last ? last : page + 3 }">
+                                <ul class="tkk-paging">
+                                    <li class="page-item" th:classappend="${page}==0 ? 'disabled' : '' ">
+                                        <a th:href="@{'?'(page=0,size=${size})}" class="page-link">start</a>
+                                    </li>
+
+                                    <li th:each="i : ${#numbers.sequence(start+1,end)}"
+                                        th:classappend="( (${i}-1)==${page}?'active' )"
+                                        class="page-item">
+                                        <a th:href="@{'?'(page=(${i}-1), size=${size})}"
+                                           class="page-link"
+                                           th:text="${i}"></a>
+                                    </li>
+
+                                    <li class="page-item" th:classappend="${page}==(${last}-1) ? 'disabled' : '' ">
+                                        <a th:href="@{'?'(page=${last}-1,size=${size})}" class="page-link">last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- =======================
+                     RIGHT: 인기글 (빨간 동그라미 자리)
+                ======================== -->
+                <aside class="hot-mini"
+                       th:if="${not #lists.isEmpty(hotCurrentBoard) or not #lists.isEmpty(hotAllBoard)}">
+                    <div class="hot-mini-head">📈 인기글</div>
+
+                    <ul class="hot-mini-list">
+
+                        <!-- 현재 게시판 인기글 우선 -->
+                        <th:block th:if="${not #lists.isEmpty(hotCurrentBoard)}"
+                                  th:each="p,stat : ${hotCurrentBoard}">
+                            <li th:if="${stat.index < 3}">
+                                <a class="hot-mini-link"
+                                   th:href="${memberId != null} ?
+                     @{'/board/' + ${memberId} + '/article/' + ${p.id} + '/detail.do'} :
+                     @{/board/not-allowed}">
+                                    <div class="hot-mini-rank" th:text="${stat.index + 1}">1</div>
+                                    <div>
+                                        <div class="hot-mini-title" th:text="${p.title}">제목</div>
+                                        <div class="hot-mini-stats">
+                                            <span>👀 <b th:text="${p.viewCount}">0</b></span>
+                                            <span>❤️ <b th:text="${p.likeCount}">0</b></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </th:block>
+
+                        <!-- 없으면 전체 인기글 -->
+                        <th:block th:if="${#lists.isEmpty(hotCurrentBoard)}"
+                                  th:each="p,stat : ${hotAllBoard}">
+                            <li th:if="${stat.index < 3}">
+                                <a class="hot-mini-link"
+                                   th:href="${memberId != null} ?
+                     @{'/board/' + ${memberId} + '/article/' + ${p.id} + '/detail.do'} :
+                     @{/board/not-allowed}">
+                                    <div class="hot-mini-rank" th:text="${stat.index + 1}">1</div>
+                                    <div>
+                                        <div class="hot-mini-title" th:text="${p.title}">제목</div>
+                                        <div class="hot-mini-stats">
+                                            <span>👀 <b th:text="${p.viewCount}">0</b></span>
+                                            <span>❤️ <b th:text="${p.likeCount}">0</b></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </th:block>
+
+                    </ul>
+                </aside>
+
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- 모바일 플로팅 글쓰기 -->
+    <button class="floating-write-btn"
+            th:if="${memberId != null}"
+            th:onclick="|location.href='@{/board/{memberId}/write(memberId=${memberId})}'|"
+            type="button">＋</button>
+
+    <button class="floating-write-btn"
+            th:if="${memberId == null}"
+            th:onclick="|location.href='@{/board/not-allowed}'|"
+            type="button">＋</button>
+
 </div>
-<!-- 모바일 전용 플로팅 버튼 -->
-<button class="floating-write-btn"
-        th:if="${memberId != null}"
-        th:onclick="|location.href='@{/board/{memberId}/write(memberId=${memberId})}'|">＋
-</button>
-<!-- ✅ 비로그인 상태: 권한 없음 안내 페이지로 이동 -->
-<button class="floating-write-btn"
-        th:if="${memberId == null}"
-        th:onclick="|location.href='@{/board/not-allowed}'|">＋
-</button>
 
 <script th:inline="javascript" layout:fragment="script">
-    document.addEventListener('DOMContentLoaded', () => { //이벤트리스너가 html모두 출력 동작하기위해 있음.
+    document.addEventListener('DOMContentLoaded', () => {
 
-        const postList = document.getElementById("postList");
         const viewListBtn = document.getElementById("viewListBtn");
         const viewPhotoBtn = document.getElementById("viewPhotoBtn");
 
-        // 타임리프에서 memberId 값을 JS 변수로 주입
-        const memberId = /*[[${memberId}]]*/ 0;
+        const memberId = /*[[${memberId}]]*/ null;
 
+        // 카드 클릭 → 상세
         document.querySelectorAll('.post-card').forEach(card => {
             card.addEventListener('click', () => {
                 const postId = card.dataset.postId;
-                if (memberId == null) {//비회원이면 조회불가
-                    const url = `/board/not-allowed`;
-                    window.location.href = url;
+                if (memberId == null) {
+                    window.location.href = "/board/not-allowed";
                     return;
                 }
-                const url = `/board/${memberId}/article/${postId}/detail.do`;
-                window.location.href = url;
+                window.location.href = `/board/${memberId}/article/${postId}/detail.do`;
             });
         });
-        /* 리스트 보기 */
-        viewListBtn.onclick = () => {
-            postList.classList.remove("photo-view");
+
+        // 보기 모드
+        viewListBtn?.addEventListener("click", () => {
+            document.getElementById("postList")?.classList.add("view-list");
             viewListBtn.classList.add("active");
             viewPhotoBtn.classList.remove("active");
-        };
+        });
 
-        /* 사진 보기 */
-        viewPhotoBtn.onclick = () => {
-            postList.classList.add("photo-view");
+        viewPhotoBtn?.addEventListener("click", () => {
+            document.getElementById("postList")?.classList.remove("view-list");
             viewPhotoBtn.classList.add("active");
             viewListBtn.classList.remove("active");
-        };
+        });
 
-        /* ===== 정렬 메뉴 기능 ===== */
-        const sortBtn = document.getElementById("sortBtn");      // 아이콘 버튼
-        const sortMenu = document.getElementById("sortMenu");    // 메뉴 박스
+        // 정렬 메뉴
+        const sortBtn = document.getElementById("sortBtn");
+        const sortMenu = document.getElementById("sortMenu");
         const sortOptions = document.querySelectorAll(".sort-option");
 
-        // 정렬 버튼 클릭 → 메뉴 열기/닫기
-        sortBtn.addEventListener("click", (e) => {
+        sortBtn?.addEventListener("click", (e) => {
             e.stopPropagation();
             sortMenu.classList.toggle("hidden");
         });
 
-        // 정렬 옵션 클릭 → 메뉴 닫기 + 적용
-        sortOptions.forEach(option => {
-            option.addEventListener("click", () => {
-                sortOptions.forEach(o => o.classList.remove("active"));
-                option.classList.add("active");
-
-                sortMenu.classList.add("hidden");
-
-                console.log("정렬:", option.dataset.sort);
-            });
-        });
-
-        // 화면 클릭하면 닫힘
         document.addEventListener("click", () => {
             sortMenu.classList.add("hidden");
         });
 
+        // 정렬 적용(기존 로직 유지)
+        sortOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                sortOptions.forEach(o => o.classList.remove("active"));
+                option.classList.add("active");
 
-        bindSortChange();
+                const sortType = option.dataset.sort;
+                const url = new URL(window.location.href);
 
+                if (sortType === 'latest') url.searchParams.set('sort', 'createdAt,desc');
+                if (sortType === 'popular') url.searchParams.set('sort', 'likeCount,desc');
 
-        function bindSortChange() { // 페이지 정렬 (최신순, 인기순)
-            const sortOptions = document.querySelectorAll('#sortMenu .sort-option');
-
-            sortOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const sortType = option.dataset.sort; // "latest" or "popular"
-                    const url = new URL(window.location.href);
-
-                    // ✅ Spring Pageable이 이해하는 sort 파라미터로 변환
-                    if (sortType === 'latest') {
-                        // createdAt 기준 최신순
-                        url.searchParams.set('sort', 'createdAt,desc');
-                    } else if (sortType === 'popular') {
-                        // likeCount 기준 인기순
-                        url.searchParams.set('sort', 'likeCount,desc');
-                    }
-
-                    // 페이지는 0부터 시작
-                    url.searchParams.set('page', 0);
-
-                    window.location.href = url.toString();
-                });
+                url.searchParams.set('page', 0);
+                window.location.href = url.toString();
             });
-        }
-    });
+        });
 
+    });
 </script>
+
 </body>
 </html>

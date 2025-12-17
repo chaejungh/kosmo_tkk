@@ -1,18 +1,30 @@
-<header class="header" th:fragment="header">
-    <div class="header-inner">
-        <a th:href="@{/}" class="logo">더쿠쿠</a>
+<header class="tkk-header">
+    <div class="tkk-container tkk-header-inner">
 
-        <div class="auth-actions">
-            <div th:if="${session.loginMember == null}">
-                <a th:href="@{/auth/login}" class="btn-auth">로그인</a>
-                <a th:href="@{/auth/join}" class="btn-auth primary">회원가입</a>
-            </div>
+        <!-- 로고 -->
+        <a class="tkk-brand" th:href="@{/}">
+            <img class="tkk-brand-logo"
+                 th:src="@{/images/thekuku_logo_transparent.png}"
+                 alt="THE KUKU"
+                 onerror="this.style.display='none'">
+        </a>
 
-            <div th:if="${session.loginMember != null}">
-                <span class="nickname"
-                      th:text="${session.loginMember.nickname} + '님'">닉네임</span>
-                <a th:href="@{/auth/logout}" class="btn-auth">로그아웃</a>
-            </div>
+        <!-- 메뉴 -->
+        <nav class="tkk-nav">
+            <a class="tkk-nav-item" th:href="@{/}">홈</a>
+
+            <!-- /board 는 컨트롤러에서 /board/1/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/board}">속닥속닥</a>
+
+            <!-- ✅ /trade 는 컨트롤러에서 /trade/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/trade}">쿠쿠마켓</a>
+        </nav>
+
+        <!-- 우측 버튼 -->
+        <div class="tkk-actions">
+            <a class="tkk-btn tkk-btn-ghost" th:href="@{/member/login}">로그인</a>
+            <a class="tkk-btn tkk-btn-primary" th:href="@{/member/join}">회원가입</a>
         </div>
+
     </div>
 </header>

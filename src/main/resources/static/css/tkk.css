@@ -42,7 +42,8 @@ body.tkk-body {
     color: #111827;
 }
 
-.tkk-header {
+/* ===== HEADER (컨테이너 시작선에 맞춤) ===== */
+.tkk-header{
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -50,45 +51,75 @@ body.tkk-body {
     border-bottom: 1px solid #eef2f7;
 }
 
-.tkk-header-inner {
-    max-width: 1200px;   /* ✅ 여기서 “작게 보이는” 느낌을 통일 */
+.tkk-header-inner{
+    max-width: 1200px;     /* ✅ 지도/팝업 시작선(컨테이너)과 동일 */
     margin: 0 auto;
     padding: 14px 16px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
 }
 
-.tkk-brand {
+/* 로고 */
+.tkk-brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    flex: 0 0 auto;
+}
+
+.tkk-brand-logo{
+    height: 70px;          /* ✅ 원하면 60~80 조절 */
+    width: auto;
+    display:block;
+    object-fit: contain;
+
+    /* ✅ 가로 넓게(원하면 1.3~1.7) */
+    transform: scaleX(1.5);
+    transform-origin: left center;
+}
+
+/* 메뉴: 오른쪽으로 밀기 */
+.tkk-nav{
+    margin-left: auto;
     display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none;
-    color: inherit;
-}
-.tkk-brand-logo { width: 28px; height: 28px; }
-.tkk-brand-title { font-weight: 800; letter-spacing: 0.6px; }
-
-.tkk-nav {
-    display: flex;
-    gap: 10px;
-    align-items: center;
 }
 
-.tkk-nav-item {
+/* ✅ 메뉴 버튼: 네모(라운드 사각형) */
+.tkk-nav-item{
     display: inline-flex;
-    gap: 8px;
     align-items: center;
-    padding: 8px 10px;
-    border-radius: 12px;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 12px;      /* ✅ 네모 느낌 */
     text-decoration: none;
     color: #374151;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1;
+    transition: background .15s ease, color .15s ease;
 }
-.tkk-nav-item:hover { background: #f3f4f6; }
 
-.tkk-actions { display: flex; gap: 10px; }
-.tkk-btn {
+.tkk-nav-item:hover{ background: #f3f4f6; }
+
+/* ✅ 활성 메뉴(검정) */
+.tkk-nav-item.is-active{
+    background: #111827;
+    color: #fff;
+}
+
+/* 로그인/회원가입: 메뉴랑 너무 붙지 않게 왼쪽으로 띄움 */
+.tkk-actions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 18px;     /* ✅ 메뉴랑 간격 */
+}
+
+/* 버튼 */
+.tkk-btn{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -97,13 +128,16 @@ body.tkk-body {
     text-decoration: none;
     font-weight: 700;
     font-size: 14px;
+    line-height: 1;
 }
-.tkk-btn-outline {
+
+.tkk-btn-outline{
     border: 1px solid #e5e7eb;
     color: #111827;
     background: #fff;
 }
-.tkk-btn-primary {
+
+.tkk-btn-primary{
     border: 1px solid transparent;
     background: #ff6b7a;
     color: #fff;
