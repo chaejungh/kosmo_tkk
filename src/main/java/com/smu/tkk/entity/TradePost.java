@@ -106,6 +106,14 @@ public class TradePost {
     @OneToMany(mappedBy = "trade")
     @ToString.Exclude
     @JsonIgnore
+    @OrderBy("sortOrder ASC")//12-17 수정
     private Set<TradePostImage> tradePostImages = new LinkedHashSet<>();
 
+
+    @Transient
+    public String getThumbnailUrl() {//12-17 수정
+        if (tradePostImages == null || tradePostImages.isEmpty()) return null;
+        // @OrderBy 덕분에 iterator().next()가 대표이미지(가장 앞) 역할
+        return tradePostImages.iterator().next().getImageUrl();
+    }
 }

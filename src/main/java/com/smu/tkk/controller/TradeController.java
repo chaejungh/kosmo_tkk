@@ -91,7 +91,7 @@ public class TradeController {
         if ("like".equals(sort)) result = tradeService.readAllOrderByLike(pageable);
         else if ("view".equals(sort)) result = tradeService.readAllOrderByView(pageable);
         else result = tradeService.readAllOrderByLatest(pageable);
-
+//        TradePostImage imgs = tradePostImageService.readOneImage()
         model.addAttribute("page", result);
         model.addAttribute("sort", sort);
         model.addAttribute("unreadCount", unreadCount);
