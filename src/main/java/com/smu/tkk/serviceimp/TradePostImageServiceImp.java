@@ -1,43 +1,34 @@
 package com.smu.tkk.serviceimp;
 
-import com.smu.tkk.entity.TradePost;
 import com.smu.tkk.entity.TradePostImage;
 import com.smu.tkk.repository.TradePostImageRepository;
-import com.smu.tkk.repository.TradePostRepository;
 import com.smu.tkk.service.TradePostImageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class TradePostImageServiceImp implements TradePostImageService {
 
     private final TradePostImageRepository tradePostImageRepository;
-    private final TradePostRepository tradePostRepository;
 
     @Override
     public Page<TradePostImage> readAllByTradeId(Long tradeId) {
-        return tradePostImageRepository.findAllByTradeId(
-                tradeId,
-                PageRequest.of(0, 50,
-                        Sort.by(
-                                Sort.Order.asc("sortOrder"),
-                                Sort.Order.asc("id")
-                        )
-                )
-        );
+        return tradePostImageRepository.findAllByTradeId(tradeId, PageRequest.of(0, 50));
     }
 
     @Override
     public Optional<TradePostImage> readOneImage(Long tradeId) {
-        return tradePostImageRepository
-                .findFirstByTradeIdOrderBySortOrderAscIdAsc(tradeId);
+        return tradePostImageRepository.findFirstByTradeIdOrderBySortOrderAscIdAsc(tradeId);
     }
 
     @Override
@@ -46,37 +37,45 @@ public class TradePostImageServiceImp implements TradePostImageService {
     }
 
     @Override
+    @Transactional
     public TradePostImage register(Long tradeId, String imageUrl) {
-
-        TradePost tradePost = tradePostRepository.findById(tradeId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("거래글이 존재하지 않습니다. id=" + tradeId)
-                );
-
-        TradePostImage image = new TradePostImage();
-        image.setTrade(tradePost);
-        image.setTradeId(tradeId);
-        image.setImageUrl(imageUrl);
-        image.setSortOrder(1L);
-
-        return tradePostImageRepository.save(image);
+        TradePostImage img = new TradePostImage();
+        img.setTradeId(tradeId);
+        img.setImageUrl(imageUrl);
+        img.setSortOrder(1L);
+        return tradePostImageRepository.save(img);
     }
 
     @Override
+    @Transactional
     public boolean remove(Long imageId) {
-
-        TradePostImage image = tradePostImageRepository.findById(imageId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("이미지가 존재하지 않습니다. id=" + imageId)
-                );
-
-        tradePostImageRepository.delete(image);
+        if (!tradePostImageRepository.existsById(imageId)) return false;
+        tradePostImageRepository.deleteById(imageId);
         return true;
     }
 
-    /** 🔥 갤러리용 이미지 전체 조회 */
     @Override
     public List<TradePostImage> readAllList(Long tradeId) {
         return tradePostImageRepository.findAllListByTradeId(tradeId);
+    }
+
+    /** ✅ 여러 글 대표(첫) 이미지 Map 만들기: tradeId -> imageUrl */
+    @Override
+    public Map<Long, String> readThumbMap(List<Long> tradeIds) {
+        Map<Long, String> result = new LinkedHashMap<>();
+        if (tradeIds == null || tradeIds.isEmpty()) return result;
+
+        List<TradePostImage> images =
+                tradePostImageRepository.findAllByTradeIdInOrderByTradeIdAscSortOrderAscIdAsc(tradeIds);
+
+        for (TradePostImage img : images) {
+            if (img == null) continue;
+            Long tradeId = img.getTradeId();
+            if (tradeId == null) continue;
+
+            // tradeId 당 "첫 번째" 이미지만
+            result.putIfAbsent(tradeId, img.getImageUrl());
+        }
+        return result;
     }
 }

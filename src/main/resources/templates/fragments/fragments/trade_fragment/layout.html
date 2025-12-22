@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--    index-->
-    <link rel="stylesheet" href="/src/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <script src="/src/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <script src="/static/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-<!--    <link rel="stylesheet" th:href="@{/css/home.css}"/>-->
+    <!--    <link rel="stylesheet" th:href="@{/css/home.css}"/>-->
     <link rel="stylesheet" th:href="@{/css/auth.css}"/>
     <link rel="stylesheet" th:href="@{/css/trade.css}"/>
 
@@ -45,7 +45,7 @@
 </div>
 
 <!-- ✅ 공통 헤더 -->
-<div th:replace="~{fragments/trade_fragment/header :: header}"></div>
+<div th:replace="~{fragments/fragments/trade_fragment/header :: header}"></div>
 
 
 <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
@@ -56,7 +56,7 @@
 </div>
 
 <!-- ✅ 공통 푸터 -->
-<div th:replace="~{fragments/tkk_fragment/footer :: footer}"></div>
+<div th:replace="~{fragments/fragments/mypage_fragment/footer :: footer}"></div>
 <!-- 하단 네비게이션 -->
 <!-- ===== 하단 네비 ===== -->
 <nav class="bottom-nav">

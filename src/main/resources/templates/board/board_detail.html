@@ -2,11 +2,428 @@
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/tkk_fragment/layout}">
-<head></head>
+      layout:decorate="~{fragments/fragments/layout}">
+<head>
+    <!-- ✅ layout head fragment로 CSS 주입 -->
+    <th:block layout:fragment="head">
+        <style>
+            /* =========================
+               Board Detail - UI Only
+               기능(좋아요/저장/공유/댓글)은 그대로
+            ========================== */
+
+            :root{
+                --bg: #f5f6f8;
+                --card: #ffffff;
+                --text: #111827;
+                --muted: #6b7280;
+                --line: #e5e7eb;
+                --shadow: 0 8px 28px rgba(0,0,0,.08);
+
+                --pink: #ff4d79;
+                --pinkSoft: #fff0f4;
+
+                --dark: #111827;
+            }
+
+            /* 전체 배경/가로폭 */
+            .board-page{
+                background: var(--bg);
+                min-height: calc(100vh - 120px);
+            }
+            .page-inner{
+                max-width: 1240px;         /* ✅ 가로폭 넓힘 */
+                margin: 0 auto;
+                padding: 26px 18px 80px;
+            }
+
+            /* 공통 카드 */
+            .card{
+                background: var(--card);
+                border: 1px solid rgba(0,0,0,.06);
+                border-radius: 18px;
+                box-shadow: var(--shadow);
+            }
+
+            /* ===== 상세 카드 ===== */
+            .post-detail-card{
+                max-width: 1040px;        /* ✅ 카드 자체도 조금 넓게 */
+                margin: 0 auto 18px;
+                padding: 18px;
+            }
+
+            .post-detail-header{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap: 12px;
+            }
+
+            .detail-profile-left{
+                display:flex;
+                align-items:center;
+                gap: 12px;
+            }
+
+            .detail-profile-photo{
+                width: 44px;
+                height: 44px;
+                border-radius: 999px;
+                overflow:hidden;
+                background:#eef0f2;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size: 12px;
+                color: var(--muted);
+                flex: none;
+            }
+            .detail-profile-photo img{
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                display:block;
+            }
+
+            .detail-nickname{
+                font-weight: 800;
+                font-size: 15px;
+                color: var(--text);
+            }
+            .detail-sub-meta{
+                margin-top: 2px;
+                font-size: 12px;
+                color: var(--muted);
+                display:flex;
+                gap: 6px;
+                align-items:center;
+                flex-wrap: wrap;
+            }
+
+            .detail-header-actions{
+                display:flex;
+                gap: 8px;
+            }
+            .detail-action-btn{
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                padding: 8px 12px;
+                border: 1px solid var(--line);
+                border-radius: 999px;
+                background: #fff;
+                color: var(--text);
+                text-decoration:none;
+                font-size: 13px;
+                cursor:pointer;
+            }
+            .detail-action-btn:hover{
+                background:#fafafa;
+            }
+            .detail-action-delete{
+                border-color: #fecaca;
+                color: #ef4444;
+            }
+
+            /* ===== 대표 이미지 =====
+               ✅ 사진 너무 큰 문제 해결: 높이 줄임
+               ✅ 버튼 안 눌리는 문제 해결: z-index 정리 + 겹침 방지
+            */
+            .detail-main-image{
+                margin-top: 14px;
+                border-radius: 16px;
+                overflow:hidden;
+                background:#f3f4f6;
+                position: relative;
+                z-index: 1;               /* 이미지 영역은 1 */
+            }
+            .detail-main-image img{
+                width: 100%;
+                height: 420px;            /* ✅ 너무 크게 나오던 거 줄임 */
+                object-fit: cover;
+                display:block;
+                cursor: pointer;
+            }
+
+            /* ===== 좋아요/댓글/저장/조회/공유 ===== */
+            .detail-stats-row{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap: 12px;
+                padding: 14px 2px 0;
+                position: relative;
+                z-index: 2;               /* ✅ 버튼 영역을 위로 올려 클릭 보장 */
+            }
+            .detail-stats-left{
+                display:flex;
+                gap: 14px;
+                align-items:center;
+                flex-wrap: wrap;
+            }
+            .detail-stat-item{
+                display:flex;
+                align-items:center;
+                gap: 8px;
+                font-size: 14px;
+                color: var(--text);
+            }
+
+            /* ✅ 기존 버튼/스팬 요소는 그대로 쓰되, "눌리게"만 스타일 */
+            .like-btn{
+                border: 1px solid var(--line);
+                background: #fff;
+                border-radius: 999px;
+                padding: 6px 10px;
+                cursor: pointer;
+                line-height: 1;
+                user-select: none;
+            }
+            .like-btn.active{
+                border-color: var(--pink);
+                box-shadow: 0 0 0 2px rgba(255,77,121,.10);
+            }
+
+            .bookmark-btn{
+                border: 1px solid var(--line);
+                background:#fff;
+                border-radius: 999px;
+                padding: 6px 10px;
+                cursor: pointer;
+                user-select:none;
+                line-height: 1;
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+            }
+            .bookmark-btn.active{
+                border-color: var(--pink);
+                box-shadow: 0 0 0 2px rgba(255,77,121,.10);
+            }
+
+            #bookmark-label{
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .detail-share-btn{
+                border: 1px solid var(--dark);
+                background: var(--dark);
+                color:#fff;
+                border-radius: 999px;
+                padding: 8px 12px;
+                cursor:pointer;
+                line-height: 1;
+            }
+
+            /* ===== 제목/본문/태그 ===== */
+            .detail-content-title{
+                margin-top: 18px;
+                font-size: 22px;
+                font-weight: 900;
+                color: var(--text);
+                letter-spacing: -0.2px;
+            }
+
+            .detail-content-body{
+                margin-top: 10px;
+                color: #222;
+                line-height: 1.7;
+                font-size: 15px;
+            }
+
+            .detail-content-tags{
+                margin-top: 14px;
+                display:flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .detail-content-tags span{
+                background: var(--pinkSoft);
+                color: var(--pink);
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-size: 13px;
+                font-weight: 700;
+            }
+
+            /* ===== 댓글 ===== */
+            .comment-write-card{
+                max-width: 1040px;
+                margin: 0 auto;
+                padding: 18px;
+            }
+
+            .comment-write-title{
+                font-weight: 900;
+                color: var(--text);
+                margin-bottom: 12px;
+            }
+
+            .comment-input-row{
+                display:flex;
+                gap: 10px;
+            }
+
+            .comment-input-row input{
+                flex: 1;
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                padding: 12px 14px;
+                font-size: 14px;
+                outline:none;
+                background:#fff;
+            }
+            .comment-input-row input:focus{
+                border-color: var(--pink);
+                box-shadow: 0 0 0 2px rgba(255,77,121,.10);
+            }
+
+            .comment-input-row button{
+                border:none;
+                background: var(--dark);
+                color:#fff;
+                border-radius: 14px;
+                padding: 0 18px;
+                cursor:pointer;
+                min-width: 92px;
+                font-weight: 800;
+            }
+
+            .comment-list{
+                margin-top: 14px;
+                display:flex;
+                flex-direction:column;
+                gap: 10px;
+            }
+
+            .comment-empty{
+                text-align:center;
+                color: var(--muted);
+                padding: 16px 0;
+            }
+
+            .comment-item{
+                border: 1px solid rgba(0,0,0,.06);
+                border-radius: 14px;
+                padding: 12px 14px;
+                background:#fff;
+            }
+
+            .comment-header{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap: 10px;
+                font-size: 12px;
+                color: var(--muted);
+            }
+            .comment-writer{
+                font-weight: 800;
+                color: var(--text);
+            }
+            .comment-content{
+                margin-top: 8px;
+                color: var(--text);
+                font-size: 14px;
+                line-height: 1.55;
+            }
+            .comment-delete-btn{
+                color: #ef4444;
+                text-decoration:none;
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            /* ===== 공유 모달 ===== */
+            .share-modal-overlay{
+                display:none;              /* ✅ 기본은 숨김 (버튼 클릭 막지 않게) */
+                position:fixed;
+                inset:0;
+                background: rgba(0,0,0,.45);
+                align-items:center;
+                justify-content:center;
+                z-index: 9999;
+            }
+            .share-modal{
+                width: min(520px, calc(100% - 24px));
+                background:#fff;
+                border-radius: 16px;
+                overflow:hidden;
+                box-shadow: 0 12px 32px rgba(0,0,0,.28);
+            }
+            .share-modal-header{
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                padding: 14px 16px;
+                border-bottom: 1px solid rgba(0,0,0,.06);
+                font-weight: 900;
+                color: var(--text);
+            }
+            .share-modal-close{
+                border:none;
+                background:transparent;
+                cursor:pointer;
+                font-size: 18px;
+            }
+            .share-modal-body{
+                padding: 14px 16px 16px;
+            }
+            .share-modal-text{
+                margin: 0;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .share-modal-url-row{
+                display:flex;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            .share-modal-url-row input{
+                flex:1;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                padding: 10px 12px;
+                outline:none;
+            }
+            .share-copy-btn{
+                border:none;
+                background: var(--dark);
+                color:#fff;
+                border-radius: 12px;
+                padding: 0 14px;
+                cursor:pointer;
+                font-weight: 800;
+            }
+            .share-copy-msg{
+                display:block;
+                margin-top: 8px;
+                color: #16a34a;
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            /* 반응형 */
+            @media (max-width: 768px){
+                .page-inner{
+                    padding: 18px 12px 60px;
+                }
+                .post-detail-card,
+                .comment-write-card{
+                    padding: 14px;
+                }
+                .detail-main-image img{
+                    height: 280px;
+                }
+                .detail-content-title{
+                    font-size: 18px;
+                }
+            }
+        </style>
+    </th:block>
+</head>
 <body>
-
-
 
 <div class="page board-page" layout:fragment="content">
     <div class="page-inner">
@@ -16,7 +433,6 @@
                 <!-- 왼쪽 : 프로필 영역 -->
                 <div class="detail-profile-left">
                     <div class="detail-profile-photo">
-                        <!-- 프로필 이미지가 있으면 이미지, 없으면 '프로필' 글자 -->
                         <img th:if="${post.member.profileImageUrl} != null"
                              th:src="${post.member.profileImageUrl}"
                              alt="프로필"
@@ -25,16 +441,11 @@
                     </div>
 
                     <div class="detail-profile-meta">
-                        <!-- 닉네임 -->
                         <div class="detail-nickname"
-                             th:text="${post.member.nickname}">
-                            히롱이
-                        </div>
-                        <!-- 작성일 · 카테고리명 -->
+                             th:text="${post.member.nickname}">히롱이</div>
+
                         <div class="detail-sub-meta">
-                <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">
-                    3분 전
-                </span>
+                            <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">3분 전</span>
                             ·
                             <span th:text="${post.category.name}"></span>
                         </div>
@@ -51,16 +462,13 @@
                     <a class="detail-action-btn detail-action-delete"
                        th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/delete.do'}"
                        onclick="return confirm('게시물을 삭제하시겠습니까?');">
-
                         삭제
                     </a>
                 </div>
             </div>
 
-
             <!-- 대표 사진 -->
             <div class="detail-main-image">
-                <!-- thumbnailUrl이 있으면 대표사진으로 사용 -->
                 <img th:if="${coverUrl} != null"
                      th:src="${coverUrl}"
                      th:onclick="'location.href=\'/board/' + ${post.id} + '/img/' + ${coverImageId} + '/detail.do\''"
@@ -68,11 +476,6 @@
                 <div th:if="${coverUrl} == null">
                     대표 사진 영역
                 </div>
-
-                <!-- 이미지 개수는 일단 1 / 1 -->
-<!--                <div class="detail-image-count">-->
-<!--                    <span>1 / 1</span>-->
-<!--                </div>-->
             </div>
 
             <!-- 좋아요 / 댓글 / 저장 / 조회수 + 공유 -->
@@ -85,62 +488,45 @@
                                 th:data-post-id="${post.id}"
                                 th:data-member-id="${memberId}"
                                 th:data-liked="${likeInfo.id != null}"
-                                th:text="${likeInfo.id != null} ? '❤️' : '🤍'">
-                            🤍
-                        </button>
+                                th:text="${likeInfo.id != null} ? '❤️' : '🤍'">🤍</button>
                         <span id="like-count" th:text="${likeInfo.getLikeCount()}">0</span>
                     </div>
+
                     <div class="detail-stat-item">
                         💬 <span th:text="${commentCount}"></span>
                     </div>
+
                     <div class="detail-stat-item">
                         <span type="button"
-                                id="bookmark-btn"
-                                class="bookmark-btn"
-                                th:data-post-id="${post.id}"
-                                th:data-member-id="${memberId}"
-                                th:data-bookmarked="${bookmarked}">
-                            📌
-                        </span>
+                              id="bookmark-btn"
+                              class="bookmark-btn"
+                              th:data-post-id="${post.id}"
+                              th:data-member-id="${memberId}"
+                              th:data-bookmarked="${bookmarked}">📌</span>
                         <span id="bookmark-label"
-                              th:text="${bookmarked} ? '저장됨' : '저장'">
-                            저장
-                        </span>
-
+                              th:text="${bookmarked} ? '저장됨' : '저장'">저장</span>
                     </div>
+
                     <div class="detail-stat-item">
                         👀 <span th:text="${post.viewCount}">0</span>
                     </div>
                 </div>
+
                 <button type="button" class="detail-share-btn">📤</button>
             </div>
 
             <!-- 글 내용 -->
             <div class="detail-content-title"
-                 th:text="${post.title}">
-                오늘 영업당한 내 최애 포카 자랑합니다 🥹
-            </div>
+                 th:text="${post.title}">오늘 영업당한 내 최애 포카 자랑합니다 🥹</div>
 
-            <!-- 개행 보존: \n → <br> -->
             <div class="detail-content-body"
                  th:utext="${#strings.replace(post.content, '\n', '<br/>')}">
-                오늘 영업당한 내 최애 포카 자랑 글이에요.
-                실물이 훨씬 예쁘고, 사진으로는 다 안 담기는 느낌…
-                같은 덕후 분들과 같이 공유하고 싶어서 올려요!
+                내용
             </div>
 
             <!-- 태그 -->
             <div class="detail-content-tags">
-                <!-- 일단 카테고리만 간단히 표시 -->
                 <span th:text="'#' + ${post.category.name}">#</span>
-
-                <!--
-                만약 BoardPostTag, BoardTag까지 다 연결했으면 예:
-                <span th:each="pt : ${boardPostTags}"
-                      th:text="${'#' + pt.tag.name}">
-                    #주술회전
-                </span>
-                -->
             </div>
         </section>
 
@@ -152,13 +538,13 @@
 
             <form th:action="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/comment/write.do'}"
                   method="post">
-
                 <div class="comment-input-row">
                     <input name="content" type="text" placeholder="댓글을 입력해 주세요 :)">
-                    <button type="submit">댓글 달기</button>
+                    <button type="submit">등록</button>
                 </div>
             </form>
-            <!-- ============ 댓글 리스트 ============ -->
+
+            <!-- 댓글 리스트 -->
             <div class="comment-list">
 
                 <div th:if="${#lists.isEmpty(commentList)}"
@@ -167,13 +553,9 @@
                 </div>
 
                 <div th:each="c : ${commentList}" class="comment-item">
-
-                    <!-- 댓글 상단 (닉네임 + 날짜 + 삭제 버튼) -->
                     <div class="comment-header">
                         <span class="comment-writer" th:text="${c.member.nickname}">닉네임</span>
-
-                        <span class="comment-date"
-                              th:text="${c.createdAt}">2025-01-01</span>
+                        <span class="comment-date" th:text="${c.createdAt}">2025-01-01</span>
 
                         <a th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} +
                         '/comment/' + ${c.id} + '/delete.do'}"
@@ -183,14 +565,14 @@
                         </a>
                     </div>
 
-                    <!-- 댓글 내용 -->
                     <div class="comment-content" th:text="${c.content}">
                         댓글 내용
                     </div>
-
                 </div>
             </div>
         </section>
+
+        <!-- 공유 모달 -->
         <div id="share-modal-overlay" class="share-modal-overlay">
             <div class="share-modal">
                 <div class="share-modal-header">
@@ -212,166 +594,138 @@
     </div>
 </div>
 
+<!-- ✅ 스크립트는 layout의 script fragment로 들어가게 (버튼 안눌림 방지) -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        (function() {
 
-</body>
-<script th:inline="javascript" layout:fragment="script">
-    (function() {
+            const likeBtn = document.getElementById("like-btn");
+            const likeCountSpan = document.getElementById("like-count");
 
-        const likeBtn = document.getElementById("like-btn");
-        const likeCountSpan = document.getElementById("like-count");
+            if (!likeBtn || !likeCountSpan) return;
 
-        // 좋아요 버튼이 없으면 스크립트 바로 종료 (안전)
-        if (!likeBtn || !likeCountSpan) {
-            return;
-        }
-        if (likeBtn.dataset.liked === "true") {
-            likeBtn.classList.add("active");
-            likeBtn.textContent = "❤️";
-        } else {
-            likeBtn.textContent = "🤍";
-        }
-
-
-        likeBtn.addEventListener("click", async () => {
-            const postId = likeBtn.dataset.postId;
-            const memberId = likeBtn.dataset.memberId;
-
-            try {
-                const res = await fetch(`/api/board-like/${postId}/toggle?memberId=${memberId}`, {
-                    method: "POST",
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest"
-                    }
-                });
-
-                if (!res.ok) {
-                    console.error("like api error", res.status);
-                    return;
-                }
-
-                const data = await res.json();   // { likeCount: 숫자, liked: boolean }
-
-                // 화면 갱신
-                // 하트 모양 + 상태 갱신
-                likeCountSpan.textContent = data.likeCount;
-                likeBtn.dataset.liked = data.liked;
-                likeBtn.classList.toggle("active", data.liked);
-                likeBtn.textContent = data.liked ? "❤️" : "🤍";
-
-            } catch (e) {
-                console.error("like toggle error", e);
-            }
-        });
-
-        // 처음부터 좋아요 상태면 active 적용
-        if (likeBtn.dataset.liked === "true") {
-            likeBtn.classList.add("active");
-        }
-
-        // ===================== 북마크 =====================
-        const bookmarkBtn = document.getElementById("bookmark-btn");
-        const bookmarkLabel = document.getElementById("bookmark-label");
-
-        if (bookmarkBtn && bookmarkLabel) {
-
-            const updateBookmarkUI = (bookmarked) => {
-                bookmarkBtn.dataset.bookmarked = bookmarked;
-                bookmarkBtn.classList.toggle("active", bookmarked);
-                bookmarkLabel.textContent = bookmarked ? "저장됨" : "저장";
-            };
-
-            // 최초 상태 반영 (서버에서 내려준 bookmarked 값)
-            if (bookmarkBtn.dataset.bookmarked === "true") {
-                updateBookmarkUI(true);
+            if (likeBtn.dataset.liked === "true") {
+                likeBtn.classList.add("active");
+                likeBtn.textContent = "❤️";
+            } else {
+                likeBtn.textContent = "🤍";
             }
 
-            bookmarkBtn.addEventListener("click", async () => {
-                const postId = bookmarkBtn.dataset.postId;
-                const memberId = bookmarkBtn.dataset.memberId;
+            likeBtn.addEventListener("click", async () => {
+                const postId = likeBtn.dataset.postId;
+                const memberId = likeBtn.dataset.memberId;
 
                 try {
-                    const res = await fetch(`/api/board-bookmark/${postId}/toggle?memberId=${memberId}`, {
+                    const res = await fetch(`/api/board-like/${postId}/toggle?memberId=${memberId}`, {
                         method: "POST",
                         headers: { "X-Requested-With": "XMLHttpRequest" }
                     });
 
                     if (!res.ok) return;
 
-                    const data = await res.json();   // { bookmarked: true/false }
-                    updateBookmarkUI(data.bookmarked);
+                    const data = await res.json();
+                    likeCountSpan.textContent = data.likeCount;
+                    likeBtn.dataset.liked = data.liked;
+                    likeBtn.classList.toggle("active", data.liked);
+                    likeBtn.textContent = data.liked ? "❤️" : "🤍";
 
                 } catch (e) {
-                    console.error("bookmark toggle error", e);
+                    console.error("like toggle error", e);
                 }
             });
-        }
 
-        // ===================== 공유 모달 =====================
-        const shareBtn = document.querySelector(".detail-share-btn");
-        const shareOverlay = document.getElementById("share-modal-overlay");
-        const shareCloseBtn = document.getElementById("share-modal-close");
-        const shareUrlInput = document.getElementById("share-url-input");
-        const copyUrlBtn2 = document.getElementById("copy-url-btn");
-        const shareCopyMsg = document.getElementById("share-copy-msg");
+            // 북마크
+            const bookmarkBtn = document.getElementById("bookmark-btn");
+            const bookmarkLabel = document.getElementById("bookmark-label");
 
-        if (shareBtn && shareOverlay && shareUrlInput && copyUrlBtn2) {
+            if (bookmarkBtn && bookmarkLabel) {
 
-            const openShareModal = () => {
-                const currentUrl = window.location.href;
-                shareUrlInput.value = currentUrl;
-                shareCopyMsg.textContent = "";
+                const updateBookmarkUI = (bookmarked) => {
+                    bookmarkBtn.dataset.bookmarked = bookmarked;
+                    bookmarkBtn.classList.toggle("active", bookmarked);
+                    bookmarkLabel.textContent = bookmarked ? "저장됨" : "저장";
+                };
 
-                shareOverlay.style.display = "flex";
+                if (bookmarkBtn.dataset.bookmarked === "true") {
+                    updateBookmarkUI(true);
+                }
 
-                // 자동 선택 (바로 Ctrl+C 하고 싶은 사람용)
-                setTimeout(() => {
-                    shareUrlInput.focus();
-                    shareUrlInput.select();
-                }, 10);
-            };
+                bookmarkBtn.addEventListener("click", async () => {
+                    const postId = bookmarkBtn.dataset.postId;
+                    const memberId = bookmarkBtn.dataset.memberId;
 
-            const closeShareModal = () => {
-                shareOverlay.style.display = "none";
-            };
+                    try {
+                        const res = await fetch(`/api/board-bookmark/${postId}/toggle?memberId=${memberId}`, {
+                            method: "POST",
+                            headers: { "X-Requested-With": "XMLHttpRequest" }
+                        });
 
-            // 공유 버튼 클릭 → 모달 열기
-            shareBtn.addEventListener("click", openShareModal);
+                        if (!res.ok) return;
 
-            // X 버튼 클릭 → 모달 닫기
-            if (shareCloseBtn) {
-                shareCloseBtn.addEventListener("click", closeShareModal);
+                        const data = await res.json();
+                        updateBookmarkUI(data.bookmarked);
+
+                    } catch (e) {
+                        console.error("bookmark toggle error", e);
+                    }
+                });
             }
 
-            // 오버레이 바깥(검은 영역) 클릭 → 모달 닫기 (옵션)
-            shareOverlay.addEventListener("click", (e) => {
-                if (e.target === shareOverlay) {
-                    closeShareModal();
-                }
-            });
+            // 공유 모달
+            const shareBtn = document.querySelector(".detail-share-btn");
+            const shareOverlay = document.getElementById("share-modal-overlay");
+            const shareCloseBtn = document.getElementById("share-modal-close");
+            const shareUrlInput = document.getElementById("share-url-input");
+            const copyUrlBtn2 = document.getElementById("copy-url-btn");
+            const shareCopyMsg = document.getElementById("share-copy-msg");
 
-            // 복사 버튼 클릭 → 클립보드 복사
-            copyUrlBtn2.addEventListener("click", async () => {
-                const url = shareUrlInput.value;
+            if (shareBtn && shareOverlay && shareUrlInput && copyUrlBtn2) {
 
-                try {
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        await navigator.clipboard.writeText(url);
-                    } else {
-                        // 구형 브라우저 대응
+                const openShareModal = () => {
+                    const currentUrl = window.location.href;
+                    shareUrlInput.value = currentUrl;
+                    shareCopyMsg.textContent = "";
+                    shareOverlay.style.display = "flex";
+
+                    setTimeout(() => {
                         shareUrlInput.focus();
                         shareUrlInput.select();
-                        document.execCommand("copy");
+                    }, 10);
+                };
+
+                const closeShareModal = () => {
+                    shareOverlay.style.display = "none";
+                };
+
+                shareBtn.addEventListener("click", openShareModal);
+                if (shareCloseBtn) shareCloseBtn.addEventListener("click", closeShareModal);
+
+                shareOverlay.addEventListener("click", (e) => {
+                    if (e.target === shareOverlay) closeShareModal();
+                });
+
+                copyUrlBtn2.addEventListener("click", async () => {
+                    const url = shareUrlInput.value;
+
+                    try {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            await navigator.clipboard.writeText(url);
+                        } else {
+                            shareUrlInput.focus();
+                            shareUrlInput.select();
+                            document.execCommand("copy");
+                        }
+                        shareCopyMsg.textContent = "링크가 복사되었습니다 ✅";
+                    } catch (err) {
+                        console.error("URL 복사 실패:", err);
+                        shareCopyMsg.textContent = "복사에 실패했어요. 직접 복사해 주세요.";
                     }
-                    shareCopyMsg.textContent = "링크가 복사되었습니다 ✅";
-                } catch (err) {
-                    console.error("URL 복사 실패:", err);
-                    shareCopyMsg.textContent = "복사에 실패했어요. 직접 복사해 주세요.";
-                }
-            });
-        }
+                });
+            }
 
+        })();
+    </script>
+</th:block>
 
-    })();
-</script>
-
+</body>
 </html>

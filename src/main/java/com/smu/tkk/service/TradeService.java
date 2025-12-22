@@ -10,83 +10,52 @@ import java.util.List;
 
 public interface TradeService {
 
-    /* ============================================================
-       🔥 1) 거래글 등록 (글쓰기)
-       ============================================================ */
-    TradePost registerTradePost(TradePost tradePost);
+    // 목록 정렬
+    Page<TradePostListDto> readAllOrderByLatest(Pageable pageable);
+    Page<TradePostListDto> readAllOrderByLike(Pageable pageable);
+    Page<TradePostListDto> readAllOrderByView(Pageable pageable);
 
+    // 검색 / 판매자목록 (DTO로 바로)
+    Page<TradePostListDto> searchDto(String keyword, Pageable pageable);
+    Page<TradePostListDto> readBySellerIdDto(Long sellerId, Pageable pageable);
 
-    /* ============================================================
-       🔥 2) 거래글 수정
-       ============================================================ */
-    TradePost modifyTradePost(TradePost tradePost);
-
-
-    /* ============================================================
-       🔥 3) 거래글 삭제
-       ============================================================ */
-    TradePost removeTradePost(TradePost tradePost);
-
-
-    /* ============================================================
-       🔥 4) 거래글 단건 조회 (TradePost 엔티티로 조회)
-       ============================================================ */
-    TradePost readOneTradePost(TradePost tradePost);
-
-
-    /* ============================================================
-       🔥 5) 거래글 ID로 단건 조회 (상세)
-       ============================================================ */
-    TradePost readOneTradePostById(Long tradeId);
-
-
-    /* ============================================================
-       🔥 6) 거래글 목록 조회 (엔티티)
-       ============================================================ */
     Page<TradePost> readAll(Pageable pageable);
 
+    // 기존 엔티티 조회(너 컨트롤러에서 이미 씀)
+    Page<TradePost> readBySellerId(Long sellerId, Pageable pageable);
 
-    /* ============================================================
-       🔥 7) 거래글 목록 조회 (DTO 변환된 리스트)
-       ============================================================ */
-    Page<TradePostListDto> readAllListDto(Pageable pageable);
+    TradePost readOneTradePost(TradePost tradePost);
 
+    TradePost readOneTradePostById(Long tradeId);
 
-    /* ============================================================
-       🔥 8) 거래 검색 (제목 + 내용 + 지역 + 굿즈명)
-       ============================================================ */
-    Page<TradePost> search(String keyword, Pageable pageable);
+    // 조회수 +1
+    void increaseViewCount(Long tradeId);
 
-
-    /* ============================================================
-       ⚠ 9) 상태만 수정하는 오래된 메서드 (이름 비추천)
-       ============================================================ */
     TradePost modifyTradepost(TradePost tradePostId, TradePost tradePostStatus);
 
     void register(TradePost post);
 
-    // 10. 멤버 별 거래글 조회
-    Page<TradePost> readBySellerId(Long sellerId, Pageable pageable);
-
+    /* ============================================================
+           🔥 검색 기능 구현
+           ============================================================ */
+    Page<TradePost> search(String keyword, Pageable pageable);
 
     /* ============================================================
-       ⭐ 11) 이미지 포함 거래글 등록 (새로 추가)
+       🔥 리스트 DTO 변환
        ============================================================ */
-    void createPostWithImages(TradePost post, List<MultipartFile> images);
-
     TradePostListDto toListDTO(TradePost post);
 
     /* ============================================================
-       ⭐ 12) 조회수 증가
-       ============================================================ */
-    void increaseViewCount(Long tradeId);
+           🔥 리스트 DTO 전체 변환
+           ============================================================ */
+    Page<TradePostListDto> readAllListDto(Pageable pageable);
 
-    // 13) 찜순
-    Page<TradePostListDto> readAllOrderByLike(Pageable pageable);
+    // 글+이미지 저장 (너희 기존 로직 유지)
+    void createPostWithImages(TradePost post, List<MultipartFile> images);
 
-    // 14) 조회순
-    Page<TradePostListDto> readAllOrderByView(Pageable pageable);
+    TradePost registerTradePost(TradePost tradePost);
 
-    // 15) 최신순
-    Page<TradePostListDto> readAllOrderByLatest(Pageable pageable);
+    // 수정/삭제 (너희 기존 로직 유지)
+    TradePost modifyTradePost(TradePost post) throws Exception;
+    TradePost removeTradePost(TradePost post) throws Exception;
 }

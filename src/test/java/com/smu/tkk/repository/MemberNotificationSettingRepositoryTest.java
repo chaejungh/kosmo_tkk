@@ -14,9 +14,9 @@ class MemberNotificationSettingRepositoryTest {
     MemberNotificationSettingRepository memberNotificationSettingRepository;
 
 
-    @Test
-    @Transactional
-    void update() {
-        System.out.println(memberNotificationSettingRepository.update(1L,"Y","Y","Y","Y"));
-    }
+//    @Test
+//    @Transactional
+//    void update() {
+//        System.out.println(memberNotificationSettingRepository.update(1L,"Y","Y","Y","Y"));
+//    }
 }

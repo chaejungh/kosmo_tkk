@@ -58,4 +58,23 @@ public class NotificationPublisher {
         }
     }
 
+    /** 🔥 서버 → 전체 사용자에게 메시지 전송 */
+    public void sendToAll(String message, String eventName) {
+        for (Map.Entry<Long, SseEmitter> entry : emitters.entrySet()) {
+            Long memberId = entry.getKey();
+            SseEmitter emitter = entry.getValue();
+
+            if (emitter != null) {
+                try {
+                    emitter.send(SseEmitter.event()
+                            .name(eventName)
+                            .data(message));
+                } catch (Exception e) {
+                    emitters.remove(memberId);
+                    log.warn("전체 발송 실패 → emitter 제거됨: memberId={}", memberId);
+                }
+            }
+        }
+    }
+
 }

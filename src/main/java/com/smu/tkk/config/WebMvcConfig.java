@@ -29,7 +29,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/js/**",
                         "/images/**",
                         "/static/**",
-                        "/bootstrap-5.3.8-dist/**"
+                        "/static/bootstrap-5.3.8-dist/**"
                 );
     }
 

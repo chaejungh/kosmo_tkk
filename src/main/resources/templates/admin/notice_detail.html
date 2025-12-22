@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>공지 상세 | 더쿠쿠 관리자</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --admin-bg:#0b1120; --admin-card-bg:#fff;
+      --admin-card-shadow:0 10px 30px rgba(15,23,42,.16);
+      --admin-text:#111827; --admin-text-soft:#6b7280;
+      --border-soft:#e5e7eb;
+    }
+    body { margin:0; background:#f3f4f6; font-family:-apple-system,system-ui; }
+    .admin-main { padding:24px 32px 32px; }
+    .page-title h1 { margin:0 0 6px; font-size:22px; }
+    .page-title p { margin:0; font-size:13px; color:var(--admin-text-soft); }
+    .admin-card {
+      background:#fff; border-radius:16px; padding:16px 18px;
+      border:1px solid var(--border-soft); box-shadow:var(--admin-card-shadow);
+      margin-bottom:16px;
+    }
+    textarea {
+      width:100%; min-height:180px; padding:12px;
+      border-radius:10px; border:1px solid #d1d5db;
+      font-size:14px; resize:vertical;
+    }
+    .btn-row { margin-top:12px; display:flex; gap:8px; }
+    button {
+      padding:6px 12px; border-radius:999px; border:1px solid #d1d5db;
+      cursor:pointer; font-size:14px;
+    }
+    .btn-primary { background:#111827; color:#fff; border-color:#111827; }
+    .btn-secondary { background:#e5e7eb; }
+    .btn-danger { background:#fee2e2; color:#b91c1c; border-color:#fecaca; }
+  </style>
+</head>
+<body>
+
+<header th:replace="admin/fragments/admin_header :: adminHeader"></header>
+
+<main class="admin-main">
+
+  <section class="page-title">
+    <h1>공지 상세</h1>
+    <p>공지/이벤트 내용을 확인하고 수정할 수 있습니다.</p>
+  </section>
+
+  <!-- 메시지 -->
+  <div th:if="${msg != null}" class="admin-card" style="background:#ecfdf5; border-color:#bbf7d0;">
+    <span th:text="${msg}">메시지</span>
+  </div>
+
+  <!-- 공지 정보 -->
+  <section class="admin-card">
+    <div style="font-weight:600; margin-bottom:10px;">공지 정보</div>
+
+    <div style="font-size:13px; color:var(--admin-text-soft); margin-bottom:8px;">
+      <span th:text="|번호: ${notice.id}|">번호: 1</span> ·
+      <span th:text="|유형: ${notice.noticeType}|">유형: 공지</span> ·
+      <span th:text="|작성일: ${notice.createdAt}|">작성일: 2025</span>
+    </div>
+
+    <h2 style="font-size:18px; margin:10px 0;"
+        th:text="${notice.title}">
+      공지 제목
+    </h2>
+
+    <div style="white-space:pre-wrap; font-size:14px;"
+         th:text="${notice.content}">
+      공지 내용
+    </div>
+
+    <div class="btn-row">
+      <a th:href="@{/admin/notices}">
+        <button type="button" class="btn-secondary">목록으로</button>
+      </a>
+    </div>
+  </section>
+
+  <!-- 수정 -->
+  <section class="admin-card">
+    <div style="font-weight:600; margin-bottom:10px;">공지 수정</div>
+
+    <form th:action="@{/admin/notices/{id}/edit(id=${notice.id})}" method="post">
+
+      <input type="text" name="title" style="width:100%; padding:10px; margin-bottom:10px;"
+             placeholder="제목" th:value="${notice.title}"/>
+
+      <textarea name="content" placeholder="내용 입력"
+                th:text="${notice.content}"></textarea>
+
+      <input type="hidden" name="noticeType" th:value="${notice.noticeType}">
+
+      <div class="btn-row">
+        <button type="submit" class="btn-primary">저장</button>
+        <a th:href="@{/admin/notices}">
+          <button type="button" class="btn-secondary">취소</button>
+        </a>
+      </div>
+    </form>
+  </section>
+
+  <!-- 삭제 -->
+  <section class="admin-card">
+    <div style="font-weight:600; margin-bottom:10px;">기타 작업</div>
+
+    <form th:action="@{/admin/notices/{id}/delete(id=${notice.id})}"
+          method="post"
+          onsubmit="return confirm('이 공지사항을 삭제하시겠습니까?');">
+      <button type="submit" class="btn-danger">공지 삭제</button>
+    </form>
+  </section>
+
+</main>
+</body>
+</html>

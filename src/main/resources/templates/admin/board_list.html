@@ -409,22 +409,7 @@
     </style>
 </head>
 <body>
-
-<!-- 상단 헤더 -->
-<header class="admin-header">
-    <div class="admin-header-left">
-        <div class="admin-logo">더쿠쿠 관리자</div>
-        <nav class="admin-nav-tabs">
-            <a th:href="@{/admin/members}" class="admin-nav-tab">회원 관리</a>
-            <a th:href="@{/admin/boards}" class="admin-nav-tab active">게시판 관리</a>
-        </nav>
-    </div>
-    <div class="admin-header-right">
-        <a th:href="@{/admin/dashboard}" class="admin-header-link">대시보드</a>
-        <span>|</span>
-        <a th:href="@{/logout}" class="admin-header-link">로그아웃</a>
-    </div>
-</header>
+<header th:replace="admin/fragments/admin_header :: adminHeader"></header>
 
 <main class="admin-main">
     <section>

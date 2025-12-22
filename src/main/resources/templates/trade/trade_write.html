@@ -1,231 +1,516 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/fragments/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>굿즈거래 글쓰기 | 더쿠쿠</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block layout:fragment="head">
+        <style>
+            :root{
+                --bg:#f4f5f7;
+                --card:#ffffff;
+                --text:#111827;
+                --sub:#6b7280;
+                --border:#e5e7eb;
 
-    <style>
-        :root {
-            --purple: #6366f1;
-            --purple-deep: #4f46e5;
-            --border: #e5e7eb;
-            --bg: #fafafa;
-            --text-main: #111827;
-            --text-sub: #6b7280;
-        }
+                --accent:#ff6b86;
+                --accentDeep:#ff4d6d;
+                --purple:#6366f1;
+                --purpleDeep:#4f46e5;
 
-        body {
-            margin: 0;
-            background: var(--bg);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+                --shadow: 0 10px 30px rgba(17,24,39,.08);
+                --radius: 18px;
+            }
 
-        .write-wrap {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 16px;
-        }
+            .trade-write-wrap{
+                max-width: 920px;
+                margin: 0 auto;
+                padding: 12px 16px 90px;
+            }
 
-        .title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
+            /* 상단 헤더 */
+            .tw-head{
+                background: linear-gradient(135deg, rgba(255,107,134,.16), rgba(99,102,241,.14));
+                border: 1px solid rgba(229,231,235,.9);
+                border-radius: 22px;
+                box-shadow: var(--shadow);
+                padding: 18px 18px 16px;
+                margin: 6px 0 14px;
+                position: relative;
+                overflow: hidden;
+            }
+            .tw-head:before{
+                content:"";
+                position:absolute;
+                right:-60px; top:-60px;
+                width:180px; height:180px;
+                background: radial-gradient(circle at 30% 30%, rgba(255,107,134,.35), rgba(99,102,241,.0) 70%);
+                filter: blur(0px);
+            }
+            .tw-title{
+                margin:0;
+                font-size: 20px;
+                font-weight: 900;
+                color: var(--text);
+                letter-spacing: -.2px;
+            }
+            .tw-sub{
+                margin:6px 0 0;
+                font-size: 13px;
+                color: var(--sub);
+            }
+            .tw-badges{
+                margin-top: 10px;
+                display:flex;
+                gap:8px;
+                flex-wrap: wrap;
+            }
+            .tw-pill{
+                font-size: 12px;
+                padding: 6px 10px;
+                border-radius: 999px;
+                background:#fff;
+                border:1px solid var(--border);
+                color: var(--text);
+                display:inline-flex;
+                align-items:center;
+                gap:6px;
+            }
+            .tw-pill.pink{
+                background: rgba(255,107,134,.14);
+                border-color: rgba(255,107,134,.25);
+            }
+            .tw-pill.purple{
+                background: rgba(99,102,241,.14);
+                border-color: rgba(99,102,241,.25);
+            }
 
-        .img-upload-box {
-            background: #ffffff;
-            border: 1px dashed var(--border);
-            border-radius: 12px;
-            padding: 18px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
+            /* 폼 카드 */
+            .tw-card{
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 22px;
+                box-shadow: var(--shadow);
+                overflow: hidden;
+            }
+            .tw-card-inner{
+                padding: 16px;
+            }
 
-        .img-upload-box:hover {
-            border-color: var(--purple);
-        }
+            /* 업로더 */
+            .uploader{
+                border: 1.5px dashed rgba(17,24,39,.18);
+                border-radius: 18px;
+                padding: 16px;
+                background: linear-gradient(180deg, rgba(255,255,255,1), rgba(244,245,247,.7));
+                cursor: pointer;
+                transition: .15s ease;
+                position: relative;
+            }
+            .uploader:hover{
+                border-color: rgba(255,107,134,.55);
+                box-shadow: 0 10px 22px rgba(255,107,134,.10);
+            }
+            .uploader.dragover{
+                border-color: rgba(99,102,241,.7);
+                box-shadow: 0 10px 22px rgba(99,102,241,.12);
+                background: linear-gradient(180deg, rgba(255,255,255,1), rgba(99,102,241,.08));
+            }
+            .uploader-row{
+                display:flex;
+                gap:14px;
+                align-items:center;
+            }
+            .uploader-ico{
+                width: 46px;
+                height: 46px;
+                border-radius: 16px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background: rgba(255,107,134,.16);
+                border: 1px solid rgba(255,107,134,.18);
+                font-size: 20px;
+                flex: 0 0 auto;
+            }
+            .uploader-title{
+                font-weight: 900;
+                color: var(--text);
+                margin:0;
+                font-size: 14px;
+            }
+            .uploader-desc{
+                margin:4px 0 0;
+                color: var(--sub);
+                font-size: 12px;
+            }
+            .uploader-actions{
+                margin-left:auto;
+                display:flex;
+                gap:8px;
+                flex-wrap: wrap;
+                justify-content:flex-end;
+            }
+            .tw-btn{
+                border:1px solid var(--border);
+                background:#fff;
+                color: var(--text);
+                height: 36px;
+                padding: 0 12px;
+                border-radius: 12px;
+                font-weight: 800;
+                font-size: 12px;
+                cursor:pointer;
+                display:inline-flex;
+                align-items:center;
+                gap:8px;
+            }
+            .tw-btn.primary{
+                border:none;
+                background: var(--accent);
+                color:#fff;
+                box-shadow: 0 10px 22px rgba(255,107,134,.22);
+            }
+            .tw-btn.primary:hover{ background: var(--accentDeep); }
 
-        .img-preview-wrap {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-        }
+            .preview-wrap{
+                display:flex;
+                gap:10px;
+                flex-wrap: wrap;
+                margin-top: 12px;
+            }
+            .preview-item{
+                width: 116px;
+                position: relative;
+            }
+            .preview-img{
+                width: 116px;
+                height: 116px;
+                border-radius: 16px;
+                object-fit: cover;
+                border: 1px solid var(--border);
+                box-shadow: 0 6px 14px rgba(17,24,39,.08);
+                background:#111827;
+            }
+            .preview-remove{
+                position:absolute;
+                top:-8px; right:-8px;
+                width: 26px; height: 26px;
+                border-radius: 999px;
+                border: none;
+                background: rgba(17,24,39,.84);
+                color:#fff;
+                font-weight: 900;
+                cursor:pointer;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
 
-        .preview-item {
-            position: relative;
-        }
+            /* 폼 그리드 */
+            .tw-grid{
+                display:grid;
+                grid-template-columns: 1.2fr .8fr;
+                gap: 14px;
+                margin-top: 14px;
+            }
+            @media (max-width: 860px){
+                .tw-grid{ grid-template-columns: 1fr; }
+            }
 
-        .preview-img {
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
+            .field{
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                padding: 14px;
+                background:#fff;
+            }
+            .field label{
+                display:flex;
+                align-items:center;
+                gap:8px;
+                font-size: 13px;
+                font-weight: 900;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            .req{
+                font-size: 11px;
+                padding: 4px 8px;
+                border-radius: 999px;
+                background: rgba(255,107,134,.14);
+                border:1px solid rgba(255,107,134,.22);
+                color: var(--text);
+                font-weight: 900;
+            }
+            .field input, .field select, .field textarea{
+                width: 100%;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                padding: 12px 12px;
+                font-size: 13px;
+                outline: none;
+                background: #fff;
+                color: var(--text);
+            }
+            .field textarea{
+                min-height: 160px;
+                resize: vertical;
+                line-height: 1.6;
+            }
+            .field input:focus, .field select:focus, .field textarea:focus{
+                border-color: rgba(99,102,241,.55);
+                box-shadow: 0 0 0 3px rgba(99,102,241,.12);
+            }
 
-        .remove-btn {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
+            .hint{
+                margin-top: 8px;
+                color: var(--sub);
+                font-size: 12px;
+            }
 
-        .input-box {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 18px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
+            /* 하단 고정 액션바 */
+            .tw-bottom{
+                position: sticky;
+                bottom: 0;
+                margin-top: 14px;
+                padding: 12px 0 0;
+            }
+            .tw-bottom-bar{
+                background: rgba(255,255,255,.86);
+                backdrop-filter: blur(10px);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                box-shadow: var(--shadow);
+                padding: 12px;
+                display:flex;
+                gap:10px;
+                align-items:center;
+                justify-content: space-between;
+            }
+            .tw-bottom-left{
+                display:flex;
+                flex-direction: column;
+                gap:4px;
+            }
+            .tw-bottom-left .small{
+                color: var(--sub);
+                font-size: 12px;
+            }
+            .tw-bottom-left .big{
+                color: var(--text);
+                font-weight: 900;
+                font-size: 13px;
+            }
+            .tw-actions{
+                display:flex;
+                gap:8px;
+                flex-wrap: wrap;
+                justify-content:flex-end;
+            }
 
-        .input-label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-main);
-        }
+            .tw-submit{
+                height: 40px;
+                padding: 0 14px;
+                border-radius: 14px;
+                border: none;
+                background: linear-gradient(135deg, var(--accent), var(--purple));
+                color:#fff;
+                font-weight: 900;
+                cursor:pointer;
+                box-shadow: 0 12px 26px rgba(99,102,241,.18);
+                display:inline-flex;
+                align-items:center;
+                gap:8px;
+                white-space: nowrap;
+            }
+            .tw-submit:hover{
+                filter: brightness(.98);
+            }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            outline: none;
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            margin-top: 24px;
-            width: 100%;
-            padding: 16px;
-            background: var(--purple);
-            color: white;
-            border: none;
-            font-size: 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        .submit-btn:hover {
-            background: var(--purple-deep);
-        }
-    </style>
+            .tw-cancel{
+                height: 40px;
+                padding: 0 14px;
+                border-radius: 14px;
+                border: 1px solid var(--border);
+                background:#fff;
+                color: var(--text);
+                font-weight: 900;
+                cursor:pointer;
+                display:inline-flex;
+                align-items:center;
+                gap:8px;
+                white-space: nowrap;
+            }
+        </style>
+    </th:block>
 </head>
 
 <body>
+<div layout:fragment="content">
 
-<div class="write-wrap">
+    <div class="trade-write-wrap">
 
-    <h1 class="title">굿즈거래 글쓰기</h1>
-
-    <!-- TradePost 객체 바인딩 -->
-    <form th:action="${mode} == 'edit' ?
-        @{/trade/{memberId}/article/{postId}/edit.do(memberId=${memberId}, postId=${postId})} :
-        @{/trade/{memberId}/write(memberId=${memberId})}"
-          th:object="${tradeWriteValid}"
-          method="post"
-          enctype="multipart/form-data">
-
-        <!-- 이미지 업로드 -->
-        <div class="img-upload-box" onclick="document.getElementById('imgInput').click()">
-            📷 클릭해서 이미지 업로드 (여러 장 가능)
+        <!-- ✅ memberId 없으면 (로그인 세션 없으면) action이 깨질 수 있어서 안내 -->
+        <div th:if="${memberId == null}"
+             style="background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px;color:#111827;margin:10px 0;">
+            ⚠️ 로그인 후 이용 바랍니다. <br/>
         </div>
 
-        <input type="file"
-               id="imgInput"
-               name="images"
-               accept="image/*"
-               multiple
-               style="display:none">
-        <div class="img-preview-wrap" id="previewArea"></div>
+        <div class="tw-head">
+            <h1 class="tw-title" th:text="${mode} == 'edit' ? '쿠쿠마켓 글 수정' : '쿠쿠마켓 글쓰기'">쿠쿠마켓 글쓰기</h1>
+            <p class="tw-sub">사진 + 핵심 정보만 딱 정리하면, 사람들이 바로 문의해!</p>
 
-        <!-- 제목 -->
-        <div class="input-box">
-            <div class="input-label">제목 *</div>
-            <input type="text" th:field="*{title}" placeholder="제목을 입력하세요" required>
+            <div class="tw-badges">
+                <span class="tw-pill pink">📦 굿즈 거래</span>
+                <span class="tw-pill purple">💬 채팅 연결</span>
+                <span class="tw-pill">👀 조회/찜/채팅 표시</span>
+            </div>
         </div>
 
-        <!-- 가격 -->
-        <div class="input-box">
-            <div class="input-label">가격</div>
-            <input type="number" th:field="*{price}" placeholder="예: 15000" required>
+        <div class="tw-card">
+            <div class="tw-card-inner">
+
+                <!-- ✅ 컨트롤러 매핑 그대로 유지: /trade/{memberId}/write  -->
+                <form th:action="${mode} == 'edit' ?
+                        @{/trade/{memberId}/article/{postId}/edit.do(memberId=${memberId}, postId=${postId})} :
+                        @{/trade/{memberId}/write(memberId=${memberId})}"
+                      th:object="${tradeWriteValid}"
+                      method="post"
+                      enctype="multipart/form-data">
+
+                    <!-- 이미지 업로드 -->
+                    <div class="uploader" id="dropZone" onclick="document.getElementById('imgInput').click()">
+                        <div class="uploader-row">
+                            <div class="uploader-ico">📸</div>
+                            <div>
+                                <p class="uploader-title">사진 업로드 (여러 장 가능)</p>
+                                <p class="uploader-desc">클릭 또는 드래그로 업로드 · 첫 사진이 대표 느낌으로 보여질 수 있어!</p>
+                            </div>
+                            <div class="uploader-actions">
+                                <button type="button" class="tw-btn" onclick="event.stopPropagation(); document.getElementById('imgInput').click();">
+                                    ➕ 사진 추가
+                                </button>
+                                <button type="button" class="tw-btn primary" onclick="event.stopPropagation(); clearImages();">
+                                    🧹 초기화
+                                </button>
+                            </div>
+                        </div>
+
+                        <input type="file"
+                               id="imgInput"
+                               name="images"
+                               accept="image/*"
+                               multiple
+                               style="display:none">
+                        <div class="preview-wrap" id="previewArea"></div>
+                    </div>
+
+                    <!-- 폼 그리드 -->
+                    <div class="tw-grid">
+
+                        <!-- 왼쪽(메인) -->
+                        <div style="display:flex;flex-direction:column;gap:14px;">
+
+                            <div class="field">
+                                <label>제목 <span class="req">필수</span></label>
+                                <input type="text" th:field="*{title}" placeholder="예) [하이큐] GEM 손바닥 피규어 미야 아츠무" required>
+                                <div class="hint">사람들이 검색하는 키워드를 제목에 넣어주면 조회수 확 올라가!</div>
+                            </div>
+
+                            <div class="field">
+                                <label>설명 <span class="req">필수</span></label>
+                                <textarea th:field="*{content}"
+                                          placeholder="• 상품 상태(미개봉/하자 유무)&#10;• 구성품&#10;• 거래 가능 시간/장소&#10;• 네고 가능 여부"
+                                          required></textarea>
+                            </div>
+
+                        </div>
+
+                        <!-- 오른쪽(서브) -->
+                        <div style="display:flex;flex-direction:column;gap:14px;">
+
+                            <div class="field">
+                                <label>가격</label>
+                                <input type="number" th:field="*{price}" placeholder="예) 15000" min="0">
+                                <div class="hint">0 또는 비우면 “가격문의”로 처리할 수도 있어!</div>
+                            </div>
+
+                            <div class="field">
+                                <label>카테고리</label>
+                                <select th:field="*{category}">
+                                    <option value="">선택하세요</option>
+                                    <option value="포카">포카</option>
+                                    <option value="피규어">피규어</option>
+                                    <option value="아크릴">아크릴</option>
+                                    <option value="키링">키링</option>
+                                    <option value="뱃지">뱃지</option>
+                                    <option value="기타굿즈">기타굿즈</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>지역</label>
+                                <input type="text" th:field="*{region}" placeholder="예) 홍대 / 합정 / 신촌 / 강남">
+                            </div>
+
+                            <div class="field">
+                                <label>거래 방식</label>
+                                <select th:field="*{tradeMethod}">
+                                    <option value="DIRECT">직거래</option>
+                                    <option value="DELIVERY">택배거래</option>
+                                    <option value="BOTH">직거래 + 택배</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>거래 상태</label>
+                                <select th:field="*{status}">
+                                    <option value="ON_SALE">판매중</option>
+                                    <option value="RESERVED">예약중</option>
+                                    <option value="DONE">판매완료</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 하단 액션바 -->
+                    <div class="tw-bottom">
+                        <div class="tw-bottom-bar">
+                            <div class="tw-bottom-left">
+                                <div class="small">쿠쿠마켓</div>
+                                <div class="big" th:text="${mode} == 'edit' ? '수정 내용을 저장할까요?' : '작성한 글을 등록할까요?'">작성한 글을 등록할까요?</div>
+                            </div>
+                            <div class="tw-actions">
+                                <a class="tw-cancel" th:href="@{/trade/list.do}">
+                                    ↩ 목록으로
+                                </a>
+                                <button class="tw-submit" type="submit">
+                                    <span th:text="${mode} == 'edit' ? '✅ 수정 저장' : '✅ 등록하기'">✅ 등록하기</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
 
-        <!-- 카테고리 -->
-        <div class="input-box">
-            <div class="input-label">카테고리</div>
-            <select th:field="*{category}" required>
-                <option value="">선택하세요</option>
-                <option value="포카">포카</option>
-                <option value="피규어">피규어</option>
-                <option value="기타굿즈">기타굿즈</option>
-            </select>
-        </div>
-
-        <!-- 지역 -->
-        <div class="input-box">
-            <div class="input-label">지역</div>
-            <input type="text" th:field="*{region}" placeholder="예: 홍대 / 신촌 / 강남">
-        </div>
-
-        <!-- 거래 방식 -->
-        <div class="input-box">
-            <div class="input-label">거래 방식</div>
-            <select th:field="*{tradeMethod}">
-                <option value="DIRECT">직거래</option>
-                <option value="DELIVERY">택배거래</option>
-                <option value="BOTH">직거래 + 택배</option>
-            </select>
-        </div>
-        <!-- 거래 상태 -->
-        <div class="input-box">
-            <div class="input-label">거래 상태</div>
-            <select th:field="*{status}">
-                <option value="ON_SALE">판매중</option>
-                <option value="RESERVED">예약</option>
-                <option value="DONE">판매완료</option>
-            </select>
-        </div>
-
-        <!-- 상세 내용 -->
-        <div class="input-box">
-            <div class="input-label">설명 *</div>
-            <textarea th:field="*{content}"
-                      placeholder="상품 상태, 거래 희망 시간 등을 입력해주세요"
-                      required></textarea>
-        </div>
-
-        <button class="submit-btn" type="submit">등록하기</button>
-    </form>
+    </div>
 
 </div>
 
-<script>
+<script layout:fragment="script">
     const imgInput = document.getElementById("imgInput");
     const previewArea = document.getElementById("previewArea");
+    const dropZone = document.getElementById("dropZone");
 
     let selectedFiles = [];
 
     imgInput.addEventListener("change", (e) => {
-        const files = Array.from(e.target.files);
+        const files = Array.from(e.target.files || []);
         selectedFiles = files;
         renderPreview();
     });
@@ -236,13 +521,13 @@
         selectedFiles.forEach((file, idx) => {
             const reader = new FileReader();
             reader.onload = (e) => {
-                const div = document.createElement("div");
-                div.className = "preview-item";
-                div.innerHTML = `
-                    <img src="${e.target.result}" class="preview-img">
-                    <div class="remove-btn" onclick="removeImg(${idx})">×</div>
+                const wrap = document.createElement("div");
+                wrap.className = "preview-item";
+                wrap.innerHTML = `
+                    <img src="${e.target.result}" class="preview-img" alt="preview">
+                    <button type="button" class="preview-remove" onclick="removeImg(${idx})">×</button>
                 `;
-                previewArea.appendChild(div);
+                previewArea.appendChild(wrap);
             };
             reader.readAsDataURL(file);
         });
@@ -257,6 +542,38 @@
 
         renderPreview();
     }
+
+    function clearImages(){
+        selectedFiles = [];
+        imgInput.value = "";
+        previewArea.innerHTML = "";
+    }
+
+    // 드래그&드랍 업로드 (뷰만)
+    ["dragenter","dragover"].forEach(evt => {
+        dropZone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add("dragover");
+        });
+    });
+    ["dragleave","drop"].forEach(evt => {
+        dropZone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove("dragover");
+        });
+    });
+    dropZone.addEventListener("drop", (e) => {
+        const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith("image/"));
+        selectedFiles = files;
+
+        const dt = new DataTransfer();
+        selectedFiles.forEach(f => dt.items.add(f));
+        imgInput.files = dt.files;
+
+        renderPreview();
+    });
 </script>
 
 </body>

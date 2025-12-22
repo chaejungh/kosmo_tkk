@@ -2,169 +2,264 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>아이디 찾기 - 더쿠쿠</title>
+    <title>비밀번호 찾기 - 더쿠쿠</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        body {
-            background: #f3f4f6;
-            font-family: 'Noto Sans KR', sans-serif;
-            margin: 0;
-            padding: 0;
+        :root{
+            --bg:#f6f7fb;
+            --card:#ffffff;
+            --text:#111827;
+            --muted:#6b7280;
+            --line:#e5e7eb;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            --btn:#111827;
+            --btn-hover:#0b1220;
+            --primary:#4f46e5;
+            --success-bg:#ecfdf3;
+            --success-text:#065f46;
+            --danger-bg:#fff1f2;
+            --danger-text:#9f1239;
+            --radius:22px;
         }
 
-        .find-container {
-            max-width: 420px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 32px 28px;
+        *{ box-sizing:border-box; }
+        body{
+            margin:0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .page{
+            min-height: 100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding: 28px 16px;
+        }
+
+        .card{
+            width: 460px;
+            max-width: 100%;
+            background: var(--card);
+            border: 1px solid rgba(17,24,39,0.06);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 26px 26px 22px;
+        }
+
+        .topbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom: 10px;
+        }
+
+        .back{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            color: var(--muted);
+            text-decoration:none;
+            font-size: 13px;
+            padding: 8px 10px;
+            border-radius: 999px;
+        }
+        .back:hover{ background: rgba(17,24,39,0.04); }
+
+        .brand{
+            text-align:center;
+            padding: 4px 0 6px;
+        }
+        .logo{
+            width: 56px;
+            height: 56px;
             border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            background: #ff4fa3;
+            margin: 0 auto 10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#111;
+            font-weight:900;
+            letter-spacing:.02em;
+            user-select:none;
+        }
+        .title{
+            margin:0;
+            font-size: 20px;
+            font-weight: 800;
+            text-align:center;
+        }
+        .subtitle{
+            margin: 6px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+            text-align:center;
         }
 
-        .title {
-            font-size: 22px;
+        .form{
+            margin-top: 18px;
+            display:flex;
+            flex-direction:column;
+            gap: 12px;
+        }
+
+        .field{
+            display:flex;
+            flex-direction:column;
+            gap:6px;
+        }
+        .label{
+            font-size: 12px;
             font-weight: 700;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .form-box {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 6px;
             color: #374151;
         }
 
-        .form-input {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid #d1d5db;
+        .input{
+            width:100%;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            padding: 0 14px;
             font-size: 14px;
             outline: none;
+            background:#fff;
+            transition: box-shadow .15s ease, border-color .15s ease;
+        }
+        .input:focus{
+            border-color: rgba(79,70,229,.55);
+            box-shadow: 0 0 0 4px rgba(79,70,229,.12);
         }
 
-        .form-input:focus {
-            border-color: #6366f1;
-            background: #f9fafb;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background: #4f46e5;
+        .submit{
+            margin-top: 6px;
+            height: 46px;
+            border-radius: 14px;
             border: none;
-            border-radius: 10px;
+            background: var(--btn);
+            color: #fff;
             font-size: 15px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
+            font-weight: 800;
+            cursor:pointer;
+            transition: filter .15s ease, transform .02s ease;
         }
+        .submit:hover{ background: var(--btn-hover); }
+        .submit:active{ transform: translateY(1px); }
 
-        .submit-btn:hover {
-            background: #4338ca;
-        }
-
-        .result-box {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .result-success {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .result-fail {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        .login-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-
-            margin: 12px auto 4px;   /* 가운데 정렬 */
-            padding: 8px 20px;
-            min-width: 170px;
-
-            border-radius: 999px;
-            border: 1px solid #4f46e5;
-            background: #ffffff;
-            color: #4f46e5;
-
+        .result{
+            margin-top: 14px;
+            border-radius: 14px;
+            padding: 14px 14px;
             font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-
-            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.18);
-            transition: background 0.18s ease, color 0.18s ease,
-            transform 0.1s ease, box-shadow 0.18s ease;
+            font-weight: 700;
+            text-align:center;
+            border: 1px solid transparent;
+        }
+        .result.success{
+            background: var(--success-bg);
+            color: var(--success-text);
+            border-color: rgba(6,95,70,.18);
+        }
+        .result.fail{
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            border-color: rgba(159,18,57,.18);
         }
 
-        .login-btn:hover {
-            background: #4f46e5;
-            color: #ffffff;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+        .actions{
+            margin-top: 10px;
+            display:flex;
+            justify-content:center;
         }
 
+        .login-btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(79,70,229,.45);
+            background:#fff;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration:none;
+            box-shadow: 0 6px 16px rgba(79,70,229,.12);
+            transition: background .15s ease, color .15s ease, transform .02s ease;
+        }
+        .login-btn:hover{
+            background: var(--primary);
+            color:#fff;
+        }
+        .login-btn:active{ transform: translateY(1px); }
 
+        .footer{
+            margin-top: 14px;
+            text-align:center;
+            font-size: 12px;
+            color: var(--muted);
+        }
     </style>
 </head>
 
 <body>
+<div class="page">
+    <div class="card">
 
-<div class="find-container">
-
-    <div class="title">비밀번호 찾기</div>
-
-    <!-- 아이디 찾기 Form -->
-    <form th:action="@{/auth/find_pw}" method="post">
-
-        <div class="form-box">
-            <label class="form-label">아이디</label>
-            <input type="text" name="loginId" class="form-input" placeholder="가입 시 입력한 아이디">
-        </div>
-        <div class="form-box">
-            <label class="form-label">이름</label>
-            <input type="text" name="nickname" class="form-input" placeholder="가입 시 입력한 이름">
+        <div class="topbar">
+            <a class="back" th:href="@{/auth/login}">
+                ← 로그인으로
+            </a>
+            <span style="width:72px;"></span>
         </div>
 
-        <div class="form-box">
-            <label class="form-label">이메일</label>
-            <input type="text" name="email" class="form-input" placeholder="가입 시 입력한 이메일">
+        <div class="brand">
+            <div class="logo">TK</div>
+            <h1 class="title">비밀번호 찾기</h1>
+            <p class="subtitle">가입한 정보가 일치하면 비밀번호를 보여줘요 🔐</p>
         </div>
 
-        <button type="submit" class="submit-btn"> 찾기</button>
-    </form>
+        <!-- ✅ 기능 유지: action / name 그대로 -->
+        <form class="form" th:action="@{/auth/find_pw}" method="post">
 
-    <!-- 검색 결과 성공 -->
-    <div th:if="${foundPw}" class="result-box result-success">
-        비밀번호 : <span th:text="${foundPw}"></span>
+            <div class="field">
+                <label class="label">아이디</label>
+                <input type="text" name="loginId" class="input" placeholder="가입 시 입력한 아이디">
+            </div>
 
-        <a th:href="@{/auth/login}" class="login-btn">
-            <span>로그인 하러 가기</span>
-        </a>
+            <div class="field">
+                <label class="label">이름</label>
+                <input type="text" name="nickname" class="input" placeholder="가입 시 입력한 이름">
+            </div>
+
+            <div class="field">
+                <label class="label">이메일</label>
+                <input type="text" name="email" class="input" placeholder="가입 시 입력한 이메일">
+            </div>
+
+            <button type="submit" class="submit">찾기</button>
+        </form>
+
+        <!-- ✅ 기능 유지: foundPw / notFound 그대로 -->
+        <div th:if="${foundPw}" class="result success">
+            비밀번호 : <span th:text="${foundPw}"></span>
+
+            <div class="actions">
+                <a th:href="@{/auth/login}" class="login-btn">
+                    로그인 하러 가기 →
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${notFound}" class="result fail">
+            일치하는 회원 정보가 존재하지 않습니다.
+        </div>
+
+        <div class="footer">© THE KUKU. All rights reserved.</div>
     </div>
-
-    <!-- 검색 결과 실패 -->
-    <div th:if="${notFound}" class="result-box result-fail">
-        일치하는 회원 정보가 존재하지 않습니다.
-    </div>
-
 </div>
-
 </body>
 </html>

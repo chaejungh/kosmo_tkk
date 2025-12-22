@@ -3,8 +3,10 @@ package com.smu.tkk.service;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,9 +38,13 @@ public class EmailVerificationService {
         // 3) DB 저장
         Member saved = memberRepository.save(member);
 
-        // 4) 이메일 발송
-        sendVerifyEmail(saved.getEmail(), code);
+        try {
+            // 4) 이메일 발송
+            sendVerifyEmail(saved.getEmail(), code);
 
+        }catch (MailException e){
+            throw new IllegalStateException("메일 전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+        }
         return saved;
     }
 
@@ -80,12 +86,19 @@ public class EmailVerificationService {
     /* 이메일 전송 */
     private void sendVerifyEmail(String email, String code) {
 
+
+        if (mailSender instanceof JavaMailSenderImpl impl) {
+            System.out.println("MAIL HOST/PORT = " + impl.getHost() + ":" + impl.getPort());
+            System.out.println("MAIL USER = " + impl.getUsername());
+        }
+
         String subject = "더쿠쿠 이메일 인증코드 안내";
         String body = "안녕하세요.\n\n아래 인증코드를 입력하여 이메일 인증을 완료해주세요.\n\n" +
                 "인증코드 : " + code + "\n\n감사합니다.";
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
+        message.setFrom("chaejungh@gmail.com");
         message.setSubject(subject);
         message.setText(body);
         mailSender.send(message);

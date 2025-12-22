@@ -1,592 +1,495 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>회원가입 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
-        :root {
-            --bg-lavender: #f5f3ff;
-            --card-bg: #ffffff;
-            --border-soft: #e5e7eb;
-            --purple: #6366f1;
-            --purple-deep: #4f46e5;
-            --text-main: #111827;
-            --text-sub: #6b7280;
-            --danger: #ef4444;
+        :root{
+            --bg:#f6f7fb;
+            --card:#ffffff;
+            --text:#111827;
+            --sub:#6b7280;
+            --line:#e5e7eb;
+
+            --brand:#ff4fa0;
+            --brand-soft:#fff0f7;
+
+            --btn:#ff4fa0;
+            --btn-hover:#ff2f8e;
+
+            --dark:#111827;
+
+            --danger:#dc2626;
+            --ok:#16a34a;
+
+            --shadow: 0 20px 60px rgba(17, 24, 39, .10);
+            --radius: 18px;
         }
 
-        * {
-            box-sizing: border-box;
+        *{box-sizing:border-box;}
+        body{
+            margin:0;
+            background:var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+            color:var(--text);
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-            background: var(--bg-lavender);
+        .page{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            padding:40px 16px;
         }
 
-        .join-page {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 40px 16px;
+        .wrap{
+            width:520px;
+            max-width:100%;
         }
 
-        .join-card {
-            width: 480px;
-            max-width: 100%;
-            background: var(--card-bg);
-            border-radius: 32px;
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
-            padding: 28px 32px 30px;
+        .top-link{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            color:var(--sub);
+            text-decoration:none;
+            font-size:13px;
+            margin-bottom:14px;
         }
 
-        .join-logo {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--purple);
-            letter-spacing: 0.04em;
-            margin-bottom: 8px;
+        .brand{
+            text-align:center;
+            margin-bottom:14px;
+        }
+        .logo-badge{
+            width:56px;
+            height:56px;
+            border-radius:14px;
+            background:var(--brand-soft);
+            border:1px solid rgba(255,79,160,.25);
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:900;
+            color:var(--brand);
+            letter-spacing:.04em;
+            user-select:none;
+            margin-bottom:10px;
+        }
+        .title{
+            margin:0;
+            font-size:20px;
+            font-weight:900;
+        }
+        .subtitle{
+            margin:6px 0 0;
+            font-size:13px;
+            color:var(--sub);
         }
 
-        .join-subtitle {
-            text-align: left;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 16px;
+        .card{
+            background:var(--card);
+            border:1px solid var(--line);
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            padding:22px 22px 18px;
         }
 
-        .join-form {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+        .alert{
+            border-radius:14px;
+            padding:12px 12px;
+            font-size:13px;
+            margin-bottom:12px;
+            font-weight:800;
+            text-align:center;
+            background:#fdecea;
+            color:#b91c1c;
+            border:1px solid rgba(185,28,28,.15);
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+        .form{
+            display:flex;
+            flex-direction:column;
+            gap:14px;
         }
 
-        .form-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
+        .group{
+            display:flex;
+            flex-direction:column;
+            gap:6px;
         }
 
-        .form-help {
-            font-size: 11px;
-            color: var(--text-sub);
-            margin-top: 2px;
+        .label{
+            font-size:12px;
+            font-weight:900;
+            color:#374151;
         }
 
-        .input-field {
-            width: 100%;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--border-soft);
-            padding: 0 14px;
-            font-size: 13px;
-            outline: none;
+        .input, .select{
+            width:100%;
+            height:44px;
+            border:1px solid var(--line);
+            border-radius:12px;
+            padding:0 12px;
+            font-size:14px;
+            outline:none;
+            transition:.15s;
+            background:#fff;
+        }
+        .input:focus, .select:focus{
+            border-color: rgba(255,79,160,.7);
+            box-shadow: 0 0 0 4px rgba(255,79,160,.12);
         }
 
-        .input-field:focus {
-            border-color: var(--purple);
-            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15);
+        .row{
+            display:grid;
+            grid-template-columns: 1fr 120px;
+            gap:10px;
+            align-items:center;
         }
 
-        .form-row-inline {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 120px;
-            column-gap: 8px;
-            align-items: center;
+        .row-3{
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap:10px;
         }
 
-        .form-group.email-row .form-row-inline {
-            grid-template-columns: minmax(0, 1fr) 150px;
+        .btn-inline{
+            height:44px;
+            border-radius:12px;
+            border:none;
+            cursor:pointer;
+            font-weight:900;
+            font-size:13px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:var(--dark);
+            color:#fff;
+            transition:.12s;
+            white-space:nowrap;
         }
+        .btn-inline:hover{ filter:brightness(1.05); transform: translateY(-1px); }
+        .btn-inline:active{ transform: translateY(0); }
 
-        .btn-inline {
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--purple);
-            background: var(--purple);
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-        }
-
-        .btn-inline:hover {
-            background: var(--purple-deep);
-            border-color: var(--purple-deep);
-        }
-
-        .email-domain-select {
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--border-soft);
-            padding: 0 12px;
-            font-size: 13px;
-            outline: none;
-            background: #ffffff;
-        }
-
-        .email-domain-select:focus {
-            border-color: var(--purple);
-            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15);
-        }
-
-        .select-field {
-            width: 100%;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--border-soft);
-            padding: 0 12px;
-            font-size: 13px;
-            background: #ffffff;
-            outline: none;
-        }
-
-        .select-field:focus {
-            border-color: var(--purple);
-            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15);
-        }
-
-        .gender-nationality-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-
-        .toggle-btn {
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--border-soft);
-            background: #ffffff;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .toggle-btn.active {
-            border-color: var(--purple);
-            background: rgba(99, 102, 241, 0.08);
-            color: var(--purple-deep);
-            font-weight: 600;
-        }
-
-        .terms-card {
-            border-radius: 16px;
-            border: 1px solid rgba(99, 102, 241, 0.25);
-            background: #faf5ff;
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .terms-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .terms-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            padding-left: 2px;
-        }
-
-        .terms-item {
-            font-size: 12px;
-            color: var(--text-sub);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .terms-item input {
-            width: 14px;
-            height: 14px;
-            accent-color: var(--purple);
-        }
-
-        .btn-join {
-            margin-top: 6px;
-            width: 100%;
-            height: 46px;
-            border-radius: 16px;
-            border: none;
-            background: var(--purple);
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-join:hover {
-            background: var(--purple-deep);
-        }
-
-        /* ====== 모바일 최적화 (너 코드 그대로 유지하고, 모바일에서만 변경) ====== */
-        @media (max-width: 480px) {
-
-            /* 전체 레이아웃 */
-            .join-page {
-                padding: 20px 12px;
-                align-items: flex-start;
-            }
-
-            /* 카드 크기 확대 */
-            .join-card {
-                width: 100%;
-                padding: 22px 20px 26px;
-                border-radius: 24px;
-            }
-
-            /* 제목 크기 */
-            .join-logo {
-                font-size: 24px;
-                margin-bottom: 6px;
-            }
-
-            .join-subtitle {
-                font-size: 14px;
-                margin-bottom: 12px;
-            }
-
-            /* 입력 라벨 */
-            .form-label {
-                font-size: 12px;
-            }
-
-            /* 인풋 크기 조금 증가 */
-            .input-field,
-            .email-domain-select,
-            .select-field {
-                height: 46px;
-                font-size: 14px;
-            }
-
-            /* 인풋 + 버튼 구조 */
-            .form-row-inline {
-                grid-template-columns: minmax(0, 1fr) 110px; /* 모바일은 버튼 조금 줄임 */
-            }
-
-            .form-group.email-row .form-row-inline {
-                grid-template-columns: minmax(0, 1fr) 130px;
-            }
-
-            .btn-inline {
-                height: 46px;
-                font-size: 13px;
-            }
-
-            /* 성별/국적 버튼 크게 */
-            .gender-nationality-row {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 6px;
-            }
-
-            .toggle-btn {
-                height: 44px;
-                font-size: 12px;
-            }
-
-            /* 약관 카드 */
-            .terms-card {
-                padding: 10px 12px;
-            }
-
-            .terms-title {
-                font-size: 11px;
-            }
-
-            .terms-item {
-                font-size: 11px;
-            }
-
-            /* 가입하기 버튼 */
-            .btn-join {
-                height: 48px;
-                font-size: 14px;
-            }
-        }
-
-        .form-msg {
-            font-size: 13px;
-            margin-top: 4px;
-            color: transparent;
-            opacity: 0;
+        .msg{
+            font-size:12px;
+            margin-top:2px;
+            color:transparent;
+            opacity:0;
             transform: translateY(4px);
-            transition: all 0.25s ease;
+            transition: all .2s ease;
         }
-
-        .form-msg.show {
-            opacity: 1;
+        .msg.show{
+            opacity:1;
             transform: translateY(0);
-            color: inherit;
+            color:inherit;
         }
 
+        .toggle-row{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap:10px;
+        }
+        .toggle-btn{
+            height:44px;
+            border-radius:12px;
+            border:1px solid var(--line);
+            background:#fff;
+            cursor:pointer;
+            font-weight:900;
+            font-size:13px;
+            color:#374151;
+            transition:.12s;
+        }
+        .toggle-btn.active{
+            border-color: rgba(255,79,160,.7);
+            background: rgba(255,79,160,.10);
+            color:#b01262;
+        }
+
+        .terms{
+            border-radius:14px;
+            border:1px solid rgba(255,79,160,.25);
+            background: var(--brand-soft);
+            padding:12px 12px;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        }
+        .terms .all{
+            font-weight:900;
+            font-size:12px;
+            color:#7a0f52;
+        }
+        .terms label{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-size:12px;
+            color:#6b7280;
+        }
+        .terms input[type="checkbox"]{
+            width:14px;height:14px;
+            accent-color: var(--brand);
+        }
+
+        .btn-join{
+            margin-top:2px;
+            width:100%;
+            height:48px;
+            border-radius:14px;
+            border:none;
+            cursor:pointer;
+            font-weight:900;
+            font-size:15px;
+            background:var(--btn);
+            color:#fff;
+            transition:.12s;
+        }
+        .btn-join:hover{ background:var(--btn-hover); transform: translateY(-1px); }
+        .btn-join:active{ transform: translateY(0); }
+
+        .foot{
+            text-align:center;
+            margin-top:14px;
+            font-size:12px;
+            color:#9ca3af;
+        }
+
+        @media (max-width:480px){
+            .card{ padding:18px 16px 16px; }
+            .row{ grid-template-columns: 1fr 110px; }
+            .toggle-row{ gap:8px; }
+        }
     </style>
 </head>
+
 <body>
-<div class="join-page">
-    <div class="join-card">
-        <div class="join-logo">더쿠쿠</div>
-        <div class="join-subtitle">회원가입</div>
+<div class="page">
+    <div class="wrap">
 
-        <form class="join-form" method="post" action="/auth/join">
+        <a class="top-link" th:href="@{/}">
+            ← 홈으로 돌아가기
+        </a>
 
+        <div class="brand">
+            <div class="logo-badge">TK</div>
+            <h1 class="title">회원가입</h1>
+            <p class="subtitle">애니 덕후들과 함께해요 🎉</p>
+        </div>
 
-            <input type="hidden" name="gender" id="genderValue" value="남자">
-            <input type="hidden" name="nationality" id="nationalityValue" value="내국인">
-            <input type="hidden" name="email" id="emailFull">
+        <div class="card">
 
-            <!-- 아이디 -->
-            <div class="form-group">
-                <label class="form-label">아이디</label>
-
-                <div class="form-row-inline">
-                    <input type="text" class="input-field" name="loginId"
-                           placeholder="아이디 입력" th:value="${loginId}">
-                    <button type="button" class="btn-inline" id="btnCheckId">중복확인</button>
-                </div>
-
-                <p id="idCheckMessage" class="form-msg" style="font-size:13px; margin-top:6px;"></p>
-            </div>
-
-            <!-- 아이디 중복 또는 닉네임 중복 에러 표시 -->
-            <div th:if="${joinError}"
-                 style="background:#fdecea; color:#b91c1c; padding:10px; border-radius:10px;
-            margin-bottom:15px; text-align:center; font-size:14px;">
+            <!-- ✅ joinError 유지 -->
+            <div th:if="${joinError}" class="alert">
                 <span th:text="${joinError}"></span>
             </div>
 
-
-            <!-- 비밀번호 -->
-            <div class="form-group">
-                <label class="form-label">비밀번호</label>
-                <input type="password" class="input-field" id="pw" name="loginPw" placeholder="비밀번호 입력">
-                <p id="pwMessage" class="form-msg"></p>
-            </div>
-
-            <!-- 비밀번호 확인 -->
-            <div class="form-group">
-                <label class="form-label">비밀번호 확인</label>
-                <input type="password" class="input-field" id="pwConfirm" placeholder="비밀번호 재입력">
-                <p id="pwConfirmMessage" class="form-msg"></p>
-            </div>
-
-            <!-- 이메일 -->
-            <div class="form-group email-row">
-                <label class="form-label">이메일</label>
-                <div class="form-row-inline">
-                    <input type="text" class="input-field" name="emailId" placeholder="이메일 아이디 (예: banana123)">
-                    <select class="email-domain-select" name="emailDomain">
-
-
-
-                        <option value="@naver.com">@naver.com</option>
-                        <option value="@gmail.com">@gmail.com</option>
-                        <option value="@daum.net">@daum.net</option>
-                        <option value="@kakao.com">@kakao.com</option>
-                        <option value="@outlook.com">@outlook.com</option>
-                        <option value="custom">직접 입력</option>
-                    </select>
-                <!-- 직접입력 도메인 input (초기 숨김) -->
-                    <input type="text" class="input-field" id="customEmailInput"
-                               placeholder="이메일 입력 (예: mymail.com)"
-                               style="display:none; margin-top:8px;">
-                </div>
-                    <p class="form-msg" id="msgEmail"></p>
-            </div>
-
-            <!-- 이름 -->
-            <div class="form-group">
-                <label class="form-label">이름</label>
-                <input type="text" class="input-field" name="nickname" placeholder="이름 입력">
-                <p class="form-msg" id="msgName"></p>
-            </div>
-
-            <!-- 생년월일 -->
-            <div class="form-group">
-                <label class="form-label">생년월일</label>
-                <div class="form-row-inline" style="grid-template-columns: 1fr 1fr 1fr;">
-                    <select id="birthYear" class="select-field"></select>
-                    <select id="birthMonth" class="select-field"></select>
-                    <select id="birthDay" class="select-field"></select>
-                </div>
-
+            <form class="form" method="post" action="/auth/join">
+                <!-- ✅ 기존 hidden 유지 -->
+                <input type="hidden" name="gender" id="genderValue" value="남자">
+                <input type="hidden" name="nationality" id="nationalityValue" value="내국인">
+                <input type="hidden" name="email" id="emailFull">
                 <input type="hidden" name="birth" id="birth">
 
-                <p class="form-msg" id="msgBirth"></p>
-            </div>
-
-            <!-- 통신사 선택 -->
-            <div class="form-group">
-                <label class="form-label">통신사 선택</label>
-                <select class="select-field">
-                    <option>SKT</option>
-                    <option>KT</option>
-                    <option>LG U+</option>
-                    <option>알뜰폰(SKT)</option>
-                    <option>알뜰폰(KT)</option>
-                    <option>알뜰폰(LG U+)</option>
-                </select>
-                <p class="form-msg" id="msgPhone"></p>
-            </div>
-
-            <!-- 성별 · 국적 -->
-
-            <div class="form-group">
-                <label class="form-label">성별 · 국적</label>
-                <div class="gender-nationality-row">
-                    <button type="button" class="toggle-btn active">남자</button>
-                    <button type="button" class="toggle-btn">여자</button>
-                    <button type="button" class="toggle-btn active">내국인</button>
-                    <button type="button" class="toggle-btn">외국인</button>
+                <!-- 아이디 + 중복확인 -->
+                <div class="group">
+                    <label class="label">아이디 *</label>
+                    <div class="row">
+                        <input type="text" class="input" name="loginId" placeholder="아이디 입력" th:value="${loginId}">
+                        <button type="button" class="btn-inline" id="btnCheckId">중복확인</button>
+                    </div>
+                    <p id="idCheckMessage" class="msg"></p>
                 </div>
-            </div>
 
-            <!-- 휴대전화번호 + 인증요청 -->
-            <div class="form-group">
-                <label class="form-label">휴대전화번호</label>
-                <div class="form-row-inline">
-                    <input type="text" class="input-field" name="phone" placeholder="01012345678">
+                <!-- 비밀번호 -->
+                <div class="group">
+                    <label class="label">비밀번호 *</label>
+                    <input type="password" class="input" id="pw" name="loginPw" placeholder="비밀번호 입력">
+                    <p id="pwMessage" class="msg"></p>
                 </div>
-            </div>
 
-            <!-- 약관 동의 -->
-            <div class="form-group">
-                <div class="terms-card">
-                    <div class="terms-title">
-                    <label style="cursor:pointer;">
-                    <input type="checkbox" id="termsAll">
-                        [필수] 약관 전체 동의
-                    </label>
-                    <p class="form-msg" id="msgTerms"></p>
+                <!-- 비밀번호 확인 -->
+                <div class="group">
+                    <label class="label">비밀번호 확인 *</label>
+                    <input type="password" class="input" id="pwConfirm" placeholder="비밀번호를 다시 입력">
+                    <p id="pwConfirmMessage" class="msg"></p>
+                </div>
+
+                <!-- 이메일 -->
+                <div class="group">
+                    <label class="label">이메일 *</label>
+                    <div class="row">
+                        <input type="text" class="input" name="emailId" placeholder="이메일 아이디 (예: banana123)">
+                        <select class="select" name="emailDomain" id="emailDomainSelect">
+                            <option value="@naver.com">@naver.com</option>
+                            <option value="@gmail.com">@gmail.com</option>
+                            <option value="@daum.net">@daum.net</option>
+                            <option value="@kakao.com">@kakao.com</option>
+                            <option value="@outlook.com">@outlook.com</option>
+                            <option value="custom">직접 입력</option>
+                        </select>
                     </div>
 
-                    <div class="terms-list">
-                        <label class="terms-item">
-                            <input type="checkbox" class="terms-check">
-                            <span>개인정보 이용</span>
-                        </label>
-                        <label class="terms-item">
-                            <input type="checkbox" class="terms-check">
-                            <span>통신사 이용약관</span>
-                        </label>
-                        <label class="terms-item">
-                            <input type="checkbox" class="terms-check">
-                            <span>고유식별정보 처리</span>
-                        </label>
-                        <label class="terms-item">
-                            <input type="checkbox" class="terms-check">
-                            <span>인증 서비스 이용약관</span>
-                        </label>
-                        <label class="terms-item">
-                            <input type="checkbox" class="terms-check">
-                            <span>더쿠쿠 개인정보수집동의</span>
-                        </label>
+                    <!-- ✅ 기존 기능: 직접입력(이름만 JS와 맞춤) -->
+                    <input type="text" class="input" id="customEmailInput"
+                           placeholder="도메인 직접 입력 (예: mymail.com)"
+                           style="display:none; margin-top:8px;">
+                    <p class="msg" id="msgEmail"></p>
+                </div>
+
+                <!-- 이름(닉네임) -->
+                <div class="group">
+                    <label class="label">이름 *</label>
+                    <input type="text" class="input" name="nickname" placeholder="이름 입력">
+                    <p class="msg" id="msgName"></p>
+                </div>
+
+                <!-- 생년월일 -->
+                <div class="group">
+                    <label class="label">생년월일 *</label>
+                    <div class="row-3">
+                        <select id="birthYear" class="select"></select>
+                        <select id="birthMonth" class="select"></select>
+                        <select id="birthDay" class="select"></select>
+                    </div>
+                    <p class="msg" id="msgBirth"></p>
+                </div>
+
+                <!-- 통신사 선택 (기존 그대로, name 없던 것도 그대로 둠) -->
+                <div class="group">
+                    <label class="label">통신사 선택</label>
+                    <select class="select">
+                        <option>SKT</option>
+                        <option>KT</option>
+                        <option>LG U+</option>
+                        <option>알뜰폰(SKT)</option>
+                        <option>알뜰폰(KT)</option>
+                        <option>알뜰폰(LG U+)</option>
+                    </select>
+                    <p class="msg" id="msgPhone"></p>
+                </div>
+
+                <!-- 성별/국적 -->
+                <div class="group">
+                    <label class="label">성별 · 국적</label>
+                    <div class="toggle-row">
+                        <button type="button" class="toggle-btn active">남자</button>
+                        <button type="button" class="toggle-btn">여자</button>
+                        <button type="button" class="toggle-btn active">내국인</button>
+                        <button type="button" class="toggle-btn">외국인</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- 가입하기 버튼 -->
-            <button type="submit" class="btn-join">가입하기</button>
-        </form>
+                <!-- 휴대전화 -->
+                <div class="group">
+                    <label class="label">휴대전화번호 *</label>
+                    <input type="text" class="input" name="phone" placeholder="01012345678">
+                </div>
+
+                <!-- 약관 -->
+                <div class="group">
+                    <div class="terms">
+                        <div class="all">
+                            <label style="cursor:pointer;">
+                                <input type="checkbox" id="termsAll">
+                                [필수] 약관 전체 동의
+                            </label>
+                            <p class="msg" id="msgTerms" style="margin:6px 0 0;"></p>
+                        </div>
+
+                        <label><input type="checkbox" class="terms-check"><span>개인정보 이용</span></label>
+                        <label><input type="checkbox" class="terms-check"><span>통신사 이용약관</span></label>
+                        <label><input type="checkbox" class="terms-check"><span>고유식별정보 처리</span></label>
+                        <label><input type="checkbox" class="terms-check"><span>인증 서비스 이용약관</span></label>
+                        <label><input type="checkbox" class="terms-check"><span>더쿠쿠 개인정보수집동의</span></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-join">가입하기</button>
+            </form>
+        </div>
+
+        <div class="foot">© 2024 THE KUKU. All rights reserved.</div>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
 
-    // 메시지 요소 선언
-    const msgId = document.getElementById("idCheckMessage");
-    const msgPw = document.getElementById("pwMessage");
-    const msgPwConfirm = document.getElementById("pwConfirmMessage");
-    const msgEmail = document.getElementById("msgEmail");
-    const msgName = document.getElementById("msgName");
-    const msgBirth = document.getElementById("msgBirth");
-    const msgPhone = document.getElementById("msgPhone");
-    const msgTerms = document.getElementById("msgTerms");
+        // 메시지 요소
+        const msgId = document.getElementById("idCheckMessage");
+        const msgPw = document.getElementById("pwMessage");
+        const msgPwConfirm = document.getElementById("pwConfirmMessage");
+        const msgEmail = document.getElementById("msgEmail");
+        const msgName = document.getElementById("msgName");
+        const msgBirth = document.getElementById("msgBirth");
+        const msgPhone = document.getElementById("msgPhone");
+        const msgTerms = document.getElementById("msgTerms");
 
-    const joinForm = document.querySelector(".join-form");
+        const joinForm = document.querySelector(".form");
 
-    const id = document.querySelector("input[name='loginId']");
-    const pw = document.getElementById("pw");
-    const pwConfirm = document.getElementById("pwConfirm");
-    const emailId = document.querySelector("input[name='emailId']");
-    const emailDomain = document.querySelector("select[name='emailDomain']");
-
-        // =========================
-// 이메일 도메인 custom 입력 처리
-// =========================
-        const customDomainInput = document.getElementById("customDomainInput");
-
-        emailDomain.addEventListener("change", function () {
-            if (this.value === "custom") {
-                emailDomain.style.display = "none";       // select 숨김
-                customDomainInput.style.display = "block"; // input 표시
-                customDomainInput.value = "";             // 초기화
-                customDomainInput.focus();
-            } else {
-                emailDomain.style.display = "block";      // select 다시 표시
-                customDomainInput.style.display = "none"; // input 숨김
-                customDomainInput.value = "";
-            }
-        });
-
+        const id = document.querySelector("input[name='loginId']");
+        const pw = document.getElementById("pw");
+        const pwConfirm = document.getElementById("pwConfirm");
+        const emailId = document.querySelector("input[name='emailId']");
+        const emailDomain = document.getElementById("emailDomainSelect");
+        const customEmailInput = document.getElementById("customEmailInput");
 
         const name = document.querySelector("input[name='nickname']");
-    const phone = document.querySelector("input[name='phone']");
-    const termsAll = document.getElementById("termsAll");
-    const termsChecks = document.querySelectorAll(".terms-check");
-
-
-        /* ===============================
-       🔥 생년월일 셀렉트 박스 자동 생성
-    ================================ */
+        const phone = document.querySelector("input[name='phone']");
+        const termsAll = document.getElementById("termsAll");
+        const termsChecks = document.querySelectorAll(".terms-check");
 
         const birthYear = document.getElementById("birthYear");
         const birthMonth = document.getElementById("birthMonth");
         const birthDay = document.getElementById("birthDay");
         const birthHidden = document.getElementById("birth");
 
-// 연도: 1950 ~ 2050
+        // =========================
+        // ✅ 이메일 도메인 custom 입력 처리 (기능 유지 + id만 맞춤)
+        // =========================
+        emailDomain.addEventListener("change", function () {
+            if (this.value === "custom") {
+                emailDomain.style.display = "none";
+                customEmailInput.style.display = "block";
+                customEmailInput.value = "";
+                customEmailInput.focus();
+            } else {
+                emailDomain.style.display = "block";
+                customEmailInput.style.display = "none";
+                customEmailInput.value = "";
+            }
+        });
+
+        // =========================
+        // ✅ 생년월일 셀렉트 자동 생성 (기능 유지)
+        // =========================
         for (let y = 1950; y <= 2050; y++) {
             birthYear.innerHTML += `<option value="${y}">${y}</option>`;
         }
-
-// 월: 1~12
         for (let m = 1; m <= 12; m++) {
             birthMonth.innerHTML += `<option value="${String(m).padStart(2, "0")}">${m}</option>`;
         }
 
-// 일은 월 선택 시 자동 업데이트
+        function updateBirthValue() {
+            if (birthYear.value && birthMonth.value && birthDay.value) {
+                birthHidden.value = birthYear.value + birthMonth.value + birthDay.value;
+            }
+        }
+
         function updateDays() {
             const year = parseInt(birthYear.value);
             const month = parseInt(birthMonth.value);
+            const lastDay = new Date(year, month, 0).getDate();
 
-            const lastDay = new Date(year, month, 0).getDate(); // 마지막 날 계산
-
-            birthDay.innerHTML = ""; // 초기화
+            birthDay.innerHTML = "";
             for (let d = 1; d <= lastDay; d++) {
                 const val = String(d).padStart(2, "0");
                 birthDay.innerHTML += `<option value="${val}">${d}</option>`;
             }
-
             updateBirthValue();
         }
 
@@ -594,58 +497,42 @@
         birthMonth.addEventListener("change", updateDays);
         birthDay.addEventListener("change", updateBirthValue);
 
-// YYYYMMDD 자동 조합
-        function updateBirthValue() {
-            if (birthYear.value && birthMonth.value && birthDay.value) {
-                birthHidden.value =
-                    birthYear.value +
-                    birthMonth.value +
-                    birthDay.value;
-            }
-        }
+        updateDays(); // 초기 1회
 
+        // =========================
+        // ✅ 성별/국적 토글 (기능 유지)
+        // =========================
+        const toggleButtons = document.querySelectorAll(".toggle-btn");
 
-        /* ===============================
-           🔥 성별 · 국적 토글 기능 추가
-           =============================== */
+        toggleButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const text = btn.textContent.trim();
 
-    const toggleButtons = document.querySelectorAll(".toggle-btn");
+                if (text === "남자" || text === "여자") {
+                    document.getElementById("genderValue").value = text;
+                    toggleButtons[0].classList.remove("active");
+                    toggleButtons[1].classList.remove("active");
+                }
 
-    toggleButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const text = btn.textContent.trim();
-            const index = [...toggleButtons].indexOf(btn);
+                if (text === "내국인" || text === "외국인") {
+                    document.getElementById("nationalityValue").value = text;
+                    toggleButtons[2].classList.remove("active");
+                    toggleButtons[3].classList.remove("active");
+                }
 
-
-// 1) 성별 선택 처리
-            if (text === "남자" || text === "여자") {
-                document.getElementById("genderValue").value = text;
-
-                toggleButtons[0].classList.remove("active");
-                toggleButtons[1].classList.remove("active");
-            }
-
-            // 2) 국적 선택 처리
-            if (text === "내국인" || text === "외국인") {
-                document.getElementById("nationalityValue").value = text;
-
-                toggleButtons[2].classList.remove("active");
-                toggleButtons[3].classList.remove("active");
-            }
-
-
-            btn.classList.add("active");
+                btn.classList.add("active");
+            });
         });
-    });
-// 아이디 중복확인 기능
-        document.getElementById("btnCheckId").addEventListener("click", function () {
 
+        // =========================
+        // ✅ 아이디 중복확인 (기능 유지)
+        // =========================
+        document.getElementById("btnCheckId").addEventListener("click", function () {
             const loginId = document.querySelector("input[name='loginId']").value;
-            const messageBox = document.getElementById("idCheckMessage");
 
             if (!loginId) {
-                messageBox.style.color = "#dc2626";  // 빨간색
-                messageBox.textContent = "아이디를 입력해주세요.";
+                msgId.style.color = "#dc2626";
+                msgId.textContent = "아이디를 입력해주세요.";
                 msgId.classList.add("show");
                 return;
             }
@@ -653,170 +540,162 @@
             fetch(`/auth/check-id?loginId=` + loginId)
                 .then(res => res.text())
                 .then(result => {
-
                     if (result === "duplicate") {
-                        messageBox.style.color = "#dc2626"; //  빨간색
-                        messageBox.textContent = "이미 사용 중인 아이디입니다.";
-                        msgId.classList.add("show");
+                        msgId.style.color = "#dc2626";
+                        msgId.textContent = "이미 사용 중인 아이디입니다.";
                     } else {
-                        messageBox.style.color = "#16a34a"; //  초록색
-                        messageBox.textContent = "사용 가능한 아이디입니다";
-                        msgId.classList.add("show");
+                        msgId.style.color = "#16a34a";
+                        msgId.textContent = "사용 가능한 아이디입니다.";
                     }
+                    msgId.classList.add("show");
                 });
-            });
-
-            // =======================
-// 🔥 약관 전체 동의 기능
-// =======================
-
-// 전체 동의 클릭 → 개별 체크 전부 체크/해제
-            termsAll.addEventListener("change", () => {
-                const checked = termsAll.checked;
-                termsChecks.forEach(chk => chk.checked = checked);
-            });
-
-// 개별 체크 변경 시 → 전체동의 자동 업데이트
-            termsChecks.forEach(chk => {
-                chk.addEventListener("change", () => {
-                    const allChecked = Array.from(termsChecks).every(c => c.checked);
-                    termsAll.checked = allChecked;
-                });
-            });
-
-    /* ===============================
-🔥 비밀번호 유효성 검사
-=============================== */
-
-    // 1) 비밀번호 규칙: 특수문자 1개 + 8자 이상
-    function validatePasswordRule(password) {
-        const regex = /^(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\-])(?!.*\s).{8,}$/;
-        return regex.test(password);
-    }
-
-    // 입력할 때마다 실시간 체크
-    pw.addEventListener("input", () => {
-        msgPw.classList.add("show");
-
-        if (!validatePasswordRule(pw.value)) {
-            msgPw.style.color = "#dc2626";
-            msgPw.textContent = "특수문자를 포함한 8자 이상이어야 합니다.";
-        } else {
-            msgPw.style.color = "#16a34a";
-            msgPw.textContent = "안전한 비밀번호입니다.";
-        }
-    });
-
-    // 2) 비밀번호 확인 체크
-    pwConfirm.addEventListener("input", () => {
-        msgPwConfirm.classList.add("show");
-
-        if (pwConfirm.value !== pw.value) {
-            msgPwConfirm.style.color = "#dc2626";
-            msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
-        } else {
-            msgPwConfirm.style.color = "#16a34a";
-            msgPwConfirm.textContent = "비밀번호가 일치합니다.";
-        }
-    });
-
-    // 회원 가입 시 빈칸 오류 메세지
-    joinForm.addEventListener("submit", function(event) {
-
-        let isValid = true;
-
-        // 초기화
-        document.querySelectorAll(".form-msg").forEach(msg => {
-
-        msg.textContent = "";
-        msg.classList.remove("show");
         });
 
-        const emailIdVal = emailId.value.trim();
-        const emailDomainVal = emailDomain.value;
-        if (emailIdVal && emailDomainVal) {
-            if (emailDomainVal === "custom") {
-                document.getElementById("emailFull").value = emailIdVal + "@" + customDomainInput.value;
+        // =========================
+        // ✅ 약관 전체동의 (기능 유지)
+        // =========================
+        termsAll.addEventListener("change", () => {
+            const checked = termsAll.checked;
+            termsChecks.forEach(chk => chk.checked = checked);
+        });
+
+        termsChecks.forEach(chk => {
+            chk.addEventListener("change", () => {
+                const allChecked = Array.from(termsChecks).every(c => c.checked);
+                termsAll.checked = allChecked;
+            });
+        });
+
+        // =========================
+        // ✅ 비밀번호 유효성 (기능 유지)
+        // =========================
+        function validatePasswordRule(password) {
+            const regex = /^(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\-])(?!.*\s).{8,}$/;
+            return regex.test(password);
+        }
+
+        pw.addEventListener("input", () => {
+            msgPw.classList.add("show");
+
+            if (!validatePasswordRule(pw.value)) {
+                msgPw.style.color = "#dc2626";
+                msgPw.textContent = "특수문자를 포함한 8자 이상이어야 합니다.";
             } else {
-                document.getElementById("emailFull").value = emailIdVal + emailDomainVal;
+                msgPw.style.color = "#16a34a";
+                msgPw.textContent = "안전한 비밀번호입니다.";
+            }
+        });
+
+        pwConfirm.addEventListener("input", () => {
+            msgPwConfirm.classList.add("show");
+
+            if (pwConfirm.value !== pw.value) {
+                msgPwConfirm.style.color = "#dc2626";
+                msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
+            } else {
+                msgPwConfirm.style.color = "#16a34a";
+                msgPwConfirm.textContent = "비밀번호가 일치합니다.";
+            }
+        });
+
+        // =========================
+        // ✅ submit 시 검증 + email 합치기 (기능 유지)
+        // =========================
+        joinForm.addEventListener("submit", function(event) {
+
+            let isValid = true;
+
+            // 초기화
+            document.querySelectorAll(".msg").forEach(msg => {
+                msg.textContent = "";
+                msg.classList.remove("show");
+                msg.style.color = "";
+            });
+
+            // 이메일 합치기
+            const emailIdVal = (emailId.value || "").trim();
+            const emailDomainVal = emailDomain.value;
+
+            if (emailIdVal && emailDomainVal) {
+                if (emailDomainVal === "custom") {
+                    const custom = (customEmailInput.value || "").trim();
+                    document.getElementById("emailFull").value = custom ? (emailIdVal + "@" + custom) : "";
+                } else {
+                    document.getElementById("emailFull").value = emailIdVal + emailDomainVal;
+                }
             }
 
-        }
+            if (id.value.trim() === "") {
+                msgId.style.color = "#dc2626";
+                msgId.textContent = "아이디를 입력해주세요.";
+                msgId.classList.add("show");
+                isValid = false;
+            }
 
-        if (id.value.trim() === "") {
-            msgId.textContent = "아이디를 입력해주세요.";
-            msgId.classList.add("show");
-            isValid = false;
-        }
-        if (pw.value.trim() === "") {
-            msgPw.textContent = "비밀번호를 입력해주세요.";
-            msgPw.classList.add("show");
-            isValid = false;
-        }
+            if (pw.value.trim() === "") {
+                msgPw.style.color = "#dc2626";
+                msgPw.textContent = "비밀번호를 입력해주세요.";
+                msgPw.classList.add("show");
+                isValid = false;
+            }
 
-        // 비밀번호 규칙 검사
-        if (!validatePasswordRule(pw.value)) {
-            msgPw.textContent = "특수문자를 포함한 8자 이상 입력해야 합니다.";
-            msgPw.classList.add("show");
-            isValid = false;
-        }
+            if (!validatePasswordRule(pw.value)) {
+                msgPw.style.color = "#dc2626";
+                msgPw.textContent = "특수문자를 포함한 8자 이상 입력해야 합니다.";
+                msgPw.classList.add("show");
+                isValid = false;
+            }
 
-        if (pwConfirm.value.trim() === "") {
-            msgPwConfirm.textContent = "비밀번호 확인이 필요합니다.";
-            msgPwConfirm.classList.add("show");
-            isValid = false;
-        }
+            if (pwConfirm.value.trim() === "") {
+                msgPwConfirm.style.color = "#dc2626";
+                msgPwConfirm.textContent = "비밀번호 확인이 필요합니다.";
+                msgPwConfirm.classList.add("show");
+                isValid = false;
+            }
 
-        if (pw.value !== pwConfirm.value) {
-            msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
-            msgPwConfirm.classList.add("show");
-            isValid = false;
-        }
-        if (emailId.value.trim() === "" || emailDomain.value === "") {
-            msgEmail.style.color = "#dc2626";
-            msgEmail.textContent = "이메일을 입력해주세요.";
-            msgEmail.classList.add("show");
-            isValid = false;
-        }
-        if (name.value.trim() === "") {
-            msgName.style.color = "#dc2626";
-            msgName.textContent = "이름을 입력해주세요.";
-            msgName.classList.add("show");
-            isValid = false;
-        }
-        if (birth.value.trim() === "") {
-            msgBirth.style.color = "#dc2626";
-            msgBirth.textContent = "생년월일을 입력해주세요.";
-            msgBirth.classList.add("show");
-            isValid = false;
-        }
-        if (birthHidden.value.trim() === "") {
-            msgBirth.style.color = "#dc2626";
-            msgBirth.textContent = "생년월일을 선택해주세요.";
-            msgBirth.classList.add("show");
-            isValid = false;
-        }
-        if (!termsAll.checked) {
-            msgTerms.style.color = "#dc2626";
-            msgTerms.textContent = "필수 약관을 확인하고 동의해주시면 가입이 완료됩니다.";
-            msgTerms.classList.add("show");
-            isValid = false;
-        }
+            if (pw.value !== pwConfirm.value) {
+                msgPwConfirm.style.color = "#dc2626";
+                msgPwConfirm.textContent = "비밀번호가 일치하지 않습니다.";
+                msgPwConfirm.classList.add("show");
+                isValid = false;
+            }
 
-        if (!isValid) {
-            event.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" }); // UX 좋게!
-        }
+            // 이메일
+            if (!document.getElementById("emailFull").value) {
+                msgEmail.style.color = "#dc2626";
+                msgEmail.textContent = "이메일을 입력해주세요.";
+                msgEmail.classList.add("show");
+                isValid = false;
+            }
+
+            if (name.value.trim() === "") {
+                msgName.style.color = "#dc2626";
+                msgName.textContent = "이름을 입력해주세요.";
+                msgName.classList.add("show");
+                isValid = false;
+            }
+
+            if (birthHidden.value.trim() === "") {
+                msgBirth.style.color = "#dc2626";
+                msgBirth.textContent = "생년월일을 선택해주세요.";
+                msgBirth.classList.add("show");
+                isValid = false;
+            }
+
+            if (!termsAll.checked) {
+                msgTerms.style.color = "#dc2626";
+                msgTerms.textContent = "필수 약관을 확인하고 동의해주시면 가입이 완료됩니다.";
+                msgTerms.classList.add("show");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
         });
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-
-        const emailId = document.querySelector("input[name='emailId']");
-        const emailDomain = document.querySelector("select[name='emailDomain']");
 
     });
-
 </script>
 </body>
 </html>

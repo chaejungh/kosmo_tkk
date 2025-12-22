@@ -10,6 +10,7 @@ public class TradePostListDto {
 
     private Long id;
     private Long sellerId;
+
     private String title;
     private String region;
 
@@ -18,31 +19,30 @@ public class TradePostListDto {
     private String timeAgo;
     private String priceText;
 
-    // 🔥 채팅 수 / 찜 수
+    // 채팅 수 / 찜 수 / 조회수
     private long chatCount;
-    private long likeCount;   // 북마크(하트) 개수
-
-    // 🔥 새로 추가: 조회수
+    private long likeCount;
     private long viewCount;
 
-    public TradePostListDto() {
-    }
+    public TradePostListDto() {}
 
-    // 예전에 쓰던 생성자 (혹시 다른 곳에서 쓰고 있으면 그대로 유지)
+    // ✅ 리스트용 생성자 (서비스에서 thumb/timeAgo 넣어줌)
     public TradePostListDto(TradePost post, String thumbnailUrl, String timeAgo) {
         this.id = post.getId();
         this.title = post.getTitle();
         this.region = post.getRegion();
+
         this.thumbnailUrl = thumbnailUrl;
         this.timeAgo = timeAgo;
 
-        if (post.getPrice() != null) {
-            this.priceText = String.format("%,d원", post.getPrice());
-        } else {
-            this.priceText = "가격문의";
-        }
+        // sellerId 안전하게 세팅
+        this.sellerId = (post.getSeller() != null ? post.getSeller().getId() : post.getSellerId());
 
-        // 🔥 생성자에서도 조회수 세팅 (필요하면)
-        // this.viewCount = post.getViewCount() != null ? post.getViewCount() : 0L;
+        if (post.getPrice() != null) this.priceText = String.format("%,d원", post.getPrice());
+        else this.priceText = "가격문의";
+
+        // 엔티티에 있으면 기본값 세팅(찜수는 아래에서 repository count로 덮어씀)
+        try { this.viewCount = post.getViewCount(); } catch (Exception ignored) {}
+        try { this.likeCount = post.getLikeCount(); } catch (Exception ignored) {}
     }
 }
