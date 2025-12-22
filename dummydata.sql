@@ -601,187 +601,699 @@ INSERT INTO board_category ( code, name)
 VALUES ( 'FREE', '자유');
 
 commit ;
-
 INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
     created_at, updated_at, deleted_yn
 ) VALUES (
-              1, 1,
-             '테스트 게시글 001번 제목',
-             '테스트 게시글 001번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_001.jpg',
-             10, 2, 0,
-             SYSDATE - 50, NULL, 'N'
+             1, 1,
+             '유리장 한 칸 액션 전시 완성',
+             '와이어랑 스탠드 각도 맞추느라 2시간 날렸는데… 완성하고 불 켜니까 진짜 “장면”이 됨. 먼지 때문에 유리장 정리하고 LED도 추가함. 사진은 폰 기본 카메라로 찍었는데 생각보다 잘 나왔다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-15.jpg',
+             312, 29, 7,
+             SYSDATE - 18, NULL, 'N'
          );
 
 INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
     created_at, updated_at, deleted_yn
 ) VALUES (
-              2, 2,
-             '테스트 게시글 002번 제목',
-             '테스트 게시글 002번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_002.jpg',
-             20, 4, 1,
-             SYSDATE - 49, SYSDATE - 48, 'N'
+             1, 2,
+             '이 칸은 해적 라인업으로 꽉 채웠다',
+             '이펙트 파츠가 화려해서 앞쪽엔 액션 포즈, 뒤쪽은 키 큰 애들로 세워서 깊이감 살림. 박스는 원래 치울까 했는데 배경으로 써보니까 분위기 좋아서 일부만 남김.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-16.jpg',
+             541, 46, 12,
+             SYSDATE - 12, NULL, 'N'
          );
 
-INSERT INTO board_post (category_id, member_id, title, content, thumbnail_url, view_count, like_count, comment_count, created_at, updated_at, deleted_yn)
-VALUES (1,1,'유리장 한 칸 액션 전시 완성','와이어랑 스탠드 각도 맞추느라 2시간 날렸는데… 완성하고 불 켜니까 진짜 “장면”이 됨. 먼지 때문에 유리장 정리하고 LED도 추가함. 사진은 폰 기본 카메라로 찍었는데 생각보다 잘 나왔다.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-15.jpg',312,29,7,SYSDATE-18,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 3,
+             '책장 속 “숨은 최애” 전시',
+             '책 사이에 슬쩍 세워두면 튀지 않으면서도 존재감이 있음. 원판 받침이라 안정감도 좋고, 책 정리할 때마다 먼지 털어주는 게 루틴이 됨.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-17.webp',
+             188, 21, 3,
+             SYSDATE - 9, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,2,'이 칸은 해적 라인업으로 꽉 채웠다','이펙트 파츠가 화려해서 앞쪽엔 액션 포즈, 뒤쪽은 키 큰 애들로 세워서 깊이감 살림. 박스는 원래 치울까 했는데 배경으로 써보니까 분위기 좋아서 일부만 남김.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-16.jpg',541,46,12,SYSDATE-12,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 4,
+             '책상 위 미니 피규어… 표정이 너무 귀엽다',
+             '앉아있는 포즈라 데스크에 두기 딱 좋음. 집중 안 될 때 한 번 보면 마음이 좀 진정됨ㅋㅋ 헤드폰 디테일이 특히 귀엽고 크기도 부담 없음.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-18.jfif',
+             97, 14, 2,
+             SYSDATE - 5, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,3,'책장 속 “숨은 최애” 전시','책 사이에 슬쩍 세워두면 튀지 않으면서도 존재감이 있음. 원판 받침이라 안정감도 좋고, 책 정리할 때마다 먼지 털어주는 게 루틴이 됨.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-17.webp',188,21,3,SYSDATE-9,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 5,
+             '농구 디오라마 세팅 완료(각도값 미쳤음)',
+             '코트 질감이랑 골대 디테일이 생각보다 좋아서 감탄. 투명 스탠드 파츠가 많아서 각도 잡는 데 오래 걸렸는데, 한 번 잡아두니까 진짜 “명장면 캡처” 느낌 제대로남.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-19.jpg',
+             623, 52, 15,
+             SYSDATE - 22, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,4,'책상 위 미니 피규어… 표정이 너무 귀엽다','앉아있는 포즈라 데스크에 두기 딱 좋음. 집중 안 될 때 한 번 보면 마음이 좀 진정됨ㅋㅋ 헤드폰 디테일이 특히 귀엽고 크기도 부담 없음.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-18.jfif',97,14,2,SYSDATE-5,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 6,
+             '피규어는 박스아트까지 같이 전시해야 진짜다',
+             '박스가 너무 예뻐서 버릴 수가 없었음… 그래서 아예 박스까지 전시 컨셉으로 바꿈. 소품 구성도 알차고 옆면 아트가 배경 역할까지 해줘서 만족.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-20.webp',
+             274, 33, 6,
+             SYSDATE - 16, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,5,'농구 디오라마 세팅 완료(각도값 미쳤음)','코트 질감이랑 골대 디테일이 생각보다 좋아서 감탄. 투명 스탠드 파츠가 많아서 각도 잡는 데 오래 걸렸는데, 한 번 잡아두니까 진짜 “명장면 캡처” 느낌 제대로남.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-19.jpg',623,52,15,SYSDATE-22,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 7,
+             '가동피규어는 포즈 바꾸는 재미가 진짜 큼',
+             '옷이 실제 천 재질이라 분위기 확 살음. 포즈 세팅 전에 관절 체크 한 번씩 해줘야 오래감. 여분 유니폼 구성품까지 있어서 촬영할 때 조합 바꾸기 좋다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-22.jpg',
+             356, 40, 9,
+             SYSDATE - 7, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,6,'피규어는 박스아트까지 같이 전시해야 진짜다','박스가 너무 예뻐서 버릴 수가 없었음… 그래서 아예 박스까지 전시 컨셉으로 바꿈. 소품 구성도 알차고 옆면 아트가 배경 역할까지 해줘서 만족.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-20.webp',274,33,6,SYSDATE-16,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 8,
+             '교복 피규어는 기본템… 라인 예쁘게 뽑혔다',
+             '앉은 포즈라 공간 덜 차지해서 전시하기 편함. 다리/치마 주름 표현 깔끔하고, 패키지 아트도 예뻐서 같이 두니까 인테리어 느낌 남.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-23.jpg',
+             141, 18, 4,
+             SYSDATE - 3, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,7,'가동피규어는 포즈 바꾸는 재미가 진짜 큼','옷이 실제 천 재질이라 분위기 확 살음. 포즈 세팅 전에 관절 체크 한 번씩 해줘야 오래감. 여분 유니폼 구성품까지 있어서 촬영할 때 조합 바꾸기 좋다.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-22.jpg',356,40,9,SYSDATE-7,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 9,
+             '청록 트윈테일 + 판다 소품 조합은 반칙',
+             '색감이 너무 예뻐서 계속 보게 됨. 리본/소매 디테일도 좋고 판다 소품이 포인트 확실함. 같은 톤 피규어랑 같이 두면 전시가 훨씬 깔끔해짐.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-24.jpg',
+             487, 55, 11,
+             SYSDATE - 11, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,8,'교복 피규어는 기본템… 라인 예쁘게 뽑혔다','앉은 포즈라 공간 덜 차지해서 전시하기 편함. 다리/치마 주름 표현 깔끔하고, 패키지 아트도 예뻐서 같이 두니까 인테리어 느낌 남.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-23.jpg',141,18,4,SYSDATE-3,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 10,
+             'SHF 개봉… 파츠가 이렇게 많은 건 반칙이지',
+             '오늘 도착해서 바로 개봉. 기본 바디도 좋고 얼굴/손 파츠가 다양해서 포징 바꾸는 맛이 있음. 이펙트 파츠(별 모양)까지 들어있어서 전시할 때 화면이 확 살아남. 다만 파츠가 많아서 잃어버리기 쉬우니 트레이 그대로 보관 추천.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-25.webp',
+             268, 24, 5,
+             SYSDATE - 6, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,9,'청록 트윈테일 + 판다 소품 조합은 반칙','색감이 너무 예뻐서 계속 보게 됨. 리본/소매 디테일도 좋고 판다 소품이 포인트 확실함. 같은 톤 피규어랑 같이 두면 전시가 훨씬 깔끔해짐.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-24.jpg',487,55,11,SYSDATE-11,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 11,
+             '블루아카 피그마 자전거 DX… 박스부터 설렌다',
+             '박스 아트 미쳤고 구성도 빵빵함. 자전거 포함이라 공간 차지하긴 하는데, 포즈 잡아두면 진짜 “한 장면”이 됨. 조립 난이도는 중간 정도? 설명서 보면서 하면 충분히 가능. 주말에 제대로 세팅해서 사진 더 찍어볼 예정.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-26.jpg',
+             403, 37, 8,
+             SYSDATE - 10, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,10,'SHF 개봉… 파츠가 이렇게 많은 건 반칙이지','오늘 도착해서 바로 개봉. 기본 바디도 좋고 얼굴/손 파츠가 다양해서 포징 바꾸는 맛이 있음. 이펙트 파츠(별 모양)까지 들어있어서 전시할 때 화면이 확 살아남. 다만 파츠가 많아서 잃어버리기 쉬우니 트레이 그대로 보관 추천.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-25.webp',268,24,5,SYSDATE-6,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 13,
+             '거실 소파 위 단체샷… 수집의 끝은 결국 전시다',
+             '정리하다가 한 번에 꺼내서 단체샷 찍어봄. 장르 섞여도 포즈/높이만 잘 맞추면 생각보다 예쁘게 나옴. 큰 피규어는 뒤로, 작은 애들은 앞에 두니까 꽉 차는 느낌이 좋다. (먼지 닦는 건… 다음 주의 나에게 맡김)',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-27.jfif',
+             512, 41, 11,
+             SYSDATE - 15, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES (1,11,'블루아카 피그마 자전거 DX… 박스부터 설렌다','박스 아트 미쳤고 구성도 빵빵함. 자전거 포함이라 공간 차지하긴 하는데, 포즈 잡아두면 진짜 “한 장면”이 됨. 조립 난이도는 중간 정도? 설명서 보면서 하면 충분히 가능. 주말에 제대로 세팅해서 사진 더 찍어볼 예정.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-26.jpg',403,37,8,SYSDATE-10,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 14,
+             '유리장 한 칸이 아니라 한 “세계관”이 되어버림',
+             '처음엔 테마 맞춰서 넣으려 했는데 점점 자리 싸움 나서 그냥 취향대로 배치함ㅋㅋ 메카/미소녀/작은 피규어까지 섞였는데 오히려 풍성해서 보는 재미가 있음. 조명 켜면 반사 때문에 사진 찍기 어렵긴 한데 실물은 만족도 높음.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-28.jfif',
+             634, 49, 14,
+             SYSDATE - 21, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (1,13,'거실 소파 위 단체샷… 수집의 끝은 결국 전시다',
-     '정리하다가 한 번에 꺼내서 단체샷 찍어봄. 장르 섞여도 포즈/높이만 잘 맞추면 생각보다 예쁘게 나옴. 큰 피규어는 뒤로, 작은 애들은 앞에 두니까 꽉 차는 느낌이 좋다. (먼지 닦는 건… 다음 주의 나에게 맡김)',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-27.jfif',
-     512,41,11,SYSDATE-15,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 12,
+             '원피스 라인업 책상 전시… 포즈 맛이 확실함',
+             '책상 위에 쭉 세워두니까 지나갈 때마다 눈이 행복함. 이펙트 파츠 있는 애들은 앞쪽에 두고, 큰 애들은 뒤쪽으로 배치해서 깊이감 살림. 받침 원판이 좀 커서 자리 많이 먹긴 하는데, 완성도 때문에 납득됨.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-29.jfif',
+             289, 28, 6,
+             SYSDATE - 8, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (1,14,'유리장 한 칸이 아니라 한 “세계관”이 되어버림',
-     '처음엔 테마 맞춰서 넣으려 했는데 점점 자리 싸움 나서 그냥 취향대로 배치함ㅋㅋ 메카/미소녀/작은 피규어까지 섞였는데 오히려 풍성해서 보는 재미가 있음. 조명 켜면 반사 때문에 사진 찍기 어렵긴 한데 실물은 만족도 높음.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-28.jfif',
-     634,49,14,SYSDATE-21,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             1, 16,
+             '에이스 박스 3종 모아두니 뿌듯함이 3배',
+             '같은 캐릭터라도 버전별로 박스 톤이 달라서 모아두면 컬렉션 느낌 확 남. 개봉은 하나만 하고 나머지는 박스 보관 중… (언젠가 전부 꺼내겠지) 바닥에 줄 세워두기만 해도 전시가 되는 게 박스 피규어의 매력인 듯.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-30.jfif',
+             176, 19, 3,
+             SYSDATE - 4, NULL, 'N'
+         );
+-- =========================
+-- category_id = 2 (코스프레)
+-- =========================
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 1,
+             '보라 마녀 컨셉 첫 촬영… 모자 각도 잡는 게 제일 어려웠다',
+             '드디어 보라색 마녀 컨셉 코스 완성! 모자 고정이랑 망토 라인 잡는 게 생각보다 빡셌는데 결과물이 예쁘게 나와서 만족. 메이크업은 눈매 강조 + 글리터로 포인트 줬고, 별 모양 악세는 따로 제작해서 달아봤어.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-4.jfif',
+             462, 58, 14,
+             SYSDATE - 20, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (1,12,'원피스 라인업 책상 전시… 포즈 맛이 확실함',
-     '책상 위에 쭉 세워두니까 지나갈 때마다 눈이 행복함. 이펙트 파츠 있는 애들은 앞쪽에 두고, 큰 애들은 뒤쪽으로 배치해서 깊이감 살림. 받침 원판이 좀 커서 자리 많이 먹긴 하는데, 완성도 때문에 납득됨.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-29.jfif',
-     289,28,6,SYSDATE-8,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 2,
+             '야외 행사에서 고양이 컨셉 코스! (리본/소매 디테일 자랑)',
+             '행사장에서 찍은 사진들 중 제일 마음에 드는 컷. 귀는 클립형이라 오래 착용하면 조금 아픈데… 사진 찍을 때는 확실히 포인트가 됨. 소매 리본은 풀릴까 봐 안쪽에 실로 한 번 더 고정했어.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-5.jfif',
+             517, 66, 18,
+             SYSDATE - 14, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (1,16,'에이스 박스 3종 모아두니 뿌듯함이 3배',
-     '같은 캐릭터라도 버전별로 박스 톤이 달라서 모아두면 컬렉션 느낌 확 남. 개봉은 하나만 하고 나머지는 박스 보관 중… (언젠가 전부 꺼내겠지) 바닥에 줄 세워두기만 해도 전시가 되는 게 박스 피규어의 매력인 듯.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-30.jfif',
-     176,19,3,SYSDATE-4,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 3,
+             '실내 촬영: 청백 톤 의상은 조명빨 진짜 잘 받는다',
+             '청색/백색 계열 의상이라 조명만 잘 맞추면 피부톤도 깨끗하게 나오더라. 가슴 장식이랑 브로치 디테일이 은근 무게감 있어서 촬영 전엔 테이프로 한 번 고정해줌. 렌즈는 자연스럽게 파란 계열로 맞췄어.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-6.jfif',
+             689, 81, 22,
+             SYSDATE - 11, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (2,17,'금발 망토 코스 도전! 손 포즈 + 표정이 전부였다',
-     '이 캐릭터는 표정이 반이라서 눈썹/아이라인에 힘 줬고, 렌즈도 톤 맞춰서 끼웠어. 손바닥 문양은 촬영 전에 빠르게 보정해서 선명하게 나오게 했고, 배경을 어둡게 잡으니까 의상이 더 튀어나와서 결과물 마음에 듦.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-27.jfif',
-     534,65,11,SYSDATE-7,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 4,
+             '여우귀 검객 컨셉… 소품 칼 들고 찍으니 분위기 확 산다',
+             '다리 장비/허리 벨트가 많아서 착용 순서가 제일 중요했음. 소품 칼은 가볍게 들 수 있게 제작된 걸로 준비했고, 포즈는 손목 각도 조금만 바꿔도 느낌 달라져서 여러 컷 찍어봄!',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-7.jfif',
+             401, 47, 9,
+             SYSDATE - 9, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,10,'오늘 야식 치킨… 소스 조합 미쳤다',
-     '바삭한 치킨에 양념/치즈 소스 찍어먹고, 치킨무까지 같이 먹으니까 끝… 한 입 먹고 “아 오늘은 성공이다” 소리 나옴. 다음엔 맥주까지 세트로 가야겠다.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-1.jpg',
-     388,27,6,SYSDATE-1,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 5,
+             '햇살 좋은 날 야외 코스 촬영! 파란 제복은 진리다',
+             '날씨가 좋아서 야외 촬영 갔는데 색감이 너무 잘 나와서 행복…! 모자 장식이랑 단추가 반사되면서 포인트가 살아남. 장갑/리본은 바람 불면 흐트러져서 중간중간 정리하면서 촬영했어.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-8.jfif',
+             732, 93, 25,
+             SYSDATE - 6, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,11,'이 짤 볼 때마다 대사 타이밍이 너무 웃김ㅋㅋ',
-     '“큰일 났어”로 시작해서 점점 상황이 이상해지는 흐름이 진짜 레전드… 마지막 한 줄이 화룡점정임. 단톡방에 던지면 반응 보장.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-2.png',
-     742,61,15,SYSDATE-3,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 6,
+             '전시장 포토존에서 “악마/집사” 느낌 컨셉샷 찍어봄',
+             '현장 조명이 강해서 피부 표현이 잘 나오더라. 헤어는 흰색 단발이라 뒷머리 뜨는 거 잡는 데 스프레이 많이 씀. 악세는 금속 느낌이라 사진에 더 살아서 만족!',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-9.jfif',
+             358, 44, 7,
+             SYSDATE - 17, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,12,'질문 하나로 멘탈 부서지는 순간',
-     '짧은 글인데 묘하게 파괴력 있음… “그렇게 보이는 이유”가 더 궁금해지는 글이라 댓글창 들어가게 됨. 이런 건 볼 때마다 웃프다.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-3.jpg',
-     529,44,9,SYSDATE-8,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 7,
+             '블루 계열 남캐 코스 도전! 소품이 많아도 재밌다',
+             '이번엔 남캐 느낌으로 스타일링 바꿔봤어. 의상에 끈/장식이 많아서 촬영 전에 꼼꼼히 정리 필수. 소품 무기는 야외에서 들고 촬영하면 진짜 분위기 살아남… 다음엔 연기 포즈 더 연구해볼게.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-10.jfif',
+             283, 32, 6,
+             SYSDATE - 13, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,13,'서울 살면 말투가 이렇게 변하나 봄',
-     '처음엔 “난 절대 안 바뀜”이라고 생각했는데 어느 순간 튀어나오는 말투가 있음ㅋㅋ 지역별로 말투 변화 체감되는 포인트가 재밌다. 다들 이런 경험 있어?',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-4.jfif',
-     311,22,5,SYSDATE-15,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 8,
+             '바디페인팅 코스 첫 도전… 준비/세팅이 가장 힘들었다',
+             '처음이라 걱정했는데 결과적으로 너무 재밌었음. 페인팅은 번짐 방지 세팅이 핵심이고, 렌즈/귀/가발까지 맞추니까 캐릭터 느낌이 확 살아나더라. (세팅 시간이 길어서 다음엔 더 간단한 버전도 해보고 싶음)',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-11.jfif',
+             621, 77, 19,
+             SYSDATE - 23, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,14,'대화가 너무 깔끔하게 끝나서 웃음 터짐',
-     '상대가 진지하게 고민 말하는데 갑자기 한 단어로 정리되는 그 느낌…ㅋㅋ 이런 템포는 진짜 센스다. “굿” 한 방이면 종결.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-5.jpeg',
-     615,49,11,SYSDATE-6,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 1,
+             '하오리 스타일 코스 셀카! 햇빛 아래서 색감 최고',
+             '날이 좋아서 그냥 가볍게 산책 겸 촬영. 망토(하오리) 라인이 펄럭이는 느낌이 좋아서 걷는 컷도 찍어봤어. 칼 손잡이 장식은 포인트라서 최대한 화면에 들어오게 잡았음.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-12.jfif',
+             245, 29, 4,
+             SYSDATE - 4, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,15,'이런 전/후 비교는 진짜 반칙 아니냐',
-     '한 장으로 “변신”이 설명되는 케이스… 포인트는 헤어/눈썹/피부톤인 듯. 셀프 관리의 중요성을 다시 느낀다.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-6.jfif',
-     804,73,18,SYSDATE-11,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 11,
+             '정원 느낌 장소에서 촬영한 기모노 코스… 분위기 미쳤다',
+             '배경이 너무 예뻐서 코스가 더 살아난 날! 옷 패턴이 강해서 포즈는 최대한 깔끔하게 잡고, 헤어는 앞머리 라인만 정리해줬어. 다음엔 같은 장소에서 다른 컨셉도 찍어보고 싶다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-13.jfif',
+             493, 61, 12,
+             SYSDATE - 2, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,16,'원피스 신권 표지 떴길래 저장함',
-     '표지만 봐도 “이번 권은 사건 크다” 느낌이 확 남. 표지 구성 꽉 차 있는 거 너무 좋다… 읽을 시간만 생기면 바로 달릴 예정.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-7.jpg',
-     457,38,7,SYSDATE-2,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 3,
+             '닌자 컨셉 액션샷! 각도 잡느라 무릎 갈렸다…',
+             '야외에서 낮광 받을 때가 제일 예쁘길래 바로 포즈컷 찍었어. 머리띠 위치랑 표정이 조금만 틀어져도 느낌이 달라져서 같은 포즈로 여러 장 찍고 베스트만 골랐음. 다음엔 연기(연막) 소품도 들고 가볼까 고민 중.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-14.jfif',
+             544, 63, 16,
+             SYSDATE - 19, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,17,'이 장면 캡처… 표정이 너무 강렬해서 저장',
-     '그냥 “미친 텐션” 그 자체라서 짤로 저장해둠ㅋㅋ 이런 장면은 설명 필요 없이 짤 하나로 끝나는 느낌.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-8.jfif',
-     690,55,12,SYSDATE-9,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 5,
+             '나비 하오리 + 소품검으로 한 컷… 분위기 너무 좋다',
+             '저녁 노을빛에서 찍었더니 색감이 미쳤음. 하오리 패턴이 강해서 포즈는 최대한 깔끔하게 잡았고, 소품은 손목 각도만 바꿔도 느낌이 달라서 여러 컷 시도했어. 머리장식은 고정이 약해서 핀+테이프로 보강함.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-15.jfif',
+             487, 58, 12,
+             SYSDATE - 13, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,18,'거인 나오는 그 작품은 역시 스케일이 다르다',
-     '압도감 장난 아니고, 한 컷만 봐도 긴장감이 느껴짐. 이런 장면 나오면 다음 화까지 기다리는 게 고역…',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-9.jfif',
-     733,62,14,SYSDATE-4,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 2,
+             '레드&블랙 악역 컨셉… 부채 소품이 한 방에 살려줌',
+             '컨셉은 “강한 눈빛 + 강한 색감”. 조명이 붉게 들어와서 더 잘 맞았고, 부채 소품이 있어서 손이 어색하지 않게 포즈 잡기 좋았어. 립/아이메이크업은 진하게, 대신 피부 표현은 최대한 깔끔하게 갔음.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-16.jfif',
+             701, 84, 23,
+             SYSDATE - 22, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,19,'중2 감성 대사인데 왠지 또 멋있음',
-     '과하게 멋부린 대사일수록 웃기면서도 은근 뽕 차는 거 알지…? 이런 짤은 저장해뒀다가 친구한테 던지면 꿀잼.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-6.jpeg',
-     402,30,6,SYSDATE-13,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 7,
+             '눈 오는 날 촬영한 하얀/보라 톤 코스… 겨울감성 제대로',
+             '진짜 추웠는데 결과물이 다 했다…🤣 눈 배경 덕분에 의상 색이 더 깨끗하게 떠서 만족. 망토 라인 잡으려고 팔 포즈를 크게 가져갔고, 나비 포인트는 얼굴 옆에 오게 맞춰서 캐릭터 느낌 살렸어.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-18.jfif',
+             612, 77, 19,
+             SYSDATE - 8, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,10,'이 장면은 볼 때마다 소름… 스케일이 미쳤다',
-     '한 컷만 봐도 압도감 장난 아님. 배경/연출이 너무 커서 그냥 “와…” 소리 나오는 장면. 이런 거 나오면 다음 화까지 기다리는 게 제일 힘듦.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-8.jfif',
-     821,69,14,SYSDATE-12,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 4,
+             '단체샷은 역시 재미가 다르다(컨셉 통일 최고)',
+             '셋이서 컨셉 맞춰서 앉는 포즈로 찍었는데, 분위기가 확 살아남. 의상 톤이랑 코트(망토) 실루엣이 통일돼서 사진이 더 깔끔하게 나왔어. 단체는 시선 처리/손 위치 맞추는 게 은근 어렵더라.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-19.jfif',
+             839, 102, 31,
+             SYSDATE - 25, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,12,'이런 잔잔한 컷이 더 오래 기억남',
-     '화려한 전투도 좋지만, 가끔은 이런 조용한 장면이 더 마음에 남더라. 분위기랑 표정이 너무 좋음. 그냥 저장각.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-10.jfif',
-     402,33,6,SYSDATE-9,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 6,
+             '밀짚모자 선장 컨셉! 포즈 하나로 캐릭터 느낌 확 남',
+             '이 의상은 포즈가 반 이상이라고 생각함ㅋㅋ 모자 각도랑 손 위치만 잡아도 바로 “그 느낌” 나와서 재밌었어. 상의는 핏이 중요해서 안쪽에 테이핑으로 라인 정리하고 촬영했음.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-20.jfif',
+             523, 60, 14,
+             SYSDATE - 16, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,13,'요즘 게임/애니 연출… 이펙트 맛이 미쳤다',
-     '푸른 오라 이펙트 들어가면 무조건 간지… 화면이 꽉 차는 느낌이라 보는 맛이 있음. 이런 컨셉은 진짜 카메라 워크가 다 하더라.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-11.jfif',
-     511,41,8,SYSDATE-15,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 1,
+             '해변 촬영 도전! 바다 배경 + 색감 조합 너무 예쁘다',
+             '햇빛 강한 시간대에 찍었더니 피부톤/의상색이 깔끔하게 나옴. 바람 때문에 가발 정리가 제일 힘들었는데, 촬영 전후로 빗+스프레이로 계속 잡아줬어. 다음엔 소품을 더 준비해서 컨셉을 확실히 잡아볼 예정.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-21.jfif',
+             910, 120, 28,
+             SYSDATE - 11, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,14,'이 표정은 진짜… 감정선 폭발 컷',
-     '상처/피로감까지 다 담긴 표정이라 한 번 보면 안 잊힘. 이런 컷은 대사 없어도 분위기만으로 설명되는 느낌.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-12.jfif',
-     748,64,13,SYSDATE-4,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 8,
+             '블랙 교복 컨셉… 선글라스 소품 하나로 분위기 끝',
+             '올블랙은 조명/배경에 따라 느낌이 크게 바뀌어서 장소 고르는 게 중요하더라. 선글라스는 “들추는 순간” 타이밍으로 잡아서 역동감 살렸고, 표정은 최대한 여유 있는 느낌으로 갔어.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-22.jfif',
+             465, 49, 10,
+             SYSDATE - 6, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,15,'오늘의 야식 인증… 양념이 반칙이다',
-     '겉바속촉에 양념 촉촉하게 배어있어서 그냥 순삭. “한 조각만” 했다가 결국 다 먹음… 다음엔 콜라/맥주까지 세트로 가야겠다.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-13.jpg',
-     368,29,7,SYSDATE-2,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 2,
+             '오렌지 단발 + 페이스 포인트 메이크업… 컨셉샷 성공',
+             '이번엔 메이크업을 강하게 잡아서 얼굴 중심으로 사진이 잘 나오게 구성했어. 소품 망치는 손 위치가 계속 어색해서 여러 번 찍고 제일 자연스러운 컷으로 선택. 다음엔 동일 컨셉으로 야외에서도 찍어보고 싶다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-23.jfif',
+             578, 71, 17,
+             SYSDATE - 9, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,16,'길거리 음식은 현장감이 다 한다',
-     '막 구워지는 소리 + 냄새 상상만 해도 배고픔. 이런 건 뜨거울 때 바로 먹어야 제맛인데… 사진 보니까 또 먹고 싶다.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-14.jfif',
-     295,21,5,SYSDATE-7,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 5,
+             '블루 롱헤어 + 정장 컨셉… 깔끔하게 “캐릭터감” 살리기',
+             '정장 계열은 라인 정리가 생명이라 옷 주름/카라 라인 계속 체크하면서 촬영했어. 렌즈는 너무 튀지 않게 맞췄고, 소품 검은 사진에 안 잡히면 밋밋해서 최대한 프레임 안에 들어오게 구도 잡았음.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-24.jfif',
+             392, 43, 8,
+             SYSDATE - 3, NULL, 'N'
+         );
 
-INSERT INTO board_post VALUES
-    (3,17,'AI가 이렇게 생각하는 느낌일 때 있음ㅋㅋ',
-     '머리는 돌고 있는데 결론이 안 나는 그 순간… “정리 좀 해줘” 하고 싶어짐. 오늘 내 상태가 딱 이 짤 같았다.',
-     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-15.jfif',
-     579,47,11,SYSDATE-1,NULL,'N');
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 12,
+             '단체 망토 코스 완성… 이 각도는 진짜 “그 장면”이다',
+             '망토 디테일이랑 헤어 세팅이 핵심이라 촬영 전에 옷 라인/카라 각도부터 잡았어. 야외에서 찍으니까 색 대비가 확 살아나서 만족. 손 포즈는 여러 번 연습했는데, 카메라 앞에 서면 은근 어색해서 결국 제일 자연스러운 컷으로 선택!',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-25.jfif',
+             681, 79, 18,
+             SYSDATE - 12, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 16,
+             '단체샷 찍었는데 컨셉이 너무 과몰입이라 웃김ㅋㅋ',
+             '여러 명이 같이 찍으니까 각자 포즈/표정 맞추는 게 제일 어려웠음. 그래도 망토 통일감 덕분에 사진이 꽉 차 보이고, 한 컷으로 “집단” 느낌 확 살아나서 만족! 촬영 끝나고 망토 정리만 한참 했다는 건 비밀…',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-26.jfif',
+             942, 121, 33,
+             SYSDATE - 20, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             2, 17,
+             '금발 망토 코스 도전! 손 포즈 + 표정이 전부였다',
+             '이 캐릭터는 표정이 반이라서 눈썹/아이라인에 힘 줬고, 렌즈도 톤 맞춰서 끼웠어. 손바닥 문양은 촬영 전에 빠르게 보정해서 선명하게 나오게 했고, 배경을 어둡게 잡으니까 의상이 더 튀어나와서 결과물 마음에 듦.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-27.jfif',
+             534, 65, 11,
+             SYSDATE - 7, NULL, 'N'
+         );
+
+-- ======================
+-- category_id = 3 (자유)
+-- ======================
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 10,
+             '오늘 야식 치킨… 소스 조합 미쳤다',
+             '바삭한 치킨에 양념/치즈 소스 찍어먹고, 치킨무까지 같이 먹으니까 끝… 한 입 먹고 “아 오늘은 성공이다” 소리 나옴. 다음엔 맥주까지 세트로 가야겠다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-1.jpg',
+             388, 27, 6,
+             SYSDATE - 1, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 11,
+             '이 짤 볼 때마다 대사 타이밍이 너무 웃김ㅋㅋ',
+             '“큰일 났어”로 시작해서 점점 상황이 이상해지는 흐름이 진짜 레전드… 마지막 한 줄이 화룡점정임. 단톡방에 던지면 반응 보장.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-2.png',
+             742, 61, 15,
+             SYSDATE - 3, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 12,
+             '질문 하나로 멘탈 부서지는 순간',
+             '짧은 글인데 묘하게 파괴력 있음… “그렇게 보이는 이유”가 더 궁금해지는 글이라 댓글창 들어가게 됨. 이런 건 볼 때마다 웃프다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-3.jpg',
+             529, 44, 9,
+             SYSDATE - 8, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 13,
+             '서울 살면 말투가 이렇게 변하나 봄',
+             '처음엔 “난 절대 안 바뀜”이라고 생각했는데 어느 순간 튀어나오는 말투가 있음ㅋㅋ 지역별로 말투 변화 체감되는 포인트가 재밌다. 다들 이런 경험 있어?',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-4.jfif',
+             311, 22, 5,
+             SYSDATE - 15, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 14,
+             '대화가 너무 깔끔하게 끝나서 웃음 터짐',
+             '상대가 진지하게 고민 말하는데 갑자기 한 단어로 정리되는 그 느낌…ㅋㅋ 이런 템포는 진짜 센스다. “굿” 한 방이면 종결.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-5.jpeg',
+             615, 49, 11,
+             SYSDATE - 6, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 15,
+             '이런 전/후 비교는 진짜 반칙 아니냐',
+             '한 장으로 “변신”이 설명되는 케이스… 포인트는 헤어/눈썹/피부톤인 듯. 셀프 관리의 중요성을 다시 느낀다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-6.jfif',
+             804, 73, 18,
+             SYSDATE - 11, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 16,
+             '원피스 신권 표지 떴길래 저장함',
+             '표지만 봐도 “이번 권은 사건 크다” 느낌이 확 남. 표지 구성 꽉 차 있는 거 너무 좋다… 읽을 시간만 생기면 바로 달릴 예정.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-7.jpg',
+             457, 38, 7,
+             SYSDATE - 2, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 17,
+             '이 장면 캡처… 표정이 너무 강렬해서 저장',
+             '그냥 “미친 텐션” 그 자체라서 짤로 저장해둠ㅋㅋ 이런 장면은 설명 필요 없이 짤 하나로 끝나는 느낌.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-8.jfif',
+             690, 55, 12,
+             SYSDATE - 9, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 18,
+             '거인 나오는 그 작품은 역시 스케일이 다르다',
+             '압도감 장난 아니고, 한 컷만 봐도 긴장감이 느껴짐. 이런 장면 나오면 다음 화까지 기다리는 게 고역…',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-9.jfif',
+             733, 62, 14,
+             SYSDATE - 4, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 12,
+             '이런 잔잔한 컷이 더 오래 기억남',
+             '화려한 전투도 좋지만, 가끔은 이런 조용한 장면이 더 마음에 남더라. 분위기랑 표정이 너무 좋음. 그냥 저장각.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-10.jfif',
+             402, 33, 6,
+             SYSDATE - 9, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 13,
+             '요즘 게임/애니 연출… 이펙트 맛이 미쳤다',
+             '푸른 오라 이펙트 들어가면 무조건 간지… 화면이 꽉 차는 느낌이라 보는 맛이 있음. 이런 컨셉은 진짜 카메라 워크가 다 하더라.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-11.jfif',
+             511, 41, 8,
+             SYSDATE - 15, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 14,
+             '이 표정은 진짜… 감정선 폭발 컷',
+             '상처/피로감까지 다 담긴 표정이라 한 번 보면 안 잊힘. 이런 컷은 대사 없어도 분위기만으로 설명되는 느낌.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-12.jfif',
+             748, 64, 13,
+             SYSDATE - 4, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 15,
+             '오늘의 야식 인증… 양념이 반칙이다',
+             '겉바속촉에 양념 촉촉하게 배어있어서 그냥 순삭. “한 조각만” 했다가 결국 다 먹음… 다음엔 콜라/맥주까지 세트로 가야겠다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-13.jpg',
+             368, 29, 7,
+             SYSDATE - 2, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 16,
+             '길거리 음식은 현장감이 다 한다',
+             '막 구워지는 소리 + 냄새 상상만 해도 배고픔. 이런 건 뜨거울 때 바로 먹어야 제맛인데… 사진 보니까 또 먹고 싶다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-14.jfif',
+             295, 21, 5,
+             SYSDATE - 7, NULL, 'N'
+         );
+
+INSERT INTO board_post (
+    category_id, member_id, title, content,
+    thumbnail_url, view_count, like_count, comment_count,
+    created_at, updated_at, deleted_yn
+) VALUES (
+             3, 17,
+             'AI가 이렇게 생각하는 느낌일 때 있음ㅋㅋ',
+             '머리는 돌고 있는데 결론이 안 나는 그 순간… “정리 좀 해줘” 하고 싶어짐. 오늘 내 상태가 딱 이 짤 같았다.',
+             'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-15.jfif',
+             579, 47, 11,
+             SYSDATE - 1, NULL, 'N'
+         );
 
 INSERT INTO board_bookmark (member_id, post_id, created_at)
 VALUES (1, 1, SYSDATE - 30);
@@ -1994,156 +2506,536 @@ INSERT INTO board_like (member_id, post_id, created_at)
 VALUES (10, 10, SYSDATE);
 commit;
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img01.jpg', 1);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 1
+  AND bp.title = '유리장 한 칸 액션 전시 완성'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-15.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img02.jpg', 2);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 2
+  AND bp.title = '이 칸은 해적 라인업으로 꽉 채웠다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-16.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img03.jpg', 3);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 3
+  AND bp.title = '책장 속 “숨은 최애” 전시'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-17.webp'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img04.jpg', 4);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 4
+  AND bp.title = '책상 위 미니 피규어… 표정이 너무 귀엽다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-18.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img05.jpg', 5);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 5
+  AND bp.title = '농구 디오라마 세팅 완료(각도값 미쳤음)'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-19.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img06.jpg', 6);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 6
+  AND bp.title = '피규어는 박스아트까지 같이 전시해야 진짜다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-20.webp'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img07.jpg', 7);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 7
+  AND bp.title = '가동피규어는 포즈 바꾸는 재미가 진짜 큼'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-22.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img08.jpg', 8);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 8
+  AND bp.title = '교복 피규어는 기본템… 라인 예쁘게 뽑혔다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-23.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img09.jpg', 9);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 9
+  AND bp.title = '청록 트윈테일 + 판다 소품 조합은 반칙'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-24.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (1, 'https://example.com/board/post_001_img10.jpg', 10);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 10
+  AND bp.title = 'SHF 개봉… 파츠가 이렇게 많은 건 반칙이지'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-25.webp'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img01.jpg', 1);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 11
+  AND bp.title = '블루아카 피그마 자전거 DX… 박스부터 설렌다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-26.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img02.jpg', 2);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 13
+  AND bp.title = '거실 소파 위 단체샷… 수집의 끝은 결국 전시다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-27.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img03.jpg', 3);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 14
+  AND bp.title = '유리장 한 칸이 아니라 한 “세계관”이 되어버림'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-28.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img04.jpg', 4);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 12
+  AND bp.title = '원피스 라인업 책상 전시… 포즈 맛이 확실함'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-29.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img05.jpg', 5);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 1 AND bp.member_id = 16
+  AND bp.title = '에이스 박스 3종 모아두니 뿌듯함이 3배'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-30.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img06.jpg', 6);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 1
+  AND bp.title = '보라 마녀 컨셉 첫 촬영… 모자 각도 잡는 게 제일 어려웠다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-4.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img07.jpg', 7);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 2
+  AND bp.title = '야외 행사에서 고양이 컨셉 코스! (리본/소매 디테일 자랑)'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-5.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img08.jpg', 8);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 3
+  AND bp.title = '실내 촬영: 청백 톤 의상은 조명빨 진짜 잘 받는다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-6.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img09.jpg', 9);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 4
+  AND bp.title = '여우귀 검객 컨셉… 소품 칼 들고 찍으니 분위기 확 산다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-7.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (2, 'https://example.com/board/post_002_img10.jpg', 10);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 5
+  AND bp.title = '햇살 좋은 날 야외 코스 촬영! 파란 제복은 진리다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-8.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img01.jpg', 1);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 6
+  AND bp.title = '전시장 포토존에서 “악마/집사” 느낌 컨셉샷 찍어봄'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-9.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img02.jpg', 2);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 7
+  AND bp.title = '블루 계열 남캐 코스 도전! 소품이 많아도 재밌다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-10.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img03.jpg', 3);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 8
+  AND bp.title = '바디페인팅 코스 첫 도전… 준비/세팅이 가장 힘들었다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-11.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img04.jpg', 4);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 1
+  AND bp.title = '하오리 스타일 코스 셀카! 햇빛 아래서 색감 최고'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-12.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img05.jpg', 5);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 11
+  AND bp.title = '정원 느낌 장소에서 촬영한 기모노 코스… 분위기 미쳤다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-13.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img06.jpg', 6);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 3
+  AND bp.title = '닌자 컨셉 액션샷! 각도 잡느라 무릎 갈렸다…'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-14.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img07.jpg', 7);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 5
+  AND bp.title = '나비 하오리 + 소품검으로 한 컷… 분위기 너무 좋다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-15.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img08.jpg', 8);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 2
+  AND bp.title = '레드&블랙 악역 컨셉… 부채 소품이 한 방에 살려줌'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-16.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img09.jpg', 9);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 7
+  AND bp.title = '눈 오는 날 촬영한 하얀/보라 톤 코스… 겨울감성 제대로'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-18.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (3, 'https://example.com/board/post_003_img10.jpg', 10);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 4
+  AND bp.title = '단체샷은 역시 재미가 다르다(컨셉 통일 최고)'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-19.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img01.jpg', 1);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 6
+  AND bp.title = '밀짚모자 선장 컨셉! 포즈 하나로 캐릭터 느낌 확 남'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-20.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img02.jpg', 2);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 1
+  AND bp.title = '해변 촬영 도전! 바다 배경 + 색감 조합 너무 예쁘다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-21.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img03.jpg', 3);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 8
+  AND bp.title = '블랙 교복 컨셉… 선글라스 소품 하나로 분위기 끝'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-22.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img04.jpg', 4);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 2
+  AND bp.title = '오렌지 단발 + 페이스 포인트 메이크업… 컨셉샷 성공'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-23.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img05.jpg', 5);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 5
+  AND bp.title = '블루 롱헤어 + 정장 컨셉… 깔끔하게 “캐릭터감” 살리기'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-24.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img06.jpg', 6);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 12
+  AND bp.title = '단체 망토 코스 완성… 이 각도는 진짜 “그 장면”이다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-25.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img07.jpg', 7);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 16
+  AND bp.title = '단체샷 찍었는데 컨셉이 너무 과몰입이라 웃김ㅋㅋ'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-26.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img08.jpg', 8);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 2 AND bp.member_id = 17
+  AND bp.title = '금발 망토 코스 도전! 손 포즈 + 표정이 전부였다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-27.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img09.jpg', 9);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 10
+  AND bp.title = '오늘 야식 치킨… 소스 조합 미쳤다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-1.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (4, 'https://example.com/board/post_004_img10.jpg', 10);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 11
+  AND bp.title = '이 짤 볼 때마다 대사 타이밍이 너무 웃김ㅋㅋ'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-2.png'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img01.jpg', 1);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 12
+  AND bp.title = '질문 하나로 멘탈 부서지는 순간'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-3.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img02.jpg', 2);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 13
+  AND bp.title = '서울 살면 말투가 이렇게 변하나 봄'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-4.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img03.jpg', 3);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 14
+  AND bp.title = '대화가 너무 깔끔하게 끝나서 웃음 터짐'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-5.jpeg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img04.jpg', 4);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 15
+  AND bp.title = '이런 전/후 비교는 진짜 반칙 아니냐'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-6.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img05.jpg', 5);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 16
+  AND bp.title = '원피스 신권 표지 떴길래 저장함'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-7.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img06.jpg', 6);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 17
+  AND bp.title = '이 장면 캡처… 표정이 너무 강렬해서 저장'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-8.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img07.jpg', 7);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 18
+  AND bp.title = '거인 나오는 그 작품은 역시 스케일이 다르다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-9.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img08.jpg', 8);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 12
+  AND bp.title = '이런 잔잔한 컷이 더 오래 기억남'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-10.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img09.jpg', 9);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 13
+  AND bp.title = '요즘 게임/애니 연출… 이펙트 맛이 미쳤다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-11.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
 INSERT INTO board_post_image (post_id, image_url, sort_order)
-VALUES (5, 'https://example.com/board/post_005_img10.jpg', 10);
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 14
+  AND bp.title = '이 표정은 진짜… 감정선 폭발 컷'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-12.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
 
-commit;
+INSERT INTO board_post_image (post_id, image_url, sort_order)
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 15
+  AND bp.title = '오늘의 야식 인증… 양념이 반칙이다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-13.jpg'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
+
+INSERT INTO board_post_image (post_id, image_url, sort_order)
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 16
+  AND bp.title = '길거리 음식은 현장감이 다 한다'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-14.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
+
+INSERT INTO board_post_image (post_id, image_url, sort_order)
+SELECT bp.post_id, bp.thumbnail_url, 1
+FROM board_post bp
+WHERE bp.category_id = 3 AND bp.member_id = 17
+  AND bp.title = 'AI가 이렇게 생각하는 느낌일 때 있음ㅋㅋ'
+  AND bp.thumbnail_url = 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-15.jfif'
+  AND bp.thumbnail_url IS NOT NULL AND TRIM(bp.thumbnail_url) <> ''
+  AND bp.thumbnail_url LIKE 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%'
+  AND NOT EXISTS (SELECT 1 FROM board_post_image bpi WHERE bpi.post_id = bp.post_id);
+
+commit ;
 
 INSERT INTO board_tag (tag_id, tag_name)
 VALUES (1, '포카');
@@ -3528,253 +4420,7 @@ INSERT INTO member_notification_setting (
 INSERT INTO member_notification_setting (
     member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
 ) VALUES (40, 'Y', 'Y', 'Y', 'Y', SYSDATE - 7, SYSDATE - 1);
-
--- 41 ~ 50
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (41, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (42, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (43, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (44, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (45, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (46, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (47, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (48, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (49, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (50, 'Y', 'Y', 'Y', 'Y', SYSDATE - 6, SYSDATE - 1);
-
--- 51 ~ 60
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (51, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (52, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (53, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (54, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (55, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (56, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (57, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (58, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (59, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (60, 'Y', 'Y', 'Y', 'Y', SYSDATE - 5, SYSDATE - 1);
-
--- 61 ~ 70
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (61, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (62, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (63, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (64, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (65, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (66, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (67, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (68, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (69, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (70, 'Y', 'Y', 'Y', 'Y', SYSDATE - 4, SYSDATE - 1);
-
--- 71 ~ 80
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (71, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (72, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (73, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (74, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (75, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (76, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (77, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (78, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (79, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (80, 'Y', 'Y', 'Y', 'Y', SYSDATE - 3, SYSDATE - 1);
-
--- 81 ~ 90
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (81, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (82, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (83, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (84, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (85, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (86, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (87, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (88, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (89, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (90, 'Y', 'Y', 'Y', 'Y', SYSDATE - 2, SYSDATE - 1);
-
--- 91 ~ 100
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (91, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (92, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (93, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (94, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (95, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (96, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (97, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (98, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (99, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
-INSERT INTO member_notification_setting (
-    member_id, comment_yn, like_yn, trade_yn, event_yn, created_at, updated_at
-) VALUES (100, 'Y', 'Y', 'Y', 'Y', SYSDATE - 1, SYSDATE - 1);
-
+commit ;
 INSERT INTO notification (
      member_id, notif_type, message,
     link_type, link_target_id, read_yn, created_at
@@ -3978,14 +4624,6 @@ VALUES (3, 4, SYSDATE - 5);
 INSERT INTO popup_bookmark (member_id, popup_id, created_at)
 VALUES (4, 3, SYSDATE - 4);
 
-INSERT INTO popup_bookmark (member_id, popup_id, created_at)
-VALUES (4, 5, SYSDATE - 3);
-
-INSERT INTO popup_bookmark (member_id, popup_id, created_at)
-VALUES (5, 4, SYSDATE - 2);
-
-INSERT INTO popup_bookmark (member_id, popup_id, created_at)
-VALUES (5, 5, SYSDATE - 1);
 INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('홍대 팝업스토어','STORE',1,'Y');
 INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('강남 아이돌 굿즈','STORE',2,'Y');
 INSERT INTO recommended_search(keyword,target_type,sort_order,active_yn) VALUES('포토카드 랜덤팩','GOODS',3,'Y');
@@ -4378,316 +5016,310 @@ INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(9,18,SYSDATE-1)
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,19,SYSDATE);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,20,SYSDATE);-- ✅ Oracle용: 다건 VALUES -> INSERT ALL, NOW() -> SYSDATE
 -- (테이블명이 스키마 포함이면 TKK.TRADE_POST로 맞춰서 사용)
-
-INSERT ALL
-    INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (2,'[귀멸의 칼날] 도우마 AGF 2025 담요','AGF 2025 한정 도우마 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','도우마','담요',35000,'SELL','DIRECT','홍대','ON_SALE',50,3,SYSDATE,'N')
+    (2,'[귀멸의 칼날] 도우마 AGF 2025 담요','AGF 2025 한정 도우마 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','도우마','담요',35000,'SELL','DIRECT','홍대','ON_SALE',50,3,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (2,'[귀멸의 칼날] 아카자 AGF 2025 담요','AGF 2025 한정 아카자 담요입니다.','AGF 2025 담요','귀멸의 칼날','아카자','담요',35000,'SELL','DIRECT','홍대','ON_SALE',42,2,SYSDATE,'N')
+    (2,'[귀멸의 칼날] 아카자 AGF 2025 담요','AGF 2025 한정 아카자 담요입니다.','AGF 2025 담요','귀멸의 칼날','아카자','담요',35000,'SELL','DIRECT','홍대','ON_SALE',42,2,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (3,'[귀멸의 칼날] 코쿠시보 AGF 2025 담요','코쿠시보 AGF 한정 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','코쿠시보','담요',38000,'SELL','DIRECT','합정','ON_SALE',61,6,SYSDATE,'N')
+    (3,'[귀멸의 칼날] 코쿠시보 AGF 2025 담요','코쿠시보 AGF 한정 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','코쿠시보','담요',38000,'SELL','DIRECT','합정','ON_SALE',61,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (3,'[귀멸의 칼날] 키부츠지 무잔 AGF 2025 담요','무잔 AGF 한정 담요 미개봉 상품입니다.','AGF 2025 담요','귀멸의 칼날','키부츠지 무잔','담요',38000,'SELL','DIRECT','합정','ON_SALE',55,4,SYSDATE,'N')
+    (3,'[귀멸의 칼날] 키부츠지 무잔 AGF 2025 담요','무잔 AGF 한정 담요 미개봉 상품입니다.','AGF 2025 담요','귀멸의 칼날','키부츠지 무잔','담요',38000,'SELL','DIRECT','합정','ON_SALE',55,4,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (4,'[귀멸의 칼날] 코쵸우 시노부 쿄마후 아크릴 스탠드','쿄마후 한정 시노부 아크릴 스탠드입니다.','아크릴 스탠드','귀멸의 칼날','코쵸우 시노부','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',37,5,SYSDATE,'N')
+    (4,'[귀멸의 칼날] 코쵸우 시노부 쿄마후 아크릴 스탠드','쿄마후 한정 시노부 아크릴 스탠드입니다.','아크릴 스탠드','귀멸의 칼날','코쵸우 시노부','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',37,5,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (4,'[귀멸의 칼날] 토미오카 기유 쿄마후 아크릴 스탠드','쿄마후 한정 기유 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','토미오카 기유','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',40,6,SYSDATE,'N')
+    (4,'[귀멸의 칼날] 토미오카 기유 쿄마후 아크릴 스탠드','쿄마후 한정 기유 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','토미오카 기유','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',40,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (5,'[귀멸의 칼날] 아가츠마 젠이츠 무한성편 아크릴 참','무한성편 젠이츠 아크릴 참입니다.','아크릴 참','귀멸의 칼날','아가츠마 젠이츠','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',28,2,SYSDATE,'N')
+    (5,'[귀멸의 칼날] 아가츠마 젠이츠 무한성편 아크릴 참','무한성편 젠이츠 아크릴 참입니다.','아크릴 참','귀멸의 칼날','아가츠마 젠이츠','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',28,2,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (5,'[귀멸의 칼날] 코쵸우 시노부 무한성편 아크릴 참','무한성편 시노부 아크릴 참 판매합니다.','아크릴 참','귀멸의 칼날','코쵸우 시노부','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',25,1,SYSDATE,'N')
+    (5,'[귀멸의 칼날] 코쵸우 시노부 무한성편 아크릴 참','무한성편 시노부 아크릴 참 판매합니다.','아크릴 참','귀멸의 칼날','코쵸우 시노부','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',25,1,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[귀멸의 칼날] 토미오카 기유 무한성편 아크릴 참','무한성편 기유 아크릴 참입니다.','아크릴 참','귀멸의 칼날','토미오카 기유','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',31,3,SYSDATE,'N')
+    (6,'[귀멸의 칼날] 토미오카 기유 무한성편 아크릴 참','무한성편 기유 아크릴 참입니다.','아크릴 참','귀멸의 칼날','토미오카 기유','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',31,3,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[귀멸의 칼날] 아카자 무한성편 아크릴 스탠드','무한성편 아카자 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','아카자','아크릴',25000,'SELL','DIRECT','홍대','ON_SALE',48,7,SYSDATE,'N')
+    (6,'[귀멸의 칼날] 아카자 무한성편 아크릴 스탠드','무한성편 아카자 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','아카자','아크릴',25000,'SELL','DIRECT','홍대','ON_SALE',48,7,SYSDATE,'N');
 
 -- 11~20
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (2,'[나루토 질풍전] 하루노 사쿠라 걸즈 시리즈','걸즈 시리즈 사쿠라 피규어 판매합니다.','걸즈 시리즈 피규어','나루토 질풍전','하루노 사쿠라','피규어',98000,'SELL','DELIVERY','홍대','ON_SALE',34,4,SYSDATE,'N')
+    (2,'[나루토 질풍전] 하루노 사쿠라 걸즈 시리즈','걸즈 시리즈 사쿠라 피규어 판매합니다.','걸즈 시리즈 피규어','나루토 질풍전','하루노 사쿠라','피규어',98000,'SELL','DELIVERY','홍대','ON_SALE',34,4,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (3,'[나루토 질풍전] 휴우가 히나타 넨도로이드 No.879','히나타 넨도로이드 상태 양호합니다.','넨도로이드','나루토 질풍전','휴우가 히나타','피규어',72000,'SELL','DELIVERY','강남','ON_SALE',41,6,SYSDATE,'N')
+    (3,'[나루토 질풍전] 휴우가 히나타 넨도로이드 No.879','히나타 넨도로이드 상태 양호합니다.','넨도로이드','나루토 질풍전','휴우가 히나타','피규어',72000,'SELL','DELIVERY','강남','ON_SALE',41,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (2,'[나루토 질풍전] 우치하 사스케 룩업 피규어','룩업 시리즈 사스케 피규어입니다.','룩업 피규어','나루토 질풍전','우치하 사스케','피규어',38000,'SELL','DIRECT','홍대','ON_SALE',29,3,SYSDATE,'N')
+    (2,'[나루토 질풍전] 우치하 사스케 룩업 피규어','룩업 시리즈 사스케 피규어입니다.','룩업 피규어','나루토 질풍전','우치하 사스케','피규어',38000,'SELL','DIRECT','홍대','ON_SALE',29,3,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (4,'[나루토 질풍전] 우치하 이타치 룩업 피규어','이타치 룩업 피규어 판매합니다.','룩업 피규어','나루토 질풍전','우치하 이타치','피규어',42000,'SELL','DIRECT','합정','ON_SALE',52,8,SYSDATE,'N')
+    (4,'[나루토 질풍전] 우치하 이타치 룩업 피규어','이타치 룩업 피규어 판매합니다.','룩업 피규어','나루토 질풍전','우치하 이타치','피규어',42000,'SELL','DIRECT','합정','ON_SALE',52,8,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (5,'[진격의 거인] 라이너 브라운 POP UP PARADE','POP UP PARADE 라이너 브라운 피규어입니다.','POP UP PARADE','진격의 거인','라이너 브라운','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',46,5,SYSDATE,'N')
+    (5,'[진격의 거인] 라이너 브라운 POP UP PARADE','POP UP PARADE 라이너 브라운 피규어입니다.','POP UP PARADE','진격의 거인','라이너 브라운','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',46,5,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (5,'[진격의 거인] 엘런 예거 POP UP PARADE','엘런 예거 월드 와이드 에프터 파티 버전입니다.','POP UP PARADE','진격의 거인','엘런 예거','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',63,9,SYSDATE,'N')
+    (5,'[진격의 거인] 엘런 예거 POP UP PARADE','엘런 예거 월드 와이드 에프터 파티 버전입니다.','POP UP PARADE','진격의 거인','엘런 예거','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',63,9,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[진격의 거인] 리바이 넨도로이드 돌','넨도로이드 돌 리바이 판매합니다.','넨도로이드 돌','진격의 거인','리바이','피규어',89000,'SELL','DELIVERY','건대','ON_SALE',71,11,SYSDATE,'N')
+    (6,'[진격의 거인] 리바이 넨도로이드 돌','넨도로이드 돌 리바이 판매합니다.','넨도로이드 돌','진격의 거인','리바이','피규어',89000,'SELL','DELIVERY','건대','ON_SALE',71,11,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (3,'[진격의 거인] 리바이 룩업 피규어','룩업 리바이 피규어입니다.','룩업 피규어','진격의 거인','리바이','피규어',39000,'SELL','DIRECT','강남','ON_SALE',58,7,SYSDATE,'N')
+    (3,'[진격의 거인] 리바이 룩업 피규어','룩업 리바이 피규어입니다.','룩업 피규어','진격의 거인','리바이','피규어',39000,'SELL','DIRECT','강남','ON_SALE',58,7,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (4,'[진격의 거인] 엘런 예거 룩업 피규어','엘런 룩업 피규어 판매합니다.','룩업 피규어','진격의 거인','엘런 예거','피규어',39000,'SELL','DIRECT','강남','ON_SALE',44,6,SYSDATE,'N')
+    (4,'[진격의 거인] 엘런 예거 룩업 피규어','엘런 룩업 피규어 판매합니다.','룩업 피규어','진격의 거인','엘런 예거','피규어',39000,'SELL','DIRECT','강남','ON_SALE',44,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[진격의 거인] 아르민 알레르토 넨도로이드 조사병단','아르민 넨도로이드 조사병단 버전입니다.','넨도로이드','진격의 거인','아르민 알레르토','피규어',76000,'SELL','DELIVERY','홍대','ON_SALE',67,10,SYSDATE,'N')
+    (6,'[진격의 거인] 아르민 알레르토 넨도로이드 조사병단','아르민 넨도로이드 조사병단 버전입니다.','넨도로이드','진격의 거인','아르민 알레르토','피규어',76000,'SELL','DELIVERY','홍대','ON_SALE',67,10,SYSDATE,'N');
 
 -- 21~30
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (2,'[블루록] 바치라 메구루 아크릴 스탠드','블루록 2기 콜라보 바치라 메구루 아크릴 스탠드입니다.','아크릴 스탠드','블루록','바치라 메구루','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',33,4,SYSDATE,'N')
+    (2,'[블루록] 바치라 메구루 아크릴 스탠드','블루록 2기 콜라보 바치라 메구루 아크릴 스탠드입니다.','아크릴 스탠드','블루록','바치라 메구루','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',33,4,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (12,'[블루록] 치기리 효마 아크릴 스탠드','블루록 2기 콜라보 치기리 효마 아크릴 스탠드입니다.','아크릴 스탠드','블루록','치기리 효마','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',29,3,SYSDATE,'N')
+    (12,'[블루록] 치기리 효마 아크릴 스탠드','블루록 2기 콜라보 치기리 효마 아크릴 스탠드입니다.','아크릴 스탠드','블루록','치기리 효마','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',29,3,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (13,'[블루록] 이사기 요이치 아크릴 키홀더','블루록 2기 이사기 요이치 아크릴 스탠드 키홀더입니다.','아크릴 키홀더','블루록','이사기 요이치','키링',15000,'SELL','DELIVERY','강남','ON_SALE',41,6,SYSDATE,'N')
+    (13,'[블루록] 이사기 요이치 아크릴 키홀더','블루록 2기 이사기 요이치 아크릴 스탠드 키홀더입니다.','아크릴 키홀더','블루록','이사기 요이치','키링',15000,'SELL','DELIVERY','강남','ON_SALE',41,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (23,'[블루록] 나기 세이시로 아크릴 키홀더','블루록 2기 나기 세이시로 아크릴 키홀더입니다.','아크릴 키홀더','블루록','나기 세이시로','키링',15000,'SELL','DELIVERY','강남','ON_SALE',38,5,SYSDATE,'N')
+    (23,'[블루록] 나기 세이시로 아크릴 키홀더','블루록 2기 나기 세이시로 아크릴 키홀더입니다.','아크릴 키홀더','블루록','나기 세이시로','키링',15000,'SELL','DELIVERY','강남','ON_SALE',38,5,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (14,'[블루록] 바치라 메구루 아크릴 키홀더','블루록 2기 바치라 메구루 아크릴 키홀더입니다.','아크릴 키홀더','블루록','바치라 메구루','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',36,4,SYSDATE,'N')
+    (14,'[블루록] 바치라 메구루 아크릴 키홀더','블루록 2기 바치라 메구루 아크릴 키홀더입니다.','아크릴 키홀더','블루록','바치라 메구루','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',36,4,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (24,'[블루록] 치기리 효마 아크릴 키홀더','블루록 2기 치기리 효마 아크릴 키홀더입니다.','아크릴 키홀더','블루록','치기리 효마','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',34,3,SYSDATE,'N')
+    (24,'[블루록] 치기리 효마 아크릴 키홀더','블루록 2기 치기리 효마 아크릴 키홀더입니다.','아크릴 키홀더','블루록','치기리 효마','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',34,3,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (15,'[블루록] 트레이딩 은박 원형 캔뱃지','블루록 트레이딩 은박 원형 캔뱃지 (랜덤) 입니다.','원형 캔뱃지','블루록',NULL,'뱃지',6000,'SELL','DELIVERY','건대','ON_SALE',52,7,SYSDATE,'N')
+    (15,'[블루록] 트레이딩 은박 원형 캔뱃지','블루록 트레이딩 은박 원형 캔뱃지 (랜덤) 입니다.','원형 캔뱃지','블루록',NULL,'뱃지',6000,'SELL','DELIVERY','건대','ON_SALE',52,7,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (25,'[블루록] 나기 세이시로 룩업 피규어','룩업 시리즈 나기 세이시로 피규어입니다.','룩업 피규어','블루록','나기 세이시로','피규어',39000,'SELL','DIRECT','건대','ON_SALE',47,6,SYSDATE,'N')
+    (25,'[블루록] 나기 세이시로 룩업 피규어','룩업 시리즈 나기 세이시로 피규어입니다.','룩업 피규어','블루록','나기 세이시로','피규어',39000,'SELL','DIRECT','건대','ON_SALE',47,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (16,'[블루록] 이사기 요이치 더블 아크릴 키홀더','데포르메 버전 이사기 요이치 더블 아크릴 키홀더입니다.','더블 아크릴 키홀더','블루록','이사기 요이치','키링',17000,'SELL','DELIVERY','합정','ON_SALE',44,5,SYSDATE,'N')
+    (16,'[블루록] 이사기 요이치 더블 아크릴 키홀더','데포르메 버전 이사기 요이치 더블 아크릴 키홀더입니다.','더블 아크릴 키홀더','블루록','이사기 요이치','키링',17000,'SELL','DELIVERY','합정','ON_SALE',44,5,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (26,'[블루록] 나기 세이시로 액션 피규어','블루록 나기 세이시로 슈팅 포즈 액션 피규어입니다.','액션 피규어','블루록','나기 세이시로','피규어',89000,'SELL','DIRECT','홍대','ON_SALE',73,12,SYSDATE,'N')
+    (26,'[블루록] 나기 세이시로 액션 피규어','블루록 나기 세이시로 슈팅 포즈 액션 피규어입니다.','액션 피규어','블루록','나기 세이시로','피규어',89000,'SELL','DIRECT','홍대','ON_SALE',73,12,SYSDATE,'N');
 
 -- 31~40
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (32,'[주술회전] MEGA CAT PROJECT BIG 고죠 사토루','MEGA CAT PROJECT BIG 고죠 사토루 피규어입니다.','MEGA CAT BIG','주술회전','고죠 사토루','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',36,5,SYSDATE,'N')
+    (32,'[주술회전] MEGA CAT PROJECT BIG 고죠 사토루','MEGA CAT PROJECT BIG 고죠 사토루 피규어입니다.','MEGA CAT BIG','주술회전','고죠 사토루','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',36,5,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (42,'[주술회전] MEGA CAT PROJECT BIG 후시구로 토우지','MEGA CAT PROJECT BIG 후시구로 토우지 피규어입니다.','MEGA CAT BIG','주술회전','후시구로 토우지','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',31,4,SYSDATE,'N')
+    (2,'[주술회전] MEGA CAT PROJECT BIG 후시구로 토우지','MEGA CAT PROJECT BIG 후시구로 토우지 피규어입니다.','MEGA CAT BIG','주술회전','후시구로 토우지','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',31,4,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (33,'[주술회전] 고죠 사토루 슈트 Ver. 피규어','슈트 버전 고죠 사토루 피규어 판매합니다.','슈트 Ver. 피규어','주술회전','고죠 사토루','피규어',98000,'SELL','DIRECT','강남','ON_SALE',54,8,SYSDATE,'N')
+    (33,'[주술회전] 고죠 사토루 슈트 Ver. 피규어','슈트 버전 고죠 사토루 피규어 판매합니다.','슈트 Ver. 피규어','주술회전','고죠 사토루','피규어',98000,'SELL','DIRECT','강남','ON_SALE',54,8,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (43,'[주술회전] 넨도로이드 돌 고죠 사토루 (고전)','넨도로이드 돌 고죠 사토루 고전 버전입니다.','넨도로이드 돌','주술회전','고죠 사토루','피규어',89000,'SELL','DELIVERY','강남','ON_SALE',49,7,SYSDATE,'N')
+    (3,'[주술회전] 넨도로이드 돌 고죠 사토루 (고전)','넨도로이드 돌 고죠 사토루 고전 버전입니다.','넨도로이드 돌','주술회전','고죠 사토루','피규어',89000,'SELL','DELIVERY','강남','ON_SALE',49,7,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (34,'[주술회전] 룩업 고죠 사토루','룩업 시리즈 고죠 사토루 피규어입니다.','룩업 피규어','주술회전','고죠 사토루','피규어',39000,'SELL','DIRECT','합정','ON_SALE',45,6,SYSDATE,'N')
+    (34,'[주술회전] 룩업 고죠 사토루','룩업 시리즈 고죠 사토루 피규어입니다.','룩업 피규어','주술회전','고죠 사토루','피규어',39000,'SELL','DIRECT','합정','ON_SALE',45,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (35,'[하이큐!!] GEM 시리즈 손바닥 미야 아츠무','GEM 시리즈 손바닥 미야 아츠무 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','미야 아츠무','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',52,7,SYSDATE,'N')
+    (35,'[하이큐!!] GEM 시리즈 손바닥 미야 아츠무','GEM 시리즈 손바닥 미야 아츠무 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','미야 아츠무','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',52,7,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (45,'[하이큐!!] GEM 시리즈 손바닥 츠키시마 케이','GEM 시리즈 손바닥 츠키시마 케이 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','츠키시마 케이','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',48,6,SYSDATE,'N')
+    (5,'[하이큐!!] GEM 시리즈 손바닥 츠키시마 케이','GEM 시리즈 손바닥 츠키시마 케이 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','츠키시마 케이','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',48,6,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (36,'[하이큐!!] GEM 시리즈 손바닥 카게야마 토비오','카게야마 토비오 세컨드 유니폼 버전입니다.','GEM 손바닥 시리즈','하이큐!!','카게야마 토비오','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',61,9,SYSDATE,'N')
+    (36,'[하이큐!!] GEM 시리즈 손바닥 카게야마 토비오','카게야마 토비오 세컨드 유니폼 버전입니다.','GEM 손바닥 시리즈','하이큐!!','카게야마 토비오','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',61,9,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (46,'[하이큐!!] GEM 시리즈 손바닥 히나타 쇼요','히나타 쇼요 세컨드 유니폼 버전 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','히나타 쇼요','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',67,11,SYSDATE,'N')
+    (6,'[하이큐!!] GEM 시리즈 손바닥 히나타 쇼요','히나타 쇼요 세컨드 유니폼 버전 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','히나타 쇼요','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',67,11,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (56,'[하이큐!!] 룩업 츠키시마 케이','룩업 시리즈 츠키시마 케이 피규어입니다.','룩업 피규어','하이큐!!','츠키시마 케이','피규어',39000,'SELL','DIRECT','홍대','ON_SALE',43,5,SYSDATE,'N')
+    (6,'[하이큐!!] 룩업 츠키시마 케이','룩업 시리즈 츠키시마 케이 피규어입니다.','룩업 피규어','하이큐!!','츠키시마 케이','피규어',39000,'SELL','DIRECT','홍대','ON_SALE',43,5,SYSDATE,'N');
 
 -- 41~50
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (2,'[원피스] NEO-MAXIMUM 루피 & 에이스 형제의 연 20TH LIMITED','루피 & 에이스 형제의 연 20주년 한정 피규어입니다.','NEO-MAXIMUM','원피스','몽키 D 루피 / 포트거스 D 에이스','피규어',520000,'SELL','DIRECT','홍대','ON_SALE',84,12,SYSDATE,'N')
+    (2,'[원피스] NEO-MAXIMUM 루피 & 에이스 형제의 연 20TH LIMITED','루피 & 에이스 형제의 연 20주년 한정 피규어입니다.','NEO-MAXIMUM','원피스','몽키 D 루피 / 포트거스 D 에이스','피규어',520000,'SELL','DIRECT','홍대','ON_SALE',84,12,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (3,'[원피스] P.O.P Evolutionary History 주얼리 보니','Portrait.Of.Pirates 주얼리 보니 피규어입니다.','P.O.P 피규어','원피스','주얼리 보니','피규어',165000,'SELL','DELIVERY','강남','ON_SALE',57,8,SYSDATE,'N')
+    (3,'[원피스] P.O.P Evolutionary History 주얼리 보니','Portrait.Of.Pirates 주얼리 보니 피규어입니다.','P.O.P 피규어','원피스','주얼리 보니','피규어',165000,'SELL','DELIVERY','강남','ON_SALE',57,8,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (3,'[원피스] P.O.P K×MAXIMUM 상디','K×MAXIMUM 상디 한정 피규어 판매합니다.','P.O.P MAXIMUM','원피스','상디','피규어',298000,'SELL','DIRECT','강남','ON_SALE',73,11,SYSDATE,'N')
+    (3,'[원피스] P.O.P K×MAXIMUM 상디','K×MAXIMUM 상디 한정 피규어 판매합니다.','P.O.P MAXIMUM','원피스','상디','피규어',298000,'SELL','DIRECT','강남','ON_SALE',73,11,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (4,'[원피스] P.O.P WA.MAXIMUM 백수의 카이도','WA.MAXIMUM 카이도 초한정 복각판입니다.','P.O.P WA.MAXIMUM','원피스','카이도','피규어',480000,'SELL','DIRECT','합정','ON_SALE',96,18,SYSDATE,'N')
+    (4,'[원피스] P.O.P WA.MAXIMUM 백수의 카이도','WA.MAXIMUM 카이도 초한정 복각판입니다.','P.O.P WA.MAXIMUM','원피스','카이도','피규어',480000,'SELL','DIRECT','합정','ON_SALE',96,18,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (4,'[원피스] P.O.P WA-MAXIMUM 화재의 킹','백수해적단 대간판 화재의 킹 피규어입니다.','P.O.P WA-MAXIMUM','원피스','킹','피규어',330000,'SELL','DIRECT','합정','ON_SALE',69,10,SYSDATE,'N')
+    (4,'[원피스] P.O.P WA-MAXIMUM 화재의 킹','백수해적단 대간판 화재의 킹 피규어입니다.','P.O.P WA-MAXIMUM','원피스','킹','피규어',330000,'SELL','DIRECT','합정','ON_SALE',69,10,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (5,'[원피스] 룩업 몽키 D 루피 기어 5','기어 5 루피 룩업 피규어입니다.','룩업 피규어','원피스','몽키 D 루피','피규어',42000,'SELL','DELIVERY','신촌','ON_SALE',61,9,SYSDATE,'N')
+    (5,'[원피스] 룩업 몽키 D 루피 기어 5','기어 5 루피 룩업 피규어입니다.','룩업 피규어','원피스','몽키 D 루피','피규어',42000,'SELL','DELIVERY','신촌','ON_SALE',61,9,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (5,'[원피스] 베리어블 액션 히어로즈 롤로노아 조로','베리어블 액션 히어로즈 조로 피규어입니다.','베리어블 액션 히어로즈','원피스','롤로노아 조로','피규어',185000,'SELL','DIRECT','신촌','ON_SALE',67,10,SYSDATE,'N')
+    (5,'[원피스] 베리어블 액션 히어로즈 롤로노아 조로','베리어블 액션 히어로즈 조로 피규어입니다.','베리어블 액션 히어로즈','원피스','롤로노아 조로','피규어',185000,'SELL','DIRECT','신촌','ON_SALE',67,10,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[원피스] 세계의 디바 우타','극장판 등장 세계의 디바 우타 피규어입니다.','스케일 피규어','원피스','우타','피규어',158000,'SELL','DELIVERY','홍대','ON_SALE',72,13,SYSDATE,'N')
+    (6,'[원피스] 세계의 디바 우타','극장판 등장 세계의 디바 우타 피규어입니다.','스케일 피규어','원피스','우타','피규어',158000,'SELL','DELIVERY','홍대','ON_SALE',72,13,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[원피스] P.O.P SA-MAXIMUM 돈키호테 도플라밍고','SA-MAXIMUM 도플라밍고 피규어입니다.','P.O.P SA-MAXIMUM','원피스','돈키호테 도플라밍고','피규어',410000,'SELL','DIRECT','홍대','ON_SALE',88,16,SYSDATE,'N')
+    (6,'[원피스] P.O.P SA-MAXIMUM 돈키호테 도플라밍고','SA-MAXIMUM 도플라밍고 피규어입니다.','P.O.P SA-MAXIMUM','원피스','돈키호테 도플라밍고','피규어',410000,'SELL','DIRECT','홍대','ON_SALE',88,16,SYSDATE,'N');
 
-INTO TKK.TRADE_POST
+INSERT INTO TKK.TRADE_POST
 (seller_id, title, content, goods_name, work_name, character_name, category, price,
  trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
 VALUES
-    (6,'[원피스] 흰수염 에드워드 뉴게이트','전설의 해적 흰수염 에드워드 뉴게이트 피규어입니다.','대형 피규어','원피스','에드워드 뉴게이트','피규어',460000,'SELL','DIRECT','홍대','ON_SALE',91,17,SYSDATE,'N')
-
-SELECT 1 FROM DUAL;
-
-COMMIT;
-
+    (6,'[원피스] 흰수염 에드워드 뉴게이트','전설의 해적 흰수염 에드워드 뉴게이트 피규어입니다.','대형 피규어','원피스','에드워드 뉴게이트','피규어',460000,'SELL','DIRECT','홍대','ON_SALE',91,17,SYSDATE,'N');
+commit ;
 
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(1,1,SYSDATE-10);
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(1,2,SYSDATE-9);
@@ -4818,130 +5450,130 @@ INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail
 VALUES (4, 'NCT DREAM 응원 슬로건 패키지', '슬로건 천과 스티커, 포카가 포함된 세트', '기타', 12000, 'g040.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '밤하늘 피규어 라인업 카드', '팝업 한정 피규어 라인업을 소개하는 포카 세트', '포카', 8000, 'g041.jpg');
+VALUES (1, '밤하늘 피규어 라인업 카드', '팝업 한정 피규어 라인업을 소개하는 포카 세트', '포카', 8000, 'g041.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '진격의 거인 야간 전투 피규어', '야경 조명 효과가 들어간 엘런 피규어', '인형', 9000, 'g042.jpg');
+VALUES (1, '진격의 거인 야간 전투 피규어', '야경 조명 효과가 들어간 엘런 피규어', '인형', 9000, 'g042.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '주술회전 야간 배틀 SD 피규어 키링', '야간 전투 컨셉 SD 피규어 키링', '키링', 10000, 'g043.jpg');
+VALUES (1, '주술회전 야간 배틀 SD 피규어 키링', '야간 전투 컨셉 SD 피규어 키링', '키링', 10000, 'g043.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '체인소맨 네온 시티 디오라마 스탠드', '도시 야경과 덴지가 함께 있는 아크릴 스탠드', '아크릴스탠드', 11000, 'g044.jpg');
+VALUES (1, '체인소맨 네온 시티 디오라마 스탠드', '도시 야경과 덴지가 함께 있는 아크릴 스탠드', '아크릴스탠드', 11000, 'g044.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '원피스 조로 나이트 버전 피규어', '녹색 오라 연출이 있는 한정판 조로 피규어', '기타', 12000, 'g045.jpg');
+VALUES (1, '원피스 조로 나이트 버전 피규어', '녹색 오라 연출이 있는 한정판 조로 피규어', '기타', 12000, 'g045.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '피규어 구매 특전 일러스트 카드', '밤하늘 테마 일러스트 특전 포토카드 세트', '포카', 8000, 'g046.jpg');
+VALUES (1, '피규어 구매 특전 일러스트 카드', '밤하늘 테마 일러스트 특전 포토카드 세트', '포카', 8000, 'g046.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '귀멸의 칼날 야간 전투 탄지로 피규어', '물의 호흡 이펙트가 있는 프리미엄 피규어', '인형', 9000, 'g047.jpg');
+VALUES (1, '귀멸의 칼날 야간 전투 탄지로 피규어', '물의 호흡 이펙트가 있는 프리미엄 피규어', '인형', 9000, 'g047.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '하이큐 야간 체육관 미니 피규어 키링', '야간 연습 장면을 모티브로 한 키링', '키링', 10000, 'g048.jpg');
+VALUES (1, '하이큐 야간 체육관 미니 피규어 키링', '야간 연습 장면을 모티브로 한 키링', '키링', 10000, 'g048.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '블루록 스타 스트라이커 LED 스탠드', '야간 경기장 배경 LED 아크릴 스탠드', '아크릴스탠드', 11000, 'g049.jpg');
+VALUES (1, '블루록 스타 스트라이커 LED 스탠드', '야간 경기장 배경 LED 아크릴 스탠드', '아크릴스탠드', 11000, 'g049.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (5, '은하철도999 디오라마 피규어 세트', '기차와 별자리를 표현한 디오라마 피규어', '기타', 12000, 'g050.jpg');
+VALUES (1, '은하철도999 디오라마 피규어 세트', '기차와 별자리를 표현한 디오라마 피규어', '기타', 12000, 'g050.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '나루토 아트 엽서 포카 세트', '원화 느낌 일러스트를 담은 엽서형 포토카드', '포카', 8000, 'g051.jpg');
+VALUES (2, '나루토 아트 엽서 포카 세트', '원화 느낌 일러스트를 담은 엽서형 포토카드', '포카', 8000, 'g051.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '굿즈 캔버스 마스코트 인형', '브랜드 마스코트 일러스트가 새겨진 쿠션 인형', '인형', 9000, 'g052.jpg');
+VALUES (2, '굿즈 캔버스 마스코트 인형', '브랜드 마스코트 일러스트가 새겨진 쿠션 인형', '인형', 9000, 'g052.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '원피스 캔버스 로고 키링', '붓터치 스타일 로고가 인쇄된 키링', '키링', 10000, 'g053.jpg');
+VALUES (2, '원피스 캔버스 로고 키링', '붓터치 스타일 로고가 인쇄된 키링', '키링', 10000, 'g053.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '귀멸의 칼날 수채화 아크릴 스탠드', '수채화 느낌 배경과 캐릭터가 있는 스탠드', '아크릴스탠드', 11000, 'g054.jpg');
+VALUES (2, '귀멸의 칼날 수채화 아크릴 스탠드', '수채화 느낌 배경과 캐릭터가 있는 스탠드', '아크릴스탠드', 11000, 'g054.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '체인소맨 B2 아트 포스터', '전시용으로도 좋은 대형 아트 포스터', '기타', 12000, 'g055.jpg');
+VALUES (2, '체인소맨 B2 아트 포스터', '전시용으로도 좋은 대형 아트 포스터', '기타', 12000, 'g055.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '블루록 콘셉트 아트 포카', '컨셉 아트 원화를 바탕으로 한 포토카드', '포카', 8000, 'g056.jpg');
+VALUES (2, '블루록 콘셉트 아트 포카', '컨셉 아트 원화를 바탕으로 한 포토카드', '포카', 8000, 'g056.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '하이큐 볼 아트 쿠션', '일러스트가 인쇄된 배구공 모양 쿠션 인형', '인형', 9000, 'g057.jpg');
+VALUES (2, '하이큐 볼 아트 쿠션', '일러스트가 인쇄된 배구공 모양 쿠션 인형', '인형', 9000, 'g057.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '주술회전 캘리그라피 로고 키링', '붓글씨 로고와 부적 디자인이 들어간 키링', '키링', 10000, 'g058.jpg');
+VALUES (2, '주술회전 캘리그라피 로고 키링', '붓글씨 로고와 부적 디자인이 들어간 키링', '키링', 10000, 'g058.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '진격의 거인 스케치 아크릴 패널', '연필 스케치 스타일 일러스트 스탠드', '아크릴스탠드', 11000, 'g059.jpg');
+VALUES (2, '진격의 거인 스케치 아크릴 패널', '연필 스케치 스타일 일러스트 스탠드', '아크릴스탠드', 11000, 'g059.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (6, '스파이 패밀리 한정 아트 프린트 세트', '고급 용지에 인쇄된 아트 프린트 3종', '기타', 12000, 'g060.jpg');
+VALUES (2, '스파이 패밀리 한정 아트 프린트 세트', '고급 용지에 인쇄된 아트 프린트 3종', '기타', 12000, 'g060.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '서머 비치 콘셉트 포카 세트', '여름 해변 배경의 캐릭터 포토카드 모음', '포카', 8000, 'g061.jpg');
+VALUES (3, '서머 비치 콘셉트 포카 세트', '여름 해변 배경의 캐릭터 포토카드 모음', '포카', 8000, 'g061.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '원피스 초파 서머 인형', '수박 모자와 튜브를 낀 초파 봉제 인형', '인형', 9000, 'g062.jpg');
+VALUES (3, '원피스 초파 서머 인형', '수박 모자와 튜브를 낀 초파 봉제 인형', '인형', 9000, 'g062.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '블루록 서머 유니폼 키링', '여름 한정 유니폼 일러스트 아크릴 키링', '키링', 10000, 'g063.jpg');
+VALUES (3, '블루록 서머 유니폼 키링', '여름 한정 유니폼 일러스트 아크릴 키링', '키링', 10000, 'g063.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '하이큐 해변 배구 아크릴 스탠드', '해변에서 스파이크하는 장면을 담은 스탠드', '아크릴스탠드', 11000, 'g064.jpg');
+VALUES (3, '하이큐 해변 배구 아크릴 스탠드', '해변에서 스파이크하는 장면을 담은 스탠드', '아크릴스탠드', 11000, 'g064.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '귀멸의 칼날 여름 유카타 부채', '유카타 차림 캐릭터가 그려진 접이식 부채', '기타', 12000, 'g065.jpg');
+VALUES (3, '귀멸의 칼날 여름 유카타 부채', '유카타 차림 캐릭터가 그려진 접이식 부채', '기타', 12000, 'g065.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '체인소맨 서머 일러스트 포카', '바다 배경 일러스트 특전 포토카드', '포카', 8000, 'g066.jpg');
+VALUES (3, '체인소맨 서머 일러스트 포카', '바다 배경 일러스트 특전 포토카드', '포카', 8000, 'g066.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '프리! 수영부 튜브 인형', '튜브를 낀 마스코트 캐릭터 봉제 인형', '인형', 9000, 'g067.jpg');
+VALUES (3, '프리! 수영부 튜브 인형', '튜브를 낀 마스코트 캐릭터 봉제 인형', '인형', 9000, 'g067.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '나루토 여름 축제 유카타 키링', '유카타 차림 나루토 아크릴 키링', '키링', 10000, 'g068.jpg');
+VALUES (3, '나루토 여름 축제 유카타 키링', '유카타 차림 나루토 아크릴 키링', '키링', 10000, 'g068.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '스파이 패밀리 아이스바 스탠드', '아이스바를 들고 있는 아냐 일러스트 스탠드', '아크릴스탠드', 11000, 'g069.jpg');
+VALUES (3, '스파이 패밀리 아이스바 스탠드', '아이스바를 들고 있는 아냐 일러스트 스탠드', '아크릴스탠드', 11000, 'g069.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (7, '진격의 거인 바캉스 타월', '해변 패러디 일러스트가 인쇄된 핸드 타월', '기타', 12000, 'g070.jpg');
+VALUES (3, '진격의 거인 바캉스 타월', '해변 패러디 일러스트가 인쇄된 핸드 타월', '기타', 12000, 'g070.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '대구 한정 베스트 포카 세트', '전국 원정전 인기 캐릭터만 모은 포카 세트', '포카', 8000, 'g071.jpg');
+VALUES (4, '대구 한정 베스트 포카 세트', '전국 원정전 인기 캐릭터만 모은 포카 세트', '포카', 8000, 'g071.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '귀멸의 칼날 탄지로&네즈코 인형', '둘이 함께 있는 커플 세트 봉제 인형', '인형', 9000, 'g072.jpg');
+VALUES (4, '귀멸의 칼날 탄지로&네즈코 인형', '둘이 함께 있는 커플 세트 봉제 인형', '인형', 9000, 'g072.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '원피스 루피 기어5 키링', '기어5 폼을 표현한 아크릴 키링', '키링', 10000, 'g073.jpg');
+VALUES (4, '원피스 루피 기어5 키링', '기어5 폼을 표현한 아크릴 키링', '키링', 10000, 'g073.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '블루록 이사기&바치라 스탠드', '2인 콤비 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g074.jpg');
+VALUES (4, '블루록 이사기&바치라 스탠드', '2인 콤비 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g074.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '나루토 베스트 일러스트 엽서북', '명장면 일러스트를 모은 엽서북', '기타', 12000, 'g075.jpg');
+VALUES (4, '나루토 베스트 일러스트 엽서북', '명장면 일러스트를 모은 엽서북', '기타', 12000, 'g075.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '하이큐 베스트 매치 포카', '명경기 장면만 모은 포토카드 세트', '포카', 8000, 'g076.jpg');
+VALUES (4, '하이큐 베스트 매치 포카', '명경기 장면만 모은 포토카드 세트', '포카', 8000, 'g076.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '주술회전 이누마키 마스코트 인형', '온리 톡 캐릭터를 담은 SD 봉제 인형', '인형', 9000, 'g077.jpg');
+VALUES (4, '주술회전 이누마키 마스코트 인형', '온리 톡 캐릭터를 담은 SD 봉제 인형', '인형', 9000, 'g077.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '체인소맨 파워 피규어 키링', '파워 SD 피규어 스타일 아크릴 키링', '키링', 10000, 'g078.jpg');
+VALUES (4, '체인소맨 파워 피규어 키링', '파워 SD 피규어 스타일 아크릴 키링', '키링', 10000, 'g078.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '진격의 거인 최종 시즌 스탠드', '최종 시즌 메인 비주얼 아크릴 스탠드', '아크릴스탠드', 11000, 'g079.jpg');
+VALUES (4, '진격의 거인 최종 시즌 스탠드', '최종 시즌 메인 비주얼 아크릴 스탠드', '아크릴스탠드', 11000, 'g079.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (8, '스파이 패밀리 베스트 컷 클리어파일', '명장면 컷이 인쇄된 클리어파일 세트', '기타', 12000, 'g080.jpg');
+VALUES (4, '스파이 패밀리 베스트 컷 클리어파일', '명장면 컷이 인쇄된 클리어파일 세트', '기타', 12000, 'g080.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '아트토이 작가 라인업 카드', '참여 크리에이터와 시그니처 캐릭터를 소개하는 카드 세트', '포카', 8000, 'g081.jpg');
+VALUES (1, '아트토이 작가 라인업 카드', '참여 크리에이터와 시그니처 캐릭터를 소개하는 카드 세트', '포카', 8000, 'g081.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '우주 토끼 아트토이 인형', '은하 배경이 어울리는 오리지널 토끼 캐릭터 인형', '인형', 9000, 'g082.jpg');
+VALUES (1, '우주 토끼 아트토이 인형', '은하 배경이 어울리는 오리지널 토끼 캐릭터 인형', '인형', 9000, 'g082.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '네온 슬라임 몬스터 키링', '야광으로 빛나는 슬라임 몬스터 피규어 키링', '키링', 10000, 'g083.jpg');
+VALUES (1, '네온 슬라임 몬스터 키링', '야광으로 빛나는 슬라임 몬스터 피규어 키링', '키링', 10000, 'g083.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '메카 아트 로봇 아크릴 스탠드', '로봇 애니메이션에서 영감을 받은 오리지널 메카 스탠드', '아크릴스탠드', 11000, 'g084.jpg');
+VALUES (1, '메카 아트 로봇 아크릴 스탠드', '로봇 애니메이션에서 영감을 받은 오리지널 메카 스탠드', '아크릴스탠드', 11000, 'g084.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '인디 아티스트 사인 카드&스티커', '작가 사인 카드와 스티커가 함께 들어 있는 세트', '기타', 12000, 'g085.jpg');
+VALUES (1, '인디 아티스트 사인 카드&스티커', '작가 사인 카드와 스티커가 함께 들어 있는 세트', '기타', 12000, 'g085.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '에반게리온 스타일 아트 카드', '에반게리온 분위기를 오마주한 일러스트 카드 세트', '포카', 8000, 'g086.jpg');
+VALUES (1, '에반게리온 스타일 아트 카드', '에반게리온 분위기를 오마주한 일러스트 카드 세트', '포카', 8000, 'g086.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '구름 곰돌이 아트토이 피규어', '몽글몽글한 구름 질감을 표현한 곰돌이 피규어', '인형', 9000, 'g087.jpg');
+VALUES (1, '구름 곰돌이 아트토이 피규어', '몽글몽글한 구름 질감을 표현한 곰돌이 피규어', '인형', 9000, 'g087.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '해파리 유령 글로우 키링', '어두운 곳에서 빛나는 해파리 유령 캐릭터 키링', '키링', 10000, 'g088.jpg');
+VALUES (1, '해파리 유령 글로우 키링', '어두운 곳에서 빛나는 해파리 유령 캐릭터 키링', '키링', 10000, 'g088.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '스팀펑크 소녀 일러스트 스탠드', '기어 장식이 가득한 스팀펑크 소녀 아크릴 아트', '아크릴스탠드', 11000, 'g089.jpg');
+VALUES (1, '스팀펑크 소녀 일러스트 스탠드', '기어 장식이 가득한 스팀펑크 소녀 아크릴 아트', '아크릴스탠드', 11000, 'g089.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (9, '한정 아트토이 미니 포스터 세트', '아트토이 주인공들이 그려진 미니 포스터 3종', '기타', 12000, 'g090.jpg');
+VALUES (1, '한정 아트토이 미니 포스터 세트', '아트토이 주인공들이 그려진 미니 포스터 3종', '기타', 12000, 'g090.jpg');
 
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '할로윈 코스튬 애니 포카 세트', '여러 작품 캐릭터가 분장한 할로윈 포토카드', '포카', 8000, 'g091.jpg');
+VALUES (2, '할로윈 코스튬 애니 포카 세트', '여러 작품 캐릭터가 분장한 할로윈 포토카드', '포카', 8000, 'g091.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '귀멸의 칼날 네즈코 박쥐 망토 인형', '박쥐 망토를 두른 네즈코 할로윈 버전 인형', '인형', 9000, 'g092.jpg');
+VALUES (2, '귀멸의 칼날 네즈코 박쥐 망토 인형', '박쥐 망토를 두른 네즈코 할로윈 버전 인형', '인형', 9000, 'g092.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '주술회전 고죠 할로윈 키링', '호박 모자를 쓴 고죠 캐릭터 아크릴 키링', '키링', 10000, 'g093.jpg');
+VALUES (2, '주술회전 고죠 할로윈 키링', '호박 모자를 쓴 고죠 캐릭터 아크릴 키링', '키링', 10000, 'g093.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '체인소맨 할로윈 호러 스탠드', '호러 무비 포스터 느낌의 체인소맨 아크릴 스탠드', '아크릴스탠드', 11000, 'g094.jpg');
+VALUES (2, '체인소맨 할로윈 호러 스탠드', '호러 무비 포스터 느낌의 체인소맨 아크릴 스탠드', '아크릴스탠드', 11000, 'g094.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '원피스 해골 호박 스티커 팩', '조로·루피가 등장하는 해골 호박 스티커 세트', '기타', 12000, 'g095.jpg');
+VALUES (2, '원피스 해골 호박 스티커 팩', '조로·루피가 등장하는 해골 호박 스티커 세트', '기타', 12000, 'g095.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '나루토&사쿠라 할로윈 포카', '할로윈 파티 의상의 나루토와 사쿠라 포토카드', '포카', 8000, 'g096.jpg');
+VALUES (2, '나루토&사쿠라 할로윈 포카', '할로윈 파티 의상의 나루토와 사쿠라 포토카드', '포카', 8000, 'g096.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '진격의 거인 유령 거인 인형', '유령 시트를 쓴 거인 콘셉트 봉제 인형', '인형', 9000, 'g097.jpg');
+VALUES (2, '진격의 거인 유령 거인 인형', '유령 시트를 쓴 거인 콘셉트 봉제 인형', '인형', 9000, 'g097.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '스파이 패밀리 아냐 마녀 키링', '마녀 모자를 쓴 아냐 SD 캐릭터 키링', '키링', 10000, 'g098.jpg');
+VALUES (2, '스파이 패밀리 아냐 마녀 키링', '마녀 모자를 쓴 아냐 SD 캐릭터 키링', '키링', 10000, 'g098.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '블루록 뱀파이어 유니폼 스탠드', '뱀파이어 콘셉트 유니폼 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g099.jpg');
+VALUES (2, '블루록 뱀파이어 유니폼 스탠드', '뱀파이어 콘셉트 유니폼 일러스트 아크릴 스탠드', '아크릴스탠드', 11000, 'g099.jpg');
 INSERT INTO popup_goods (popup_id, name, description, category, price, thumbnail_url)
-VALUES (10, '하이큐 호러 나이트 포스터 세트', '체육관을 배경으로 한 호러 컨셉 일러스트 포스터', '기타', 12000, 'g100.jpg');
+VALUES (2, '하이큐 호러 나이트 포스터 세트', '체육관을 배경으로 한 호러 컨셉 일러스트 포스터', '기타', 12000, 'g100.jpg');
 -- 채팅방 20개
 INSERT INTO TKK.trade_chat_room ( trade_id, seller_id, buyer_id, created_at, last_message_at,BUYER_LEFT_YN,SELLER_LEFT_YN)
 VALUES ( 1, 1, 21, SYSDATE - 20, SYSDATE - 19,'N','N');
