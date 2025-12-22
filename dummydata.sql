@@ -1,1011 +1,594 @@
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user001','pw001','닉네임001','https://example.com/profile/sample1.png','안녕하세요, 유저001입니다.',2,'user001@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user002','pw002','닉네임002','https://example.com/profile/sample1.png','안녕하세요, 유저002입니다.',2,'user002@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user003','pw003','닉네임003','https://example.com/profile/sample1.png','안녕하세요, 유저003입니다.',2,'user003@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user004','pw004','닉네임004','https://example.com/profile/sample1.png','안녕하세요, 유저004입니다.',2,'user004@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user005','pw005','닉네임005','https://example.com/profile/sample1.png','안녕하세요, 유저005입니다.',2,'user005@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user006','pw006','닉네임006','https://example.com/profile/sample1.png','안녕하세요, 유저006입니다.',2,'user006@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user007','pw007','닉네임007','https://example.com/profile/sample1.png','안녕하세요, 유저007입니다.',2,'user007@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user008','pw008','닉네임008','https://example.com/profile/sample1.png','안녕하세요, 유저008입니다.',2,'user008@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user009','pw009','닉네임009','https://example.com/profile/sample1.png','안녕하세요, 유저009입니다.',2,'user009@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user010','pw010','닉네임010','https://example.com/profile/sample1.png','안녕하세요, 유저010입니다.',2,'user010@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user011','pw011','닉네임011','https://example.com/profile/sample2.png','안녕하세요, 유저011입니다.',2,'user011@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user012','pw012','닉네임012','https://example.com/profile/sample2.png','안녕하세요, 유저012입니다.',2,'user012@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user013','pw013','닉네임013','https://example.com/profile/sample2.png','안녕하세요, 유저013입니다.',2,'user013@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user014','pw014','닉네임014','https://example.com/profile/sample2.png','안녕하세요, 유저014입니다.',2,'user014@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user015','pw015','닉네임015','https://example.com/profile/sample2.png','안녕하세요, 유저015입니다.',2,'user015@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user016','pw016','닉네임016','https://example.com/profile/sample2.png','안녕하세요, 유저016입니다.',2,'user016@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user017','pw017','닉네임017','https://example.com/profile/sample2.png','안녕하세요, 유저017입니다.',2,'user017@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user018','pw018','닉네임018','https://example.com/profile/sample2.png','안녕하세요, 유저018입니다.',2,'user018@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user019','pw019','닉네임019','https://example.com/profile/sample2.png','안녕하세요, 유저019입니다.',2,'user019@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user020','pw020','닉네임020','https://example.com/profile/sample2.png','안녕하세요, 유저020입니다.',2,'user020@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user021','pw021','닉네임021','https://example.com/profile/sample3.png','안녕하세요, 유저021입니다.',2,'user021@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user022','pw022','닉네임022','https://example.com/profile/sample3.png','안녕하세요, 유저022입니다.',2,'user022@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user023','pw023','닉네임023','https://example.com/profile/sample3.png','안녕하세요, 유저023입니다.',2,'user023@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user024','pw024','닉네임024','https://example.com/profile/sample3.png','안녕하세요, 유저024입니다.',2,'user024@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user025','pw025','닉네임025','https://example.com/profile/sample3.png','안녕하세요, 유저025입니다.',2,'user025@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user026','pw026','닉네임026','https://example.com/profile/sample3.png','안녕하세요, 유저026입니다.',2,'user026@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user027','pw027','닉네임027','https://example.com/profile/sample3.png','안녕하세요, 유저027입니다.',2,'user027@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user028','pw028','닉네임028','https://example.com/profile/sample3.png','안녕하세요, 유저028입니다.',2,'user028@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user029','pw029','닉네임029','https://example.com/profile/sample3.png','안녕하세요, 유저029입니다.',2,'user029@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user030','pw030','닉네임030','https://example.com/profile/sample3.png','안녕하세요, 유저030입니다.',2,'user030@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user031','pw031','닉네임031',NULL,'안녕하세요, 유저031입니다.',2,'user031@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user032','pw032','닉네임032',NULL,'안녕하세요, 유저032입니다.',2,'user032@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user033','pw033','닉네임033',NULL,'안녕하세요, 유저033입니다.',2,'user033@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user034','pw034','닉네임034',NULL,'안녕하세요, 유저034입니다.',2,'user034@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user035','pw035','닉네임035',NULL,'안녕하세요, 유저035입니다.',2,'user035@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user036','pw036','닉네임036',NULL,'안녕하세요, 유저036입니다.',2,'user036@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user037','pw037','닉네임037',NULL,'안녕하세요, 유저037입니다.',2,'user037@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user038','pw038','닉네임038',NULL,'안녕하세요, 유저038입니다.',2,'user038@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user039','pw039','닉네임039',NULL,'안녕하세요, 유저039입니다.',2,'user039@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user040','pw040','닉네임040',NULL,'안녕하세요, 유저040입니다.',2,'user040@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user041','pw041','닉네임041',NULL,'안녕하세요, 유저041입니다.',2,'user041@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user042','pw042','닉네임042',NULL,'안녕하세요, 유저042입니다.',2,'user042@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user043','pw043','닉네임043',NULL,'안녕하세요, 유저043입니다.',2,'user043@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user044','pw044','닉네임044',NULL,'안녕하세요, 유저044입니다.',2,'user044@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user045','pw045','닉네임045',NULL,'안녕하세요, 유저045입니다.',2,'user045@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user046','pw046','닉네임046',NULL,'안녕하세요, 유저046입니다.',2,'user046@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user047','pw047','닉네임047',NULL,'안녕하세요, 유저047입니다.',2,'user047@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user048','pw048','닉네임048',NULL,'안녕하세요, 유저048입니다.',2,'user048@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user049','pw049','닉네임049',NULL,'안녕하세요, 유저049입니다.',2,'user049@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user050','pw050','닉네임050',NULL,'안녕하세요, 유저050입니다.',2,'user050@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user051','pw051','닉네임051',NULL,'안녕하세요, 유저051입니다.',2,'user051@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user052','pw052','닉네임052',NULL,'안녕하세요, 유저052입니다.',2,'user052@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user053','pw053','닉네임053',NULL,'안녕하세요, 유저053입니다.',2,'user053@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user054','pw054','닉네임054',NULL,'안녕하세요, 유저054입니다.',2,'user054@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user055','pw055','닉네임055',NULL,'안녕하세요, 유저055입니다.',2,'user055@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user056','pw056','닉네임056',NULL,'안녕하세요, 유저056입니다.',2,'user056@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user057','pw057','닉네임057',NULL,'안녕하세요, 유저057입니다.',2,'user057@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user058','pw058','닉네임058',NULL,'안녕하세요, 유저058입니다.',2,'user058@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user059','pw059','닉네임059',NULL,'안녕하세요, 유저059입니다.',2,'user059@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user060','pw060','닉네임060',NULL,'안녕하세요, 유저060입니다.',2,'user060@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user061','pw061','닉네임061',NULL,'안녕하세요, 유저061입니다.',2,'user061@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user062','pw062','닉네임062',NULL,'안녕하세요, 유저062입니다.',2,'user062@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user063','pw063','닉네임063',NULL,'안녕하세요, 유저063입니다.',2,'user063@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user064','pw064','닉네임064',NULL,'안녕하세요, 유저064입니다.',2,'user064@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user065','pw065','닉네임065',NULL,'안녕하세요, 유저065입니다.',2,'user065@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user066','pw066','닉네임066',NULL,'안녕하세요, 유저066입니다.',2,'user066@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user067','pw067','닉네임067',NULL,'안녕하세요, 유저067입니다.',2,'user067@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user068','pw068','닉네임068',NULL,'안녕하세요, 유저068입니다.',2,'user068@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user069','pw069','닉네임069',NULL,'안녕하세요, 유저069입니다.',2,'user069@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user070','pw070','닉네임070',NULL,'안녕하세요, 유저070입니다.',2,'user070@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user071','pw071','닉네임071',NULL,'안녕하세요, 유저071입니다.',2,'user071@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user072','pw072','닉네임072',NULL,'안녕하세요, 유저072입니다.',2,'user072@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user073','pw073','닉네임073',NULL,'안녕하세요, 유저073입니다.',2,'user073@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user074','pw074','닉네임074',NULL,'안녕하세요, 유저074입니다.',2,'user074@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user075','pw075','닉네임075',NULL,'안녕하세요, 유저075입니다.',2,'user075@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user076','pw076','닉네임076',NULL,'안녕하세요, 유저076입니다.',2,'user076@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user077','pw077','닉네임077',NULL,'안녕하세요, 유저077입니다.',2,'user077@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user078','pw078','닉네임078',NULL,'안녕하세요, 유저078입니다.',2,'user078@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user079','pw079','닉네임079',NULL,'안녕하세요, 유저079입니다.',2,'user079@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user080','pw080','닉네임080',NULL,'안녕하세요, 유저080입니다.',2,'user080@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user081','pw081','닉네임081',NULL,'안녕하세요, 유저081입니다.',2,'user081@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user082','pw082','닉네임082',NULL,'안녕하세요, 유저082입니다.',2,'user082@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user083','pw083','닉네임083',NULL,'안녕하세요, 유저083입니다.',2,'user083@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user084','pw084','닉네임084',NULL,'안녕하세요, 유저084입니다.',2,'user084@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user085','pw085','닉네임085',NULL,'안녕하세요, 유저085입니다.',2,'user085@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user086','pw086','닉네임086',NULL,'안녕하세요, 유저086입니다.',2,'user086@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user087','pw087','닉네임087',NULL,'안녕하세요, 유저087입니다.',2,'user087@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user088','pw088','닉네임088',NULL,'안녕하세요, 유저088입니다.',2,'user088@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user089','pw089','닉네임089',NULL,'안녕하세요, 유저089입니다.',2,'user089@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user090','pw090','닉네임090',NULL,'안녕하세요, 유저090입니다.',2,'user090@example.com','여자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user091','pw091','닉네임091',NULL,'안녕하세요, 유저091입니다.',2,'user091@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user092','pw092','닉네임092',NULL,'안녕하세요, 유저092입니다.',2,'user092@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user093','pw093','닉네임093',NULL,'안녕하세요, 유저093입니다.',2,'user093@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user094','pw094','닉네임094',NULL,'안녕하세요, 유저094입니다.',2,'user094@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user095','pw095','닉네임095',NULL,'안녕하세요, 유저095입니다.',2,'user095@example.com','남자','외국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user096','pw096','닉네임096',NULL,'안녕하세요, 유저096입니다.',2,'user096@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user097','pw097','닉네임097',NULL,'안녕하세요, 유저097입니다.',2,'user097@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user098','pw098','닉네임098',NULL,'안녕하세요, 유저098입니다.',2,'user098@example.com','여자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user099','pw099','닉네임099',NULL,'안녕하세요, 유저099입니다.',2,'user099@example.com','남자','내국인','N');
-INSERT INTO MEMBER(login_id,login_pw,nickname,profile_image_url,intro,user_level,email,gender,nationality,deleted_yn) VALUES('user100','pw100','닉네임100',NULL,'안녕하세요, 유저100입니다.',2,'user100@example.com','여자','외국인','N');
+-- ✅ Oracle (TKK.MEMBER) login_id만 id001 ~ id040으로 교체 (총 40명)
+-- created_at: SYSDATE - n 유지
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id001','pw1234!','피규어뉴비','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%EB%AF%B8%EC%BF%A0+%ED%94%84%EB%A1%9C%ED%95%84.jfif','가동피규어 입문했어요. 포즈 추천 받습니다!',1,'kuku11@example.com','여자','내국인',NULL,SYSDATE-2,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id002','pw1234!','랜덤뽑기장인','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%EC%B5%9C%EC%95%A0%EC%9D%98%EC%95%84%EC%9D%B4.jfif','가챠는 운빨이 아니라 집념이다…',1,'kuku12@example.com','남자','내국인',NULL,SYSDATE-5,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id003','pw1234!','포카수집가','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%94%84%EB%A1%9C%ED%95%84-1.jfif','포카 바인더 정리하다가 하루 끝남',1,'kuku13@example.com','여자','내국인',NULL,SYSDATE-9,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id004','pw1234!','전시충','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%94%84%EB%A1%9C%ED%95%84-2.jfif','유리장/LED 전시 세팅 정보 공유해요.',1,'kuku14@example.com','남자','내국인',NULL,SYSDATE-12,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id005','pw1234!','홍대출몰러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%94%84%EB%A1%9C%ED%95%84-3.jfif','주말마다 성지 순례합니다. 추천 루트 있나요?',1,'kuku15@example.com','여자','내국인',NULL,SYSDATE-15,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id006','pw1234!','강남팝업러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','팝업스토어 열리면 무조건 출동!',1,'kuku16@example.com','남자','내국인',NULL,SYSDATE-18,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id007','pw1234!','애니정주행','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','완결작 정주행이 취미입니다.',1,'kuku17@example.com','여자','내국인',NULL,SYSDATE-22,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id008','pw1234!','굿즈통장파괴','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','이번 달도 텅장 확정… 그래도 행복',1,'kuku18@example.com','남자','내국인',NULL,SYSDATE-25,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id009','pw1234!','교환원해요','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','포카 교환/양도 매너 좋게 합니다!',1,'kuku19@example.com','여자','외국인',NULL,SYSDATE-30,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id010','pw1234!','한정판사수','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','한정판만 보면 심장이 뜁니다.',1,'kuku20@example.com','남자','내국인',NULL,SYSDATE-33,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id011','pw1234!','코스준비중','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','코스프레 의상 제작 배우는 중이에요.',1,'kuku21@example.com','여자','내국인',NULL,SYSDATE-36,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id012','pw1234!','렌즈고수','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','코스 렌즈/메이크업 팁 공유합니다.',1,'kuku22@example.com','남자','외국인',NULL,SYSDATE-40,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id013','pw1234!','촬영장비병','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','조명/렌즈 사다 보니 장비만 늘었음…',1,'kuku23@example.com','여자','내국인',NULL,SYSDATE-44,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id014','pw1234!','다이소개조','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','전시 소품은 다이소에서 시작한다!',1,'kuku24@example.com','남자','내국인',NULL,SYSDATE-48,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id015','pw1234!','책장전시러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','책장 전시 감성 좋아요. 먼지 관리가 문제…',1,'kuku25@example.com','여자','내국인',NULL,SYSDATE-52,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id016','pw1234!','스태츄러버','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','스태츄는 크기=로망=현실은 공간부족',1,'kuku26@example.com','남자','내국인',NULL,SYSDATE-57,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id017','pw1234!','미니피규어덕','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','넨도/미니피규어 위주로 모아요.',1,'kuku27@example.com','여자','외국인',NULL,SYSDATE-60,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id018','pw1234!','박스보관파','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','박스 못 버리는 병… 공감하나요',1,'kuku28@example.com','남자','내국인',NULL,SYSDATE-63,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id019','pw1234!','블라인드박스','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','블라인드박스 교환 환영!',1,'kuku29@example.com','여자','내국인',NULL,SYSDATE-66,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id020','pw1234!','포스터수집','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','특전 포스터 상태 좋게 보관하는 법 찾는 중',1,'kuku30@example.com','남자','외국인',NULL,SYSDATE-70,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id021','pw1234!','애니굿즈여행','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','일본 가면 굿즈샵 투어부터 합니다.',1,'kuku31@example.com','여자','내국인',NULL,SYSDATE-74,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id022','pw1234!','굿즈지도러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','좋은 매장 있으면 지도에 저장하는 편',1,'kuku32@example.com','남자','내국인',NULL,SYSDATE-77,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id023','pw1234!','굿즈사진사','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','굿즈 사진 찍는 게 취미. 배경지 추천받아요!',1,'kuku33@example.com','여자','내국인',NULL,SYSDATE-80,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id024','pw1234!','아크릴홀릭','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','아크릴 스탠드만 보면 일단 장바구니…',1,'kuku34@example.com','남자','내국인',NULL,SYSDATE-84,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id025','pw1234!','스티커덕','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','스티커/씰북 모으는 재미가 쏠쏠해요.',1,'kuku35@example.com','여자','외국인',NULL,SYSDATE-88,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id026','pw1234!','뱃지모아','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','캔뱃지 교환/나눔 자주 해요.',1,'kuku36@example.com','남자','내국인',NULL,SYSDATE-92,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id027','pw1234!','키링덕후','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','가방이 키링으로 가득…',1,'kuku37@example.com','여자','내국인',NULL,SYSDATE-96,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id028','pw1234!','피규어수리공','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','관절 헐거움/보수 팁 공유합니다.',1,'kuku38@example.com','남자','외국인',NULL,SYSDATE-100,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id029','pw1234!','전시조명러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','LED 바/간접조명 세팅하는 게 제일 재밌음',1,'kuku39@example.com','여자','내국인',NULL,SYSDATE-104,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id030','pw1234!','굿즈정가파','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','정가 구매 지향! 되팔이 싫어요…',1,'kuku40@example.com','남자','내국인',NULL,SYSDATE-108,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id031','pw1234!','코스동료구함','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','촬영 같이 갈 코스 동료 구해요!',1,'kuku41@example.com','여자','내국인',NULL,SYSDATE-112,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id032','pw1234!','행사러너','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','코믹월드/행사 일정 맞춰 움직입니다.',1,'kuku42@example.com','남자','외국인',NULL,SYSDATE-116,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id033','pw1234!','굿즈리뷰러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','산 굿즈는 꼭 리뷰 남기는 편',1,'kuku43@example.com','여자','내국인',NULL,SYSDATE-120,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id034','pw1234!','앨범특전러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','앨범 특전 포카 모으다 보니 앨범 산더미…',1,'kuku44@example.com','남자','내국인',NULL,SYSDATE-124,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id035','pw1234!','프라조립러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','프라는 조립이 반, 도색이 반…',1,'kuku45@example.com','여자','외국인',NULL,SYSDATE-128,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id036','pw1234!','애니음악파','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','OST 들으면서 굿즈 정리하면 개꿀',1,'kuku46@example.com','남자','내국인',NULL,SYSDATE-132,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id037','pw1234!','최애는여러명','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','최애 1명만 못 정하는 사람 여기요',1,'kuku47@example.com','여자','내국인',NULL,SYSDATE-136,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id038','pw1234!','굿즈탐험대','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','새 매장 발견하면 혼자 뿌듯해짐',1,'kuku48@example.com','남자','외국인',NULL,SYSDATE-140,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id039','pw1234!','피규어촬영러','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','액션샷은 각도 싸움… 팁 공유해요',1,'kuku49@example.com','여자','내국인',NULL,SYSDATE-144,'N');
+
+INSERT INTO TKK.MEMBER (login_id, login_pw, nickname, profile_image_url, intro, user_level, email, gender, nationality, verify_code, created_at, deleted_yn)
+VALUES ('id040','pw1234!','덕질은힐링','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/%ED%94%84%EB%A1%9C%ED%95%84/%ED%9A%8C%EC%83%89+%ED%94%84%EB%A1%9C%ED%95%84.png','덕질로 스트레스 푸는 중입니다.',1,'kuku50@example.com','남자','내국인',NULL,SYSDATE-148,'N');
+
+COMMIT;
 
 commit ;
 
 
+-- Oracle (TKK.STORE) 더미데이터
+-- & 문자(예: AK&) 때문에 치환 방지
 
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어프레소 서초점(국전점)','국제전자센터 9층에 위치한 대형 피규어·굿즈샵','서울 서초구 효령로 304 국제전자센터 9층','서초/국전',37.485300,127.016700,4.70,180,'010-9000-0001');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어프레소 홍대점','홍대 서교동 일대 피규어·굿즈 전문 매장','서울 마포구 잔다리로6길 25 2층','홍대',37.556000,126.923000,4.60,200,'010-9000-0002');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어프레소 에프피점(FP점)','카페 겸 굿즈샵 컨셉의 홍대 FP점','서울 마포구 와우산로29길 48-11','홍대',37.556500,126.923500,4.50,150,'010-9000-0003');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 코엑스점','코엑스몰 내 라라부·블라인드 피규어 전문 매장','서울 강남구 영동대로 513 코엑스몰','코엑스/삼성',37.511300,127.058800,4.40,220,'010-9000-0004');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('토이쩔어스 건대점','토이 스토리·디즈니 피규어 위주 키덜트샵','서울 광진구 아차산로26길 27','건대',37.540000,127.070000,4.30,130,'010-9000-0005');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('조아하비 신도림점','프라모델·RC·건담 전문 대형 키덜트샵','서울 구로구 새말로 97','신도림',37.509000,126.889000,4.60,260,'010-9000-0006');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('킨키로봇 한남점','디자이너 토이와 아트토이 중심 편집 굿즈샵','서울 용산구 이태원로54길 16-3','한남',37.539000,127.000000,4.50,190,'010-9000-0007');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('핑크버스 홍대점','디즈니·산리오 등 캐릭터 소품 위주 굿즈샵','서울 마포구 와우산로27길 31','홍대',37.556500,126.924000,4.20,140,'010-9000-0008');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('장난감놀이터 신림점','레트로 장난감·피규어·RC 등 키덜트 소품샵','서울 관악구 남부순환로172길 7','신림',37.482000,126.929000,4.30,135,'010-9000-0009');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니플러스 합정점','애니메이션 공식 굿즈·피규어 중심 매장','서울 마포구 월드컵로3길 14','합정',37.550000,126.914000,4.50,210,'010-9000-0010');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니통 신림점','코믹북·건프라·제일복권 등 종합 키덜트샵','서울 관악구 남부순환로 1568','신림',37.482500,126.929500,4.30,160,'010-9000-0011');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 홍대점','홍대 거리 인근 블라인드 피규어 전문 매장','서울 마포구 와우산로23길 56','홍대',37.556700,126.923500,4.40,230,'010-9000-0012');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 명동점','명동 메인 스트리트에 위치한 팝마트 매장','서울 중구 명동8길 36','명동',37.563500,126.985500,4.20,170,'010-9000-0013');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 용산 아이파크몰점','용산 아이파크몰 내 팝마트 오프라인 매장','서울 용산구 한강대로23길 55 HDC아이파크몰','용산',37.529900,126.964500,4.30,185,'010-9000-0014');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 수원점','수원역 인근 쇼핑몰 내 팝마트 매장','경기 수원시 팔달구 덕영대로 일대','수원',37.265000,127.000000,4.10,120,'010-9000-0015');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('EGO SHOWROOM 1호점','애니·캐릭터 굿즈 중심의 성수 쇼룸 1호점','서울 성동구 연무장3길 10 1층','성수',37.544000,127.055000,4.30,110,'010-9000-0016');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('EGO SHOWROOM 2호점','EGO 굿즈 추가 전시·판매 공간인 2호점','서울 성동구 연무장3길 9-8 2층','성수',37.544200,127.055200,4.20,95,'010-9000-0017');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('헬로수미코 홍대점','산리오·일본 캐릭터 굿즈 중심 소규모 샵','서울 마포구 월드컵북로1길 26-13 1층','홍대',37.557800,126.921800,4.20,90,'010-9000-0018');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('가챠오션 홍대점','일본식 캡슐토이(가챠) 위주 키덜트샵','서울 마포구 동교로38길 29 1.5층','홍대',37.557000,126.923500,4.10,80,'010-9000-0019');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('츄플레이 홍대점','랜덤 피규어·가챠·굿즈를 모아놓은 홍대 샵','서울 마포구 월드컵북로2길 93 301호','홍대',37.557500,126.922500,4.00,75,'010-9000-0020');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('덕쿠 홍대점','홍대 랜덤박스·가챠·피규어 전문 굿즈샵','서울 마포구 홍익로6길 38 지하1층','홍대',37.555800,126.924200,4.60,190,'0507-1310-8869');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('제이에스스토어 홍대점','경품 뽑기와 피규어를 함께 즐기는 홍대 경품샵','서울 마포구 와우산로29길 48-24 1층','홍대',37.556200,126.924000,4.40,150,'02-337-3338');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('브라더굿즈 홍대점','일본 애니 굿즈와 가챠 캡슐토이 전문샵','서울 마포구 신촌로6길 24 2층','홍대',37.556800,126.925000,4.50,170,'070-8657-2105');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('레인몰 홍대점','아이돌·애니 굿즈와 트레이딩 카드 취급 굿즈샵','서울 마포구 독막로 67-1 3층','홍대',37.553800,126.921500,4.30,120,'010-2691-3912');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니메이트 홍대점','일본 애니 공식 굿즈·서적·피규어 대형 매장','서울 마포구 동교동 192-45 AK& 홍대 5층','홍대',37.557000,126.924500,4.70,250,'02-3144-7357');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어프렌즈 홍대점','피규어·프라모델 중심 중고·신품 굿즈샵','서울 마포구 양화로18안길 8 지층','홍대',37.556000,126.922800,4.50,160,'010-8223-7922');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니세카이 홍대점','애니메이션 캐릭터 굿즈와 피규어 전문 매장','서울 마포구 동교동 170-38 2층','홍대',37.556900,126.923300,4.40,140,'0507-1367-2048');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('모와즐 홍대점','서브컬처 의류와 굿즈를 모아놓은 편집샵','서울 마포구 양화로18안길 12 지층','홍대',37.555900,126.923000,4.20,110,'0507-1361-3402');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('CIH+SHOP 홍대점','일본 케이북스와 함께하는 중고 애니 굿즈샵','서울 마포구 동교동 159-5 케이스퀘어','홍대',37.555200,126.922000,4.30,130,'02-6081-2555');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('유포테이블 카페 홍대점','귀멸의 칼날 등 콜라보 굿즈 판매 카페','서울 마포구 와우산로23길 9 칼리오페 2층','홍대',37.554000,126.921800,4.10,90,'02-6406-3321');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 스타필드 안성점','스타필드 안성 내 블라인드 피규어 전문 팝마트','경기 안성시 공도읍 서동대로 3930-39 스타필드 안성','경기/안성',36.997800,127.202500,4.20,100,'031-8092-1658');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('토이킹덤 스타필드 안성점','스타필드 안성 2층 완구·피규어 대형 토이샵','경기 안성시 공도읍 서동대로 3930-39 스타필드 안성 2층 토이킹덤','경기/안성',36.997900,127.202600,4.30,95,'031-8092-1715');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어뮤지엄W 청담점','피규어·토이 전시와 판매를 겸한 피규어 전문 뮤지엄','서울 강남구 선릉로158길 3','청담/강남',37.5257998,127.0403869,4.50,190,'070-7404-2240');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('제이굿즈 수원점','수원역 인근 애니메이션·아이돌 굿즈 전문샵','경기 수원시 팔달구 매산로2가 27-62 헌욱빌딩 2층','수원역',37.2689432,127.0036858,4.40,130,'031-246-4249');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('조이하비 신도림 테크노마트점','건프라·RC·피규어 중심 대형 하비샵','서울 구로구 새말로 97 신도림테크노마트 3층','신도림/테크노마트',37.5063209,126.8903608,4.60,250,'02-2111-5212');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 홍대 플래그십 스토어','홍대입구역 앞 카카오 캐릭터 공식 굿즈샵','서울 마포구 양화로 162 카카오프렌즈 홍대점','홍대',37.556900,126.923500,4.80,320,'02-6010-0104');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 스타필드 코엑스몰점','코엑스몰 지하에 위치한 카카오프렌즈 공식 매장','서울 강남구 영동대로 513 스타필드 코엑스몰 B1층','코엑스/삼성',37.512500,127.058000,4.60,280,'02-6002-1880');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 잠실 롯데월드몰점','롯데월드몰 내 카카오프렌즈·라이언 굿즈 전문샵','서울 송파구 올림픽로 300 롯데월드몰 5층','잠실',37.511000,127.098000,4.70,300,'02-3213-4514');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 영등포 타임스퀘어점','타임스퀘어 1층 캐릭터·문구·인형 굿즈샵','서울 영등포구 영중로 15 타임스퀘어 1층','영등포/타임스퀘어',37.517200,126.903000,4.50,220,'02-2638-2750');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 DDP 동대문점','DDP 지하에 위치한 카카오프렌즈 공식 스토어','서울 중구 을지로 281 동대문디자인플라자 B2층','동대문/DDP',37.566000,127.009500,4.40,190,'02-2231-3552');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 롯데월드타워 면세점','롯데월드타워 내 면세점 카카오프렌즈 숍','서울 송파구 올림픽로 300 롯데월드타워 8층 롯데면세점','잠실',37.513000,127.102000,4.30,160,'02-3213-6743');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('라인프렌즈 스퀘어 명동','브라운·코니·BT21 등 라인프렌즈 플래그십 스토어','서울 중구 명동길 43 라인프렌즈 스퀘어 명동','명동',37.564700,126.985000,4.70,310,'070-4060-3534');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('라인프렌즈 롯데영플라자 명동점','롯데영플라자 내 라인프렌즈 캐릭터 굿즈샵','서울 중구 남대문로 67 롯데영플라자 1층','명동',37.563300,126.981900,4.50,230,'02-318-7942');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('리락쿠마 스미코구라시 플러스 홍대점','AK플라자 3층 SAN-X 공식 리락쿠마·스미코 상설샵','서울 마포구 양화로 188 AK플라자 홍대점 3층','홍대',37.557300,126.923000,4.60,260,'02-789-9800');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('위드뮤 AK플라자 홍대점','K-POP 앨범·아이돌 굿즈 중심 편집샵','서울 마포구 양화로 188 AK플라자 홍대점 내 위드뮤 매장','홍대',37.557400,126.923200,4.50,210,'0507-1343-0429');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('도토리숲 롯데월드몰점','지브리 스튜디오 공식 토토로·키키 캐릭터 샵','서울 송파구 올림픽로 300 쇼핑몰 캐주얼동 지하1층 도토리숲','잠실',37.511200,127.098200,4.60,240,'02-3213-4747');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니메이트 잠실 롯데점','애니메이션·만화 공식 굿즈·피규어 전문점','서울 송파구 올림픽로 240 롯데월드 쇼핑몰동 B1층 애니메이트','잠실',37.511400,127.098500,4.70,280,'02-2143-1571');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('팝퍼블 용산 아이파크몰점','원피스·짱구 등 콜라보 팝업·굿즈 카페','서울 용산구 한강대로23길 55 용산역 아이파크몰 6층 팝콘D스퀘어','용산',37.529900,126.964400,4.50,220,'02-6373-3360');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('얌꽁굿즈 병점점','병점 롯데시네마 내 캔뱃지·스티커 위주 굿즈샵','경기 화성시 병점로 31 롯데시네마 병점점 2층 얌꽁굿즈','경기/화성',37.206700,127.032500,4.30,120,'031-000-1111');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('꼼지락 하비샵 & 게임몬스터','프라모델·보드게임·피규어를 함께 파는 하비샵','경기 고양시 덕양구 백양로 84 1층 꼼지락 하비샵 & 게임몬스터','경기/고양',37.632500,126.832000,4.40,140,'0507-1313-3146');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어플렉스 부천시청역점','부천시청역 인근 피규어·가챠·굿즈 전문샵','경기 부천시 석천로177번길 28 2층 피규어플렉스 부천시청역점','경기/부천',37.503500,126.766000,4.40,150,'0507-1367-9530');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('타미야 플라모델 팩토리 양재점','RC카·프라모델 전문 타미야 직영 본점','서울 서초구 바우뫼로 215 타미야빌딩 1층','서초/양재',37.480900,127.041700,4.60,140,'02-2135-3113');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('타미야 플라모델 팩토리 용산 아이파크몰점','아이파크몰 내 대형 프라모델·미니카 전문점','서울 용산구 한강대로23길 55 아이파크몰 리빙파크 6층','용산',37.528907,126.964635,4.50,170,'02-2012-0877');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('타미야 플라모델 팩토리 스타필드 하남점','스타필드 하남에 위치한 타미야 공식 매장','경기 하남시 미사대로 750 스타필드 하남 3층','경기/하남',37.545489,127.224333,4.40,120,'031-8072-8446');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('타미야 플라모델 팩토리 수원 AK플라자점','수원역 AK플라자 내 프라모델 전문샵','경기 수원시 팔달구 덕영대로 924 AK플라자 수원 4층','수원',37.266101,127.000686,4.40,115,'031-240-1953');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('마블 컬렉션 스토어 한양대점','마블·디즈니 캐릭터 굿즈 전문 편집숍','서울 성동구 왕십리로 241 파크에비뉴 엔터식스 한양대점 1층','성동/왕십리',37.557148,127.040146,4.30,95,'02-6454-6130');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('국제전자센터 피규어·가챠존','남부터미널역 인근 피규어·가챠·쿠지 집결지','서울 서초구 효령로 304 국제전자센터 8~9층 일대','서초/국전',37.485300,127.016700,4.70,260,'02-3465-0114');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('신도림 테크노마트 가챠·피규어존','신도림역 직통 키덜트 가챠·쿠지·피규어 존','서울 구로구 구로동 3-25 신도림테크노마트 8~9층','신도림',37.508700,126.890100,4.50,210,'02-2111-1889');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('루나러브굿 나루 공작소','홍대 인근 레트로 피규어·장난감 공방형 샵','서울 마포구 서교동 일대','홍대',37.552000,126.919000,4.20,80,'02-6082-3300');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니굿즈 키라키라토모 수원본점','수원역 인근 애니·아이돌 굿즈 전문샵','경기 수원시 팔달구 향교로 4 3층','수원',37.266500,127.000000,4.60,150,'050-6805-2148');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('챌린저 롯데백화점 평촌점','스트리트 브랜드·콜라보 굿즈 팝업 매장','경기 안양시 동안구 시민대로 180 롯데백화점 평촌 6층','안양/평촌',37.390001,126.950349,4.10,70,'010-3713-3215');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('챌린저 신세계 여주 프리미엄 빌리지점','여주 아울렛 내 스트리트 굿즈·의류 매장','경기 여주시 명품로 316-10 1-2호','여주',37.243136,127.617162,4.00,60,'031-883-1072');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('챌린저 현대프리미엄아울렛 김포점','김포 아울렛 2층 스트리트 패션·굿즈 팝업','경기 김포시 고촌읍 아라육로152번길 100 현대프리미엄아울렛 WEST 2층','김포',37.597228,126.785221,4.10,65,'031-8048-2367');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('챌린저 현대시티몰 가든파이브점','가든파이브 내 라이프스타일·스트리트 굿즈샵','서울 송파구 충민로 66 현대시티아울렛 가든파이브 4층','송파/가든파이브',37.477858,127.124712,4.00,55,'02-2673-2456');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('챌린저 스타필드 하남점','스타필드 하남 2층 스트리트 브랜드 팝업스토어','경기 하남시 미사대로 750 스타필드 하남 2층','경기/하남',37.545489,127.224333,4.20,90,'031-8072-8643');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('브라더굿즈 강남점','신논현·강남역 사이 가챠·캐릭터 굿즈 전문샵','서울 강남구 강남대로102길 13 골든포레 지하 1층','강남/신논현',37.501479,127.026967,0.00,0,'070-8657-2790');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('피규어뮤지엄W','청담동에 위치한 피규어 전시·판매 전문 박물관','서울 강남구 선릉로158길 3','청담/강남',37.5257998,127.040352,4.80,320,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 코엑스몰점','스타필드 코엑스몰 내 블라인드 피규어 전문 매장','서울 강남구 영동대로 513 코엑스몰 B1층','코엑스/삼성',37.51148310935,127.06033711446,4.60,280,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 용산 아이파크몰점','용산역 아이파크몰 내 팝마트 오프라인 매장','서울 용산구 한강대로23길 55 아이파크몰','용산',37.52890681,126.9646345,4.50,240,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 수원 AK플라자점','수원역 AK플라자 내 블라인드 피규어·굿즈 매장','경기 수원시 팔달구 덕영대로 924 AK플라자 수원점','수원',37.266124,127.000158,4.40,190,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 스타필드 안성점','스타필드 안성 내 팝마트 블라인드 피규어샵','경기 안성시 공도읍 서동대로 3930-39 스타필드 안성','안성',36.9946845979,127.1472661744,4.30,160,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('POP MART 홍대 플래그십 스토어','홍대 걷고싶은거리 인근 대형 플래그십 굿즈 매장','서울 마포구 와우산로23길 56','홍대',37.555249646612,126.92371442151,4.50,260,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('애니플러스 합정점','TV 애니메이션 공식 굿즈·피규어 전문샵','서울 마포구 월드컵로3길 14','합정',37.550494907182,126.91193741226,4.60,210,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('브라더굿즈 강남점','역삼역 인근 애니·게임 캐릭터 굿즈 편집샵','서울 강남구 강남대로102길 13 B1층','강남',37.501967358069,127.02683991652,4.70,220,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('더쿠 수원점','수원역 인근 애니·게임 굿즈·가챠 전문샵','경기 수원시 팔달구 향교로3번길 17 2층','수원',37.268309157635,127.00144533428,4.50,180,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('조이하비 신도림점','신도림 테크노마트 내 프라모델·RC·건담 대형 매장','서울 구로구 새말로 97 신도림테크노마트 3층','신도림',37.5073194,126.8901556,4.60,250,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('포켓몬 팝업스토어 롯데월드몰점','잠실 롯데월드몰 아트리움 일대 포켓몬 공식 팝업스토어','서울 송파구 올림픽로 300 롯데월드몰 1층 아트리움','잠실/롯데월드몰',37.513100,127.103400,4.60,240,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('카카오프렌즈 롯데월드몰점','카카오프렌즈 캐릭터 중심 공식 굿즈샵','서울 송파구 올림픽로 300 롯데월드몰 5층','잠실/롯데월드몰',37.513100,127.103400,4.50,210,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('라인프렌즈 럭키하우스 롯데월드몰점','브라운·코니·BT21 등 라인프렌즈 팝업형 굿즈샵','서울 송파구 올림픽로 300 롯데월드몰 1층','잠실/롯데월드몰',37.513100,127.103400,4.40,190,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('타미야 팩토리 롯데월드몰점','프라모델·미니카 등 타미야 제품 전문 매장','서울 송파구 올림픽로 300 롯데월드몰 지하1층','잠실/롯데월드몰',37.513100,127.103400,4.50,160,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('레고스토어 롯데월드몰점','공식 레고 스토어, 다양한 시리즈와 피규어 판매','서울 송파구 올림픽로 300 롯데월드몰 지하1층','잠실/롯데월드몰',37.513100,127.103400,4.70,280,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('건담베이스 스타필드 코엑스몰점','반다이 건담 프라모델 전문 매장','서울 강남구 영동대로 513 스타필드 코엑스몰 지하2층','코엑스/삼성',37.511483,127.060337,4.70,260,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('레고스토어 코엑스점','공식 레고 스토어 코엑스 플래그십 매장','서울 강남구 영동대로 513 스타필드 코엑스몰 지하1층','코엑스/삼성',37.511483,127.060337,4.60,230,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('나비타월드 스타필드 코엑스몰점','피규어·프라모델·보드게임 편집 키덜트샵','서울 강남구 영동대로 513 스타필드 코엑스몰 지하1층','코엑스/삼성',37.511483,127.060337,4.40,150,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('라인프렌즈 스토어 타임스퀘어점','라인프렌즈·BT21 캐릭터 공식 굿즈샵','서울 영등포구 영중로 15 타임스퀘어 지하2층 원더플레이스 내','영등포/타임스퀘어',37.517834,126.905382,4.50,200,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('토이킹덤 타임스퀘어 영등포점','대형 장난감·보드게임·피규어 전문 매장','서울 영등포구 영중로 15 타임스퀘어 지하1층','영등포/타임스퀘어',37.517834,126.905382,4.40,180,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('반다이 펀스퀘어 타임스퀘어점','반다이 피규어·프라모델·가챠 전문 편집샵','서울 영등포구 영중로 15 타임스퀘어 4층 펀스퀘어','영등포/타임스퀘어',37.517834,126.905382,4.30,160,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('토이킹덤 스타필드 고양점','대형 완구·피규어·보드게임 전문 장난감 왕국','경기 고양시 덕양구 고양대로 1955 스타필드 고양 3층 토이킹덤','고양/스타필드고양',37.647056,126.896011,4.50,190,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('레고스토어 스타필드 고양점','공식 레고 스토어, 전시·체험 가능한 매장','경기 고양시 덕양구 고양대로 1955 스타필드 고양 3층 레고스토어','고양/스타필드고양',37.647056,126.896011,4.60,210,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('마이크로킥보드 스타필드 고양점','킥보드·키즈 모빌리티 중심 라이프스타일 굿즈샵','경기 고양시 덕양구 고양대로 1955 스타필드 고양 3층 마이크로킥보드','고양/스타필드고양',37.647056,126.896011,4.20,120,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('토이킹덤 스타필드 하남점','대형 토이·피규어·보드게임 전문 매장','경기 하남시 미사대로 750 스타필드 하남 3층 토이킹덤','하남/스타필드하남',37.545490,127.224330,4.50,210,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('레고스토어 스타필드 하남점','국내 최대 규모 레고 공식 스토어','경기 하남시 미사대로 750 스타필드 하남 3층 레고스토어','하남/스타필드하남',37.545490,127.224330,4.70,260,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('브루클린웍스 스타필드 하남점','캠핑·아웃도어 감성 굿즈 전문 편집샵','경기 하남시 미사대로 750 스타필드 하남 2층 브루클린웍스','하남/스타필드하남',37.545490,127.224330,4.30,130,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('자라홈 스타필드 하남점','캐릭터·디자인 소품 포함 라이프스타일 홈굿즈샵','경기 하남시 미사대로 750 스타필드 하남 1층 자라홈','하남/스타필드하남',37.545490,127.224330,4.20,140,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('레고스토어 현대백화점 판교점','현대백화점 판교점 내 레고 공식 스토어','경기 성남시 분당구 판교역로 146 현대백화점 판교점 지하1층','성남/판교',37.392739,127.112094,4.60,220,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('닌텐도 스토어 현대백화점 판교점','닌텐도 콘솔·게임·피규어 굿즈 전문 매장','경기 성남시 분당구 판교역로 146 현대백화점 판교점','성남/판교',37.392739,127.112094,4.50,180,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('건담베이스 롯데 영플라자 본점','명동 롯데영플라자 지하1층 반다이 프라모델 전문샵','서울 중구 남대문로 67 롯데영플라자 지하1층 건담베이스','명동/영플라자',37.563630,126.982010,4.70,270,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('라인프렌즈 스토어 롯데 영플라자 명동점','라인프렌즈 캐릭터 인형·문구·패션 굿즈샵','서울 중구 남대문로 67 롯데영플라자 1층 라인프렌즈 스토어','명동/영플라자',37.563630,126.982010,4.60,230,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('라인프렌즈 월드 팝업스토어 롯데 영플라자점','BT21·미니니 등 IPX 캐릭터 종합 팝업스토어','서울 중구 남대문로 67 롯데영플라자 1층 라인프렌즈 월드 팝업','명동/영플라자',37.563630,126.982010,4.50,190,'미등록');
-INSERT INTO store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone)
-VALUES ('모노폴리 롯데 영플라자 명동점','BT21·라인프렌즈 등 라이선스 캐릭터 편집 굿즈샵','서울 중구 남대문로 67 롯데영플라자 지하1층 모노폴리 매장','명동/영플라자',37.563630,126.982010,4.40,160,'미등록');
-commit;
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('피규어프레소 서초점(국전점)','국제전자센터 9층에 위치한 대형 피규어·굿즈샵','서울 서초구 효령로 304 국제전자센터 9층','서초/국전',37.485300,127.016700,4.70,180,'010-9000-0001','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%94%BC%EA%B7%9C%EC%96%B4%ED%94%84%EB%A0%88%EC%86%8C+%EC%84%9C%EC%B4%88%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('피규어프레소 홍대점','홍대 서교동 일대 피규어·굿즈 전문 매장','서울 마포구 잔다리로6길 25 2층','홍대',37.556000,126.923000,4.60,200,'010-9000-0002','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%94%BC%EA%B7%9C%EC%96%B4%ED%94%84%EB%A0%88%EC%86%8C+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('피규어프레소 에프피점(FP점)','카페 겸 굿즈샵 컨셉의 홍대 FP점','서울 마포구 와우산로29길 48-11','홍대',37.556500,126.923500,4.50,150,'010-9000-0003','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%94%BC%EA%B7%9C%EC%96%B4%ED%94%84%EB%A0%88%EC%86%8C+%EC%97%90%ED%94%84%ED%94%BC%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('POP MART 코엑스점','코엑스몰 내 라라부·블라인드 피규어 전문 매장','서울 강남구 영동대로 513 코엑스몰','코엑스/삼성',37.511300,127.058800,4.40,220,'010-9000-0004','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/POP+MART+%EC%BD%94%EC%97%91%EC%8A%A4%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('토이쩔어스 건대점','토이 스토리·디즈니 피규어 위주 키덜트샵','서울 광진구 아차산로26길 27','건대',37.540000,127.070000,4.30,130,'010-9000-0005','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%86%A0%EC%9D%B4%EC%96%B4%EC%A9%94%EC%8A%A4+%EA%B1%B4%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('조아하비 신도림점','프라모델·RC·건담 전문 대형 키덜트샵','서울 구로구 새말로 97','신도림',37.509000,126.889000,4.60,260,'010-9000-0006','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%A1%B0%EC%95%84%ED%95%98%EB%B9%84+%EA%B1%B4%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('킨키로봇 한남점','디자이너 토이와 아트토이 중심 편집 굿즈샵','서울 용산구 이태원로54길 16-3','한남',37.539000,127.000000,4.50,190,'010-9000-0007','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%82%A8%ED%82%A4%EB%A1%9C%EB%B4%87+%ED%95%9C%EB%82%A8%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('핑크버스 홍대점','디즈니·산리오 등 캐릭터 소품 위주 굿즈샵','서울 마포구 와우산로27길 31','홍대',37.556500,126.924000,4.20,140,'010-9000-0008','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%95%91%ED%81%AC%EB%B2%84%EC%8A%A4+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('장난감놀이터 신림점','레트로 장난감·피규어·RC 등 키덜트 소품샵','서울 관악구 남부순환로172길 7','신림',37.482000,126.929000,4.30,135,'010-9000-0009','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%9E%A5%EB%82%9C%EA%B0%90%EB%86%80%EC%9D%B4%ED%84%B0+%EC%8B%A0%EB%A6%BC%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('애니플러스 합정점','애니메이션 공식 굿즈·피규어 중심 매장','서울 마포구 월드컵로3길 14','합정',37.550000,126.914000,4.50,210,'010-9000-0010','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%95%A0%EB%8B%88%ED%94%8C%EB%9F%AC%EC%8A%A4+%ED%95%A9%EC%A0%95%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('애니통 신림점','코믹북·건프라·제일복권 등 종합 키덜트샵','서울 관악구 남부순환로 1568','신림',37.482500,126.929500,4.30,160,'010-9000-0011','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%95%A0%EB%8B%88%ED%86%B5+%EC%8B%A0%EB%A6%BC%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('POP MART 홍대점','홍대 거리 인근 블라인드 피규어 전문 매장','서울 마포구 와우산로23길 56','홍대',37.556700,126.923500,4.40,230,'010-9000-0012','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/POP+MART+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('POP MART 명동점','명동 메인 스트리트에 위치한 팝마트 매장','서울 중구 명동8길 36','명동',37.563500,126.985500,4.20,170,'010-9000-0013','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/POP+MART+%EB%AA%85%EB%8F%99%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('POP MART 용산 아이파크몰점','용산 아이파크몰 내 팝마트 오프라인 매장','서울 용산구 한강대로23길 55 HDC아이파크몰','용산',37.529900,126.964500,4.30,185,'010-9000-0014','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/POP+MART+%EC%9A%A9%EC%82%B0+%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC%EB%AA%B0%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('POP MART 수원점','수원역 인근 쇼핑몰 내 팝마트 매장','경기 수원시 팔달구 덕영대로 일대','수원',37.265000,127.000000,4.10,120,'010-9000-0015','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/POP+MART+%EC%88%98%EC%9B%90%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('EGO SHOWROOM 1호점','애니·캐릭터 굿즈 중심의 성수 쇼룸 1호점','서울 성동구 연무장3길 10 1층','성수',37.544000,127.055000,4.30,110,'010-9000-0016','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('EGO SHOWROOM 2호점','EGO 굿즈 추가 전시·판매 공간인 2호점','서울 성동구 연무장3길 9-8 2층','성수',37.544200,127.055200,4.20,95,'010-9000-0017','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('헬로수미코 홍대점','산리오·일본 캐릭터 굿즈 중심 소규모 샵','서울 마포구 월드컵북로1길 26-13 1층','홍대',37.557800,126.921800,4.20,90,'010-9000-0018','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%97%AC%EB%A1%9C%EC%88%98%EB%AF%B8%EC%BD%94+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('가챠오션 홍대점','일본식 캡슐토이(가챠) 위주 키덜트샵','서울 마포구 동교로38길 29 1.5층','홍대',37.557000,126.923500,4.10,80,'010-9000-0019','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EA%B0%80%EC%B1%A0%EC%98%A4%EC%85%98+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('츄플레이 홍대점','랜덤 피규어·가챠·굿즈를 모아놓은 홍대 샵','서울 마포구 월드컵북로2길 93 301호','홍대',37.557500,126.922500,4.00,75,'010-9000-0020','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%B8%84%ED%94%8C%EB%A0%88%EC%9D%B4+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('덕쿠 홍대점','홍대 랜덤박스·가챠·피규어 전문 굿즈샵','서울 마포구 홍익로6길 38 지하1층','홍대',37.555800,126.924200,4.60,190,'0507-1310-8869','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('제이에스스토어 홍대점','경품 뽑기와 피규어를 함께 즐기는 홍대 경품샵','서울 마포구 와우산로29길 48-24 1층','홍대',37.556200,126.924000,4.40,150,'02-337-3338','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%A0%9C%EC%9D%B4%EC%97%90%EC%8A%A4%EC%8A%A4%ED%86%A0%EC%96%B4+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('브라더굿즈 홍대점','일본 애니 굿즈와 가챠 캡슐토이 전문샵','서울 마포구 신촌로6길 24 2층','홍대',37.556800,126.925000,4.50,170,'070-8657-2105','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EB%B8%8C%EB%9D%BC%EB%8D%94%EA%B5%BF%EC%A6%88+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('레인몰 홍대점','아이돌·애니 굿즈와 트레이딩 카드 취급 굿즈샵','서울 마포구 독막로 67-1 3층','홍대',37.553800,126.921500,4.30,120,'010-2691-3912','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EB%A0%88%EC%9D%B8%EB%AA%B0+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('애니메이트 홍대점','일본 애니 공식 굿즈·서적·피규어 대형 매장','서울 마포구 동교동 192-45 AK& 홍대 5층','홍대',37.557000,126.924500,4.70,250,'02-3144-7357','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%97%90%EB%8B%88%EB%A9%94%EC%9D%B4%ED%8A%B8+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('피규어프렌즈 홍대점','피규어·프라모델 중심 중고·신품 굿즈샵','서울 마포구 양화로18안길 8 지층','홍대',37.556000,126.922800,4.50,160,'010-8223-7922','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%94%BC%EA%B7%9C%EC%96%B4%ED%94%84%EB%A0%8C%EC%A6%88+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('애니세카이 홍대점','애니메이션 캐릭터 굿즈와 피규어 전문 매장','서울 마포구 동교동 170-38 2층','홍대',37.556900,126.923300,4.40,140,'0507-1367-2048','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%95%A0%EB%8B%88%EC%84%B8%EC%B9%B4%EC%9D%B4+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('모와즐 홍대점','서브컬처 의류와 굿즈를 모아놓은 편집샵','서울 마포구 양화로18안길 12 지층','홍대',37.555900,126.923000,4.20,110,'0507-1361-3402','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EB%AA%A8%EC%99%80%EC%A6%90+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('CIH+SHOP 홍대점','일본 케이북스와 함께하는 중고 애니 굿즈샵','서울 마포구 동교동 159-5 케이스퀘어','홍대',37.555200,126.922000,4.30,130,'02-6081-2555','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/CIH%2BSHOP+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('유포테이블 카페 홍대점','귀멸의 칼날 등 콜라보 굿즈 판매 카페','서울 마포구 와우산로23길 9 칼리오페 2층','홍대',37.554000,126.921800,4.10,90,'02-6406-3321','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/%EC%8A%A4%ED%86%A0%EC%96%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%9C%A0%ED%8F%AC%ED%85%8C%EC%9D%B4%EB%B8%94+%EC%B9%B4%ED%8E%98+%ED%99%8D%EB%8C%80%EC%A0%90.PNG');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('POP MART 스타필드 안성점','스타필드 안성 내 블라인드 피규어 전문 팝마트','경기 안성시 공도읍 서동대로 3930-39 스타필드 안성','경기/안성',36.997800,127.202500,4.20,100,'031-8092-1658','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('토이킹덤 스타필드 안성점','스타필드 안성 2층 완구·피규어 대형 토이샵','경기 안성시 공도읍 서동대로 3930-39 스타필드 안성 2층 토이킹덤','경기/안성',36.997900,127.202600,4.30,95,'031-8092-1715','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('피규어뮤지엄W 청담점','피규어·토이 전시와 판매를 겸한 피규어 전문 뮤지엄','서울 강남구 선릉로158길 3','청담/강남',37.5257998,127.0403869,4.50,190,'070-7404-2240','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('제이굿즈 수원점','수원역 인근 애니메이션·아이돌 굿즈 전문샵','경기 수원시 팔달구 매산로2가 27-62 헌욱빌딩 2층','수원역',37.2689432,127.0036858,4.40,130,'031-246-4249','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('조이하비 신도림 테크노마트점','건프라·RC·피규어 중심 대형 하비샵','서울 구로구 새말로 97 신도림테크노마트 3층','신도림/테크노마트',37.5063209,126.8903608,4.60,250,'02-2111-5212','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('카카오프렌즈 홍대 플래그십 스토어','홍대입구역 앞 카카오 캐릭터 공식 굿즈샵','서울 마포구 양화로 162 카카오프렌즈 홍대점','홍대',37.556900,126.923500,4.80,320,'02-6010-0104','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('카카오프렌즈 스타필드 코엑스몰점','코엑스몰 지하에 위치한 카카오프렌즈 공식 매장','서울 강남구 영동대로 513 스타필드 코엑스몰 B1층','코엑스/삼성',37.512500,127.058000,4.60,280,'02-6002-1880','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('카카오프렌즈 잠실 롯데월드몰점','롯데월드몰 내 카카오프렌즈·라이언 굿즈 전문샵','서울 송파구 올림픽로 300 롯데월드몰 5층','잠실',37.511000,127.098000,4.70,300,'02-3213-4514','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('카카오프렌즈 영등포 타임스퀘어점','타임스퀘어 1층 캐릭터·문구·인형 굿즈샵','서울 영등포구 영중로 15 타임스퀘어 1층','영등포/타임스퀘어',37.517200,126.903000,4.50,220,'02-2638-2750','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('카카오프렌즈 DDP 동대문점','DDP 지하에 위치한 카카오프렌즈 공식 스토어','서울 중구 을지로 281 동대문디자인플라자 B2층','동대문/DDP',37.566000,127.009500,4.40,190,'02-2231-3552','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('카카오프렌즈 롯데월드타워 면세점','롯데월드타워 내 면세점 카카오프렌즈 숍','서울 송파구 올림픽로 300 롯데월드타워 8층 롯데면세점','잠실',37.513000,127.102000,4.30,160,'02-3213-6743','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('라인프렌즈 스퀘어 명동','브라운·코니·BT21 등 라인프렌즈 플래그십 스토어','서울 중구 명동길 43 라인프렌즈 스퀘어 명동','명동',37.564700,126.985000,4.70,310,'070-4060-3534','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('라인프렌즈 롯데영플라자 명동점','롯데영플라자 내 라인프렌즈 캐릭터 굿즈샵','서울 중구 남대문로 67 롯데영플라자 1층','명동',37.563300,126.981900,4.50,230,'02-318-7942','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('리락쿠마 스미코구라시 플러스 홍대점','AK플라자 3층 SAN-X 공식 리락쿠마·스미코 상설샵','서울 마포구 양화로 188 AK플라자 홍대점 3층','홍대',37.557300,126.923000,4.60,260,'02-789-9800','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('위드뮤 AK플라자 홍대점','K-POP 앨범·아이돌 굿즈 중심 편집샵','서울 마포구 양화로 188 AK플라자 홍대점 내 위드뮤 매장','홍대',37.557400,126.923200,4.50,210,'0507-1343-0429','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('도토리숲 롯데월드몰점','지브리 스튜디오 공식 토토로·키키 캐릭터 샵','서울 송파구 올림픽로 300 쇼핑몰 캐주얼동 지하1층 도토리숲','잠실',37.511200,127.098200,4.60,240,'02-3213-4747','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('애니메이트 잠실 롯데점','애니메이션·만화 공식 굿즈·피규어 전문점','서울 송파구 올림픽로 240 롯데월드 쇼핑몰동 B1층 애니메이트','잠실',37.511400,127.098500,4.70,280,'02-2143-1571','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('팝퍼블 용산 아이파크몰점','원피스·짱구 등 콜라보 팝업·굿즈 카페','서울 용산구 한강대로23길 55 용산역 아이파크몰 6층 팝콘D스퀘어','용산',37.529900,126.964400,4.50,220,'02-6373-3360','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('얌꽁굿즈 병점점','병점 롯데시네마 내 캔뱃지·스티커 위주 굿즈샵','경기 화성시 병점로 31 롯데시네마 병점점 2층 얌꽁굿즈','경기/화성',37.206700,127.032500,4.30,120,'031-000-1111','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url) VALUES ('꼼지락 하비샵 & 게임몬스터','프라모델·보드게임·피규어를 함께 파는 하비샵','경기 고양시 덕양구 백양로 84 1층 꼼지락 하비샵 & 게임몬스터','경기/고양',37.632500,126.832000,4.40,140,'0507-1313-3146','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('피규어플렉스 부천시청역점','부천시청역 인근 피규어·가챠·굿즈 전문샵','경기 부천시 석천로177번길 28 2층 피규어플렉스 부천시청역점','경기/부천',37.503500,126.766000,4.40,150,'0507-1367-9530','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 루피 포토카드', '원피스', '루피', '포토카드', 5000, 30, 'https://example.com/goods/op_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 루피 피규어', '원피스', '루피', '피규어', 25000, 8, 'https://example.com/goods/op_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 루피 인형', '원피스', '루피', '인형', 18000, 12, 'https://example.com/goods/op_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 루피 키링', '원피스', '루피', '키링', 7000, 25, 'https://example.com/goods/op_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 루피 아크릴스탠드', '원피스', '루피', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('타미야 플라모델 팩토리 양재점','RC카·프라모델 전문 타미야 직영 본점','서울 서초구 바우뫼로 215 타미야빌딩 1층','서초/양재',37.480900,127.041700,4.60,140,'02-2135-3113','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 조로 포토카드', '원피스', '조로', '포토카드', 5000, 30, 'https://example.com/goods/op_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 조로 피규어', '원피스', '조로', '피규어', 25000, 8, 'https://example.com/goods/op_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 조로 인형', '원피스', '조로', '인형', 18000, 12, 'https://example.com/goods/op_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 조로 키링', '원피스', '조로', '키링', 7000, 25, 'https://example.com/goods/op_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 조로 아크릴스탠드', '원피스', '조로', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('타미야 플라모델 팩토리 용산 아이파크몰점','아이파크몰 내 대형 프라모델·미니카 전문점','서울 용산구 한강대로23길 55 아이파크몰 리빙파크 6층','용산',37.528907,126.964635,4.50,170,'02-2012-0877','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 나미 포토카드', '원피스', '나미', '포토카드', 5000, 30, 'https://example.com/goods/op_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 나미 피규어', '원피스', '나미', '피규어', 25000, 8, 'https://example.com/goods/op_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 나미 인형', '원피스', '나미', '인형', 18000, 12, 'https://example.com/goods/op_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 나미 키링', '원피스', '나미', '키링', 7000, 25, 'https://example.com/goods/op_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 나미 아크릴스탠드', '원피스', '나미', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('타미야 플라모델 팩토리 스타필드 하남점','스타필드 하남에 위치한 타미야 공식 매장','경기 하남시 미사대로 750 스타필드 하남 3층','경기/하남',37.545489,127.224333,4.40,120,'031-8072-8446','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 상디 포토카드', '원피스', '상디', '포토카드', 5000, 30, 'https://example.com/goods/op_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 상디 피규어', '원피스', '상디', '피규어', 25000, 8, 'https://example.com/goods/op_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 상디 인형', '원피스', '상디', '인형', 18000, 12, 'https://example.com/goods/op_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 상디 키링', '원피스', '상디', '키링', 7000, 25, 'https://example.com/goods/op_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 상디 아크릴스탠드', '원피스', '상디', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('타미야 플라모델 팩토리 수원 AK플라자점','수원역 AK플라자 내 프라모델 전문샵','경기 수원시 팔달구 덕영대로 924 AK플라자 수원 4층','수원',37.266101,127.000686,4.40,115,'031-240-1953','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 쵸파 포토카드', '원피스', '쵸파', '포토카드', 5000, 30, 'https://example.com/goods/op_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 쵸파 피규어', '원피스', '쵸파', '피규어', 25000, 8, 'https://example.com/goods/op_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 쵸파 인형', '원피스', '쵸파', '인형', 18000, 12, 'https://example.com/goods/op_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 쵸파 키링', '원피스', '쵸파', '키링', 7000, 25, 'https://example.com/goods/op_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (1, '원피스 쵸파 아크릴스탠드', '원피스', '쵸파', '아크릴스탠드', 12000, 10, 'https://example.com/goods/op_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('마블 컬렉션 스토어 한양대점','마블·디즈니 캐릭터 굿즈 전문 편집숍','서울 성동구 왕십리로 241 파크에비뉴 엔터식스 한양대점 1층','성동/왕십리',37.557148,127.040146,4.30,95,'02-6454-6130','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 나루토 포토카드', '나루토', '나루토', '포토카드', 5000, 30, 'https://example.com/goods/nr_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 나루토 피규어', '나루토', '나루토', '피규어', 25000, 8, 'https://example.com/goods/nr_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 나루토 인형', '나루토', '나루토', '인형', 18000, 12, 'https://example.com/goods/nr_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 나루토 키링', '나루토', '나루토', '키링', 7000, 25, 'https://example.com/goods/nr_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 나루토 아크릴스탠드', '나루토', '나루토', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('국제전자센터 피규어·가챠존','남부터미널역 인근 피규어·가챠·쿠지 집결지','서울 서초구 효령로 304 국제전자센터 8~9층 일대','서초/국전',37.485300,127.016700,4.70,260,'02-3465-0114','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사스케 포토카드', '나루토', '사스케', '포토카드', 5000, 30, 'https://example.com/goods/nr_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사스케 피규어', '나루토', '사스케', '피규어', 25000, 8, 'https://example.com/goods/nr_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사스케 인형', '나루토', '사스케', '인형', 18000, 12, 'https://example.com/goods/nr_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사스케 키링', '나루토', '사스케', '키링', 7000, 25, 'https://example.com/goods/nr_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사스케 아크릴스탠드', '나루토', '사스케', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('신도림 테크노마트 가챠·피규어존','신도림역 직통 키덜트 가챠·쿠지·피규어 존','서울 구로구 구로동 3-25 신도림테크노마트 8~9층','신도림',37.508700,126.890100,4.50,210,'02-2111-1889','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사쿠라 포토카드', '나루토', '사쿠라', '포토카드', 5000, 30, 'https://example.com/goods/nr_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사쿠라 피규어', '나루토', '사쿠라', '피규어', 25000, 8, 'https://example.com/goods/nr_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사쿠라 인형', '나루토', '사쿠라', '인형', 18000, 12, 'https://example.com/goods/nr_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사쿠라 키링', '나루토', '사쿠라', '키링', 7000, 25, 'https://example.com/goods/nr_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 사쿠라 아크릴스탠드', '나루토', '사쿠라', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('루나러브굿 나루 공작소','홍대 인근 레트로 피규어·장난감 공방형 샵','서울 마포구 서교동 일대','홍대',37.552000,126.919000,4.20,80,'02-6082-3300','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 카카시 포토카드', '나루토', '카카시', '포토카드', 5000, 30, 'https://example.com/goods/nr_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 카카시 피규어', '나루토', '카카시', '피규어', 25000, 8, 'https://example.com/goods/nr_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 카카시 인형', '나루토', '카카시', '인형', 18000, 12, 'https://example.com/goods/nr_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 카카시 키링', '나루토', '카카시', '키링', 7000, 25, 'https://example.com/goods/nr_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 카카시 아크릴스탠드', '나루토', '카카시', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('애니굿즈 키라키라토모 수원본점','수원역 인근 애니·아이돌 굿즈 전문샵','경기 수원시 팔달구 향교로 4 3층','수원',37.266500,127.000000,4.60,150,'050-6805-2148','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 히나타 포토카드', '나루토', '히나타', '포토카드', 5000, 30, 'https://example.com/goods/nr_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 히나타 피규어', '나루토', '히나타', '피규어', 25000, 8, 'https://example.com/goods/nr_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 히나타 인형', '나루토', '히나타', '인형', 18000, 12, 'https://example.com/goods/nr_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 히나타 키링', '나루토', '히나타', '키링', 7000, 25, 'https://example.com/goods/nr_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (2, '나루토 히나타 아크릴스탠드', '나루토', '히나타', '아크릴스탠드', 12000, 10, 'https://example.com/goods/nr_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('챌린저 롯데백화점 평촌점','스트리트 브랜드·콜라보 굿즈 팝업 매장','경기 안양시 동안구 시민대로 180 롯데백화점 평촌 6층','안양/평촌',37.390001,126.950349,4.10,70,'010-3713-3215','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 탄지로 포토카드', '귀멸의칼날', '탄지로', '포토카드', 5000, 30, 'https://example.com/goods/ds_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 탄지로 피규어', '귀멸의칼날', '탄지로', '피규어', 25000, 8, 'https://example.com/goods/ds_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 탄지로 인형', '귀멸의칼날', '탄지로', '인형', 18000, 12, 'https://example.com/goods/ds_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 탄지로 키링', '귀멸의칼날', '탄지로', '키링', 7000, 25, 'https://example.com/goods/ds_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 탄지로 아크릴스탠드', '귀멸의칼날', '탄지로', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('챌린저 신세계 여주 프리미엄 빌리지점','여주 아울렛 내 스트리트 굿즈·의류 매장','경기 여주시 명품로 316-10 1-2호','여주',37.243136,127.617162,4.00,60,'031-883-1072','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 네즈코 포토카드', '귀멸의칼날', '네즈코', '포토카드', 5000, 30, 'https://example.com/goods/ds_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 네즈코 피규어', '귀멸의칼날', '네즈코', '피규어', 25000, 8, 'https://example.com/goods/ds_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 네즈코 인형', '귀멸의칼날', '네즈코', '인형', 18000, 12, 'https://example.com/goods/ds_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 네즈코 키링', '귀멸의칼날', '네즈코', '키링', 7000, 25, 'https://example.com/goods/ds_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 네즈코 아크릴스탠드', '귀멸의칼날', '네즈코', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('챌린저 현대프리미엄아울렛 김포점','김포 아울렛 2층 스트리트 패션·굿즈 팝업','경기 김포시 고촌읍 아라육로152번길 100 현대프리미엄아울렛 WEST 2층','김포',37.597228,126.785221,4.10,65,'031-8048-2367','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 젠이츠 포토카드', '귀멸의칼날', '젠이츠', '포토카드', 5000, 30, 'https://example.com/goods/ds_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 젠이츠 피규어', '귀멸의칼날', '젠이츠', '피규어', 25000, 8, 'https://example.com/goods/ds_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 젠이츠 인형', '귀멸의칼날', '젠이츠', '인형', 18000, 12, 'https://example.com/goods/ds_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 젠이츠 키링', '귀멸의칼날', '젠이츠', '키링', 7000, 25, 'https://example.com/goods/ds_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 젠이츠 아크릴스탠드', '귀멸의칼날', '젠이츠', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('챌린저 현대시티몰 가든파이브점','가든파이브 내 라이프스타일·스트리트 굿즈샵','서울 송파구 충민로 66 현대시티아울렛 가든파이브 4층','송파/가든파이브',37.477858,127.124712,4.00,55,'02-2673-2456','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 이노스케 포토카드', '귀멸의칼날', '이노스케', '포토카드', 5000, 30, 'https://example.com/goods/ds_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 이노스케 피규어', '귀멸의칼날', '이노스케', '피규어', 25000, 8, 'https://example.com/goods/ds_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 이노스케 인형', '귀멸의칼날', '이노스케', '인형', 18000, 12, 'https://example.com/goods/ds_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 이노스케 키링', '귀멸의칼날', '이노스케', '키링', 7000, 25, 'https://example.com/goods/ds_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 이노스케 아크릴스탠드', '귀멸의칼날', '이노스케', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('챌린저 스타필드 하남점','스타필드 하남 2층 스트리트 브랜드 팝업스토어','경기 하남시 미사대로 750 스타필드 하남 2층','경기/하남',37.545489,127.224333,4.20,90,'031-8072-8643','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 렌고쿠 포토카드', '귀멸의칼날', '렌고쿠', '포토카드', 5000, 30, 'https://example.com/goods/ds_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 렌고쿠 피규어', '귀멸의칼날', '렌고쿠', '피규어', 25000, 8, 'https://example.com/goods/ds_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 렌고쿠 인형', '귀멸의칼날', '렌고쿠', '인형', 18000, 12, 'https://example.com/goods/ds_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 렌고쿠 키링', '귀멸의칼날', '렌고쿠', '키링', 7000, 25, 'https://example.com/goods/ds_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (3, '귀멸의칼날 렌고쿠 아크릴스탠드', '귀멸의칼날', '렌고쿠', '아크릴스탠드', 12000, 10, 'https://example.com/goods/ds_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('브라더굿즈 강남점','신논현·강남역 사이 가챠·캐릭터 굿즈 전문샵','서울 강남구 강남대로102길 13 골든포레 지하 1층','강남/신논현',37.501479,127.026967,0.00,0,'070-8657-2790','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 이사기 포토카드', '블루록', '이사기', '포토카드', 5000, 30, 'https://example.com/goods/bl_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 이사기 피규어', '블루록', '이사기', '피규어', 25000, 8, 'https://example.com/goods/bl_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 이사기 인형', '블루록', '이사기', '인형', 18000, 12, 'https://example.com/goods/bl_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 이사기 키링', '블루록', '이사기', '키링', 7000, 25, 'https://example.com/goods/bl_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 이사기 아크릴스탠드', '블루록', '이사기', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('피규어뮤지엄W','청담동에 위치한 피규어 전시·판매 전문 박물관','서울 강남구 선릉로158길 3','청담/강남',37.5257998,127.040352,4.80,320,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 나기 포토카드', '블루록', '나기', '포토카드', 5000, 30, 'https://example.com/goods/bl_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 나기 피규어', '블루록', '나기', '피규어', 25000, 8, 'https://example.com/goods/bl_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 나기 인형', '블루록', '나기', '인형', 18000, 12, 'https://example.com/goods/bl_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 나기 키링', '블루록', '나기', '키링', 7000, 25, 'https://example.com/goods/bl_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 나기 아크릴스탠드', '블루록', '나기', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('POP MART 코엑스몰점','스타필드 코엑스몰 내 블라인드 피규어 전문 매장','서울 강남구 영동대로 513 코엑스몰 B1층','코엑스/삼성',37.51148310935,127.06033711446,4.60,280,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 바치라 포토카드', '블루록', '바치라', '포토카드', 5000, 30, 'https://example.com/goods/bl_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 바치라 피규어', '블루록', '바치라', '피규어', 25000, 8, 'https://example.com/goods/bl_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 바치라 인형', '블루록', '바치라', '인형', 18000, 12, 'https://example.com/goods/bl_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 바치라 키링', '블루록', '바치라', '키링', 7000, 25, 'https://example.com/goods/bl_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 바치라 아크릴스탠드', '블루록', '바치라', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('POP MART 용산 아이파크몰점','용산역 아이파크몰 내 팝마트 오프라인 매장','서울 용산구 한강대로23길 55 아이파크몰','용산',37.52890681,126.9646345,4.50,240,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 치기리 포토카드', '블루록', '치기리', '포토카드', 5000, 30, 'https://example.com/goods/bl_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 치기리 피규어', '블루록', '치기리', '피규어', 25000, 8, 'https://example.com/goods/bl_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 치기리 인형', '블루록', '치기리', '인형', 18000, 12, 'https://example.com/goods/bl_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 치기리 키링', '블루록', '치기리', '키링', 7000, 25, 'https://example.com/goods/bl_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 치기리 아크릴스탠드', '블루록', '치기리', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('POP MART 수원 AK플라자점','수원역 AK플라자 내 블라인드 피규어·굿즈 매장','경기 수원시 팔달구 덕영대로 924 AK플라자 수원점','수원',37.266124,127.000158,4.40,190,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 렌스케 포토카드', '블루록', '렌스케', '포토카드', 5000, 30, 'https://example.com/goods/bl_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 렌스케 피규어', '블루록', '렌스케', '피규어', 25000, 8, 'https://example.com/goods/bl_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 렌스케 인형', '블루록', '렌스케', '인형', 18000, 12, 'https://example.com/goods/bl_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 렌스케 키링', '블루록', '렌스케', '키링', 7000, 25, 'https://example.com/goods/bl_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (4, '블루록 렌스케 아크릴스탠드', '블루록', '렌스케', '아크릴스탠드', 12000, 10, 'https://example.com/goods/bl_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('POP MART 스타필드 안성점','스타필드 안성 내 팝마트 블라인드 피규어샵','경기 안성시 공도읍 서동대로 3930-39 스타필드 안성','안성',36.9946845979,127.1472661744,4.30,160,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 이타도리 포토카드', '주술회전', '이타도리', '포토카드', 5000, 30, 'https://example.com/goods/jjk_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 이타도리 피규어', '주술회전', '이타도리', '피규어', 25000, 8, 'https://example.com/goods/jjk_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 이타도리 인형', '주술회전', '이타도리', '인형', 18000, 12, 'https://example.com/goods/jjk_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 이타도리 키링', '주술회전', '이타도리', '키링', 7000, 25, 'https://example.com/goods/jjk_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 이타도리 아크릴스탠드', '주술회전', '이타도리', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('POP MART 홍대 플래그십 스토어','홍대 걷고싶은거리 인근 대형 플래그십 굿즈 매장','서울 마포구 와우산로23길 56','홍대',37.555249646612,126.92371442151,4.50,260,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 후시구로 포토카드', '주술회전', '후시구로', '포토카드', 5000, 30, 'https://example.com/goods/jjk_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 후시구로 피규어', '주술회전', '후시구로', '피규어', 25000, 8, 'https://example.com/goods/jjk_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 후시구로 인형', '주술회전', '후시구로', '인형', 18000, 12, 'https://example.com/goods/jjk_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 후시구로 키링', '주술회전', '후시구로', '키링', 7000, 25, 'https://example.com/goods/jjk_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 후시구로 아크릴스탠드', '주술회전', '후시구로', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('애니플러스 합정점','TV 애니메이션 공식 굿즈·피규어 전문샵','서울 마포구 월드컵로3길 14','합정',37.550494907182,126.91193741226,4.60,210,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 쿠기사키 포토카드', '주술회전', '쿠기사키', '포토카드', 5000, 30, 'https://example.com/goods/jjk_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 쿠기사키 피규어', '주술회전', '쿠기사키', '피규어', 25000, 8, 'https://example.com/goods/jjk_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 쿠기사키 인형', '주술회전', '쿠기사키', '인형', 18000, 12, 'https://example.com/goods/jjk_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 쿠기사키 키링', '주술회전', '쿠기사키', '키링', 7000, 25, 'https://example.com/goods/jjk_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 쿠기사키 아크릴스탠드', '주술회전', '쿠기사키', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('브라더굿즈 강남점','역삼역 인근 애니·게임 캐릭터 굿즈 편집샵','서울 강남구 강남대로102길 13 B1층','강남',37.501967358069,127.02683991652,4.70,220,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 고죠 포토카드', '주술회전', '고죠', '포토카드', 5000, 30, 'https://example.com/goods/jjk_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 고죠 피규어', '주술회전', '고죠', '피규어', 25000, 8, 'https://example.com/goods/jjk_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 고죠 인형', '주술회전', '고죠', '인형', 18000, 12, 'https://example.com/goods/jjk_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 고죠 키링', '주술회전', '고죠', '키링', 7000, 25, 'https://example.com/goods/jjk_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 고죠 아크릴스탠드', '주술회전', '고죠', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('더쿠 수원점','수원역 인근 애니·게임 굿즈·가챠 전문샵','경기 수원시 팔달구 향교로3번길 17 2층','수원',37.268309157635,127.00144533428,4.50,180,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 나나미 포토카드', '주술회전', '나나미', '포토카드', 5000, 30, 'https://example.com/goods/jjk_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 나나미 피규어', '주술회전', '나나미', '피규어', 25000, 8, 'https://example.com/goods/jjk_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 나나미 인형', '주술회전', '나나미', '인형', 18000, 12, 'https://example.com/goods/jjk_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 나나미 키링', '주술회전', '나나미', '키링', 7000, 25, 'https://example.com/goods/jjk_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (5, '주술회전 나나미 아크릴스탠드', '주술회전', '나나미', '아크릴스탠드', 12000, 10, 'https://example.com/goods/jjk_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('조이하비 신도림점','신도림 테크노마트 내 프라모델·RC·건담 대형 매장','서울 구로구 새말로 97 신도림테크노마트 3층','신도림',37.5073194,126.8901556,4.60,250,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 덴지 포토카드', '체인소맨', '덴지', '포토카드', 5000, 30, 'https://example.com/goods/csm_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 덴지 피규어', '체인소맨', '덴지', '피규어', 25000, 8, 'https://example.com/goods/csm_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 덴지 인형', '체인소맨', '덴지', '인형', 18000, 12, 'https://example.com/goods/csm_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 덴지 키링', '체인소맨', '덴지', '키링', 7000, 25, 'https://example.com/goods/csm_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 덴지 아크릴스탠드', '체인소맨', '덴지', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('포켓몬 팝업스토어 롯데월드몰점','잠실 롯데월드몰 아트리움 일대 포켓몬 공식 팝업스토어','서울 송파구 올림픽로 300 롯데월드몰 1층 아트리움','잠실/롯데월드몰',37.513100,127.103400,4.60,240,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 파워 포토카드', '체인소맨', '파워', '포토카드', 5000, 30, 'https://example.com/goods/csm_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 파워 피규어', '체인소맨', '파워', '피규어', 25000, 8, 'https://example.com/goods/csm_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 파워 인형', '체인소맨', '파워', '인형', 18000, 12, 'https://example.com/goods/csm_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 파워 키링', '체인소맨', '파워', '키링', 7000, 25, 'https://example.com/goods/csm_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 파워 아크릴스탠드', '체인소맨', '파워', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('카카오프렌즈 롯데월드몰점','카카오프렌즈 캐릭터 중심 공식 굿즈샵','서울 송파구 올림픽로 300 롯데월드몰 5층','잠실/롯데월드몰',37.513100,127.103400,4.50,210,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 마키마 포토카드', '체인소맨', '마키마', '포토카드', 5000, 30, 'https://example.com/goods/csm_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 마키마 피규어', '체인소맨', '마키마', '피규어', 25000, 8, 'https://example.com/goods/csm_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 마키마 인형', '체인소맨', '마키마', '인형', 18000, 12, 'https://example.com/goods/csm_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 마키마 키링', '체인소맨', '마키마', '키링', 7000, 25, 'https://example.com/goods/csm_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 마키마 아크릴스탠드', '체인소맨', '마키마', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('라인프렌즈 럭키하우스 롯데월드몰점','브라운·코니·BT21 등 라인프렌즈 팝업형 굿즈샵','서울 송파구 올림픽로 300 롯데월드몰 1층','잠실/롯데월드몰',37.513100,127.103400,4.40,190,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 아키 포토카드', '체인소맨', '아키', '포토카드', 5000, 30, 'https://example.com/goods/csm_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 아키 피규어', '체인소맨', '아키', '피규어', 25000, 8, 'https://example.com/goods/csm_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 아키 인형', '체인소맨', '아키', '인형', 18000, 12, 'https://example.com/goods/csm_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 아키 키링', '체인소맨', '아키', '키링', 7000, 25, 'https://example.com/goods/csm_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 아키 아크릴스탠드', '체인소맨', '아키', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('타미야 팩토리 롯데월드몰점','프라모델·미니카 등 타미야 제품 전문 매장','서울 송파구 올림픽로 300 롯데월드몰 지하1층','잠실/롯데월드몰',37.513100,127.103400,4.50,160,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 히메노 포토카드', '체인소맨', '히메노', '포토카드', 5000, 30, 'https://example.com/goods/csm_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 히메노 피규어', '체인소맨', '히메노', '피규어', 25000, 8, 'https://example.com/goods/csm_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 히메노 인형', '체인소맨', '히메노', '인형', 18000, 12, 'https://example.com/goods/csm_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 히메노 키링', '체인소맨', '히메노', '키링', 7000, 25, 'https://example.com/goods/csm_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (6, '체인소맨 히메노 아크릴스탠드', '체인소맨', '히메노', '아크릴스탠드', 12000, 10, 'https://example.com/goods/csm_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('레고스토어 롯데월드몰점','공식 레고 스토어, 다양한 시리즈와 피규어 판매','서울 송파구 올림픽로 300 롯데월드몰 지하1층','잠실/롯데월드몰',37.513100,127.103400,4.70,280,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 히나타 포토카드', '하이큐', '히나타', '포토카드', 5000, 30, 'https://example.com/goods/hq_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 히나타 피규어', '하이큐', '히나타', '피규어', 25000, 8, 'https://example.com/goods/hq_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 히나타 인형', '하이큐', '히나타', '인형', 18000, 12, 'https://example.com/goods/hq_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 히나타 키링', '하이큐', '히나타', '키링', 7000, 25, 'https://example.com/goods/hq_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 히나타 아크릴스탠드', '하이큐', '히나타', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('건담베이스 스타필드 코엑스몰점','반다이 건담 프라모델 전문 매장','서울 강남구 영동대로 513 스타필드 코엑스몰 지하2층','코엑스/삼성',37.511483,127.060337,4.70,260,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 카게야마 포토카드', '하이큐', '카게야마', '포토카드', 5000, 30, 'https://example.com/goods/hq_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 카게야마 피규어', '하이큐', '카게야마', '피규어', 25000, 8, 'https://example.com/goods/hq_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 카게야마 인형', '하이큐', '카게야마', '인형', 18000, 12, 'https://example.com/goods/hq_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 카게야마 키링', '하이큐', '카게야마', '키링', 7000, 25, 'https://example.com/goods/hq_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 카게야마 아크릴스탠드', '하이큐', '카게야마', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('레고스토어 코엑스점','공식 레고 스토어 코엑스 플래그십 매장','서울 강남구 영동대로 513 스타필드 코엑스몰 지하1층','코엑스/삼성',37.511483,127.060337,4.60,230,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 츠키시마 포토카드', '하이큐', '츠키시마', '포토카드', 5000, 30, 'https://example.com/goods/hq_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 츠키시마 피규어', '하이큐', '츠키시마', '피규어', 25000, 8, 'https://example.com/goods/hq_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 츠키시마 인형', '하이큐', '츠키시마', '인형', 18000, 12, 'https://example.com/goods/hq_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 츠키시마 키링', '하이큐', '츠키시마', '키링', 7000, 25, 'https://example.com/goods/hq_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 츠키시마 아크릴스탠드', '하이큐', '츠키시마', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('나비타월드 스타필드 코엑스몰점','피규어·프라모델·보드게임 편집 키덜트샵','서울 강남구 영동대로 513 스타필드 코엑스몰 지하1층','코엑스/삼성',37.511483,127.060337,4.40,150,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 니시노야 포토카드', '하이큐', '니시노야', '포토카드', 5000, 30, 'https://example.com/goods/hq_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 니시노야 피규어', '하이큐', '니시노야', '피규어', 25000, 8, 'https://example.com/goods/hq_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 니시노야 인형', '하이큐', '니시노야', '인형', 18000, 12, 'https://example.com/goods/hq_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 니시노야 키링', '하이큐', '니시노야', '키링', 7000, 25, 'https://example.com/goods/hq_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 니시노야 아크릴스탠드', '하이큐', '니시노야', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('라인프렌즈 스토어 타임스퀘어점','라인프렌즈·BT21 캐릭터 공식 굿즈샵','서울 영등포구 영중로 15 타임스퀘어 지하2층 원더플레이스 내','영등포/타임스퀘어',37.517834,126.905382,4.50,200,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 스가와라 포토카드', '하이큐', '스가와라', '포토카드', 5000, 30, 'https://example.com/goods/hq_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 스가와라 피규어', '하이큐', '스가와라', '피규어', 25000, 8, 'https://example.com/goods/hq_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 스가와라 인형', '하이큐', '스가와라', '인형', 18000, 12, 'https://example.com/goods/hq_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 스가와라 키링', '하이큐', '스가와라', '키링', 7000, 25, 'https://example.com/goods/hq_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (7, '하이큐 스가와라 아크릴스탠드', '하이큐', '스가와라', '아크릴스탠드', 12000, 10, 'https://example.com/goods/hq_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('토이킹덤 타임스퀘어 영등포점','대형 장난감·보드게임·피규어 전문 매장','서울 영등포구 영중로 15 타임스퀘어 지하1층','영등포/타임스퀘어',37.517834,126.905382,4.40,180,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 에렌 포토카드', '진격의거인', '에렌', '포토카드', 5000, 30, 'https://example.com/goods/aot_01.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 에렌 피규어', '진격의거인', '에렌', '피규어', 25000, 8, 'https://example.com/goods/aot_02.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 에렌 인형', '진격의거인', '에렌', '인형', 18000, 12, 'https://example.com/goods/aot_03.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 에렌 키링', '진격의거인', '에렌', '키링', 7000, 25, 'https://example.com/goods/aot_04.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 에렌 아크릴스탠드', '진격의거인', '에렌', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_05.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('반다이 펀스퀘어 타임스퀘어점','반다이 피규어·프라모델·가챠 전문 편집샵','서울 영등포구 영중로 15 타임스퀘어 4층 펀스퀘어','영등포/타임스퀘어',37.517834,126.905382,4.30,160,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 미카사 포토카드', '진격의거인', '미카사', '포토카드', 5000, 30, 'https://example.com/goods/aot_06.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 미카사 피규어', '진격의거인', '미카사', '피규어', 25000, 8, 'https://example.com/goods/aot_07.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 미카사 인형', '진격의거인', '미카사', '인형', 18000, 12, 'https://example.com/goods/aot_08.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 미카사 키링', '진격의거인', '미카사', '키링', 7000, 25, 'https://example.com/goods/aot_09.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 미카사 아크릴스탠드', '진격의거인', '미카사', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_10.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('토이킹덤 스타필드 고양점','대형 완구·피규어·보드게임 전문 장난감 왕국','경기 고양시 덕양구 고양대로 1955 스타필드 고양 3층 토이킹덤','고양/스타필드고양',37.647056,126.896011,4.50,190,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 알민 포토카드', '진격의거인', '알민', '포토카드', 5000, 30, 'https://example.com/goods/aot_11.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 알민 피규어', '진격의거인', '알민', '피규어', 25000, 8, 'https://example.com/goods/aot_12.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 알민 인형', '진격의거인', '알민', '인형', 18000, 12, 'https://example.com/goods/aot_13.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 알민 키링', '진격의거인', '알민', '키링', 7000, 25, 'https://example.com/goods/aot_14.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 알민 아크릴스탠드', '진격의거인', '알민', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_15.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('레고스토어 스타필드 고양점','공식 레고 스토어, 전시·체험 가능한 매장','경기 고양시 덕양구 고양대로 1955 스타필드 고양 3층 레고스토어','고양/스타필드고양',37.647056,126.896011,4.60,210,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 리바이 포토카드', '진격의거인', '리바이', '포토카드', 5000, 30, 'https://example.com/goods/aot_16.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 리바이 피규어', '진격의거인', '리바이', '피규어', 25000, 8, 'https://example.com/goods/aot_17.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 리바이 인형', '진격의거인', '리바이', '인형', 18000, 12, 'https://example.com/goods/aot_18.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 리바이 키링', '진격의거인', '리바이', '키링', 7000, 25, 'https://example.com/goods/aot_19.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 리바이 아크릴스탠드', '진격의거인', '리바이', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_20.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('마이크로킥보드 스타필드 고양점','킥보드·키즈 모빌리티 중심 라이프스타일 굿즈샵','경기 고양시 덕양구 고양대로 1955 스타필드 고양 3층 마이크로킥보드','고양/스타필드고양',37.647056,126.896011,4.20,120,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 한지 포토카드', '진격의거인', '한지', '포토카드', 5000, 30, 'https://example.com/goods/aot_21.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 한지 피규어', '진격의거인', '한지', '피규어', 25000, 8, 'https://example.com/goods/aot_22.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 한지 인형', '진격의거인', '한지', '인형', 18000, 12, 'https://example.com/goods/aot_23.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 한지 키링', '진격의거인', '한지', '키링', 7000, 25, 'https://example.com/goods/aot_24.jpg');
-INSERT INTO store_goods (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url)
-VALUES (8, '진격의거인 한지 아크릴스탠드', '진격의거인', '한지', '아크릴스탠드', 12000, 10, 'https://example.com/goods/aot_25.jpg');
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('토이킹덤 스타필드 하남점','대형 토이·피규어·보드게임 전문 매장','경기 하남시 미사대로 750 스타필드 하남 3층 토이킹덤','하남/스타필드하남',37.545490,127.224330,4.50,210,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
 
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('레고스토어 스타필드 하남점','국내 최대 규모 레고 공식 스토어','경기 하남시 미사대로 750 스타필드 하남 3층 레고스토어','하남/스타필드하남',37.545490,127.224330,4.70,260,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('브루클린웍스 스타필드 하남점','캠핑·아웃도어 감성 굿즈 전문 편집샵','경기 하남시 미사대로 750 스타필드 하남 2층 브루클린웍스','하남/스타필드하남',37.545490,127.224330,4.30,130,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('자라홈 스타필드 하남점','캐릭터·디자인 소품 포함 라이프스타일 홈굿즈샵','경기 하남시 미사대로 750 스타필드 하남 1층 자라홈','하남/스타필드하남',37.545490,127.224330,4.20,140,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('레고스토어 현대백화점 판교점','현대백화점 판교점 내 레고 공식 스토어','경기 성남시 분당구 판교역로 146 현대백화점 판교점 지하1층','성남/판교',37.392739,127.112094,4.60,220,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('닌텐도 스토어 현대백화점 판교점','닌텐도 콘솔·게임·피규어 굿즈 전문 매장','경기 성남시 분당구 판교역로 146 현대백화점 판교점','성남/판교',37.392739,127.112094,4.50,180,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('건담베이스 롯데 영플라자 본점','명동 롯데영플라자 지하1층 반다이 프라모델 전문샵','서울 중구 남대문로 67 롯데영플라자 지하1층 건담베이스','명동/영플라자',37.563630,126.982010,4.70,270,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('라인프렌즈 스토어 롯데 영플라자 명동점','라인프렌즈 캐릭터 인형·문구·패션 굿즈샵','서울 중구 남대문로 67 롯데영플라자 1층 라인프렌즈 스토어','명동/영플라자',37.563630,126.982010,4.60,230,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('라인프렌즈 월드 팝업스토어 롯데 영플라자점','BT21·미니니 등 IPX 캐릭터 종합 팝업스토어','서울 중구 남대문로 67 롯데영플라자 1층 라인프렌즈 월드 팝업','명동/영플라자',37.563630,126.982010,4.50,190,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+INSERT INTO TKK.store (name, one_line_desc, address, region_name, latitude, longitude, avg_rating, bookmark_count, phone, image_url)
+VALUES ('모노폴리 롯데 영플라자 명동점','BT21·라인프렌즈 등 라이선스 캐릭터 편집 굿즈샵','서울 중구 남대문로 67 롯데영플라자 지하1층 모노폴리 매장','명동/영플라자',37.563630,126.982010,4.40,160,'미등록','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/store/default.jpg');
+
+SELECT 1 FROM dual;
 COMMIT;
 
 
 
 
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
 
-             '덕후로드 팝업 시즌1',
-             '홍대 더쿠쿠 라운지',
-             '서울특별시 마포구 와우산로 21길 25',
-             '홍대',
-             37.55240000, 126.92380000,
-             DATE '2025-01-10',
-             DATE '2025-02-02',
-             'https://example.com/popup/banner01.jpg',
-             '애니메이션 굿즈와 한정 포토카드가 준비된 덕후로드 첫 번째 팝업입니다.'
-         );
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+-- ✅ Oracle용 (TKK.STORE_GOODS) : NOW() -> SYSDATE, 다건 VALUES -> 단건 INSERT로 변환
+-- goods_id는 IDENTITY라서 컬럼에 안 넣음
 
-             '굿즈 로드 in 강남',
-             '강남 스퀘어 홀',
-             '서울특별시 강남구 테헤란로 108',
-             '강남',
-             37.50130000, 127.02770000,
-             DATE '2025-02-15',
-             DATE '2025-03-02',
-             'https://example.com/popup/banner02.jpg',
-             '아이돌 포토카드, 피규어, 키링 등 인기 굿즈를 한 번에 만나볼 수 있는 팝업입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'BIG SOFVIMATES 루피 피규어', '원피스', '몽키 D. 루피', '피규어', 28000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+BIG+SOFVIMATES+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'BIG SOFVIMATES 쵸파 드럼왕국 Ver.', '원피스', '토니토니 쵸파', '피규어', 26000, 10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+BIG+SOFVIMATES+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B5%B8%ED%8C%8C+%EB%93%9C%EB%9F%BC+%EC%99%95%EA%B5%AD+Ver..png', SYSDATE);
 
-             '레트로 애니 팝업존',
-             '코엑스 B1 특별관',
-             '서울특별시 강남구 영동대로 513',
-             '삼성',
-             37.51240000, 127.05880000,
-             DATE '2025-03-05',
-             DATE '2025-03-20',
-             'https://example.com/popup/banner03.jpg',
-             '90년대부터 2000년대 초반까지의 레트로 애니메이션 굿즈를 모은 특별전입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'DXF 그랜드라인 스페셜 트라팔가 로우', '원피스', '트라팔가 로우', '피규어', 32000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+DXF+%EA%B7%B8%EB%9E%9C%EB%93%9C%EB%9D%BC%EC%9D%B8+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%8A%A4%ED%8E%98%EC%85%9C+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%ED%8A%B8%EB%9D%BC%ED%8C%94%EA%B0%80+%EB%A1%9C%EC%9A%B0.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'GRANDISTA 루피 스페셜 에디션', '원피스', '몽키 D. 루피', '피규어', 35000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+GRANDISTA+%EA%B7%B8%EB%9E%9C%EB%94%94%EC%8A%A4%ED%83%80+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC+%EC%8A%A4%ED%8E%98%EC%85%9C+%EC%97%90%EB%94%94%EC%85%98.png', SYSDATE);
 
-             '봄날 아이돌 굿즈 페어',
-             '명동 컬쳐 스튜디오',
-             '서울특별시 중구 명동8길 27',
-             '명동',
-             37.56300000, 126.98270000,
-             DATE '2025-03-25',
-             DATE '2025-04-10',
-             'https://example.com/popup/banner04.jpg',
-             '신규 앨범 발매 기념 포토카드와 한정판 굿즈를 판매하는 아이돌 특집 팝업입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'THEORAMA SOUL 샹크스', '원피스', '샹크스', '피규어', 68000, 3, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+THEORAMA+SOUL+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%83%B9%ED%81%AC%EC%8A%A4.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '메가 월드 콜렉터블 루피 VS 키자루', '원피스', '몽키 D. 루피', '피규어', 55000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80+%EC%9B%94%EB%93%9C+%EC%BD%9C%EB%A0%89%ED%84%B0%EB%B8%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC+VS+%EB%B3%BC%EC%82%AC%EB%A6%AC%EB%85%B8++%ED%82%A4%EC%9E%90%EB%A3%A8.png', SYSDATE);
 
-             '밤하늘 피규어 마켓',
-             '합정 스카이홀',
-             '서울특별시 마포구 양화로 45',
-             '합정',
-             37.54910000, 126.91450000,
-             DATE '2025-04-12',
-             DATE '2025-04-28',
-             'https://example.com/popup/banner05.jpg',
-             '한정판 피규어와 디오라마를 전시 및 판매하는 피규어 중심 팝업 스토어입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'POP KxMAXIMUM 상디', '원피스', '상디', '포스터', 198000, 2, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+PoP+Portrait.Of.Pirates+KxMAXIMUM+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%83%81%EB%94%94.jpg', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'POP NEO-MAXIMUM 흰 수염', '원피스', '에드워드 뉴게이트', '포스터', 298000, 1, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+POP+Portrait.Of.Pirates+NEO-MAXIMUM+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%97%90%EB%93%9C%EC%9B%8C%EB%93%9C+%EB%89%B4%EA%B2%8C%EC%9D%B4%ED%8A%B8++%ED%9D%B0+%EC%88%98%EC%97%BC.jpg', SYSDATE);
 
-             '굿즈 캔버스 팝업',
-             '성수 브릭 스튜디오',
-             '서울특별시 성동구 연무장5길 7',
-             '성수',
-             37.54470000, 127.05580000,
-             DATE '2025-05-01',
-             DATE '2025-05-18',
-             'https://example.com/popup/banner06.jpg',
-             '굿즈와 아트워크가 결합된 일러스트, 포스터, 아트 프린트 중심 팝업입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'POP WA-MAXIMUM 바다의 협객 징베', '원피스', '징베', '포스터', 210000, 2, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+PoP+Portrait.Of.Pirates+WA-MAXIMUM+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%B0%94%EB%8B%A4%EC%9D%98+%ED%98%91%EA%B0%9D+%EC%A7%95%EB%B2%A0.jpg', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '기어5 루피 스페셜 액션 피규어', '원피스', '몽키 D. 루피', '피규어', 72000, 3, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%AA%BD%ED%82%A4+D.+%EB%A3%A8%ED%94%BC+%EA%B8%B0%EC%96%B4+5.jpg', SYSDATE);
 
-             '여름 한정 서머 굿즈전',
-             '해운대 비치라운지',
-             '부산광역시 해운대구 해운대해변로 264',
-             '해운대',
-             35.15980000, 129.16030000,
-             DATE '2025-06-20',
-             DATE '2025-07-10',
-             'https://example.com/popup/banner07.jpg',
-             '여름 컨셉 포토카드, 비치타월, 텀블러 등 계절 한정 굿즈를 판매합니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '하이큐 Yummy 마스코트 A5 엽서 세트', '하이큐', '히나타 쇼요', '엽서', 12000, 15, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+Yummy+%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EA%B3%B5%EC%8B%9D+A5+%EC%97%BD%EC%84%9C+%EC%84%B8%ED%8A%B8.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '푸리누이타치 드림 미니 봉제인형', '하이큐', '보쿠토 코타로', '봉제인형', 22000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+-+%EB%B3%B4%EC%BF%A0%ED%86%A0+%EC%BD%94%ED%83%80%EB%A1%9C.jpg', SYSDATE);
 
-             '굿즈 로드 전국 원정전 - 대구',
-             '동성로 팝업홀',
-             '대구광역시 중구 동성로 12',
-             '동성로',
-             35.86940000, 128.59680000,
-             DATE '2025-07-15',
-             DATE '2025-07-30',
-             'https://example.com/popup/banner08.jpg',
-             '덕후로드 팀이 대구로 찾아가는 원정 팝업으로 인기 상품 위주로 구성됩니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'Mocho 시리즈 아크릴 스탠드 3탄', '하이큐', '쿠로오 테츠로', '아크릴스탠드', 18000, 10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%8B%B1%ED%81%AC+%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98+Mocho+%EC%8B%9C%EB%A6%AC%EC%A6%88+3%ED%83%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%BF%A0%EB%A1%9C%EC%98%A4+%ED%85%8C%EC%B8%A0%EB%A1%9C.jpg', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'Mocho 시리즈 아크릴 키체인 4탄', '하이큐', '코모리 모토야', '아크릴키링', 9000, 20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%8B%B1%ED%81%AC+%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98+Mocho+%EC%8B%9C%EB%A6%AC%EC%A6%88+4%ED%83%84+%EC%95%84%ED%81%AC%EB%A6%B4+%ED%82%A4%EC%B2%B4%EC%9D%B8+-+%EC%BD%94%EB%AA%A8%EB%A6%AC+%EB%AA%A8%ED%86%A0%EC%95%BC.jpg', SYSDATE);
 
-             '아트토이 & 피규어 쇼케이스',
-             '홍대 카툰갤러리',
-             '서울특별시 마포구 어울마당로 65',
-             '홍대',
-             37.55360000, 126.92080000,
-             DATE '2025-08-05',
-             DATE '2025-08-22',
-             'https://example.com/popup/banner09.jpg',
-             '인디 작가들이 만든 아트토이와 수제 피규어를 중심으로 한 쇼케이스 팝업입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '치미케모 마스코트 봉제인형 JF2026', '하이큐', '쿠로오 테츠로', '봉제인형', 32000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%97%94%EC%8A%A4%EC%B9%B4%EC%9D%B4+JF+2026+%EC%B4%88%ED%8A%B9%EB%8C%80+%EC%B9%98%EB%AF%B8%EC%BC%80%EB%AA%A8+%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%BF%A0%EB%A1%9C%EC%98%A4+%ED%85%8C%EC%B8%A0%EB%A1%9C.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '치미케모 마스코트 봉제인형 JF2026', '하이큐', '히나타 쇼요', '봉제인형', 32000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%97%94%EC%8A%A4%EC%B9%B4%EC%9D%B4+JF+2026+%EC%B4%88%ED%8A%B9%EB%8C%80+%EC%B9%98%EB%AF%B8%EC%BC%80%EB%AA%A8+%EB%A7%88%EC%8A%A4%EC%BD%94%ED%8A%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%ED%9E%88%EB%82%98%ED%83%80+%EC%87%BC%EC%9A%94.png', SYSDATE);
 
-             '굿즈 로드 할로윈 에디션',
-             '이태원 스튜디오 라운지',
-             '서울특별시 용산구 이태원로 188',
-             '이태원',
-             37.53490000, 126.99440000,
-             DATE '2025-10-10',
-             DATE '2025-10-31',
-             'https://example.com/popup/banner10.jpg',
-             '할로윈 컨셉으로 재해석된 캐릭터 굿즈와 한정판 포카를 판매합니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '점프 아크릴 기가 피규어 스탠드', '하이큐', '아카아시 케이지', '아크릴스탠드', 29000, 7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%EC%A0%90%ED%94%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EA%B8%B0%EA%B0%80+%ED%94%BC%EA%B7%9C%EC%96%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%95%84%EC%B9%B4%EC%95%84%EC%8B%9C+%EC%BC%80%EC%9D%B4%EC%A7%80.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'JF2026 아크릴 스탠드', '하이큐', '코즈메 켄마', '아크릴스탠드', 25000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EA%B5%BF%EC%A6%88+%ED%83%80%EC%B9%B4%EB%9D%BC%ED%86%A0%EB%AF%B8+%EC%95%84%EC%B8%A0+JF+2026+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%BD%94%EC%A6%88%EB%A9%94+%EC%BC%84%EB%A7%88.png', SYSDATE);
 
-             '겨울왕국 스페셜 팝업',
-             '잠실 스노우라운지',
-             '서울특별시 송파구 올림픽로 240',
-             '잠실',
-             37.51500000, 127.10250000,
-             DATE '2025-12-01',
-             DATE '2025-12-27',
-             'https://example.com/popup/banner11.jpg',
-             '겨울 감성에 맞춘 니트, 머플러, 핫팩 케이스 등 따뜻한 느낌의 굿즈를 판매합니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 유니폼 Ver.', '하이큐', '카게야마 토비오', '피규어', 42000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B9%B4%EA%B2%8C%EC%95%BC%EB%A7%88+%ED%86%A0%EB%B9%84%EC%98%A4+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 유니폼 Ver.', '하이큐', '히나타 쇼요', '피규어', 42000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%ED%95%98%EC%9D%B4%ED%81%90/%ED%95%98%EC%9D%B4%ED%81%90+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%ED%9E%88%EB%82%98%ED%83%80+%EC%87%BC%EC%9A%94+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..png', SYSDATE);
 
-             '아이돌 콜라보 카페 팝업',
-             '건대 커먼카페',
-             '서울특별시 광진구 아차산로 224',
-             '건대',
-             37.54040000, 127.07020000,
-             DATE '2025-09-01',
-             DATE '2025-09-21',
-             'https://example.com/popup/banner12.jpg',
-             '콜라보 메뉴와 컵홀더, 코스터, 포토카드 등 카페형 굿즈가 포함된 팝업입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '넨도로이드 1194 카마도 네즈코', '귀멸의 칼날', '카마도 네즈코', '피규어', 62000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B5%BF%EC%8A%A4%EB%A7%88%EC%9D%BC+%EC%BB%B4%ED%8D%BC%EB%8B%88+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+1194+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B9%B4%EB%A7%88%EB%8F%84+%EB%84%A4%EC%A6%88%EC%BD%94.png', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '넨도로이드 1334 아가츠마 젠이츠', '귀멸의 칼날', '아가츠마 젠이츠', '피규어', 62000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B5%BF%EC%8A%A4%EB%A7%88%EC%9D%BC+%EC%BB%B4%ED%8D%BC%EB%8B%88+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+1334+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%95%84%EA%B0%80%EC%B8%A0%EB%A7%88+%EC%A0%A0%EC%9D%B4%EC%B8%A0.png', SYSDATE);
 
-             '시티라이트 네온 굿즈전',
-             '광화문 라이트갤러리',
-             '서울특별시 종로구 세종대로 175',
-             '광화문',
-             37.57200000, 126.97690000,
-             DATE '2025-11-05',
-             DATE '2025-11-25',
-             'https://example.com/popup/banner13.jpg',
-             '네온 사인, 야간 일러스트, 형광 포스터 등 야경 컨셉의 굿즈를 전시 및 판매합니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'Fluffy Puffy 챠챠마루 피규어', '귀멸의 칼날', '챠챠마루', '피규어', 28000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+Fluffy+Puffy+%ED%94%8C%EB%9F%AC%ED%94%BC+%ED%8D%BC%ED%94%BC+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%B1%A0%EC%B1%A0%EB%A7%88%EB%A3%A8.jpg', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'PalVerse 피규어 1탄 랜덤', '귀멸의 칼날', '랜덤', '피규어', 12000, 20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EB%B6%80%EC%8B%9C%EB%A1%9C%EB%93%9C+%ED%81%AC%EB%A6%AC%EC%97%90%EC%9D%B4%ED%8B%B0%EB%B8%8C+PalVerse+%ED%94%BC%EA%B7%9C%EC%96%B4+1%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', SYSDATE);
 
-             '굿즈 로드 베스트셀러전',
-             '수원 AK 팝업존',
-             '경기도 수원시 팔달구 덕영대로 924',
-             '수원',
-             37.26580000, 127.00040000,
-             DATE '2025-04-20',
-             DATE '2025-05-05',
-             'https://example.com/popup/banner14.jpg',
-             '지금까지 인기가 높았던 베스트셀러 굿즈만 모아 재판매하는 기획 팝업입니다.'
-         );
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '모치코로링 누이 봉제인형 7탄 랜덤', '귀멸의 칼날', '랜덤', '봉제인형', 14000, 18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%EB%AA%A8%EC%B9%98%EC%BD%94%EB%A1%9C%EB%A7%81+%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+7%ED%83%84+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88jpg.jpg', SYSDATE);
 
-INSERT INTO popup_store (
-     title, place_name, address, region_name,
-    latitude, longitude, start_date, end_date,
-    banner_image_url, description
-) VALUES (
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '피탄코 러버 스트랩 A 랜덤', '귀멸의 칼날', '랜덤', '러버스트랩', 8000, 25, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%A0%9C1%EC%9E%A5+%ED%94%BC%ED%83%84%EC%BD%94+%EB%9F%AC%EB%B2%84+%EC%8A%A4%ED%8A%B8%EB%9E%A9+A+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', SYSDATE);
 
-             '신작 애니 런칭 팝업',
-             '판교 크리에이티브홀',
-             '경기도 성남시 분당구 분당내곡로 117',
-             '판교',
-             37.40210000, 127.10870000,
-             DATE '2025-06-01',
-             DATE '2025-06-16',
-             'https://example.com/popup/banner15.jpg',
-             '신작 애니메이션의 첫 공식 굿즈를 선보이는 런칭 기념 팝업 스토어입니다.'
-         );
-commit;
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 아가츠마 젠이츠', '귀멸의 칼날', '아가츠마 젠이츠', '피규어', 42000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%80%EC%B9%BC+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%95%84%EA%B0%80%EC%B8%A0%EB%A7%88+%EC%A0%A0%EC%9D%B4%EC%B8%A0.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '극장판 무한성편 키 비주얼 A3 포스터', '귀멸의 칼날', '카마도 탄지로', '포스터', 18000, 10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B7%80%EC%B9%BC+%EA%B5%BF%EC%A6%88+%ED%82%A4+%EB%B9%84%EC%A3%BC%EC%96%BC+%ED%8A%B9%EC%88%98+%EC%9D%B8%EC%87%84+A3+%ED%8F%AC%EC%8A%A4%ED%84%B0.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 도우마', '귀멸의 칼날', '도우마', '피규어', 44000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%8F%84%EC%9A%B0%EB%A7%88.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 코쵸우 시노부 스마일 Ver.', '귀멸의 칼날', '코쵸우 시노부', '피규어', 44000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EA%B7%80%EC%B9%BC/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%BD%94%EC%B5%B8%EC%9A%B0+%EC%8B%9C%EB%85%B8%EB%B6%80+%EC%8A%A4%EB%A7%88%EC%9D%BC+Ver..png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'JF2026 아크릴 스탠드 쵸소우', '주술회전', '쵸소우', '아크릴스탠드', 24000, 7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EA%B5%BF%EC%A6%88+%EB%8F%84%ED%98%B8+JF+2026+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%B5%B8%EC%86%8C%EC%9A%B0.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '푸리누이타치 드림 미니 봉제인형', '주술회전', '옷코츠 유타', '봉제인형', 22000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%98%B7%EC%BD%94%EC%B8%A0+%EC%9C%A0%ED%83%80.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '푸리누이타치 드림 미니 봉제인형', '주술회전', '이타도리 유지', '봉제인형', 22000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EB%82%A8%EC%BD%94+%EB%88%84%EC%9D%B4+%ED%91%B8%EB%A6%AC%EB%88%84%EC%9D%B4%ED%83%80%EC%B9%98+%EB%93%9C%EB%A6%BC+%EB%AF%B8%EB%8B%88+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95++%EB%88%84%EC%9D%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80++%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%9A%B0%EC%A7%80.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '트레이딩 글리터 캔 뱃지 할로윈 Ver. 랜덤', '주술회전', '랜덤', '캔뱃지', 7000, 30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B5%BF%EC%A6%88+%EC%A4%91%EC%99%B8%EA%B4%91%EC%97%85+%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9+%EA%B8%80%EB%A6%AC%ED%84%B0+%EC%BA%94+%EB%B1%83%EC%A7%80+%ED%95%A0%EB%A1%9C%EC%9C%88+Ver.+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'JF2026 아크릴 스탠드 옷코츠 유타', '주술회전', '옷코츠 유타', '아크릴스탠드', 24000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EA%B5%BF%EC%A6%88+%EB%8F%84%ED%98%B8+JF+2026+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%98%B7%EC%BD%94%EC%B8%A0+%EC%9C%A0%ED%83%80.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '후와푸치 데포르메 피규어', '주술회전', '이타도리 유지', '피규어', 36000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%ED%83%80%EB%8F%84%EB%A6%AC+%EC%9C%A0%EC%A7%80+.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 이누마키 토게', '주술회전', '이누마키 토게', '피규어', 42000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EA%B7%B9%EC%9E%A5%ED%8C%90+%EC%8B%9C%EB%B6%80%EC%95%BC%EC%82%AC%EB%B3%80X%EC%82%AC%EB%A9%B8%ED%9A%8C%EC%9C%A0+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%EB%88%84%EB%A7%88%ED%82%A4+%ED%86%A0%EA%B2%8C.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '아쿠누이 봉제인형', '주술회전', '후시구로 메구미', '봉제인형', 26000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%EC%95%84%EC%BF%A0%EB%88%84%EC%9D%B4+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+-+%ED%9B%84%EC%8B%9C%EA%B5%AC%EB%A1%9C+%EB%A9%94%EA%B5%AC%EB%AF%B8.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '후와푸치 데포르메 피규어', '주술회전', '게토 스구루', '피규어', 38000, 4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%ED%9A%8C%EC%98%A5+%EC%98%A5%EC%A0%88+%ED%9B%84%EC%99%80%ED%91%B8%EC%B9%98+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EA%B2%8C%ED%86%A0+%EC%8A%A4%EA%B5%AC%EB%A3%A8.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '후와푸치 데포르메 피규어', '주술회전', '고죠 사토루', '피규어', 38000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84+%ED%9A%8C%EC%98%A5+%EC%98%A5%EC%A0%88+%ED%9B%84%EC%99%80%ED%91%B8%EC%B9%98+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'Crux 트래블 시리즈 미니 아크릴 스탠드', '블루 록', '시도 류세이', '아크릴스탠드', 19000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EA%B5%BF%EC%A6%88+Crux+%ED%8A%B8%EB%9E%98%EB%B8%94+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EB%AF%B8%EB%8B%88+%EC%BA%90%EB%A6%AD%ED%84%B0+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%8B%9C%EB%8F%84+%EB%A5%98%EC%84%B8%EC%9D%B4.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, 'PalVerse Palé 피규어', '블루 록', '나기 세이시로', '피규어', 32000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EA%B5%BF%EC%A6%88+%EB%B6%80%EC%8B%9C%EB%A1%9C%EB%93%9C+PalVerse+Pal%C3%A9+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '룩업 피규어 이사기 요이치', '블루 록', '이사기 요이치', '피규어', 42000, 5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%A9%94%EA%B0%80%ED%95%98%EC%9A%B0%EC%8A%A4+%EB%A3%A9%EC%97%85+%ED%94%BC%EA%B7%9C%EC%96%B4+-+%EC%9D%B4%EC%82%AC%EA%B8%B0+%EC%9A%94%EC%9D%B4%EC%B9%98.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '반다이 공식 솜누이', '블루 록', '나기 세이시로', '봉제인형', 26000, 7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%B0%98%EB%8B%A4%EC%9D%B4+%EA%B3%B5%EC%8B%9D+%EC%86%9C%EB%88%84%EC%9D%B4+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '아크릴 미니 스탠드 백귀야행 Ver.', '블루 록', '나기 세이시로', '아크릴스탠드', 17000, 9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%B2%A8%ED%95%98%EC%9A%B0%EC%8A%A4+%EC%95%84%ED%81%AC%EB%A6%B4+%EB%AF%B8%EB%8B%88+%EC%8A%A4%ED%83%A0%EB%93%9C+%EB%B0%B1%EA%B7%80%EC%95%BC%ED%96%89+Ver.+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '아크릴 스탠드 랜덤 단품', '블루 록', '랜덤', '아크릴스탠드', 12000, 20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '하네스 Style 미니 아크릴 스탠드', '블루 록', '나기 세이시로', '아크릴스탠드', 18000, 8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%8C%80+%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8+%EB%AF%B8%EB%8B%88+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%95%98%EB%84%A4%EC%8A%A4+Style+-+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C+.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '파샤코레 랜덤 단품', '블루 록', '랜덤', '포토카드', 6000, 30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%8C%8C%EC%83%A4%EC%BD%94%EB%A0%88+%EB%9E%9C%EB%8D%A4+%EB%8B%A8%ED%92%88.png', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '푸니토푸 봉제인형 3탄', '블루 록', '바치라 메구루', '봉제인형', 24000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%91%B8%EB%8B%88%ED%86%A0%ED%91%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+3%ED%83%84+-+%EB%B0%94%EC%B9%98%EB%9D%BC+%EB%A9%94%EA%B5%AC%EB%A3%A8.jpg', SYSDATE);
+
+INSERT INTO TKK.STORE_GOODS (store_id, name, work_name, character_name, category, price, stock_qty, thumbnail_url, created_at)
+VALUES (1, '푸니토푸 봉제인형 3탄', '블루 록', '치기리 효마', '봉제인형', 24000, 6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/goods/%EB%B8%94%EB%A3%A8%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%ED%91%B8%EB%8B%88%ED%86%A0%ED%91%B8+%EB%B4%89%EC%A0%9C%EC%9D%B8%ED%98%95+3%ED%83%84+-+%EC%B9%98%EA%B8%B0%EB%A6%AC+%ED%9A%A8%EB%A7%88.jpg', SYSDATE);
+
+COMMIT;
+
+
+-- ✅ Oracle용: NOW() -> SYSDATE, 다건 VALUES -> 단건 INSERT로 변환
+-- popup_id가 IDENTITY면 컬럼에 안 넣는 게 맞음 (지금처럼)
+
+-- 3) 진짜 팝업 4개 다시 넣기 (ORACLE)
+
+-- 나혼자만레벨업팝업
+INSERT INTO TKK.POPUP_STORE
+(
+    title, place_name, address, region_name,
+    latitude, longitude,
+    start_date, end_date,
+    banner_image_url, description,
+    created_at, deleted_yn
+)
+VALUES
+    (
+        '나혼자만레벨업팝업',
+        '애니플러스 합정',
+        '서울 마포구 양화로 186',
+        '홍대',
+        NULL, NULL,
+        DATE '2025-12-19', DATE '2026-01-11',
+        'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%82%E1%85%A1%E1%84%92%E1%85%A9%E1%86%AB%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%AB+%E1%84%85%E1%85%A6%E1%84%87%E1%85%A6%E1%86%AF%E1%84%8B%E1%85%A5%E1%86%B8+%E1%84%91%E1%85%A1%E1%86%B8%E1%84%8B%E1%85%A5%E1%86%B8.png',
+        '나 혼자만 레벨업 팝업스토어',
+        SYSDATE, 'N'
+    );
+
+-- 외모지상주의 팝업
+INSERT INTO TKK.POPUP_STORE
+(
+    title, place_name, address, region_name,
+    latitude, longitude,
+    start_date, end_date,
+    banner_image_url, description,
+    created_at, deleted_yn
+)
+VALUES
+    (
+        '외모지상주의 팝업',
+        '레조네 홍대',
+        '<<여기에_외모지상주의_새주소>>',
+        '홍대',
+        NULL, NULL,
+        DATE '2025-12-19', DATE '2026-01-11',
+        'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%8B%E1%85%AC%E1%84%86%E1%85%AE%E1%84%8C%E1%85%B5%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4+%E1%84%91%E1%85%A1%E1%86%B8%E1%84%8B%E1%85%A5%E1%86%B8.png',
+        '외모지상주의 팝업스토어',
+        SYSDATE, 'N'
+    );
+
+-- 주술회전 팝업
+INSERT INTO TKK.POPUP_STORE
+(
+    title, place_name, address, region_name,
+    latitude, longitude,
+    start_date, end_date,
+    banner_image_url, description,
+    created_at, deleted_yn
+)
+VALUES
+    (
+        '주술회전 팝업',
+        '롯데월드타워 서울스카이',
+        '롯데월드타워 서울스카이',
+        '잠실',
+        NULL, NULL,
+        DATE '2025-12-12', DATE '2026-02-28',
+        'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%8C%E1%85%AE%E1%84%89%E1%85%AE%E1%86%AF%E1%84%92%E1%85%AC%E1%84%8C%E1%85%A5%E1%86%AB+%E1%84%91%E1%85%A1%E1%86%B8%E1%84%8B%E1%85%A5%E1%86%B8.png',
+        '주술회전 팝업스토어',
+        SYSDATE, 'N'
+    );
+
+-- 하이큐 10주년 기념전
+INSERT INTO TKK.POPUP_STORE
+(
+    title, place_name, address, region_name,
+    latitude, longitude,
+    start_date, end_date,
+    banner_image_url, description,
+    created_at, deleted_yn
+)
+VALUES
+    (
+        '하이큐 10주년 기념전',
+        'AK PLAZA 홍대 3층 BOX',
+        'AK PLAZA 홍대 3층 BOX',
+        '홍대',
+        NULL, NULL,
+        DATE '2025-12-02', DATE '2025-12-28',
+        'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/popup/%E1%84%92%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B2+10%E1%84%8C%E1%85%AE%E1%84%82%E1%85%A7%E1%86%AB+%E1%84%80%E1%85%B5%E1%84%82%E1%85%A7%E1%86%B7%E1%84%8C%E1%85%A5%E1%86%AB.png',
+        '하이큐 10주년 기념전',
+        SYSDATE, 'N'
+    );
+
+COMMIT;
+
 --
 
 INSERT INTO board_category ( code, name)
@@ -4758,289 +4341,317 @@ INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(8,16,SYSDATE-2)
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(9,17,SYSDATE-1);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(9,18,SYSDATE-1);
 INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,19,SYSDATE);
-INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,20,SYSDATE);
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (1,'[귀멸의 칼날] 탄지로 포카 거래 #001','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 1번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (2,'[귀멸의 칼날] 네즈코 아크릴스탠드 거래 #002','[귀멸의 칼날] 네즈코 아크릴스탠드 거래글 더미 데이터 2번입니다.','네즈코 아크릴스탠드','귀멸의 칼날','네즈코','아크릴스탠드',9000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (3,'[나루토] 나루토 피규어 거래 #003','[나루토] 나루토 피규어 거래글 더미 데이터 3번입니다.','나루토 피규어','나루토','나루토','피규어',10000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (4,'[나루토] 사스케 키링 거래 #004','[나루토] 사스케 키링 거래글 더미 데이터 4번입니다.','사스케 키링','나루토','사스케','키링',12000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (5,'[주술회전] 이타도리 유우지 포카 거래 #005','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 5번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',15000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (6,'[주술회전] 고죠 사토루 아크릴스탠드 거래 #006','[주술회전] 고죠 사토루 아크릴스탠드 거래글 더미 데이터 6번입니다.','고죠 사토루 아크릴스탠드','주술회전','고죠 사토루','아크릴스탠드',8000,'EXCHANGE','DELIVERY','대구 동성로','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (7,'[원피스] 루피 피규어 거래 #007','[원피스] 루피 피규어 거래글 더미 데이터 7번입니다.','루피 피규어','원피스','루피','피규어',9000,'SELL','DIRECT','인천 부평','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (8,'[원피스] 조로 키링 거래 #008','[원피스] 조로 키링 거래글 더미 데이터 8번입니다.','조로 키링','원피스','조로','키링',10000,'BUY','DELIVERY','경기 수원','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (9,'[진격의 거인] 에렌 포카 거래 #009','[진격의 거인] 에렌 포카 거래글 더미 데이터 9번입니다.','에렌 포카','진격의 거인','에렌','포카',12000,'EXCHANGE','DIRECT','서울 홍대','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (10,'[진격의 거인] 리바이 아크릴스탠드 거래 #010','[진격의 거인] 리바이 아크릴스탠드 거래글 더미 데이터 10번입니다.','리바이 아크릴스탠드','진격의 거인','리바이','아크릴스탠드',15000,'SELL','DELIVERY','서울 강남','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
--- 11 ~ 20
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (11,'[귀멸의 칼날] 탄지로 피규어 거래 #011','[귀멸의 칼날] 탄지로 피규어 거래글 더미 데이터 11번입니다.','탄지로 피규어','귀멸의 칼날','탄지로','피규어',8000,'BUY','DIRECT','서울 신촌','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (12,'[귀멸의 칼날] 네즈코 키링 거래 #012','[귀멸의 칼날] 네즈코 키링 거래글 더미 데이터 12번입니다.','네즈코 키링','귀멸의 칼날','네즈코','키링',9000,'EXCHANGE','DELIVERY','서울 명동','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (13,'[나루토] 나루토 포카 거래 #013','[나루토] 나루토 포카 거래글 더미 데이터 13번입니다.','나루토 포카','나루토','나루토','포카',10000,'SELL','DIRECT','부산 서면','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (14,'[나루토] 사스케 아크릴스탠드 거래 #014','[나루토] 사스케 아크릴스탠드 거래글 더미 데이터 14번입니다.','사스케 아크릴스탠드','나루토','사스케','아크릴스탠드',12000,'BUY','DELIVERY','대구 동성로','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (15,'[주술회전] 이타도리 유우지 피규어 거래 #015','[주술회전] 이타도리 유우지 피규어 거래글 더미 데이터 15번입니다.','이타도리 유우지 피규어','주술회전','이타도리 유우지','피규어',15000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (16,'[주술회전] 고죠 사토루 키링 거래 #016','[주술회전] 고죠 사토루 키링 거래글 더미 데이터 16번입니다.','고죠 사토루 키링','주술회전','고죠 사토루','키링',8000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (17,'[원피스] 루피 포카 거래 #017','[원피스] 루피 포카 거래글 더미 데이터 17번입니다.','루피 포카','원피스','루피','포카',9000,'BUY','DIRECT','서울 홍대','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (18,'[원피스] 조로 아크릴스탠드 거래 #018','[원피스] 조로 아크릴스탠드 거래글 더미 데이터 18번입니다.','조로 아크릴스탠드','원피스','조로','아크릴스탠드',10000,'EXCHANGE','DELIVERY','서울 강남','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (19,'[진격의 거인] 에렌 피규어 거래 #019','[진격의 거인] 에렌 피규어 거래글 더미 데이터 19번입니다.','에렌 피규어','진격의 거인','에렌','피규어',12000,'SELL','DIRECT','서울 신촌','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (20,'[진격의 거인] 리바이 키링 거래 #020','[진격의 거인] 리바이 키링 거래글 더미 데이터 20번입니다.','리바이 키링','진격의 거인','리바이','키링',15000,'BUY','DELIVERY','서울 명동','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
--- 21 ~ 30
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (21,'[귀멸의 칼날] 탄지로 포카 거래 #021','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 21번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'EXCHANGE','DIRECT','부산 서면','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (22,'[귀멸의 칼날] 네즈코 아크릴스탠드 거래 #022','[귀멸의 칼날] 네즈코 아크릴스탠드 거래글 더미 데이터 22번입니다.','네즈코 아크릴스탠드','귀멸의 칼날','네즈코','아크릴스탠드',9000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (23,'[나루토] 나루토 피규어 거래 #023','[나루토] 나루토 피규어 거래글 더미 데이터 23번입니다.','나루토 피규어','나루토','나루토','피규어',10000,'BUY','DIRECT','인천 부평','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (24,'[나루토] 사스케 키링 거래 #024','[나루토] 사스케 키링 거래글 더미 데이터 24번입니다.','사스케 키링','나루토','사스케','키링',12000,'EXCHANGE','DELIVERY','경기 수원','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (25,'[주술회전] 이타도리 유우지 포카 거래 #025','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 25번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',15000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (26,'[주술회전] 고죠 사토루 아크릴스탠드 거래 #026','[주술회전] 고죠 사토루 아크릴스탠드 거래글 더미 데이터 26번입니다.','고죠 사토루 아크릴스탠드','주술회전','고죠 사토루','아크릴스탠드',8000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (27,'[원피스] 루피 피규어 거래 #027','[원피스] 루피 피규어 거래글 더미 데이터 27번입니다.','루피 피규어','원피스','루피','피규어',9000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (28,'[원피스] 조로 키링 거래 #028','[원피스] 조로 키링 거래글 더미 데이터 28번입니다.','조로 키링','원피스','조로','키링',10000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (29,'[진격의 거인] 에렌 포카 거래 #029','[진격의 거인] 에렌 포카 거래글 더미 데이터 29번입니다.','에렌 포카','진격의 거인','에렌','포카',12000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (30,'[진격의 거인] 리바이 아크릴스탠드 거래 #030','[진격의 거인] 리바이 아크릴스탠드 거래글 더미 데이터 30번입니다.','리바이 아크릴스탠드','진격의 거인','리바이','아크릴스탠드',15000,'EXCHANGE','DELIVERY','대구 동성로','DONE',0,0,SYSDATE-1,NULL,'N');
-
--- 31 ~ 40
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (31,'[귀멸의 칼날] 탄지로 피규어 거래 #031','[귀멸의 칼날] 탄지로 피규어 거래글 더미 데이터 31번입니다.','탄지로 피규어','귀멸의 칼날','탄지로','피규어',8000,'SELL','DIRECT','인천 부평','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (32,'[귀멸의 칼날] 네즈코 키링 거래 #032','[귀멸의 칼날] 네즈코 키링 거래글 더미 데이터 32번입니다.','네즈코 키링','귀멸의 칼날','네즈코','키링',9000,'BUY','DELIVERY','경기 수원','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (33,'[나루토] 나루토 포카 거래 #033','[나루토] 나루토 포카 거래글 더미 데이터 33번입니다.','나루토 포카','나루토','나루토','포카',10000,'EXCHANGE','DIRECT','서울 홍대','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (34,'[나루토] 사스케 아크릴스탠드 거래 #034','[나루토] 사스케 아크릴스탠드 거래글 더미 데이터 34번입니다.','사스케 아크릴스탠드','나루토','사스케','아크릴스탠드',12000,'SELL','DELIVERY','서울 강남','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (35,'[주술회전] 이타도리 유우지 피규어 거래 #035','[주술회전] 이타도리 유우지 피규어 거래글 더미 데이터 35번입니다.','이타도리 유우지 피규어','주술회전','이타도리 유우지','피규어',15000,'BUY','DIRECT','서울 신촌','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (36,'[주술회전] 고죠 사토루 키링 거래 #036','[주술회전] 고죠 사토루 키링 거래글 더미 데이터 36번입니다.','고죠 사토루 키링','주술회전','고죠 사토루','키링',8000,'EXCHANGE','DELIVERY','서울 명동','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (37,'[원피스] 루피 포카 거래 #037','[원피스] 루피 포카 거래글 더미 데이터 37번입니다.','루피 포카','원피스','루피','포카',9000,'SELL','DIRECT','부산 서면','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (38,'[원피스] 조로 아크릴스탠드 거래 #038','[원피스] 조로 아크릴스탠드 거래글 더미 데이터 38번입니다.','조로 아크릴스탠드','원피스','조로','아크릴스탠드',10000,'BUY','DELIVERY','대구 동성로','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (39,'[진격의 거인] 에렌 피규어 거래 #039','[진격의 거인] 에렌 피규어 거래글 더미 데이터 39번입니다.','에렌 피규어','진격의 거인','에렌','피규어',12000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (40,'[진격의 거인] 리바이 키링 거래 #040','[진격의 거인] 리바이 키링 거래글 더미 데이터 40번입니다.','리바이 키링','진격의 거인','리바이','키링',15000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
--- 41 ~ 50
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (41,'[귀멸의 칼날] 탄지로 포카 거래 #041','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 41번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'BUY','DIRECT','서울 홍대','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (42,'[귀멸의 칼날] 네즈코 아크릴스탠드 거래 #042','[귀멸의 칼날] 네즈코 아크릴스탠드 거래글 더미 데이터 42번입니다.','네즈코 아크릴스탠드','귀멸의 칼날','네즈코','아크릴스탠드',9000,'EXCHANGE','DELIVERY','서울 강남','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (43,'[나루토] 나루토 피규어 거래 #043','[나루토] 나루토 피규어 거래글 더미 데이터 43번입니다.','나루토 피규어','나루토','나루토','피규어',10000,'SELL','DIRECT','서울 신촌','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (44,'[나루토] 사스케 키링 거래 #044','[나루토] 사스케 키링 거래글 더미 데이터 44번입니다.','사스케 키링','나루토','사스케','키링',12000,'BUY','DELIVERY','서울 명동','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (45,'[주술회전] 이타도리 유우지 포카 거래 #045','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 45번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',15000,'EXCHANGE','DIRECT','부산 서면','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (46,'[주술회전] 고죠 사토루 아크릴스탠드 거래 #046','[주술회전] 고죠 사토루 아크릴스탠드 거래글 더미 데이터 46번입니다.','고죠 사토루 아크릴스탠드','주술회전','고죠 사토루','아크릴스탠드',8000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (47,'[원피스] 루피 피규어 거래 #047','[원피스] 루피 피규어 거래글 더미 데이터 47번입니다.','루피 피규어','원피스','루피','피규어',9000,'BUY','DIRECT','인천 부평','RESERVED',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (48,'[원피스] 조로 키링 거래 #048','[원피스] 조로 키링 거래글 더미 데이터 48번입니다.','조로 키링','원피스','조로','키링',10000,'EXCHANGE','DELIVERY','경기 수원','DONE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (49,'[진격의 거인] 에렌 포카 거래 #049','[진격의 거인] 에렌 포카 거래글 더미 데이터 49번입니다.','에렌 포카','진격의 거인','에렌','포카',12000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (50,'[진격의 거인] 리바이 아크릴스탠드 거래 #050','[진격의 거인] 리바이 아크릴스탠드 거래글 더미 데이터 50번입니다.','리바이 아크릴스탠드','진격의 거인','리바이','아크릴스탠드',15000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
--- 51 ~ 100
--- 51 ~ 60
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (51,'[귀멸의 칼날] 탄지로 포카 거래 #051','[귀멸의 칼날] 탄지로 포카 거래글 더미 데이터 51번입니다.','탄지로 포카','귀멸의 칼날','탄지로','포카',8000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (52,'[귀멸의 칼날] 네즈코 피규어 거래 #052','[귀멸의 칼날] 네즈코 피규어 거래글 더미 데이터 52번입니다.','네즈코 피규어','귀멸의 칼날','네즈코','피규어',13000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (53,'[나루토] 나루토 포카 거래 #053','[나루토] 나루토 포카 거래글 더미 데이터 53번입니다.','나루토 포카','나루토','나루토','포카',7000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (54,'[나루토] 카카시 키링 거래 #054','[나루토] 카카시 키링 거래글 더미 데이터 54번입니다.','카카시 키링','나루토','카카시','키링',9000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (55,'[주술회전] 이타도리 유우지 포카 거래 #055','[주술회전] 이타도리 유우지 포카 거래글 더미 데이터 55번입니다.','이타도리 유우지 포카','주술회전','이타도리 유우지','포카',11000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (56,'[주술회전] 고죠 사토루 피규어 거래 #056','[주술회전] 고죠 사토루 피규어 거래글 더미 데이터 56번입니다.','고죠 사토루 피규어','주술회전','고죠 사토루','피규어',20000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (57,'[원피스] 루피 포카 거래 #057','[원피스] 루피 포카 거래글 더미 데이터 57번입니다.','루피 포카','원피스','루피','포카',8000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (58,'[원피스] 조로 피규어 거래 #058','[원피스] 조로 피규어 거래글 더미 데이터 58번입니다.','조로 피규어','원피스','조로','피규어',16000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (59,'[진격의 거인] 에렌 포카 거래 #059','[진격의 거인] 에렌 포카 거래글 더미 데이터 59번입니다.','에렌 포카','진격의 거인','에렌','포카',9000,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (60,'[진격의 거인] 리바이 피규어 거래 #060','[진격의 거인] 리바이 피규어 거래글 더미 데이터 60번입니다.','리바이 피규어','진격의 거인','리바이','피규어',22000,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
-
--- 61 ~ 70
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (61,'[귀멸의 칼날] 젠이츠 포카 거래 #061','[귀멸의 칼날] 젠이츠 포카 거래글 더미 데이터 61번입니다.','젠이츠 포카','귀멸의 칼날','젠이츠','포카',7000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (62,'[귀멸의 칼날] 이노스케 피규어 거래 #062','[귀멸의 칼날] 이노스케 피규어 거래글 더미 데이터 62번입니다.','이노스케 피규어','귀멸의 칼날','이노스케','피규어',15000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (63,'[나루토] 사쿠라 포카 거래 #063','[나루토] 사쿠라 포카 거래글 더미 데이터 63번입니다.','사쿠라 포카','나루토','사쿠라','포카',6000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (64,'[나루토] 이타치 피규어 거래 #064','[나루토] 이타치 피규어 거래글 더미 데이터 64번입니다.','이타치 피규어','나루토','이타치','피규어',23000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (65,'[주술회전] 후시구로 메구미 포카 거래 #065','[주술회전] 후시구로 메구미 포카 거래글 더미 데이터 65번입니다.','후시구로 메구미 포카','주술회전','후시구로 메구미','포카',9000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (66,'[주술회전] 나나미 켄토 피규어 거래 #066','[주술회전] 나나미 켄토 피규어 거래글 더미 데이터 66번입니다.','나나미 켄토 피규어','주술회전','나나미 켄토','피규어',21000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (67,'[원피스] 나미 포카 거래 #067','[원피스] 나미 포카 거래글 더미 데이터 67번입니다.','나미 포카','원피스','나미','포카',7000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (68,'[원피스] 상디 피규어 거래 #068','[원피스] 상디 피규어 거래글 더미 데이터 68번입니다.','상디 피규어','원피스','상디','피규어',18000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (69,'[진격의 거인] 아르민 포카 거래 #069','[진격의 거인] 아르민 포카 거래글 더미 데이터 69번입니다.','아르민 포카','진격의 거인','아르민','포카',8000,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (70,'[진격의 거인] 한지 피규어 거래 #070','[진격의 거인] 한지 피규어 거래글 더미 데이터 70번입니다.','한지 피규어','진격의 거인','한지','피규어',19000,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
-
--- 71 ~ 80
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (71,'[귀멸의 칼날] 기유 포카 거래 #071','[귀멸의 칼날] 토미오카 기유 포카 거래글 더미 데이터 71번입니다.','토미오카 기유 포카','귀멸의 칼날','토미오카 기유','포카',9000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (72,'[귀멸의 칼날] 렌고쿠 피규어 거래 #072','[귀멸의 칼날] 렌고쿠 쿄쥬로 피규어 거래글 더미 데이터 72번입니다.','렌고쿠 피규어','귀멸의 칼날','렌고쿠 쿄쥬로','피규어',26000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (73,'[나루토] 가아라 포카 거래 #073','[나루토] 가아라 포카 거래글 더미 데이터 73번입니다.','가아라 포카','나루토','가아라','포카',7000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (74,'[나루토] 츠나데 피규어 거래 #074','[나루토] 츠나데 피규어 거래글 더미 데이터 74번입니다.','츠나데 피규어','나루토','츠나데','피규어',24000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (75,'[주술회전] 이누마키 토게 포카 거래 #075','[주술회전] 이누마키 토게 포카 거래글 더미 데이터 75번입니다.','이누마키 토게 포카','주술회전','이누마키 토게','포카',9500,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (76,'[주술회전] 판다 피규어 거래 #076','[주술회전] 판다 피규어 거래글 더미 데이터 76번입니다.','판다 피규어','주술회전','판다','피규어',17000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (77,'[원피스] 로빈 포카 거래 #077','[원피스] 니코 로빈 포카 거래글 더미 데이터 77번입니다.','니코 로빈 포카','원피스','니코 로빈','포카',8500,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (78,'[원피스] 프랑키 피규어 거래 #078','[원피스] 프랑키 피규어 거래글 더미 데이터 78번입니다.','프랑키 피규어','원피스','프랑키','피규어',21000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (79,'[진격의 거인] 미카사 포카 거래 #079','[진격의 거인] 미카사 포카 거래글 더미 데이터 79번입니다.','미카사 포카','진격의 거인','미카사','포카',10000,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (80,'[진격의 거인] 장 피규어 거래 #080','[진격의 거인] 장 피규어 거래글 더미 데이터 80번입니다.','장 피규어','진격의 거인','장','피규어',18500,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
-
--- 81 ~ 90
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (81,'[귀멸의 칼날] 시노부 포카 거래 #081','[귀멸의 칼날] 코쵸 시노부 포카 거래글 더미 데이터 81번입니다.','코쵸 시노부 포카','귀멸의 칼날','코쵸 시노부','포카',11000,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (82,'[귀멸의 칼날] 우즈이 텐겐 피규어 거래 #082','[귀멸의 칼날] 우즈이 텐겐 피규어 거래글 더미 데이터 82번입니다.','우즈이 텐겐 피규어','귀멸의 칼날','우즈이 텐겐','피규어',27000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (83,'[나루토] 히나타 포카 거래 #083','[나루토] 히나타 포카 거래글 더미 데이터 83번입니다.','히나타 포카','나루토','히나타','포카',9500,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (84,'[나루토] 미나토 피규어 거래 #084','[나루토] 미나토 피규어 거래글 더미 데이터 84번입니다.','미나토 피규어','나루토','미나토','피규어',25000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (85,'[주술회전] 츠쿠모 유키 포카 거래 #085','[주술회전] 츠쿠모 유키 포카 거래글 더미 데이터 85번입니다.','츠쿠모 유키 포카','주술회전','츠쿠모 유키','포카',12000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (86,'[주술회전] 스쿠나 피규어 거래 #086','[주술회전] 료멘 스쿠나 피규어 거래글 더미 데이터 86번입니다.','료멘 스쿠나 피규어','주술회전','료멘 스쿠나','피규어',28000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (87,'[원피스] 샹크스 포카 거래 #087','[원피스] 샹크스 포카 거래글 더미 데이터 87번입니다.','샹크스 포카','원피스','샹크스','포카',13000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (88,'[원피스] 에이스 피규어 거래 #088','[원피스] 에이스 피규어 거래글 더미 데이터 88번입니다.','에이스 피규어','원피스','에이스','피규어',26000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (89,'[진격의 거인] 코니 포카 거래 #089','[진격의 거인] 코니 포카 거래글 더미 데이터 89번입니다.','코니 포카','진격의 거인','코니','포카',8500,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (90,'[진격의 거인] 피크 피규어 거래 #090','[진격의 거인] 피크 피규어 거래글 더미 데이터 90번입니다.','피크 피규어','진격의 거인','피크','피규어',23000,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
-
--- 91 ~ 100
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (91,'[귀멸의 칼날] 카나오 포카 거래 #091','[귀멸의 칼날] 카나오 포카 거래글 더미 데이터 91번입니다.','츠유리 카나오 포카','귀멸의 칼날','츠유리 카나오','포카',9500,'SELL','DIRECT','서울 홍대','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (92,'[귀멸의 칼날] 무잔 피규어 거래 #092','[귀멸의 칼날] 키부츠지 무잔 피규어 거래글 더미 데이터 92번입니다.','키부츠지 무잔 피규어','귀멸의 칼날','키부츠지 무잔','피규어',29000,'BUY','DELIVERY','서울 강남','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (93,'[나루토] 시카마루 포카 거래 #093','[나루토] 시카마루 포카 거래글 더미 데이터 93번입니다.','시카마루 포카','나루토','시카마루','포카',9000,'EXCHANGE','DIRECT','서울 신촌','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (94,'[나루토] 오로치마루 피규어 거래 #094','[나루토] 오로치마루 피규어 거래글 더미 데이터 94번입니다.','오로치마루 피규어','나루토','오로치마루','피규어',25000,'SELL','DELIVERY','서울 명동','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (95,'[주술회전] 마키 포카 거래 #095','[주술회전] 젠인 마키 포카 거래글 더미 데이터 95번입니다.','젠인 마키 포카','주술회전','젠인 마키','포카',10000,'BUY','DIRECT','부산 서면','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (96,'[주술회전] 오코츠 유타 피규어 거래 #096','[주술회전] 오코츠 유타 피규어 거래글 더미 데이터 96번입니다.','오코츠 유타 피규어','주술회전','오코츠 유타','피규어',27000,'SELL','DELIVERY','대구 동성로','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (97,'[원피스] 브룩 포카 거래 #097','[원피스] 브룩 포카 거래글 더미 데이터 97번입니다.','브룩 포카','원피스','브룩','포카',9000,'EXCHANGE','DIRECT','인천 부평','DONE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (98,'[원피스] 징베 피규어 거래 #098','[원피스] 징베 피규어 거래글 더미 데이터 98번입니다.','징베 피규어','원피스','징베','피규어',24000,'SELL','DELIVERY','경기 수원','ON_SALE',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (99,'[진격의 거인] 라이너 포카 거래 #099','[진격의 거인] 라이너 포카 거래글 더미 데이터 99번입니다.','라이너 포카','진격의 거인','라이너','포카',9500,'BUY','DIRECT','경기 일산','RESERVED',0,0,SYSDATE-1,NULL,'N');
-
-INSERT INTO trade_post (seller_id,title,content,goods_name,work_name,character_name,category,price,trade_type,trade_method,region,status,view_count,like_count,created_at,updated_at,deleted_yn)
-VALUES (100,'[진격의 거인] 베르톨트 피규어 거래 #100','[진격의 거인] 베르톨트 피규어 거래글 더미 데이터 100번입니다.','베르톨트 피규어','진격의 거인','베르톨트','피규어',25500,'EXCHANGE','DELIVERY','서울 노원','DONE',0,0,SYSDATE-1,NULL,'N');
+INSERT INTO store_bookmark(member_id,store_id,created_at) VALUES(10,20,SYSDATE);-- ✅ Oracle용: 다건 VALUES -> INSERT ALL, NOW() -> SYSDATE
+-- (테이블명이 스키마 포함이면 TKK.TRADE_POST로 맞춰서 사용)
+
+INSERT ALL
+    INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (2,'[귀멸의 칼날] 도우마 AGF 2025 담요','AGF 2025 한정 도우마 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','도우마','담요',35000,'SELL','DIRECT','홍대','ON_SALE',50,3,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (2,'[귀멸의 칼날] 아카자 AGF 2025 담요','AGF 2025 한정 아카자 담요입니다.','AGF 2025 담요','귀멸의 칼날','아카자','담요',35000,'SELL','DIRECT','홍대','ON_SALE',42,2,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (3,'[귀멸의 칼날] 코쿠시보 AGF 2025 담요','코쿠시보 AGF 한정 담요 판매합니다.','AGF 2025 담요','귀멸의 칼날','코쿠시보','담요',38000,'SELL','DIRECT','합정','ON_SALE',61,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (3,'[귀멸의 칼날] 키부츠지 무잔 AGF 2025 담요','무잔 AGF 한정 담요 미개봉 상품입니다.','AGF 2025 담요','귀멸의 칼날','키부츠지 무잔','담요',38000,'SELL','DIRECT','합정','ON_SALE',55,4,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (4,'[귀멸의 칼날] 코쵸우 시노부 쿄마후 아크릴 스탠드','쿄마후 한정 시노부 아크릴 스탠드입니다.','아크릴 스탠드','귀멸의 칼날','코쵸우 시노부','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',37,5,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (4,'[귀멸의 칼날] 토미오카 기유 쿄마후 아크릴 스탠드','쿄마후 한정 기유 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','토미오카 기유','아크릴',22000,'SELL','DELIVERY','강남','ON_SALE',40,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (5,'[귀멸의 칼날] 아가츠마 젠이츠 무한성편 아크릴 참','무한성편 젠이츠 아크릴 참입니다.','아크릴 참','귀멸의 칼날','아가츠마 젠이츠','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',28,2,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (5,'[귀멸의 칼날] 코쵸우 시노부 무한성편 아크릴 참','무한성편 시노부 아크릴 참 판매합니다.','아크릴 참','귀멸의 칼날','코쵸우 시노부','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',25,1,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[귀멸의 칼날] 토미오카 기유 무한성편 아크릴 참','무한성편 기유 아크릴 참입니다.','아크릴 참','귀멸의 칼날','토미오카 기유','키링',12000,'SELL','DELIVERY','신촌','ON_SALE',31,3,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[귀멸의 칼날] 아카자 무한성편 아크릴 스탠드','무한성편 아카자 아크릴 스탠드 판매합니다.','아크릴 스탠드','귀멸의 칼날','아카자','아크릴',25000,'SELL','DIRECT','홍대','ON_SALE',48,7,SYSDATE,'N')
+
+-- 11~20
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (2,'[나루토 질풍전] 하루노 사쿠라 걸즈 시리즈','걸즈 시리즈 사쿠라 피규어 판매합니다.','걸즈 시리즈 피규어','나루토 질풍전','하루노 사쿠라','피규어',98000,'SELL','DELIVERY','홍대','ON_SALE',34,4,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (3,'[나루토 질풍전] 휴우가 히나타 넨도로이드 No.879','히나타 넨도로이드 상태 양호합니다.','넨도로이드','나루토 질풍전','휴우가 히나타','피규어',72000,'SELL','DELIVERY','강남','ON_SALE',41,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (2,'[나루토 질풍전] 우치하 사스케 룩업 피규어','룩업 시리즈 사스케 피규어입니다.','룩업 피규어','나루토 질풍전','우치하 사스케','피규어',38000,'SELL','DIRECT','홍대','ON_SALE',29,3,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (4,'[나루토 질풍전] 우치하 이타치 룩업 피규어','이타치 룩업 피규어 판매합니다.','룩업 피규어','나루토 질풍전','우치하 이타치','피규어',42000,'SELL','DIRECT','합정','ON_SALE',52,8,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (5,'[진격의 거인] 라이너 브라운 POP UP PARADE','POP UP PARADE 라이너 브라운 피규어입니다.','POP UP PARADE','진격의 거인','라이너 브라운','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',46,5,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (5,'[진격의 거인] 엘런 예거 POP UP PARADE','엘런 예거 월드 와이드 에프터 파티 버전입니다.','POP UP PARADE','진격의 거인','엘런 예거','피규어',55000,'SELL','DELIVERY','신촌','ON_SALE',63,9,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[진격의 거인] 리바이 넨도로이드 돌','넨도로이드 돌 리바이 판매합니다.','넨도로이드 돌','진격의 거인','리바이','피규어',89000,'SELL','DELIVERY','건대','ON_SALE',71,11,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (3,'[진격의 거인] 리바이 룩업 피규어','룩업 리바이 피규어입니다.','룩업 피규어','진격의 거인','리바이','피규어',39000,'SELL','DIRECT','강남','ON_SALE',58,7,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (4,'[진격의 거인] 엘런 예거 룩업 피규어','엘런 룩업 피규어 판매합니다.','룩업 피규어','진격의 거인','엘런 예거','피규어',39000,'SELL','DIRECT','강남','ON_SALE',44,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[진격의 거인] 아르민 알레르토 넨도로이드 조사병단','아르민 넨도로이드 조사병단 버전입니다.','넨도로이드','진격의 거인','아르민 알레르토','피규어',76000,'SELL','DELIVERY','홍대','ON_SALE',67,10,SYSDATE,'N')
+
+-- 21~30
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (2,'[블루록] 바치라 메구루 아크릴 스탠드','블루록 2기 콜라보 바치라 메구루 아크릴 스탠드입니다.','아크릴 스탠드','블루록','바치라 메구루','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',33,4,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (12,'[블루록] 치기리 효마 아크릴 스탠드','블루록 2기 콜라보 치기리 효마 아크릴 스탠드입니다.','아크릴 스탠드','블루록','치기리 효마','아크릴',18000,'SELL','DELIVERY','홍대','ON_SALE',29,3,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (13,'[블루록] 이사기 요이치 아크릴 키홀더','블루록 2기 이사기 요이치 아크릴 스탠드 키홀더입니다.','아크릴 키홀더','블루록','이사기 요이치','키링',15000,'SELL','DELIVERY','강남','ON_SALE',41,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (23,'[블루록] 나기 세이시로 아크릴 키홀더','블루록 2기 나기 세이시로 아크릴 키홀더입니다.','아크릴 키홀더','블루록','나기 세이시로','키링',15000,'SELL','DELIVERY','강남','ON_SALE',38,5,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (14,'[블루록] 바치라 메구루 아크릴 키홀더','블루록 2기 바치라 메구루 아크릴 키홀더입니다.','아크릴 키홀더','블루록','바치라 메구루','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',36,4,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (24,'[블루록] 치기리 효마 아크릴 키홀더','블루록 2기 치기리 효마 아크릴 키홀더입니다.','아크릴 키홀더','블루록','치기리 효마','키링',15000,'SELL','DELIVERY','신촌','ON_SALE',34,3,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (15,'[블루록] 트레이딩 은박 원형 캔뱃지','블루록 트레이딩 은박 원형 캔뱃지 (랜덤) 입니다.','원형 캔뱃지','블루록',NULL,'뱃지',6000,'SELL','DELIVERY','건대','ON_SALE',52,7,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (25,'[블루록] 나기 세이시로 룩업 피규어','룩업 시리즈 나기 세이시로 피규어입니다.','룩업 피규어','블루록','나기 세이시로','피규어',39000,'SELL','DIRECT','건대','ON_SALE',47,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (16,'[블루록] 이사기 요이치 더블 아크릴 키홀더','데포르메 버전 이사기 요이치 더블 아크릴 키홀더입니다.','더블 아크릴 키홀더','블루록','이사기 요이치','키링',17000,'SELL','DELIVERY','합정','ON_SALE',44,5,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (26,'[블루록] 나기 세이시로 액션 피규어','블루록 나기 세이시로 슈팅 포즈 액션 피규어입니다.','액션 피규어','블루록','나기 세이시로','피규어',89000,'SELL','DIRECT','홍대','ON_SALE',73,12,SYSDATE,'N')
+
+-- 31~40
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (32,'[주술회전] MEGA CAT PROJECT BIG 고죠 사토루','MEGA CAT PROJECT BIG 고죠 사토루 피규어입니다.','MEGA CAT BIG','주술회전','고죠 사토루','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',36,5,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (42,'[주술회전] MEGA CAT PROJECT BIG 후시구로 토우지','MEGA CAT PROJECT BIG 후시구로 토우지 피규어입니다.','MEGA CAT BIG','주술회전','후시구로 토우지','피규어',42000,'SELL','DELIVERY','홍대','ON_SALE',31,4,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (33,'[주술회전] 고죠 사토루 슈트 Ver. 피규어','슈트 버전 고죠 사토루 피규어 판매합니다.','슈트 Ver. 피규어','주술회전','고죠 사토루','피규어',98000,'SELL','DIRECT','강남','ON_SALE',54,8,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (43,'[주술회전] 넨도로이드 돌 고죠 사토루 (고전)','넨도로이드 돌 고죠 사토루 고전 버전입니다.','넨도로이드 돌','주술회전','고죠 사토루','피규어',89000,'SELL','DELIVERY','강남','ON_SALE',49,7,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (34,'[주술회전] 룩업 고죠 사토루','룩업 시리즈 고죠 사토루 피규어입니다.','룩업 피규어','주술회전','고죠 사토루','피규어',39000,'SELL','DIRECT','합정','ON_SALE',45,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (35,'[하이큐!!] GEM 시리즈 손바닥 미야 아츠무','GEM 시리즈 손바닥 미야 아츠무 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','미야 아츠무','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',52,7,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (45,'[하이큐!!] GEM 시리즈 손바닥 츠키시마 케이','GEM 시리즈 손바닥 츠키시마 케이 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','츠키시마 케이','피규어',68000,'SELL','DIRECT','신촌','ON_SALE',48,6,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (36,'[하이큐!!] GEM 시리즈 손바닥 카게야마 토비오','카게야마 토비오 세컨드 유니폼 버전입니다.','GEM 손바닥 시리즈','하이큐!!','카게야마 토비오','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',61,9,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (46,'[하이큐!!] GEM 시리즈 손바닥 히나타 쇼요','히나타 쇼요 세컨드 유니폼 버전 피규어입니다.','GEM 손바닥 시리즈','하이큐!!','히나타 쇼요','피규어',72000,'SELL','DELIVERY','건대','ON_SALE',67,11,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (56,'[하이큐!!] 룩업 츠키시마 케이','룩업 시리즈 츠키시마 케이 피규어입니다.','룩업 피규어','하이큐!!','츠키시마 케이','피규어',39000,'SELL','DIRECT','홍대','ON_SALE',43,5,SYSDATE,'N')
+
+-- 41~50
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (2,'[원피스] NEO-MAXIMUM 루피 & 에이스 형제의 연 20TH LIMITED','루피 & 에이스 형제의 연 20주년 한정 피규어입니다.','NEO-MAXIMUM','원피스','몽키 D 루피 / 포트거스 D 에이스','피규어',520000,'SELL','DIRECT','홍대','ON_SALE',84,12,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (3,'[원피스] P.O.P Evolutionary History 주얼리 보니','Portrait.Of.Pirates 주얼리 보니 피규어입니다.','P.O.P 피규어','원피스','주얼리 보니','피규어',165000,'SELL','DELIVERY','강남','ON_SALE',57,8,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (3,'[원피스] P.O.P K×MAXIMUM 상디','K×MAXIMUM 상디 한정 피규어 판매합니다.','P.O.P MAXIMUM','원피스','상디','피규어',298000,'SELL','DIRECT','강남','ON_SALE',73,11,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (4,'[원피스] P.O.P WA.MAXIMUM 백수의 카이도','WA.MAXIMUM 카이도 초한정 복각판입니다.','P.O.P WA.MAXIMUM','원피스','카이도','피규어',480000,'SELL','DIRECT','합정','ON_SALE',96,18,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (4,'[원피스] P.O.P WA-MAXIMUM 화재의 킹','백수해적단 대간판 화재의 킹 피규어입니다.','P.O.P WA-MAXIMUM','원피스','킹','피규어',330000,'SELL','DIRECT','합정','ON_SALE',69,10,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (5,'[원피스] 룩업 몽키 D 루피 기어 5','기어 5 루피 룩업 피규어입니다.','룩업 피규어','원피스','몽키 D 루피','피규어',42000,'SELL','DELIVERY','신촌','ON_SALE',61,9,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (5,'[원피스] 베리어블 액션 히어로즈 롤로노아 조로','베리어블 액션 히어로즈 조로 피규어입니다.','베리어블 액션 히어로즈','원피스','롤로노아 조로','피규어',185000,'SELL','DIRECT','신촌','ON_SALE',67,10,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[원피스] 세계의 디바 우타','극장판 등장 세계의 디바 우타 피규어입니다.','스케일 피규어','원피스','우타','피규어',158000,'SELL','DELIVERY','홍대','ON_SALE',72,13,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[원피스] P.O.P SA-MAXIMUM 돈키호테 도플라밍고','SA-MAXIMUM 도플라밍고 피규어입니다.','P.O.P SA-MAXIMUM','원피스','돈키호테 도플라밍고','피규어',410000,'SELL','DIRECT','홍대','ON_SALE',88,16,SYSDATE,'N')
+
+INTO TKK.TRADE_POST
+(seller_id, title, content, goods_name, work_name, character_name, category, price,
+ trade_type, trade_method, region, status, view_count, like_count, created_at, deleted_yn)
+VALUES
+    (6,'[원피스] 흰수염 에드워드 뉴게이트','전설의 해적 흰수염 에드워드 뉴게이트 피규어입니다.','대형 피규어','원피스','에드워드 뉴게이트','피규어',460000,'SELL','DIRECT','홍대','ON_SALE',91,17,SYSDATE,'N')
+
+SELECT 1 FROM DUAL;
+
+COMMIT;
 
 
 INSERT INTO trade_bookmark(member_id,trade_id,created_at) VALUES(1,1,SYSDATE-10);
