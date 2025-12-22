@@ -2,9 +2,12 @@ package com.smu.tkk.service;
 
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.repository.MemberRepository;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +21,7 @@ public class EmailVerificationService {
     private final JavaMailSender mailSender;
 
     /** 1. 신규 회원가입 시 인증코드 생성 + 이메일 전송 */
-    public Member registerNewMember(Member member) {
+    public Member registerNewMember(Member member) throws MessagingException {
 
         // 1) LEVEL 0으로 저장
         member.setUserLevel(0L);
@@ -57,7 +60,7 @@ public class EmailVerificationService {
     }
 
     /** ⭐ 추가된 메서드: 이메일로 인증코드 재전송 */
-    public void sendVerificationCode(String email) {
+    public void sendVerificationCode(String email) throws MessagingException {
 
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("등록된 이메일이 없습니다."));
@@ -78,16 +81,30 @@ public class EmailVerificationService {
     }
 
     /* 이메일 전송 */
-    private void sendVerifyEmail(String email, String code) {
+    private void sendVerifyEmail(String email, String code) throws MessagingException {
 
         String subject = "더쿠쿠 이메일 인증코드 안내";
         String body = "안녕하세요.\n\n아래 인증코드를 입력하여 이메일 인증을 완료해주세요.\n\n" +
                 "인증코드 : " + code + "\n\n감사합니다.";
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(email);
-        message.setSubject(subject);
-        message.setText(body);
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+        helper.setTo(email);
+        helper.setSubject("더쿠쿠 이메일 인증코드 안내");
+        helper.setText("""
+            안녕하세요.
+            
+            아래 인증코드를 입력하여 이메일 인증을 완료해주세요.
+            
+            인증코드 : %s
+            
+            감사합니다.
+            """.formatted(code), false);
+
+
+
+        System.out.println(email+"/"+subject+"/"+body);
         mailSender.send(message);
         System.out.println(email+" : 이메일 보내기 선공");
     }
