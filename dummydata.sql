@@ -628,125 +628,160 @@ INSERT INTO board_post (
              SYSDATE - 49, SYSDATE - 48, 'N'
          );
 
-INSERT INTO board_post (
-     category_id, member_id, title, content, thumbnail_url,
-    view_count, like_count, comment_count,
-    created_at, updated_at, deleted_yn
-) VALUES (
-              3, 3,
-             '테스트 게시글 003번 제목',
-             '테스트 게시글 003번의 본문 내용입니다. 더미 데이터입니다.',
-             'https://example.com/board/thumb_003.jpg',
-             30, 6, 2,
-             SYSDATE - 48, NULL, 'N'
-         );
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,4,'테스트 게시글 004번 제목','테스트 게시글 004번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_004.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,5,'테스트 게시글 005번 제목','테스트 게시글 005번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_005.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,6,'테스트 게시글 006번 제목','테스트 게시글 006번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_006.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,7,'테스트 게시글 007번 제목','테스트 게시글 007번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_007.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,8,'테스트 게시글 008번 제목','테스트 게시글 008번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_008.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,9,'테스트 게시글 009번 제목','테스트 게시글 009번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_009.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,10,'테스트 게시글 010번 제목','테스트 게시글 010번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_010.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post (category_id, member_id, title, content, thumbnail_url, view_count, like_count, comment_count, created_at, updated_at, deleted_yn)
+VALUES (1,1,'유리장 한 칸 액션 전시 완성','와이어랑 스탠드 각도 맞추느라 2시간 날렸는데… 완성하고 불 켜니까 진짜 “장면”이 됨. 먼지 때문에 유리장 정리하고 LED도 추가함. 사진은 폰 기본 카메라로 찍었는데 생각보다 잘 나왔다.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-15.jpg',312,29,7,SYSDATE-18,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,11,'테스트 게시글 011번 제목','테스트 게시글 011번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_011.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,12,'테스트 게시글 012번 제목','테스트 게시글 012번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_012.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,13,'테스트 게시글 013번 제목','테스트 게시글 013번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_013.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,14,'테스트 게시글 014번 제목','테스트 게시글 014번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_014.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,15,'테스트 게시글 015번 제목','테스트 게시글 015번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_015.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,16,'테스트 게시글 016번 제목','테스트 게시글 016번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_016.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,17,'테스트 게시글 017번 제목','테스트 게시글 017번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_017.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,18,'테스트 게시글 018번 제목','테스트 게시글 018번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_018.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,19,'테스트 게시글 019번 제목','테스트 게시글 019번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_019.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(2,20,'테스트 게시글 020번 제목','테스트 게시글 020번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_020.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,2,'이 칸은 해적 라인업으로 꽉 채웠다','이펙트 파츠가 화려해서 앞쪽엔 액션 포즈, 뒤쪽은 키 큰 애들로 세워서 깊이감 살림. 박스는 원래 치울까 했는데 배경으로 써보니까 분위기 좋아서 일부만 남김.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-16.jpg',541,46,12,SYSDATE-12,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,21,'테스트 게시글 021번 제목','테스트 게시글 021번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_021.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,22,'테스트 게시글 022번 제목','테스트 게시글 022번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_022.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,23,'테스트 게시글 023번 제목','테스트 게시글 023번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_023.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,24,'테스트 게시글 024번 제목','테스트 게시글 024번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_024.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,25,'테스트 게시글 025번 제목','테스트 게시글 025번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_025.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,26,'테스트 게시글 026번 제목','테스트 게시글 026번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_026.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,27,'테스트 게시글 027번 제목','테스트 게시글 027번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_027.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,28,'테스트 게시글 028번 제목','테스트 게시글 028번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_028.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,29,'테스트 게시글 029번 제목','테스트 게시글 029번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_029.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,30,'테스트 게시글 030번 제목','테스트 게시글 030번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_030.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,31,'테스트 게시글 031번 제목','테스트 게시글 031번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_031.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,32,'테스트 게시글 032번 제목','테스트 게시글 032번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_032.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,33,'테스트 게시글 033번 제목','테스트 게시글 033번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_033.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,34,'테스트 게시글 034번 제목','테스트 게시글 034번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_034.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,35,'테스트 게시글 035번 제목','테스트 게시글 035번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_035.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,36,'테스트 게시글 036번 제목','테스트 게시글 036번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_036.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,37,'테스트 게시글 037번 제목','테스트 게시글 037번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_037.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,38,'테스트 게시글 038번 제목','테스트 게시글 038번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_038.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,39,'테스트 게시글 039번 제목','테스트 게시글 039번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_039.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(3,40,'테스트 게시글 040번 제목','테스트 게시글 040번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_040.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,3,'책장 속 “숨은 최애” 전시','책 사이에 슬쩍 세워두면 튀지 않으면서도 존재감이 있음. 원판 받침이라 안정감도 좋고, 책 정리할 때마다 먼지 털어주는 게 루틴이 됨.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-17.webp',188,21,3,SYSDATE-9,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,41,'테스트 게시글 041번 제목','테스트 게시글 041번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_041.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,42,'테스트 게시글 042번 제목','테스트 게시글 042번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_042.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,43,'테스트 게시글 043번 제목','테스트 게시글 043번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_043.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,44,'테스트 게시글 044번 제목','테스트 게시글 044번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_044.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,45,'테스트 게시글 045번 제목','테스트 게시글 045번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_045.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,46,'테스트 게시글 046번 제목','테스트 게시글 046번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_046.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,47,'테스트 게시글 047번 제목','테스트 게시글 047번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_047.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,48,'테스트 게시글 048번 제목','테스트 게시글 048번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_048.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,49,'테스트 게시글 049번 제목','테스트 게시글 049번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_049.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,50,'테스트 게시글 050번 제목','테스트 게시글 050번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_050.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,4,'책상 위 미니 피규어… 표정이 너무 귀엽다','앉아있는 포즈라 데스크에 두기 딱 좋음. 집중 안 될 때 한 번 보면 마음이 좀 진정됨ㅋㅋ 헤드폰 디테일이 특히 귀엽고 크기도 부담 없음.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-18.jfif',97,14,2,SYSDATE-5,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,51,'테스트 게시글 051번 제목','테스트 게시글 051번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_051.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,52,'테스트 게시글 052번 제목','테스트 게시글 052번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_052.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,53,'테스트 게시글 053번 제목','테스트 게시글 053번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_053.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,54,'테스트 게시글 054번 제목','테스트 게시글 054번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_054.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,55,'테스트 게시글 055번 제목','테스트 게시글 055번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_055.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,56,'테스트 게시글 056번 제목','테스트 게시글 056번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_056.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,57,'테스트 게시글 057번 제목','테스트 게시글 057번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_057.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,58,'테스트 게시글 058번 제목','테스트 게시글 058번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_058.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,59,'테스트 게시글 059번 제목','테스트 게시글 059번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_059.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,60,'테스트 게시글 060번 제목','테스트 게시글 060번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_060.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,5,'농구 디오라마 세팅 완료(각도값 미쳤음)','코트 질감이랑 골대 디테일이 생각보다 좋아서 감탄. 투명 스탠드 파츠가 많아서 각도 잡는 데 오래 걸렸는데, 한 번 잡아두니까 진짜 “명장면 캡처” 느낌 제대로남.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-19.jpg',623,52,15,SYSDATE-22,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,61,'테스트 게시글 061번 제목','테스트 게시글 061번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_061.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,62,'테스트 게시글 062번 제목','테스트 게시글 062번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_062.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,63,'테스트 게시글 063번 제목','테스트 게시글 063번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_063.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,64,'테스트 게시글 064번 제목','테스트 게시글 064번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_064.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,65,'테스트 게시글 065번 제목','테스트 게시글 065번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_065.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,66,'테스트 게시글 066번 제목','테스트 게시글 066번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_066.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,67,'테스트 게시글 067번 제목','테스트 게시글 067번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_067.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,68,'테스트 게시글 068번 제목','테스트 게시글 068번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_068.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,69,'테스트 게시글 069번 제목','테스트 게시글 069번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_069.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,70,'테스트 게시글 070번 제목','테스트 게시글 070번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_070.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,6,'피규어는 박스아트까지 같이 전시해야 진짜다','박스가 너무 예뻐서 버릴 수가 없었음… 그래서 아예 박스까지 전시 컨셉으로 바꿈. 소품 구성도 알차고 옆면 아트가 배경 역할까지 해줘서 만족.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-20.webp',274,33,6,SYSDATE-16,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,71,'테스트 게시글 071번 제목','테스트 게시글 071번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_071.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,72,'테스트 게시글 072번 제목','테스트 게시글 072번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_072.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,73,'테스트 게시글 073번 제목','테스트 게시글 073번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_073.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,74,'테스트 게시글 074번 제목','테스트 게시글 074번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_074.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,75,'테스트 게시글 075번 제목','테스트 게시글 075번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_075.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,76,'테스트 게시글 076번 제목','테스트 게시글 076번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_076.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,77,'테스트 게시글 077번 제목','테스트 게시글 077번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_077.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,78,'테스트 게시글 078번 제목','테스트 게시글 078번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_078.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,79,'테스트 게시글 079번 제목','테스트 게시글 079번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_079.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,80,'테스트 게시글 080번 제목','테스트 게시글 080번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_080.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,7,'가동피규어는 포즈 바꾸는 재미가 진짜 큼','옷이 실제 천 재질이라 분위기 확 살음. 포즈 세팅 전에 관절 체크 한 번씩 해줘야 오래감. 여분 유니폼 구성품까지 있어서 촬영할 때 조합 바꾸기 좋다.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-22.jpg',356,40,9,SYSDATE-7,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,81,'테스트 게시글 081번 제목','테스트 게시글 081번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_081.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,82,'테스트 게시글 082번 제목','테스트 게시글 082번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_082.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,83,'테스트 게시글 083번 제목','테스트 게시글 083번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_083.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,84,'테스트 게시글 084번 제목','테스트 게시글 084번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_084.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,85,'테스트 게시글 085번 제목','테스트 게시글 085번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_085.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,86,'테스트 게시글 086번 제목','테스트 게시글 086번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_086.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,87,'테스트 게시글 087번 제목','테스트 게시글 087번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_087.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,88,'테스트 게시글 088번 제목','테스트 게시글 088번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_088.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,89,'테스트 게시글 089번 제목','테스트 게시글 089번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_089.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,90,'테스트 게시글 090번 제목','테스트 게시글 090번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_090.jpg',0,0,0,SYSDATE-50,NULL,'N');
+INSERT INTO board_post VALUES (1,8,'교복 피규어는 기본템… 라인 예쁘게 뽑혔다','앉은 포즈라 공간 덜 차지해서 전시하기 편함. 다리/치마 주름 표현 깔끔하고, 패키지 아트도 예뻐서 같이 두니까 인테리어 느낌 남.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-23.jpg',141,18,4,SYSDATE-3,NULL,'N');
 
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,91,'테스트 게시글 091번 제목','테스트 게시글 091번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_091.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,92,'테스트 게시글 092번 제목','테스트 게시글 092번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_092.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,93,'테스트 게시글 093번 제목','테스트 게시글 093번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_093.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,94,'테스트 게시글 094번 제목','테스트 게시글 094번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_094.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,95,'테스트 게시글 095번 제목','테스트 게시글 095번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_095.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,96,'테스트 게시글 096번 제목','테스트 게시글 096번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_096.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,97,'테스트 게시글 097번 제목','테스트 게시글 097번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_097.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,98,'테스트 게시글 098번 제목','테스트 게시글 098번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_098.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,99,'테스트 게시글 099번 제목','테스트 게시글 099번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_099.jpg',0,0,0,SYSDATE-50,NULL,'N');
-INSERT INTO board_post(category_id,member_id,title,content,thumbnail_url,view_count,like_count,comment_count,created_at,updated_at,deleted_yn) VALUES(1,100,'테스트 게시글 100번 제목','테스트 게시글 100번의 본문 내용입니다. 더미 데이터입니다.','https://example.com/board/thumb_100.jpg',0,0,0,SYSDATE-50,NULL,'N');
-commit;
+INSERT INTO board_post VALUES (1,9,'청록 트윈테일 + 판다 소품 조합은 반칙','색감이 너무 예뻐서 계속 보게 됨. 리본/소매 디테일도 좋고 판다 소품이 포인트 확실함. 같은 톤 피규어랑 같이 두면 전시가 훨씬 깔끔해짐.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-24.jpg',487,55,11,SYSDATE-11,NULL,'N');
 
+INSERT INTO board_post VALUES (1,10,'SHF 개봉… 파츠가 이렇게 많은 건 반칙이지','오늘 도착해서 바로 개봉. 기본 바디도 좋고 얼굴/손 파츠가 다양해서 포징 바꾸는 맛이 있음. 이펙트 파츠(별 모양)까지 들어있어서 전시할 때 화면이 확 살아남. 다만 파츠가 많아서 잃어버리기 쉬우니 트레이 그대로 보관 추천.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-25.webp',268,24,5,SYSDATE-6,NULL,'N');
+
+INSERT INTO board_post VALUES (1,11,'블루아카 피그마 자전거 DX… 박스부터 설렌다','박스 아트 미쳤고 구성도 빵빵함. 자전거 포함이라 공간 차지하긴 하는데, 포즈 잡아두면 진짜 “한 장면”이 됨. 조립 난이도는 중간 정도? 설명서 보면서 하면 충분히 가능. 주말에 제대로 세팅해서 사진 더 찍어볼 예정.','https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-26.jpg',403,37,8,SYSDATE-10,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (1,13,'거실 소파 위 단체샷… 수집의 끝은 결국 전시다',
+     '정리하다가 한 번에 꺼내서 단체샷 찍어봄. 장르 섞여도 포즈/높이만 잘 맞추면 생각보다 예쁘게 나옴. 큰 피규어는 뒤로, 작은 애들은 앞에 두니까 꽉 차는 느낌이 좋다. (먼지 닦는 건… 다음 주의 나에게 맡김)',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-27.jfif',
+     512,41,11,SYSDATE-15,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (1,14,'유리장 한 칸이 아니라 한 “세계관”이 되어버림',
+     '처음엔 테마 맞춰서 넣으려 했는데 점점 자리 싸움 나서 그냥 취향대로 배치함ㅋㅋ 메카/미소녀/작은 피규어까지 섞였는데 오히려 풍성해서 보는 재미가 있음. 조명 켜면 반사 때문에 사진 찍기 어렵긴 한데 실물은 만족도 높음.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-28.jfif',
+     634,49,14,SYSDATE-21,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (1,12,'원피스 라인업 책상 전시… 포즈 맛이 확실함',
+     '책상 위에 쭉 세워두니까 지나갈 때마다 눈이 행복함. 이펙트 파츠 있는 애들은 앞쪽에 두고, 큰 애들은 뒤쪽으로 배치해서 깊이감 살림. 받침 원판이 좀 커서 자리 많이 먹긴 하는데, 완성도 때문에 납득됨.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-29.jfif',
+     289,28,6,SYSDATE-8,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (1,16,'에이스 박스 3종 모아두니 뿌듯함이 3배',
+     '같은 캐릭터라도 버전별로 박스 톤이 달라서 모아두면 컬렉션 느낌 확 남. 개봉은 하나만 하고 나머지는 박스 보관 중… (언젠가 전부 꺼내겠지) 바닥에 줄 세워두기만 해도 전시가 되는 게 박스 피규어의 매력인 듯.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EB%82%B4%EC%83%88%EB%81%BC%EC%9E%90%EB%9E%91/%EB%82%B4%EC%83%88%EC%9E%90-30.jfif',
+     176,19,3,SYSDATE-4,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (2,17,'금발 망토 코스 도전! 손 포즈 + 표정이 전부였다',
+     '이 캐릭터는 표정이 반이라서 눈썹/아이라인에 힘 줬고, 렌즈도 톤 맞춰서 끼웠어. 손바닥 문양은 촬영 전에 빠르게 보정해서 선명하게 나오게 했고, 배경을 어둡게 잡으니까 의상이 더 튀어나와서 결과물 마음에 듦.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88/%EC%BD%94%EC%8A%A4%ED%94%84%EB%A0%88-27.jfif',
+     534,65,11,SYSDATE-7,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,10,'오늘 야식 치킨… 소스 조합 미쳤다',
+     '바삭한 치킨에 양념/치즈 소스 찍어먹고, 치킨무까지 같이 먹으니까 끝… 한 입 먹고 “아 오늘은 성공이다” 소리 나옴. 다음엔 맥주까지 세트로 가야겠다.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-1.jpg',
+     388,27,6,SYSDATE-1,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,11,'이 짤 볼 때마다 대사 타이밍이 너무 웃김ㅋㅋ',
+     '“큰일 났어”로 시작해서 점점 상황이 이상해지는 흐름이 진짜 레전드… 마지막 한 줄이 화룡점정임. 단톡방에 던지면 반응 보장.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-2.png',
+     742,61,15,SYSDATE-3,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,12,'질문 하나로 멘탈 부서지는 순간',
+     '짧은 글인데 묘하게 파괴력 있음… “그렇게 보이는 이유”가 더 궁금해지는 글이라 댓글창 들어가게 됨. 이런 건 볼 때마다 웃프다.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-3.jpg',
+     529,44,9,SYSDATE-8,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,13,'서울 살면 말투가 이렇게 변하나 봄',
+     '처음엔 “난 절대 안 바뀜”이라고 생각했는데 어느 순간 튀어나오는 말투가 있음ㅋㅋ 지역별로 말투 변화 체감되는 포인트가 재밌다. 다들 이런 경험 있어?',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-4.jfif',
+     311,22,5,SYSDATE-15,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,14,'대화가 너무 깔끔하게 끝나서 웃음 터짐',
+     '상대가 진지하게 고민 말하는데 갑자기 한 단어로 정리되는 그 느낌…ㅋㅋ 이런 템포는 진짜 센스다. “굿” 한 방이면 종결.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-5.jpeg',
+     615,49,11,SYSDATE-6,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,15,'이런 전/후 비교는 진짜 반칙 아니냐',
+     '한 장으로 “변신”이 설명되는 케이스… 포인트는 헤어/눈썹/피부톤인 듯. 셀프 관리의 중요성을 다시 느낀다.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-6.jfif',
+     804,73,18,SYSDATE-11,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,16,'원피스 신권 표지 떴길래 저장함',
+     '표지만 봐도 “이번 권은 사건 크다” 느낌이 확 남. 표지 구성 꽉 차 있는 거 너무 좋다… 읽을 시간만 생기면 바로 달릴 예정.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-7.jpg',
+     457,38,7,SYSDATE-2,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,17,'이 장면 캡처… 표정이 너무 강렬해서 저장',
+     '그냥 “미친 텐션” 그 자체라서 짤로 저장해둠ㅋㅋ 이런 장면은 설명 필요 없이 짤 하나로 끝나는 느낌.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-8.jfif',
+     690,55,12,SYSDATE-9,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,18,'거인 나오는 그 작품은 역시 스케일이 다르다',
+     '압도감 장난 아니고, 한 컷만 봐도 긴장감이 느껴짐. 이런 장면 나오면 다음 화까지 기다리는 게 고역…',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-9.jfif',
+     733,62,14,SYSDATE-4,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,19,'중2 감성 대사인데 왠지 또 멋있음',
+     '과하게 멋부린 대사일수록 웃기면서도 은근 뽕 차는 거 알지…? 이런 짤은 저장해뒀다가 친구한테 던지면 꿀잼.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-6.jpeg',
+     402,30,6,SYSDATE-13,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,10,'이 장면은 볼 때마다 소름… 스케일이 미쳤다',
+     '한 컷만 봐도 압도감 장난 아님. 배경/연출이 너무 커서 그냥 “와…” 소리 나오는 장면. 이런 거 나오면 다음 화까지 기다리는 게 제일 힘듦.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-8.jfif',
+     821,69,14,SYSDATE-12,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,12,'이런 잔잔한 컷이 더 오래 기억남',
+     '화려한 전투도 좋지만, 가끔은 이런 조용한 장면이 더 마음에 남더라. 분위기랑 표정이 너무 좋음. 그냥 저장각.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A0-10.jfif',
+     402,33,6,SYSDATE-9,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,13,'요즘 게임/애니 연출… 이펙트 맛이 미쳤다',
+     '푸른 오라 이펙트 들어가면 무조건 간지… 화면이 꽉 차는 느낌이라 보는 맛이 있음. 이런 컨셉은 진짜 카메라 워크가 다 하더라.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-11.jfif',
+     511,41,8,SYSDATE-15,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,14,'이 표정은 진짜… 감정선 폭발 컷',
+     '상처/피로감까지 다 담긴 표정이라 한 번 보면 안 잊힘. 이런 컷은 대사 없어도 분위기만으로 설명되는 느낌.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-12.jfif',
+     748,64,13,SYSDATE-4,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,15,'오늘의 야식 인증… 양념이 반칙이다',
+     '겉바속촉에 양념 촉촉하게 배어있어서 그냥 순삭. “한 조각만” 했다가 결국 다 먹음… 다음엔 콜라/맥주까지 세트로 가야겠다.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-13.jpg',
+     368,29,7,SYSDATE-2,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,16,'길거리 음식은 현장감이 다 한다',
+     '막 구워지는 소리 + 냄새 상상만 해도 배고픔. 이런 건 뜨거울 때 바로 먹어야 제맛인데… 사진 보니까 또 먹고 싶다.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-14.jfif',
+     295,21,5,SYSDATE-7,NULL,'N');
+
+INSERT INTO board_post VALUES
+    (3,17,'AI가 이렇게 생각하는 느낌일 때 있음ㅋㅋ',
+     '머리는 돌고 있는데 결론이 안 나는 그 순간… “정리 좀 해줘” 하고 싶어짐. 오늘 내 상태가 딱 이 짤 같았다.',
+     'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/board/%EC%9E%90%EC%9C%A0/%EC%9E%90%EC%9C%A8-15.jfif',
+     579,47,11,SYSDATE-1,NULL,'N');
 
 INSERT INTO board_bookmark (member_id, post_id, created_at)
 VALUES (1, 1, SYSDATE - 30);

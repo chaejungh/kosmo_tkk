@@ -2,6 +2,7 @@ package com.smu.tkk.controller;
 
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.service.EmailVerificationService;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class EmailVerificationController {
 
     /** 회원가입 + 이메일 인증코드 발송 */
     @PostMapping("/join")
-    public String join(Member member, Model model) {
+    public String join(Member member, Model model) throws MessagingException {
         System.out.println(member);
         Member saved = emailVerificationService.registerNewMember(member);
 
@@ -63,7 +64,7 @@ public class EmailVerificationController {
 
     @PostMapping("/send-code")
     @ResponseBody
-    public String sendCode(@RequestParam String email) {
+    public String sendCode(@RequestParam String email) throws MessagingException {
         emailVerificationService.sendVerificationCode(email);
         return "OK";
     }
