@@ -53,6 +53,9 @@ public class Store {
     @Column(name = "PHONE", length = 30)
     private String phone;
 
+    @Column(name = "IMAGE_URL")
+    private String imageUrl;
+
     @ColumnDefault("SYSDATE -- 등록일")
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;

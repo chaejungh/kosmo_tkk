@@ -1,0 +1,43 @@
+<header class="tkk-header">
+    <div class="tkk-container tkk-header-inner">
+
+        <!-- 로고 -->
+        <a class="tkk-brand" th:href="@{/}">
+            <img class="tkk-brand-logo"
+                 th:src="@{/images/thekuku_logo_transparent.png}"
+                 alt="THE KUKU"
+                 onerror="this.style.display='none'">
+        </a>
+
+        <!-- 메뉴 -->
+        <nav class="tkk-nav">
+            <a class="tkk-nav-item" th:href="@{/}">홈</a>
+
+            <!-- /board 는 컨트롤러에서 /board/1/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/board}">속닥속닥</a>
+
+            <!-- ✅ /trade 는 컨트롤러에서 /trade/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/trade}">쿠쿠마켓</a>
+        </nav>
+
+        <!-- 우측 버튼 -->
+        <div class="tkk-actions">
+
+            <!-- ✅ 비로그인 -->
+            <th:block th:if="${session.memberId == null}">
+                <a class="tkk-btn tkk-btn-ghost" th:href="@{/member/login}">로그인</a>
+                <a class="tkk-btn tkk-btn-primary" th:href="@{/member/join}">회원가입</a>
+            </th:block>
+
+            <!-- ✅ 로그인 -->
+            <th:block th:if="${session.memberId != null}">
+                <span class="tkk-nickname" th:text="${session.nickname}">닉네임</span>
+
+                <a class="tkk-btn tkk-btn-ghost" th:href="@{/mypage}">마이페이지</a>
+                <a class="tkk-btn tkk-btn-primary" th:href="@{/member/logout}">로그아웃</a>
+            </th:block>
+
+        </div>
+
+    </div>
+</header>

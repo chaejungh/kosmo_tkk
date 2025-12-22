@@ -1,3 +1,30 @@
+/*.trade-page {*/
+/*    background: #f8f8ff;*/
+/*}*/
+
+/*.trade-card {*/
+/*    display: flex;*/
+/*    gap: 12px;*/
+/*}*/
+
+/*.trade-thumb {*/
+/*    width: 96px;*/
+/*    height: 96px;*/
+/*    border-radius: 12px;*/
+/*    background: #e5e7eb;*/
+/*}*/
+
+/*.trade-title {*/
+/*    font-size: 15px;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.trade-price {*/
+/*    font-size: 16px;*/
+/*    font-weight: 700;*/
+/*    color: #6366f1;*/
+/*}*/
+
 :root {
     --purple: #6366f1;
     --purple-deep: #4f46e5;

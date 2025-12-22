@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>더쿠쿠</title>
+
+    <!-- ✅ 공통 CSS (캐시 갱신용) -->
+    <link rel="stylesheet" th:href="@{/css/tkk.css(v=${#dates.createNow().time})}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.8-dist/css/bootstrap.min.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <!-- ✅ Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/pagination.css}">
+
+
+    <th:block layout:fragment="head"></th:block>
+</head>
+
+<body class="tkk-body">
+
+<header class="tkk-header">
+    <div class="tkk-header-inner">
+
+        <!-- ✅ 로고 -->
+        <a class="tkk-brand" th:href="@{/}">
+            <img class="tkk-brand-logo"
+                 th:src="@{/images/tkk_logo.png}"
+                 alt="THE KUKU"
+                 onerror="this.style.display='none'">
+        </a>
+
+        <!-- ✅ 메뉴 -->
+        <nav class="tkk-nav">
+            <a class="tkk-nav-item" th:href="@{/}">홈</a>
+
+            <!-- ✅ 실제 주소: /board → 컨트롤러에서 /board/1/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/board}">속닥속닥</a>
+
+            <!-- ✅ 실제 주소: /trade → 컨트롤러에서 /trade/list.do 로 redirect -->
+            <a class="tkk-nav-item" th:href="@{/trade}">쿠쿠마켓</a>
+        </nav>
+
+        <!-- ✅ 로그인/회원가입 or 닉네임/마이페이지 (Thymeleaf) -->
+        <div class="tkk-actions">
+
+            <!-- ✅ 비로그인 -->
+            <th:block th:if="${session.memberId == null}">
+                <a class="tkk-btn tkk-btn-outline" th:href="@{/auth/login}">로그인</a>
+                <a class="tkk-btn tkk-btn-primary" th:href="@{/auth/join}">회원가입</a>
+            </th:block>
+
+            <!-- ✅ 로그인 -->
+            <th:block th:if="${session.memberId != null}">
+            <span class="tkk-user">
+              <strong th:text="${session.nickname}">닉네임</strong>님
+            </span>
+                <a class="tkk-btn tkk-btn-primary" th:href="@{/mypage}">마이페이지</a>
+                <a class="tkk-btn tkk-btn-outline" th:href="@{/auth/logout}">로그아웃</a>
+            </th:block>
+
+        </div>
+
+    </div>
+</header>
+
+<!-- ✅ 본문 컨테이너(기존 그대로) -->
+<div class="tkk-container">
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000;">
+        <div id="tkkToast" class="toast align-items-center text-white bg-primary border-0"
+             role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="d-flex">
+                <div class="toast-body">알림 메시지</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <main layout:fragment="content"></main>
+</div>
+
+<th:block th:replace="fragments/fragments/footer :: footer"></th:block>
+
+
+<script th:inline="javascript">
+
+    ///session 멤버아이디로 변경 ///
+    const memberId=[[${session.memberId}]];
+    console.log(memberId)
+
+</script>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/toast.js" defer></script>
+
+<!-- ✅ 현재 페이지 메뉴 활성화(서버 SpEL 안 씀) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const path = location.pathname.replace(/\/+$/, '') || '/';
+
+        document.querySelectorAll('.tkk-nav a.tkk-nav-item').forEach(a => {
+            const linkPath = (new URL(a.href, location.origin)).pathname.replace(/\/+$/, '') || '/';
+
+            const active = (linkPath === '/')
+                ? (path === '/')
+                : (path === linkPath || path.startsWith(linkPath + '/'));
+
+            if (active) a.classList.add('is-active');
+        });
+    });
+</script>
+
+<th:block layout:fragment="script"></th:block>
+</body>
+</html>

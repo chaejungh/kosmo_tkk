@@ -1,0 +1,47 @@
+/* ===== pagination ===== */
+.tkk-paging-wrap{
+    display:flex;
+    justify-content:center;
+    margin: 26px 0 44px;
+}
+.tkk-paging{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+.tkk-paging li{ list-style:none; }
+.tkk-paging a,
+.tkk-paging span{
+    min-width: 40px;
+    height: 40px;
+    padding: 0 14px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background:#fff;
+    color:#111827;
+    text-decoration:none;
+    font-weight: 800;
+    font-size: 14px;
+    cursor:pointer;
+}
+.tkk-paging a:hover{ background:#f3f4f6; }
+
+.tkk-paging .active > a,
+.tkk-paging a.active,
+.tkk-paging span.active{
+    background:#111827;
+    border-color:#111827;
+    color:#fff;
+}
+
+.tkk-paging .disabled > a,
+.tkk-paging a.disabled{
+    pointer-events:none;
+    opacity:.35;
+}

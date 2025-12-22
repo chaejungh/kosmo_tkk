@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -17,6 +16,7 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "MEMBER_NOTIFICATION_SETTING")
 public class MemberNotificationSetting {
+
     @Id
     @Column(name = "MEMBER_ID", nullable = false)
     private Long id;
@@ -29,27 +29,38 @@ public class MemberNotificationSetting {
     @JsonIgnore
     private Member member;
 
-    @ColumnDefault("'Y'")
-    @Column(name = "COMMENT_YN")
+    @Column(name = "COMMENT_YN", nullable = false, length = 1)
     private String commentYn;
 
-    @ColumnDefault("'Y'")
-    @Column(name = "LIKE_YN")
+    @Column(name = "LIKE_YN", nullable = false, length = 1)
     private String likeYn;
 
-    @ColumnDefault("'Y'")
-    @Column(name = "TRADE_YN")
+    @Column(name = "TRADE_YN", nullable = false, length = 1)
     private String tradeYn;
 
-    @ColumnDefault("'Y'")
-    @Column(name = "EVENT_YN")
+    @Column(name = "EVENT_YN", nullable = false, length = 1)
     private String eventYn;
 
-    @ColumnDefault("SYSDATE")
-    @Column(name = "CREATED_AT")
+    @Column(name = "CREATED_AT", updatable = false)
     private LocalDate createdAt;
 
     @Column(name = "UPDATED_AT")
     private LocalDate updatedAt;
 
+    @PrePersist
+    public void prePersist() {
+        if (commentYn == null) commentYn = "Y";
+        if (likeYn == null) likeYn = "Y";
+        if (tradeYn == null) tradeYn = "Y";
+        if (eventYn == null) eventYn = "Y";
+
+        LocalDate now = LocalDate.now();
+        if (createdAt == null) createdAt = now;
+        if (updatedAt == null) updatedAt = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDate.now();
+    }
 }

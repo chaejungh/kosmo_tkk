@@ -4,6 +4,7 @@ import com.smu.tkk.entity.TradePostImage;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface TradePostImageService {
@@ -18,6 +19,8 @@ public interface TradePostImageService {
 
     boolean remove(Long imageId);
 
-    /** 🔥 갤러리용 이미지 전체조회 (Page 아닌 List) */
     List<TradePostImage> readAllList(Long tradeId);
+
+    // ✅ 리스트 썸네일 맵 (tradeId -> imageUrl)
+    Map<Long, String> readThumbMap(List<Long> tradeIds);
 }

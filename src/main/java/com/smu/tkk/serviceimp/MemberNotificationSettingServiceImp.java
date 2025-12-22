@@ -23,7 +23,7 @@ public class MemberNotificationSettingServiceImp implements MemberNotificationSe
             return Optional.empty();
         }
         // ✅ Repository PK 타입이 Integer 라서 변환
-        return memberNotificationSettingRepository.findById(memberId.intValue());
+        return memberNotificationSettingRepository.findById((long) memberId.intValue());
     }
 
     @Override
