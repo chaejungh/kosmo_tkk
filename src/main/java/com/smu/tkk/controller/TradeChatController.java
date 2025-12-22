@@ -57,11 +57,11 @@ public class TradeChatController {
     /* ======================================================
        채팅 목록
        ====================================================== */
-    @GetMapping("/{memberId}/chat")
-    public String myChatRooms(@PathVariable Long memberId, Model model, Pageable pageable) {
+    @GetMapping("/chat")
+    public String myChatRooms(@SessionAttribute(name = "memberId",required = false) Long memberId, Model model, Pageable pageable) {
 
         model.addAttribute("memberId", memberId);
-        model.addAttribute("rooms", chatService.myRooms(memberId));
+        model.addAttribute("rooms", chatService.getChatRoomList(memberId));
 
         return "trade/chat/chat_list";
     }

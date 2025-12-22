@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    index-->
+    <link rel="stylesheet" href="/static/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <script src="/static/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <!--    <link rel="stylesheet" th:href="@{/css/home.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/auth.css}"/>
+    <link rel="stylesheet" th:href="@{/css/trade.css}"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <script src="/js/toast.js" defer></script>
+    <script th:inline="javascript">
+
+        ///session 멤버아이디로 변경 ///
+        const memberId = [[${session.memberId}]];
+        console.log(memberId)
+
+    </script>
+
+    <!-- 🔥 WebSocket 라이브러리 (채팅이랑 동일) -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+</head>
+<body>
+
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000;">
+    <div id="tkkToast" class="toast align-items-center text-white bg-primary border-0"
+         role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="d-flex">
+            <div class="toast-body">알림 메시지</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ 공통 헤더 -->
+<div th:replace="~{fragments/fragments/trade_fragment/header :: header}"></div>
+
+
+<!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
+
+<div layout:fragment="content" style="background-color: #f5f3ff;">
+
+
+</div>
+
+<!-- ✅ 공통 푸터 -->
+<div th:replace="~{fragments/fragments/mypage_fragment/footer :: footer}"></div>
+<!-- 하단 네비게이션 -->
+<!-- ===== 하단 네비 ===== -->
+<nav class="bottom-nav">
+
+    <a href="/trade/list.do" class="nav-item" data-page="home">
+        <span class="icon">🏠</span>
+        홈
+    </a>
+
+    <a href="/chat/list" class="nav-item" data-page="chat">
+        <span class="icon">💬</span>
+        채팅방
+        <span class="badge pulse"
+              id="chatBadge"
+              th:if="${unreadCount != null and unreadCount > 0}"
+              th:text="${unreadCount}">
+        0
+        </span>
+    </a>
+
+    <a href="/mypage" class="nav-item" data-page="mypage">
+        <span class="icon">👤</span>
+        내정보
+    </a>
+
+</nav>
+
+<script layout:fragment="script">
+</script>
+</body>
+</html>
