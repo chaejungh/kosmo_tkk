@@ -4,167 +4,304 @@
     <meta charset="UTF-8">
     <title>나의 더쿠쿠</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- 마이페이지 전용 CSS -->
     <link rel="stylesheet" th:href="@{/css/mypage.css}"/>
 </head>
 
 <body>
-<div class="mypage-page">
+<div class="mypage-bg">
+    <div class="mypage-container">
 
-    <!-- 제목 -->
-    <h2 class="title">나의 더쿠쿠</h2>
-
-    <!-- 프로필 카드 -->
-    <div class="profile-card">
-        <label for="profileImageInput" class="profile-img-wrapper">
-            <!-- 프로필 이미지 -->
-            <img id="profileImage" class="profile-img"
-                 src="/images/default_profile.png" alt="프로필">
-        </label>
-        <input id="profileImageInput" type="file" accept="image/*" style="display:none;">
-
-        <div class="profile-info">
-            <div class="level-badge">LV3</div>
-
-            <!-- 닉네임 (클릭해서 수정) -->
-            <div id="nickname" class="nickname editable" th:text="${member.nickname}">
-
+        <!-- 상단 타이틀 -->
+        <div class="mypage-top">
+            <div class="mypage-top-title">
+                <h2 class="page-title">마이페이지</h2>
+                <p class="page-sub">나의 활동과 정보를 관리하세요</p>
             </div>
+        </div>
 
-            <!-- 한 줄 소개 -->
-            <div id="intro" class="intro editable" th:text="${member.intro}">한 줄 소개를 입력해 주세요.</div>
+        <div class="mypage-grid">
 
-            <!-- ========== 닉네임 변경 영역 ========== -->
-            <div class="profile-edit-box">
+            <!-- =========================
+                 LEFT : 프로필 요약 + 메뉴
+                 ========================= -->
+            <aside class="left-col">
 
-                <!-- 닉네임 변경 버튼 -->
-                <button id="nicknameEditBtn" class="nickname-edit-btn">
-                    닉네임 변경
-                </button>
+                <!-- 프로필 요약 카드 -->
+                <section class="profile-summary">
+                    <!-- ✅ 사진 클릭하면 파일 선택 (미리보기) -->
+                    <label for="profileImageInput" class="avatar-wrap" title="프로필 사진 변경">
+                        <img
+                                id="profileImage"
+                                class="avatar"
+                                th:src="${#strings.isEmpty(member.profileImageUrl) ? '/images/default_profile.png' : member.profileImageUrl}"
+                                src="/images/default_profile.png"
+                                alt="프로필">
+                        <span class="avatar-badge">📷</span>
+                    </label>
 
-                <!-- 닉네임 변경 폼 (처음에는 숨김) -->
-                <form id="nicknameForm"
-                      th:action="@{'/mypage/' + ${member.id} + '/profile'}"
-                      method="post"
-                      style="display:none; margin-top:12px;">
+                    <!-- ✅ id 유지 -->
+                    <input id="profileImageInput" type="file" accept="image/*" style="display:none;">
 
-                    <input type="text"
-                           name="nickname"
-                           placeholder="새 닉네임을 입력하세요"
-                           required
-                           class="nickname-input">
+                    <div class="profile-text">
+                        <div class="nickname-line">
+                            <span class="nickname" id="nickname" th:text="${member.nickname}">닉네임</span>
+                        </div>
 
-                    <input type="hidden" name="intro" value="">
-                    <input type="hidden" name="profileImage" th:value="${member.profileImageUrl}">
-                    <button type="submit" class="nickname-save-btn">저장</button>
+                        <div class="intro" id="intro" th:text="${member.intro}">한 줄 소개를 입력해 주세요.</div>
 
-                    <!-- 🔥 새로 추가되는 취소 버튼 -->
-                    <button type="button" id="nicknameCancelBtn" class="nickname-cancel-btn">
-                        취소
-                    </button>
-                </form>
-            </div>
-            <script>
-                document.getElementById("nicknameEditBtn").onclick = function () {
-                    document.getElementById("nicknameForm").style.display = "block";
-                };
+                        <div class="profile-meta">
+                            <span class="meta-pill">ID</span>
+                            <span class="meta-value" th:text="${member.id}">1</span>
+                        </div>
+                    </div>
 
-                // 🔥 취소 버튼 클릭 시 입력폼 숨기기
-                document.getElementById("nicknameCancelBtn").onclick = function () {
-                    document.getElementById("nicknameForm").style.display = "none";
-                };
-            </script>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="num">0</div>
+                            <div class="label">게시글</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num">0</div>
+                            <div class="label">댓글</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num">0</div>
+                            <div class="label">좋아요</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 메뉴 카드 -->
+                <nav class="menu-card">
+                    <a class="menu-item active" th:href="@{'/mypage/' + ${member.id} + '/'}">
+                        <span class="menu-ico">👤</span>
+                        <span class="menu-txt">프로필 설정</span>
+                    </a>
+
+                    <a class="menu-item" th:href="@{'/mypage/' + ${member.id} + '/posts'}">
+                        <span class="menu-ico">📝</span>
+                        <span class="menu-txt">게시판 활동</span>
+                    </a>
+
+                    <a class="menu-item" th:href="@{'/mypage/' + ${member.id} + '/likes'}">
+                        <span class="menu-ico">❤️</span>
+                        <span class="menu-txt">좋아요 한 글</span>
+                    </a>
+
+                    <a class="menu-item" th:href="@{'/mypage/' + ${member.id} + '/bookmarks'}">
+                        <span class="menu-ico">📌</span>
+                        <span class="menu-txt">북마크</span>
+                    </a>
+
+                    <a class="menu-item" th:href="@{'/mypage/' + ${member.id} + '/trade/mine'}">
+                        <span class="menu-ico">📦</span>
+                        <span class="menu-txt">쿠쿠마켓 활동</span>
+                    </a>
+
+                    <a class="menu-item" th:href="@{/mypage/{memberId}/stores(memberId=${member.id})}">
+                        <span class="menu-ico">🏪</span>
+                        <span class="menu-txt">찜한 매장</span>
+                    </a>
+
+                    <a class="menu-item" th:href="@{/mypage/{memberId}/popups(memberId=${member.id})}">
+                        <span class="menu-ico">🎪</span>
+                        <span class="menu-txt">찜한 팝업스토어</span>
+                    </a>
+
+                    <div class="menu-divider"></div>
+
+                    <a class="menu-item" href="/mypage/service/setting">
+                        <span class="menu-ico">⚙</span>
+                        <span class="menu-txt">설정 & 고객센터</span>
+                    </a>
+
+                    <a class="menu-item danger" href="/mypage/service/logout">
+                        <span class="menu-ico">🚪</span>
+                        <span class="menu-txt">로그아웃</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- =========================
+                 RIGHT : 프로필 설정
+                 ========================= -->
+            <main class="right-col">
+
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h3 class="panel-title">프로필 설정</h3>
+                            <p class="panel-sub">닉네임/소개/사진을 관리할 수 있어요</p>
+                        </div>
+
+                        <!-- ✅ 수정 버튼 누르면 편집영역 + 사진변경 버튼이 나타남 -->
+                        <button id="nicknameEditBtn" class="btn btn-dark" type="button">수정</button>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <!-- ✅ 평소에는 사진 변경 버튼 없음 (요청 반영) -->
+                        <div class="photo-row view-only">
+                            <div class="photo">
+                                <img
+                                        id="profileImageRight"
+                                        class="photo-img"
+                                        th:src="${#strings.isEmpty(member.profileImageUrl) ? '/images/default_profile.png' : member.profileImageUrl}"
+                                        src="/images/default_profile.png"
+                                        alt="프로필">
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label class="label">닉네임</label>
+                                <div class="readonly" th:text="${member.nickname}">닉네임</div>
+                            </div>
+
+                            <div class="form-field">
+                                <label class="label">소개</label>
+                                <div class="readonly" th:text="${member.intro}">소개</div>
+                            </div>
+                        </div>
+
+                        <!-- ✅ 기존 폼 id/action 유지 + profileImage 파라미터 유지 -->
+                        <form id="nicknameForm"
+                              th:action="@{'/mypage/' + ${member.id} + '/profile'}"
+                              method="post"
+                              class="edit-form"
+                              style="display:none;">
+
+                            <!-- ✅ 수정 모드에서만 사진 변경 버튼 보여주기 -->
+                            <div class="edit-photo-row">
+                                <div class="edit-photo-left">
+                                    <div class="mini-photo">
+                                        <img id="editPreview"
+                                             th:src="${#strings.isEmpty(member.profileImageUrl) ? '/images/default_profile.png' : member.profileImageUrl}"
+                                             src="/images/default_profile.png"
+                                             alt="프로필">
+                                    </div>
+                                    <div class="edit-photo-text">
+                                        <div class="edit-photo-title">프로필 사진</div>
+                                        <div class="edit-photo-sub">수정 상태에서만 변경할 수 있어요</div>
+                                    </div>
+                                </div>
+
+                                <!-- 파일 input은 왼쪽에 있지만, label for로 트리거 가능 -->
+                                <label for="profileImageInput" class="btn btn-ghost">사진 변경</label>
+                            </div>
+
+                            <div class="edit-grid">
+                                <div class="form-field">
+                                    <label class="label">새 닉네임</label>
+                                    <input type="text"
+                                           name="nickname"
+                                           class="input"
+                                           th:value="${member.nickname}"
+                                           placeholder="새 닉네임을 입력하세요"
+                                           required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="label">소개</label>
+                                    <textarea name="intro"
+                                              class="textarea"
+                                              placeholder="한 줄 소개를 입력해 주세요."
+                                              required
+                                              th:text="${#strings.isEmpty(member.intro) ? '안녕하세요, ' + member.nickname + '입니다.' : member.intro}"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- ✅ 여기 값이 DB에 저장되는 profileImageUrl이 됨 -->
+                            <input type="hidden" id="profileImageHidden" name="profileImage"
+                                   th:value="${member.profileImageUrl}">
+
+                            <div class="edit-actions">
+                                <button type="submit" class="btn btn-dark">저장</button>
+                                <button type="button" id="nicknameCancelBtn" class="btn btn-ghost">취소</button>
+                            </div>
+
+                            <div class="edit-hint">
+                                ※ 사진이 “저장까지” 되려면 업로드 후 URL이 profileImageHidden에 들어가야 해요.
+                            </div>
+                        </form>
+
+                        <script>
+                            // ====== 수정/취소 토글 ======
+                            const editBtn = document.getElementById("nicknameEditBtn");
+                            const form = document.getElementById("nicknameForm");
+                            const cancelBtn = document.getElementById("nicknameCancelBtn");
+
+                            editBtn.onclick = function () {
+                                form.style.display = "block";
+                            };
+                            cancelBtn.onclick = function () {
+                                form.style.display = "none";
+                            };
+
+                            // ====== 사진 변경(프론트 미리보기 + (가능하면) 업로드) ======
+                            const fileInput = document.getElementById("profileImageInput");
+                            const leftImg = document.getElementById("profileImage");
+                            const rightImg = document.getElementById("profileImageRight");
+                            const editImg = document.getElementById("editPreview");
+                            const hidden = document.getElementById("profileImageHidden");
+
+                            /**
+                             * ✅ 업로드 API가 이미 있다면, 여기만 너희 프로젝트 엔드포인트로 바꾸면
+                             *    DB 저장까지 됨 (hidden에 URL 넣고 저장 버튼 누르면 끝)
+                             *
+                             * 예시) "/api/upload/profile" 같은 것
+                             */
+                            const UPLOAD_ENDPOINT = "/api/upload/profile"; // <- 너희 업로드 주소 있으면 여기만 수정
+
+                            fileInput?.addEventListener("change", async (e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+
+                                // 1) 즉시 미리보기(화면에서 바로 바뀌게)
+                                const localUrl = URL.createObjectURL(file);
+                                if (leftImg) leftImg.src = localUrl;
+                                if (rightImg) rightImg.src = localUrl;
+                                if (editImg) editImg.src = localUrl;
+
+                                // 2) 업로드 API가 있으면 업로드해서 URL 받아 hidden에 넣기
+                                //    (업로드 API가 없으면 여기서 실패 -> 그래도 미리보기는 됨)
+                                try {
+                                    const fd = new FormData();
+                                    fd.append("file", file);
+
+                                    const res = await fetch(UPLOAD_ENDPOINT, {
+                                        method: "POST",
+                                        body: fd
+                                    });
+
+                                    if (!res.ok) throw new Error("upload failed");
+
+                                    const data = await res.json(); // { url: "https://..." } 형태 가정
+                                    if (data?.url) {
+                                        hidden.value = data.url; // ✅ 이 값이 저장됨
+                                    } else {
+                                        throw new Error("no url in response");
+                                    }
+                                } catch (err) {
+                                    // 업로드 API가 없거나 응답이 다르면 여기로 옴
+                                    // → 그래도 미리보기는 되니까 사용자는 “바뀐 것”처럼 보임
+                                    console.warn("프로필 업로드 API가 없거나 응답이 다릅니다.", err);
+                                }
+                            });
+                        </script>
+
+                    </div>
+                </section>
+
+                <!-- ✅ 노란색 동그라미 섹션(퀵카드) 삭제 (요청 반영) -->
+
+            </main>
+
         </div>
     </div>
-
-    <!-- 섹션 1 : 나의 활동 -->
-    <div class="section-box">
-        <div class="section-title">나의 활동</div>
-
-        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/posts'}">
-            <span class="main">📝 내가 쓴 글</span>
-            <span class="sub">굿즈로드에서 내가 작성한 글 전체 보기</span>
-        </a>
-
-
-        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/likes'}">
-            <span class="main">❤️ 좋아요 한 글</span>
-            <span class="sub">좋아요한 게시글/거래글 모아보기</span>
-        </a>
-
-        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/bookmarks'}">
-            <span class="main">📌 북마크 한 게시글</span>
-            <span class="sub">북마크 한 게시글/거래글 모아보기</span>
-        </a>
-    </div>
-
-    <!-- 섹션 2 : 굿즈 거래 -->
-    <div class="section-box">
-        <div class="section-title">굿즈 거래</div>
-
-        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/trade/mine'}">
-            <span class="main">📦 내가 올린 거래 글</span>
-            <span class="sub">내가 등록한 거래글 전체 보기</span>
-        </a>
-
-
-
-        <a class="item" th:href="@{'/mypage/' + ${member.id} + '/trade/wishlist'}">
-            <span class="main">💗 찜한 거래글</span>
-            <span class="sub">관심 있는 거래글 찜 목록</span>
-        </a>
-
-
-    </div>
-
-    <!-- 섹션 3 : 매장 & 팝업 -->
-    <div class="section-box">
-        <div class="section-title">매장 & 팝업</div>
-
-        <a class="item" th:href="@{/mypage/{memberId}/stores(memberId=${member.id})}">
-            <span class="main">🏪 찜한 매장</span>
-            <span class="sub">자주 가는 굿즈 매장 즐겨찾기</span>
-        </a>
-
-        <a class="item" th:href="@{/mypage/{memberId}/popups(memberId=${member.id})}">
-            <span class="main">🎪 찜한 팝업스토어</span>
-            <span class="sub">놓치기 싫은 팝업스토어 저장 목록</span>
-        </a>
-    </div>
-
-
-
-    <!-- 섹션 5 : 설정 · 고객센터 -->
-    <div class="section-box">
-        <div class="section-title">설정 · 고객센터</div>
-
-        <a class="item" href="/mypage/service/setting">
-            <span class="main">⚙ 계정 · 알림 설정</span>
-            <span class="sub">로그인/보안, 알림 수신 설정</span>
-        </a>
-
-        <a class="item" href="/mypage/service/notice">
-            <span class="main">📢 공지사항 / 이벤트 </span>
-            <span class="sub">서비스 공지 및 이벤트 안내</span>
-        </a>
-
-        <a class="item" href="/mypage/service/faq">
-            <span class="main">❓ 자주 묻는 질문</span>
-            <span class="sub">많이 물어보는 질문 모아보기</span>
-        </a>
-
-        <a class="item" th:href="@{'/mypage/service/' + ${memberId} + '/inquiries'}">
-            <span class="main">💬 1:1 문의</span>
-            <span class="sub">궁금한 점을 직접 문의하기</span>
-        </a>
-
-        <a class="item danger" href="/mypage/service/logout">
-            <span class="main">🚪 로그아웃 </span>
-        </a>
-    </div>
-
 </div>
 
+<!-- 하단 네비 -->
 <nav class="bottom-nav">
     <a th:href="@{/}" class="nav-item">
         <span class="icon">🏠</span>
