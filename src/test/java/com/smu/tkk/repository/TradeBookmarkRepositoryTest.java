@@ -46,6 +46,11 @@ MemberRepository memberRepository;
 
     }
 
+    @Test
+    void countLikeCountByTradeId() {
+        System.out.println(tradeBookmarkRepository.countLikeCountByTradeId(44L));
+    }
+
 //    @Test
 //    @Transactional
 //    void deleteByMemberIdAndTradeId() {

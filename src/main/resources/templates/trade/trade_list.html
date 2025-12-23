@@ -352,8 +352,8 @@
             </div>
 
             <!-- 검색 (기존 기능 유지) -->
-            <form class="trade-search-form" th:action="@{/trade}" method="get">
-                <div class="trade-search">
+            <form class="trade-search-form" th:action="@{/trade/list.do}" method="get">
+            <div class="trade-search">
                     <span class="ico">🔍</span>
                     <input type="text"
                            name="keyword"
@@ -365,15 +365,72 @@
 
             <!-- 보기/정렬 (기존 기능 유지) -->
             <div class="trade-actions">
+
+                <form th:action="@{/trade/list.do}"
+                      method="get"
+                      style="display:flex; align-items:center; gap:6px;">
+
+                    <select name="size"
+                            onchange="this.form.submit()"
+                            style="height:38px;
+                   border-radius:12px;
+                   border:1px solid var(--border);
+                   padding:0 10px;
+                   font-weight:800;
+                   font-size:13px;">
+                        <option value="5"  th:selected="${page.size == 5}">5개씩</option>
+                        <option value="10" th:selected="${page.size == 10}">10개씩</option>
+                        <option value="20" th:selected="${page.size == 20}">20개씩</option>
+                        <option value="30" th:selected="${page.size == 30}">30개씩</option>
+                    </select>
+
+                    <!-- 상태 유지 -->
+                    <input type="hidden" name="page" value="0"/>
+                    <input type="hidden" name="sort" th:value="${sort}"/>
+                    <input type="hidden" name="keyword" th:value="${keyword != null ? keyword : ''}"/>
+                </form>
+
                 <button class="view-btn" id="listViewBtn" type="button" title="리스트">≡</button>
                 <button class="view-btn active" id="gridViewBtn" type="button" title="그리드">▢</button>
                 <button class="view-btn" id="sortBtn" type="button" title="정렬">⇅</button>
 
                 <div id="sortMenu" class="sort-menu">
-                    <a th:href="@{/trade(sort='like', keyword=${keyword})}">❤️ 찜 많은 순</a>
-                    <a th:href="@{/trade(sort='view', keyword=${keyword})}">👀 조회 많은 순</a>
-                    <a th:href="@{/trade(sort='latest', keyword=${keyword})}">🕒 최신순</a>
+
+                    <!-- 찜 많은 순 -->
+                    <a th:href="@{/trade/list.do(
+                                page=${page.number},
+                                size=${page.size},
+                                sort='like',
+                                keyword=${keyword}
+                                )}"
+                        th:classappend="${sort == 'like'} ? 'active'">
+                        ❤️ 찜 많은 순
+                    </a>
+
+                    <!-- 조회 많은 순 -->
+                    <a th:href="@{/trade/list.do(
+                                page=${page.number},
+                                size=${page.size},
+                                sort='view',
+                                keyword=${keyword}
+                                )}"
+                       th:classappend="${sort == 'view'} ? 'active'">
+                        👀 조회 많은 순
+                    </a>
+
+                    <!-- 최신순 -->
+                    <a th:href="@{/trade/list.do(
+                                page=${page.number},
+                                size=${page.size},
+                                sort='latest',
+                                keyword=${keyword}
+                                )}"
+                        th:classappend="${sort == 'latest' or sort == null} ? 'active'">
+                        🕒 최신순
+                    </a>
+
                 </div>
+
             </div>
         </div>
 
@@ -394,7 +451,7 @@
                     <div class="trade-media">
                         <!-- 썸네일 -->
                         <img class="trade-thumb"
-                             th:src="${#strings.isEmpty(post.thumbnailUrl) ? '/images/dummy/noimg.png' : post.thumbnailUrl}"
+                             th:src="${post.thumbnailUrl}"
                              alt="thumb">
 
                         <!-- (UI) 찜 아이콘 느낌 -->
@@ -427,6 +484,53 @@
         </div>
 
     </div>
+    <!-- ===== 페이징 ===== -->
+    <nav th:if="${page.totalPages > 1}"
+         style="margin:40px 0; display:flex; justify-content:center;">
+        <ul class="pagination">
+
+            <!-- 이전 -->
+            <li class="page-item"
+                th:classappend="${page.first} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/trade/list.do(
+                   page=${page.number - 1},
+                   size=${page.size},
+                   sort=${sort},
+                   keyword=${keyword != null ? keyword : ''})}">
+                    이전
+                </a>
+            </li>
+
+            <!-- 페이지 번호 -->
+            <li class="page-item"
+                th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+                th:classappend="${i == page.number} ? 'active'">
+                <a class="page-link"
+                   th:text="${i + 1}"
+                   th:href="@{/trade/list.do(
+                   page=${i},
+                   size=${page.size},
+                   sort=${sort},
+                   keyword=${keyword != null ? keyword : ''})}">
+                </a>
+            </li>
+
+            <!-- 다음 -->
+            <li class="page-item"
+                th:classappend="${page.last} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/trade/list.do(
+                   page=${page.number + 1},
+                   size=${page.size},
+                   sort=${sort},
+                   keyword=${keyword != null ? keyword : ''})}">
+                    다음
+                </a>
+            </li>
+
+        </ul>
+    </nav>
 
     <!-- ===== 글쓰기 버튼(기존 유지) ===== -->
     <a href="/trade/1/write" class="write-btn">+ 글쓰기</a>

@@ -21,6 +21,8 @@ import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequ
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -161,20 +163,36 @@ public class S3StorageService {
     // 🔥 여기부터 프리사인드 URL 관련 기능
     // ============================================================
 
-    /**
-     * 전체 URL에서 S3 key 부분만 추출
-     * 예) https://bucket.s3.region.amazonaws.com/trade/aaa.png
-     *   -> trade/aaa.png
-     */
+
     public String extractKeyFromUrl(String url) {
-        try {
-            URI uri = URI.create(url);
-            String path = uri.getPath();   // "/trade/xxx..."
-            return path.startsWith("/") ? path.substring(1) : path;
-        } catch (Exception e) {
-            // 혹시 파싱 실패하면 그냥 원래 값 반환
-            return url;
+        if (url == null || url.isBlank()) return null;
+
+        // 이미 key만 들어오는 경우 (예: "trade/xxx.png")
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            String key = url.startsWith("/") ? url.substring(1) : url;
+            return key;
         }
+
+        URI uri = URI.create(url);
+
+        // 예: "/trade/%5B%EA%B7%80%EB%A9%B8%5D...PNG"
+        String rawPath = uri.getRawPath();
+        if (rawPath == null) return null;
+
+        // 앞 "/" 제거
+        String path = rawPath.startsWith("/") ? rawPath.substring(1) : rawPath;
+
+        // path-style URL 방어:
+        // https://s3.ap-northeast-2.amazonaws.com/{bucket}/{key}
+        // 이런 형태면 맨 앞 bucket을 제거해야 함
+        if (path.startsWith(bucket + "/")) {
+            path = path.substring((bucket + "/").length());
+        }
+
+        // URL 인코딩 해제 (%EA%B7... -> "귀멸" 등)
+        String decoded = URLDecoder.decode(path, StandardCharsets.UTF_8);
+
+        return decoded;
     }
 
     /**

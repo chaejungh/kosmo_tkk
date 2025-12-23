@@ -339,10 +339,36 @@
                                 <div class="board-search">
                                     <span class="icon">🔍</span>
                                     <input name="search" type="text" placeholder="게시글 검색" th:value="${search}">
+                                    <button>검색</button>
                                 </div>
                             </form>
 
                             <div class="board-mini-actions">
+                                <form th:action="@{/board/{categoryId}/list.do(categoryId=${categoryId})}"
+                                      method="get"
+                                      style="display:flex; align-items:center; gap:6px;">
+
+                                    <select name="size"
+                                            onchange="this.form.submit()"
+                                            style="height:38px;
+                                    border-radius:12px;
+                                    border:1px solid var(--border);
+                                    padding:0 10px;
+                                    font-weight:700;
+                                    font-size:13px;">
+                                        <option value="5"  th:selected="${posts.size == 5}">5개씩</option>
+                                        <option value="10" th:selected="${posts.size == 10}">10개씩</option>
+                                        <option value="20" th:selected="${posts.size == 20}">20개씩</option>
+                                        <option value="30" th:selected="${posts.size == 30}">30개씩</option>
+                                    </select>
+
+                                    <!-- 상태 유지 -->
+                                    <input type="hidden" name="page" value="0"/>
+                                    <input type="hidden" name="sort" th:value="${param.sort}"/>
+                                </form>
+
+
+
                                 <button id="viewListBtn" class="icon-btn" type="button" title="리스트">≡</button>
                                 <button id="viewPhotoBtn" class="icon-btn active" type="button" title="그리드">▢</button>
 

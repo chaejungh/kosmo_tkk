@@ -4760,6 +4760,7 @@ INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
 VALUES (8, '신촌 굿즈샵 검색 038', 'GOODS', 18, SYSDATE - 32);
 
 INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+
 VALUES (9, '부산 애니 굿즈샵 039', 'POST', 19, SYSDATE - 31);
 
 INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
@@ -6091,55 +6092,155 @@ VALUES (20, 40, '네, 시간만 정하면 될 것 같아요. (room 20-9)', 'N');
 INSERT INTO TKK.trade_chat_message (room_id, sender_id, message, read_yn)
 VALUES (20, 20, '토요일 오후 3시는 어떠세요? (room 20-10)', 'N');
 
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (1, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%EB%8F%84%EC%9A%B0%EB%A7%88.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(1,'trade1_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(1,'trade1_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(1,'trade1_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(1,'trade1_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (2, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%EC%95%84%EC%B9%B4%EC%9E%90.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(2,'trade2_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(2,'trade2_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(2,'trade2_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(2,'trade2_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (3, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%EC%BD%94%EC%BF%A0%EC%8B%9C%EB%B3%B4.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(3,'trade3_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(3,'trade3_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(3,'trade3_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(3,'trade3_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (4, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+AGF+2025+%EB%8B%B4%EC%9A%94+%ED%82%A4%EB%B6%80%EC%B8%A0%EC%A7%80+%EB%AC%B4%EC%9E%94.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(4,'trade4_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(4,'trade4_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(4,'trade4_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(4,'trade4_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (5, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+%EC%BF%84%EB%A7%88%ED%9B%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%EC%BD%94%EC%B5%B8%EC%9A%B0+%EC%8B%9C%EB%85%B8%EB%B6%80.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(5,'trade5_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(5,'trade5_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(5,'trade5_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(5,'trade5_img4.jpg',4);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(6,'trade6_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(6,'trade6_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(6,'trade6_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(6,'trade6_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (6, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%5B%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0%5D+%EC%BF%84%EB%A7%88%ED%9B%84+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+-+%ED%86%A0%EB%AF%B8%EC%98%A4%EC%B9%B4+%EA%B8%B0%EC%9C%A0.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(7,'trade7_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(7,'trade7_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(7,'trade7_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(7,'trade7_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (7, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B2%A9%ED%88%AC+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%B0%B8+%EC%95%84%EA%B0%80%EC%B8%A0%EB%A7%88+%EC%A0%A0%EC%9D%B4%EC%B8%A0.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(8,'trade8_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(8,'trade8_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(8,'trade8_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(8,'trade8_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (8, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B2%A9%ED%88%AC+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%B0%B8+%EC%BD%94%EC%B5%B8%EC%9A%B0+%EC%8B%9C%EB%85%B8%EB%B6%80.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(9,'trade9_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(9,'trade9_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(9,'trade9_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(9,'trade9_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (9, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EA%B2%A9%ED%88%AC+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%B0%B8+%ED%86%A0%EB%AF%B8%EC%98%A4%EC%B9%B4+%EA%B8%B0%EC%9C%A0.PNG', 1);
 
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(10,'trade10_img1.jpg',1);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(10,'trade10_img2.jpg',2);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(10,'trade10_img3.jpg',3);
-INSERT INTO trade_post_image(trade_id,image_url,sort_order) VALUES(10,'trade10_img4.jpg',4);
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (10, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0/%EA%B7%80%EB%A9%B8%EC%9D%98+%EC%B9%BC%EB%82%A0+%EB%AC%B4%ED%95%9C%EC%84%B1%ED%8E%B8+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%EC%95%84%EC%B9%B4%EC%9E%90.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (11, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%5B%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84%5D+%EA%B1%B8%EC%A6%88+%EC%8B%9C%EB%A6%AC%EC%A6%88+%ED%95%98%EB%A3%A8%EB%85%B8+%EC%82%AC%EC%BF%A0%EB%9D%BC.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (12, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%5B%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84%5D+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+No.879+%ED%9C%B4%EC%9A%B0%EA%B0%80+%ED%9E%88%EB%82%98%ED%83%80.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (13, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%EB%A3%A9%EC%97%85+%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84+-+%EC%9A%B0%EC%B9%98%ED%95%98+%EC%82%AC%EC%8A%A4%EC%BC%80.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (14, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%82%98%EB%A3%A8%ED%86%A0/%EB%A3%A9%EC%97%85+%EB%82%98%EB%A3%A8%ED%86%A0+%EC%A7%88%ED%92%8D%EC%A0%84+-+%EC%9A%B0%EC%B9%98%ED%95%98+%EC%9D%B4%ED%83%80%EC%B9%98.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (15, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+POP+UP+PARADE+%EB%9D%BC%EC%9D%B4%EB%84%88+%EB%B8%8C%EB%9D%BC%EC%9A%B4+%EC%9B%94%EB%93%9C+%EC%99%80%EC%9D%B4%EB%93%9C+%EC%97%90%ED%94%84%ED%84%B0+%ED%8C%8C%ED%8B%B0.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (16, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+POP+UP+PARADE+%EC%97%98%EB%9F%B0+%EC%98%88%EA%B1%B0+%EC%9B%94%EB%93%9C+%EC%99%80%EC%9D%B4%EB%93%9C+%EC%97%90%ED%94%84%ED%84%B0+%ED%8C%8C%ED%8B%B0.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (17, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+%EB%8F%8C+%EB%A6%AC%EB%B0%94%EC%9D%B4.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (18, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+%EB%A3%A9%EC%97%85+%EB%A6%AC%EB%B0%94%EC%9D%B4.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (19, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%5B%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8%5D+%EB%A3%A9%EC%97%85+%EC%97%98%EB%9F%B0+%EC%98%88%EA%B1%B0.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (20, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8/%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+%EC%A7%84%EA%B2%A9%EC%9D%98+%EA%B1%B0%EC%9D%B8+%EC%95%84%EB%A5%B4%EB%AF%BC+%EC%95%8C%EB%A0%88%EB%A5%B4%ED%86%A0+%EC%A1%B0%EC%82%AC%EB%B3%91%EB%8B%A8.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (21, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+05+%EB%B0%94%EC%B9%98%EB%9D%BC+%EB%A9%94%EA%B5%AC%EB%A3%A8.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (22, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+06+%EC%B9%98%EA%B8%B0%EB%A6%AC+%ED%9A%A8%EB%A7%88.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (23, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+01+%EC%9D%B4%EC%82%AC%EA%B8%B0+%EC%9A%94%EC%9D%B4%EC%B9%98.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (24, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+03+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (25, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+05+%EB%B0%94%EC%B9%98%EB%9D%BC+%EB%A9%94%EA%B5%AC%EB%A3%A8.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (26, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%EC%95%84%ED%81%AC%EB%A6%B4+%EC%8A%A4%ED%83%A0%EB%93%9C+%ED%82%A4%ED%99%80%EB%8D%94+06+%EC%B9%98%EA%B8%B0%EB%A6%AC+%ED%9A%A8%EB%A7%88.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (27, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/(%EC%BD%9C%EB%9D%BC%EB%B3%B4)+%5B%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0%5D+%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9+%EC%9D%80%EB%B0%95+%EC%9B%90%ED%98%95+%EC%BA%94%EB%B1%83%EC%A7%80+(%EC%A0%84+8%EC%A2%85).PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (28, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/%5B%EB%B8%94%EB%A3%A8%EB%A1%9D%5D+%EB%A3%A9%EC%97%85+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (29, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+2%EA%B8%B0+%EB%8D%94%EB%B8%94+%EC%95%84%ED%81%AC%EB%A6%B4+%ED%82%A4%ED%99%80%EB%8D%94+%EB%8D%B0%ED%8F%AC%EB%A5%B4%EB%A9%94+%EC%9D%B4%EC%82%AC%EA%B8%B0+%EC%9A%94%EC%9D%B4%EC%B9%98.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (30, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EB%B8%94%EB%A3%A8+%EB%A1%9D/%EB%B8%94%EB%A3%A8+%EB%A1%9D+%EB%82%98%EA%B8%B0+%EC%84%B8%EC%9D%B4%EC%8B%9C%EB%A1%9C.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (31, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+MEGA+CAT+PROJECT+BIG+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (32, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+MEGA+CAT+PROJECT+BIG+%ED%9B%84%EC%8B%9C%EA%B5%AC%EB%A1%9C+%ED%86%A0%EC%9A%B0%EC%A7%80.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (33, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8+%EC%8A%88%ED%8A%B8Ver..PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (34, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+%EB%84%A8%EB%8F%84%EB%A1%9C%EC%9D%B4%EB%93%9C+%EB%8F%8C+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8+%EA%B3%A0%EC%A0%84.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (35, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84/%5B%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%5D+%EB%A3%A9%EC%97%85+%EA%B3%A0%EC%A3%A0+%EC%82%AC%ED%86%A0%EB%A3%A8.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (36, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%EB%AF%B8%EC%95%BC+%EC%95%84%EC%B8%A0%EB%AC%B4.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (37, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%EC%B8%A0%ED%82%A4%EC%8B%9C%EB%A7%88+%EC%BC%80%EC%9D%B4.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (38, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%EC%B9%B4%EA%B2%8C%EC%95%BC%EB%A7%88+%ED%86%A0%EB%B9%84%EC%98%A4+%EC%84%B8%EC%BB%A8%EB%93%9C+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (39, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+GEM+%EC%8B%9C%EB%A6%AC%EC%A6%88+%EC%86%90%EB%B0%94%EB%8B%A5+%ED%9E%88%EB%82%98%ED%83%80+%EC%86%8C%EC%9A%94+%EC%84%B8%EC%BB%A8%EB%93%9C+%EC%9C%A0%EB%8B%88%ED%8F%BC+Ver..PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (40, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%ED%95%98%EC%9D%B4%ED%81%90/%5B%ED%95%98%EC%9D%B4%ED%81%90!!%5D+%EB%A3%A9%EC%97%85+%EC%B8%A0%ED%82%A4%EC%8B%9C%EB%A7%88+%EC%BC%80%EC%9D%B4.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (41, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+NEO-MAXIMUM+%EB%A3%A8%ED%94%BC+%26+%EC%97%90%EC%9D%B4%EC%8A%A4+%ED%98%95%EC%A0%9C%EC%9D%98+%EC%97%B0+20TH+LIMITED.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (42, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+POP+Evolutionary+History+%EC%A3%BC%EC%96%BC%EB%A6%AC+%EB%B3%B4%EB%8B%88.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (43, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+POP+K%C3%97MAXIMUM+%EC%83%81%EB%94%94.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (44, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+WA.MAXIMUM+%EB%B0%B1%EC%88%98%EC%9D%98+%EC%B9%B4%EC%9D%B4%EB%8F%84+%EC%B4%88%ED%95%9C%EC%A0%95+%EB%B3%B5%EA%B0%81%ED%8C%90.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (45, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+Portrait.Of.Pirates+WA-MAXIMUM+%EB%B0%B1%EC%88%98%ED%95%B4%EC%A0%81%EB%8B%A8+%EB%8C%80%EA%B0%84%ED%8C%90+%ED%99%94%EC%9E%AC%EC%9D%98+%ED%82%B9.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (46, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+%EB%A3%A9%EC%97%85+%EB%AA%BD%ED%82%A4+D+%EB%A3%A8%ED%94%BC+%EA%B8%B0%EC%96%B4+5.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (47, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+%EB%B2%A0%EB%A6%AC%EC%96%B4%EB%B8%94+%EC%95%A1%EC%85%98+%ED%9E%88%EC%96%B4%EB%A1%9C%EC%A6%88+%EB%A1%A4%EB%A1%9C%EB%85%B8%EC%95%84+%EC%A1%B0%EB%A1%9C.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (48, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%5B%EC%9B%90%ED%94%BC%EC%8A%A4%5D+%EC%84%B8%EA%B3%84%EC%9D%98+%EB%94%94%EB%B0%94+%EC%9A%B0%ED%83%80.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (49, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%EC%9B%90%ED%94%BC%EC%8A%A4+P.O.P+SA-MAXIMUM+%EB%8F%88%ED%82%A4%ED%98%B8%ED%85%8C+%EB%8F%84%ED%94%8C%EB%9D%BC%EB%B0%8D%EA%B3%A0.PNG', 1);
+
+INSERT INTO trade_post_image (trade_id, image_url, sort_order) VALUES
+    (50, 'https://tkuku-bucket.s3.ap-northeast-2.amazonaws.com/trade/%EC%9B%90%ED%94%BC%EC%8A%A4/%ED%9D%B0+%EC%88%98%EC%97%BC+%EC%97%90%EB%93%9C%EC%9B%8C%EB%93%9C+%EB%89%B4%EA%B2%8C%EC%9D%B4%ED%8A%B8.PNG', 1);
 
 INSERT INTO board_report(post_id,comment_id,reporter_id,reason,status,created_at)
 VALUES(1,NULL,5,'스팸/홍보성 게시글입니다.','WAIT',SYSDATE-10);
