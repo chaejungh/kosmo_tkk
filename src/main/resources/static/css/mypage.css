@@ -487,3 +487,73 @@ body{
     font-size: 12px;
     color: var(--muted);
 }
+/* ===== MyPage 공통 패널/리스트 ===== */
+.mp-panel{
+    background:#fff;
+    border-radius:18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    overflow:hidden;
+}
+.mp-panel-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 20px;
+    border-bottom:1px solid #eef0f4;
+}
+.mp-title{ font-size:18px; font-weight:800; margin:0; }
+.mp-sub{ font-size:13px; color:#7b7f89; margin:6px 0 0; }
+.mp-panel-body{ padding:18px 20px; }
+
+.mp-empty{
+    padding:18px;
+    border-radius:14px;
+    background:#f7f8fb;
+    color:#6f7682;
+    text-align:center;
+}
+
+.mp-list{ display:flex; flex-direction:column; gap:12px; margin-top:10px; }
+.mp-item{
+    display:block;
+    padding:14px 16px;
+    border-radius:14px;
+    border:1px solid #eef0f4;
+    background:#fff;
+    text-decoration:none;
+    transition: transform .08s ease, box-shadow .08s ease;
+}
+.mp-item:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+.mp-item-title{ font-size:15px; font-weight:700; color:#121316; }
+.mp-item-meta{ margin-top:8px; font-size:12px; color:#7b7f89; display:flex; gap:8px; align-items:center; }
+.mp-item-meta .dot{ opacity:.7; }
+
+/* pagination */
+.mp-pagination{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:18px;
+}
+.pg-btn, .pg-num{
+    padding:8px 10px;
+    border-radius:12px;
+    border:1px solid #eef0f4;
+    background:#fff;
+    text-decoration:none;
+    color:#1a1b1f;
+    font-size:13px;
+}
+.pg-btn.disabled{
+    pointer-events:none;
+    opacity:.45;
+}
+.pg-num.active{
+    background:#111827;
+    color:#fff;
+    border-color:#111827;
+}

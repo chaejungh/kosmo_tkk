@@ -1,34 +1,78 @@
 <!DOCTYPE html>
-<html   lang="ko"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        xmlns:th="http://www.thymeleaf.org"
-        layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+
 <head>
     <meta charset="UTF-8">
     <title>더쿠쿠 - 즐겨찾기한 매장</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+
+    <!-- ✅ 뷰만(크기/레이아웃) 맞추기: 마이페이지 메인급 폭/패딩 -->
+    <th:block layout:fragment="head">
+        <style>
+            .mypage-stores-wrap{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+                padding: 28px 16px 80px;
+            }
+            .mypage-stores-wrap .mp-panel{
+                width: 100%;
+                max-width: 100%;
+            }
+        </style>
+    </th:block>
 </head>
+
 <body>
 <div layout:fragment="content">
-    <div class="section-box">
-        <div class="section-title">❤️ 좋아요 한 글</div>
 
-        <div class="item" th:each="bm : ${storeBookmarks.content}">
-            <a th:href="@{'/storestore/' + ${bm.storeId} + '/detail.do'}" style="display:block;">
-                <div class="main" th:text="${bm.store.name}"></div>
+    <div class="mypage-stores-wrap">
 
-                <div class="sub">
-                    <span th:text="${bm.store.address}"></span>
+        <section class="mp-panel">
+            <div class="mp-panel-head">
+                <div>
+                    <!-- ❗제목만 화면용으로 수정 (기능 영향 없음) -->
+                    <h3 class="mp-title">🏪 찜한 매장</h3>
+                    <p class="mp-sub">즐겨찾기한 매장 목록이에요</p>
+                </div>
+            </div>
+
+            <div class="mp-panel-body">
+
+                <!-- ✅ 빈 상태 -->
+                <div class="mp-empty"
+                     th:if="${storeBookmarks == null or storeBookmarks.totalElements == 0}">
+                    아직 찜한 매장이 없어요 🙂
                 </div>
 
-                <div class="sub">
-                    <span th:text="${bm.store.oneLineDesc}"></span>
-                    ⊙
-                    <span th:text="${bm.store.avgRating}"></span>
+                <!-- ✅ 리스트 (반복/링크/변수 그대로 유지) -->
+                <div class="mp-list"
+                     th:if="${storeBookmarks != null and storeBookmarks.totalElements > 0}">
+
+                    <a class="mp-item"
+                       th:each="bm : ${storeBookmarks.content}"
+                       th:href="@{'/storestore/' + ${bm.storeId} + '/detail.do'}">
+
+                        <div class="mp-item-title" th:text="${bm.store.name}">매장명</div>
+
+                        <div class="mp-item-meta">
+                            <span th:text="${bm.store.address}">주소</span>
+                            <span class="dot">·</span>
+                            <span th:text="${bm.store.oneLineDesc}">한줄소개</span>
+                            <span class="dot">·</span>
+                            <span th:text="${bm.store.avgRating}">0.0</span>
+                        </div>
+
+                    </a>
+
                 </div>
-            </a>
-        </div>
+
+            </div>
+        </section>
+
     </div>
 
 </div>

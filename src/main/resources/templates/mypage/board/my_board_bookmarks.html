@@ -1,35 +1,72 @@
 <!DOCTYPE html>
-<html   lang="ko"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        xmlns:th="http://www.thymeleaf.org"
-        layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+
 <head>
+    <th:block layout:fragment="head">
+        <style>
+            /* ✅ 이 페이지(북마크)만 마이페이지 메인급 폭/패딩 */
+            .mypage-bookmarks-wrap{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+                padding: 28px 16px 80px;
+            }
+            .mypage-bookmarks-wrap .mp-panel{
+                width: 100%;
+                max-width: 100%;
+            }
+        </style>
+    </th:block>
 </head>
 
-
 <body>
-
 <div layout:fragment="content">
-    <div class="section-box">
-        <div class="section-title">📌 북마크한 게시글</div>
 
-        <div class="list-box">
+    <!-- ✅ 크기 맞추는 래퍼만 추가 (기능 영향 X) -->
+    <div class="mypage-bookmarks-wrap">
 
-            <!-- 게시글 북마크 반복 -->
-            <a class="post-item"
-               th:each="bm : ${postBookmarks.getContent()}"
-               th:href="@{'/board/' + ${bm.post.member.id} + '/article/' + ${bm.post.id} + '/detail.do'}">
-
-                <div class="post-title" th:text="${bm.post.title}">게시글 제목</div>
-
-                <div class="post-info">
-                    <span th:text="${bm.post.category.name}">카테고리</span>
-                    ·
-                    <span th:text="${#temporals.format(bm.createdAt, 'yyyy.MM.dd')}">2025.01.01</span>
+        <section class="mp-panel">
+            <div class="mp-panel-head">
+                <div>
+                    <h3 class="mp-title">📌 북마크한 게시글</h3>
+                    <p class="mp-sub">내가 저장해둔 글 목록이에요</p>
                 </div>
-            </a>
+            </div>
 
-        </div>
+            <div class="mp-panel-body">
+
+                <!-- ✅ 빈 상태 (기능 변경 X, 안전하게만 추가) -->
+                <div class="mp-empty"
+                     th:if="${postBookmarks == null or postBookmarks.totalElements == 0}">
+                    아직 북마크한 글이 없어요 🙂
+                </div>
+
+                <!-- ✅ 리스트 (기능 그대로: th:each / th:href / 값 접근 그대로) -->
+                <div class="mp-list"
+                     th:if="${postBookmarks != null and postBookmarks.totalElements > 0}">
+
+                    <a class="mp-item"
+                       th:each="bm : ${postBookmarks.getContent()}"
+                       th:href="@{'/board/' + ${bm.post.member.id} + '/article/' + ${bm.post.id} + '/detail.do'}">
+
+                        <div class="mp-item-title" th:text="${bm.post.title}">게시글 제목</div>
+
+                        <div class="mp-item-meta">
+                            <span th:text="${bm.post.category.name}">카테고리</span>
+                            <span class="dot">·</span>
+                            <span th:text="${#temporals.format(bm.createdAt, 'yyyy.MM.dd')}">2025.01.01</span>
+                        </div>
+
+                    </a>
+                </div>
+
+                <!-- ✅ 페이징이 원래 없어서 추가 안 함 (기능 변경 방지) -->
+
+            </div>
+        </section>
+
     </div>
 </div>
 </body>

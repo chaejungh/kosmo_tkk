@@ -6,24 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- ✅ (1) 너가 붙여준 tkk-header/tkk-footer 전체 CSS 파일 -->
+    <link rel="stylesheet" th:href="@{/css/tkk-layout.css}"/>
+
+    <!-- ✅ (2) mypage 전용 CSS (기존 그대로) -->
+    <link rel="stylesheet" th:href="@{/css/mypage.css}"/>
+
+    <!-- (기존에 쓰던 부트스트랩/JS 있으면 유지) -->
     <link rel="stylesheet" href="/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
-
-    <link rel="stylesheet" th:href="@{/css/mypage.css}"/>
     <script src="/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
     <script src="/js/toast.js" defer></script>
-    <script th:inline="javascript">
 
-        ///session 멤버아이디로 변경 ///
-        const memberId=[[${session.memberId}]];
-        console.log(memberId)
-
-    </script>
+    <!-- ✅ 자식 페이지에서 head 추가 가능 -->
+    <th:block layout:fragment="head"></th:block>
 </head>
-<body>
+
+<!-- ✅ 여기 중요: 너 CSS가 body.tkk-body 기준이라 class 꼭 있어야 함 -->
+<body class="tkk-body">
 
 <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000;">
     <div id="tkkToast" class="toast align-items-center text-white bg-primary border-0"
@@ -36,44 +39,17 @@
     </div>
 </div>
 
-<!-- ✅ 공통 헤더 -->
-<div th:replace="~{fragments/fragments/mypage_fragment/header :: header}"></div>
+<!-- ✅ 공통 헤더 (너가 말한 그대로) -->
+<div th:replace="~{fragments/fragments/header :: header}"></div>
 
-<div class="mypage-page">
+<!-- ✅ 자식페이지 content가 여기로 들어옴 -->
+<div class="tkk-container" layout:fragment="content"></div>
 
-    <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
-    <div layout:fragment="content">
+<!-- ✅ 공통 푸터 (너가 말한 그대로) -->
+<div th:replace="~{fragments/fragments/footer :: footer}"></div>
 
+<!-- ✅ 자식페이지 script가 여기로 들어옴 -->
+<th:block layout:fragment="script"></th:block>
 
-    </div>
-
-</div>
-<!-- ✅ 공통 푸터 -->
-<div th:replace="~{fragments/fragments/mypage_fragment/footer :: footer}"></div>
-<!-- 하단 네비게이션 -->
-<nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span>
-        <span>홈</span>
-    </a>
-    <a th:href="@{/board}" class="nav-item active">
-        <span class="icon">📁</span>
-        <span>덕질게시판</span>
-    </a>
-    <a th:if="${memberId !=null}"
-       th:href="@{/mypage}"
-       class="nav-item">
-        <span class="icon">👤</span>
-        <span>내정보</span>
-    </a>
-    <a th:if="${memberId ==null}"
-       th:href="@{/auth/login}"
-       class="nav-item">
-        <span class="icon">👤</span>
-        <span>내정보</span>
-    </a>
-</nav>
-<script layout:fragment="script">
-</script>
 </body>
 </html>

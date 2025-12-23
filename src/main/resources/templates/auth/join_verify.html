@@ -3,179 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <title>이메일 인증 | 더쿠쿠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
         :root {
+            /* ✅ 기존 톤 유지(보라) */
             --purple: #6366f1;
             --purple-deep: #4f46e5;
+
+            /* ✅ 더쿠쿠 느낌: 부드러운 배경 + 카드 */
             --bg: #f5f3ff;
             --card-bg: #ffffff;
             --border: #e5e7eb;
+
             --text-main: #111827;
             --text-sub: #6b7280;
+            --muted: #9ca3af;
+
+            --shadow: 0 18px 60px rgba(17, 24, 39, .12);
+            --radius: 22px;
         }
+
+        *{ box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
-            background: var(--bg);
+            background: radial-gradient(1200px 600px at 50% -10%, rgba(99,102,241,.20), transparent 60%),
+            linear-gradient(180deg, #f7f5ff, var(--bg));
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 24px 16px;
         }
 
+        /* ✅ 폭 살짝 늘림 + 반응형 */
         .verify-card {
-            width: 420px;
+            width: min(520px, 92vw);
             background: var(--card-bg);
-            padding: 32px 28px;
-            border-radius: 28px;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+            padding: 30px 26px 22px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(229,231,235,.9);
             text-align: center;
+        }
+
+        /* 상단 배지 */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(99,102,241,.12);
+            color: var(--purple-deep);
+            font-size: 12px;
+            font-weight: 800;
+            border: 1px solid rgba(99,102,241,.18);
+            margin-bottom: 12px;
         }
 
         .title {
             font-size: 22px;
-            font-weight: 800;
-            color: var(--purple);
-            margin-bottom: 8px;
+            font-weight: 900;
+            letter-spacing: -.2px;
+            margin: 0 0 6px;
         }
 
         .subtitle {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             color: var(--text-sub);
-            margin-bottom: 24px;
+            margin: 0 0 18px;
+            line-height: 1.45;
+        }
+
+        /* ✅ 입력 영역을 “칩”처럼 */
+        .code-wrap{
+            display:flex;
+            justify-content:center;
         }
 
         .input-code {
             width: 100%;
-            max-width: 260px;   /* 🔥 추가: input이 부모 너비를 넘지 않도록 제한 */
-            height: 52px;
-            border-radius: 12px;
+            max-width: 320px;     /* ✅ 폭 조금 넓힘 */
+            height: 56px;
+            border-radius: 16px;
             border: 1px solid var(--border);
             padding: 0 16px;
-            font-size: 22px;   /* 조금 더 선명하게 */
-            letter-spacing: 8px;   /* 🔥 숫자 간격을 더 넓혀도 튀어나오지 않음 */
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 10px;
             text-align: center;
             outline: none;
-            margin: 0 auto;    /* 🔥 수평 중앙 정렬 */
+            margin: 0 auto;
+            background: #fff;
+            transition: .15s ease;
         }
 
+        .input-code::placeholder{
+            color: #c7c9d1;
+            letter-spacing: 10px;
+            font-weight: 900;
+        }
 
         .input-code:focus {
-            border-color: var(--purple);
-            box-shadow: 0 0 0 1px rgba(99,102,241,0.2);
+            border-color: rgba(99,102,241,.8);
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+        }
+
+        .hint {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 700;
         }
 
         .btn-submit {
-            margin-top: 18px;
+            margin-top: 16px;
             width: 100%;
-            height: 50px;
-            border-radius: 14px;
+            height: 52px;
+            border-radius: 16px;
             border: none;
-            background: var(--purple);
+            background: linear-gradient(180deg, var(--purple), var(--purple-deep));
             color: white;
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 900;
             cursor: pointer;
+            box-shadow: 0 12px 22px rgba(99,102,241,.22);
+            transition: .12s ease;
         }
 
         .btn-submit:hover {
-            background: var(--purple-deep);
+            filter: brightness(1.03);
+            transform: translateY(-1px);
+        }
+        .btn-submit:active {
+            transform: translateY(0);
         }
 
-        .resend-area {
-            margin-top: 14px;
-        }
-
-        .resend-btn {
-            color: var(--purple);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px 0;
-        }
-
-        .timer {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-top: 6px;
+        /* ✅ 재전송 영역 제거했으니, 아래는 반응형만 유지 */
+        @media (max-width: 420px){
+            .verify-card{ padding: 26px 18px 18px; border-radius: 20px; }
+            .input-code{ max-width: 100%; letter-spacing: 8px; }
         }
     </style>
 </head>
 
 <body>
 <div class="verify-card">
-    <div class="title">이메일 인증</div>
-    <div class="subtitle">이메일로 전송된 인증코드를 입력해주세요.</div>
 
+    <div class="badge">✉️ 이메일 인증</div>
+    <h1 class="title">인증코드를 입력해주세요</h1>
+    <p class="subtitle">이메일로 전송된 6자리 코드를 입력하면 인증이 완료됩니다.</p>
+
+    <!-- ✅ 기능/액션/필드 그대로 유지 -->
     <form action="/auth/verify" method="post">
         <input type="hidden" name="email" id="email" th:value="${email}">
 
-        <input class="input-code" type="text" name="code" maxlength="6"
-               placeholder="000000" required>
+        <div class="code-wrap">
+            <input class="input-code"
+                   type="text"
+                   name="code"
+                   maxlength="6"
+                   placeholder="000000"
+                   required>
+        </div>
+
+        <div class="hint">코드가 안 보이면 스팸함도 확인해 주세요.</div>
 
         <button class="btn-submit" type="submit">인증하기</button>
     </form>
 
-    <div class="resend-area">
-        <button class="resend-btn" onclick="resendCode()">인증코드 재전송</button>
-        <div class="timer" id="timerText">남은 시간: 03:00</div>
-    </div>
 </div>
-
-<script>
-    async function resendCode() {
-        const email = document.getElementById("email").value;
-
-        const res = await fetch("/auth/send-code", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "email=" + encodeURIComponent(email)
-        });
-
-        const result = await res.text();
-
-        if (result === "OK") {
-            alert("인증코드가 재전송되었습니다.");
-            resetTimer();
-        }
-
-    }
-
-    // 3분 타이머
-    let time = 180;
-    let timerInterval;
-
-    function startTimer() {
-        timerInterval = setInterval(() => {
-            if (time <= 0) {
-                clearInterval(timerInterval);
-                document.getElementById("timerText").innerText = "인증 시간이 만료되었습니다.";
-                return;
-            }
-
-            const min = String(Math.floor(time / 60)).padStart(2, "0");
-            const sec = String(time % 60).padStart(2, "0");
-
-            document.getElementById("timerText").innerText = `남은 시간: ${min}:${sec}`;
-
-            time--;
-        }, 1000);
-    }
-
-    function resetTimer() {
-        clearInterval(timerInterval);
-        time = 180;
-        startTimer();
-    }
-
-    startTimer();
-</script>
-
 </body>
 </html>

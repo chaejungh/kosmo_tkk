@@ -6,47 +6,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        .page { max-width:700px; margin:0 auto; padding:20px; }
-        .title { font-size:20px; font-weight:700; margin-bottom:20px; }
-        input, select, textarea {
-            width:100%; padding:10px;
-            border:1px solid #ddd;
-            border-radius:8px;
+        :root{
+            --bg:#F3F4F6;
+            --card:#ffffff;
+            --text:#111827;
+            --sub:#6B7280;
+            --muted:#9CA3AF;
+            --border:#E5E7EB;
+
+            --accent:#ff6b86;
+            --accent-deep:#ff4d6d;
+
+            --shadow:0 10px 26px rgba(0,0,0,0.06);
+            --radius:18px;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:"Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", sans-serif;
+        }
+
+        .help-bg{ padding:18px 0 26px; }
+        .page{
+            width:min(980px, 92vw);
+            margin:0 auto;
+        }
+
+        /* 상단 헤더 */
+        .help-header{
+            background:var(--card);
+            border:1px solid #EEF2F7;
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            padding:14px 16px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
             margin-bottom:12px;
         }
-        button {
-            width:100%; padding:12px;
-            background:#4f46e5; color:#fff;
-            border:none; border-radius:8px;
-            font-size:16px; cursor:pointer;
+        .header-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+
+        .back{
+            width:34px; height:34px;
+            border-radius:999px;
+            border:1px solid var(--border);
+            background:#fff;
+            color:#374151;
+            font-size:18px;
+            cursor:pointer;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            text-decoration:none;
+            flex:none;
+        }
+
+        .titlewrap{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+        .page-title{
+            font-size:18px;
+            font-weight:1000;
+            margin:0;
+            letter-spacing:-.2px;
+        }
+        .page-sub{
+            font-size:12px;
+            font-weight:800;
+            color:var(--sub);
+        }
+
+        /* 폼 카드 */
+        .card{
+            background:var(--card);
+            border:1px solid #EEF2F7;
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            padding:16px;
+        }
+
+        label{
+            display:block;
+            font-size:12px;
+            font-weight:1000;
+            color:#374151;
+            margin:10px 2px 6px;
+        }
+
+        select, input, textarea{
+            width:100%;
+            padding:12px 12px;
+            border:1px solid var(--border);
+            border-radius:14px;
+            font-size:13px;
+            font-weight:700;
+            outline:none;
+            background:#fff;
+            color:var(--text);
+        }
+        textarea{
+            min-height:170px;
+            resize:vertical;
+            line-height:1.55;
+            white-space:pre-wrap;
+        }
+        select:focus, input:focus, textarea:focus{
+            border-color: rgba(255,107,134,.55);
+            box-shadow: 0 0 0 3px rgba(255,107,134,.18);
+        }
+
+        .hint{
+            margin-top:6px;
+            font-size:11px;
+            color:var(--muted);
+            font-weight:800;
+        }
+
+        .btn-row{
+            display:flex;
+            gap:10px;
+            margin-top:14px;
+            flex-wrap:wrap;
+        }
+        .btn{
+            border:none;
+            border-radius:999px;
+            padding:12px 16px;
+            font-weight:1000;
+            font-size:14px;
+            cursor:pointer;
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .btn-primary{
+            background:var(--accent);
+            color:#fff;
+            box-shadow: 0 14px 28px rgba(255,107,134,.25);
+            flex:1;
+            min-width: 180px;
+        }
+        .btn-primary:hover{ background:var(--accent-deep); }
+
+        .btn-ghost{
+            background:#fff;
+            color:#374151;
+            border:1px solid var(--border);
+            flex:0 0 auto;
+        }
+        .btn-ghost:hover{ background:#F9FAFB; }
+
+        @media (max-width: 640px){
+            .page{ width:min(680px, 94vw); }
+            .help-header{ padding:12px 12px; }
+            .btn-primary{ min-width: 140px; }
         }
     </style>
 </head>
 
 <body>
+<div class="help-bg">
+    <div class="page">
 
-<div class="page">
+        <div class="help-header">
+            <div class="header-left">
+                <a href="/help/list.do" class="back" title="문의 목록으로">←</a>
 
-    <div class="title">문의 작성</div>
+                <div class="titlewrap">
+                    <div class="page-title">문의 작성</div>
+                    <div class="page-sub">운영자에게 남길 문의 내용을 작성하세요</div>
+                </div>
+            </div>
+        </div>
 
-    <form th:action="@{/help/write.do}" method="post">
+        <div class="card">
 
-        <select name="category">
-            <option value="ACCOUNT">계정</option>
-            <option value="ORDER">주문/결제</option>
-            <option value="STORE">매장</option>
-            <option value="PAYMENT">결제</option>
-            <option value="ETC">기타</option>
-        </select>
+            <form th:action="@{/help/write.do}" method="post">
 
-        <input type="text" name="title" placeholder="문의 제목을 입력하세요" required>
+                <label for="category">카테고리</label>
+                <select id="category" name="category">
+                    <option value="ACCOUNT">계정</option>
+                    <option value="ORDER">주문/결제</option>
+                    <option value="STORE">매장</option>
+                    <option value="PAYMENT">결제</option>
+                    <option value="ETC">기타</option>
+                </select>
 
-        <textarea name="content" rows="7" placeholder="문의 내용을 입력하세요" required></textarea>
+                <label for="title">문의 제목</label>
+                <input id="title" type="text" name="title" placeholder="문의 제목을 입력하세요" required>
+                <div class="hint">예) 로그인이 안돼요 / 거래 채팅이 안 열려요</div>
 
-        <button type="submit">등록하기</button>
-    </form>
+                <label for="content">문의 내용</label>
+                <textarea id="content" name="content" rows="7" placeholder="문의 내용을 입력하세요" required></textarea>
+                <div class="hint">가능하면 발생 화면/상황, 시간, 에러 메시지를 함께 적어주세요.</div>
 
+                <div class="btn-row">
+                    <a href="/help/list.do" class="btn btn-ghost">취소</a>
+                    <button type="submit" class="btn btn-primary">등록하기</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 </div>
-
 </body>
 </html>

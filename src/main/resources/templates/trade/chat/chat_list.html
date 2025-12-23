@@ -2,91 +2,255 @@
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/fragments/trade_fragment/layout}">
+      layout:decorate="~{fragments/fragments/layout}">
+
 <head>
+    <th:block layout:fragment="head">
+        <style>
+            .chatlist-bg{ background:#F3F4F6; padding:18px 0 26px; }
+            .chatlist-container{ width:min(980px, 92vw); margin:0 auto; }
+
+            .chatlist-header{
+                background:#fff;
+                border:1px solid #EEF2F7;
+                border-radius:18px;
+                box-shadow:0 10px 26px rgba(0,0,0,0.06);
+                padding:14px 16px;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                margin-bottom:12px;
+            }
+            .chatlist-header-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+
+            .chatlist-back{
+                width:34px; height:34px;
+                border-radius:999px;
+                border:1px solid #E5E7EB;
+                background:#fff;
+                color:#374151;
+                font-size:18px;
+                cursor:pointer;
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                text-decoration:none;
+                flex:none;
+            }
+
+            .chatlist-titlewrap{ display:flex; flex-direction:column; min-width:0; }
+            .chatlist-title{
+                font-weight:1000; font-size:18px; color:#111827;
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+            }
+            .chatlist-sub{
+                font-size:12px; font-weight:800; color:#6B7280;
+                margin-top:2px;
+            }
+
+            .chatlist-card{
+                background:#fff;
+                border:1px solid #EEF2F7;
+                border-radius:18px;
+                box-shadow:0 10px 26px rgba(0,0,0,0.06);
+                overflow:hidden;
+            }
+
+            .room-item{
+                display:flex;
+                align-items:center;
+                gap:12px;
+                padding:14px 14px;
+                cursor:pointer;
+                border-bottom:1px solid #EEF2F7;
+                background:#fff;
+            }
+            .room-item:hover{ background:#F9FAFB; }
+            .room-item:last-child{ border-bottom:none; }
+
+            .thumb{
+                width:56px; height:56px;
+                border-radius:14px;
+                overflow:hidden;
+                background:#F3F4F6;
+                border:1px solid #EEF2F7;
+                flex:none;
+            }
+            .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+            .info{
+                display:flex;
+                flex-direction:column;
+                gap:6px;
+                min-width:0;
+                flex:1;
+            }
+            .top-row{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:10px;
+                min-width:0;
+            }
+            .nickname{
+                font-weight:1000; font-size:14px; color:#111827;
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+                min-width:0;
+                max-width:70%;
+            }
+            .time{
+                font-size:12px; font-weight:800; color:#9CA3AF;
+                white-space:nowrap; flex:none;
+            }
+            .last-message{
+                font-size:13px; font-weight:700; color:#4B5563;
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+                max-width:100%;
+            }
+
+            /* ✅ (표시 강제) 공용 CSS에서 span 색을 덮어써도 안 죽게 */
+            .nickname{ color:#111827 !important; }
+            .time{ color:#9CA3AF !important; }
+            .last-message{ color:#4B5563 !important; }
+
+            .unread-badge{
+                min-width:24px; height:24px;
+                padding:0 8px;
+                border-radius:999px;
+                background:#EF4444;
+                color:#fff;
+                font-size:12px;
+                font-weight:1000;
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                flex:none;
+                margin-left:6px;
+            }
+
+            .chatlist-empty{
+                padding:22px 16px;
+                text-align:center;
+                color:#6B7280;
+                font-weight:900;
+                background:#fff;
+            }
+            .chatlist-empty small{
+                display:block;
+                margin-top:6px;
+                font-weight:800;
+                color:#9CA3AF;
+            }
+
+            @media (max-width: 640px){
+                .chatlist-container{ width:min(680px, 94vw); }
+                .thumb{ width:52px; height:52px; border-radius:12px; }
+                .room-item{ padding:12px 12px; }
+                .nickname{ max-width:64%; }
+            }
+        </style>
+    </th:block>
 </head>
 
 <body>
 <div layout:fragment="content">
-    <!-- ===== 헤더 ===== -->
-    <div class="trade-header">
-        <div class="header-left">
-            <a class="back-btn" type="button" th:href="@{/trade/chat/list.do}">←</a>
-            <span class="header-title">채팅방</span>
-        </div>
-    </div>
 
-    <!-- ===== 채팅방 리스트 ===== -->
-    <div class="chat-list" style="min-height: 70vh">
+    <div class="chatlist-bg">
+        <div class="chatlist-container">
 
-        <!-- rooms : List<ChatRoomListDTO> -->
-        <div th:each="room : ${rooms}"
-             th:onclick="|location.href='/trade/' + ${room.tradeId} + '/chat/' + ${room.roomId}|"
-             class="room-item">
+            <div class="chatlist-header">
+                <div class="chatlist-header-left">
+                    <a class="chatlist-back" th:href="@{/trade/list.do}" title="뒤로가기">←</a>
 
-            <!-- 썸네일 -->
-            <div class="thumb">
-                <img th:src="${room.tradeThumb}">
+                    <div class="chatlist-titlewrap">
+                        <div class="chatlist-title">채팅방</div>
+                        <div class="chatlist-sub">거래 채팅 목록을 확인하세요</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 상대 닉네임 / 마지막 메시지 / 시간 -->
-            <div class="info">
+            <div class="chatlist-card" style="min-height:70vh;">
 
-                <div class="top-row">
-                    <span class="nickname" th:text="${room.opponentName}">상대 닉네임</span>
-                    <span class="time" th:text="${room.lastTime}">방금 전</span>
+                <div class="chatlist-empty" th:if="${rooms == null or #lists.isEmpty(rooms)}">
+                    아직 채팅방이 없어요 🙂
+                    <small>거래글에서 채팅을 시작해보세요</small>
                 </div>
 
-                <div class="last-message" th:text="${room.lastMessage}">
-                    마지막 메시지 내용이 한 줄로 잘립니다.
+                <div th:if="${rooms != null and !#lists.isEmpty(rooms)}"
+                     th:each="room : ${rooms}"
+                     th:onclick="|location.href='/trade/' + ${room.tradeId} + '/chat/' + ${room.roomId}|"
+                     class="room-item">
+
+                    <div class="thumb">
+                        <img th:src="${
+                                room.tradeThumb == null
+                                ? '/images/dummy/noimg.png'
+                                : (room.tradeThumb instanceof T(java.util.Optional)
+                                    ? room.tradeThumb.orElse('/images/dummy/noimg.png')
+                                    : (#strings.isEmpty(room.tradeThumb) ? '/images/dummy/noimg.png' : room.tradeThumb))
+                             }"
+                             alt="썸네일">
+                    </div>
+
+                    <div class="info">
+                        <div class="top-row">
+                            <!-- ✅ null/빈값이면 화면 텅 비는거 방지 (기능 변화 없음) -->
+                            <span class="nickname"
+                                  th:text="${#strings.isEmpty(room.opponentName) ? '상대방' : room.opponentName}">
+                                상대 닉네임
+                            </span>
+                            <span class="time"
+                                  th:text="${#strings.isEmpty(room.lastTime) ? '' : room.lastTime}">
+                                방금 전
+                            </span>
+                        </div>
+
+                        <div class="last-message"
+                             th:text="${#strings.isEmpty(room.lastMessage) ? '마지막 메시지가 없습니다.' : room.lastMessage}">
+                            마지막 메시지 내용
+                        </div>
+                    </div>
+
+                    <div th:if="${room.unreadCount > 0}"
+                         class="unread-badge"
+                         th:text="${room.unreadCount}">1</div>
                 </div>
 
             </div>
 
-            <!-- 안 읽은 메시지 개수 배지 -->
-            <div th:if="${room.unreadCount > 0}"
-                 class="unread-badge"
-                 th:text="${room.unreadCount}">1</div>
-
         </div>
-
     </div>
-
-<!-- ===== 하단 네비 ===== -->
 
 </div>
-</body>
 
-<!-- ===== 네비 활성화 + 뱃지 상태 JS (굿즈거래와 동일 로직) ===== -->
-<script layout:fragment="script">
-    (function () {
+<th:block layout:fragment="script">
+    <script>
+        (function () {
+            const nav = document.querySelector(".bottom-nav");
+            const items = nav ? nav.querySelectorAll(".nav-item") : [];
+            const badge = document.getElementById("chatBadge");
+            const STORAGE_KEY = "duckuku_unread_msg";
 
-        const nav = document.querySelector(".bottom-nav");
-        const items = nav.querySelectorAll(".nav-item");
-        const badge = document.getElementById("chatBadge");
-        const STORAGE_KEY = "duckuku_unread_msg";
+            const pathname = window.location.pathname;
 
-        /* --- 활성화 페이지 자동 감지 --- */
-        const pathname = window.location.pathname;
+            let active = "home";
+            if (pathname.startsWith("/chat")) active = "chat";
+            else if (pathname.startsWith("/mypage")) active = "mypage";
 
-        let active = "home";
-        if (pathname.startsWith("/chat")) active = "chat";
-        else if (pathname.startsWith("/mypage")) active = "mypage";
-
-        items.forEach(i => {
-            if (i.dataset.page === active) i.classList.add("active");
-        });
-
-        const roomBadges = document.querySelectorAll(".unread-badge");
-        /* --- 채팅 클릭하면 읽음 처리 --- */
-        const chatItem = document.querySelector('.nav-item[data-page="chat"]');
-        if (chatItem) {
-            chatItem.addEventListener("click", () => {
-                if (badge) badge.style.display = "none";
-                localStorage.setItem(STORAGE_KEY, "0");
+            items.forEach(i => {
+                if (i.dataset.page === active) i.classList.add("active");
             });
-        }
 
-    })();
-</script>
+            const chatItem = document.querySelector('.nav-item[data-page="chat"]');
+            if (chatItem) {
+                chatItem.addEventListener("click", () => {
+                    if (badge) badge.style.display = "none";
+                    localStorage.setItem(STORAGE_KEY, "0");
+                });
+            }
+        })();
+    </script>
+</th:block>
+
+</body>
 </html>
