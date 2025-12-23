@@ -163,7 +163,7 @@ public class S3StorageService {
     // 🔥 여기부터 프리사인드 URL 관련 기능
     // ============================================================
 
-    /
+
     public String extractKeyFromUrl(String url) {
         if (url == null || url.isBlank()) return null;
 
