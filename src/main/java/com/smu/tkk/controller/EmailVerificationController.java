@@ -7,10 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -61,6 +58,12 @@ public class EmailVerificationController {
             return "auth/join_verify";
         }
     }
+    @GetMapping("/verify")
+    public String verifyPage(@RequestParam String email, Model model) {
+        model.addAttribute("email", email);
+        return "auth/join_verify"; // 인증코드 입력 화면
+    }
+
 
     @PostMapping("/send-code")
     @ResponseBody

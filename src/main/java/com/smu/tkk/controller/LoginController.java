@@ -49,13 +49,6 @@ public class LoginController {
             return "auth/login";   // ✔ 반드시 auth/login
         }
 
-        // ❌ 이메일 미인증 (LEVEL 0)
-        if (member.getUserLevel() == 0) {
-            model.addAttribute("emailNotVerified", true);
-            model.addAttribute("email", member.getEmail());
-            return "auth/login";   // ✔ 이메일 인증안됨 안내 표시
-        }
-
         // ✅ 정상 로그인
         session.setAttribute("memberId", member.getId());
         session.setAttribute("loginMember", member);

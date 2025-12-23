@@ -64,8 +64,8 @@ public class Member {
     private LocalDate updatedAt;
 
     @ColumnDefault("'N'")
-    @Column(name = "DELETED_YN")
-    private char deletedYn;
+    @Column(name = "DELETED_YN", nullable = false)
+    private Character deletedYn = 'N';
 
     /* ----------------------------- 연관관계 ----------------------------- */
 
