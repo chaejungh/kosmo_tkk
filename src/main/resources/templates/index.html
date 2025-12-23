@@ -414,7 +414,7 @@
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide"
-                     th:each="popup : ${popupList}"
+                     th:each="popup : ${activePopupList}"
                      th:onclick="'location.href=\'/popupstore/' + ${popup.id} + '/detail.do\''">
 
                     <div class="home-popup-card">
