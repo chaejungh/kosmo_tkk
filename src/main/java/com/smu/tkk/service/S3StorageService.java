@@ -96,10 +96,23 @@ public class S3StorageService {
         return builder.build();
     }
 
+    // ============================================================
+    // 🔥 업로드
+    // ============================================================
+
     /**
-     * 🔥 S3에 파일 업로드하고, 접근 가능한 URL을 리턴
+     * ✅ 기존 메서드 유지:
+     * 기존에 trade/ 폴더로 업로드되던 동작 그대로 보장
      */
     public String upload(MultipartFile file) {
+        return upload(file, "trade"); // ✅ 기존 동작 유지
+    }
+
+    /**
+     * ✅ 추가: 폴더 지정 업로드
+     * ex) upload(file, "profile") -> profile/xxx.jpg
+     */
+    public String upload(MultipartFile file, String dir) {
 
         if (file == null || file.isEmpty()) {
             throw new IllegalArgumentException("업로드할 파일이 없습니다.");
@@ -115,8 +128,9 @@ public class S3StorageService {
                     .format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             int random = new Random().nextInt(9000) + 1000;
 
-            // 네가 쓰던 폴더 구조 유지: trade/...
-            String key = "trade/" + timestamp + "_" + random + "_" + safeName;
+            // ✅ 폴더만 바뀜 (trade/..., profile/..., popup/..., etc/...)
+            String folder = (dir == null || dir.isBlank()) ? "etc" : dir;
+            String key = folder + "/" + timestamp + "_" + random + "_" + safeName;
 
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket(bucket)
@@ -132,12 +146,10 @@ public class S3StorageService {
             log.info("✅ [S3 업로드 성공] bucket={}, key={}", bucket, key);
 
             // 버킷을 퍼블릭으로 열었을 때 접근 가능한 URL
-            String url = String.format(
+            return String.format(
                     "https://%s.s3.%s.amazonaws.com/%s",
                     bucket, region, key
             );
-
-            return url;
 
         } catch (IOException e) {
             log.error("❌ [S3 업로드 실패] {}", e.getMessage(), e);
