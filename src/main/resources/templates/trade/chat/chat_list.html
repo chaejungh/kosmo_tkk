@@ -2,7 +2,8 @@
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/fragments/trade_fragment/layout}">
+      layout:decorate="~{fragments/fragments/layout}">
+
 <head>
     <th:block layout:fragment="head">
         <style>
@@ -107,6 +108,11 @@
                 max-width:100%;
             }
 
+            /* ✅ (표시 강제) 공용 CSS에서 span 색을 덮어써도 안 죽게 */
+            .nickname{ color:#111827 !important; }
+            .time{ color:#9CA3AF !important; }
+            .last-message{ color:#4B5563 !important; }
+
             .unread-badge{
                 min-width:24px; height:24px;
                 padding:0 8px;
@@ -176,7 +182,6 @@
                      class="room-item">
 
                     <div class="thumb">
-                        <!-- ✅ tradeThumb이 Optional이면: room.tradeThumb.orElse('...') 가능 -->
                         <img th:src="${
                                 room.tradeThumb == null
                                 ? '/images/dummy/noimg.png'
@@ -189,8 +194,15 @@
 
                     <div class="info">
                         <div class="top-row">
-                            <span class="nickname" th:text="${room.opponentName}">상대 닉네임</span>
-                            <span class="time" th:text="${room.lastTime}">방금 전</span>
+                            <!-- ✅ null/빈값이면 화면 텅 비는거 방지 (기능 변화 없음) -->
+                            <span class="nickname"
+                                  th:text="${#strings.isEmpty(room.opponentName) ? '상대방' : room.opponentName}">
+                                상대 닉네임
+                            </span>
+                            <span class="time"
+                                  th:text="${#strings.isEmpty(room.lastTime) ? '' : room.lastTime}">
+                                방금 전
+                            </span>
                         </div>
 
                         <div class="last-message"
@@ -210,32 +222,35 @@
     </div>
 
 </div>
-</body>
 
-<script layout:fragment="script">
-    (function () {
-        const nav = document.querySelector(".bottom-nav");
-        const items = nav ? nav.querySelectorAll(".nav-item") : [];
-        const badge = document.getElementById("chatBadge");
-        const STORAGE_KEY = "duckuku_unread_msg";
+<th:block layout:fragment="script">
+    <script>
+        (function () {
+            const nav = document.querySelector(".bottom-nav");
+            const items = nav ? nav.querySelectorAll(".nav-item") : [];
+            const badge = document.getElementById("chatBadge");
+            const STORAGE_KEY = "duckuku_unread_msg";
 
-        const pathname = window.location.pathname;
+            const pathname = window.location.pathname;
 
-        let active = "home";
-        if (pathname.startsWith("/chat")) active = "chat";
-        else if (pathname.startsWith("/mypage")) active = "mypage";
+            let active = "home";
+            if (pathname.startsWith("/chat")) active = "chat";
+            else if (pathname.startsWith("/mypage")) active = "mypage";
 
-        items.forEach(i => {
-            if (i.dataset.page === active) i.classList.add("active");
-        });
-
-        const chatItem = document.querySelector('.nav-item[data-page="chat"]');
-        if (chatItem) {
-            chatItem.addEventListener("click", () => {
-                if (badge) badge.style.display = "none";
-                localStorage.setItem(STORAGE_KEY, "0");
+            items.forEach(i => {
+                if (i.dataset.page === active) i.classList.add("active");
             });
-        }
-    })();
-</script>
+
+            const chatItem = document.querySelector('.nav-item[data-page="chat"]');
+            if (chatItem) {
+                chatItem.addEventListener("click", () => {
+                    if (badge) badge.style.display = "none";
+                    localStorage.setItem(STORAGE_KEY, "0");
+                });
+            }
+        })();
+    </script>
+</th:block>
+
+</body>
 </html>

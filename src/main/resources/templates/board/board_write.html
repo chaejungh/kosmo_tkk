@@ -6,99 +6,201 @@
 
 <head>
     <th:block layout:fragment="head">
-
         <style>
             :root{
-                --bg:#f4f5f7; --card:#fff; --text:#111827; --sub:#6b7280;
-                --border:#e5e7eb; --accent:#ff6b86; --purple:#6366f1;
-                --shadow:0 10px 30px rgba(17,24,39,.08); --radius:18px;
+                --bg:#F3F4F6;
+                --card:#fff;
+                --text:#111827;
+                --sub:#6B7280;
+                --border:#E5E7EB;
+
+                --accent:#ff6b86;
+                --purple:#6366f1;
+
+                --shadow:0 10px 26px rgba(0,0,0,0.06);
+                --radius:18px;
+            }
+            *{box-sizing:border-box}
+
+            /* ✅ 전체 폭/느낌: 다른 화면들이랑 맞추기 */
+            .board-write-bg{
+                background:var(--bg);
+                padding:18px 0 26px;
             }
             .board-write-wrap{
-                /* ✅ 컨테이너(.tkk-container) 안에서만 넓히기 */
-                width: min(1100px, 100%);
-                margin: 0 auto;
-
-                /* 컨테이너가 이미 좌우 16px padding이라 여기선 0 추천 */
-                padding: 12px 0 90px;
-
-                max-width: 100%;
-                box-sizing: border-box;
+                width:min(980px, 92vw);
+                margin:0 auto;
             }
+
+            /* 헤더 카드 */
             .bw-head{
                 background:linear-gradient(135deg, rgba(255,107,134,.16), rgba(99,102,241,.14));
-                border:1px solid rgba(229,231,235,.9); border-radius:22px;
-                box-shadow:var(--shadow); padding:18px; margin:6px 0 14px;
+                border:1px solid rgba(229,231,235,.9);
+                border-radius:18px;
+                box-shadow:var(--shadow);
+                padding:14px 16px;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                gap:12px;
+                margin-bottom:12px;
             }
-            .bw-title{margin:0;font-size:20px;font-weight:900;color:var(--text);}
-            .bw-sub{margin:6px 0 0;font-size:13px;color:var(--sub);}
+            .bw-head-left{display:flex; flex-direction:column; min-width:0;}
+            .bw-title{
+                margin:0;
+                font-size:18px;
+                font-weight:1000;
+                color:var(--text);
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+            }
+            .bw-sub{
+                margin:4px 0 0;
+                font-size:12px;
+                font-weight:800;
+                color:var(--sub);
+            }
+
+            /* 본문 카드 */
             .bw-card{
-                background:var(--card); border:1px solid var(--border);
-                border-radius:22px; box-shadow:var(--shadow); overflow:hidden;
+                background:var(--card);
+                border:1px solid #EEF2F7;
+                border-radius:18px;
+                box-shadow:var(--shadow);
+                overflow:hidden;
             }
-            .bw-card,
-            .bw-inner{
-                width: 100%;
-                max-width: 100%;
+            .bw-inner{ padding:14px; }
+
+            /* 로그인 안내 */
+            .need-login{
+                background:#fff;
+                border:1px solid var(--border);
+                border-radius:18px;
+                box-shadow:var(--shadow);
+                padding:14px 16px;
+                color:var(--text);
+                font-weight:900;
+                margin-bottom:12px;
             }
-            .bw-title, .bw-sub,
-            .field label, .hint, .error {
-                overflow-wrap: anywhere;
-                word-break: break-word;
+            .need-login small{
+                display:block;
+                margin-top:6px;
+                font-weight:800;
+                color:var(--sub);
             }
+
+            /* 필드 */
             .field{
-                border:1px solid var(--border); border-radius:18px;
-                padding:14px; background:#fff; margin-bottom:14px;
+                border:1px solid var(--border);
+                border-radius:18px;
+                padding:14px;
+                background:#fff;
+                margin-bottom:12px;
             }
             .field label{
-                display:flex;align-items:center;gap:8px;
-                font-size:13px;font-weight:900;color:var(--text);margin-bottom:10px; flex-wrap: wrap;
+                display:flex;
+                align-items:center;
+                gap:8px;
+                font-size:13px;
+                font-weight:1000;
+                color:var(--text);
+                margin-bottom:10px;
+                flex-wrap:wrap;
             }
             .req{
-                font-size:11px;padding:4px 8px;border-radius:999px;
-                background:rgba(255,107,134,.14);border:1px solid rgba(255,107,134,.22);
-                color:var(--text);font-weight:900;
+                font-size:11px;
+                padding:3px 8px;
+                border-radius:999px;
+                background:rgba(255,107,134,.14);
+                border:1px solid rgba(255,107,134,.22);
+                color:var(--text);
+                font-weight:1000;
             }
-            .field input,.field select,.field textarea{
-                width:100%; border:1px solid var(--border); border-radius:14px;
-                padding:12px; font-size:13px; outline:none; background:#fff; color:var(--text);
-                min-width: 0;
-                max-width: 100%;
-                box-sizing: border-box;
+            .field input, .field select, .field textarea{
+                width:100%;
+                border:1px solid var(--border);
+                border-radius:14px;
+                padding:12px;
+                font-size:13px;
+                outline:none;
+                background:#fff;
+                color:var(--text);
             }
-            .field input[type="text"]{
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+            .field textarea{
+                min-height:220px;
+                resize:vertical;
+                line-height:1.6;
             }
-            .field input[type="text"]:focus{
-                text-overflow: clip;
-            }
-            .field textarea{min-height:220px;resize:vertical;line-height:1.6;}
-            .field input:focus,.field select:focus,.field textarea:focus{
+            .field input:focus, .field select:focus, .field textarea:focus{
                 border-color:rgba(99,102,241,.55);
                 box-shadow:0 0 0 3px rgba(99,102,241,.12);
             }
+
             .error{
-                margin-top:8px; color:#ef4444; font-size:12px; font-weight:800;
+                margin-top:8px;
+                color:#EF4444;
+                font-size:12px;
+                font-weight:900;
+                overflow-wrap:anywhere;
             }
-            .hint{margin-top:8px;color:var(--sub);font-size:12px;}
-            .bw-bottom{position:sticky;bottom:0;margin-top:14px;padding:12px 0 0;}
+            .hint{
+                margin-top:8px;
+                color:var(--sub);
+                font-size:12px;
+                font-weight:800;
+                overflow-wrap:anywhere;
+            }
+
+            /* 하단 고정 바 */
+            .bw-bottom{
+                position:sticky;
+                bottom:0;
+                padding-top:12px;
+            }
             .bw-bottom-bar{
-                background:rgba(255,255,255,.86); backdrop-filter:blur(10px);
-                border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow);
-                padding:12px; display:flex; gap:10px; align-items:center; justify-content:space-between;
+                background:rgba(255,255,255,.86);
+                backdrop-filter:blur(10px);
+                border:1px solid var(--border);
+                border-radius:18px;
+                box-shadow:var(--shadow);
+                padding:12px;
+                display:flex;
+                gap:10px;
+                align-items:center;
+                justify-content:space-between;
             }
             .bw-submit{
-                height:40px;padding:0 14px;border-radius:14px;border:none;
+                height:40px;
+                padding:0 14px;
+                border-radius:14px;
+                border:none;
                 background:linear-gradient(135deg, var(--accent), var(--purple));
-                color:#fff;font-weight:900;cursor:pointer;white-space:nowrap;
+                color:#fff;
+                font-weight:1000;
+                cursor:pointer;
+                white-space:nowrap;
                 box-shadow:0 12px 26px rgba(99,102,241,.18);
             }
             .bw-cancel{
-                height:40px;padding:0 14px;border-radius:14px;
-                border:1px solid var(--border);background:#fff;color:var(--text);
-                font-weight:900;cursor:pointer;white-space:nowrap;text-decoration:none;
-                display:inline-flex;align-items:center;justify-content:center;
+                height:40px;
+                padding:0 14px;
+                border-radius:14px;
+                border:1px solid var(--border);
+                background:#fff;
+                color:var(--text);
+                font-weight:1000;
+                cursor:pointer;
+                white-space:nowrap;
+                text-decoration:none;
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+            }
+
+            @media (max-width: 640px){
+                .board-write-wrap{ width:min(680px, 94vw); }
+                .bw-inner{ padding:12px; }
+                .field{ padding:12px; border-radius:16px; }
+                .bw-head{ border-radius:16px; }
             }
         </style>
     </th:block>
@@ -107,75 +209,76 @@
 <body>
 <div layout:fragment="content">
 
-    <div class="board-write-wrap">
+    <div class="board-write-bg">
+        <div class="board-write-wrap">
 
-        <!-- 세션 없으면 폼 자체 숨김(필요하면 유지/수정 가능) -->
-        <div th:if="${session.memberId == null}"
-             style="background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px;color:#111827;margin:10px 0;">
-            ⚠️ 로그인 후 이용해주세요.
-        </div>
-
-        <div class="bw-head">
-            <h1 class="bw-title">덕질게시판 글쓰기</h1>
-            <p class="bw-sub">제목/카테고리/내용만 깔끔하게 쓰면 끝!</p>
-        </div>
-
-        <div class="bw-card" th:if="${session.memberId != null}">
-            <div class="bw-inner">
-
-                <!-- action은 너 컨트롤러 경로에 맞춰 수정 -->
-                <form th:action="@{/board/write.do}"
-                      th:object="${boardWriteValid}"
-                      method="post">
-
-                    <!-- 카테고리 -->
-                    <div class="field">
-                        <label>카테고리 <span class="req">필수</span></label>
-                        <select th:field="*{categoryId}" required>
-                            <!-- 1~3만 선택되게 -->
-                            <option value="" disabled selected>선택하세요</option>
-                            <option value="1">내 새끼 자랑</option>
-                            <option value="2">코스프레</option>
-                            <option value="3">자유</option>
-                        </select>
-
-                        <div class="error"
-                             th:if="${#fields.hasErrors('categoryId')}"
-                             th:errors="*{categoryId}">카테고리 에러</div>
-                        <div class="hint">카테고리는 1~3만 허용(@Min 1, @Max 3)</div>
-                    </div>
-
-                    <!-- 제목 -->
-                    <div class="field">
-                        <label>제목 <span class="req">필수</span></label>
-                        <input type="text" th:field="*{title}" placeholder="제목을 입력하세요" required>
-                        <div class="error"
-                             th:if="${#fields.hasErrors('title')}"
-                             th:errors="*{title}">제목 에러</div>
-                    </div>
-
-                    <!-- 내용 -->
-                    <div class="field">
-                        <label>내용 <span class="req">필수</span></label>
-                        <textarea th:field="*{content}" placeholder="내용을 입력하세요" required></textarea>
-                        <div class="error"
-                             th:if="${#fields.hasErrors('content')}"
-                             th:errors="*{content}">내용 에러</div>
-                    </div>
-
-                    <div class="bw-bottom">
-                        <div class="bw-bottom-bar">
-                            <!-- 목록 경로는 너 프로젝트 경로로 수정 -->
-                            <a class="bw-cancel" th:href="@{/board/list.do}">↩ 목록으로</a>
-                            <button class="bw-submit" type="submit">✅ 등록하기</button>
-                        </div>
-                    </div>
-
-                </form>
-
+            <!-- 세션 없으면 폼 자체 숨김 -->
+            <div class="need-login" th:if="${session.memberId == null}">
+                ⚠️ 로그인 후 이용해주세요.
+                <small>로그인 후 글쓰기가 가능합니다.</small>
             </div>
-        </div>
 
+            <div class="bw-head">
+                <div class="bw-head-left">
+                    <h1 class="bw-title">덕질게시판 글쓰기</h1>
+                    <p class="bw-sub">제목/카테고리/내용만 깔끔하게 쓰면 끝!</p>
+                </div>
+            </div>
+
+            <div class="bw-card" th:if="${session.memberId != null}">
+                <div class="bw-inner">
+
+                    <form th:action="@{/board/write.do}"
+                          th:object="${boardWriteValid}"
+                          method="post">
+
+                        <!-- 카테고리 -->
+                        <div class="field">
+                            <label>카테고리 <span class="req">필수</span></label>
+                            <select th:field="*{categoryId}" required>
+                                <option value="" disabled selected>선택하세요</option>
+                                <option value="1">내 새끼 자랑</option>
+                                <option value="2">코스프레</option>
+                                <option value="3">자유</option>
+                            </select>
+
+                            <div class="error"
+                                 th:if="${#fields.hasErrors('categoryId')}"
+                                 th:errors="*{categoryId}">카테고리 에러</div>
+
+                        </div>
+
+                        <!-- 제목 -->
+                        <div class="field">
+                            <label>제목 <span class="req">필수</span></label>
+                            <input type="text" th:field="*{title}" placeholder="제목을 입력하세요" required>
+                            <div class="error"
+                                 th:if="${#fields.hasErrors('title')}"
+                                 th:errors="*{title}">제목 에러</div>
+                        </div>
+
+                        <!-- 내용 -->
+                        <div class="field">
+                            <label>내용 <span class="req">필수</span></label>
+                            <textarea th:field="*{content}" placeholder="내용을 입력하세요" required></textarea>
+                            <div class="error"
+                                 th:if="${#fields.hasErrors('content')}"
+                                 th:errors="*{content}">내용 에러</div>
+                        </div>
+
+                        <div class="bw-bottom">
+                            <div class="bw-bottom-bar">
+                                <a class="bw-cancel" th:href="@{/board/list.do}">↩ 목록으로</a>
+                                <button class="bw-submit" type="submit">✅ 등록하기</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </div>
