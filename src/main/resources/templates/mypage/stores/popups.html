@@ -1,44 +1,83 @@
 <!-- src/main/resources/templates/mypage/popups.html -->
 <!DOCTYPE html>
-<html   lang="ko"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        xmlns:th="http://www.thymeleaf.org"
-        layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+
 <head>
-
+    <th:block layout:fragment="head">
+        <style>
+            /* ✅ 이 페이지(찜한 팝업스토어)만 마이페이지 메인급 폭/패딩 */
+            .mypage-popups-wrap{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+                padding: 28px 16px 80px;
+            }
+            .mypage-popups-wrap .mp-panel{
+                width: 100%;
+                max-width: 100%;
+            }
+            .mypage-popups-hint{
+                margin: 6px 0 0;
+                font-size: 12px;
+                color: #6b7280;
+                font-weight: 700;
+            }
+        </style>
+    </th:block>
 </head>
-<body>
 
+<body>
 <div layout:fragment="content">
 
-    <!-- 팝업스토어 북마크 박스 -->
-    <div class="section-box">
-        <div class="section-title">🎪 찜한 팝업스토어</div>
-        <p style="font-size:12px; color:#777; margin-bottom:10px;">
-            놓치기 싫어서 저장해둔 팝업스토어 목록이에요.
-        </p>
+    <div class="mypage-popups-wrap">
 
-        <!-- 리스트 -->
-        <div class="item" th:each="bm : ${popupBookmarks.content}">
-            <a th:href="@{'/popupstore/' + ${bm.popup.id} + '/detail.do'}" style="display:block;">
-            <div class="main" th:text="${bm.popup.title}"></div>
-
-            <div class="sub">
-                <span th:text="${bm.popup.address}"></span>
+        <section class="mp-panel">
+            <div class="mp-panel-head">
+                <div>
+                    <h3 class="mp-title">🎪 찜한 팝업스토어</h3>
+                    <p class="mp-sub">놓치기 싫어서 저장해둔 팝업스토어 목록이에요.</p>
+                </div>
             </div>
 
-            <div class="sub">
-                <span th:text="${#temporals.format(bm.popup.startDate, 'yyyy.MM.dd')}"></span>
+            <div class="mp-panel-body">
+
+                <!-- ✅ 빈 상태 (기능 영향 X) -->
+                <div class="mp-empty"
+                     th:if="${popupBookmarks == null or popupBookmarks.totalElements == 0}">
+                    아직 찜한 팝업스토어가 없어요 🙂
+                </div>
+
+                <!-- ✅ 리스트 (기능/변수/링크 그대로 유지) -->
+                <div class="mp-list"
+                     th:if="${popupBookmarks != null and popupBookmarks.totalElements > 0}">
+
+                    <a class="mp-item"
+                       th:each="bm : ${popupBookmarks.content}"
+                       th:href="@{'/popupstore/' + ${bm.popup.id} + '/detail.do'}">
+
+                        <div class="mp-item-title" th:text="${bm.popup.title}">팝업 제목</div>
+
+                        <div class="mp-item-meta">
+                            <span th:text="${bm.popup.address}">주소</span>
+                            <span class="dot">·</span>
+                            <span>
+                <span th:text="${#temporals.format(bm.popup.startDate, 'yyyy.MM.dd')}">2025.01.01</span>
                 ~
-                <span th:text="${#temporals.format(bm.popup.endDate, 'yyyy.MM.dd')}"></span>
+                <span th:text="${#temporals.format(bm.popup.endDate, 'yyyy.MM.dd')}">2025.01.31</span>
+              </span>
+                        </div>
+
+                    </a>
+
+                </div>
+
             </div>
-            </a>
-        </div>
+        </section>
+
     </div>
 
 </div>
-
-
-
 </body>
 </html>

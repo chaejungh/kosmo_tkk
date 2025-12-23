@@ -4,278 +4,429 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
 <head>
-    <script src="/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <th:block layout:fragment="head">
+        <script src="/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+              crossorigin="anonymous">
+
+        <!-- ✅ 크기/뷰만 맞춤 (기능/로직/ID 그대로) -->
+        <style>
+            /* ===== 메인 마이페이지랑 동일한 배경/폭 느낌 ===== */
+            .mypage-bg{
+                background:#f3f4f6;
+                padding: 26px 0 64px;
+                min-height: calc(100vh - 120px);
+            }
+            .mypage-container{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+            }
+
+            /* ===== 페이지 상단 타이틀(메인 느낌) ===== */
+            .mypage-top{
+                margin-bottom: 14px;
+                display:flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                gap: 12px;
+            }
+            .page-title{
+                margin: 0;
+                font-size: 22px;
+                font-weight: 900;
+                letter-spacing: -0.2px;
+            }
+            .page-sub{
+                margin: 6px 0 0;
+                font-size: 13px;
+                font-weight: 700;
+                color: #6b7280;
+            }
+
+            /* ===== 메인 페이지 “오른쪽 패널” 같은 폭 ===== */
+            .setting-wrap{
+                max-width: 880px;
+                margin: 0 auto;
+                display: grid;
+                gap: 16px;
+            }
+
+            /* ===== 카드(메인 카드 느낌으로) ===== */
+            .mypage-section.card{
+                border: 1px solid #eef2f7 !important;
+                border-radius: 18px !important;
+                box-shadow: 0 10px 26px rgba(0,0,0,0.06) !important;
+                overflow: hidden;
+            }
+            .mypage-section .card-header{
+                background: #fff;
+                border-bottom: 1px solid #f1f5f9;
+                padding: 14px 16px;
+            }
+            .mypage-section .card-title{
+                font-size: 16px;
+                font-weight: 900;
+                margin: 0;
+                display:flex;
+                align-items:center;
+                gap: 8px;
+            }
+
+            /* 부트스트랩 list-group 좀 더 깔끔하게 */
+            .list-group-item{
+                padding: 14px 16px;
+            }
+            .list-group-item strong{
+                font-size: 14px;
+            }
+
+            /* ===== 토글 리스트 ===== */
+            .simple-list{
+                list-style:none;
+                margin:0;
+                padding: 8px 0;
+            }
+            .toggle-item{
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                padding: 12px 16px;
+                border-top: 1px solid #f1f5f9;
+                font-weight: 800;
+                color: #111827;
+            }
+            .toggle-item:first-child{ border-top: none; }
+
+            .link-list li{
+                border-top: 1px solid #f1f5f9;
+                padding: 0;
+            }
+            .link-list li:first-child{ border-top:none; }
+            .link-list a{
+                display:block;
+                padding: 12px 16px;
+                text-decoration:none;
+                font-weight: 800;
+                color:#111827;
+            }
+            .link-list a:hover{
+                background:#f8fafc;
+            }
+
+            /* ===== 스위치 UI(기능은 input 그대로) ===== */
+            .tkk-switch{
+                position: relative;
+                display:inline-block;
+                width: 44px;
+                height: 26px;
+            }
+            .tkk-switch input{
+                opacity:0;
+                width:0;
+                height:0;
+            }
+            .tkk-slider{
+                position:absolute;
+                cursor:pointer;
+                inset:0;
+                background:#e5e7eb;
+                transition:.2s;
+                border-radius:999px;
+            }
+            .tkk-slider:before{
+                content:"";
+                position:absolute;
+                height: 20px;
+                width: 20px;
+                left: 3px;
+                top: 3px;
+                background:white;
+                transition:.2s;
+                border-radius:50%;
+                box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+            }
+            .tkk-switch input:checked + .tkk-slider{
+                background:#111827;
+            }
+            .tkk-switch input:checked + .tkk-slider:before{
+                transform: translateX(18px);
+            }
+
+            /* ===== 반응형 ===== */
+            @media (max-width: 720px){
+                .mypage-bg{ padding: 18px 0 54px; }
+                .page-title{ font-size: 20px; }
+                .setting-wrap{ max-width: 100%; }
+            }
+        </style>
+    </th:block>
 </head>
+
 <body>
-
-
 <div layout:fragment="content">
 
+    <!-- ✅ 메인 마이페이지랑 동일한 “배경/폭” 래퍼 -->
+    <div class="mypage-bg">
+        <div class="mypage-container">
 
-<!--    <header class="header">-->
-<!--        <div class="header-top">-->
-<!--            <a th:href="@{/}" class="logo">더쿠쿠</a>-->
-<!--            <div class="logo-badge subtle">-->
-<!--                <span>⚙️</span>-->
-<!--                <span>설정</span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="search-area">-->
-<!--            <p class="search-meta">계정 정보, 알림, 앱 환경 설정을 관리해요.</p>-->
-<!--        </div>-->
-<!--    </header>-->
-
-    <main>
-        <!-- 계정 섹션 -->
-        <section class="card mypage-section">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>계정</span>
+            <!-- 상단 타이틀(뷰만) -->
+            <div class="mypage-top">
+                <div>
+                    <h2 class="page-title">설정 & 고객센터</h2>
+                    <p class="page-sub">계정 정보, 알림, 앱 환경 설정을 관리해요.</p>
                 </div>
             </div>
-            <ul class="list-group list-group-flush">
-                <!-- ✅ 순서 변경: 가입일 → 이메일 → 비밀번호 변경 -->
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>가입일</strong><br>
-                        <small th:text="${#temporals.format(member.createdAt, 'yyyy-MM-dd')}"
-                               class="text-muted">2025-11-01</small>
-                    </div>
-                </li>
 
-                <!-- 이메일 변경 -->
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>로그인 이메일</strong><br>
-                        <small class="text-muted">
-                            현재: <span th:text="${member.email}">이메일</span>
-                        </small>
-                    </div>
-                    <button type="button"
-                            class="btn btn-outline-secondary btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#emailModal">
-                        변경
-                    </button>
-                </li>
+            <!-- ✅ 내용 폭(메인 느낌) -->
+            <div class="setting-wrap">
 
-
-                <!-- 비밀번호 변경 -->
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>비밀번호</strong><br>
-                    </div>
-
-                    <button type="button"
-                            class="btn btn-outline-primary btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#passwordModal">
-                        변경
-                    </button>
-                </li>
-
-            </ul>
-        </section>
-
-        <!-- 비밀번호 변경 모달 -->
-        <!-- 비밀번호 변경 모달 -->
-        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
-                <div class="modal-content" style="border-radius: 10px;">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="passwordModalLabel">비밀번호 변경</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
-                    </div>
-
-                    <div class="modal-body">
-
-                        <!-- 🔥 에러 메시지 박스 -->
-                        <div id="pwErrorMsg"
-                             style="display:none; background:#fee2e2; color:#b91c1c;
-                            padding:8px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+                <!-- 계정 섹션 -->
+                <section class="card mypage-section">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>계정</span>
                         </div>
-
-                        <!-- 🔥 안내문 추가 -->
-                        <p style="font-size:12px; color:#6b7280; margin-bottom:10px;">
-                            비밀번호는 <b>특수문자 1개 이상</b> 포함해야 합니다.
-                        </p>
-
-                        <form id="pwForm" th:action="@{/mypage/service/updatePassword}" method="post">
-
-                            <input type="hidden" name="memberId" th:value="${member.id}" />
-
-                            <!-- 새 비밀번호 -->
-                            <input type="password" id="newPw" name="loginPw" class="form-control mb-2"
-                                   placeholder="새 비밀번호 입력" required
-                                   style="height:40px; border-radius:8px;">
-
-                            <!-- 비밀번호 확인 -->
-                            <input type="password" id="newPwConfirm" class="form-control mb-3"
-                                   placeholder="비밀번호 재입력" required
-                                   style="height:40px; border-radius:8px;">
-
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-primary btn-sm">변경</button>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <!-- ✅ 순서 변경: 가입일 → 이메일 → 비밀번호 변경 -->
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>가입일</strong><br>
+                                <small th:text="${#temporals.format(member.createdAt, 'yyyy-MM-dd')}"
+                                       class="text-muted">2025-11-01</small>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 변경 성공 토스트 -->
-        <div class="toast-container position-fixed p-3" style="top: 20px; right: 20px; z-index: 2000;">
-            <div id="changeSuccessToast" class="toast align-items-center text-white bg-success border-0"
-                 role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        변경이 성공적으로 완료되었습니다.
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                            data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
+                        </li>
 
-        <!--회원탈퇴 모달 추가-->
-        <div id="deleteModal"
-             style="
-                display:none;
-                position:fixed;
-                top:0;
-                left:0;
-                width:100%;
-                height:100%;
-                background:rgba(0,0,0,0.45);
-                justify-content:center;
-                align-items:center;
-                z-index:9999;   /* 🔥 모달을 최상위로 올림 */
-             ">
+                        <!-- 이메일 변경 -->
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>로그인 이메일</strong><br>
+                                <small class="text-muted">
+                                    현재: <span th:text="${member.email}">이메일</span>
+                                </small>
+                            </div>
+                            <button type="button"
+                                    class="btn btn-outline-secondary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#emailModal">
+                                변경
+                            </button>
+                        </li>
 
-            <div style="
-                width:260px;
-                background:white;
-                padding:20px;
-                border-radius:10px;
-                text-align:center;
-                z-index:10000;  /* 🔥 내부 박스도 위로 */
-            ">
-                <h5 style="font-size:15px;">정말로 회원 탈퇴를 하시겠습니까?</h5>
-                <p style="font-size:12px; color:gray;">계정과 모든 활동 내역이 삭제됩니다.</p>
-
-                <button onclick="confirmDelete()" class="btn btn-danger btn-sm"
-                        style="width:100%; margin-top:10px;">회원 탈퇴</button>
-
-                <button onclick="closeDeleteModal()" class="btn btn-secondary btn-sm"
-                        style="width:100%; margin-top:10px;">취소</button>
-            </div>
-        </div>
-        <!-- 이메일 변경 모달 -->
-        <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
-                <div class="modal-content" style="border-radius: 10px;">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="emailModalLabel">이메일 변경</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <form th:action="@{/mypage/service/updateEmail}" method="post">
-                            <!-- 로그인된 회원 ID -->
-                            <input type="hidden" name="memberId" th:value="${member.id}"/>
-
-                            <div class="mb-3">
-                                <label class="form-label">현재 이메일</label>
-                                <input type="email" class="form-control" th:value="${member.email}" readonly>
+                        <!-- 비밀번호 변경 -->
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>비밀번호</strong><br>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">새 이메일</label>
-                                <input type="email" name="email" class="form-control" placeholder="새 이메일 입력" required>
+                            <button type="button"
+                                    class="btn btn-outline-primary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#passwordModal">
+                                변경
+                            </button>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <!-- 비밀번호 변경 모달 -->
+                <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
+                        <div class="modal-content" style="border-radius: 10px;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="passwordModalLabel">비밀번호 변경</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
                             </div>
 
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-primary btn-sm">변경</button>
+                            <div class="modal-body">
+
+                                <!-- 🔥 에러 메시지 박스 -->
+                                <div id="pwErrorMsg"
+                                     style="display:none; background:#fee2e2; color:#b91c1c;
+                                    padding:8px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+                                </div>
+
+                                <!-- 🔥 안내문 추가 -->
+                                <p style="font-size:12px; color:#6b7280; margin-bottom:10px;">
+                                    비밀번호는 <b>특수문자 1개 이상</b> 포함해야 합니다.
+                                </p>
+
+                                <form id="pwForm" th:action="@{/mypage/service/updatePassword}" method="post">
+
+                                    <input type="hidden" name="memberId" th:value="${member.id}" />
+
+                                    <!-- 새 비밀번호 -->
+                                    <input type="password" id="newPw" name="loginPw" class="form-control mb-2"
+                                           placeholder="새 비밀번호 입력" required
+                                           style="height:40px; border-radius:8px;">
+
+                                    <!-- 비밀번호 확인 -->
+                                    <input type="password" id="newPwConfirm" class="form-control mb-3"
+                                           placeholder="비밀번호 재입력" required
+                                           style="height:40px; border-radius:8px;">
+
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary btn-sm">변경</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
 
-        <!-- 알림 설정 섹션 -->
-
-    <main>
-        <section class="card mypage-section">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>알림 설정</span>
+                <!-- 변경 성공 토스트 -->
+                <div class="toast-container position-fixed p-3" style="top: 20px; right: 20px; z-index: 2000;">
+                    <div id="changeSuccessToast" class="toast align-items-center text-white bg-success border-0"
+                         role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                변경이 성공적으로 완료되었습니다.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                    data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <ul class="simple-list">
+                <!--회원탈퇴 모달 추가-->
+                <div id="deleteModal"
+                     style="
+                        display:none;
+                        position:fixed;
+                        top:0;
+                        left:0;
+                        width:100%;
+                        height:100%;
+                        background:rgba(0,0,0,0.45);
+                        justify-content:center;
+                        align-items:center;
+                        z-index:9999;
+                     ">
 
-                <li class="toggle-item">
-                    <span>메시지 알림</span>
-                    <label class="tkk-switch">
-                        <input type="checkbox" id="messageToggle" checked>
-                        <span class="tkk-slider"></span>
-                    </label>
-                </li>
+                    <div style="
+                        width:260px;
+                        background:white;
+                        padding:20px;
+                        border-radius:10px;
+                        text-align:center;
+                        z-index:10000;
+                    ">
+                        <h5 style="font-size:15px;">정말로 회원 탈퇴를 하시겠습니까?</h5>
+                        <p style="font-size:12px; color:gray;">계정과 모든 활동 내역이 삭제됩니다.</p>
 
-                <li class="toggle-item">
-                    <span>거래 상태 변경 알림</span>
-                    <label class="tkk-switch">
-                        <input type="checkbox" checked id="tradeToggle">
-                        <span class="tkk-slider"></span>
-                    </label>
-                </li>
+                        <button onclick="confirmDelete()" class="btn btn-danger btn-sm"
+                                style="width:100%; margin-top:10px;">회원 탈퇴</button>
 
-                <li class="toggle-item">
-                    <span>좋아요/댓글 알림</span>
-                    <label class="tkk-switch">
-                        <input type="checkbox" id="likeToggle">
-                        <span class="tkk-slider"></span>
-                    </label>
-                </li>
-
-                <li class="toggle-item">
-                    <span>문의 답변 알림</span>
-                    <label class="tkk-switch">
-                        <input type="checkbox" id="inquiryToggle">
-                        <span class="tkk-slider"></span>
-                    </label>
-                </li>
-
-                <li class="toggle-item">
-                    <span>공지/이벤트 알림</span>
-                    <label class="tkk-switch">
-                        <input type="checkbox" id="noticeToggle">
-                        <span class="tkk-slider"></span>
-                    </label>
-                </li>
-
-            </ul>
-        </section>
-
-        <!-- 기타 섹션 -->
-        <section class="card mypage-section">
-            <div class="card-header">
-                <div class="card-title">
-                    <span>기타</span>
+                        <button onclick="closeDeleteModal()" class="btn btn-secondary btn-sm"
+                                style="width:100%; margin-top:10px;">취소</button>
+                    </div>
                 </div>
-            </div>
-            <ul class="simple-list link-list">
-                <li><a href="/mypage/service/terms">약관 보기</a></li>
-                <li><a href="/mypage/service/privacy">개인정보 처리방침</a></li>
-                <li><a href="javascript:void(0)" onclick="openDeleteModal()">회원 탈퇴</a></li>
-            </ul>
-        </section>
 
-    </main>
+                <!-- 이메일 변경 모달 -->
+                <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" style="max-width: 320px;">
+                        <div class="modal-content" style="border-radius: 10px;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="emailModalLabel">이메일 변경</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <form th:action="@{/mypage/service/updateEmail}" method="post">
+                                    <!-- 로그인된 회원 ID -->
+                                    <input type="hidden" name="memberId" th:value="${member.id}"/>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">현재 이메일</label>
+                                        <input type="email" class="form-control" th:value="${member.email}" readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">새 이메일</label>
+                                        <input type="email" name="email" class="form-control" placeholder="새 이메일 입력" required>
+                                    </div>
+
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary btn-sm">변경</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 알림 설정 섹션 -->
+                <section class="card mypage-section">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>알림 설정</span>
+                        </div>
+                    </div>
+
+                    <ul class="simple-list">
+                        <li class="toggle-item">
+                            <span>메시지 알림</span>
+                            <label class="tkk-switch">
+                                <input type="checkbox" id="messageToggle" checked>
+                                <span class="tkk-slider"></span>
+                            </label>
+                        </li>
+
+                        <li class="toggle-item">
+                            <span>거래 상태 변경 알림</span>
+                            <label class="tkk-switch">
+                                <input type="checkbox" checked id="tradeToggle">
+                                <span class="tkk-slider"></span>
+                            </label>
+                        </li>
+
+                        <li class="toggle-item">
+                            <span>좋아요/댓글 알림</span>
+                            <label class="tkk-switch">
+                                <input type="checkbox" id="likeToggle">
+                                <span class="tkk-slider"></span>
+                            </label>
+                        </li>
+
+                        <li class="toggle-item">
+                            <span>문의 답변 알림</span>
+                            <label class="tkk-switch">
+                                <input type="checkbox" id="inquiryToggle">
+                                <span class="tkk-slider"></span>
+                            </label>
+                        </li>
+
+                        <li class="toggle-item">
+                            <span>공지/이벤트 알림</span>
+                            <label class="tkk-switch">
+                                <input type="checkbox" id="noticeToggle">
+                                <span class="tkk-slider"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- 기타 섹션 -->
+                <section class="card mypage-section">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>기타</span>
+                        </div>
+                    </div>
+                    <ul class="simple-list link-list">
+                        <li><a href="/mypage/service/terms">약관 보기</a></li>
+                        <li><a href="/mypage/service/privacy">개인정보 처리방침</a></li>
+                        <li><a href="javascript:void(0)" onclick="openDeleteModal()">회원 탈퇴</a></li>
+                    </ul>
+                </section>
+
+            </div><!-- /setting-wrap -->
+        </div><!-- /mypage-container -->
+    </div><!-- /mypage-bg -->
+
 </div>
-
-
 
 
 <script layout:fragment="script" th:inline="javascript">
@@ -344,22 +495,22 @@
         showToast(event.data);
     });*/
 
-        // ===== 메시지 알림 토글 =====
-        const messageToggle = document.getElementById("messageToggle");
+    // ===== 메시지 알림 토글 =====
+    const messageToggle = document.getElementById("messageToggle");
 
-        // 페이지 로딩 시 저장된 설정 불러오기
-        window.addEventListener("load", () => {
-            const saved = localStorage.getItem("message_alert_on");
+    // 페이지 로딩 시 저장된 설정 불러오기
+    window.addEventListener("load", () => {
+        const saved = localStorage.getItem("message_alert_on");
 
-            if (saved === "Y") {
-                messageToggle.checked = true;
-            } else if (saved === "N") {
-                messageToggle.checked = false;
-            } else {
-                messageToggle.checked = true;
-                localStorage.setItem("message_alert_on", "Y");
-            }
-        });
+        if (saved === "Y") {
+            messageToggle.checked = true;
+        } else if (saved === "N") {
+            messageToggle.checked = false;
+        } else {
+            messageToggle.checked = true;
+            localStorage.setItem("message_alert_on", "Y");
+        }
+    });
 
     // 비밀번호 변경 검증
     document.addEventListener("DOMContentLoaded", () => {
@@ -407,17 +558,17 @@
 
 
     // 토글 변경 시 저장 + 토스트
-        messageToggle.addEventListener("change", () => {
-            const isOn = messageToggle.checked;
+    messageToggle.addEventListener("change", () => {
+        const isOn = messageToggle.checked;
 
-            localStorage.setItem("message_alert_on", isOn ? "Y" : "N");
+        localStorage.setItem("message_alert_on", isOn ? "Y" : "N");
 
-            if (isOn) {
-                showToast("📢 메시지 알림이 켜졌어요");
-            } else {
-                showToast("📢 메시지 알림이 꺼졌어요");
-            }
-        });
+        if (isOn) {
+            showToast("📢 메시지 알림이 켜졌어요");
+        } else {
+            showToast("📢 메시지 알림이 꺼졌어요");
+        }
+    });
 
     // ===== 문의 답변 알림 토글 =====
     const inquiryToggle = document.getElementById("inquiryToggle");

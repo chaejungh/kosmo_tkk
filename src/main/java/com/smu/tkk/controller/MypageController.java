@@ -13,17 +13,20 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/mypage")
 @AllArgsConstructor(onConstructor_ = @Autowired)
 public class MypageController {
+
+    private final BoardService boardService;
+    private final StoreService storeService;
+    private final MemberService memberService;
+    private final BoardBookmarkService boardBookmarkService;
 
     /**
      * =========================
@@ -32,21 +35,17 @@ public class MypageController {
      * View: templates/mypage/mypage_main.html
      * =========================
      */
-    private final BoardService boardService;
-    private final StoreService storeService;
-    private final MemberService memberService;
-    private final BoardBookmarkService boardBookmarkService;
-
-
-//    @Autowired
-//    public MypageController(BoardService boardService) {
-//        this.boardService = boardService;
-//    }
-
     @GetMapping("/{memberId}/")
-    public String mypageMainWithId(@PathVariable("memberId") Long memberId, Model model) throws SQLException {
-        // TODO: memberId로 내 정보/찜 리스트 등 나중에 로딩
+    public String mypageMainWithId(@PathVariable("memberId") Long memberId,
+                                   Model model,
+                                   HttpSession session) throws SQLException {
+
         Member member = memberService.readOne(memberId);
+
+        // ✅ 세션 안정화 (다른 컨트롤러/페이지에서 @SessionAttribute(loginMember/memberId) 쓰면 터지니까)
+        session.setAttribute("memberId", memberId);
+        session.setAttribute("loginMember", member);
+
         model.addAttribute("member", member);
         model.addAttribute("memberId", memberId);
         return "mypage/mypage_main";
@@ -59,23 +58,33 @@ public class MypageController {
     @GetMapping()
     public String legacyMypageMain(HttpSession session) {
         Long memberId = (Long) session.getAttribute("memberId");
-
         return "redirect:/mypage/" + memberId + "/";
     }
 
-    /* ======= 아래는 서비스/FAQ/문의 등 기존 URL 그대로 사용 ======= */
+    /* =========================
+       내가 쓴 게시글
+       ========================= */
     @GetMapping("/{memberId}/posts")
     public String myPosts(
             Model model,
-            @SessionAttribute Long memberId,
-            @PageableDefault(size = 10, page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
+            @PathVariable("memberId") Long memberId,
+            @SessionAttribute(name = "memberId", required = false) Long sessionMemberId,
+            @PageableDefault(size = 10, page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            HttpSession session
     ) throws SQLException {
 
+        // ✅ 세션 없으면 PathVariable로 fallback (400 방지)
+        Long effectiveMemberId = (sessionMemberId != null) ? sessionMemberId : memberId;
+        session.setAttribute("memberId", effectiveMemberId);
+
         String yN = "N";
-        Page<BoardPost> boardsPage = boardService.readByUser(memberId, yN, pageable);
+        Page<BoardPost> boardsPage = boardService.readByUser(effectiveMemberId, yN, pageable);
         model.addAttribute("boardsPage", boardsPage);
+        model.addAttribute("memberId", effectiveMemberId);
+
         return "mypage/board/my_board_posts";
     }
+
     @PostMapping("/profile/{memberId}")
     public String profileNickname(
             @PathVariable Long memberId,
@@ -86,12 +95,12 @@ public class MypageController {
         member.setNickname(nickname);
         memberService.modify(member);
         model.addAttribute("member", member);
-        return "redirect:/mypage/" + memberId ;
+        return "redirect:/mypage/" + memberId;
     }
+
     @GetMapping("/{memberId}/likes")
     public String myPostLike(Model model, @PathVariable Long memberId, Pageable pageable) throws SQLException {
-
-        Page<BoardLike> boardLikes = boardService.readByLike(memberId, pageable);//좋아요한 게시글 목록
+        Page<BoardLike> boardLikes = boardService.readByLike(memberId, pageable);
         model.addAttribute("boardLikes", boardLikes);
         model.addAttribute("memberId", memberId);
         return "mypage/board/likes";
@@ -110,7 +119,6 @@ public class MypageController {
         return "mypage/board/my_board_bookmarks";
     }
 
-
     @PostMapping("/{memberId}/profile")
     public String updateProfile(
             @PathVariable Long memberId,
@@ -122,30 +130,43 @@ public class MypageController {
     ) throws IOException, SQLException {
         Member member = memberService.readOne(memberId);
         member.setNickname(nickname);
+
         String newIntro = "안녕하세요, " + nickname + "입니다.";
         member.setIntro(newIntro);
+
         member.setProfileImageUrl(profileImage);
         memberService.modify(member);
+
+        // ✅ 갱신된 멤버도 세션에 같이 갱신 (loginMember 필요 페이지 안정화)
+        session.setAttribute("memberId", memberId);
+        session.setAttribute("loginMember", member);
+
         model.addAttribute("member", member);
         return "redirect:/mypage/" + memberId + "/";
     }
 
     @GetMapping("/{memberId}/settings/alarm")
-    public String alarmSettings(@SessionAttribute Long memberId, Model model) throws SQLException {
+    public String alarmSettings(@PathVariable("memberId") Long memberId,
+                                @SessionAttribute(name = "memberId", required = false) Long sessionMemberId,
+                                Model model,
+                                HttpSession session) throws SQLException {
 
+        // ✅ 세션 없으면 PathVariable로 fallback (400 방지)
+        Long effectiveMemberId = (sessionMemberId != null) ? sessionMemberId : memberId;
+        session.setAttribute("memberId", effectiveMemberId);
 
-        model.addAttribute("member", memberId);
-
+        model.addAttribute("member", effectiveMemberId);
         return "mypage/service/setting_alarm";
     }
+
     @Controller
     @RequiredArgsConstructor
-    @RequestMapping("/mypage/service")   // 🔥 클래스 레벨 매핑
+    @RequestMapping("/mypage/service")
     public class MyPageServiceController {
 
         private final MemberService memberService;
 
-        @PostMapping("/updateEmail")      // 🔥 절대로 /mypage/service 붙이면 안됨
+        @PostMapping("/updateEmail")
         public String updateEmail(@RequestParam Long memberId,
                                   @RequestParam String email,
                                   RedirectAttributes redirectAttributes) {
@@ -160,5 +181,4 @@ public class MypageController {
             return "redirect:/mypage/service/setting";
         }
     }
-
 }

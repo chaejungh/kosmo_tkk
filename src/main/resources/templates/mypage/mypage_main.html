@@ -2,13 +2,29 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+      layout:decorate="~{fragments/fragments/layout}">
 
 <head>
     <th:block layout:fragment="head">
+        <link rel="stylesheet" th:href="@{/css/mypage.css}">
+
+        <!-- ✅ 크기(폭)만 확 키우기: 홈이랑 비슷하게 1200 기준 -->
         <style>
-            /* ✅ (원하면 유지) footer/내용 여백용 */
-            .bottom-nav-spacer { height: 90px; }
+            .mypage-container{
+                width: min(1200px, 92vw) !important;
+                max-width: 1200px !important;
+                margin: 0 auto !important;
+            }
+
+            /* 좌: 메뉴 / 우: 내용 비율도 보기 좋게 */
+            .mypage-grid{
+                grid-template-columns: 360px 1fr !important;
+                gap: 18px !important;
+            }
+
+            @media (max-width: 980px){
+                .mypage-grid{ grid-template-columns: 1fr !important; }
+            }
         </style>
     </th:block>
 </head>
@@ -29,12 +45,9 @@
 
             <div class="mypage-grid">
 
-                <!-- =========================
-                     LEFT : 프로필 요약 + 메뉴
-                     ========================= -->
+                <!-- LEFT -->
                 <aside class="left-col">
 
-                    <!-- 프로필 요약 카드 -->
                     <section class="profile-summary">
                         <label for="profileImageInput" class="avatar-wrap" title="프로필 사진 변경">
                             <img
@@ -77,7 +90,6 @@
                         </div>
                     </section>
 
-                    <!-- 메뉴 카드 -->
                     <nav class="menu-card">
                         <a class="menu-item active" th:href="@{'/mypage/' + ${member.id} + '/'}">
                             <span class="menu-ico">👤</span>
@@ -129,9 +141,7 @@
 
                 </aside>
 
-                <!-- =========================
-                     RIGHT : 프로필 설정
-                     ========================= -->
+                <!-- RIGHT -->
                 <main class="right-col">
 
                     <section class="panel">
@@ -230,6 +240,72 @@
                                 <div class="edit-hint" id="uploadState" style="display:none;"></div>
                             </form>
 
+                            <script>
+                                const viewMode = document.getElementById("viewMode");
+                                const editMode = document.getElementById("editMode");
+                                const editOpenBtn = document.getElementById("editOpenBtn");
+                                const editCancelBtn = document.getElementById("editCancelBtn");
+
+                                editOpenBtn.onclick = () => {
+                                    viewMode.style.display = "none";
+                                    editMode.style.display = "block";
+                                };
+
+                                editCancelBtn.onclick = () => {
+                                    editMode.style.display = "none";
+                                    viewMode.style.display = "block";
+                                };
+
+                                const fileInput = document.getElementById("profileImageInput");
+
+                                const leftImg = document.getElementById("profileImage");
+                                const rightImg = document.getElementById("profileImageRight");
+                                const editImg = document.getElementById("editPreview");
+
+                                const hidden = document.getElementById("profileImageHidden");
+                                const uploadState = document.getElementById("uploadState");
+
+                                const UPLOAD_ENDPOINT = "/api/upload/profile";
+
+                                function setState(msg, show = true) {
+                                    uploadState.textContent = msg;
+                                    uploadState.style.display = show ? "block" : "none";
+                                }
+
+                                fileInput?.addEventListener("change", async (e) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
+
+                                    const localUrl = URL.createObjectURL(file);
+                                    if (leftImg) leftImg.src = localUrl;
+                                    if (rightImg) rightImg.src = localUrl;
+                                    if (editImg) editImg.src = localUrl;
+
+                                    setState("사진 업로드 중...");
+
+                                    try {
+                                        const fd = new FormData();
+                                        fd.append("file", file);
+
+                                        const res = await fetch(UPLOAD_ENDPOINT, {
+                                            method: "POST",
+                                            body: fd
+                                        });
+
+                                        if (!res.ok) throw new Error("upload failed: " + res.status);
+
+                                        const data = await res.json();
+                                        if (!data?.url) throw new Error("no url in response");
+
+                                        hidden.value = data.url;
+                                        setState("업로드 완료! 저장을 누르면 반영됩니다 ✅");
+                                    } catch (err) {
+                                        console.error(err);
+                                        setState("업로드 실패 😭 (업로드 API/권한/응답형식 확인 필요)");
+                                    }
+                                });
+                            </script>
+
                         </div>
                     </section>
 
@@ -239,74 +315,6 @@
         </div>
     </div>
 
-    <!-- ✅ bottom-nav는 없앴지만, 여백이 필요하면 유지 -->
-    <div class="bottom-nav-spacer"></div>
-
 </div>
-
-<th:block layout:fragment="script">
-    <script>
-        const viewMode = document.getElementById("viewMode");
-        const editMode = document.getElementById("editMode");
-        const editOpenBtn = document.getElementById("editOpenBtn");
-        const editCancelBtn = document.getElementById("editCancelBtn");
-
-        editOpenBtn.onclick = () => {
-            viewMode.style.display = "none";
-            editMode.style.display = "block";
-        };
-
-        editCancelBtn.onclick = () => {
-            editMode.style.display = "none";
-            viewMode.style.display = "block";
-        };
-
-        const fileInput = document.getElementById("profileImageInput");
-
-        const leftImg = document.getElementById("profileImage");
-        const rightImg = document.getElementById("profileImageRight");
-        const editImg = document.getElementById("editPreview");
-
-        const hidden = document.getElementById("profileImageHidden");
-        const uploadState = document.getElementById("uploadState");
-
-        const UPLOAD_ENDPOINT = "/api/upload/profile";
-
-        function setState(msg, show = true) {
-            uploadState.textContent = msg;
-            uploadState.style.display = show ? "block" : "none";
-        }
-
-        fileInput?.addEventListener("change", async (e) => {
-            const file = e.target.files?.[0];
-            if (!file) return;
-
-            const localUrl = URL.createObjectURL(file);
-            if (leftImg) leftImg.src = localUrl;
-            if (rightImg) rightImg.src = localUrl;
-            if (editImg) editImg.src = localUrl;
-
-            setState("사진 업로드 중...");
-
-            try {
-                const fd = new FormData();
-                fd.append("file", file);
-
-                const res = await fetch(UPLOAD_ENDPOINT, { method: "POST", body: fd });
-                if (!res.ok) throw new Error("upload failed: " + res.status);
-
-                const data = await res.json();
-                if (!data?.url) throw new Error("no url in response");
-
-                hidden.value = data.url;
-                setState("업로드 완료! 저장을 누르면 반영됩니다 ✅");
-            } catch (err) {
-                console.error(err);
-                setState("업로드 실패 😭 (업로드 API/권한/응답형식 확인 필요)");
-            }
-        });
-    </script>
-</th:block>
-
 </body>
 </html>

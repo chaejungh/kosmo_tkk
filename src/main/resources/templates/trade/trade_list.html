@@ -345,10 +345,10 @@
         <!-- ===== 툴바 (탭 + 검색 + 보기/정렬) ===== -->
         <div class="trade-toolbar">
 
-            <!-- (옵션) 탭 UI: 필요 없으면 삭제 가능 -->
             <div class="trade-tabs">
                 <button class="trade-tab active" type="button" onclick="location.href='/trade'">🛍️ 거래 상품</button>
-                <button class="trade-tab" type="button" onclick="location.href='/trade/chat'">💬 채팅</button>
+                <!-- ✅ 여기만 컨트롤러(/chat/list)에 맞춤 -->
+                <button class="trade-tab" type="button" onclick="location.href='/chat/list'">💬 채팅</button>
             </div>
 
             <!-- 검색 (기존 기능 유지) -->
@@ -434,31 +434,23 @@
             </div>
         </div>
 
-        <!-- 🔥 판매자 전용 리스트일 때만 안내 문구 표시 -->
         <div class="seller-hint" th:if="${sellerName != null}">
             <b th:text="${sellerName}">판매자</b> 님의 판매 상품
         </div>
 
-        <!-- ===== LIST ===== -->
         <div class="trade-list">
-
             <div class="trade-list-inner">
-
                 <div class="trade-card"
                      th:each="post : ${page.content}"
                      th:onclick="|location.href='/trade/${post.id}/article/detail.do'|">
 
                     <div class="trade-media">
-                        <!-- 썸네일 -->
                         <img class="trade-thumb"
                              th:src="${post.thumbnailUrl}"
                              alt="thumb">
-
-                        <!-- (UI) 찜 아이콘 느낌 -->
                         <div class="trade-like-chip">♡</div>
                     </div>
 
-                    <!-- 내용 -->
                     <div class="trade-info">
                         <div style="min-width:0;">
                             <div class="trade-title-text" th:text="${post.title}">상품 제목</div>
@@ -479,7 +471,6 @@
                         <div class="trade-price" th:text="${post.priceText}">가격</div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -532,17 +523,14 @@
         </ul>
     </nav>
 
-    <!-- ===== 글쓰기 버튼(기존 유지) ===== -->
     <a href="/trade/1/write" class="write-btn">+ 글쓰기</a>
 
 </div>
 
-<!-- ================= 하단 JS (기존 기능 유지) ================= -->
 <script layout:fragment="script">
     const listBtn = document.getElementById("listViewBtn");
     const gridBtn = document.getElementById("gridViewBtn");
 
-    // ✅ 기본은 그리드
     document.body.classList.remove("list-mode");
 
     listBtn.addEventListener("click", () => {
@@ -595,7 +583,6 @@
         }
     })();
 
-    /* 🔥 새 게시글 / 새 채팅방 실시간 반영용 WebSocket 구독 (기존 유지) */
     (function () {
         if (typeof SockJS === "undefined" || typeof Stomp === "undefined") return;
 

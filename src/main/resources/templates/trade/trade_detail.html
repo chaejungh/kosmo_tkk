@@ -6,11 +6,301 @@
 <head>
     <title th:text="${trade.title} + ' | 굿즈거래 | 더쿠쿠'">굿즈거래 상세 | 더쿠쿠</title>
 
+    <!-- ✅ 뷰/크기만 맞춤 (기능/링크/폼/조건문 그대로) -->
+    <th:block layout:fragment="head">
+        <style>
+            /* 배경/폭: 마이페이지 메인 느낌 */
+            .trade-bg{
+                background:#f3f4f6;
+                padding: 22px 0 64px;
+                min-height: calc(100vh - 120px);
+            }
+            .trade-container{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+            }
+
+            /* 상단 바 살짝 정리 */
+            .top-bar{
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                background: rgba(243,244,246,0.92);
+                backdrop-filter: blur(8px);
+                border-bottom: 1px solid #e5e7eb;
+            }
+            .top-bar-inner{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+                display:flex;
+                align-items:center;
+                gap: 10px;
+                padding: 12px 6px;
+            }
+            .back-btn{
+                text-decoration:none;
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                width: 36px;
+                height: 36px;
+                border-radius: 999px;
+                border: 1px solid #e5e7eb;
+                background:#fff;
+                font-weight:900;
+                color:#111827;
+            }
+            .top-title{
+                font-weight: 900;
+                font-size: 16px;
+                color:#111827;
+            }
+
+            /* 중앙 정렬 + 여백 */
+            .detail-page{
+                padding: 18px 0 0;
+            }
+
+            /* 레이아웃: 좌(이미지) 우(정보) 카드 */
+            .detail-layout{
+                width: 100%;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+                gap: 16px;
+                align-items: start;
+            }
+
+            /* 카드 공통 */
+            .image-box, .info-card{
+                background:#fff;
+                border: 1px solid #eef2f7;
+                border-radius: 18px;
+                box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+                overflow:hidden;
+            }
+
+            /* 이미지 영역 */
+            .image-box{ padding: 14px; }
+            .image-frame{
+                border-radius: 16px;
+                overflow:hidden;
+                background:#f3f4f6;
+                border: 1px solid #eef2f7;
+                aspect-ratio: 1 / 1; /* 정사각 안정 */
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
+            .image-frame img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display:block;
+            }
+
+            /* 정보 카드 */
+            .info-card{ padding: 16px; }
+
+            /* 판매자 카드 */
+            .seller-card{
+                display:flex;
+                align-items:center;
+                gap: 12px;
+                padding: 12px;
+                border: 1px solid #eef2f7;
+                border-radius: 16px;
+                background:#fff;
+            }
+            .seller-avatar{
+                width: 44px;
+                height: 44px;
+                border-radius: 999px;
+                background:#f3f4f6;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border: 1px solid #e5e7eb;
+                flex: none;
+                font-size: 18px;
+            }
+            .seller-info-main{ min-width:0; flex:1; }
+            .seller-name a{
+                font-weight: 900;
+                color:#111827;
+                text-decoration:none;
+            }
+            .seller-name a:hover{ text-decoration:underline; }
+            .seller-region{
+                margin-top: 2px;
+                font-size: 13px;
+                font-weight: 800;
+                color:#6b7280;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+            }
+            .detail-header-actions{
+                display:flex;
+                gap: 8px;
+                flex: none;
+            }
+            .detail-action-btn{
+                text-decoration:none;
+                font-weight: 900;
+                font-size: 13px;
+                padding: 8px 10px;
+                border-radius: 999px;
+                border: 1px solid #e5e7eb;
+                background:#fff;
+                color:#111827;
+            }
+            .detail-action-delete{
+                border-color:#fecaca;
+                color:#b91c1c;
+                background:#fff5f5;
+            }
+
+            /* 제목/메타 */
+            .title{
+                margin: 14px 2px 6px;
+                font-size: 20px;
+                font-weight: 1000;
+                letter-spacing: -0.2px;
+                line-height: 1.25;
+            }
+            .meta{
+                color:#6b7280;
+                font-weight: 800;
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+
+            /* 좋아요/조회 */
+            .stats-row{
+                display:flex;
+                align-items:center;
+                gap: 10px;
+                flex-wrap: wrap;
+                padding: 10px 12px;
+                border-radius: 14px;
+                background:#f8fafc;
+                border: 1px solid #eef2f7;
+                margin-bottom: 12px;
+                font-weight: 800;
+                color:#111827;
+            }
+            .like-form{ margin:0; }
+            .like-btn{
+                width: 38px;
+                height: 38px;
+                border-radius: 999px;
+                border: 1px solid #e5e7eb;
+                background:#fff;
+                font-size: 18px;
+                font-weight: 900;
+                cursor:pointer;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                line-height: 1;
+            }
+            .like-btn.liked{
+                border-color:#fecaca;
+                background:#fff1f2;
+                color:#e11d48;
+            }
+
+            /* 가격 */
+            .price{
+                font-size: 22px;
+                font-weight: 1000;
+                margin: 4px 2px 12px;
+            }
+
+            /* 상태/라벨 */
+            .status-row{
+                display:flex;
+                align-items:flex-start;
+                justify-content: space-between;
+                gap: 10px;
+                margin-bottom: 12px;
+            }
+            .status-badge{
+                display:inline-flex;
+                align-items:center;
+                padding: 7px 10px;
+                border-radius: 999px;
+                font-weight: 900;
+                font-size: 12px;
+                border: 1px solid #e5e7eb;
+                background:#f3f4f6;
+                color:#111827;
+                flex: none;
+            }
+            .label-row{
+                display:flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            .label-chip{
+                display:inline-flex;
+                align-items:center;
+                padding: 7px 10px;
+                border-radius: 999px;
+                font-weight: 900;
+                font-size: 12px;
+                background:#fff;
+                border: 1px solid #e5e7eb;
+                color:#111827;
+                white-space:nowrap;
+            }
+
+            /* 본문 */
+            .desc-box{
+                white-space: pre-wrap;
+                background:#fff;
+                border: 1px solid #eef2f7;
+                border-radius: 16px;
+                padding: 12px 12px;
+                color:#111827;
+                font-weight: 700;
+                line-height: 1.6;
+                min-height: 120px;
+                margin-bottom: 14px;
+            }
+
+            /* 버튼 */
+            .button-wrap{
+                display:flex;
+                gap: 10px;
+                align-items:center;
+            }
+            .btn-main{
+                width: 100%;
+                border: none;
+                background:#111827;
+                color:#fff;
+                font-weight: 1000;
+                border-radius: 14px;
+                padding: 12px 14px;
+                cursor:pointer;
+            }
+            .btn-main:hover{ opacity: .95; }
+
+            /* 반응형 */
+            @media (max-width: 980px){
+                .detail-layout{
+                    grid-template-columns: 1fr;
+                }
+                .image-frame{ aspect-ratio: 16/11; }
+            }
+        </style>
+    </th:block>
 </head>
 <body>
 
 <div layout:fragment="content">
-
 
     <header class="top-bar">
         <div class="top-bar-inner">
@@ -19,124 +309,133 @@
         </div>
     </header>
 
-    <main class="detail-page"
-          style="display: flex;
-                 min-height: 76vh;
-                 justify-content: center;
-                 align-items: center;">
+    <!-- ✅ 배경/폭 래퍼(뷰만) -->
+    <div class="trade-bg">
+        <div class="trade-container">
 
-        <section class="detail-layout">
+            <main class="detail-page"
+                  style="display: flex;
+                         min-height: 76vh;
+                         justify-content: center;
+                         align-items: center;">
 
-            <!-- 🔥 대표 이미지 -->
-            <div class="image-box">
-                <div class="image-frame">
-                    <img th:src="${coverUrl}"
-                         th:onclick="'location.href=\'/trade/' + ${trade.id} + '/article/' + ${coverImageId} + '/detail.do\''"
-                         style="cursor:pointer;"
-                         alt="굿즈 이미지"/>
-                </div>
-            </div>
+                <section class="detail-layout">
 
-            <!-- 오른쪽 정보 -->
-            <div class="info-card">
+                    <!-- 🔥 대표 이미지 -->
+                    <div class="image-box">
+                        <div class="image-frame">
+                            <img th:src="${coverUrl}"
+                                 th:onclick="'location.href=\'/trade/' + ${trade.id} + '/article/' + ${coverImageId} + '/detail.do\''"
+                                 style="cursor:pointer;"
+                                 alt="굿즈 이미지"/>
+                        </div>
+                    </div>
 
-                <!-- 🔼 프로필 카드 (닉네임 클릭 → 판매자 리스트로 이동) -->
-                <div class="seller-card">
-                    <div class="seller-avatar"><span>👤</span></div>
+                    <!-- 오른쪽 정보 -->
+                    <div class="info-card">
 
-                    <div class="seller-info-main">
-                        <div class="seller-name">
-                            <a th:href="@{|/trade/seller/${sellerId}|}"
-                               th:text="${trade.seller != null ? trade.seller.nickname : '판매자 #' + trade.sellerId}">
-                                판매자
-                            </a>
+                        <!-- 🔼 프로필 카드 (닉네임 클릭 → 판매자 리스트로 이동) -->
+                        <div class="seller-card">
+                            <div class="seller-avatar"><span>👤</span></div>
+
+                            <div class="seller-info-main">
+                                <div class="seller-name">
+                                    <a th:href="@{|/trade/seller/${sellerId}|}"
+                                       th:text="${trade.seller != null ? trade.seller.nickname : '판매자 #' + trade.sellerId}">
+                                        판매자
+                                    </a>
+                                </div>
+
+                                <div class="seller-region"
+                                     th:text="${trade.region != null ? trade.region : '지역 미등록'}"></div>
+                            </div>
+
+                            <div class="detail-header-actions"
+                                 th:if="${currentMemberId != null and currentMemberId == trade.sellerId}">
+                                <a class="detail-action-btn"
+                                   th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/edit.do'}">
+                                    수정
+                                </a>
+                                <a class="detail-action-btn detail-action-delete"
+                                   th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/delete.do'}"
+                                   onclick="return confirm('게시물을 삭제하시겠습니까?');">
+                                    삭제
+                                </a>
+                            </div>
                         </div>
 
-                        <div class="seller-region"
-                             th:text="${trade.region != null ? trade.region : '지역 미등록'}"></div>
+                        <!-- 글 제목 -->
+                        <h1 class="title" th:text="${trade.title}"></h1>
+
+                        <!-- 등록일 -->
+                        <div class="meta">
+                            <span th:text="${#temporals.format(trade.createdAt, 'MM/dd')} + ' 등록'"></span>
+                        </div>
+
+                        <!-- 🔹 좋아요 / 채팅 / 조회수 + 토글 하트 -->
+                        <div class="stats-row">
+
+                            <!-- 빈 하트 (아직 찜 안함) -->
+                            <form class="like-form"
+                                  th:if="${!liked}"
+                                  th:action="@{|/trade/${currentMemberId}/BookMark|}"
+                                  method="post">
+                                <input type="hidden" name="tradeId" th:value="${trade.id}">
+                                <button type="submit" class="like-btn">♡</button>
+                            </form>
+
+                            <!-- 빨간 하트 (이미 찜한 상태) -->
+                            <form class="like-form"
+                                  th:if="${liked}"
+                                  th:action="@{|/trade/${currentMemberId}/BookMarkDelete|}"
+                                  method="post">
+                                <input type="hidden" name="tradeId" th:value="${trade.id}">
+                                <button type="submit" class="like-btn liked">♥</button>
+                            </form>
+
+                            <span>
+                                <span th:text="${likeCount}">0</span> 찜 ·
+                                💬 <span th:text="${chatCount}">0</span> 채팅 ·
+                                조회 <span th:text="${trade.viewCount != null ? trade.viewCount : 0}">0</span>
+                            </span>
+                        </div>
+
+                        <!-- 가격 -->
+                        <div class="price"
+                             th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'"></div>
+
+                        <div class="status-row">
+                            <span class="status-badge"
+                                  th:classappend="${statusClass}"
+                                  th:text="${statusLabel}"></span>
+
+                            <div class="label-row">
+                                <span class="label-chip" th:text="${trade.category}"></span>
+                                <span class="label-chip" th:text="${trade.tradeType}"></span>
+                                <span class="label-chip" th:text="${trade.tradeMethod}"></span>
+                            </div>
+                        </div>
+
+                        <div class="desc-box" th:text="${trade.content}"></div>
+
+                        <!-- 채팅하기 버튼 -->
+                        <div class="button-wrap">
+                            <form
+                                    th:if="${trade.sellerId != currentMemberId}"
+                                    th:action="@{|/trade/${trade.id}/chat/start|}"
+                                    method="post" style="flex:1;">
+                                <button type="submit" class="btn-main">채팅하기</button>
+                            </form>
+                        </div>
+
                     </div>
-                    <div class="detail-header-actions"
-                         th:if="${currentMemberId != null and currentMemberId == trade.sellerId}">
-                        <a class="detail-action-btn"
-                           th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/edit.do'}">
-                            수정
-                        </a>
-                        <a class="detail-action-btn detail-action-delete"
-                           th:href="@{'/trade/' + ${currentMemberId} + '/article/' + ${trade.id} + '/delete.do'}"
-                           onclick="return confirm('게시물을 삭제하시겠습니까?');">
-                            삭제
-                        </a>
-                    </div>
-                </div>
+                </section>
 
-                <!-- 글 제목 -->
-                <h1 class="title" th:text="${trade.title}"></h1>
+            </main>
 
-                <!-- 등록일 -->
-                <div class="meta">
-                    <span th:text="${#temporals.format(trade.createdAt, 'MM/dd')} + ' 등록'"></span>
-                </div>
+        </div>
+    </div>
 
-                <!-- 🔹 좋아요 / 채팅 / 조회수 + 토글 하트 -->
-                <div class="stats-row">
-
-                    <!-- 빈 하트 (아직 찜 안함) -->
-                    <form class="like-form"
-                          th:if="${!liked}"
-                          th:action="@{|/trade/${currentMemberId}/BookMark|}"
-                          method="post">
-                        <input type="hidden" name="tradeId" th:value="${trade.id}">
-                        <button type="submit" class="like-btn">♡</button>
-                    </form>
-
-                    <!-- 빨간 하트 (이미 찜한 상태) -->
-                    <form class="like-form"
-                          th:if="${liked}"
-                          th:action="@{|/trade/${currentMemberId}/BookMarkDelete|}"
-                          method="post">
-                        <input type="hidden" name="tradeId" th:value="${trade.id}">
-                        <button type="submit" class="like-btn liked">♥</button>
-                    </form>
-
-                    <span>
-                        <span th:text="${likeCount}">0</span> 찜 ·
-                        💬 <span th:text="${chatCount}">0</span> 채팅 ·
-                        조회 <span th:text="${trade.viewCount != null ? trade.viewCount : 0}">0</span>
-                    </span>
-                </div>
-
-                <!-- 가격 -->
-                <div class="price"
-                     th:text="${#numbers.formatInteger(trade.price, 0, 'COMMA')} + '원'"></div>
-
-                <div class="status-row">
-                    <span class="status-badge"
-                          th:classappend="${statusClass}"
-                          th:text="${statusLabel}"></span>
-
-                    <div class="label-row">
-                        <span class="label-chip" th:text="${trade.category}"></span>
-                        <span class="label-chip" th:text="${trade.tradeType}"></span>
-                        <span class="label-chip" th:text="${trade.tradeMethod}"></span>
-                    </div>
-                </div>
-
-                <div class="desc-box" th:text="${trade.content}"></div>
-
-                <!-- 채팅하기 버튼 -->
-                <div class="button-wrap">
-                    <form
-                            th:if="${trade.sellerId != currentMemberId}"
-                            th:action="@{|/trade/${trade.id}/chat/start|}"
-                          method="post" style="flex:1;">
-                        <button type="submit" class="btn-main">채팅하기</button>
-                    </form>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
 </div>
 </body>
 </html>

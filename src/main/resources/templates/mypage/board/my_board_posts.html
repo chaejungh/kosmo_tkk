@@ -3,68 +3,88 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
-<head></head>
+
+<head>
+    <th:block layout:fragment="head">
+        <style>
+            /* ✅ 이 페이지(내가쓴글)만 마이페이지 메인급 폭으로 */
+            .mypage-posts-wrap{
+                width: min(1100px, 92vw);
+                margin: 0 auto;
+                padding: 28px 16px 80px;
+            }
+            .mypage-posts-wrap .mp-panel{
+                width: 100%;
+                max-width: 100%;
+            }
+        </style>
+    </th:block>
+</head>
 
 <body>
 <div layout:fragment="content">
 
-    <section class="mp-panel">
-        <div class="mp-panel-head">
-            <div>
-                <h3 class="mp-title">📝 내가 쓴 게시글</h3>
-                <p class="mp-sub">내가 작성한 글 목록이에요</p>
-            </div>
-        </div>
+    <!-- ✅ 폭 키우는 래퍼만 추가 (기능 영향 X) -->
+    <div class="mypage-posts-wrap">
 
-        <div class="mp-panel-body">
-
-            <!-- ✅ 빈 상태 -->
-            <div class="mp-empty" th:if="${boardsPage == null or boardsPage.totalElements == 0}">
-                아직 작성한 글이 없어요 🙂
+        <section class="mp-panel">
+            <div class="mp-panel-head">
+                <div>
+                    <h3 class="mp-title">📝 내가 쓴 게시글</h3>
+                    <p class="mp-sub">내가 작성한 글 목록이에요</p>
+                </div>
             </div>
 
-            <!-- ✅ 리스트 -->
-            <div class="mp-list" th:if="${boardsPage != null and boardsPage.totalElements > 0}">
-                <a class="mp-item"
-                   th:each="post : ${boardsPage.content}"
-                   th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/detail.do'}">
+            <div class="mp-panel-body">
 
-                    <div class="mp-item-title" th:text="${post.title}">게시글 제목</div>
+                <!-- ✅ 빈 상태 -->
+                <div class="mp-empty" th:if="${boardsPage == null or boardsPage.totalElements == 0}">
+                    아직 작성한 글이 없어요 🙂
+                </div>
 
-                    <div class="mp-item-meta">
-                        <span th:text="${post.category.name}">카테고리</span>
-                        <span class="dot">·</span>
-                        <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">2025.01.01</span>
-                    </div>
-                </a>
+                <!-- ✅ 리스트 -->
+                <div class="mp-list" th:if="${boardsPage != null and boardsPage.totalElements > 0}">
+                    <a class="mp-item"
+                       th:each="post : ${boardsPage.content}"
+                       th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/detail.do'}">
+
+                        <div class="mp-item-title" th:text="${post.title}">게시글 제목</div>
+
+                        <div class="mp-item-meta">
+                            <span th:text="${post.category.name}">카테고리</span>
+                            <span class="dot">·</span>
+                            <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">2025.01.01</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ✅ 페이징 (컨트롤러/기능 변경 없음) -->
+                <div class="mp-pagination"
+                     th:if="${boardsPage != null and boardsPage.totalPages > 1}">
+                    <a class="pg-btn"
+                       th:classappend="${boardsPage.first} ? ' disabled' : ''"
+                       th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${boardsPage.number-1})}">
+                        이전
+                    </a>
+
+                    <a class="pg-num"
+                       th:each="p : ${#numbers.sequence(0, boardsPage.totalPages-1)}"
+                       th:text="${p+1}"
+                       th:classappend="${p == boardsPage.number} ? ' active' : ''"
+                       th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${p})}">
+                    </a>
+
+                    <a class="pg-btn"
+                       th:classappend="${boardsPage.last} ? ' disabled' : ''"
+                       th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${boardsPage.number+1})}">
+                        다음
+                    </a>
+                </div>
+
             </div>
+        </section>
 
-            <!-- ✅ 페이징 (컨트롤러/기능 변경 없음) -->
-            <div class="mp-pagination"
-                 th:if="${boardsPage != null and boardsPage.totalPages > 1}">
-                <a class="pg-btn"
-                   th:classappend="${boardsPage.first} ? ' disabled' : ''"
-                   th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${boardsPage.number-1})}">
-                    이전
-                </a>
-
-                <a class="pg-num"
-                   th:each="p : ${#numbers.sequence(0, boardsPage.totalPages-1)}"
-                   th:text="${p+1}"
-                   th:classappend="${p == boardsPage.number} ? ' active' : ''"
-                   th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${p})}">
-                </a>
-
-                <a class="pg-btn"
-                   th:classappend="${boardsPage.last} ? ' disabled' : ''"
-                   th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${boardsPage.number+1})}">
-                    다음
-                </a>
-            </div>
-
-        </div>
-    </section>
-
+    </div>
 </div>
 </body>
 </html>
