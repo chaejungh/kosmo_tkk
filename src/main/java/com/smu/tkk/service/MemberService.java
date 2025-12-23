@@ -4,6 +4,7 @@ import com.smu.tkk.dto.NaverProfileResponse;
 import com.smu.tkk.entity.Member;
 import com.smu.tkk.entity.MemberNotificationSetting;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -56,8 +57,10 @@ public interface MemberService {
 
     Member readByLoginIdAndNicknameAndEmail(String loginId, String nickname, String email);
 
-
     // 13. ✅ 네이버 간편 로그인 (자동 회원가입 + 로그인)
     com.smu.tkk.entity.Member loginByNaver(NaverProfileResponse.NaverProfile profile)
             throws SQLException;
+
+    boolean verifyEmail(String email, String code);
+
 }

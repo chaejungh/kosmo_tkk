@@ -291,4 +291,27 @@ public class MemberServiceImp implements MemberService {
                 .findByLoginIdAndNicknameAndEmail(loginId, nickname, email)
                 .orElse(null);
     }
+
+    @Override
+    @Transactional
+    public boolean verifyEmail(String email, String code) {
+
+        Member member = memberRepository
+                .findByEmailAndVerifyCode(email, code)
+                .orElse(null);
+
+        if (member == null) {
+            return false;
+        }
+
+        // 이미 인증된 회원 보호
+        if (member.getUserLevel() != null && member.getUserLevel() >= 1) {
+            return true;
+        }
+
+        member.setUserLevel(1L);       // ✅ 인증 완료
+        member.setVerifyCode(null);    // ✅ 재사용 방지
+
+        return true;
+    }
 }
