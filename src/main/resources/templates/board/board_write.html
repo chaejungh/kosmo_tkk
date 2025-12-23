@@ -228,9 +228,10 @@
             <div class="bw-card" th:if="${session.memberId != null}">
                 <div class="bw-inner">
 
-                    <form th:action="@{/board/write.do}"
+                    <form th:action="@{/board/{memberId}/write(memberId=${session.memberId})}"
                           th:object="${boardWriteValid}"
-                          method="post">
+                          method="post"
+                          enctype="multipart/form-data">
 
                         <!-- 카테고리 -->
                         <div class="field">
@@ -245,7 +246,6 @@
                             <div class="error"
                                  th:if="${#fields.hasErrors('categoryId')}"
                                  th:errors="*{categoryId}">카테고리 에러</div>
-
                         </div>
 
                         <!-- 제목 -->
@@ -266,9 +266,16 @@
                                  th:errors="*{content}">내용 에러</div>
                         </div>
 
+                        <!-- ✅ 사진 업로드 (컨트롤러 @RequestParam("images") List<MultipartFile> images 와 동일) -->
+                        <div class="field">
+                            <label>사진 업로드 <span class="req">선택</span></label>
+                            <input type="file" name="images" accept="image/*" multiple>
+                            <div class="hint">여러 장 선택 가능 (JPG/PNG 등 이미지 파일)</div>
+                        </div>
+
                         <div class="bw-bottom">
                             <div class="bw-bottom-bar">
-                                <a class="bw-cancel" th:href="@{/board/list.do}">↩ 목록으로</a>
+                                <a class="bw-cancel" th:href="@{/board/1/list.do}">↩ 목록으로</a>
                                 <button class="bw-submit" type="submit">✅ 등록하기</button>
                             </div>
                         </div>
