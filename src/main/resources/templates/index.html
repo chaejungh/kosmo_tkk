@@ -196,7 +196,7 @@
             /* =========================
                홈 팝업 섹션
                ========================= */
-            .popup-section { margin-top: 18px; }
+            .popup-section { margin-top: 18px; overflow: hidden}
 
             .btn-allview {
                 text-decoration: none;
@@ -213,6 +213,8 @@
                 position: relative;
                 overflow: hidden;
                 padding: 6px 56px 30px; /* ← 양끝 버튼 자리 확보 */
+                width: 100%;
+                max-width: 100%;
             }
             .popupSwiper .swiper-wrapper{ align-items: stretch; }
             .popupSwiper .swiper-slide{ height: auto; }
@@ -311,7 +313,12 @@
                 padding: 10px 12px;
                 border-radius: 12px;
             }
-
+            .home-popup-card,
+            .home-popup-img,
+            .home-popup-info {
+                width: 100% !important;     /* 혹시 100vw 먹는게 있어도 덮어씀 */
+                max-width: 100% !important;
+            }
             /* =========================
                문의 FAB
                ========================= */
