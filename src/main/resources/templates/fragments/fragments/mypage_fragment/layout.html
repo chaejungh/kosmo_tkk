@@ -15,13 +15,15 @@
     <link rel="stylesheet" th:href="@{/css/mypage.css}"/>
     <script src="/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
     <script src="/js/toast.js" defer></script>
+
     <script th:inline="javascript">
-
         ///session 멤버아이디로 변경 ///
-        const memberId=[[${session.memberId}]];
+        const memberId = [[${session.memberId}]];
         console.log(memberId)
-
     </script>
+
+    <!-- ✅ 각 페이지에서 추가 head 넣을 수 있게 -->
+    <th:block layout:fragment="head"></th:block>
 </head>
 <body>
 
@@ -40,40 +42,15 @@
 <div th:replace="~{fragments/fragments/mypage_fragment/header :: header}"></div>
 
 <div class="mypage-page">
-
     <!-- ✅ 각 페이지에서 이 fragment 를 채워넣음 -->
-    <div layout:fragment="content">
-
-
-    </div>
-
+    <div layout:fragment="content"></div>
 </div>
-<!-- ✅ 공통 푸터 -->
-<div th:replace="~{fragments/fragments/mypage_fragment/footer :: footer}"></div>
-<!-- 하단 네비게이션 -->
-<nav class="bottom-nav">
-    <a th:href="@{/}" class="nav-item">
-        <span class="icon">🏠</span>
-        <span>홈</span>
-    </a>
-    <a th:href="@{/board}" class="nav-item active">
-        <span class="icon">📁</span>
-        <span>덕질게시판</span>
-    </a>
-    <a th:if="${memberId !=null}"
-       th:href="@{/mypage}"
-       class="nav-item">
-        <span class="icon">👤</span>
-        <span>내정보</span>
-    </a>
-    <a th:if="${memberId ==null}"
-       th:href="@{/auth/login}"
-       class="nav-item">
-        <span class="icon">👤</span>
-        <span>내정보</span>
-    </a>
-</nav>
-<script layout:fragment="script">
-</script>
+
+<!-- ✅ 공통 푸터 (전역 푸터) -->
+<div th:replace="~{fragments/fragments/footer :: footer}"></div>
+
+<!-- ✅ 각 페이지에서 추가 스크립트 넣을 수 있게 -->
+<th:block layout:fragment="script"></th:block>
+
 </body>
 </html>

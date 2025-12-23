@@ -1,56 +1,70 @@
 <!DOCTYPE html>
-<html   lang="ko"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        xmlns:th="http://www.thymeleaf.org"
-        layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
-<head>
-
-    <style>
-        .page { padding: 20px; }
-        .title { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
-        .post-list { display: flex; flex-direction: column; gap: 15px; }
-        .post-item {
-            background: white;
-            padding: 18px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .post-title { font-size: 16px; font-weight: 600; }
-        .post-category { font-size: 14px; color: #7a7a7a; margin-top: 5px; }
-    </style>
-</head>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/fragments/mypage_fragment/layout}">
+<head></head>
 
 <body>
 <div layout:fragment="content">
 
-    <div class="section-title">내가 쓴 게시글</div>
-
-    <div class="post-list">
-        <a class="post-item"
-           th:each="post : ${boardsPage.getContent()}"
-           th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/detail.do'}">
-
-            <div class="post-title" th:text="${post.title}"></div>
-
-            <div class="post-category">
-                <span th:text="${post.category.name}"></span>
-                ·
-                <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}"></span>
+    <section class="mp-panel">
+        <div class="mp-panel-head">
+            <div>
+                <h3 class="mp-title">📝 내가 쓴 게시글</h3>
+                <p class="mp-sub">내가 작성한 글 목록이에요</p>
             </div>
-        </a>
+        </div>
 
+        <div class="mp-panel-body">
 
-        <!--        <div class="post-item">-->
-<!--            <div class="post-title">블루록 코스프레 사진 공유합니다 📸</div>-->
-<!--            <div class="post-category">자랑 게시판 · 2025.11.05</div>-->
-<!--        </div>-->
+            <!-- ✅ 빈 상태 -->
+            <div class="mp-empty" th:if="${boardsPage == null or boardsPage.totalElements == 0}">
+                아직 작성한 글이 없어요 🙂
+            </div>
 
-<!--        <div class="post-item">-->
-<!--            <div class="post-title">도쿄 팝업 일정 정리해봄 (체인소맨 / 귀칼)</div>-->
-<!--            <div class="post-category">정보 게시판 · 2025.10.28</div>-->
-<!--        </div>-->
+            <!-- ✅ 리스트 -->
+            <div class="mp-list" th:if="${boardsPage != null and boardsPage.totalElements > 0}">
+                <a class="mp-item"
+                   th:each="post : ${boardsPage.content}"
+                   th:href="@{'/board/' + ${memberId} + '/article/' + ${post.id} + '/detail.do'}">
 
-    </div>
+                    <div class="mp-item-title" th:text="${post.title}">게시글 제목</div>
+
+                    <div class="mp-item-meta">
+                        <span th:text="${post.category.name}">카테고리</span>
+                        <span class="dot">·</span>
+                        <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd')}">2025.01.01</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- ✅ 페이징 (컨트롤러/기능 변경 없음) -->
+            <div class="mp-pagination"
+                 th:if="${boardsPage != null and boardsPage.totalPages > 1}">
+                <a class="pg-btn"
+                   th:classappend="${boardsPage.first} ? ' disabled' : ''"
+                   th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${boardsPage.number-1})}">
+                    이전
+                </a>
+
+                <a class="pg-num"
+                   th:each="p : ${#numbers.sequence(0, boardsPage.totalPages-1)}"
+                   th:text="${p+1}"
+                   th:classappend="${p == boardsPage.number} ? ' active' : ''"
+                   th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${p})}">
+                </a>
+
+                <a class="pg-btn"
+                   th:classappend="${boardsPage.last} ? ' disabled' : ''"
+                   th:href="@{/mypage/{memberId}/posts(memberId=${memberId}, page=${boardsPage.number+1})}">
+                    다음
+                </a>
+            </div>
+
+        </div>
+    </section>
+
 </div>
 </body>
 </html>
