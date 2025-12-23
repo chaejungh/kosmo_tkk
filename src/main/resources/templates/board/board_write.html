@@ -6,9 +6,6 @@
 
 <head>
     <th:block layout:fragment="head">
-        <meta charset="UTF-8">
-        <title>덕질게시판 글쓰기 | 더쿠쿠</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <style>
             :root{
@@ -16,7 +13,17 @@
                 --border:#e5e7eb; --accent:#ff6b86; --purple:#6366f1;
                 --shadow:0 10px 30px rgba(17,24,39,.08); --radius:18px;
             }
-            .board-write-wrap{max-width:920px;margin:0 auto;padding:12px 16px 90px;}
+            .board-write-wrap{
+                /* ✅ 컨테이너(.tkk-container) 안에서만 넓히기 */
+                width: min(1100px, 100%);
+                margin: 0 auto;
+
+                /* 컨테이너가 이미 좌우 16px padding이라 여기선 0 추천 */
+                padding: 12px 0 90px;
+
+                max-width: 100%;
+                box-sizing: border-box;
+            }
             .bw-head{
                 background:linear-gradient(135deg, rgba(255,107,134,.16), rgba(99,102,241,.14));
                 border:1px solid rgba(229,231,235,.9); border-radius:22px;
@@ -28,14 +35,23 @@
                 background:var(--card); border:1px solid var(--border);
                 border-radius:22px; box-shadow:var(--shadow); overflow:hidden;
             }
-            .bw-inner{padding:16px;}
+            .bw-card,
+            .bw-inner{
+                width: 100%;
+                max-width: 100%;
+            }
+            .bw-title, .bw-sub,
+            .field label, .hint, .error {
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
             .field{
                 border:1px solid var(--border); border-radius:18px;
                 padding:14px; background:#fff; margin-bottom:14px;
             }
             .field label{
                 display:flex;align-items:center;gap:8px;
-                font-size:13px;font-weight:900;color:var(--text);margin-bottom:10px;
+                font-size:13px;font-weight:900;color:var(--text);margin-bottom:10px; flex-wrap: wrap;
             }
             .req{
                 font-size:11px;padding:4px 8px;border-radius:999px;
@@ -45,6 +61,17 @@
             .field input,.field select,.field textarea{
                 width:100%; border:1px solid var(--border); border-radius:14px;
                 padding:12px; font-size:13px; outline:none; background:#fff; color:var(--text);
+                min-width: 0;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            .field input[type="text"]{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .field input[type="text"]:focus{
+                text-overflow: clip;
             }
             .field textarea{min-height:220px;resize:vertical;line-height:1.6;}
             .field input:focus,.field select:focus,.field textarea:focus{
