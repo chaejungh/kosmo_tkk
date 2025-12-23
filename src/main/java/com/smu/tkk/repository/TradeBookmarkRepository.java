@@ -25,7 +25,8 @@ public interface TradeBookmarkRepository extends JpaRepository<TradeBookmark, Lo
     Page<TradeBookmark> findByMemberId(Long memberId, Pageable pageable);
 
     // 🔥 특정 거래글이 찜(하트) 몇 개인지
-    long countByTradeId(Long tradeId);
+    @Query("select count(b) from TradeBookmark b where b.tradeId = :tradeId")
+    long countLikeCountByTradeId(Long tradeId);
 
     // 🔥 특정 거래글을 찜한 사람들의 memberId 목록
     @Query("select b.memberId from TradeBookmark b where b.tradeId = :tradeId")

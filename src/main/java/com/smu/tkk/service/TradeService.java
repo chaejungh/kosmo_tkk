@@ -58,4 +58,10 @@ public interface TradeService {
     // 수정/삭제 (너희 기존 로직 유지)
     TradePost modifyTradePost(TradePost post) throws Exception;
     TradePost removeTradePost(TradePost post) throws Exception;
+
+    /* ============================================================
+   🔥 정렬 통합용 (추가)
+   ============================================================ */
+    Page<TradePostListDto> readAllSorted(String sort, Pageable pageable);
+
 }

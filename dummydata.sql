@@ -4760,6 +4760,7 @@ INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
 VALUES (8, '신촌 굿즈샵 검색 038', 'GOODS', 18, SYSDATE - 32);
 
 INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
+
 VALUES (9, '부산 애니 굿즈샵 039', 'POST', 19, SYSDATE - 31);
 
 INSERT INTO search_log (member_id, keyword, target_type, target_id, created_at)
