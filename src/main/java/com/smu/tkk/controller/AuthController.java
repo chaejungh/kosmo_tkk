@@ -121,6 +121,12 @@ public class AuthController {
             return "auth/login"; // 로그인 실패 시 다시 로그인 페이지로
         }
 
+        if (member.getUserLevel() == 0) {   // 이메일 미인증
+            model.addAttribute("emailNotVerified", true);
+            model.addAttribute("email", member.getEmail());
+            return "auth/login";
+        }
+
         // 로그인 성공 → 세션에 로그인 아이디만 저장 (레포 수정 안 하려고 간단 버전)
         session.setAttribute("loginId", member.getLoginId());
         session.setAttribute("nickname", member.getNickname());
@@ -223,16 +229,5 @@ public class AuthController {
 
         return "redirect:/";
     }
-    @GetMapping("/auth/verify-page")
-    public String showVerifyPage(@RequestParam String email, Model model) {
-        model.addAttribute("email", email);
-        return "auth/verify_email"; // 너가 만든 인증 페이지 HTML 이름
-    }
-    // 이메일 인증 페이지 이동
-    @GetMapping("/verify")
-    public String verifyPage(@RequestParam String email, Model model) {
 
-        model.addAttribute("email", email);
-        return "auth/verify_email";   // ✔ verify_email.html 로 이동
-    }
 }
