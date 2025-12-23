@@ -167,7 +167,7 @@ public class TradeServiceImp implements TradeService {
         dto.setChatCount(chatCount);
 
         // ♥ 찜(북마크) 개수
-        long likeCount = tradeBookmarkRepository.countByTradeId(post.getId());
+        long likeCount = tradeBookmarkRepository.countLikeCountByTradeId(post.getId());
         dto.setLikeCount(likeCount);
 
         return dto;
@@ -262,6 +262,19 @@ public class TradeServiceImp implements TradeService {
     public Page<TradePostListDto> readAllOrderByLatest(Pageable pageable) {
         Page<TradePost> posts = tradeRepository.findAllByOrderByCreatedAtDesc(pageable);
         return posts.map(this::toListDTO);
+    }
+    @Override
+    public Page<TradePostListDto> readAllSorted(String sort, Pageable pageable) {
+
+        if ("like".equals(sort)) {
+            return readAllOrderByLike(pageable);
+        }
+
+        if ("view".equals(sort)) {
+            return readAllOrderByView(pageable);
+        }
+
+        return readAllOrderByLatest(pageable); // default
     }
 
 }

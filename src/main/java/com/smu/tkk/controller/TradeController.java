@@ -17,7 +17,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -73,24 +75,38 @@ public class TradeController {
        ============================================================== */
     @GetMapping("/list.do")
     public String tradeList(
-            @RequestParam(required = false) String sort,
-            Pageable pageable,
+            @RequestParam(defaultValue = "latest") String sort,
+            @PageableDefault(page = 0,size = 10,sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable,
             @SessionAttribute(name = "memberId", required = false) Long memberId,
             Model model) {
+
+        Sort sortCondition;
+        switch (sort) {
+            case "like":
+                sortCondition = Sort.by(DESC, "likeCount");
+                break;
+            case "view":
+                sortCondition = Sort.by(DESC, "viewCount");
+                break;
+            default:
+                sortCondition = Sort.by(DESC, "createdAt");
+        }
+
+        pageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                sortCondition
+        );
+
 
         int unreadCount = 0;
         if (memberId != null) {
             List<ChatRoomListDTO> rooms = tradeChatService.getChatRoomList(memberId);
             for (ChatRoomListDTO room : rooms) unreadCount += room.getUnreadCount();
         }
+        Page<TradePostListDto> result =
+                tradeService.readAllSorted(sort, pageable);
 
-        // ✅ pageable 정렬 제거 (sort 파라미터로만 컨트롤)
-        pageable = Pageable.ofSize(pageable.getPageSize()).withPage(pageable.getPageNumber());
-
-        Page<TradePostListDto> result;
-        if ("like".equals(sort)) result = tradeService.readAllOrderByLike(pageable);
-        else if ("view".equals(sort)) result = tradeService.readAllOrderByView(pageable);
-        else result = tradeService.readAllOrderByLatest(pageable);
 //        TradePostImage imgs = tradePostImageService.readOneImage()
         model.addAttribute("page", result);
         model.addAttribute("sort", sort);
@@ -102,32 +118,32 @@ public class TradeController {
     /* ===============================================================
        🔥 특정 판매자의 거래글 목록
        ============================================================== */
-    @GetMapping("/seller/{sellerId}")
-    public String tradeListBySeller(@PathVariable Long sellerId,
-                                    @PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
-                                    Model model) {
-
-        // 1) 판매자 글 (엔티티: sellerName 뽑는 용도)
-        Page<TradePost> entityPage = tradeService.readBySellerId(sellerId, pageable);
-
-        // 2) DTO (썸네일 포함)
-        Page<TradePostListDto> dtoPage = tradeService.readBySellerIdDto(sellerId, pageable);
-
-        String sellerName = "판매자 #" + sellerId;
-        if (entityPage.hasContent()) {
-            TradePost first = entityPage.getContent().get(0);
-            if (first.getSeller() != null && first.getSeller().getNickname() != null) {
-                sellerName = first.getSeller().getNickname();
-            }
-        }
-
-        model.addAttribute("page", dtoPage);
-        model.addAttribute("sellerId", sellerId);
-        model.addAttribute("sellerName", sellerName);
-        model.addAttribute("isSellerList", true);
-
-        return "trade/trade_list";
-    }
+//    @GetMapping("/seller/{sellerId}")
+//    public String tradeListBySeller(@PathVariable Long sellerId,
+//                                    @PageableDefault(size = 20, sort = "id", direction = DESC) Pageable pageable,
+//                                    Model model) {
+//
+//        // 1) 판매자 글 (엔티티: sellerName 뽑는 용도)
+//        Page<TradePost> entityPage = tradeService.readBySellerId(sellerId, pageable);
+//
+//        // 2) DTO (썸네일 포함)
+//        Page<TradePostListDto> dtoPage = tradeService.readBySellerIdDto(sellerId, pageable);
+//
+//        String sellerName = "판매자 #" + sellerId;
+//        if (entityPage.hasContent()) {
+//            TradePost first = entityPage.getContent().get(0);
+//            if (first.getSeller() != null && first.getSeller().getNickname() != null) {
+//                sellerName = first.getSeller().getNickname();
+//            }
+//        }
+//
+//        model.addAttribute("page", dtoPage);
+//        model.addAttribute("sellerId", sellerId);
+//        model.addAttribute("sellerName", sellerName);
+//        model.addAttribute("isSellerList", true);
+//
+//        return "trade/trade_list";
+//    }
 
     /* ===============================================================
        🔥 거래 상세
@@ -153,7 +169,7 @@ public class TradeController {
         model.addAttribute("sellerId", sellerId);
 
         long chatCount = tradeChatRoomRepository.countByTradeId(tradeId);
-        long likeCount = tradeBookmarkRepository.countByTradeId(tradeId);
+        long likeCount = tradeBookmarkRepository.countLikeCountByTradeId(tradeId);
         model.addAttribute("chatCount", chatCount);
         model.addAttribute("likeCount", likeCount);
 
