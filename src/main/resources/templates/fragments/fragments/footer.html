@@ -43,19 +43,31 @@
             <div>
                 <p class="tkk-footer-title">바로가기</p>
                 <a class="tkk-footer-link" th:href="@{/}">홈</a>
-                <a class="tkk-footer-link" th:href="@{/board/list}">속닥속닥</a>
-                <a class="tkk-footer-link" th:href="@{/market}">쿠쿠마켓</a>
+                <a class="tkk-footer-link" th:href="@{/board}">속닥속닥</a>
+                <a class="tkk-footer-link" th:href="@{/trade}">쿠쿠마켓</a>
                 <a class="tkk-footer-link" th:href="@{/popupstore/list.do(page=0,size=10)}">팝업스토어</a>
-                <a class="tkk-footer-link" th:href="@{/goods}">매장 찾기</a>
+                <a class="tkk-footer-link" th:href="@{/}">매장 찾기</a>
             </div>
 
             <!-- 고객센터 -->
             <div>
                 <p class="tkk-footer-title">고객센터</p>
-                <a class="tkk-footer-link" href="javascript:void(0)">공지사항</a>
-                <a class="tkk-footer-link" href="javascript:void(0)">자주 묻는 질문</a>
-                <a class="tkk-footer-link" href="javascript:void(0)">1:1 문의</a>
-                <a class="tkk-footer-link" href="javascript:void(0)">이용약관</a>
+                <a class="tkk-footer-link" th:href="@{/mypage/service/notice}">공지사항</a>
+                <a class="tkk-footer-link" th:href="@{/mypage/service/notice}">자주 묻는 질문</a>
+                <!-- ✅ 로그인일 때만 1:1 문의(내 문의 목록) -->
+                <a class="tkk-footer-link"
+                   th:if="${session.memberId != null}"
+                   th:href="@{|/mypage/service/${session.memberId}/inquiries|}">
+                    1:1 문의
+                </a>
+
+                <!-- ✅ 비로그인이면 로그인 화면으로 -->
+                <a class="tkk-footer-link"
+                   th:unless="${session.memberId != null}"
+                   th:href="@{/auth/login}">
+                    1:1 문의
+                </a>
+                <a class="tkk-footer-link" th:href="@{/mypage/service/terms}">이용약관</a>
             </div>
 
             <!-- 문의하기 -->
