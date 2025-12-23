@@ -394,7 +394,7 @@
                     <div class="trade-media">
                         <!-- 썸네일 -->
                         <img class="trade-thumb"
-                             th:src="${#strings.isEmpty(post.thumbnailUrl) ? '/images/dummy/noimg.png' : post.thumbnailUrl}"
+                             th:src="${post.thumbnailUrl}"
                              alt="thumb">
 
                         <!-- (UI) 찜 아이콘 느낌 -->
