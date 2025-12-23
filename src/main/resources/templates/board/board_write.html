@@ -7,282 +7,71 @@
 <head>
     <th:block layout:fragment="head">
         <meta charset="UTF-8">
-        <title th:text="${mode} == 'edit' ? '굿즈거래 글 수정 | 더쿠쿠' : '굿즈거래 글쓰기 | 더쿠쿠'">굿즈거래 글쓰기 | 더쿠쿠</title>
+        <title>덕질게시판 글쓰기 | 더쿠쿠</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <style>
-            :root {
-                --bg: #f4f5f7;
-                --card: #ffffff;
-                --text: #111827;
-                --sub: #6b7280;
-                --border: #e5e7eb;
-
-                --accent: #ff6b86;
-                --accentDeep: #ff4d6d;
-                --purple: #6366f1;
-                --purpleDeep: #4f46e5;
-
-                --shadow: 0 10px 30px rgba(17, 24, 39, .08);
-                --radius: 18px;
+            :root{
+                --bg:#f4f5f7; --card:#fff; --text:#111827; --sub:#6b7280;
+                --border:#e5e7eb; --accent:#ff6b86; --purple:#6366f1;
+                --shadow:0 10px 30px rgba(17,24,39,.08); --radius:18px;
             }
-
-            .trade-write-wrap {
-                max-width: 920px;
-                margin: 0 auto;
-                padding: 12px 16px 90px;
+            .board-write-wrap{max-width:920px;margin:0 auto;padding:12px 16px 90px;}
+            .bw-head{
+                background:linear-gradient(135deg, rgba(255,107,134,.16), rgba(99,102,241,.14));
+                border:1px solid rgba(229,231,235,.9); border-radius:22px;
+                box-shadow:var(--shadow); padding:18px; margin:6px 0 14px;
             }
-
-            .tw-head {
-                background: linear-gradient(135deg, rgba(255, 107, 134, .16), rgba(99, 102, 241, .14));
-                border: 1px solid rgba(229, 231, 235, .9);
-                border-radius: 22px;
-                box-shadow: var(--shadow);
-                padding: 18px;
-                margin: 6px 0 14px;
-                position: relative;
-                overflow: hidden;
+            .bw-title{margin:0;font-size:20px;font-weight:900;color:var(--text);}
+            .bw-sub{margin:6px 0 0;font-size:13px;color:var(--sub);}
+            .bw-card{
+                background:var(--card); border:1px solid var(--border);
+                border-radius:22px; box-shadow:var(--shadow); overflow:hidden;
             }
-
-            .tw-title {
-                margin: 0;
-                font-size: 20px;
-                font-weight: 900;
-                color: var(--text);
-                letter-spacing: -.2px;
+            .bw-inner{padding:16px;}
+            .field{
+                border:1px solid var(--border); border-radius:18px;
+                padding:14px; background:#fff; margin-bottom:14px;
             }
-
-            .tw-sub {
-                margin: 6px 0 0;
-                font-size: 13px;
-                color: var(--sub);
+            .field label{
+                display:flex;align-items:center;gap:8px;
+                font-size:13px;font-weight:900;color:var(--text);margin-bottom:10px;
             }
-
-            .tw-card {
-                background: var(--card);
-                border: 1px solid var(--border);
-                border-radius: 22px;
-                box-shadow: var(--shadow);
-                overflow: hidden;
+            .req{
+                font-size:11px;padding:4px 8px;border-radius:999px;
+                background:rgba(255,107,134,.14);border:1px solid rgba(255,107,134,.22);
+                color:var(--text);font-weight:900;
             }
-
-            .tw-card-inner {
-                padding: 16px;
+            .field input,.field select,.field textarea{
+                width:100%; border:1px solid var(--border); border-radius:14px;
+                padding:12px; font-size:13px; outline:none; background:#fff; color:var(--text);
             }
-
-            .uploader {
-                border: 1.5px dashed rgba(17, 24, 39, .18);
-                border-radius: 18px;
-                padding: 16px;
-                background: linear-gradient(180deg, #fff, rgba(244, 245, 247, .7));
-                cursor: pointer;
-                transition: .15s ease;
+            .field textarea{min-height:220px;resize:vertical;line-height:1.6;}
+            .field input:focus,.field select:focus,.field textarea:focus{
+                border-color:rgba(99,102,241,.55);
+                box-shadow:0 0 0 3px rgba(99,102,241,.12);
             }
-
-            .uploader:hover {
-                border-color: rgba(255, 107, 134, .55);
-                box-shadow: 0 10px 22px rgba(255, 107, 134, .10);
+            .error{
+                margin-top:8px; color:#ef4444; font-size:12px; font-weight:800;
             }
-
-            .uploader.dragover {
-                border-color: rgba(99, 102, 241, .7);
-                box-shadow: 0 10px 22px rgba(99, 102, 241, .12);
-                background: linear-gradient(180deg, #fff, rgba(99, 102, 241, .08));
+            .hint{margin-top:8px;color:var(--sub);font-size:12px;}
+            .bw-bottom{position:sticky;bottom:0;margin-top:14px;padding:12px 0 0;}
+            .bw-bottom-bar{
+                background:rgba(255,255,255,.86); backdrop-filter:blur(10px);
+                border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow);
+                padding:12px; display:flex; gap:10px; align-items:center; justify-content:space-between;
             }
-
-            .uploader-row {
-                display: flex;
-                gap: 14px;
-                align-items: center;
+            .bw-submit{
+                height:40px;padding:0 14px;border-radius:14px;border:none;
+                background:linear-gradient(135deg, var(--accent), var(--purple));
+                color:#fff;font-weight:900;cursor:pointer;white-space:nowrap;
+                box-shadow:0 12px 26px rgba(99,102,241,.18);
             }
-
-            .uploader-ico {
-                width: 46px;
-                height: 46px;
-                border-radius: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: rgba(255, 107, 134, .16);
-                border: 1px solid rgba(255, 107, 134, .18);
-                font-size: 20px;
-                flex: 0 0 auto;
-            }
-
-            .uploader-title {
-                font-weight: 900;
-                color: var(--text);
-                margin: 0;
-                font-size: 14px;
-            }
-
-            .uploader-desc {
-                margin: 4px 0 0;
-                color: var(--sub);
-                font-size: 12px;
-            }
-
-            .preview-wrap {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                margin-top: 12px;
-            }
-
-            .preview-item {
-                width: 116px;
-                position: relative;
-            }
-
-            .preview-img {
-                width: 116px;
-                height: 116px;
-                border-radius: 16px;
-                object-fit: cover;
-                border: 1px solid var(--border);
-                box-shadow: 0 6px 14px rgba(17, 24, 39, .08);
-                background: #111827;
-            }
-
-            .preview-remove {
-                position: absolute;
-                top: -8px;
-                right: -8px;
-                width: 26px;
-                height: 26px;
-                border-radius: 999px;
-                border: none;
-                background: rgba(17, 24, 39, .84);
-                color: #fff;
-                font-weight: 900;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .tw-grid {
-                display: grid;
-                grid-template-columns: 1.2fr .8fr;
-                gap: 14px;
-                margin-top: 14px;
-            }
-
-            @media (max-width: 860px) {
-                .tw-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-
-            .field {
-                border: 1px solid var(--border);
-                border-radius: 18px;
-                padding: 14px;
-                background: #fff;
-            }
-
-            .field label {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 13px;
-                font-weight: 900;
-                color: var(--text);
-                margin-bottom: 10px;
-            }
-
-            .req {
-                font-size: 11px;
-                padding: 4px 8px;
-                border-radius: 999px;
-                background: rgba(255, 107, 134, .14);
-                border: 1px solid rgba(255, 107, 134, .22);
-                color: var(--text);
-                font-weight: 900;
-            }
-
-            .field input, .field select, .field textarea {
-                width: 100%;
-                border: 1px solid var(--border);
-                border-radius: 14px;
-                padding: 12px;
-                font-size: 13px;
-                outline: none;
-                background: #fff;
-                color: var(--text);
-            }
-
-            .field textarea {
-                min-height: 160px;
-                resize: vertical;
-                line-height: 1.6;
-            }
-
-            .field input:focus, .field select:focus, .field textarea:focus {
-                border-color: rgba(99, 102, 241, .55);
-                box-shadow: 0 0 0 3px rgba(99, 102, 241, .12);
-            }
-
-            .hint {
-                margin-top: 8px;
-                color: var(--sub);
-                font-size: 12px;
-            }
-
-            .tw-bottom {
-                position: sticky;
-                bottom: 0;
-                margin-top: 14px;
-                padding: 12px 0 0;
-            }
-
-            .tw-bottom-bar {
-                background: rgba(255, 255, 255, .86);
-                backdrop-filter: blur(10px);
-                border: 1px solid var(--border);
-                border-radius: 18px;
-                box-shadow: var(--shadow);
-                padding: 12px;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .tw-actions {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-
-            .tw-submit {
-                height: 40px;
-                padding: 0 14px;
-                border-radius: 14px;
-                border: none;
-                background: linear-gradient(135deg, var(--accent), var(--purple));
-                color: #fff;
-                font-weight: 900;
-                cursor: pointer;
-                box-shadow: 0 12px 26px rgba(99, 102, 241, .18);
-                white-space: nowrap;
-            }
-
-            .tw-cancel {
-                height: 40px;
-                padding: 0 14px;
-                border-radius: 14px;
-                border: 1px solid var(--border);
-                background: #fff;
-                color: var(--text);
-                font-weight: 900;
-                cursor: pointer;
-                white-space: nowrap;
-                text-decoration: none;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
+            .bw-cancel{
+                height:40px;padding:0 14px;border-radius:14px;
+                border:1px solid var(--border);background:#fff;color:var(--text);
+                font-weight:900;cursor:pointer;white-space:nowrap;text-decoration:none;
+                display:inline-flex;align-items:center;justify-content:center;
             }
         </style>
     </th:block>
@@ -291,197 +80,77 @@
 <body>
 <div layout:fragment="content">
 
-    <div class="trade-write-wrap">
+    <div class="board-write-wrap">
 
-        <!-- 세션 없으면 막기 -->
+        <!-- 세션 없으면 폼 자체 숨김(필요하면 유지/수정 가능) -->
         <div th:if="${session.memberId == null}"
              style="background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px;color:#111827;margin:10px 0;">
             ⚠️ 로그인 후 이용해주세요.
         </div>
 
-        <div class="tw-head">
-            <h1 class="tw-title"
-                th:text="${mode} == 'edit' ? '쿠쿠마켓 글 수정' : '쿠쿠마켓 글쓰기'">쿠쿠마켓 글쓰기</h1>
-            <p class="tw-sub">사진 + 핵심 정보만 딱 정리하면, 사람들이 바로 문의해!</p>
+        <div class="bw-head">
+            <h1 class="bw-title">덕질게시판 글쓰기</h1>
+            <p class="bw-sub">제목/카테고리/내용만 깔끔하게 쓰면 끝!</p>
         </div>
 
-        <div class="tw-card">
-            <div class="tw-card-inner">
+        <div class="bw-card" th:if="${session.memberId != null}">
+            <div class="bw-inner">
 
-                <!-- ✅ edit / write 폼을 분리해서 action이 절대 깨지지 않게 -->
-                <form th:if="${mode} == 'edit'"
-                      th:action="@{|/trade/${session.memberId}/article/${postId}/edit.do|}"
-                      th:object="${tradeWriteValid}"
-                      method="post"
-                      enctype="multipart/form-data">
+                <!-- action은 너 컨트롤러 경로에 맞춰 수정 -->
+                <form th:action="@{/board/write.do}"
+                      th:object="${boardWriteValid}"
+                      method="post">
 
-                    <div th:replace="~{::formBody}"></div>
+                    <!-- 카테고리 -->
+                    <div class="field">
+                        <label>카테고리 <span class="req">필수</span></label>
+                        <select th:field="*{categoryId}" required>
+                            <!-- 1~3만 선택되게 -->
+                            <option value="" disabled selected>선택하세요</option>
+                            <option value="1">내 새끼 자랑</option>
+                            <option value="2">코스프레</option>
+                            <option value="3">자유</option>
+                        </select>
+
+                        <div class="error"
+                             th:if="${#fields.hasErrors('categoryId')}"
+                             th:errors="*{categoryId}">카테고리 에러</div>
+                        <div class="hint">카테고리는 1~3만 허용(@Min 1, @Max 3)</div>
+                    </div>
+
+                    <!-- 제목 -->
+                    <div class="field">
+                        <label>제목 <span class="req">필수</span></label>
+                        <input type="text" th:field="*{title}" placeholder="제목을 입력하세요" required>
+                        <div class="error"
+                             th:if="${#fields.hasErrors('title')}"
+                             th:errors="*{title}">제목 에러</div>
+                    </div>
+
+                    <!-- 내용 -->
+                    <div class="field">
+                        <label>내용 <span class="req">필수</span></label>
+                        <textarea th:field="*{content}" placeholder="내용을 입력하세요" required></textarea>
+                        <div class="error"
+                             th:if="${#fields.hasErrors('content')}"
+                             th:errors="*{content}">내용 에러</div>
+                    </div>
+
+                    <div class="bw-bottom">
+                        <div class="bw-bottom-bar">
+                            <!-- 목록 경로는 너 프로젝트 경로로 수정 -->
+                            <a class="bw-cancel" th:href="@{/board/list.do}">↩ 목록으로</a>
+                            <button class="bw-submit" type="submit">✅ 등록하기</button>
+                        </div>
+                    </div>
+
                 </form>
-
-                <form th:unless="${mode} == 'edit'"
-                      th:action="@{|/trade/${session.memberId}/write|}"
-                      th:object="${tradeWriteValid}"
-                      method="post"
-                      enctype="multipart/form-data">
-
-                    <div th:replace="~{::formBody}"></div>
-                </form>
-
-                <!-- ✅ 공통 폼 바디 -->
-                <th:block th:fragment="formBody">
-
-                    <div class="uploader" id="dropZone" onclick="document.getElementById('imgInput').click()">
-                        <div class="uploader-row">
-                            <div class="uploader-ico">📸</div>
-                            <div>
-                                <p class="uploader-title">사진 업로드 (여러 장 가능)</p>
-                                <p class="uploader-desc">클릭 또는 드래그로 업로드 · 첫 사진이 대표 느낌으로 보여질 수 있어!</p>
-                            </div>
-                        </div>
-
-                        <input type="file" id="imgInput" name="images" accept="image/*" multiple style="display:none">
-                        <div class="preview-wrap" id="previewArea"></div>
-                    </div>
-
-                    <div class="tw-grid">
-                        <div style="display:flex;flex-direction:column;gap:14px;">
-                            <div class="field">
-                                <label>제목 <span class="req">필수</span></label>
-                                <input type="text" th:field="*{title}" placeholder="예) [하이큐] GEM 손바닥 피규어 미야 아츠무" required>
-                                <div class="hint">제목에 작품명/캐릭터/굿즈명을 넣으면 검색에 잘 걸려!</div>
-                            </div>
-
-                            <div class="field">
-                                <label>설명 <span class="req">필수</span></label>
-                                <textarea th:field="*{content}"
-                                          placeholder="• 상품 상태(미개봉/하자 유무)&#10;• 구성품&#10;• 거래 가능 시간/장소&#10;• 네고 가능 여부"
-                                          required></textarea>
-                            </div>
-                        </div>
-
-                        <div style="display:flex;flex-direction:column;gap:14px;">
-                            <div class="field">
-                                <label>가격</label>
-                                <input type="number" th:field="*{price}" placeholder="예) 15000" min="0">
-                                <div class="hint">가격이 없으면 “가격문의”로 보여주게 서비스에서 처리해도 돼!</div>
-                            </div>
-
-                            <div class="field">
-                                <label>카테고리</label>
-                                <select th:field="*{category}">
-                                    <option value="">선택하세요</option>
-                                    <option value="포카">포카</option>
-                                    <option value="피규어">피규어</option>
-                                    <option value="아크릴">아크릴</option>
-                                    <option value="키링">키링</option>
-                                    <option value="뱃지">뱃지</option>
-                                    <option value="기타굿즈">기타굿즈</option>
-                                </select>
-                            </div>
-
-                            <div class="field">
-                                <label>지역</label>
-                                <input type="text" th:field="*{region}" placeholder="예) 홍대 / 합정 / 신촌 / 강남">
-                            </div>
-
-                            <div class="field">
-                                <label>거래 방식</label>
-                                <select th:field="*{tradeMethod}">
-                                    <option value="DIRECT">직거래</option>
-                                    <option value="DELIVERY">택배거래</option>
-                                    <option value="BOTH">직거래 + 택배</option>
-                                </select>
-                            </div>
-
-                            <div class="field">
-                                <label>거래 상태</label>
-                                <select th:field="*{status}">
-                                    <option value="ON_SALE">판매중</option>
-                                    <option value="RESERVED">예약중</option>
-                                    <option value="DONE">판매완료</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tw-bottom">
-                        <div class="tw-bottom-bar">
-                            <a class="tw-cancel" th:href="@{/trade/list.do}">↩ 목록으로</a>
-
-                            <button class="tw-submit" type="submit"
-                                    th:text="${mode} == 'edit' ? '✅ 수정 저장' : '✅ 등록하기'">✅ 등록하기</button>
-                        </div>
-                    </div>
-
-                </th:block>
 
             </div>
         </div>
+
     </div>
 
 </div>
-
-<script layout:fragment="script">
-    const imgInput = document.getElementById("imgInput");
-    const previewArea = document.getElementById("previewArea");
-    const dropZone = document.getElementById("dropZone");
-
-    let selectedFiles = [];
-
-    imgInput?.addEventListener("change", (e) => {
-        selectedFiles = Array.from(e.target.files || []);
-        renderPreview();
-    });
-
-    function renderPreview() {
-        previewArea.innerHTML = "";
-        selectedFiles.forEach((file, idx) => {
-            const reader = new FileReader();
-            reader.onload = (ev) => {
-                const wrap = document.createElement("div");
-                wrap.className = "preview-item";
-                wrap.innerHTML = `
-                    <img src="${ev.target.result}" class="preview-img" alt="preview">
-                    <button type="button" class="preview-remove" onclick="removeImg(${idx})">×</button>
-                `;
-                previewArea.appendChild(wrap);
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function removeImg(index) {
-        selectedFiles.splice(index, 1);
-        const dt = new DataTransfer();
-        selectedFiles.forEach(f => dt.items.add(f));
-        imgInput.files = dt.files;
-        renderPreview();
-    }
-
-    // drag & drop
-    ["dragenter","dragover"].forEach(evt => {
-        dropZone?.addEventListener(evt, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropZone.classList.add("dragover");
-        });
-    });
-    ["dragleave","drop"].forEach(evt => {
-        dropZone?.addEventListener(evt, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropZone.classList.remove("dragover");
-        });
-    });
-    dropZone?.addEventListener("drop", (e) => {
-        const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith("image/"));
-        selectedFiles = files;
-        const dt = new DataTransfer();
-        selectedFiles.forEach(f => dt.items.add(f));
-        imgInput.files = dt.files;
-        renderPreview();
-    });
-</script>
-
 </body>
 </html>
